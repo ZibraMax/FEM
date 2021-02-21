@@ -24,10 +24,11 @@ class Element2D(Element):
 		ax.plot(*__coords,[0]*len(__coords.T),'-',color='black')
 		ax.plot(*this.coords.T,[0]*len(this.coords),'o',color='blue')
 		ax.legend(l)
+
 	def jacobianGraph(this):
 		_z = this.domain
 		_x,_p = this.T(_z.T)
-		_j = this.J(_z.T)
+		_j = this.J(_z.T)[0]
 		__j = np.linalg.det(_j)
 		fig = plt.figure()
 		ax = fig.add_subplot(projection='3d')
@@ -44,4 +45,7 @@ class Element2D(Element):
 		ax.plot(*this.coords.T,[0]*len(this.coords),'o',color='blue')
 		ax.legend(l)
 
-
+	def isInside(this,x): #TODO hacer que esto sea vectorizado. En teoría ya lo es xd
+		path = mpltPath.Path(this._coords)
+		inside2 = path.contains_points([x])
+		return inside2[0]

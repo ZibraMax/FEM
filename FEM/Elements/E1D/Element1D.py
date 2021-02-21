@@ -11,7 +11,7 @@ class Element1D(Element,LinearScheme):
 		LinearScheme.__init__(this,n)
 
 	def draw(this,m=100):
-		_z = np.linspace(*this.domain.reshape([2]),m)
+		_z = this.domain
 		_x,_p = this.T(_z)
 		_y = 0
 		for i in range(this.n):
@@ -22,4 +22,9 @@ class Element1D(Element,LinearScheme):
 		plt.plot(_x,_y,'-.',label=r'$\sum_{i=0}^{n}\psi$')
 		plt.legend()
 		plt.grid()
-		
+
+	def jacobianGraph(this):
+		pass #No implementado porque el jacobiano es constante en cualquier elemento lienal
+
+	def isInside(this,x):
+		return (x>=this.coords.T[0][0])*(x<=this.coords.T[0][-1])

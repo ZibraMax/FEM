@@ -1,3 +1,2 @@
-from .delaunay import *
-from .Geometria import *
-from .Rect import *
+from .Delaunay import *
+from .Geometry import *

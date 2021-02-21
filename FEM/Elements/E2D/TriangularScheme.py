@@ -1,13 +1,6 @@
 import numpy as np
-from matplotlib import tri
 class TriangularScheme():
 	def __init__(this, n):
-		
-		DENSIDAD = 3
-		trimesh = meshDeFigura([[0,0],[1,0],[0,1]],n=DENSIDAD,dev=False)
-		_z = trimesh.x
-		_n = trimesh.y
-		this.domain = np.array([_z,_n]).T
 		# this.Z,this.W = np.polynomial.legendre.leggauss(n)
 		# w = np.outer((1 + points) * weights, weights) / 4
 		# x = np.outer(1 - points, np.ones(n)) / 2
@@ -27,19 +20,5 @@ class TriangularScheme():
 		Y = [A0,B1,A1,B1,A2,B2,B2]
 		W = [W0,W1,W1,W1,W2,W2,W2]
 		this.Z = np.array([X,Y]).T
-		this.W = W
-
-	def integrate(this,f):
-		integral = 0
-		for w,z in zip(this.W,this.Z):
-			integral+= f(z)*w
-		return integral
-def meshDeFigura(corners,n=2,dev=False):
-	corners = np.array(corners)
-	triangle = tri.Triangulation(corners[:, 0], corners[:, 1])
-	refiner = tri.UniformTriRefiner(triangle)
-	trimesh = refiner.refine_triangulation(subdiv=n)
-	if dev:
-		return trimesh,triangle
-	else:
-		return trimesh
+		this.W = np.array(W)
+		this.domain = np.array([[0,0],[1,0],[0,1]] +  this.Z.tolist())
