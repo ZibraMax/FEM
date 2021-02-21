@@ -11,18 +11,8 @@ class Element():
 		this.Qe = np.zeros([this.n,1])
 
 	def T(this,z):
-		x = 0
 		p = this.psis(z)
-		if len(this.coords[0])==1:
-			for i in range(len(p)):
-				x += this.coords[i].T * p[i]
-		else:
-			x = [0]*len(this.coords[0])
-			for i in range(len(p)):
-				for j in range(len(this.coords[i])):
-					x[j] += this.coords[i][j] * p[i]
-			x = np.array(x)
-		return x,p
+		return p@this.coords,p
 
 	def inverseMapping(this,x,n=100):
 		x = np.array(x)
@@ -39,16 +29,17 @@ class Element():
 				break
 		return zeta
 	def J(this, z):
-		dpsis = this.dpsis(z)
-		return this.coords.T @ dpsis.T,dpsis
+		dpsis = this.dpsis(z).T
+		return this.coords.T @ dpsis,dpsis
 
 	def giveSolution(this,SVSolution=False):
 		_z = this.domain
 		_x,_p = this.T(_z.T)
 		if SVSolution:
-			_j,_dp = this.dpsis(_z.T) #TODO Revisar con Reddy
-			return _x,this.Ue@_p, this.Ue@_dp
-		return _x,this.Ue@_p
+			j,dpz = this.J(_z.T) #TODO Revisar con Reddy
+			dpx = dpz @ np.linalg.inv(j)
+			return _x,this.Ue@_p.T, this.Ue@dpx.T #TODO REVISAR VS
+		return _x,this.Ue@_p.T
 
 	def setUe(this,U):
 		for i in range(len(this.gdl)):

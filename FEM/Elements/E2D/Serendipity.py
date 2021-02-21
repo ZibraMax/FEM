@@ -15,7 +15,7 @@ class Serendipity(Element2D,RectangularScheme):
 			0.5*(1.0+z[0])*(1.0-z[1]**2.0),
 			0.5*(1.0-z[0]**2.0)*(1.0+z[1]),
 			0.5*(1.0-z[0])*(1.0-z[1]**2.0)
-			])
+			]).T
 	def dpsis(this,z):
 		return np.array([
 			[-0.25*(z[1]-1.0)*(2.0*z[0]+z[1]),

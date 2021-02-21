@@ -15,7 +15,7 @@ class QTriangular(Element2D,TriangularScheme):
 			2.0*z[1]*(z[1]-0.5),
 			-4.0*(z[0]+z[1]-1.0)*(z[0]),
 			4.0*z[0]*z[1],
-			-4.0*z[1]*(z[0]+z[1]-1.0)])
+			-4.0*z[1]*(z[0]+z[1]-1.0)]).T
 	def dpsis(this,z):
 		return np.array([
 			[
