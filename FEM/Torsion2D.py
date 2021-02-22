@@ -13,16 +13,17 @@ class Torsion2D(Core):
 	def elementMatrices(this):
 		for e in tqdm(this.elements,unit='Element'):
 			_x,_p = e.T(e.Z.T) #Gauss points in global coordinates and Shape functions evaluated in gauss points
-			j,dpz = e.J(e.Z.T) #Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
-			detjac = np.linalg.det(j)
-			_j = np.linalg.inv(j) #Jacobian inverse
-			dpx = dpz @ _j #Shape function derivatives in global coordinates
-			for k in range(len(_x)): #Iterate over gauss points on domain
-				for i in range(e.n): #This part must be vectorized
-					for j in range(e.n):
-						e.Ke[i,j] += (dpx[k][i][0]*dpx[k][j][0] + dpx[k][i][1]*dpx[k][j][1])*detjac[k]
-					e.Fe[i][0] += 2*this.G*this._phi*_p[k][i]*detjac[k]
-
+			jac,dpz = e.J(e.Z.T) #Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
+			detjac = np.linalg.det(jac)
+			_j = np.linalg.inv(jac) #Jacobian inverse
+			dpx = _j @ dpz #Shape function derivatives in global coordinates
+			# for k in range(len(_x)): #Iterate over gauss points on domain
+			# 	for i in range(e.n): #This part must be vectorized
+			# 		for j in range(e.n):
+			# 			e.Ke[i,j] += (dpx[k][0][i]*dpx[k][0][j] + dpx[k][1][i]*dpx[k][1][j])*detjac[k]
+			# 		e.Fe[i][0] += 2*this.G*this._phi*_p[k][i]*detjac[k]
+			e.Fe[:,0] = 2*this.G*this._phi*detjac@_p
+			e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
 	def postProcess(this):
 		X = []
 		Y = []
@@ -31,7 +32,7 @@ class Torsion2D(Core):
 		U3 = []
 		U4 = []
 		fig = plt.figure()
-		ax1 = fig.add_subplot(2,2,1)
+		ax1 = fig.add_subplot(2,2,1,projection='3d')
 		ax2 = fig.add_subplot(2,2,2)
 		ax3 = fig.add_subplot(2,2,3)
 		ax4 = fig.add_subplot(2,2,4)
@@ -39,11 +40,11 @@ class Torsion2D(Core):
 			_x,_u,du=e.giveSolution(True)
 			X+=_x.T[0].tolist()
 			Y+=_x.T[1].tolist()
-			U2+=du[0,0].tolist()
-			U3+=du[1,0].tolist()
+			U2+=du[:,0,0].tolist()
+			U3+=du[:,0,1].tolist()
 			U1+=_u[0].tolist()
-			U4+=np.sqrt(du[0,0]**2 + du[1,0]**2).tolist()
-		surf = ax1.tricontourf(X,Y,U1,cmap='magma')
+			U4+=np.sqrt(du[:,0,0]**2 + du[:,0,1]**2).tolist()
+		surf = ax1.plot_trisurf(X,Y,U1,cmap='magma')
 		cbar = fig.colorbar(surf,ax=ax1)
 		surf = ax2.tricontourf(X,Y,U2,cmap='magma')
 		cbar = fig.colorbar(surf,ax=ax2)

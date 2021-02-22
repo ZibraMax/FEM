@@ -37,14 +37,14 @@ def clip(x, min, max) :
     elif( x < min ) :  return min
     elif( x > max ) :  return max
     else :             return x
+def dist(a,b):
+    return math.sqrt((a[0]-b[0])**2+(a[1]-b[1])**2)
 def isBetween(a, b, c):
-        crossproduct = (c[1] - a[1]) * (b[0] - a[0]) - (c[0] - a[0]) * (b[1] - a[1])
-        if abs(crossproduct) > 1*10**-6:
-            return False
-        dotproduct = (c[0] - a[0]) * (b[0] - a[0]) + (c[1] - a[1])*(b[1] - a[1])
-        if dotproduct < 0:
-            return False
-        squaredlengthba = (b[0] - a[0])*(b[0] - a[0]) + (b[1] - a[1])*(b[1] - a[1])
-        if dotproduct > squaredlengthba:
-            return False
+    tol = 1*10**(-9)
+    d1 = dist(a,c)
+    d2 = dist(b,c)
+    d3 = dist(a,b)
+    d = d1+d2-d3
+    if abs(d)<tol:
         return True
+    return False

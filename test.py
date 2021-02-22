@@ -12,7 +12,7 @@ coords = [[1,1],[3,2],[3.5,3],[0.5,4]]
 gdl = np.array([[1,2,3,4]])
 eRC = FEM.Elements.E2D.Quadrilateral(coords,gdl)
 ELEMENTOS.append(eRC)
-coords = [[-1.5,-1],[1,0],[0,5]]
+coords = [[-1.5,-1],[1,0],[0,5]] #[[-1.5, -1], [1, 0], [0, 5], [-0.25, -0.5], [0.5, 2.5], [-0.75, 2.0]]
 for i in range(len(coords)-1):
 	coords+=[[(coords[i][0]+coords[i+1][0])/2,(coords[i][1]+coords[i+1][1])/2]]
 coords+=[[(coords[i+1][0]+coords[0][0])/2,(coords[i+1][1]+coords[0][1])/2]]

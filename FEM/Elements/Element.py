@@ -30,15 +30,16 @@ class Element():
 		return zeta
 	def J(this, z):
 		dpsis = this.dpsis(z).T
-		return this.coords.T @ dpsis,dpsis
+		return dpsis @ this.coords, dpsis
 
 	def giveSolution(this,SVSolution=False):
 		_z = this.domain
 		_x,_p = this.T(_z.T)
 		if SVSolution:
 			j,dpz = this.J(_z.T) #TODO Revisar con Reddy
-			dpx = dpz @ np.linalg.inv(j)
-			return _x,this.Ue@_p.T, this.Ue@dpx.T #TODO REVISAR VS
+			dpx =  np.linalg.inv(j) @ dpz
+			# print((this.Ue @ np.transpose(dpx,axes=[0,2,1])).shape)
+			return _x,this.Ue@_p.T, this.Ue @ np.transpose(dpx,axes=[0,2,1]) #TODO REVISAR VS
 		return _x,this.Ue@_p.T
 
 	def setUe(this,U):
