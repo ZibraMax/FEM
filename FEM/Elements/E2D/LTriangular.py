@@ -13,6 +13,8 @@ class LTriangular(Element2D,TriangularScheme):
 			z[1]]).T
 	def dpsis(this,z):
 		kernell = (z[0]-z[0])
-		return np.array(
-			[[-1.0*(1+kernell),1.0*(1+kernell),0.0*(1+kernell)],
-			[-1.0*(1+kernell),0.0*(1+kernell),1.0*(1+kernell)]])
+		return np.array([
+			[-1.0*(1+kernell),-1.0*(1+kernell)],
+			[1.0*(1+kernell),0.0*(1+kernell)],
+			[0.0*(1+kernell),1.0*(1+kernell)]
+			])
