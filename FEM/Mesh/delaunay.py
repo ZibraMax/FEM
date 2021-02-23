@@ -29,6 +29,7 @@ class Delaunay1V(Geometry):
 					dicc[4] = a2
 					dicc[5] = a3
 		Geometry.__init__(this,dictionary,gdls,tipos,nvn=nvn,segments=seg)
+		this.mask = vertices
 
 def _strdelaunay(constrained=True,delaunay=True,a=None,q=None,o=1):
 	p = ''

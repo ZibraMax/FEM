@@ -5,9 +5,11 @@ from ..Elements import *
 from ..Elements.E1D import *
 from ..Elements.E2D import *
 from ..Elements.E3D import *
+import re
 
 class Geometry:
 	def __init__(this, dictionary, gdls, types, nvn=1, segments=[]):
+		this.mask = None
 		this.areas = []
 		this.nvn = nvn
 		this.dictionary = dictionary
@@ -20,8 +22,48 @@ class Geometry:
 		this.centroids = []
 		this.ngdl = int(len(this.gdls)*this.nvn)
 		this.generateElements()
-		this.centroidsAndAreas()
-
+		try:
+			this.centroidsAndAreas()
+		except:
+			pass
+	@staticmethod
+	def loadGiDMsh(filename):
+		f = open(filename,'r')
+		dicc = []
+		gdls = []
+		types = []
+		seg = []
+		cbe = []
+		cbn = []
+		nvn = 1
+		params = re.findall(r'\S+', f.readline())
+		f.readline()
+		while True:
+			string = f.readline()
+			if string.split('\n')[0]=='End Coordinates':
+				break
+			gdls += [list(map(float,re.findall(r'\S+', string)[1:3]))]
+		f.readline()
+		f.readline()
+		while True:
+			string = f.readline()
+			if string.split('\n')[0]=='End Elements':
+				break
+			dicc += [list(map(lambda x: int(x)-1,re.findall(r'\S+', string)[1:]))]
+		f.close()
+		tipo = 'C2V'
+		if params[4] == 'Quadrilateral':
+			tipo = 'C1V'
+			if params[-1]=='8':
+				tipo = 'C2V'
+		if params[4] == 'Triangle':
+			tipo = 'T1V'
+			if params[-1]=='6':
+				tipo = 'T2V'	
+		types = [tipo]*len(dicc)
+		print('File '+ filename + ' loaded')
+		o = Geometry(dicc,gdls,types)
+		return o
 	@staticmethod
 	def loadmsh(filename):
 		f = open(filename,'r')
@@ -69,6 +111,10 @@ class Geometry:
 				element = Quadrilateral(coords,gdl)
 			elif this.types[i]=='C2V':
 				element = Serendipity(coords,gdl)
+			elif this.types[i]=='L1V':
+				element = LinealElement(coords,gdl,n=3)
+			elif this.types[i]=='L2V':
+				element = QuadraticElement(coords,gdl,n=3)
 			this.elements.append(element)
 
 	def show(this,texto=10,bolita=0,figsize=[17,10]):
@@ -156,7 +202,7 @@ class Geometry:
 			this.areas.append(np.abs(area/2))
 			this.centroids.append([cx/3/area,cy/3/area])
 
-	def generarSegmentosDesdeCoordenadas(this,p0,p1):
+	def generateSegmentsFromCoords(this,p0,p1):
 		masCercano1 = None
 		d1 = np.Inf
 		masCercano2 = None
@@ -170,9 +216,9 @@ class Geometry:
 			if r2 < d2:
 				d2 = r2
 				masCercano2 = i
-		this.segmentos.append([masCercano1,masCercano2])
+		this.segments.append([masCercano1,masCercano2])
 
-	def generarCBdesdeCoordenada(this,x,y,valor=0):
+	def generateBCFromCoords(this,x,y,value=0):
 		masCercano1 = None
 		d1 = np.Inf
 		for i,gdl in enumerate(this.gdls):
