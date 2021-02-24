@@ -1,0 +1,7 @@
+# Specify filepatterns you want git to ignore.
+
+FEM/__pycache__/
+ipynb_checkpoints/
+*.svg
+*.png
+*.csv

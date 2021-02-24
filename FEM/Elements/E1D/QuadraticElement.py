@@ -1,6 +1,6 @@
 from .Element1D import *
 class QuadraticElement(Element1D):
-	def __init__(this,coords,gdl,n=2):
+	def __init__(this,coords,gdl,n=3):
 		Element1D.__init__(this,coords,gdl,n)
 	def psis(this,z):
 		zm1 = z+1.0

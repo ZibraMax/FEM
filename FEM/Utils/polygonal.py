@@ -39,8 +39,7 @@ def clip(x, min, max) :
     else :             return x
 def dist(a,b):
     return math.sqrt((a[0]-b[0])**2+(a[1]-b[1])**2)
-def isBetween(a, b, c):
-    tol = 1*10**(-9)
+def isBetween(a, b, c,tol):
     d1 = dist(a,c)
     d2 = dist(b,c)
     d3 = dist(a,b)

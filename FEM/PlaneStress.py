@@ -3,11 +3,14 @@ from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 
-class EDO1D(Core):
-	def __init__(this,geometry,a,c,f):
-		this.a = a
-		this.c = c
-		this.f = f
+class PlaneStress(Core):
+	
+	def __init__(this,geometry,E,v,t):
+		this.t = t
+		this.E = E
+		this.t = t
+		if geometry.nvn == 1:
+			print('Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
 		Core.__init__(this,geometry)
 
 	def elementMatrices(this):
@@ -20,9 +23,9 @@ class EDO1D(Core):
 			for i in range(e.n): #This part must be vectorized
 				for j in range(e.n):
 					for k in range(len(e.Z)): #Iterate over gauss points on domain
-						e.Ke[i,j] += (this.a(_x[k])*dpx[k][0][i]*dpx[k][0][j] + this.c(_x[k])*_p[k][i]*_p[k][j])*detjac[k]*e.W[k]
+						e.Ke[i,j] += (dpx[k][0][i]*dpx[k][0][j])*detjac[k]*e.W[k]
 				for k in range(len(e.Z)): #Iterate over gauss points on domain
-					e.Fe[i][0] += this.f(_x[k])*_p[k][i]*detjac[k]*e.W[k]
+					e.Fe[i][0] += _p[k][i]*detjac[k]*e.W[k]
 			# e.Fe[:,0] = 2*this.G*this._phi*detjac@_p
 			# e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
 	def postProcess(this):
@@ -37,8 +40,8 @@ class EDO1D(Core):
 			X+=_x.T[0].tolist()
 			U1+=_u[0].tolist()
 			U2+=(du[:,0,0]).tolist()
-		surf = ax1.plot(X,U1)
-		surf = ax2.plot(X,U2)
+		ax1.plot(X,U1)
+		ax2.plot(X,U2)
 		ax1.grid()
 		ax2.grid()
 		ax1.set_title(r'$U(x)$')
