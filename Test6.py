@@ -3,19 +3,17 @@ import matplotlib.pyplot as plt
 import FEM
 from FEM import Mesh
 
-a = 1
-b = 1
-E = 200000
-v = 0.27
-G = E/(2*(1+v))*0+1
-phi =1
+a = lambda x: (x[0]**2-2)
+c = lambda x: (x[0]-3)
+f = lambda x: (x[0]**2-2)*6+(x[0]-3)*(3*x[0]**2)
+cbe = [[0,0],[-1,3*1**2]]
 
-vertices = [[0,0],[a,0],[a,a],[0,a]]
-params = Mesh.Delaunay._strdelaunay(constrained=True,delaunay=True,a='0.0003',o=2)
-geometria = Mesh.Delaunay1V(vertices, params)
-geometria.saveMesh('Square_torsion')
-geometria.show()
-plt.show()
-O = FEM.Torsion2D(geometria,G,phi)
+lenght = 1
+n = 500
+o = 2
+
+geometria = Mesh.Lineal(lenght, n, o)
+O = FEM.EDO1D(geometria,a,c,f)
+O.cbe = cbe
 O.solve()
 plt.show()

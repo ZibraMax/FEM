@@ -3,11 +3,10 @@ from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 
-class EDO1D(Core):
-	def __init__(this,geometry,a,c,f):
-		this.a = a
-		this.c = c
-		this.f = f
+class EulerBernoulliBeam(Core):
+	def __init__(this,geometry,EI,cf):
+		if geometry.nvn == 1:
+			print('Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
 		Core.__init__(this,geometry)
 
 	def elementMatrices(this):
