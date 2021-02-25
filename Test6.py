@@ -11,7 +11,6 @@ cbe = [[0,0],[-1,3*1**2]]
 lenght = 1
 n = 500
 o = 2
-
 geometria = Mesh.Lineal(lenght, n, o)
 O = FEM.EDO1D(geometria,a,c,f)
 O.cbe = cbe
