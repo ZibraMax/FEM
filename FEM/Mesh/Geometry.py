@@ -229,7 +229,7 @@ class Geometry:
 			if r1 < d1:
 				d1 = r1
 				masCercano1 = i
-		return [[i*self.nvn+(nv-1),valor]]
+		return [[masCercano1*self.nvn+(nv-1),value]]
 
 	def giveNodesOfSegment(self,segment,tol):
 		a = []

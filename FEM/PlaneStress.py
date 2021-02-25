@@ -6,7 +6,7 @@ from matplotlib import gridspec
 
 class PlaneStress(Core):
 	
-	def __init__(self,geometry,E,v,t):
+	def __init__(self,geometry,E,v,t,fx=lambda x:0,fy=lambda x:0):
 		
 		if type(t)==float:
 			t = [t]*len(geometry.elements)
@@ -20,7 +20,8 @@ class PlaneStress(Core):
 		self.C11 = []
 		self.C12 = []
 		self.C66 = []
-
+		self.fx = fx
+		self.fy = fy
 		for i in range(len(self.E)):
 			C11 = self.E[i] / (1 - self.v[i] ** 2)
 			C12 = self.v[i] * self.E[i] / (1 - self.v[i] ** 2)
@@ -64,8 +65,11 @@ class PlaneStress(Core):
 						Kvu[i,j] += self.t[ee]*(self.C12[ee]*dpx[k,1,i]*dpx[k,0,j]+self.C66[ee]*dpx[k,0,i]*dpx[k,1,j])*detjac[k]*e.W[k]
 						Kvv[i,j] += self.t[ee]*(self.C11[ee]*dpx[k,1,i]*dpx[k,1,j]+self.C66[ee]*dpx[k,0,i]*dpx[k,0,j])*detjac[k]*e.W[k]
 				for k in range(len(e.Z)): #Iterate over gauss points on domain
-					e.Fe[i][0] += 0
+					Fu[i][0] += self.t[ee]*_p[k,i]*self.fx(_x[k])*detjac[k]*e.W[k]
+					Fv[i][0] += self.t[ee]*_p[k,i]*self.fy(_x[k])*detjac[k]*e.W[k]
 			subm = np.linspace(0, 2*m-1,2*m).reshape([2, m]).astype(int)
+			e.Fe[np.ix_(subm[0])] += Fu
+			e.Fe[np.ix_(subm[1])] += Fv
 			e.Ke[np.ix_(subm[0],subm[0])] += Kuu
 			e.Ke[np.ix_(subm[0],subm[1])] += Kuv
 			e.Ke[np.ix_(subm[1],subm[0])] += Kvu
@@ -73,7 +77,7 @@ class PlaneStress(Core):
 			ee+=1
 			# e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
 			# e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
-	def postProcess(self,mult=800):
+	def postProcess(self,mult=1000):
 		print('Post-processing...')
 		X = []
 		Y = []
@@ -87,43 +91,35 @@ class PlaneStress(Core):
 		Uy0 = []
 		fig = plt.figure()
 
-		gs = gridspec.GridSpec(4, 2)
+		gs = gridspec.GridSpec(3, 3)
 
 		ax1 = fig.add_subplot(gs[0,0])
 		ax2 = fig.add_subplot(gs[0,1])
-		ax3 = fig.add_subplot(gs[1,0])
-		ax4 = fig.add_subplot(gs[1,1])
-		ax5 = fig.add_subplot(gs[2:,:])
+		ax3 = fig.add_subplot(gs[0,2])
+		ax5 = fig.add_subplot(gs[1:,:])
+		ee = -1
 		for e in tqdm(self.elements,unit='Element'):
+			ee+=1
 			_x,_u,du=e.giveSolution(True)
 			X+=_x.T[0].tolist()
 			Y+=_x.T[1].tolist()
-			U1+=(du[:,0,0]).tolist()
-			U2+=(du[:,0,1]).tolist()
-			U3+=(du[:,1,0]).tolist()
-			U4+=(du[:,0,1]).tolist()
-			coordsNuevas = e.coords + e.Ue.T * mult
-			Ux += coordsNuevas.T.tolist()[0]
-			Uy += coordsNuevas.T.tolist()[1]
-			Ux0 += e.coords.T.tolist()[0]
-			Uy0 += e.coords.T.tolist()[1]
+			U1+=(self.C11[ee]*du[:,0,0]+self.C12[ee]*du[:,1,1]).tolist()
+			U2+=(self.C12[ee]*du[:,0,0]+self.C11[ee]*du[:,1,1]).tolist()
+			U3+=(self.C66[ee]*(du[:,1,1]+du[:,1,0])).tolist()
+			coordsNuevas = e._coordsg + e._Ueg * mult
+			ax5.plot(*e._coordsg.T,'--',color='gray',alpha=0.7)
+			ax5.plot(*coordsNuevas.T,'-',color='black')
 
 		surf = ax1.tricontourf(X,Y,U1,cmap='magma')
 		plt.colorbar(surf,ax=ax1)
-		ax1.set_title(r'$\frac{dU}{dx}$')
+		ax1.set_title(r'$\sigma_{xx}$')
 
 		surf = ax2.tricontourf(X,Y,U2,cmap='magma')
 		plt.colorbar(surf,ax=ax2)
-		ax2.set_title(r'$\frac{dU}{dy}$')
+		ax2.set_title(r'$\sigma_{yy}$')
 
 		surf = ax3.tricontourf(X,Y,U3,cmap='magma')
 		plt.colorbar(surf,ax=ax3)
-		ax3.set_title(r'$\frac{dV}{dx}$')
+		ax3.set_title(r'$\sigma_{xy}$')
 
-		surf = ax4.tricontourf(X,Y,U4,cmap='magma')
-		plt.colorbar(surf,ax=ax4)
-		ax4.set_title(r'$\frac{dV}{dy}$')
-
-		ax5.plot(Ux0,Uy0,'--',color='gray',alpha=0.7)
-		ax5.plot(Ux,Uy,'-',color='black')
 		print('Done!')

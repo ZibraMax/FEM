@@ -6,7 +6,7 @@ import numpy as np
 class Element2D(Element):
 	def __init__(self,coords,_coords,gdl):
 		Element.__init__(self,coords,_coords,gdl)
-
+		self._coordsg = np.array(self._coords.tolist()+[self._coords[0].tolist()])
 	def draw(self):
 		_z = self.domain
 		_x,_p = self.T(_z.T)
