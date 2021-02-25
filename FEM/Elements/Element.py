@@ -49,6 +49,10 @@ class Element():
 	def setUe(self,U):
 		for i in range(len(self.gdl)):
 			self.Ue[i] = U[np.ix_(self.gdl[i])].flatten()
+		n = len(self._coords)
+		m = len(self.gdl)
+		self._Ueg = self.Ue[np.ix_(np.linspace(0,m-1,m).astype(int),np.linspace(0,n-1,n).astype(int))]
+		self._Ueg = np.array(self._Ueg.T.tolist()+[self._Ueg.T[0].tolist()])
 
 	def integrate(self,f):
 		integral = 0
