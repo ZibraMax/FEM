@@ -8,24 +8,26 @@ from ..Elements.E3D import *
 import re
 
 class Geometry:
-	def __init__(this, dictionary, gdls, types, nvn=1, segments=[]):
-		this.mask = None
-		this.areas = []
-		this.nvn = nvn
-		this.dictionary = dictionary
-		this.elements = []
-		this.gdls = gdls
-		this.types = types
-		this.segments = segments
-		this.cbe = []
-		this.cbn = []
-		this.centroids = []
-		this.ngdl = int(len(this.gdls)*this.nvn)
-		this.generateElements()
+	def __init__(self, dictionary, gdls, types, nvn=1, segments=[]):
+		self.mask = None
+		self.areas = []
+		self.nvn = nvn
+		self.dictionary = dictionary
+		self.elements = []
+		self.gdls = gdls
+		self.types = types
+		self.segments = segments
+		self.cbe = []
+		self.cbn = []
+		self.centroids = []
+		self.initialize()
 		try:
-			this.centroidsAndAreas()
+			self.centroidsAndAreas()
 		except:
 			pass
+	def initialize(self):
+		self.ngdl = int(len(self.gdls)*self.nvn)
+		self.generateElements()
 	@staticmethod
 	def loadGiDMsh(filename):
 		f = open(filename,'r')
@@ -74,8 +76,8 @@ class Geometry:
 		cbe = []
 		cbn = []
 		nvn = 1
-		p = list(map(int,f.readline().split('\t')))
-		#[len(this.gdls),len(this.dictionary),len(this.segments),len(this.cbe),len(this.cbn),this.nvn]
+		p = list(map(int,re.findall(r'\S+', f.readline())))
+		#[len(self.gdls),len(self.dictionary),len(self.segments),len(self.cbe),len(self.cbn),self.nvn]
 		for _ in range(p[0]):
 			gdls += [list(map(float,f.readline().split('\t')))]
 		for _ in range(p[1]):
@@ -85,9 +87,9 @@ class Geometry:
 		for _ in range(p[2]):
 			seg += [list(map(int,f.readline().split('\t')))]
 		for _ in range(p[3]):
-			cbe += [list(map(int,f.readline().split('\t')))]
+			cbe += [list(map(float,f.readline().split('\t')))]
 		for _ in range(p[4]):
-			cbn += [list(map(int,f.readline().split('\t')))]
+			cbn += [list(map(float,f.readline().split('\t')))]
 		nvn = p[5]
 		f.close()
 		print('File '+ filename + ' loaded')
@@ -96,46 +98,47 @@ class Geometry:
 		o.cbn = cbn
 		return o
 
-	def generateElements(this):
-		for i,d in enumerate(this.dictionary):
-			coords = np.array(this.gdls)[np.ix_(d)]
-			gdl = np.zeros([this.nvn,len(d)])
-			for i in range(this.nvn):
-				gdl[i,:] = (np.array(d)*this.nvn+i)
+	def generateElements(self):
+		self.elements=[]
+		for i,d in enumerate(self.dictionary):
+			coords = np.array(self.gdls)[np.ix_(d)]
+			gdl = np.zeros([self.nvn,len(d)])
+			for i in range(self.nvn):
+				gdl[i,:] = (np.array(d)*self.nvn+i)
 			gdl = gdl.astype(int)
-			if this.types[i]=='T1V':
+			if self.types[i]=='T1V':
 				element = LTriangular(coords,gdl)
-			elif this.types[i]=='T2V':
+			elif self.types[i]=='T2V':
 				element = QTriangular(coords,gdl)
-			elif this.types[i]=='C1V':
+			elif self.types[i]=='C1V':
 				element = Quadrilateral(coords,gdl)
-			elif this.types[i]=='C2V':
+			elif self.types[i]=='C2V':
 				element = Serendipity(coords,gdl)
-			elif this.types[i]=='L1V':
+			elif self.types[i]=='L1V':
 				element = LinealElement(coords,gdl)
-			elif this.types[i]=='L2V':
+			elif self.types[i]=='L2V':
 				element = QuadraticElement(coords,gdl)
-			this.elements.append(element)
+			self.elements.append(element)
 
-	def show(this,texto=10,bolita=0,figsize=[17,10]):
+	def show(self,texto=10,bolita=0,figsize=[17,10]):
 		fig = plt.figure(figsize=figsize)
 		ax = fig.add_subplot()
 
 		ax.axes.set_aspect('equal')
 
-		for i, e in enumerate(this.elements):
+		for i, e in enumerate(self.elements):
 			coords = e._coords
 			coords = np.array(coords.tolist() + [coords[0].tolist()])
 			X = coords[:, 0]
 			Y = coords[:, 1]
 			ax.plot(X, Y, 'o-', color='black', zorder=-10)
-			cx = this.centroids[i][0]
-			cy = this.centroids[i][1]
+			cx = self.centroids[i][0]
+			cy = self.centroids[i][1]
 			ax.plot(cx, cy, 'o', markersize=texto + bolita, color='yellow')
 			ax.annotate(format(i), [cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
 		try:
-			verts = this.gdls
-			segs = this.segments
+			verts = self.gdls
+			segs = self.segments
 			for i,seg in enumerate(segs):
 				x0, y0 = verts[int(seg[0])]
 				x1, y1 = verts[int(seg[1])]
@@ -158,7 +161,7 @@ class Geometry:
 		ax.set_ylabel('y')
 		ax.set_title('Domain')
 
-		gdls = np.array(this.gdls)
+		gdls = np.array(self.gdls)
 
 		labels = np.linspace(0, gdls.shape[0] - 1, gdls.shape[0]).astype(int)
 
@@ -167,28 +170,28 @@ class Geometry:
 		for p, l in zip(gdls, labels):
 			ax.annotate(l, p, size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
 
-	def saveMesh(this,ProjectName):
+	def saveMesh(self,ProjectName):
 		filename = ProjectName + '.msh'
 		f = open(filename,'w')
-		p = [len(this.gdls),len(this.dictionary),len(this.segments),len(this.cbe),len(this.cbn),this.nvn]
-		f.write('\t'.join(list(map(str,p))) + '\n')
-		for e in this.gdls:
-			f.write('\t'.join(list(map(str,e)))+ '\n')
-		for e in this.types:
+		p = [len(self.gdls),len(self.dictionary),len(self.segments),len(self.cbe),len(self.cbn),self.nvn]
+		f.write('\t'.join(list(map(format,p))) + '\n')
+		for e in self.gdls:
+			f.write('\t'.join(list(map(format,e)))+ '\n')
+		for e in self.types:
 			f.write(e+ '\n')
-		for e in this.dictionary:
-			f.write('\t'.join(list(map(str,e)))+ '\n')
-		for e in this.segments:
-			f.write('\t'.join(list(map(str,e)))+ '\n')
-		for e in this.cbe:
-			f.write('\t'.join(list(map(str,e)))+ '\n')
-		for e in this.cbn:
-			f.write('\t'.join(list(map(str,e)))+ '\n')
+		for e in self.dictionary:
+			f.write('\t'.join(list(map(format,e)))+ '\n')
+		for e in self.segments:
+			f.write('\t'.join(list(map(format,e)))+ '\n')
+		for e in self.cbe:
+			f.write(format(int(e[0]))+'\t'+format(e[1])+'\n')
+		for e in self.cbn:
+			f.write(format(int(e[0]))+'\t'+format(e[1])+'\n')
 		f.close()
 		print('File '+ filename + ' saved')
 
-	def centroidsAndAreas(this):
-		for i, e in enumerate(this.elements):
+	def centroidsAndAreas(self):
+		for i, e in enumerate(self.elements):
 			coords = e._coords
 			coords = np.array(coords.tolist() + [coords[0].tolist()])
 			area = 0
@@ -199,15 +202,15 @@ class Geometry:
 				mult = (coords[j][0]*coords[j+1][1]-coords[j+1][0]*coords[j][1])
 				cx += (coords[j][0]+coords[j+1][0])*mult
 				cy += (coords[j][1]+coords[j+1][1])*mult
-			this.areas.append(np.abs(area/2))
-			this.centroids.append([cx/3/area,cy/3/area])
+			self.areas.append(np.abs(area/2))
+			self.centroids.append([cx/3/area,cy/3/area])
 
-	def generateSegmentsFromCoords(this,p0,p1):
+	def generateSegmentsFromCoords(self,p0,p1):
 		masCercano1 = None
 		d1 = np.Inf
 		masCercano2 = None
 		d2 = np.Inf
-		for i,gdl in enumerate(this.gdls):
+		for i,gdl in enumerate(self.gdls):
 			r1 = np.sqrt((p0[0]-gdl[0])**2+(p0[1]-gdl[1])**2)
 			r2 = np.sqrt((p1[0]-gdl[0])**2+(p1[1]-gdl[1])**2)
 			if r1 < d1:
@@ -216,36 +219,36 @@ class Geometry:
 			if r2 < d2:
 				d2 = r2
 				masCercano2 = i
-		this.segments.append([masCercano1,masCercano2])
+		self.segments.append([masCercano1,masCercano2])
 
-	def generateBCFromCoords(this,x,y,value=0):
+	def generateBCFromCoords(self,x,y,value=0,nv=1):
 		masCercano1 = None
 		d1 = np.Inf
-		for i,gdl in enumerate(this.gdls):
+		for i,gdl in enumerate(self.gdls):
 			r1 = np.sqrt((x-gdl[0])**2+(y-gdl[1])**2)
 			if r1 < d1:
 				d1 = r1
 				masCercano1 = i
-		return [[i,valor]]
+		return [[i*self.nvn+(nv-1),valor]]
 
-	def giveNodesOfSegment(this,segment,tol):
+	def giveNodesOfSegment(self,segment,tol):
 		a = []
-		ps = np.array(this.gdls)[this.segments[segment]].tolist()
-		for i, p in enumerate(this.gdls):
+		ps = np.array(self.gdls)[self.segments[segment]].tolist()
+		for i, p in enumerate(self.gdls):
 			if isBetween(ps[0], ps[1], p,tol):
 				a.append(i)
 		return np.array(a)
 
-	def cbFromSegment(this,segment,value,nv=1,tol=1*10**(-5)):
+	def cbFromSegment(self,segment,value,nv=1,tol=1*10**(-5)):
 		cb = []
-		nodes = this.giveNodesOfSegment(segment,tol)
+		nodes = self.giveNodesOfSegment(segment,tol)
 		cbe = np.zeros([len(nodes), 2])
-		cbe[:, 0] = nodes*nv
+		cbe[:, 0] = nodes*self.nvn+(nv-1)
 		cbe[:, 1] = value
 		cb += cbe.tolist()
 		return cb
 
-	def cbeAllBorders(this,value,tol=1*10**(-5)):
-		for s in range(len(this.segments)):
-			for i in range(this.nvn):
-				this.cbe += this.cbFromSegment(s,value,(i+1),tol)
+	def cbeAllBorders(self,value,tol=1*10**(-5)):
+		for s in range(len(self.segments)):
+			for i in range(self.nvn):
+				self.cbe += self.cbFromSegment(s,value,(i+1),tol)

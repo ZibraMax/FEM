@@ -4,27 +4,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class Torsion2D(Core):
-	def __init__(this,geometry,G,phi):
-		this.G = G
-		this._phi = phi
+	def __init__(self,geometry,G,phi):
+		self.G = G
+		self._phi = phi
 		geometry.cbeAllBorders(0)
-		Core.__init__(this,geometry)
+		Core.__init__(self,geometry)
 
-	def elementMatrices(this):
-		for e in tqdm(this.elements,unit='Element'):
+	def elementMatrices(self):
+		for e in tqdm(self.elements,unit='Element'):
 			_x,_p = e.T(e.Z.T) #Gauss points in global coordinates and Shape functions evaluated in gauss points
 			jac,dpz = e.J(e.Z.T) #Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
 			detjac = np.linalg.det(jac)*e.W
 			_j = np.linalg.inv(jac) #Jacobian inverse
 			dpx = _j @ dpz #Shape function derivatives in global coordinates
 			# for k in range(len(_x)): #Iterate over gauss points on domain
-			# 	for i in range(e.n): #This part must be vectorized
+			# 	for i in range(e.n): #self part must be vectorized
 			# 		for j in range(e.n):
 			# 			e.Ke[i,j] += (dpx[k][0][i]*dpx[k][0][j] + dpx[k][1][i]*dpx[k][1][j])*detjac[k]*e.W[k]
-			# 		e.Fe[i][0] += 2*this.G*this._phi*_p[k][i]*detjac[k]*e.W[k]
-			e.Fe[:,0] = 2*this.G*this._phi*detjac@_p
+			# 		e.Fe[i][0] += 2*self.G*self._phi*_p[k][i]*detjac[k]*e.W[k]
+			e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
 			e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
-	def postProcess(this):
+	def postProcess(self):
+		print('Post-processing...')
 		X = []
 		Y = []
 		U1 = []
@@ -36,7 +37,7 @@ class Torsion2D(Core):
 		ax2 = fig.add_subplot(2,2,2)
 		ax3 = fig.add_subplot(2,2,3)
 		ax4 = fig.add_subplot(2,2,4)
-		for e in this.elements:
+		for e in self.elements:
 			_x,_u,du=e.giveSolution(True)
 			X+=_x.T[0].tolist()
 			Y+=_x.T[1].tolist()
@@ -58,7 +59,7 @@ class Torsion2D(Core):
 		surf = ax4.tricontourf(X,Y,U4,cmap='magma')
 
 		cbar = fig.colorbar(surf,ax=ax4)
-		mask = this.geometry.mask
+		mask = self.geometry.mask
 		if not mask == None:
 			mask = np.array(mask)
 			cornersnt = np.array(mask[::-1])
@@ -74,3 +75,4 @@ class Torsion2D(Core):
 			ax2.fill(Xs,Ys,color='white',zorder=30)
 			ax3.fill(Xs,Ys,color='white',zorder=30)
 			ax4.fill(Xs,Ys,color='white',zorder=30)
+		print('Done!')

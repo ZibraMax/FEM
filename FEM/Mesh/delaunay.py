@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from .Geometry import *
 
 class Delaunay1V(Geometry):
-	def __init__(this, vertices, params, nvn=1):
+	def __init__(self, vertices, params, nvn=1):
 		seg = []
 		for i in range(len(vertices)-1):
 			seg.append([i,i+1])
@@ -28,8 +28,8 @@ class Delaunay1V(Geometry):
 					dicc[3] = a1
 					dicc[4] = a2
 					dicc[5] = a3
-		Geometry.__init__(this,dictionary,gdls,tipos,nvn=nvn,segments=seg)
-		this.mask = vertices
+		Geometry.__init__(self,dictionary,gdls,tipos,nvn=nvn,segments=seg)
+		self.mask = vertices
 
 def _strdelaunay(constrained=True,delaunay=True,a=None,q=None,o=1):
 	p = ''

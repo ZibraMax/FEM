@@ -1,7 +1,7 @@
 import numpy as np
 class TriangularScheme():
-	def __init__(this, n):
-		# this.Z,this.W = np.polynomial.legendre.leggauss(n)
+	def __init__(self, n):
+		# self.Z,self.W = np.polynomial.legendre.leggauss(n)
 		# w = np.outer((1 + points) * weights, weights) / 4
 		# x = np.outer(1 - points, np.ones(n)) / 2
 		# y = np.outer(1 + points, 1 - points) / 4
@@ -19,6 +19,6 @@ class TriangularScheme():
 		X = [A0,A1,B1,B1,B2,B2,A2]
 		Y = [A0,B1,A1,B1,A2,B2,B2]
 		W = [W0,W1,W1,W1,W2,W2,W2]
-		this.Z = np.array([X,Y]).T
-		this.W = np.array(W)
-		this.domain = np.array([[0,0],[1,0],[0,1]] +  this.Z.tolist())
+		self.Z = np.array([X,Y]).T
+		self.W = np.array(W)
+		self.domain = np.array([[0,0],[1,0],[0,1]] +  self.Z.tolist())
