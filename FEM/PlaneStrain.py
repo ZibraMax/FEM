@@ -6,7 +6,7 @@ from matplotlib import gridspec
 
 class PlaneStress(Core):
 	
-	def __init__(self,geometry,E,v,t,fx=lambda x:0,fy=lambda x:0):
+	def __init__(self,geometry,E,v,fx=lambda x:0,fy=lambda x:0):
 		
 		if type(t)==float or type(t)==int:
 			t = [t]*len(geometry.elements)
@@ -14,7 +14,6 @@ class PlaneStress(Core):
 			E = [E]*len(geometry.elements)
 		if type(v)==float or type(v)==int:
 			v = [v]*len(geometry.elements)
-		self.t = t
 		self.E = E
 		self.v = v
 		self.C11 = []
@@ -23,8 +22,8 @@ class PlaneStress(Core):
 		self.fx = fx
 		self.fy = fy
 		for i in range(len(self.E)):
-			C11 = self.E[i] / (1 - self.v[i] ** 2)
-			C12 = self.v[i] * self.E[i] / (1 - self.v[i] ** 2)
+			C11 = self.E[i]*(1-self.v[i])/(1+self.v[i])/(1-2*self.v[i])
+			C12 = C11*self.v[i]
 			C66 = self.E[i] / 2 / (1 + self.v[i])
 			self.C11.append(C11)
 			self.C12.append(C12)
@@ -39,10 +38,6 @@ class PlaneStress(Core):
 
 	def elementMatrices(self):
 
-# EKuu = lambda z, n: (C11 * dfdx(z, n, i) * dfdx(z, n, j) + C66 * dfdy(z, n, i) * dfdy(z, n, j)) * np.linalg.det(J(z, n))
-# EKuv = lambda z, n: (C12 * dfdx(z, n, i) * dfdy(z, n, j) + C66 * dfdy(z, n, i) * dfdx(z, n, j)) * np.linalg.det(J(z, n))
-# EKvu = lambda z, n: (C12 * dfdy(z, n, i) * dfdx(z, n, j) + C66 * dfdx(z, n, i) * dfdy(z, n, j)) * np.linalg.det(J(z, n))
-# EKvv = lambda z, n: (C11 * dfdy(z, n, i) * dfdy(z, n, j) + C66 * dfdx(z, n, i) * dfdx(z, n,j)) * np.linalg.det(J(z, n))
 		ee = 0
 		for e in tqdm(self.elements,unit='Element'):
 			m = len(e.gdl.T)
@@ -60,13 +55,13 @@ class PlaneStress(Core):
 			for i in range(m): #self part must be vectorized
 				for j in range(m):
 					for k in range(len(e.Z)): #Iterate over gauss points on domain
-						Kuu[i,j] += self.t[ee]*(self.C11[ee]*dpx[k,0,i]*dpx[k,0,j]+self.C66[ee]*dpx[k,1,i]*dpx[k,1,j])*detjac[k]*e.W[k]
-						Kuv[i,j] += self.t[ee]*(self.C12[ee]*dpx[k,0,i]*dpx[k,1,j]+self.C66[ee]*dpx[k,1,i]*dpx[k,0,j])*detjac[k]*e.W[k]
-						Kvu[i,j] += self.t[ee]*(self.C12[ee]*dpx[k,1,i]*dpx[k,0,j]+self.C66[ee]*dpx[k,0,i]*dpx[k,1,j])*detjac[k]*e.W[k]
-						Kvv[i,j] += self.t[ee]*(self.C11[ee]*dpx[k,1,i]*dpx[k,1,j]+self.C66[ee]*dpx[k,0,i]*dpx[k,0,j])*detjac[k]*e.W[k]
+						Kuu[i,j] += (self.C11[ee]*dpx[k,0,i]*dpx[k,0,j]+self.C66[ee]*dpx[k,1,i]*dpx[k,1,j])*detjac[k]*e.W[k]
+						Kuv[i,j] += (self.C12[ee]*dpx[k,0,i]*dpx[k,1,j]+self.C66[ee]*dpx[k,1,i]*dpx[k,0,j])*detjac[k]*e.W[k]
+						Kvu[i,j] += (self.C12[ee]*dpx[k,1,i]*dpx[k,0,j]+self.C66[ee]*dpx[k,0,i]*dpx[k,1,j])*detjac[k]*e.W[k]
+						Kvv[i,j] += (self.C11[ee]*dpx[k,1,i]*dpx[k,1,j]+self.C66[ee]*dpx[k,0,i]*dpx[k,0,j])*detjac[k]*e.W[k]
 				for k in range(len(e.Z)): #Iterate over gauss points on domain
-					Fu[i][0] += self.t[ee]*_p[k,i]*self.fx(_x[k])*detjac[k]*e.W[k]
-					Fv[i][0] += self.t[ee]*_p[k,i]*self.fy(_x[k])*detjac[k]*e.W[k]
+					Fu[i][0] += _p[k,i]*self.fx(_x[k])*detjac[k]*e.W[k]
+					Fv[i][0] += _p[k,i]*self.fy(_x[k])*detjac[k]*e.W[k]
 			subm = np.linspace(0, 2*m-1,2*m).reshape([2, m]).astype(int)
 			e.Fe[np.ix_(subm[0])] += Fu
 			e.Fe[np.ix_(subm[1])] += Fv
@@ -103,7 +98,7 @@ class PlaneStress(Core):
 			_x,_u,du=e.giveSolution(True)
 			X+=_x.T[0].tolist()
 			Y+=_x.T[1].tolist()
-			U1+=(self.C11[ee]*du[:,0,0]+self.C12[ee]*du[:,1,1]).tolist()
+			U1+=(self.C11[ee]*du[:,0,0]+self.C12[ee]*du[:,1,1]).tolist() #TODO Arreglar calculo de esfuerzos para PlaneStrain
 			U2+=(self.C12[ee]*du[:,0,0]+self.C11[ee]*du[:,1,1]).tolist()
 			U3+=(self.C66[ee]*(du[:,1,1]+du[:,1,0])).tolist()
 			coordsNuevas = e._coordsg + e._Ueg * mult
