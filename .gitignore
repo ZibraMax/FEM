@@ -2,6 +2,7 @@
 
 FEM/__pycache__/
 ipynb_checkpoints/
+References/
 *.svg
 *.png
 *.csv
