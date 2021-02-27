@@ -8,6 +8,7 @@ v = 0.2 #m
 gamma = 23.54
 geometria = Mesh.Geometry.loadmsh('Mesh_tests/Talud_fix.msh')
 geometria.maskFromSegments()
+print(geometria.mask)
 O = FEM.PlaneStrain(geometria,E,v,fy=lambda x:-gamma*2.5)
 O.solve()
 plt.show()

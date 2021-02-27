@@ -78,7 +78,6 @@ class PlaneStress(Core):
 			# e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
 			# e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
 	def postProcess(self,mult=1000):
-		print('Post-processing...')
 		X = []
 		Y = []
 		U1 = []
@@ -137,4 +136,3 @@ class PlaneStress(Core):
 			ax1.fill(Xs,Ys,color='white',zorder=30)
 			ax2.fill(Xs,Ys,color='white',zorder=30)
 			ax3.fill(Xs,Ys,color='white',zorder=30)
-		print('Done!')

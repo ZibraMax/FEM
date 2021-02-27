@@ -26,7 +26,6 @@ class EDO1D(Core):
 			# e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
 			# e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
 	def postProcess(self):
-		print('Post-processing...')
 		X = []
 		U1 = []
 		U2 = []
@@ -44,4 +43,3 @@ class EDO1D(Core):
 		ax2.grid()
 		ax1.set_title(r'$U(x)$')
 		ax2.set_title(r'$\frac{dU}{dx}$')
-		print('Done!')

@@ -37,6 +37,7 @@ class Core():
 		self.S = self.S + self.F + self.Q
 		for i in self.cbe:
 			self.S[int(i[0])] = i[1]
+		print('Done!')
 	def solveES(self,path=''):
 		print('Solving equation system...')
 		self.U = np.linalg.solve(self.K,self.S)
@@ -46,11 +47,15 @@ class Core():
 			e.setUe(self.U)
 		print('Done!')
 	def solve(self,path=''):
+		print('Creating element matrices...')
 		self.elementMatrices()
+		print('Done!')
 		self.ensembling()
 		self.borderConditions()
 		self.solveES(path)
+		print('Post processing solution...')
 		self.postProcess()
+		print('Done!')
 	
 	def solveFromFile(self,file):
 		# self.elementMatrices()
