@@ -4,12 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 
-class PlaneStress(Core):
+class PlaneStrain(Core):
 	
 	def __init__(self,geometry,E,v,fx=lambda x:0,fy=lambda x:0):
 		
-		if type(t)==float or type(t)==int:
-			t = [t]*len(geometry.elements)
 		if type(E)==float or type(E)==int:
 			E = [E]*len(geometry.elements)
 		if type(v)==float or type(v)==int:
@@ -23,7 +21,7 @@ class PlaneStress(Core):
 		self.fy = fy
 		for i in range(len(self.E)):
 			C11 = self.E[i]*(1-self.v[i])/(1+self.v[i])/(1-2*self.v[i])
-			C12 = C11*self.v[i]
+			C12 = self.E[i]*(self.v[i])/(1+self.v[i])/(1-2*self.v[i])
 			C66 = self.E[i] / 2 / (1 + self.v[i])
 			self.C11.append(C11)
 			self.C12.append(C12)
@@ -79,11 +77,6 @@ class PlaneStress(Core):
 		U1 = []
 		U2 = []
 		U3 = []
-		U4 = []
-		Ux = []
-		Uy = []
-		Ux0 = []
-		Uy0 = []
 		fig = plt.figure()
 
 		gs = gridspec.GridSpec(3, 3)
@@ -100,7 +93,7 @@ class PlaneStress(Core):
 			Y+=_x.T[1].tolist()
 			U1+=(self.C11[ee]*du[:,0,0]+self.C12[ee]*du[:,1,1]).tolist() #TODO Arreglar calculo de esfuerzos para PlaneStrain
 			U2+=(self.C12[ee]*du[:,0,0]+self.C11[ee]*du[:,1,1]).tolist()
-			U3+=(self.C66[ee]*(du[:,1,1]+du[:,1,0])).tolist()
+			U3+=(self.C66[ee]*(du[:,0,1]+du[:,1,0])).tolist()
 			coordsNuevas = e._coordsg + e._Ueg * mult
 			ax5.plot(*e._coordsg.T,'--',color='gray',alpha=0.7)
 			ax5.plot(*coordsNuevas.T,'-',color='black')
@@ -116,5 +109,20 @@ class PlaneStress(Core):
 		surf = ax3.tricontourf(X,Y,U3,cmap='magma')
 		plt.colorbar(surf,ax=ax3)
 		ax3.set_title(r'$\sigma_{xy}$')
+		mask = self.geometry.mask
+		if not mask == None:
+			mask = np.array(mask)
+			cornersnt = np.array(mask[::-1])
 
+			xmin = np.min(cornersnt[:,0])
+			xmax = np.max(cornersnt[:,0])
+
+			ymin = np.min(cornersnt[:,1])
+			ymax = np.max(cornersnt[:,1])
+
+			Xs = [xmin,xmax,xmax,xmin]+cornersnt[:,0].tolist()
+			Ys = [ymin,ymin,ymax,ymax]+cornersnt[:,1].tolist()
+			ax1.fill(Xs,Ys,color='white',zorder=30)
+			ax2.fill(Xs,Ys,color='white',zorder=30)
+			ax3.fill(Xs,Ys,color='white',zorder=30)
 		print('Done!')

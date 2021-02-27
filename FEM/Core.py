@@ -23,9 +23,10 @@ class Core():
 		self._K = np.copy(self.K)
 		print('Done!')
 	def borderConditions(self):
-		for i in self.cbn:
+		print('Border conditions...')
+		for i in tqdm(self.cbn,unit=' Natural'):
 			self.Q[int(i[0])] = i[1]
-		for i in self.cbe:
+		for i in tqdm(self.cbe,unit=' Essential'):
 			ui = np.zeros([self.ngdl, 1])
 			ui[int(i[0])] = i[1]
 			vv = np.dot(self.K, ui)
