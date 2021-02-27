@@ -105,7 +105,7 @@ class PlaneStress(Core):
 			Y+=_x.T[1].tolist()
 			U1+=(self.C11[ee]*du[:,0,0]+self.C12[ee]*du[:,1,1]).tolist()
 			U2+=(self.C12[ee]*du[:,0,0]+self.C11[ee]*du[:,1,1]).tolist()
-			U3+=(self.C66[ee]*(du[:,1,1]+du[:,1,0])).tolist()
+			U3+=(self.C66[ee]*(du[:,0,1]+du[:,1,0])).tolist()
 			coordsNuevas = e._coordsg + e._Ueg * mult
 			ax5.plot(*e._coordsg.T,'--',color='gray',alpha=0.7)
 			ax5.plot(*coordsNuevas.T,'-',color='black')
@@ -121,5 +121,20 @@ class PlaneStress(Core):
 		surf = ax3.tricontourf(X,Y,U3,cmap='magma')
 		plt.colorbar(surf,ax=ax3)
 		ax3.set_title(r'$\sigma_{xy}$')
+		mask = self.geometry.mask
+		if not mask == None:
+			mask = np.array(mask)
+			cornersnt = np.array(mask[::-1])
 
+			xmin = np.min(cornersnt[:,0])
+			xmax = np.max(cornersnt[:,0])
+
+			ymin = np.min(cornersnt[:,1])
+			ymax = np.max(cornersnt[:,1])
+
+			Xs = [xmin,xmax,xmax,xmin]+cornersnt[:,0].tolist()
+			Ys = [ymin,ymin,ymax,ymax]+cornersnt[:,1].tolist()
+			ax1.fill(Xs,Ys,color='white',zorder=30)
+			ax2.fill(Xs,Ys,color='white',zorder=30)
+			ax3.fill(Xs,Ys,color='white',zorder=30)
 		print('Done!')

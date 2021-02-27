@@ -25,6 +25,10 @@ class Geometry:
 			self.centroidsAndAreas()
 		except:
 			pass
+	def maskFromSegments(self):
+		self.mask = []
+		for s in self.segments:
+			self.mask+=np.array(self.gdls)[np.ix_(s)].tolist()
 	def initialize(self):
 		self.ngdl = int(len(self.gdls)*self.nvn)
 		self.generateElements()
@@ -68,6 +72,7 @@ class Geometry:
 		return o
 	@staticmethod
 	def loadmsh(filename):
+		print('Loading ' + filename)
 		f = open(filename,'r')
 		dicc = []
 		gdls = []

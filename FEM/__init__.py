@@ -4,3 +4,4 @@ from .Torsion2D import *
 from .EDO1D import *
 from .EulerBernoulliBeam import *
 from .PlaneStress import *
+from .PlaneStrain import *
