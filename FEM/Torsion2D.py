@@ -36,7 +36,7 @@ class Torsion2D(Core):
 		ax2 = fig.add_subplot(2,2,2)
 		ax3 = fig.add_subplot(2,2,3)
 		ax4 = fig.add_subplot(2,2,4)
-		for e in self.elements:
+		for e in tqdm(self.elements,unit='Element'):
 			_x,_u,du=e.giveSolution(True)
 			X+=_x.T[0].tolist()
 			Y+=_x.T[1].tolist()

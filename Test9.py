@@ -13,7 +13,7 @@ gamma = 23.54
 geometria = Mesh.Geometry.loadmsh('Mesh_tests/Beam_serendipity.msh')
 cbe = geometria.generateBCFromCoords(0,h/2,0,1)
 cbe += geometria.generateBCFromCoords(0,h/2,0,2)
-cbe += geometria.generateBCFromCoords(L,h/2,0,2)
+cbe += geometria.generateBCFromCoords(L,h/2,0,1)
 cbe += geometria.generateBCFromCoords(L,h/2,0,2)
 geometria.cbe=cbe
 O = FEM.PlaneStress(geometria,E,v,b,fy=lambda x:-gamma)
