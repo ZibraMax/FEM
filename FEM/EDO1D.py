@@ -5,12 +5,25 @@ import matplotlib.pyplot as plt
 
 class EDO1D(Core):
 	def __init__(self,geometry,a,c,f):
+		"""Create a 1D 1 variable per node Finite Element problem
+
+		The ordinary differential equation
+		$$a(x)\frac{d^2U}{dx^2}+c(x)u=f(x)$$
+
+		Args:
+			geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
+			a (function): Function a, if a is constant you can use a = lambda x: [value]
+			c (function): Function c, if c is constant you can use c = lambda x: [value]
+			f (function): Function f, if f is constant you can use f = lambda x: [value]
+		"""		
 		self.a = a
 		self.c = c
 		self.f = f
 		Core.__init__(self,geometry)
 
 	def elementMatrices(self):
+		"""Calculate the element matrices usign Reddy's (2005) finite element model
+		"""		
 		for e in tqdm(self.elements,unit='Element'):
 			_x,_p = e.T(e.Z.T) #Gauss points in global coordinates and Shape functions evaluated in gauss points
 			jac,dpz = e.J(e.Z.T) #Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
@@ -26,6 +39,8 @@ class EDO1D(Core):
 			# e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
 			# e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
 	def postProcess(self):
+		"""Generate graph of solution and solution derivative
+		"""		
 		X = []
 		U1 = []
 		U2 = []

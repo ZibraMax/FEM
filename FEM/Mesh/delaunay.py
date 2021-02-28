@@ -7,6 +7,13 @@ from .Geometry import *
 
 class Delaunay1V(Geometry):
 	def __init__(self, vertices, params, nvn=1):
+		"""Generate Delaunay triangulation
+
+		Args:
+			vertices (list): matrix containing the domain vertices coordinates
+			params (str): Triangulation parameters, use the aux function _strdelaunay
+			nvn (int, optional): Number of variables per node. Defaults to 1.
+		"""		
 		seg = []
 		for i in range(len(vertices)-1):
 			seg.append([i,i+1])
@@ -32,6 +39,18 @@ class Delaunay1V(Geometry):
 		self.mask = vertices
 
 def _strdelaunay(constrained=True,delaunay=True,a=None,q=None,o=1):
+	"""Create a string for the delaunay triangulation constructor
+
+	Args:
+		constrained (bool, optional): Makes the triangulation constrained. Defaults to True.
+		delaunay (bool, optional): Makes all triangles delaunay. Defaults to True.
+		a ([type], optional): Maximum area of triange. Defaults to None.
+		q ([type], optional): Minimum triangle angle <=35. Defaults to None.
+		o (int, optional): Order of element if 2, quadratic elements are generated. Defaults to 1.
+
+	Returns:
+		str: A string containing the input parameters for the Delaunay1V constructor
+	"""	
 	p = ''
 	if o==2:
 		o = '-o2'
