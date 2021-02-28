@@ -61,6 +61,19 @@ Avaliable equations:
 	```
 	A good example is the `PlaneStress` class
 
+## Roadmap
+
+1. Beam bending by Euler Bernoulli and Timoshenko equations 
+2. 2D elastic plate theory 
+3. 1D and 2D heat transfer
+4. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
+4. Transient analysis (Core modification)
+5. Elasticity in 3D (3D meshing and post process)
+6. Non Lineal analysis for 1D equation (All cases)
+7. Non Lineal for 2D equation (All cases)
+8. UNIT TESTING
+9. NUMERICAL VALIDATION
+10. Non Local 2D?
 
 ## Test index:
 
