@@ -7,7 +7,16 @@ from matplotlib import gridspec
 class PlaneStress(Core):
 	
 	def __init__(self,geometry,E,v,t,fx=lambda x:0,fy=lambda x:0):
-		
+		"""Create a Plain Stress problem
+
+		Args:
+			geometry (Geometry): 2D 2 variables per node geometry
+			E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
+			v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+			t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+			fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
+			fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
+		"""		
 		if type(t)==float or type(t)==int:
 			t = [t]*len(geometry.elements)
 		if type(E)==float or type(E)==int:
@@ -38,7 +47,8 @@ class PlaneStress(Core):
 		Core.__init__(self,geometry)
 
 	def elementMatrices(self):
-
+		"""Calculate the element matrices usign Reddy's (2005) finite element model
+		"""	
 # EKuu = lambda z, n: (C11 * dfdx(z, n, i) * dfdx(z, n, j) + C66 * dfdy(z, n, i) * dfdy(z, n, j)) * np.linalg.det(J(z, n))
 # EKuv = lambda z, n: (C12 * dfdx(z, n, i) * dfdy(z, n, j) + C66 * dfdy(z, n, i) * dfdx(z, n, j)) * np.linalg.det(J(z, n))
 # EKvu = lambda z, n: (C12 * dfdy(z, n, i) * dfdx(z, n, j) + C66 * dfdx(z, n, i) * dfdy(z, n, j)) * np.linalg.det(J(z, n))
@@ -78,16 +88,16 @@ class PlaneStress(Core):
 			# e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
 			# e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
 	def postProcess(self,mult=1000):
+		"""Generate the stress surfaces and displacement fields for the geometry
+
+		Args:
+			mult (int, optional): Factor for displacements. Defaults to 1000.
+		"""	
 		X = []
 		Y = []
 		U1 = []
 		U2 = []
 		U3 = []
-		U4 = []
-		Ux = []
-		Uy = []
-		Ux0 = []
-		Uy0 = []
 		fig = plt.figure()
 
 		gs = gridspec.GridSpec(3, 3)

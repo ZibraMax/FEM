@@ -2,6 +2,12 @@ from tqdm import tqdm
 import numpy as np
 class Core():
 	def __init__(self,geometry):
+		"""Create the Fintie Element problem.
+
+		Args:
+			geometry (Geometry): Input geometry. The geometry must contain the elements, and the border conditions.
+			You can create the geometry of the problem using the `Geometry` class.
+		"""		
 		self.geometry = geometry
 		self.ngdl = self.geometry.ngdl
 		self.K = np.zeros([self.ngdl,self.ngdl])
@@ -15,6 +21,12 @@ class Core():
 		self.elements = self.geometry.elements
 
 	def ensembling(self):
+		"""Ensembling of equation system. This method use the element gdl
+		and the element matrices. The element matrices degrees of fredom must
+		match the dimension of the element gdl. For m>1 variables per node,
+		the gdl will be flattened. This ensure that the element matrices will always 
+		be a 2-D Numpy Array.
+		"""		
 		print('Ensembling equation system...')
 		for e in tqdm(self.elements,unit='Element'):
 			self.K[np.ix_(e.gdlm,e.gdlm)] += e.Ke
@@ -23,6 +35,15 @@ class Core():
 		self._K = np.copy(self.K)
 		print('Done!')
 	def borderConditions(self):
+		"""Assign border conditions to the system. 
+		The border conditios are assigned in this order:
+
+		1. Natural border conditions
+		2. Essential border conditions
+
+		This ensures that in a node with 2 border conditions
+		the essential border conditions will be applied.
+		"""		
 		print('Border conditions...')
 		for i in tqdm(self.cbn,unit=' Natural'):
 			self.Q[int(i[0])] = i[1]
@@ -39,6 +60,12 @@ class Core():
 			self.S[int(i[0])] = i[1]
 		print('Done!')
 	def solveES(self,path=''):
+		"""Solve the equation system using numpy.solve algorithm
+
+		Args:
+			path (str, optional): Path to save a text file with the solution of the problem
+			This file can be loaded witouth spendign time in other finite element steps. Defaults to ''.
+		"""		
 		print('Solving equation system...')
 		self.U = np.linalg.solve(self.K,self.S)
 		if not path == '':
@@ -46,7 +73,14 @@ class Core():
 		for e in self.elements:
 			e.setUe(self.U)
 		print('Done!')
+
 	def solve(self,path=''):
+		"""A series of Finite Element steps
+
+		Args:
+			path (str, optional): Path to save a text file with the solution of the problem
+			This file can be loaded witouth spendign time in other finite element steps. Defaults to ''.
+		"""		
 		print('Creating element matrices...')
 		self.elementMatrices()
 		print('Done!')
@@ -58,9 +92,11 @@ class Core():
 		print('Done!')
 	
 	def solveFromFile(self,file):
-		# self.elementMatrices()
-		# self.ensembling()
-		# self.borderConditions()
+		"""Load a solution file and show the post process for a given geometry
+
+		Args:
+			file (str): Path to the previously generated solution file.
+		"""		
 		self.U = np.loadtxt(file)
 		for e in self.elements:
 			e.setUe(self.U)

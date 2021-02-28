@@ -1,6 +1,16 @@
 import math, random
 import numpy as np
 def enmalladoFernando(l,lx,ly,nex,ney,filename):
+	"""Crea un enmallado 2D de un rectangulo
+
+	Args:
+		l (float): Parámetro no local no usado en este programa, dejar en 0
+		lx (floar): Base del rectángulo
+		ly (float): Altura del rectámgulo
+		nex (int): Numero de elementos en el eje x
+		ney (int): Numero de elementos en el eje y
+		filename (str): nombre del archivo donde se guardará
+	"""	
 	l=float(l)
 	lx=float(lx)
 	ly=float(ly)
