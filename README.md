@@ -1,5 +1,6 @@
 # FEM
 N dimensional FEM implementation for M variables per node problems.
+
 ## Tutorial
 
 ### Using pre implemented equations
@@ -91,3 +92,9 @@ Avaliable equations:
 - Test 12: Plane Strain 2 variable per node. Embankment from GiD - Serendipity
 - Test 13: Plane Strain 2 variable per node. Embankment - Triangular Quadratic
 - Test 14: Plane Stress 2 variable per node. Cantilever Beam - Serendipity
+
+## References
+
+J. N. Reddy. Introduction to the Finite Element Method, Third Edition (McGraw-Hill Education: New York, Chicago, San Francisco, Athens, London, Madrid, Mexico City, Milan, New Delhi, Singapore, Sydney, Toronto, 2006). https://www.accessengineeringlibrary.com/content/book/9780072466850
+
+Jonathan Richard Shewchuk, (1996) Triangle: Engineering a 2D Quality Mesh Generator and Delaunay Triangulator
