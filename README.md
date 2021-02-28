@@ -22,11 +22,12 @@ Avaliable equations:
 
 #### Steps
 1. Create a Python flie and import the libraries:
-
+	```python
 		from .Core import *
 		from tqdm import tqdm
 		import numpy as np
 		import matplotlib.pyplot as plt
+	```
 
 	- Core: Solver
 	- Core: Numpy data
@@ -34,18 +35,20 @@ Avaliable equations:
 	- Tqdm: Progressbars
 
 2. Create a Python class with Core inheritance
-
+	```python
 		class PlaneStress(Core):
 			def __init__(self,geometry,*args,**kargs):
 			#Do stuff
 			Core.__init__(self,geometry)
+	```
 	It is important to manage the number of variables per node in the input geometry.
 3. Define the matrix calculation methods and post porcessing methods
-
+	```python
 		def elementMatrices(self):
 		def postProcess(self):
+	```
 4. The `elementMatrices` method uses gauss integration points, so you must use the following structure:
-
+	```python
 		for e in tqdm(self.elements,unit='Element'):
 			_x,_p = e.T(e.Z.T) #Gauss points in global coordinates and Shape functions evaluated in gauss points
 			jac,dpz = e.J(e.Z.T) #Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
@@ -55,7 +58,8 @@ Avaliable equations:
 			for k in range(len(e.Z)): #Iterate over gauss points on domain
 				#Calculate matrices with any finite element model
 			#Assign matrices to element
-	A good example is the PlaneStress class
+	```
+	A good example is the `PlaneStress` class
 
 
 ## Test index:
