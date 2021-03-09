@@ -2,7 +2,7 @@ from ..Element import *
 import numpy as np
 import matplotlib.pyplot as plt
 import numpy as np
-
+import matplotlib.path as mpltPath
 class Element2D(Element):
 	def __init__(self,coords,_coords,gdl):
 		Element.__init__(self,coords,_coords,gdl)
@@ -16,7 +16,7 @@ class Element2D(Element):
 		l.append('Element')
 		l.append('Nodes')
 		for i in range(self.n):
-			surf = ax.plot_trisurf(*_x,_p[i],color=(0,0,0,0), edgecolor=(np.random.random(),np.random.random(),np.random.random()))
+			surf = ax.plot_trisurf(*_x.T,_p[:,i],alpha=0.3)
 			surf._facecolors2d=surf._facecolors3d
 			surf._edgecolors2d=surf._edgecolors3d
 			l.append(r'$\psi_{'+format(i)+r'}$')
@@ -33,7 +33,7 @@ class Element2D(Element):
 		fig = plt.figure()
 		ax = fig.add_subplot(projection='3d')
 		l = []
-		surf = ax.plot_trisurf(*_x,__j,cmap='magma')
+		surf = ax.plot_trisurf(*_x.T,__j,cmap='magma')
 		surf._facecolors2d=surf._facecolors3d
 		surf._edgecolors2d=surf._edgecolors3d
 		l.append('Element')

@@ -1,5 +1,7 @@
-import numpy as np
+# Creación de elementos
 import matplotlib.pyplot as plt
+import numpy as np
+
 import FEM
 
 ELEMENTOS = []
@@ -23,44 +25,35 @@ ELEMENTOS.append(eTC)
 coords = [[1.4,1.5],[3.1,2.4],[2,3]]
 gdl = np.array([[1,2,3]])
 eTL = FEM.Elements.E2D.LTriangular(coords,gdl)
-ELEMENTOS.append(eTL)
-Ue = np.array([[2,3,4],[1,2,3],[4,5,6]])
-eTL.Ue = Ue
-
 
 coords = [[3],[4],[5]]
 gdl = np.array([[3,4,5]])
 e = FEM.Elements.E1D.QuadraticElement(coords,gdl,3)
-# print(e.isInside(np.array([1,2,3,4,5])))
-# Ue = np.array([[2,3,4],[1,2,3],[4,5,6]])
-# e.Ue = Ue
-# print(e.giveSolution())
-# print(eRC.T(np.array([[1.3,1.2],[2.67,3]]))[0])
-z = eRC.inverseMapping(np.array([[1.3,2.67],[1.2,3]]))
-z = eRC.inverseMapping([1.3,1.2])
-print(eRC.T(z)[0])
+ELEMENTOS.append(e)
+coords = [[3],[5]]
+gdl = np.array([[3,5]])
+e = FEM.Elements.E1D.LinealElement(coords,gdl,3)
+ELEMENTOS.append(e)
 
+# Dibujar elementos
 # for e in ELEMENTOS:
 # 	e.draw()
 # 	plt.show()
+
+
+# Esta Adentro
+# print(e.isInside(np.array([1,2,3,4,5])))
+
+
+# Inverse Mapping
+z = eTL.inverseMapping(np.array([[1.3,2.5,3.5],[1.5,2.6,8.5]]))
+# z = eTL.inverseMapping(np.array([[1.3],[1.5]]))
+print(z)
+# print(eTL.isInside(np.array([3.5,2.5])))
+
+
+# Jacobian Graph
+# for e in ELEMENTOS:
 # 	e.jacobianGraph()
 # 	plt.show()
 
-
-# print(*e.T(np.array([-1,0,1])))
-# print(e.dpsis(np.array([[-1,0],[0,0]])))
-# print(e.dpsis([-1,0]))
-# print(e.dpsis([0,0]))
-
-# print(eRS.J(np.array([[0,1],[0,0]])))
-# print(e.J(np.array([i*0.1 for i in range(10)])))
-# z = e.inverseMapping(3.5)
-# print(z)
-# print(e.T(z)[0])
-
-#TODO revisar inverse mapping múultiple elementos lineales porque hay que meterlos como vectores verticales
-# z = e.inverseMapping(np.array([[3.5],[4.5]]))
-# print(z)
-# print(e.T(z)[0])
-# e.draw()
-# plt.show()
