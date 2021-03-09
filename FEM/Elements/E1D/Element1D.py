@@ -15,8 +15,8 @@ class Element1D(Element,LinearScheme):
 		_x,_p = self.T(_z)
 		_y = 0
 		for i in range(self.n):
-			plt.plot(_x,_p[i],'--',label=r'$\psi_{'+format(i)+r'}$')
-			_y+=_p[i]
+			plt.plot(_x,_p[:,i],'--',label=r'$\psi_{'+format(i)+r'}$')
+			_y+=_p[:,i]
 		plt.plot(_x,[0]*len(_x),'-',color='black',label='Element')
 		plt.plot(self.coords.T[0],[0]*len(self.coords.T[0]),'o',color='blue',label='Nodes')
 		plt.plot(_x,_y,'-.',label=r'$\sum_{i=0}^{n}\psi$')

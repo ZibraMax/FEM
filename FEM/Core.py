@@ -74,7 +74,7 @@ class Core():
 			e.setUe(self.U)
 		print('Done!')
 
-	def solve(self,path=''):
+	def solve(self,path='',plot=True):
 		"""A series of Finite Element steps
 
 		Args:
@@ -87,22 +87,30 @@ class Core():
 		self.ensembling()
 		self.borderConditions()
 		self.solveES(path)
-		print('Post processing solution...')
-		self.postProcess()
-		print('Done!')
+		if plot:
+			print('Post processing solution...')
+			self.postProcess()
+			print('Done!')
 	
-	def solveFromFile(self,file):
+	def solveFromFile(self,file,plot=True):
 		"""Load a solution file and show the post process for a given geometry
 
 		Args:
 			file (str): Path to the previously generated solution file.
-		"""		
+		"""
+		print('Loading File...')
 		self.U = np.loadtxt(file)
 		for e in self.elements:
 			e.setUe(self.U)
-		self.postProcess()
+		print('Done!')
+		if plot:
+			print('Post processing solution...')
+			self.postProcess()
+			print('Done!')
 
-	def elementMatrices(self): #self methods must be implemented in children classes
+	def profile(self): #this method must be implemented in children classes
 		pass
-	def postProcess(self): #self methods must be implemented in children classes
+	def elementMatrices(self): #this method must be implemented in children classes
+		pass
+	def postProcess(self): #this method must be implemented in children classes
 		pass

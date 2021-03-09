@@ -6,7 +6,6 @@ class RectangularScheme():
 		XX,YY = np.meshgrid(np.linspace(-1,1,DENSIDAD), np.linspace(-1,1,DENSIDAD))
 		_z = XX.reshape([DENSIDAD**2,1])[:,0]
 		_n = YY.reshape([DENSIDAD**2,1])[:,0]
-		self.domain = np.array([_z,_n]).T
 		_Z,_W = np.polynomial.legendre.leggauss(n)
 		self.Z = []
 		self.W = []
@@ -17,3 +16,4 @@ class RectangularScheme():
 
 		self.Z = np.array(self.Z)
 		self.W = np.array(self.W)
+		self.domain = np.array([[-1,-1],[1,-1],[1,1],[-1,1]] +  self.Z.tolist())

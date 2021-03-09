@@ -119,15 +119,15 @@ class PlaneStress(Core):
 			ax5.plot(*e._coordsg.T,'--',color='gray',alpha=0.7)
 			ax5.plot(*coordsNuevas.T,'-',color='black')
 		ax5.legend(['Original Shape','Deformed Shape (x'+format(mult)+')'])
-		surf = ax1.tricontourf(X,Y,U1,cmap='magma')
+		surf = ax1.tricontourf(X,Y,U1,cmap='magma',levels=20)
 		plt.colorbar(surf,ax=ax1)
 		ax1.set_title(r'$\sigma_{xx}$')
 
-		surf = ax2.tricontourf(X,Y,U2,cmap='magma')
+		surf = ax2.tricontourf(X,Y,U2,cmap='magma',levels=20)
 		plt.colorbar(surf,ax=ax2)
 		ax2.set_title(r'$\sigma_{yy}$')
 
-		surf = ax3.tricontourf(X,Y,U3,cmap='magma')
+		surf = ax3.tricontourf(X,Y,U3,cmap='magma',levels=20)
 		plt.colorbar(surf,ax=ax3)
 		ax3.set_title(r'$\sigma_{xy}$')
 		mask = self.geometry.mask
@@ -146,3 +146,38 @@ class PlaneStress(Core):
 			ax1.fill(Xs,Ys,color='white',zorder=30)
 			ax2.fill(Xs,Ys,color='white',zorder=30)
 			ax3.fill(Xs,Ys,color='white',zorder=30)
+	def profile(self,p0,p1,n=100):
+		_x = np.linspace(p0[0],p1[0],n)
+		_y = np.linspace(p0[1],p1[1],n)
+		X = np.array([_x,_y])
+		U1 = []
+		U2 = []
+		U3 = []
+		_X = []
+		dist = lambda X: np.sqrt((p0[0]-X[0])**2+(p0[1]-X[1])**2)
+		for i in range(n):
+			for ee,e in enumerate(self.elements):
+				if e.isInside(X.T[i]):
+					z = e.inverseMapping(np.array([X.T[i]]).T)
+					_,_,du=e.giveSolutionPoint(z,True)
+					U1+=(self.C11[ee]*du[:,0,0]+self.C12[ee]*du[:,1,1]).tolist() #TODO Arreglar calculo de esfuerzos para PlaneStrain
+					U2+=(self.C12[ee]*du[:,0,0]+self.C11[ee]*du[:,1,1]).tolist()
+					U3+=(self.C66[ee]*(du[:,0,1]+du[:,1,0])).tolist()
+					_X.append(dist(X.T[i]))
+					break
+		fig = plt.figure()
+		ax = fig.add_subplot(1,3,1)
+		ax.plot(_X,U1,color='black')
+		ax.grid()
+		ax.set_xlabel('d')
+		ax.set_ylabel(r'$\sigma_{xx}$')
+		ax = fig.add_subplot(1,3,2)
+		ax.plot(_X,U2,color='black')
+		ax.grid()
+		ax.set_xlabel('d')
+		ax.set_ylabel(r'$\sigma_{yy}$')
+		ax = fig.add_subplot(1,3,3)
+		ax.plot(_X,U3,color='black')
+		ax.grid()
+		ax.set_xlabel('d')
+		ax.set_ylabel(r'$\sigma_{xy}$')

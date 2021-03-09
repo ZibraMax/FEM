@@ -18,20 +18,19 @@ class Element():
 		p = self.psis(z)
 		return p@self.coords,p
 
-	def inverseMapping(self,x,n=100):
-		x = np.array(x)
+	def inverseMapping(self,x0,n=100):
 		tol = 1*10**(-6)
-		zeta = np.zeros(x.shape)+0.1
+		zi = np.zeros(x0.shape)+0.1
 		for _ in range(n):
-			xi = x - self.T(zeta)[0]
-			J = np.linalg.inv(self.J(zeta)[0])
-			so = list(xi.shape)
+			xi = x0 - self.T(zi)[0].T
+			_J = np.linalg.inv(self.J(zi)[0])
+			xi = xi.T
 			xi = xi.reshape(list(xi.shape)+[1])
-			dz = J@xi
-			zeta += dz.reshape(so)
+			dz = _J@xi
+			zi += dz[:,:,0].T
 			if np.max(np.abs(dz))<tol:
 				break
-		return zeta
+		return zi
 	def J(self, z):
 		dpsis = self.dpsis(z).T
 		return dpsis @ self.coords, dpsis
@@ -43,6 +42,13 @@ class Element():
 			j,dpz = self.J(_z.T) #TODO Revisar con Reddy
 			dpx =  np.linalg.inv(j) @ dpz
 			# print((self.Ue @ np.transpose(dpx,axes=[0,2,1])).shape)
+			return _x,self.Ue@_p.T, self.Ue @ np.transpose(dpx,axes=[0,2,1]) #TODO REVISAR VS
+		return _x,self.Ue@_p.T
+	def giveSolutionPoint(self,Z,SVSolution=False):
+		_x,_p = self.T(Z)
+		if SVSolution:
+			j,dpz = self.J(Z) #TODO Revisar con Reddy
+			dpx =  np.linalg.inv(j) @ dpz
 			return _x,self.Ue@_p.T, self.Ue @ np.transpose(dpx,axes=[0,2,1]) #TODO REVISAR VS
 		return _x,self.Ue@_p.T
 
