@@ -32,6 +32,21 @@ class Geometry:
 	def initialize(self):
 		self.ngdl = int(len(self.gdls)*self.nvn)
 		self.generateElements()
+
+	def detectNonLocal(self,lr):
+		diccionariosnl = []
+		for i in range(len(self.dictionary)):
+			cxl,cyl = self.centroids[i]
+			linea = []
+			linea.append(i)
+			for j in range(len(self.dictionary)):
+				if not j == i:
+					cxnl,cynl = self.centroids[j]
+					d = ((cxl-cxnl)**2+(cyl-cynl)**2)**0.5
+					if d<=lr:
+						linea.append(j)
+			diccionariosnl.append(linea) 
+		return diccionariosnl
 	@staticmethod
 	def loadGiDMsh(filename):
 		f = open(filename,'r')
