@@ -3,5 +3,7 @@
 FEM/__pycache__/
 ipynb_checkpoints/
 References/
+.vscode/
+build/
 *.png
 *.csv
