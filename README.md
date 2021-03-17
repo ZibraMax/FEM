@@ -92,6 +92,8 @@ Avaliable equations:
 - Test 12: Plane Strain 2 variable per node. Embankment from GiD - Serendipity
 - Test 13: Plane Strain 2 variable per node. Embankment - Triangular Quadratic
 - Test 14: Plane Stress 2 variable per node. Cantilever Beam - Serendipity
+- Test 15: Profile creation tool. Same as Test 14
+- Test 16: Non Local Plane Stress. [WIP]
 
 ## References
 
