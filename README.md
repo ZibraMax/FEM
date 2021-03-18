@@ -21,6 +21,8 @@ Avaliable equations:
 
 ### Creating equation classes
 
+Note: Don't forget the docstring!
+
 #### Steps
 1. Create a Python flie and import the libraries:
 	```python
