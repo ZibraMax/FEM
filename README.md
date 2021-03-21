@@ -61,7 +61,7 @@ vertices = [
 params = Mesh.Delaunay._strdelaunay(constrained=True, delaunay=True,
                                     a='0.00003', o=2)
 #**Create** geometry using triangulation parameters. Geometry can be imported from .msh files.
-geometry = Mesh.Delaunay1V(vertices, params)
+geometry = Mesh.Delaunay(vertices, params)
 
 #Save geometry to .msh file
 geometry.saveMesh('I_test')
