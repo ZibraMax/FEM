@@ -51,7 +51,7 @@ except FileNotFoundError:
 # Load the package's __version__.py module as a dictionary.
 about = {}
 if not VERSION:
-    project_slug = ''.lower().replace("-", "_").replace(" ", "_")
+    project_slug = 'FEM'
     with open(os.path.join(here, project_slug, '__version__.py')) as f:
         exec(f.read(), about)
 else:
