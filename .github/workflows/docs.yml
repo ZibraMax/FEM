@@ -13,14 +13,14 @@ jobs:
                   docs-folder: "docs/"
             - uses: actions/upload-artifact@v1
               with:
-                name: DocumentationHTML
-                path: docs/_build/html/
+                  name: DocumentationHTML
+                  path: docs/build/html/
             # Publish built docs to gh-pages branch.
             # ===============================
             - name: Commit documentation changes
               run: |
                   git clone https://github.com/ZibraMax/FEM.git --branch gh-pages --single-branch gh-pages
-                  cp -r docs/_build/html/* gh-pages/
+                  cp -r docs/build/html/* gh-pages/
                   cd gh-pages
                   touch .nojekyll
                   git config --local user.email "action@github.com"
