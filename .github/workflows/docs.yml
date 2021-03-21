@@ -19,13 +19,6 @@ jobs:
             # ===============================
             - name: Commit documentation changes
               run: |
-                  cd docs
-                  make clean
-                  cd ..
-                  sphinx-apidoc -f -o docs/source FEM
-                  make html
-            - name: Commit documentation changes
-              run: |
                   git clone https://github.com/ZibraMax/FEM.git --branch gh-pages --single-branch gh-pages
                   cp -r docs/build/html/* gh-pages/
                   cd gh-pages

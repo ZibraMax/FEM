@@ -173,6 +173,14 @@ class PlaneStress(Core):
             ax3.fill(Xs, Ys, color='white', zorder=30)
 
     def profile(self, p0, p1, n=100):
+        """Generate a profile between selected points
+
+        Args:
+            p0 (list): start point of the profile [x0,y0]
+            p1 (list): end point of the profile [xf,yf]
+            n (int, optional): NUmber of samples for graph. Defaults to 100.
+
+        """
         _x = np.linspace(p0[0], p1[0], n)
         _y = np.linspace(p0[1], p1[1], n)
         X = np.array([_x, _y])
