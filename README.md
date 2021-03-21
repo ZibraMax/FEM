@@ -1,5 +1,5 @@
 ![Build Process](https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml/badge.svg)
-
+[![Docs](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml/badge.svg)](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml)
 # FEM
 N dimensional FEM implementation for M variables per node problems.
 
