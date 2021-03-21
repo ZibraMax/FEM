@@ -1,7 +1,7 @@
 """FEM implementation
 """
 
-
+from .__version__ import __version__
 from .Elements import *
 from .Core import *
 from .Torsion2D import *
@@ -11,7 +11,6 @@ from .PlaneStress import *
 from .PlaneStressNonLocal import *
 from .PlaneStrain import *
 
-__version__ = "1.0.3"
 __author__ = "Arturo Rodriguez - da.rodriguezh@uniandes.edu.co"
 
 __all__ = ["Elements", "Core", "Torsion2D", "EDO1D", "EulerBernoulliBeam",
