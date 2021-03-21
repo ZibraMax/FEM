@@ -1,6 +1,8 @@
 [![Build status](https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml)
 [![Docs](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml/badge.svg)](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml)
-# FEM
+# AFEM
+A FEM implementation.
+
 N dimensional FEM implementation for M variables per node problems.
 
 ## Tutorial
