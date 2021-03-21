@@ -11,12 +11,6 @@ jobs:
             - uses: ammaraskar/sphinx-action@master
               with:
                   docs-folder: "docs/"
-            - name: Commit documentation changes
-              run: |
-              cd docs
-              make clean
-              cd ..
-              sphinx-apidoc -f -o docs/source FEM
             - uses: actions/upload-artifact@v1
               with:
                   name: DocumentationHTML
