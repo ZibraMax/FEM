@@ -96,6 +96,11 @@ class UploadCommand(Command):
         sys.exit()
 
 
+project_urls = {
+    'Documentation': 'https://zibramax.github.io/FEM/',
+    'Source Code': URL,
+    'Bug Tracker': 'https://github.com/ZibraMax/FEM/issues'
+}
 # Where the magic happens:
 setup(
     name=NAME,
@@ -107,6 +112,7 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
+    project_urls=project_urls,
     packages=find_packages(
         exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     # If your package is a single module, use this instead of 'packages':
