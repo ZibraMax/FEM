@@ -4,14 +4,6 @@ FEM.Mesh package
 Submodules
 ----------
 
-FEM.Mesh.Delaunay module
-------------------------
-
-.. automodule:: FEM.Mesh.Delaunay
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 FEM.Mesh.Geometry module
 ------------------------
 
@@ -32,6 +24,14 @@ FEM.Mesh.Lineal module
 ----------------------
 
 .. automodule:: FEM.Mesh.Lineal
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.Mesh.delaunay module
+------------------------
+
+.. automodule:: FEM.Mesh.delaunay
    :members:
    :undoc-members:
    :show-inheritance:
