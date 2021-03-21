@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: AFEM
-Version: 1.0.1
+Version: 1.0.2
 Summary: A finite element Python implementation
 Home-page: https://github.com/ZibraMax/FEM
 Author: Arturo Rodriguez
@@ -27,6 +27,84 @@ Description:
         - Create Border Conditions (Point and segment supported)
         - Solve!
         - For example: Test 2, Test 5, Test 11-14
+        
+        #### Example without geometry file (Test 2):
+        ```python
+        import matplotlib.pyplot as plt #Import libraries
+        import FEM #import AFEM
+        from FEM import Mesh #Import Meshing tools
+        
+        #Define some variables with geometric properties
+        a = 0.3
+        b = 0.3
+        tw = 0.05
+        tf = 0.05
+        
+        #Define material constants
+        E = 200000
+        v = 0.27
+        G = E / (2 * (1 + v))
+        phi = 1 #Rotation angle
+        
+        #Define domain coordinates
+        vertices = [
+            [0, 0],
+            [a, 0],
+            [a, tf],
+            [a / 2 + tw / 2, tf],
+            [a / 2 + tw / 2, tf + b],
+            [a, tf + b],
+            [a, 2 * tf + b],
+            [0, 2 * tf + b],
+            [0, tf + b],
+            [a / 2 - tw / 2, tf + b],
+            [a / 2 - tw / 2, tf],
+            [0, tf],
+        ]
+        
+        #Define triangulation parameters with `_strdelaunay` method.
+        params = Mesh.Delaunay._strdelaunay(constrained=True, delaunay=True,
+                                            a='0.00003', o=2)
+        #**Create** geometry using triangulation parameters. Geometry can be imported from .msh files.
+        geometry = Mesh.Delaunay1V(vertices, params)
+        
+        #Save geometry to .msh file
+        geometry.saveMesh('I_test')
+        
+        #Create torsional 2D analysis.
+        O = FEM.Torsion2D(geometry, G, phi)
+        #Solve the equation in domain.
+        #Post process and show results
+        O.solve()
+        plt.show()
+        
+        ```
+        
+        #### Example with geometry file (Test 2):
+        
+        ```python
+        import matplotlib.pyplot as plt #Import libraries
+        import FEM #import AFEM
+        from FEM import Mesh #Import Meshing tools
+        
+        #Define material constants.
+        E = 200000
+        v = 0.27
+        G = E / (2 * (1 + v))
+        phi = 1 #Rotation angle
+        
+        #Load geometry with file.
+        geometry = Mesh.Geometry.loadmsh('I_test.msh')
+        
+        #Create torsional 2D analysis.
+        O = FEM.Torsion2D(geometry, G, phi)
+        #Solve the equation in domain.
+        #Post process and show results
+        O.solve()
+        plt.show()
+        
+        
+        ```
         
         ### Creating equation classes
         
