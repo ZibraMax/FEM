@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: AFEM
-Version: 1.0.0
+Version: 1.0.1
 Summary: A finite element Python implementation
 Home-page: https://github.com/ZibraMax/FEM
 Author: Arturo Rodriguez
