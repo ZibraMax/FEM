@@ -96,14 +96,14 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fem-core-module">FEM.Core module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fem-edo1d-module">FEM.EDO1D module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fem-eulerbernoullibeam-module">FEM.EulerBernoulliBeam module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fem-planestrain-module">FEM.PlaneStrain module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fem-planestress-module">FEM.PlaneStress module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fem-planestressnonlocal-module">FEM.PlaneStressNonLocal module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fem-torsion2d-module">FEM.Torsion2D module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.Core">FEM.Core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.EDO1D">FEM.EDO1D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStressNonLocal">FEM.PlaneStressNonLocal module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
@@ -216,17 +216,17 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="FEM.Mesh.html">FEM.Mesh package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#fem-mesh-geometry-module">FEM.Mesh.Geometry module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#fem-mesh-geometry1d-module">FEM.Mesh.Geometry1D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#fem-mesh-lineal-module">FEM.Mesh.Lineal module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#fem-mesh-delaunay-module">FEM.Mesh.delaunay module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh.Delaunay">FEM.Mesh.Delaunay module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh.Geometry">FEM.Mesh.Geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh.Geometry1D">FEM.Mesh.Geometry1D module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh.Lineal">FEM.Mesh.Lineal module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="FEM.Utils.html">FEM.Utils package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="FEM.Utils.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Utils.html#fem-utils-polygonal-module">FEM.Utils.polygonal module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Utils.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Utils.html#module-FEM.Utils.polygonal">FEM.Utils.polygonal module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Utils.html#module-FEM.Utils">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -235,29 +235,535 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="fem-core-module">
-<h2>FEM.Core module<a class="headerlink" href="#fem-core-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Core">
+<span id="fem-core-module"></span><h2>FEM.Core module<a class="headerlink" href="#module-FEM.Core" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.Core.Core">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Core.</span></code><code class="sig-name descname"><span class="pre">Core</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="FEM.Core.Core.borderConditions">
+<code class="sig-name descname"><span class="pre">borderConditions</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.borderConditions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign border conditions to the system.
+The border conditios are assigned in this order:</p>
+<ol class="arabic simple">
+<li><p>Natural border conditions</p></li>
+<li><p>Essential border conditions</p></li>
+</ol>
+<p>This ensures that in a node with 2 border conditions
+the essential border conditions will be applied.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.Core.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.Core.ensembling">
+<code class="sig-name descname"><span class="pre">ensembling</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.ensembling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensembling of equation system. This method use the element gdl
+and the element matrices. The element matrices degrees of fredom must
+match the dimension of the element gdl. For m&gt;1 variables per node,
+the gdl will be flattened. This ensure that the element matrices will always
+be a 2-D Numpy Array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.Core.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.Core.profile">
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.profile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.Core.solve">
+<code class="sig-name descname"><span class="pre">solve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>A series of Finite Element steps</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to save a text file with the solution of the problem</p></li>
+<li><p><strong>file can be loaded witouth spendign time in other finite element steps. Defaults to ''.</strong> (<em>This</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.Core.solveES">
+<code class="sig-name descname"><span class="pre">solveES</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.solveES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the equation system using numpy.solve algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to save a text file with the solution of the problem</p></li>
+<li><p><strong>file can be loaded witouth spendign time in other finite element steps. Defaults to ''.</strong> (<em>This</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.Core.solveFromFile">
+<code class="sig-name descname"><span class="pre">solveFromFile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.solveFromFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a solution file and show the post process for a given geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>str</em>) – Path to the previously generated solution file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="fem-edo1d-module">
-<h2>FEM.EDO1D module<a class="headerlink" href="#fem-edo1d-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.EDO1D">
+<span id="fem-edo1d-module"></span><h2>FEM.EDO1D module<a class="headerlink" href="#module-FEM.EDO1D" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.EDO1D.EDO1D">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.EDO1D.</span></code><code class="sig-name descname"><span class="pre">EDO1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D.EDO1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.EDO1D.EDO1D.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D.EDO1D.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.EDO1D.EDO1D.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D.EDO1D.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate graph of solution and solution derivative</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="fem-eulerbernoullibeam-module">
-<h2>FEM.EulerBernoulliBeam module<a class="headerlink" href="#fem-eulerbernoullibeam-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.EulerBernoulliBeam">
+<span id="fem-eulerbernoullibeam-module"></span><h2>FEM.EulerBernoulliBeam module<a class="headerlink" href="#module-FEM.EulerBernoulliBeam" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.EulerBernoulliBeam.EulerBernoulliBeam">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.EulerBernoulliBeam.</span></code><code class="sig-name descname"><span class="pre">EulerBernoulliBeam</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">EI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EulerBernoulliBeam.EulerBernoulliBeam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.EulerBernoulliBeam.EulerBernoulliBeam.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EulerBernoulliBeam.EulerBernoulliBeam.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.EulerBernoulliBeam.EulerBernoulliBeam.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EulerBernoulliBeam.EulerBernoulliBeam.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="fem-planestrain-module">
-<h2>FEM.PlaneStrain module<a class="headerlink" href="#fem-planestrain-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.PlaneStrain">
+<span id="fem-planestrain-module"></span><h2>FEM.PlaneStrain module<a class="headerlink" href="#module-FEM.PlaneStrain" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.PlaneStrain.PlaneStrain">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.PlaneStrain.</span></code><code class="sig-name descname"><span class="pre">PlaneStrain</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry</span></em>, <em class="sig-param"><span class="pre">E</span></em>, <em class="sig-param"><span class="pre">v</span></em>, <em class="sig-param"><span class="pre">fx=&lt;function</span> <span class="pre">PlaneStrain.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">fy=&lt;function</span> <span class="pre">PlaneStrain.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStrain.PlaneStrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.PlaneStrain.PlaneStrain.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStrain.PlaneStrain.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStrain.PlaneStrain.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStrain.PlaneStrain.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the stress surfaces and displacement fields for the geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mult</strong> (<em>int</em><em>, </em><em>optional</em>) – Factor for displacements. Defaults to 1000.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStrain.PlaneStrain.profile">
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStrain.PlaneStrain.profile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="fem-planestress-module">
-<h2>FEM.PlaneStress module<a class="headerlink" href="#fem-planestress-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.PlaneStress">
+<span id="fem-planestress-module"></span><h2>FEM.PlaneStress module<a class="headerlink" href="#module-FEM.PlaneStress" title="Permalink to this headline">¶</a></h2>
+<p>Plane Stress Class</p>
+<dl class="py class">
+<dt id="FEM.PlaneStress.PlaneStress">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.PlaneStress.</span></code><code class="sig-name descname"><span class="pre">PlaneStress</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry</span></em>, <em class="sig-param"><span class="pre">E</span></em>, <em class="sig-param"><span class="pre">v</span></em>, <em class="sig-param"><span class="pre">t</span></em>, <em class="sig-param"><span class="pre">fx=&lt;function</span> <span class="pre">PlaneStress.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">fy=&lt;function</span> <span class="pre">PlaneStress.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStress.PlaneStress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<p>Create a Plain Stress problem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry" title="FEM.Mesh.Geometry"><em>Geometry</em></a>) – 2D 2 variables per node geometry</p></li>
+<li><p><strong>E</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)</p></li>
+<li><p><strong>v</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)</p></li>
+<li><p><strong>t</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)</p></li>
+<li><p><strong>fx</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.</p></li>
+<li><p><strong>fy</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="FEM.PlaneStress.PlaneStress.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStress.PlaneStress.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStress.PlaneStress.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStress.PlaneStress.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the stress surfaces and displacement fields for the geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mult</strong> (<em>int</em><em>, </em><em>optional</em>) – Factor for displacements. Defaults to 1000.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStress.PlaneStress.profile">
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStress.PlaneStress.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a profile between selected points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p0</strong> (<em>list</em>) – start point of the profile [x0,y0]</p></li>
+<li><p><strong>p1</strong> (<em>list</em>) – end point of the profile [xf,yf]</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – NUmber of samples for graph. Defaults to 100.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="fem-planestressnonlocal-module">
-<h2>FEM.PlaneStressNonLocal module<a class="headerlink" href="#fem-planestressnonlocal-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.PlaneStressNonLocal">
+<span id="fem-planestressnonlocal-module"></span><h2>FEM.PlaneStressNonLocal module<a class="headerlink" href="#module-FEM.PlaneStressNonLocal" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.PlaneStressNonLocal.PlaneStressNonLocal">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.PlaneStressNonLocal.</span></code><code class="sig-name descname"><span class="pre">PlaneStressNonLocal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry</span></em>, <em class="sig-param"><span class="pre">E</span></em>, <em class="sig-param"><span class="pre">v</span></em>, <em class="sig-param"><span class="pre">t</span></em>, <em class="sig-param"><span class="pre">l</span></em>, <em class="sig-param"><span class="pre">z1</span></em>, <em class="sig-param"><span class="pre">Lr</span></em>, <em class="sig-param"><span class="pre">af</span></em>, <em class="sig-param"><span class="pre">fx=&lt;function</span> <span class="pre">PlaneStressNonLocal.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">fy=&lt;function</span> <span class="pre">PlaneStressNonLocal.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal.PlaneStressNonLocal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.PlaneStressNonLocal.PlaneStressNonLocal.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal.PlaneStressNonLocal.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStressNonLocal.PlaneStressNonLocal.ensembling">
+<code class="sig-name descname"><span class="pre">ensembling</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal.PlaneStressNonLocal.ensembling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensembling of equation system. This method use the element gdl
+and the element matrices. The element matrices degrees of fredom must
+match the dimension of the element gdl. For m&gt;1 variables per node,
+the gdl will be flattened. This ensure that the element matrices will always
+be a 2-D Numpy Array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStressNonLocal.PlaneStressNonLocal.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal.PlaneStressNonLocal.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the stress surfaces and displacement fields for the geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mult</strong> (<em>int</em><em>, </em><em>optional</em>) – Factor for displacements. Defaults to 1000.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStressNonLocal.PlaneStressNonLocal.profile">
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal.PlaneStressNonLocal.profile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="fem-torsion2d-module">
-<h2>FEM.Torsion2D module<a class="headerlink" href="#fem-torsion2d-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Torsion2D">
+<span id="fem-torsion2d-module"></span><h2>FEM.Torsion2D module<a class="headerlink" href="#module-FEM.Torsion2D" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.Torsion2D.Torsion2D">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Torsion2D.</span></code><code class="sig-name descname"><span class="pre">Torsion2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Torsion2D.Torsion2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.Torsion2D.Torsion2D.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Torsion2D.Torsion2D.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Torsion2D.Torsion2D.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Torsion2D.Torsion2D.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create graphs for stress function and derivatives.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-FEM" title="Permalink to this headline">¶</a></h2>
+<p>FEM implementation</p>
+<dl class="py class">
+<dt id="FEM.Core">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">Core</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="FEM.Core.borderConditions">
+<code class="sig-name descname"><span class="pre">borderConditions</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.borderConditions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign border conditions to the system.
+The border conditios are assigned in this order:</p>
+<ol class="arabic simple">
+<li><p>Natural border conditions</p></li>
+<li><p>Essential border conditions</p></li>
+</ol>
+<p>This ensures that in a node with 2 border conditions
+the essential border conditions will be applied.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.ensembling">
+<code class="sig-name descname"><span class="pre">ensembling</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.ensembling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensembling of equation system. This method use the element gdl
+and the element matrices. The element matrices degrees of fredom must
+match the dimension of the element gdl. For m&gt;1 variables per node,
+the gdl will be flattened. This ensure that the element matrices will always
+be a 2-D Numpy Array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.profile">
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.profile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.solve">
+<code class="sig-name descname"><span class="pre">solve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>A series of Finite Element steps</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to save a text file with the solution of the problem</p></li>
+<li><p><strong>file can be loaded witouth spendign time in other finite element steps. Defaults to ''.</strong> (<em>This</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.solveES">
+<code class="sig-name descname"><span class="pre">solveES</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.solveES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the equation system using numpy.solve algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to save a text file with the solution of the problem</p></li>
+<li><p><strong>file can be loaded witouth spendign time in other finite element steps. Defaults to ''.</strong> (<em>This</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Core.solveFromFile">
+<code class="sig-name descname"><span class="pre">solveFromFile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.solveFromFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a solution file and show the post process for a given geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>str</em>) – Path to the previously generated solution file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="FEM.EDO1D">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">EDO1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.EDO1D.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.EDO1D.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate graph of solution and solution derivative</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="FEM.EulerBernoulliBeam">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">EulerBernoulliBeam</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">EI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EulerBernoulliBeam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.EulerBernoulliBeam.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EulerBernoulliBeam.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.EulerBernoulliBeam.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EulerBernoulliBeam.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="FEM.PlaneStrain">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">PlaneStrain</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry</span></em>, <em class="sig-param"><span class="pre">E</span></em>, <em class="sig-param"><span class="pre">v</span></em>, <em class="sig-param"><span class="pre">fx=&lt;function</span> <span class="pre">PlaneStrain.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">fy=&lt;function</span> <span class="pre">PlaneStrain.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.PlaneStrain.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStrain.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStrain.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStrain.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the stress surfaces and displacement fields for the geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mult</strong> (<em>int</em><em>, </em><em>optional</em>) – Factor for displacements. Defaults to 1000.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStrain.profile">
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStrain.profile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="FEM.PlaneStress">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">PlaneStress</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry</span></em>, <em class="sig-param"><span class="pre">E</span></em>, <em class="sig-param"><span class="pre">v</span></em>, <em class="sig-param"><span class="pre">t</span></em>, <em class="sig-param"><span class="pre">fx=&lt;function</span> <span class="pre">PlaneStress.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">fy=&lt;function</span> <span class="pre">PlaneStress.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<p>Create a Plain Stress problem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry" title="FEM.Mesh.Geometry"><em>Geometry</em></a>) – 2D 2 variables per node geometry</p></li>
+<li><p><strong>E</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)</p></li>
+<li><p><strong>v</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)</p></li>
+<li><p><strong>t</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)</p></li>
+<li><p><strong>fx</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.</p></li>
+<li><p><strong>fy</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="FEM.PlaneStress.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStress.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStress.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStress.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the stress surfaces and displacement fields for the geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mult</strong> (<em>int</em><em>, </em><em>optional</em>) – Factor for displacements. Defaults to 1000.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStress.profile">
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStress.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a profile between selected points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p0</strong> (<em>list</em>) – start point of the profile [x0,y0]</p></li>
+<li><p><strong>p1</strong> (<em>list</em>) – end point of the profile [xf,yf]</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – NUmber of samples for graph. Defaults to 100.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="FEM.PlaneStressNonLocal">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">PlaneStressNonLocal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry</span></em>, <em class="sig-param"><span class="pre">E</span></em>, <em class="sig-param"><span class="pre">v</span></em>, <em class="sig-param"><span class="pre">t</span></em>, <em class="sig-param"><span class="pre">l</span></em>, <em class="sig-param"><span class="pre">z1</span></em>, <em class="sig-param"><span class="pre">Lr</span></em>, <em class="sig-param"><span class="pre">af</span></em>, <em class="sig-param"><span class="pre">fx=&lt;function</span> <span class="pre">PlaneStressNonLocal.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">fy=&lt;function</span> <span class="pre">PlaneStressNonLocal.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.PlaneStressNonLocal.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStressNonLocal.ensembling">
+<code class="sig-name descname"><span class="pre">ensembling</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal.ensembling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensembling of equation system. This method use the element gdl
+and the element matrices. The element matrices degrees of fredom must
+match the dimension of the element gdl. For m&gt;1 variables per node,
+the gdl will be flattened. This ensure that the element matrices will always
+be a 2-D Numpy Array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStressNonLocal.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the stress surfaces and displacement fields for the geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mult</strong> (<em>int</em><em>, </em><em>optional</em>) – Factor for displacements. Defaults to 1000.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.PlaneStressNonLocal.profile">
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.PlaneStressNonLocal.profile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="FEM.Torsion2D">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">Torsion2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Torsion2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.Torsion2D.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Torsion2D.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Torsion2D.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Torsion2D.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create graphs for stress function and derivatives.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

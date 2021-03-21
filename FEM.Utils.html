@@ -96,14 +96,14 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-core-module">FEM.Core module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-edo1d-module">FEM.EDO1D module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-eulerbernoullibeam-module">FEM.EulerBernoulliBeam module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-planestrain-module">FEM.PlaneStrain module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-planestress-module">FEM.PlaneStress module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-planestressnonlocal-module">FEM.PlaneStressNonLocal module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-torsion2d-module">FEM.Torsion2D module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Core">FEM.Core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EDO1D">FEM.EDO1D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStressNonLocal">FEM.PlaneStressNonLocal module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
@@ -185,11 +185,49 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="fem-utils-polygonal-module">
-<h2>FEM.Utils.polygonal module<a class="headerlink" href="#fem-utils-polygonal-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Utils.polygonal">
+<span id="fem-utils-polygonal-module"></span><h2>FEM.Utils.polygonal module<a class="headerlink" href="#module-FEM.Utils.polygonal" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.clip">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">clip</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Utils.polygonal.clip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.dist">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">dist</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Utils.polygonal.dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.enmalladoFernando">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">enmalladoFernando</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ney</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Utils.polygonal.enmalladoFernando" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crea un enmallado 2D de un rectangulo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>l</strong> (<em>float</em>) – Parámetro no local no usado en este programa, dejar en 0</p></li>
+<li><p><strong>lx</strong> (<em>floar</em>) – Base del rectángulo</p></li>
+<li><p><strong>ly</strong> (<em>float</em>) – Altura del rectámgulo</p></li>
+<li><p><strong>nex</strong> (<em>int</em>) – Numero de elementos en el eje x</p></li>
+<li><p><strong>ney</strong> (<em>int</em>) – Numero de elementos en el eje y</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – nombre del archivo donde se guardará</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.generatePolygon">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">generatePolygon</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctrX</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrY</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aveRadius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">irregularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spikeyness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numVerts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Utils.polygonal.generatePolygon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.isBetween">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">isBetween</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Utils.polygonal.isBetween" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-FEM.Utils" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
