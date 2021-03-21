@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>FEM.Mesh package &mdash; FEM __version__ = &#34;1.0.7&#34;
+  <title>FEM.Mesh package &mdash; FEM __version__ = &#34;1.0.8&#34;
  documentation</title>
   
 
@@ -184,20 +184,422 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="fem-mesh-geometry-module">
-<h2>FEM.Mesh.Geometry module<a class="headerlink" href="#fem-mesh-geometry-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Mesh.Geometry">
+<span id="fem-mesh-geometry-module"></span><h2>FEM.Mesh.Geometry module<a class="headerlink" href="#module-FEM.Mesh.Geometry" title="Permalink to this headline">¶</a></h2>
+<p>This should be documented</p>
+<dl class="py class">
+<dt id="FEM.Mesh.Geometry.Geometry">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Mesh.Geometry.</span></code><code class="sig-name descname"><span class="pre">Geometry</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Aver si esto funciona aqui.</p>
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.cbFromSegment">
+<code class="sig-name descname"><span class="pre">cbFromSegment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.cbFromSegment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a list of border conditions from specified border.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<em>int</em>) – Segment number</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – Value of the bc</p></li>
+<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number, starts with 1. Defaults to 1.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes in the segment. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of border conditions that can be concatenated or assigned to the geometry</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.cbeAllBorders">
+<code class="sig-name descname"><span class="pre">cbeAllBorders</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.cbeAllBorders" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.centroidsAndAreas">
+<code class="sig-name descname"><span class="pre">centroidsAndAreas</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.centroidsAndAreas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.detectNonLocal">
+<code class="sig-name descname"><span class="pre">detectNonLocal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.detectNonLocal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.generateBCFromCoords">
+<code class="sig-name descname"><span class="pre">generateBCFromCoords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.generateBCFromCoords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.generateElements">
+<code class="sig-name descname"><span class="pre">generateElements</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.generateElements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.generateSegmentsFromCoords">
+<code class="sig-name descname"><span class="pre">generateSegmentsFromCoords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.generateSegmentsFromCoords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.giveNodesOfSegment">
+<code class="sig-name descname"><span class="pre">giveNodesOfSegment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.giveNodesOfSegment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.initialize">
+<code class="sig-name descname"><span class="pre">initialize</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.loadGiDMsh">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">loadGiDMsh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.loadGiDMsh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.loadmsh">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">loadmsh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.loadmsh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aver, esto debería funcionar re pro</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.maskFromSegments">
+<code class="sig-name descname"><span class="pre">maskFromSegments</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.maskFromSegments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.saveMesh">
+<code class="sig-name descname"><span class="pre">saveMesh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ProjectName</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.saveMesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.show">
+<code class="sig-name descname"><span class="pre">show</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bolita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[17,</span> <span class="pre">10]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="fem-mesh-geometry1d-module">
-<h2>FEM.Mesh.Geometry1D module<a class="headerlink" href="#fem-mesh-geometry1d-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Mesh.Geometry1D">
+<span id="fem-mesh-geometry1d-module"></span><h2>FEM.Mesh.Geometry1D module<a class="headerlink" href="#module-FEM.Mesh.Geometry1D" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Mesh.Geometry1D.</span></code><code class="sig-name descname"><span class="pre">Geometry1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Mesh.Geometry.Geometry</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.cbFromSegment">
+<code class="sig-name descname"><span class="pre">cbFromSegment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.cbFromSegment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a list of border conditions from specified border.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<em>int</em>) – Segment number</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – Value of the bc</p></li>
+<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number, starts with 1. Defaults to 1.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes in the segment. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of border conditions that can be concatenated or assigned to the geometry</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.cbeAllBorders">
+<code class="sig-name descname"><span class="pre">cbeAllBorders</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.cbeAllBorders" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.centroidsAndAreas">
+<code class="sig-name descname"><span class="pre">centroidsAndAreas</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.centroidsAndAreas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.generateBCFromCoords">
+<code class="sig-name descname"><span class="pre">generateBCFromCoords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.generateBCFromCoords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.generateElements">
+<code class="sig-name descname"><span class="pre">generateElements</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.generateElements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.generateSegmentsFromCoords">
+<code class="sig-name descname"><span class="pre">generateSegmentsFromCoords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.generateSegmentsFromCoords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.giveNodesOfSegment">
+<code class="sig-name descname"><span class="pre">giveNodesOfSegment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.giveNodesOfSegment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.loadmsh">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">loadmsh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.loadmsh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aver, esto debería funcionar re pro</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.saveMesh">
+<code class="sig-name descname"><span class="pre">saveMesh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ProjectName</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.saveMesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.Geometry1D.show">
+<code class="sig-name descname"><span class="pre">show</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bolita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[17,</span> <span class="pre">10]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.Geometry1D.show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="fem-mesh-lineal-module">
-<h2>FEM.Mesh.Lineal module<a class="headerlink" href="#fem-mesh-lineal-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Mesh.Lineal">
+<span id="fem-mesh-lineal-module"></span><h2>FEM.Mesh.Lineal module<a class="headerlink" href="#module-FEM.Mesh.Lineal" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.Mesh.Lineal.Lineal">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Mesh.Lineal.</span></code><code class="sig-name descname"><span class="pre">Lineal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lenght</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Lineal.Lineal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Mesh.Geometry.Geometry</span></code></a></p>
+</dd></dl>
+
 </div>
-<div class="section" id="fem-mesh-delaunay-module">
-<h2>FEM.Mesh.delaunay module<a class="headerlink" href="#fem-mesh-delaunay-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Mesh.delaunay">
+<span id="fem-mesh-delaunay-module"></span><h2>FEM.Mesh.delaunay module<a class="headerlink" href="#module-FEM.Mesh.delaunay" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.Mesh.delaunay.Delaunay1V">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Mesh.delaunay.</span></code><code class="sig-name descname"><span class="pre">Delaunay1V</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.delaunay.Delaunay1V" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Mesh.Geometry.Geometry</span></code></a></p>
+</dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Mesh">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-FEM.Mesh" title="Permalink to this headline">¶</a></h2>
+<p>Meshing of FE</p>
+<dl class="py class">
+<dt id="FEM.Mesh.Geometry">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Mesh.</span></code><code class="sig-name descname"><span class="pre">Geometry</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Aver si esto funciona aqui.</p>
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.cbFromSegment">
+<code class="sig-name descname"><span class="pre">cbFromSegment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.cbFromSegment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a list of border conditions from specified border.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<em>int</em>) – Segment number</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – Value of the bc</p></li>
+<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number, starts with 1. Defaults to 1.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes in the segment. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of border conditions that can be concatenated or assigned to the geometry</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.cbeAllBorders">
+<code class="sig-name descname"><span class="pre">cbeAllBorders</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.cbeAllBorders" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.centroidsAndAreas">
+<code class="sig-name descname"><span class="pre">centroidsAndAreas</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.centroidsAndAreas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.detectNonLocal">
+<code class="sig-name descname"><span class="pre">detectNonLocal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.detectNonLocal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.generateBCFromCoords">
+<code class="sig-name descname"><span class="pre">generateBCFromCoords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.generateBCFromCoords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.generateElements">
+<code class="sig-name descname"><span class="pre">generateElements</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.generateElements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.generateSegmentsFromCoords">
+<code class="sig-name descname"><span class="pre">generateSegmentsFromCoords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.generateSegmentsFromCoords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.giveNodesOfSegment">
+<code class="sig-name descname"><span class="pre">giveNodesOfSegment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.giveNodesOfSegment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.initialize">
+<code class="sig-name descname"><span class="pre">initialize</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.loadGiDMsh">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">loadGiDMsh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.loadGiDMsh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.loadmsh">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">loadmsh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.loadmsh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aver, esto debería funcionar re pro</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.maskFromSegments">
+<code class="sig-name descname"><span class="pre">maskFromSegments</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.maskFromSegments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.saveMesh">
+<code class="sig-name descname"><span class="pre">saveMesh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ProjectName</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.saveMesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.show">
+<code class="sig-name descname"><span class="pre">show</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bolita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[17,</span> <span class="pre">10]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry.show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="FEM.Mesh.Geometry1D">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Mesh.</span></code><code class="sig-name descname"><span class="pre">Geometry1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Mesh.Geometry.Geometry</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.cbFromSegment">
+<code class="sig-name descname"><span class="pre">cbFromSegment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.cbFromSegment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a list of border conditions from specified border.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<em>int</em>) – Segment number</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – Value of the bc</p></li>
+<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number, starts with 1. Defaults to 1.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes in the segment. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of border conditions that can be concatenated or assigned to the geometry</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.cbeAllBorders">
+<code class="sig-name descname"><span class="pre">cbeAllBorders</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.cbeAllBorders" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.centroidsAndAreas">
+<code class="sig-name descname"><span class="pre">centroidsAndAreas</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.centroidsAndAreas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.generateBCFromCoords">
+<code class="sig-name descname"><span class="pre">generateBCFromCoords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.generateBCFromCoords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.generateElements">
+<code class="sig-name descname"><span class="pre">generateElements</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.generateElements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.generateSegmentsFromCoords">
+<code class="sig-name descname"><span class="pre">generateSegmentsFromCoords</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.generateSegmentsFromCoords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.giveNodesOfSegment">
+<code class="sig-name descname"><span class="pre">giveNodesOfSegment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.giveNodesOfSegment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.loadmsh">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">loadmsh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.loadmsh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aver, esto debería funcionar re pro</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.saveMesh">
+<code class="sig-name descname"><span class="pre">saveMesh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ProjectName</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.saveMesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry1D.show">
+<code class="sig-name descname"><span class="pre">show</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bolita</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[17,</span> <span class="pre">10]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Geometry1D.show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="FEM.Mesh.Lineal">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Mesh.</span></code><code class="sig-name descname"><span class="pre">Lineal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lenght</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Mesh.Lineal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Mesh.Geometry.Geometry</span></code></a></p>
+</dd></dl>
+
 </div>
 </div>
 
