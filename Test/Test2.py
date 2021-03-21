@@ -29,7 +29,7 @@ vertices = [
 ]
 params = Mesh.Delaunay._strdelaunay(constrained=True, delaunay=True,
                                     a='0.00003', o=2)
-geometria = Mesh.Delaunay1V(vertices, params)
+geometria = Mesh.Delaunay(vertices, params)
 
 # geometria.saveMesh('Mesh_tests/I_test')
 # geometria = Mesh.Geometry.loadmsh('Mesh_tests/I_test.msh')
