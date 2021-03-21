@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>FEM package &mdash; FEM __version__ = &#34;1.0.7&#34;
+  <title>FEM package &mdash; FEM __version__ = &#34;1.0.8&#34;
  documentation</title>
   
 
@@ -215,11 +215,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="FEM.Mesh.html">FEM.Mesh package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#fem-mesh-geometry-module">FEM.Mesh.Geometry module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#fem-mesh-geometry1d-module">FEM.Mesh.Geometry1D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#fem-mesh-lineal-module">FEM.Mesh.Lineal module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#fem-mesh-delaunay-module">FEM.Mesh.delaunay module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh.Geometry">FEM.Mesh.Geometry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh.Geometry1D">FEM.Mesh.Geometry1D module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh.Lineal">FEM.Mesh.Lineal module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh.delaunay">FEM.Mesh.delaunay module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.Mesh.html#module-FEM.Mesh">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="FEM.Utils.html">FEM.Utils package</a><ul>
@@ -402,7 +402,7 @@ be a 2-D Numpy Array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>geometry</strong> (<em>Geometry</em>) – 2D 2 variables per node geometry</p></li>
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry" title="FEM.Mesh.Geometry"><em>Geometry</em></a>) – 2D 2 variables per node geometry</p></li>
 <li><p><strong>E</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)</p></li>
 <li><p><strong>v</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)</p></li>
 <li><p><strong>t</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)</p></li>
@@ -664,7 +664,7 @@ be a 2-D Numpy Array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>geometry</strong> (<em>Geometry</em>) – 2D 2 variables per node geometry</p></li>
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry" title="FEM.Mesh.Geometry"><em>Geometry</em></a>) – 2D 2 variables per node geometry</p></li>
 <li><p><strong>E</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)</p></li>
 <li><p><strong>v</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)</p></li>
 <li><p><strong>t</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)</p></li>
