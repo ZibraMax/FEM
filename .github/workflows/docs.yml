@@ -6,20 +6,15 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            # - uses: actions/checkout@v1
-            # # Standard drop-in approach that should work for most people.
-            # - uses: actions/upload-artifact@v1
-            #   with:
-            #       name: DocumentationHTML
-            #       path: docs/build/html/
-            - name: Buildign docs
-              run: |
-                  cd docs
-                  make clean
-                  cd ..
-                  sphinx-apidoc -f -o docs/source FEM
-                  cd docs
-                  make html
+            - uses: actions/checkout@v1
+            # Standard drop-in approach that should work for most people.
+            - uses: ammaraskar/sphinx-action@master
+              with:
+                  docs-folder: "docs/source/"
+            - uses: actions/upload-artifact@v1
+              with:
+                  name: DocumentationHTML
+                  path: docs/build/html/
             # Publish built docs to gh-pages branch.
             # ===============================
             - name: Commit documentation changes
