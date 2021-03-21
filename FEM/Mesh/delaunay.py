@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from .Geometry import *
 
 
-class Delaunay1V(Geometry):
+class Delaunay(Geometry):
     def __init__(self, vertices, params, nvn=1):
         """Generate Delaunay triangulation
 
