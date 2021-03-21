@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from ..Elements import *
 from ..Elements.E1D import *
 from ..Elements.E2D import *
-from ..Elements.E3D import *
+# from ..Elements.E3D import *
 import re
 
 
