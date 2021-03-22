@@ -13,7 +13,8 @@ class EDO1D(Core):
     """Create a 1D 1 variable per node Finite Element problem
 
     The ordinary differential equation
-    $$a(x)\frac{d^2U}{dx^2}+c(x)u=f(x)$$
+    ..math::
+        a(x)\frac{d^2U}{dx^2}+c(x)u=f(x)
 
     Args:
             geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class

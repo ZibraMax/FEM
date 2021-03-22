@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
-from FEM import Mesh
+from FEM.Mesh.Geometry import Geometry
 
-geometria = Mesh.Geometry.loadGiDMsh('Mesh_tests/GiD/test.msh')
+geometria = Geometry.loadGiDMsh('Mesh_tests/GiD/test.msh')
 geometria.show()
 plt.show()
