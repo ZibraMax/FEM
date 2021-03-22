@@ -6,6 +6,7 @@ from .Core import *
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
+from typing import Callable
 
 
 class EDO1D(Core):
@@ -21,7 +22,7 @@ class EDO1D(Core):
             f (function): Function f, if f is constant you can use f = lambda x: [value]
     """
 
-    def __init__(self, geometry: Geometry, a: function, c: function, f: function) -> None:
+    def __init__(self, geometry: Geometry, a: Callable, c: Callable, f: Callable) -> None:
         """Create a 1D 1 variable per node Finite Element problem
 
         The ordinary differential equation

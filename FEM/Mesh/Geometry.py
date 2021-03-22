@@ -91,7 +91,7 @@ class Geometry:
         return diccionariosnl
 
     @staticmethod
-    def loadGiDMsh(filename: str) -> Geometry:
+    def loadGiDMsh(filename: str):
         """Load geometry from GiD msh file
 
         Args:
@@ -135,7 +135,7 @@ class Geometry:
         return o
 
     @staticmethod
-    def loadmsh(filename: str) -> Geometry:
+    def loadmsh(filename: str):
         """Load geometry from previously generated MSH file
 
         Args:

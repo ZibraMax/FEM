@@ -3,7 +3,7 @@
 
 
 import numpy as np
-from typing import Tuple
+from typing import Tuple, Callable
 
 
 class Element():
@@ -140,7 +140,7 @@ class Element():
             0, m-1, m).astype(int), np.linspace(0, n-1, n).astype(int))]
         self._Ueg = np.array(self._Ueg.T.tolist()+[self._Ueg.T[0].tolist()])
 
-    def integrate(self, f: function) -> float:
+    def integrate(self, f: Callable) -> float:
         """Calculate the integral of f function over element domain
 
         Args:

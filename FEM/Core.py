@@ -6,27 +6,27 @@ The individual children classes must implement the method for calculating the el
 
 from tqdm import tqdm
 import numpy as np
+from .Mesh import Geometry
 
 
 class Core():
     def __init__(self, geometry: Geometry) -> None:
-    """Create the Finite Element problem.
+        """Create the Finite Element problem.
 
-        Args:
+            Args:
                 geometry (Geometry): Input geometry. The geometry must contain the elements, and the border conditions.
-                You can create the geometry of the problem using the `Geometry` class.
-    """
-
-    self.geometry = geometry
-    self.ngdl = self.geometry.ngdl
-    self.K = np.zeros([self.ngdl, self.ngdl])
-    self.F = np.zeros([self.ngdl, 1])
-    self.Q = np.zeros([self.ngdl, 1])
-    self.U = np.zeros([self.ngdl, 1])
-    self.S = np.zeros([self.ngdl, 1])
-    self.cbe = self.geometry.cbe
-    self.cbn = self.geometry.cbn
-    self.elements = self.geometry.elements
+                You can create the geometry of the problem using the Geometry class.
+        """
+        self.geometry = geometry
+        self.ngdl = self.geometry.ngdl
+        self.K = np.zeros([self.ngdl, self.ngdl])
+        self.F = np.zeros([self.ngdl, 1])
+        self.Q = np.zeros([self.ngdl, 1])
+        self.U = np.zeros([self.ngdl, 1])
+        self.S = np.zeros([self.ngdl, 1])
+        self.cbe = self.geometry.cbe
+        self.cbn = self.geometry.cbn
+        self.elements = self.geometry.elements
 
     def ensembling(self) -> None:
         """Ensembling of equation system. This method use the element gdl
