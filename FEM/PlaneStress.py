@@ -1,4 +1,4 @@
-"""Plane Stress Class
+"""2D Elasticity: Plane Stress
 """
 
 
@@ -7,6 +7,7 @@ from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
+from typing import Tuple
 
 
 class PlaneStress(Core):
@@ -21,7 +22,7 @@ class PlaneStress(Core):
             fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
     """
 
-    def __init__(self, geometry, E, v, t, fx=lambda x: 0, fy=lambda x: 0):
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], fx: function = lambda x: 0, fy: function = lambda x: 0) -> None:
         """Create a Plain Stress problem
 
         Args:
@@ -62,7 +63,7 @@ class PlaneStress(Core):
             geometry.initialize()
         Core.__init__(self, geometry)
 
-    def elementMatrices(self):
+    def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
         """
 # EKuu = lambda z, n: (C11 * dfdx(z, n, i) * dfdx(z, n, j) + C66 * dfdy(z, n, i) * dfdy(z, n, j)) * np.linalg.det(J(z, n))
@@ -112,7 +113,7 @@ class PlaneStress(Core):
             # e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
             # e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
 
-    def postProcess(self, mult=1000):
+    def postProcess(self, mult: float = 1000) -> None:
         """Generate the stress surfaces and displacement fields for the geometry
 
         Args:
@@ -172,7 +173,7 @@ class PlaneStress(Core):
             ax2.fill(Xs, Ys, color='white', zorder=30)
             ax3.fill(Xs, Ys, color='white', zorder=30)
 
-    def profile(self, p0, p1, n=100):
+    def profile(self, p0: list, p1: list, n: float = 100) -> None:
         """Generate a profile between selected points
 
         Args:

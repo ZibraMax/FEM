@@ -1,13 +1,27 @@
+"""2D Elasticity: Plane Strain
+"""
+
+
 from .Core import *
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
+from typing import Tuple
 
 
 class PlaneStrain(Core):
+    """Create a Plain Strain problem
 
-    def __init__(self, geometry, E, v, fx=lambda x: 0, fy=lambda x: 0):
+    Args:
+            geometry (Geometry): 2D 2 variables per node geometry
+            E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
+            v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+            fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
+            fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
+    """
+
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], fx: function = lambda x: 0, fy: function = lambda x: 0) -> None:
         """Create a Plain Strain problem
 
         Args:
@@ -45,7 +59,7 @@ class PlaneStrain(Core):
             geometry.initialize()
         Core.__init__(self, geometry)
 
-    def elementMatrices(self):
+    def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
         """
         ee = 0
@@ -89,7 +103,7 @@ class PlaneStrain(Core):
             # e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
             # e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
 
-    def postProcess(self, mult=1000):
+    def postProcess(self, mult: float = 1000) -> None:
         """Generate the stress surfaces and displacement fields for the geometry
 
         Args:
@@ -150,7 +164,15 @@ class PlaneStrain(Core):
             ax2.fill(Xs, Ys, color='white', zorder=30)
             ax3.fill(Xs, Ys, color='white', zorder=30)
 
-    def profile(self, p0, p1, n=100):
+    def profile(self, p0: list, p1: list, n: float = 100) -> None:
+        """Generate a profile between selected points
+
+        Args:
+            p0 (list): start point of the profile [x0,y0]
+            p1 (list): end point of the profile [xf,yf]
+            n (int, optional): NUmber of samples for graph. Defaults to 100.
+
+        """
         _x = np.linspace(p0[0], p1[0], n)
         _y = np.linspace(p0[1], p1[1], n)
         X = np.array([_x, _y])
