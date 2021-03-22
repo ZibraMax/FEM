@@ -1,13 +1,22 @@
+"""Defines a linear scheme for lineal elements
+"""
+
 import numpy as np
 
 
 class LinearScheme():
-    def __init__(self, n):
+    """Creates a Linear Scheme
+
+    Args:
+        n (int): Number of gauss points
+    """
+
+    def __init__(self, n: int) -> None:
+        """Creates a Linear Scheme
+
+        Args:
+            n (int): Number of gauss points
+        """
+
         self.Z, self.W = np.polynomial.legendre.leggauss(n)
         self.domain = np.array([[-1] + self.Z.tolist() + [1]])[0]
-
-    def integrate(self, f):
-        integral = 0
-        for w, z in zip(self.W, self.Z):
-            integral += f(z)*w
-        return integral

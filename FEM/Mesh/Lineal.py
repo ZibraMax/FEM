@@ -1,8 +1,30 @@
+"""Generate a 1D Domain
+"""
+
+
 from .Geometry import *
 
 
 class Lineal(Geometry):
-    def __init__(self, lenght, n, o, nvn=1):
+    """Generate a evenly spaced elements domain
+
+    Args:
+        lenght (float): Domain lenght
+        n (int): Number of elements
+        o (int): Element order, can be 1 or 2
+        nvn (int, optional): Number of variables per node. Defaults to 1.
+    """
+
+    def __init__(self, lenght: float, n: int, o: int, nvn: int = 1) -> None:
+        """Generate a evenly spaced elements domain
+
+        Args:
+            lenght (float): Domain lenght
+            n (int): Number of elements
+            o (int): Element order, can be 1 or 2
+            nvn (int, optional): Number of variables per node. Defaults to 1.
+        """
+
         self.lenght = lenght
         dictionary = []
         gdls = []

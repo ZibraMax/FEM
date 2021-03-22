@@ -1,3 +1,7 @@
+"""Collection of 2D Elements
+"""
+
+
 from .Element2D import *
 from .RectangularScheme import *
 from .TriangularScheme import *

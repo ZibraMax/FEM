@@ -1,13 +1,23 @@
-import triangle as tr
+"""Defines 2D domains by Delaunay triangulations
+"""
 
+
+import triangle as tr
 import numpy as np
 import matplotlib.pyplot as plt
-
 from .Geometry import *
 
 
 class Delaunay(Geometry):
-    def __init__(self, vertices, params, nvn=1):
+    """Generate Delaunay triangulation using Triangle
+
+    Args:
+            vertices (list): matrix containing the domain vertices coordinates
+            params (str): Triangulation parameters, use the aux function _strdelaunay
+            nvn (int, optional): Number of variables per node. Defaults to 1.
+    """
+
+    def __init__(self, vertices: list, params: str, nvn: int = 1) -> None:
         """Generate Delaunay triangulation
 
         Args:
@@ -15,6 +25,7 @@ class Delaunay(Geometry):
                 params (str): Triangulation parameters, use the aux function _strdelaunay
                 nvn (int, optional): Number of variables per node. Defaults to 1.
         """
+
         seg = []
         for i in range(len(vertices)-1):
             seg.append([i, i+1])
@@ -40,14 +51,14 @@ class Delaunay(Geometry):
         self.mask = vertices
 
     @staticmethod
-    def _strdelaunay(constrained=True, delaunay=True, a=None, q=None, o=1):
+    def _strdelaunay(constrained: bool = True, delaunay: bool = True, a: float = None, q: float = None, o: int = 1) -> str:
         """Create a string for the delaunay triangulation constructor
 
         Args:
                 constrained (bool, optional): Makes the triangulation constrained. Defaults to True.
                 delaunay (bool, optional): Makes all triangles delaunay. Defaults to True.
-                a ([type], optional): Maximum area of triange. Defaults to None.
-                q ([type], optional): Minimum triangle angle <=35. Defaults to None.
+                a (float, optional): Maximum area of triange. Defaults to None.
+                q (float, optional): Minimum triangle angle <=35. Defaults to None.
                 o (int, optional): Order of element if 2, quadratic elements are generated. Defaults to 1.
 
         Returns:

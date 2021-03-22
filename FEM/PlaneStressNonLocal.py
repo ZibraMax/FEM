@@ -1,24 +1,47 @@
+"""2D Elasticity: Plane Stress non local
+"""
+
+
 from .Core import *
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
+from typing import Tuple
 
 
 class PlaneStressNonLocal(Core):
+    """Create a Non Local Plain Stress problem Paper Pisano
 
-    def __init__(self, geometry, E, v, t, l, z1, Lr, af, fx=lambda x: 0, fy=lambda x: 0):
+    Args:
+        geometry(Geometry): 2D 2 variables per node geometry
+        E(int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
+        v(int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+        t(int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+        l(int of float): Internal length
+        z1 (float): Nonlocal ratio
+        Lr (float): Skim region ratio
+        af (function): Atenuation function
+        fx(function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x: 0.
+        fy(function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x: 0.
+    """
+
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, z1: float, Lr: float, af: function, fx: function = lambda x: 0, fy: function = lambda x: 0) -> None:
         """Create a Non Local Plain Stress problem Paper Pisano
 
         Args:
-                geometry (Geometry): 2D 2 variables per node geometry
-                E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
-                v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
-                t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
-                l (int of float): Internal length
-                fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
-                fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
+            geometry(Geometry): 2D 2 variables per node geometry
+            E(int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
+            v(int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+            t(int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+            l(int of float): Internal length
+            z1 (float): Nonlocal ratio
+            Lr (float): Skim region ratio
+            af (function): Atenuation function
+            fx(function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x: 0.
+            fy(function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x: 0.
         """
+
         self.l0 = 0.5/np.pi/l/l/t
         if type(t) == float or type(t) == int:
             t = [t]*len(geometry.elements)
@@ -57,9 +80,10 @@ class PlaneStressNonLocal(Core):
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
 
-    def elementMatrices(self):
-        """Calculate the element matrices usign Reddy's (2005) finite element model
+    def elementMatrices(self) -> None:
+        """Calculate the element matrices usign Reddy's(2005) finite element model
         """
+
         ee = 0
         for e in tqdm(self.elements, unit='Element'):
             m = len(e.gdl.T)
@@ -140,7 +164,14 @@ class PlaneStressNonLocal(Core):
                 eenl += 1
             ee += 1
 
-    def ensembling(self):
+    def ensembling(self) -> None:
+        """Ensembling of equation system. This method use the element gdl
+        and the element matrices. The element matrices degrees of fredom must
+        match the dimension of the element gdl. For m>1 variables per node,
+        the gdl will be flattened. This ensure that the element matrices will always 
+        be a 2-D Numpy Array.
+        """
+
         print('Ensembling equation system...')
         for e in tqdm(self.elements, unit='Element'):
             self.K[np.ix_(e.gdlm, e.gdlm)] += e.Ke*self.z1
@@ -151,12 +182,13 @@ class PlaneStressNonLocal(Core):
             self.Q[np.ix_(e.gdlm)] += e.Qe
         print('Done!')
 
-    def postProcess(self, mult=1000):
+    def postProcess(self, mult: float = 1000) -> None:
         """Generate the stress surfaces and displacement fields for the geometry
 
         Args:
-                mult (int, optional): Factor for displacements. Defaults to 1000.
+                mult(int, optional): Factor for displacements. Defaults to 1000.
         """
+
         X = []
         Y = []
         U1 = []
@@ -211,7 +243,16 @@ class PlaneStressNonLocal(Core):
             ax2.fill(Xs, Ys, color='white', zorder=30)
             ax3.fill(Xs, Ys, color='white', zorder=30)
 
-    def profile(self, p0, p1, n=100):
+    def profile(self, p0: list, p1: list, n: float = 100) -> None:
+        """Generate a profile between selected points
+
+        Args:
+            p0 (list): start point of the profile [x0,y0]
+            p1 (list): end point of the profile [xf,yf]
+            n (int, optional): NUmber of samples for graph. Defaults to 100.
+
+        """
+
         _x = np.linspace(p0[0], p1[0], n)
         _y = np.linspace(p0[1], p1[1], n)
         X = np.array([_x, _y])

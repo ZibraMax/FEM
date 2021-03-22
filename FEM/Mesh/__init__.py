@@ -1,4 +1,4 @@
-"""Meshing of FE
+"""Meshing and geometry definitions
 """
 
 

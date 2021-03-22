@@ -1,8 +1,24 @@
+"""Define the rectangular scheme used by rectangular elements
+"""
+
+
 import numpy as np
 
 
 class RectangularScheme():
-    def __init__(self, n):
+    """Generates a rectangular integration scheme
+
+    Args:
+        n (int): Number of gauss points
+    """
+
+    def __init__(self, n: int) -> None:
+        """Generates a rectangular integration scheme
+
+        Args:
+            n (int): Number of gauss points
+        """
+
         DENSIDAD = 10
         XX, YY = np.meshgrid(np.linspace(-1, 1, DENSIDAD),
                              np.linspace(-1, 1, DENSIDAD))

@@ -1,3 +1,7 @@
+"""Defines a general 2D element
+"""
+
+
 from ..Element import *
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,12 +10,23 @@ import matplotlib.path as mpltPath
 
 
 class Element2D(Element):
-    def __init__(self, coords, _coords, gdl):
+    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray) -> None:
+        """Create a 2D element
+
+        Args:
+            coords (np.ndarray): Element coordinate matrix
+            _coords (np.ndarray): Element coordinate matrix for graphical interface purposes
+            gdl (np.ndarray): Degree of freedom matrix
+        """
+
         Element.__init__(self, coords, _coords, gdl)
         self._coordsg = np.array(
             self._coords.tolist()+[self._coords[0].tolist()])
 
-    def draw(self):
+    def draw(self) -> None:
+        """Create a graph of element
+        """
+
         _z = self.domain
         _x, _p = self.T(_z.T)
         fig = plt.figure()
@@ -29,7 +44,10 @@ class Element2D(Element):
         ax.plot(*self.coords.T, [0]*len(self.coords), 'o', color='blue')
         ax.legend(l)
 
-    def jacobianGraph(self):
+    def jacobianGraph(self) -> None:
+        """Create the determinant jacobian graph
+        """
+
         _z = self.domain
         _x, _p = self.T(_z.T)
         _j = self.J(_z.T)[0]
@@ -49,7 +67,15 @@ class Element2D(Element):
         ax.plot(*self.coords.T, [0]*len(self.coords), 'o', color='blue')
         ax.legend(l)
 
-    def isInside(self, x):  # TODO hacer que esto sea vectorizado. En teoría ya lo es xd
+    def isInside(self, x: np.ndarray) -> np.ndarray:
+        """Test if a given points is inside element domain
+
+        Args:
+            x (np.ndarray): Point to be tested
+
+        Returns:
+            np.ndarray: Bolean array of test result
+        """
         path = mpltPath.Path(self._coords)
         inside2 = path.contains_points([x])
         return inside2[0]

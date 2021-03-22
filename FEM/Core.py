@@ -1,28 +1,34 @@
+"""Define the structure of a finite element problem. This is the parent class of individual equation classes.
+
+The individual children classes must implement the method for calculating the element matrices and post processing.
+"""
+
+
 from tqdm import tqdm
 import numpy as np
 
 
 class Core():
-    def __init__(self, geometry):
-        """Create the Fintie Element problem.
+    def __init__(self, geometry: Geometry) -> None:
+    """Create the Finite Element problem.
 
         Args:
                 geometry (Geometry): Input geometry. The geometry must contain the elements, and the border conditions.
                 You can create the geometry of the problem using the `Geometry` class.
-        """
-        self.geometry = geometry
-        self.ngdl = self.geometry.ngdl
-        self.K = np.zeros([self.ngdl, self.ngdl])
-        self.F = np.zeros([self.ngdl, 1])
-        self.Q = np.zeros([self.ngdl, 1])
-        self.U = np.zeros([self.ngdl, 1])
-        self.S = np.zeros([self.ngdl, 1])
-        self._K = np.zeros([self.ngdl, self.ngdl])
-        self.cbe = self.geometry.cbe
-        self.cbn = self.geometry.cbn
-        self.elements = self.geometry.elements
+    """
 
-    def ensembling(self):
+    self.geometry = geometry
+    self.ngdl = self.geometry.ngdl
+    self.K = np.zeros([self.ngdl, self.ngdl])
+    self.F = np.zeros([self.ngdl, 1])
+    self.Q = np.zeros([self.ngdl, 1])
+    self.U = np.zeros([self.ngdl, 1])
+    self.S = np.zeros([self.ngdl, 1])
+    self.cbe = self.geometry.cbe
+    self.cbn = self.geometry.cbn
+    self.elements = self.geometry.elements
+
+    def ensembling(self) -> None:
         """Ensembling of equation system. This method use the element gdl
         and the element matrices. The element matrices degrees of fredom must
         match the dimension of the element gdl. For m>1 variables per node,
@@ -37,7 +43,7 @@ class Core():
         self._K = np.copy(self.K)
         print('Done!')
 
-    def borderConditions(self):
+    def borderConditions(self) -> None:
         """Assign border conditions to the system. 
         The border conditios are assigned in this order:
 
@@ -63,7 +69,7 @@ class Core():
             self.S[int(i[0])] = i[1]
         print('Done!')
 
-    def solveES(self, path=''):
+    def solveES(self, path: str = '') -> None:
         """Solve the equation system using numpy.solve algorithm
 
         Args:
@@ -78,7 +84,7 @@ class Core():
             e.setUe(self.U)
         print('Done!')
 
-    def solve(self, path='', plot=True):
+    def solve(self, path: str = '', plot: bool = True) -> None:
         """A series of Finite Element steps
 
         Args:
@@ -96,7 +102,7 @@ class Core():
             self.postProcess()
             print('Done!')
 
-    def solveFromFile(self, file, plot=True):
+    def solveFromFile(self, file: str, plot: bool = True) -> None:
         """Load a solution file and show the post process for a given geometry
 
         Args:
@@ -112,11 +118,17 @@ class Core():
             self.postProcess()
             print('Done!')
 
-    def profile(self):  # this method must be implemented in children classes
+    def profile(self) -> None:
+        """Create a profile for a 3D or 2D problem.
+        """
         pass
 
-    def elementMatrices(self):  # this method must be implemented in children classes
+    def elementMatrices(self) -> None:
+        """Calculate the element matrices
+        """
         pass
 
-    def postProcess(self):  # this method must be implemented in children classes
+    def postProcess(self) -> None:
+        """Post process the solution
+        """
         pass

@@ -1,4 +1,4 @@
-"""This should be documented
+"""General geometry class.
 """
 
 
@@ -13,18 +13,27 @@ import re
 
 
 class Geometry:
-    """Aver si esto funciona aqui."""
+    """Define geometry structure
 
-    def __init__(self, dictionary, gdls, types, nvn=1, segments=[]):
-        """Aver si esto funciona aqui.
+    Args:
+        dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
+        gdls (list): List of domain coordinates
+        types (list): Types of each element
+        nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+        segments (list, optional): Domain segments. Defaults to [].
+    """
+
+    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, segments: list = []) -> None:
+        """Define geometry structure
 
         Args:
-            dictionary ([type]): [description]
-            gdls ([type]): [description]
-            types ([type]): [description]
-            nvn (int, optional): [description]. Defaults to 1.
-            segments (list, optional): [description]. Defaults to [].
+            dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
+            gdls (list): List of domain coordinates
+            types (list): Types of each element
+            nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+            segments (list, optional): Domain segments. Defaults to [].
         """
+
         self.mask = None
         self.areas = []
         self.nvn = nvn
@@ -42,16 +51,31 @@ class Geometry:
         except:
             pass
 
-    def maskFromSegments(self):
+    def maskFromSegments(self) -> None:
+        """Create the display mask from geometry segments
+        """
+
         self.mask = []
         for s in self.segments:
             self.mask += np.array(self.gdls)[np.ix_(s)].tolist()
 
-    def initialize(self):
+    def initialize(self) -> None:
+        """Calculates the total number of GDL's and generates the elements structure
+        """
+
         self.ngdl = int(len(self.gdls)*self.nvn)
         self.generateElements()
 
-    def detectNonLocal(self, lr):
+    def detectNonLocal(self, lr: float) -> list:
+        """Detect adjacent elements between a distance Lr
+
+        Args:
+            lr (float): Distance to detect adjacent elements
+
+        Returns:
+            list: Non local element dictionary
+        """
+
         diccionariosnl = []
         for i in range(len(self.dictionary)):
             cxl, cyl = self.centroids[i]
@@ -67,15 +91,19 @@ class Geometry:
         return diccionariosnl
 
     @staticmethod
-    def loadGiDMsh(filename):
+    def loadGiDMsh(filename: str) -> Geometry:
+        """Load geometry from GiD msh file
+
+        Args:
+            filename (str): Path to GiD file
+
+        Returns:
+            Geometry: Result geometry
+        """
+
         f = open(filename, 'r')
         dicc = []
         gdls = []
-        types = []
-        seg = []
-        cbe = []
-        cbn = []
-        nvn = 1
         params = re.findall(r'\S+', f.readline())
         f.readline()
         while True:
@@ -107,14 +135,14 @@ class Geometry:
         return o
 
     @staticmethod
-    def loadmsh(filename):
-        """Aver, esto debería funcionar re pro
+    def loadmsh(filename: str) -> Geometry:
+        """Load geometry from previously generated MSH file
 
         Args:
-            filename ([type]): [description]
+            filename (str): Path to msh file
 
         Returns:
-            [type]: [description]
+            Geometry: Output geometry
         """
         print('Loading ' + filename)
         f = open(filename, 'r')
@@ -147,7 +175,9 @@ class Geometry:
         o.cbn = cbn
         return o
 
-    def generateElements(self):
+    def generateElements(self) -> None:
+        """Generate elements structure
+        """
         self.elements = []
         for i, d in enumerate(self.dictionary):
             coords = np.array(self.gdls)[np.ix_(d)]
@@ -169,7 +199,15 @@ class Geometry:
                 element = QuadraticElement(coords, gdl)
             self.elements.append(element)
 
-    def show(self, texto=10, bolita=0, figsize=[17, 10]):
+    def show(self, texto: int = 10, bolita: int = 0, figsize: list = [17, 10]) -> None:
+        """Create a geometry graph
+
+        Args:
+            texto (int, optional): Text size. Defaults to 10.
+            bolita (int, optional): Node size. Defaults to 0.
+            figsize (list, optional): Size of figure. Defaults to [17, 10].
+        """
+
         fig = plt.figure(figsize=figsize)
         ax = fig.add_subplot()
 
@@ -223,7 +261,12 @@ class Geometry:
             ax.annotate(l, p, size=texto, textcoords="offset points",
                         xytext=(-0, -2.5), ha='center')
 
-    def saveMesh(self, ProjectName):
+    def saveMesh(self, ProjectName: str) -> None:
+        """Saves the geometry to a MSH file with specified name
+
+        Args:
+            ProjectName (str): Project name without extension
+        """
         filename = ProjectName + '.msh'
         f = open(filename, 'w')
         p = [len(self.gdls), len(self.dictionary), len(
@@ -244,7 +287,9 @@ class Geometry:
         f.close()
         print('File ' + filename + ' saved')
 
-    def centroidsAndAreas(self):
+    def centroidsAndAreas(self) -> None:
+        """Calculate elements centroids and areas
+        """
         for i, e in enumerate(self.elements):
             coords = e._coords
             coords = np.array(coords.tolist() + [coords[0].tolist()])
@@ -260,7 +305,13 @@ class Geometry:
             self.areas.append(np.abs(area/2))
             self.centroids.append([cx/3/area, cy/3/area])
 
-    def generateSegmentsFromCoords(self, p0, p1):
+    def generateSegmentsFromCoords(self, p0: list, p1: list) -> None:
+        """Generates a geometry segment by specified coordinates
+
+        Args:
+            p0 (list): Segment start point
+            p1 (list): Segment end point
+        """
         masCercano1 = None
         d1 = np.Inf
         masCercano2 = None
@@ -276,7 +327,19 @@ class Geometry:
                 masCercano2 = i
         self.segments.append([masCercano1, masCercano2])
 
-    def generateBCFromCoords(self, x, y, value=0, nv=1):
+    def generateBCFromCoords(self, x: float, y: float, value: float = 0, nv: int = 1) -> list:
+        """Generates border conditions by coordinates. The border condition is applied to the nearest node
+
+        Args:
+            x (float): X coordinate of point
+            y (float): Y coordinate of point
+            value (float, optional): Value of the border condition. Defaults to 0.
+            nv (int, optional): Variable number. The first variable is 1. Defaults to 1.
+
+        Returns:
+            list: Matrix of border coordinates that can be concatenated
+        """
+
         masCercano1 = None
         d1 = np.Inf
         for i, gdl in enumerate(self.gdls):
@@ -286,7 +349,16 @@ class Geometry:
                 masCercano1 = i
         return [[masCercano1*self.nvn+(nv-1), value]]
 
-    def giveNodesOfSegment(self, segment, tol):
+    def giveNodesOfSegment(self, segment: int, tol: float) -> np.ndarray:
+        """Give nodes over a segment
+
+        Args:
+            segment (int): Segment number. Start with 0
+            tol (float): Tolerance for finding nearest nodes
+
+        Returns:
+            np.ndarray: List of nodes in the specified segment
+        """
         a = []
         ps = np.array(self.gdls)[self.segments[segment]].tolist()
         for i, p in enumerate(self.gdls):
@@ -294,18 +366,19 @@ class Geometry:
                 a.append(i)
         return np.array(a)
 
-    def cbFromSegment(self, segment, value, nv=1, tol=1*10**(-5)):
+    def cbFromSegment(self, segment: int, value: float, nv: int = 1, tol: float = 1*10**(-5)) -> list:
         """Generate a list of border conditions from specified border.
 
         Args:
             segment (int): Segment number
             value (float): Value of the bc
             nv (int, optional): Variable number, starts with 1. Defaults to 1.
-            tol (float, optional): Tolerancy for finding nodes in the segment. Defaults to 1*10**(-5).
+            tol (float, optional): Tolerance for finding nodes in the segment. Defaults to 1*10**(-5).
 
         Returns:
             list: List of border conditions that can be concatenated or assigned to the geometry
         """
+
         cb = []
         nodes = self.giveNodesOfSegment(segment, tol)
         cbe = np.zeros([len(nodes), 2])
@@ -314,7 +387,13 @@ class Geometry:
         cb += cbe.tolist()
         return cb
 
-    def cbeAllBorders(self, value, tol=1*10**(-5)):
+    def cbeAllBorders(self, value: float, tol: float = 1*10**(-5)):
+        """Set all segments border conditions to the specified value
+
+        Args:
+            value (float): Value of the border condition
+            tol (float, optional): Tolerance for finding near nodes in segments. Defaults to 1*10**(-5).
+        """
         for s in range(len(self.segments)):
             for i in range(self.nvn):
                 self.cbe += self.cbFromSegment(s, value, (i+1), tol)

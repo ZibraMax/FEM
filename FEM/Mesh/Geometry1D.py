@@ -1,3 +1,7 @@
+"""General geometry 1D class.
+"""
+
+
 import numpy as np
 from ..Utils import isBetween
 import matplotlib.pyplot as plt
@@ -8,7 +12,25 @@ import re
 
 
 class Geometry1D(Geometry):
-    def __init__(self, dictionary, gdls, types, nvn=1):
+    """Define geometry structure
+
+    Args:
+        dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
+        gdls (list): List of domain coordinates
+        types (list): Types of each element
+        nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+    """
+
+    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1) -> None:
+        """Define geometry structure
+
+        Args:
+            dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
+            gdls (list): List of domain coordinates
+            types (list): Types of each element
+            nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+        """
+
         self.nvn = nvn
         self.dictionary = dictionary
         self.elements = []
@@ -20,7 +42,15 @@ class Geometry1D(Geometry):
         self.generateElements()
 
     @staticmethod
-    def loadmsh(filename):
+    def loadmsh(filename: str) -> Geometry:
+        """Load geometry from previously generated MSH file
+
+        Args:
+            filename (str): Path to msh file
+
+        Returns:
+            Geometry: Output geometry
+        """
         f = open(filename, 'r')
         dicc = []
         gdls = []
@@ -51,7 +81,9 @@ class Geometry1D(Geometry):
         o.cbn = cbn
         return o
 
-    def generateElements(self):
+    def generateElements(self) -> None:
+        """Generate elements structure
+        """
         for i, d in enumerate(self.dictionary):
             coords = np.array(self.gdls)[np.ix_(d)]
             gdl = np.zeros([self.nvn, len(d)])
@@ -64,61 +96,22 @@ class Geometry1D(Geometry):
                 element = QuadraticElement(coords, gdl)
             self.elements.append(element)
 
-    def show(self, texto=10, bolita=0, figsize=[17, 10]):
-        fig = plt.figure(figsize=figsize)
-        ax = fig.add_subplot()
+    def show(self, texto: int = 10, bolita: int = 0, figsize: list = [17, 10]) -> None:
+        """Create a geometry graph
 
-        ax.axes.set_aspect('equal')
+        Args:
+            texto (int, optional): Text size. Defaults to 10.
+            bolita (int, optional): Node size. Defaults to 0.
+            figsize (list, optional): Size of figure. Defaults to [17, 10].
+        """
+        pass
 
-        for i, e in enumerate(self.elements):
-            coords = e._coords
-            coords = np.array(coords.tolist() + [coords[0].tolist()])
-            X = coords[:, 0]
-            Y = coords[:, 1]
-            ax.plot(X, Y, 'o-', color='black', zorder=-10)
-            cx = self.centroids[i][0]
-            cy = self.centroids[i][1]
-            ax.plot(cx, cy, 'o', markersize=texto + bolita, color='yellow')
-            ax.annotate(format(i), [
-                        cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
-        try:
-            verts = self.gdls
-            segs = self.segments
-            for i, seg in enumerate(segs):
-                x0, y0 = verts[int(seg[0])]
-                x1, y1 = verts[int(seg[1])]
+    def saveMesh(self, ProjectName: str) -> None:
+        """Saves the geometry to a MSH file with specified name
 
-                ax.fill(
-                    [x0, x1],
-                    [y0, y1],
-                    facecolor='none',
-                    edgecolor='b',
-                    linewidth=3,
-                    zorder=0,
-                )
-                cx = (x0+x1)*0.5
-                cy = (y0+y1)*0.5
-                ax.plot(cx, cy, 'o', markersize=texto + bolita, color='pink')
-                ax.annotate(format(i), [
-                            cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
-        except:
-            pass
-        ax.set_xlabel('x')
-        ax.set_ylabel('y')
-        ax.set_title('Domain')
-
-        gdls = np.array(self.gdls)
-
-        labels = np.linspace(0, gdls.shape[0] - 1, gdls.shape[0]).astype(int)
-
-        ax.plot(gdls[:, 0], gdls[:, 1], 'o',
-                markersize=texto+bolita, color='gray')
-
-        for p, l in zip(gdls, labels):
-            ax.annotate(l, p, size=texto, textcoords="offset points",
-                        xytext=(-0, -2.5), ha='center')
-
-    def saveMesh(self, ProjectName):
+        Args:
+            ProjectName (str): Project name without extension
+        """
         filename = ProjectName + '.msh'
         f = open(filename, 'w')
         p = [len(self.gdls), len(self.dictionary), len(
@@ -138,67 +131,3 @@ class Geometry1D(Geometry):
             f.write('\t'.join(list(map(str, e))) + '\n')
         f.close()
         print('File ' + filename + ' saved')
-
-    def centroidsAndAreas(self):
-        for i, e in enumerate(self.elements):
-            coords = e._coords
-            coords = np.array(coords.tolist() + [coords[0].tolist()])
-            area = 0
-            cx = 0
-            cy = 0
-            for j in range(len(coords)-1):
-                area += coords[j][0]*coords[j+1][1]-coords[j+1][0]*coords[j][1]
-                mult = (coords[j][0]*coords[j+1][1] -
-                        coords[j+1][0]*coords[j][1])
-                cx += (coords[j][0]+coords[j+1][0])*mult
-                cy += (coords[j][1]+coords[j+1][1])*mult
-            self.areas.append(np.abs(area/2))
-            self.centroids.append([cx/3/area, cy/3/area])
-
-    def generateSegmentsFromCoords(self, p0, p1):
-        masCercano1 = None
-        d1 = np.Inf
-        masCercano2 = None
-        d2 = np.Inf
-        for i, gdl in enumerate(self.gdls):
-            r1 = np.sqrt((p0[0]-gdl[0])**2+(p0[1]-gdl[1])**2)
-            r2 = np.sqrt((p1[0]-gdl[0])**2+(p1[1]-gdl[1])**2)
-            if r1 < d1:
-                d1 = r1
-                masCercano1 = i
-            if r2 < d2:
-                d2 = r2
-                masCercano2 = i
-        self.segments.append([masCercano1, masCercano2])
-
-    def generateBCFromCoords(self, x, y, value=0):
-        masCercano1 = None
-        d1 = np.Inf
-        for i, gdl in enumerate(self.gdls):
-            r1 = np.sqrt((x-gdl[0])**2+(y-gdl[1])**2)
-            if r1 < d1:
-                d1 = r1
-                masCercano1 = i
-        return [[i, valor]]
-
-    def giveNodesOfSegment(self, segment, tol):
-        a = []
-        ps = np.array(self.gdls)[self.segments[segment]].tolist()
-        for i, p in enumerate(self.gdls):
-            if isBetween(ps[0], ps[1], p, tol):
-                a.append(i)
-        return np.array(a)
-
-    def cbFromSegment(self, segment, value, nv=1, tol=1*10**(-5)):
-        cb = []
-        nodes = self.giveNodesOfSegment(segment, tol)
-        cbe = np.zeros([len(nodes), 2])
-        cbe[:, 0] = nodes*nv
-        cbe[:, 1] = value
-        cb += cbe.tolist()
-        return cb
-
-    def cbeAllBorders(self, value, tol=1*10**(-5)):
-        for s in range(len(self.segments)):
-            for i in range(self.nvn):
-                self.cbe += self.cbFromSegment(s, value, (i+1), tol)

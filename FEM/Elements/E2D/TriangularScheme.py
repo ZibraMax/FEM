@@ -1,8 +1,24 @@
+"""Define the triangular scheme used by triangular elements
+"""
+
+
 import numpy as np
 
 
 class TriangularScheme():
-    def __init__(self, n):
+    """Generate a triangular integration scheme
+
+    Args:
+        n (int): Number of gauss points
+    """
+
+    def __init__(self, n: int) -> None:
+        """Generate a triangular integration scheme
+
+        Args:
+            n (int): Number of gauss points
+        """
+
         # self.Z,self.W = np.polynomial.legendre.leggauss(n)
         # w = np.outer((1 + points) * weights, weights) / 4
         # x = np.outer(1 - points, np.ones(n)) / 2

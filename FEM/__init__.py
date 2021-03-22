@@ -1,4 +1,5 @@
-"""FEM implementation
+"""FEM implementation for N dimensional and M variables per node.
+
 """
 
 from .__version__ import __version__
