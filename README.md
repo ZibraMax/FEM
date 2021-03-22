@@ -26,8 +26,8 @@ Avaliable equations:
 #### Example without geometry file (Test 2):
 ```python
 import matplotlib.pyplot as plt #Import libraries
-import FEM #import AFEM
-from FEM import Mesh #Import Meshing tools
+from FEM.Torsion2D import Torsion2D #import AFEM Torsion class
+from FEM.Mesh.Delaunay import Delaunay #Import Meshing tools
 
 #Define some variables with geometric properties
 a = 0.3
@@ -58,16 +58,16 @@ vertices = [
 ]
 
 #Define triangulation parameters with `_strdelaunay` method.
-params = Mesh.Delaunay._strdelaunay(constrained=True, delaunay=True,
+params = Delaunay._strdelaunay(constrained=True, delaunay=True,
                                     a='0.00003', o=2)
 #**Create** geometry using triangulation parameters. Geometry can be imported from .msh files.
-geometry = Mesh.Delaunay(vertices, params)
+geometry = Delaunay(vertices, params)
 
 #Save geometry to .msh file
 geometry.saveMesh('I_test')
 
 #Create torsional 2D analysis.
-O = FEM.Torsion2D(geometry, G, phi)
+O = Torsion2D(geometry, G, phi)
 #Solve the equation in domain.
 #Post process and show results
 O.solve()
@@ -79,8 +79,8 @@ plt.show()
 
 ```python
 import matplotlib.pyplot as plt #Import libraries
-import FEM #import AFEM
-from FEM import Mesh #Import Meshing tools
+from FEM.Torsion2D import Torsion2D #import AFEM
+from FEM.Mesh.Geometry import Geometry #Import Geometry tools
 
 #Define material constants.
 E = 200000
@@ -89,10 +89,10 @@ G = E / (2 * (1 + v))
 phi = 1 #Rotation angle
 
 #Load geometry with file.
-geometry = Mesh.Geometry.loadmsh('I_test.msh')
+geometry = Geometry.loadmsh('I_test.msh')
 
 #Create torsional 2D analysis.
-O = FEM.Torsion2D(geometry, G, phi)
+O = Torsion2D(geometry, G, phi)
 #Solve the equation in domain.
 #Post process and show results
 O.solve()
