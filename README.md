@@ -5,6 +5,8 @@ A FEM implementation.
 
 N dimensional FEM implementation for M variables per node problems.
 
+### [Docs](https://zibramax.github.io/FEM/)
+
 ## Tutorial
 
 ### Using pre implemented equations
