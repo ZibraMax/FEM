@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>FEM package &mdash; FEM __version__ = &#34;1.0.13&#34;
+  <title>FEM package &mdash; FEM __version__ = &#34;1.0.14&#34;
  documentation</title>
   
 
@@ -336,9 +336,12 @@ be a 2-D Numpy Array.</p>
 <p>Create a 1D 1 variable per node Finite Element problem</p>
 <blockquote>
 <div><p>The ordinary differential equation
-$$a(x)</p>
+..math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
 </div></blockquote>
-<p>rac{d^2U}{dx^2}+c(x)u=f(x)$$</p>
+<p>rac{d^2U}{dx^2}+c(x)u=f(x)</p>
 <blockquote>
 <div><dl class="simple">
 <dt>Args:</dt><dd><p>geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
@@ -370,6 +373,16 @@ f (function): Function f, if f is constant you can use f = lambda x: [value]</p>
 <dt id="FEM.EulerBernoulliBeam.EulerBernoulliBeam">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.EulerBernoulliBeam.</span></code><code class="sig-name descname"><span class="pre">EulerBernoulliBeam</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">EI</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EulerBernoulliBeam.EulerBernoulliBeam" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<p>Creates a Euler Bernoulli beam problem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry" title="FEM.Mesh.Geometry"><em>Geometry</em></a>) – 1D 2 variables per node problem geometry. Geometry must have Euler Bernoulli elements.</p></li>
+<li><p><strong>EI</strong> (<em>float</em>) – Young’s moduli multiplied by second moment of area (inertia).</p></li>
+<li><p><strong>cf</strong> (<em>float</em><em>, </em><em>optional</em>) – Soil coeficient. Defaults to 0.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="FEM.EulerBernoulliBeam.EulerBernoulliBeam.elementMatrices">
 <code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.EulerBernoulliBeam.EulerBernoulliBeam.elementMatrices" title="Permalink to this definition">¶</a></dt>
@@ -691,9 +704,12 @@ be a 2-D Numpy Array.</p>
 <p>Create a 1D 1 variable per node Finite Element problem</p>
 <blockquote>
 <div><p>The ordinary differential equation
-$$a(x)</p>
+..math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
 </div></blockquote>
-<p>rac{d^2U}{dx^2}+c(x)u=f(x)$$</p>
+<p>rac{d^2U}{dx^2}+c(x)u=f(x)</p>
 <blockquote>
 <div><dl class="simple">
 <dt>Args:</dt><dd><p>geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
@@ -721,6 +737,16 @@ f (function): Function f, if f is constant you can use f = lambda x: [value]</p>
 <dt id="FEM.EulerBernoulliBeam">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">EulerBernoulliBeam</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">EI</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EulerBernoulliBeam" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<p>Creates a Euler Bernoulli beam problem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry" title="FEM.Mesh.Geometry"><em>Geometry</em></a>) – 1D 2 variables per node problem geometry. Geometry must have Euler Bernoulli elements.</p></li>
+<li><p><strong>EI</strong> (<em>float</em>) – Young’s moduli multiplied by second moment of area (inertia).</p></li>
+<li><p><strong>cf</strong> (<em>float</em><em>, </em><em>optional</em>) – Soil coeficient. Defaults to 0.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="FEM.EulerBernoulliBeam.elementMatrices">
 <code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.EulerBernoulliBeam.elementMatrices" title="Permalink to this definition">¶</a></dt>
