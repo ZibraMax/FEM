@@ -7,7 +7,7 @@ from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from typing import Tuple
+from typing import Tuple, Callable
 
 
 class PlaneStressNonLocal(Core):
@@ -26,7 +26,7 @@ class PlaneStressNonLocal(Core):
         fy(function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x: 0.
     """
 
-    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, z1: float, Lr: float, af: function, fx: function = lambda x: 0, fy: function = lambda x: 0) -> None:
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0) -> None:
         """Create a Non Local Plain Stress problem Paper Pisano
 
         Args:
