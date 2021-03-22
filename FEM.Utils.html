@@ -96,14 +96,14 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-core-module">FEM.Core module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-edo1d-module">FEM.EDO1D module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-eulerbernoullibeam-module">FEM.EulerBernoulliBeam module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-planestrain-module">FEM.PlaneStrain module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-planestress-module">FEM.PlaneStress module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-planestressnonlocal-module">FEM.PlaneStressNonLocal module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-torsion2d-module">FEM.Torsion2D module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Core">FEM.Core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EDO1D">FEM.EDO1D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStressNonLocal">FEM.PlaneStressNonLocal module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
@@ -185,11 +185,117 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="fem-utils-polygonal-module">
-<h2>FEM.Utils.polygonal module<a class="headerlink" href="#fem-utils-polygonal-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Utils.polygonal">
+<span id="fem-utils-polygonal-module"></span><h2>FEM.Utils.polygonal module<a class="headerlink" href="#module-FEM.Utils.polygonal" title="Permalink to this headline">¶</a></h2>
+<p>Polygonal help functions</p>
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.clip">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">clip</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#FEM.Utils.polygonal.clip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clip 1D</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – Point x</p></li>
+<li><p><strong>min</strong> (<em>float</em>) – min</p></li>
+<li><p><strong>max</strong> (<em>float</em>) – max</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>idk</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.dist">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">dist</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#FEM.Utils.polygonal.dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the distancie between 2 points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>list</em>) – point a</p></li>
+<li><p><strong>b</strong> (<em>list</em>) – point b</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Distance between a and b</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.enmalladoFernando">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">enmalladoFernando</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lx</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ly</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nex</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ney</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Utils.polygonal.enmalladoFernando" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crea un enmallado 2D de un rectangulo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lx</strong> (<em>floar</em>) – Base del rectángulo</p></li>
+<li><p><strong>ly</strong> (<em>float</em>) – Altura del rectámgulo</p></li>
+<li><p><strong>nex</strong> (<em>int</em>) – Numero de elementos en el eje x</p></li>
+<li><p><strong>ney</strong> (<em>int</em>) – Numero de elementos en el eje y</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – nombre del archivo donde se guardará</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.generatePolygon">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">generatePolygon</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctrX</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrY</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aveRadius</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">irregularity</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spikeyness</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numVerts</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">list</span><a class="headerlink" href="#FEM.Utils.polygonal.generatePolygon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrX</strong> (<em>float</em><em>, </em><em>optional</em>) – X centroid. Defaults to 10.</p></li>
+<li><p><strong>ctrY</strong> (<em>float</em><em>, </em><em>optional</em>) – Y centroid. Defaults to 10.</p></li>
+<li><p><strong>aveRadius</strong> (<em>float</em><em>, </em><em>optional</em>) – Average radious. Defaults to 5.</p></li>
+<li><p><strong>irregularity</strong> (<em>float</em><em>, </em><em>optional</em>) – Irregularity. Defaults to 0.5.</p></li>
+<li><p><strong>spikeyness</strong> (<em>float</em><em>, </em><em>optional</em>) – Spikeyness. Defaults to 0.5.</p></li>
+<li><p><strong>numVerts</strong> (<em>float</em><em>, </em><em>optional</em>) – Number of vertices. Defaults to 6.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Poligon coordinates matrix.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.isBetween">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">isBetween</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#FEM.Utils.polygonal.isBetween" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if a point is between a line in a given tolerance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>list</em>) – Start point of line</p></li>
+<li><p><strong>b</strong> (<em>list</em>) – End point of line</p></li>
+<li><p><strong>c</strong> (<em>list</em>) – Point to be tested between line</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Tolerance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if point is in line</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-FEM.Utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-FEM.Utils" title="Permalink to this headline">¶</a></h2>
+<p>Utilities</p>
 </div>
 </div>
 
