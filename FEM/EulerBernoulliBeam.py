@@ -9,6 +9,14 @@ import matplotlib.pyplot as plt
 
 
 class EulerBernoulliBeam(Core):
+    """Creates a Euler Bernoulli beam problem
+
+    Args:
+        geometry (Geometry): 1D 2 variables per node problem geometry. Geometry must have Euler Bernoulli elements.
+        EI (float): Young's moduli multiplied by second moment of area (inertia).
+        cf (float, optional): Soil coeficient. Defaults to 0.
+    """
+
     def __init__(self, geometry: Geometry, EI: float, cf: float = 0) -> None:
         """Creates a Euler Bernoulli beam problem
 
@@ -17,6 +25,7 @@ class EulerBernoulliBeam(Core):
             EI (float): Young's moduli multiplied by second moment of area (inertia).
             cf (float, optional): Soil coeficient. Defaults to 0.
         """
+
         if geometry.nvn == 1:
             print(
                 'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')

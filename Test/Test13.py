@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import FEM
-from FEM import Mesh
+from FEM.PlaneStrain import PlaneStrain
+from FEM.Mesh.Delaunay import Delaunay
 
 E = 21000000.0  # MPa
 v = 0.2  # m
@@ -13,12 +13,11 @@ l = 20
 
 vertices = [[0.0, 0.0], [b, 0.0], [b, h], [b/2+2*l, h],
             [b/2+l, h+l], [b/2-l, h+l], [b/2-2*l, h], [0.0, h]]
-params = Mesh.Delaunay._strdelaunay(
+params = Delaunay._strdelaunay(
     constrained=True, delaunay=True, a='7', o=2)
-geometria = Mesh.Delaunay(vertices, params)
-print('Fn')
+geometria = Delaunay(vertices, params)
 geometria.maskFromSegments()
-O = FEM.PlaneStrain(geometria, E, v, fy=lambda x: -gamma)
+O = PlaneStrain(geometria, E, v, fy=lambda x: -gamma)
 cb = O.geometry.cbFromSegment(0, 0, 1)
 cb += O.geometry.cbFromSegment(0, 0, 2)
 cb += O.geometry.cbFromSegment(1, 0, 1)

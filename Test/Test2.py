@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
-import FEM
-from FEM import Mesh
+from FEM.Torsion2D import Torsion2D
+from FEM.Mesh.Delaunay import Delaunay
+from FEM.Mesh.Geometry import Geometry
 
 a = 0.3
 b = 0.3
@@ -27,14 +28,14 @@ vertices = [
     [a / 2 - tw / 2, tf],
     [0, tf],
 ]
-params = Mesh.Delaunay._strdelaunay(constrained=True, delaunay=True,
-                                    a='0.00003', o=2)
-geometria = Mesh.Delaunay(vertices, params)
+params = Delaunay._strdelaunay(constrained=True, delaunay=True,
+                               a='0.00003', o=2)
+geometria = Delaunay(vertices, params)
 
 # geometria.saveMesh('Mesh_tests/I_test')
 # geometria = Mesh.Geometry.loadmsh('Mesh_tests/I_test.msh')
 
 print(len(geometria.elements))
-O = FEM.Torsion2D(geometria, G, phi)
+O = Torsion2D(geometria, G, phi)
 O.solve()
 plt.show()

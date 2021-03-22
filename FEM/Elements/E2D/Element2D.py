@@ -10,6 +10,14 @@ import matplotlib.path as mpltPath
 
 
 class Element2D(Element):
+    """Create a 2D element
+
+    Args:
+        coords (np.ndarray): Element coordinate matrix
+        _coords (np.ndarray): Element coordinate matrix for graphical interface purposes
+        gdl (np.ndarray): Degree of freedom matrix
+    """
+
     def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray) -> None:
         """Create a 2D element
 

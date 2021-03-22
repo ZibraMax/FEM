@@ -1,12 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import FEM
-from FEM import Mesh
+from FEM.Torsion2D import Torsion2D
+from FEM.Mesh.Geometry import Geometry
 
 G = 1
-phi =1
+phi = 1
 
-geometria = Mesh.Geometry.loadmsh('Mesh_tests/Web_test.msh')
-O = FEM.Torsion2D(geometria,G,phi)
+geometria = Geometry.loadmsh('Mesh_tests/Web_test.msh')
+O = Torsion2D(geometria, G, phi)
 O.solve()
 plt.show()
