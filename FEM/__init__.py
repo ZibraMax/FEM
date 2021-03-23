@@ -1,6 +1,7 @@
 """FEM implementation for N dimensional and M variables per node.
 
 """
+__author__ = "Arturo Rodriguez - da.rodriguezh@uniandes.edu.co"
 
 from .__version__ import __version__
 from .Elements import *
@@ -13,8 +14,3 @@ from .PlaneStress import *
 from .PlaneStressNonLocal import *
 from .PlaneStrain import *
 from .Heat1D import *
-
-__author__ = "Arturo Rodriguez - da.rodriguezh@uniandes.edu.co"
-
-__all__ = ["Mesh", "Elements", "Core", "Torsion2D", "EDO1D", "EulerBernoulliBeam",
-           "PlaneStress", "PlaneStrain", "PlaneStressNonLocal", "Mesh", "Heat1D"]

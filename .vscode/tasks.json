@@ -88,7 +88,14 @@
             "label": "Compile docs",
             "group": "build",
             "type": "shell",
-            "command": "cd docs && make clean && cd .. && sphinx-apidoc -f -o docs/source FEM && cd docs && make singlehtml",
+            "command": "cd docs && make clean && cd .. && sphinx-apidoc -f --module-first -o docs/source FEM && cd docs && make html",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean docs",
+            "group": "build",
+            "type": "shell",
+            "command": "cd docs && make clean",
             "problemMatcher": []
         }
     ]
