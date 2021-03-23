@@ -19,7 +19,7 @@ jobs:
                   cd docs
                   make clean
                   cd ..
-                  sphinx-apidoc -f -o docs/source ../FEM
+                  sphinx-apidoc -f --no-headings -o docs/source ../FEM
                   cd docs
                   make html
             # ===============================
