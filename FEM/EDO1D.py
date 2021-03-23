@@ -12,10 +12,10 @@ from typing import Callable
 class EDO1D(Core):
     """Create a 1D 1 variable per node Finite Element problem
 
-    The ordinary differential equation
+    The differential equation is:
 
     .. math::
-        a(x)\\frac{d^2U}{dx^2}+c(x)u=f(x)
+        a(x)\\frac{d^2u}{dx^2}+c(x)u=f(x)
 
     Args:
         geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
@@ -27,8 +27,10 @@ class EDO1D(Core):
     def __init__(self, geometry: Geometry, a: Callable, c: Callable, f: Callable) -> None:
         """Create a 1D 1 variable per node Finite Element problem
 
-        The ordinary differential equation
-        $$a(x)\frac{d^2U}{dx^2}+c(x)u=f(x)$$
+        The differential equation is:
+
+        .. math::
+            a(x)\\frac{d^2u}{dx^2}+c(x)u=f(x)
 
         Args:
                 geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
