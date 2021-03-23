@@ -1,37 +1,42 @@
 FEM.Elements.E1D package
 ========================
 
+.. automodule:: FEM.Elements.E1D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
+FEM.Elements.E1D.Element1D module
+---------------------------------
 
 .. automodule:: FEM.Elements.E1D.Element1D
    :members:
    :undoc-members:
    :show-inheritance:
 
+FEM.Elements.E1D.LinealElement module
+-------------------------------------
 
 .. automodule:: FEM.Elements.E1D.LinealElement
    :members:
    :undoc-members:
    :show-inheritance:
 
+FEM.Elements.E1D.LinearScheme module
+------------------------------------
 
 .. automodule:: FEM.Elements.E1D.LinearScheme
    :members:
    :undoc-members:
    :show-inheritance:
 
+FEM.Elements.E1D.QuadraticElement module
+----------------------------------------
 
 .. automodule:: FEM.Elements.E1D.QuadraticElement
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: FEM.Elements.E1D
    :members:
    :undoc-members:
    :show-inheritance:
