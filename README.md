@@ -152,15 +152,15 @@ Note: Don't forget the docstring!
 
 1. Beam bending by Euler Bernoulli and Timoshenko equations 
 2. 2D elastic plate theory 
-3. 1D and 2D heat transfer
+3. 2D heat transfer
 4. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
-4. Transient analysis (Core modification)
-5. Elasticity in 3D (3D meshing and post process)
-6. Non Lineal analysis for 1D equation (All cases)
-7. Non Lineal for 2D equation (All cases)
-8. UNIT TESTING
-9. NUMERICAL VALIDATION
-10. Non Local 2D?
+5. Transient analysis (Core modification)
+6. Elasticity in 3D (3D meshing and post process)
+7. Non Lineal analysis for 1D equation (All cases)
+8. Non Lineal for 2D equation (All cases)
+9. UNIT TESTING
+10. NUMERICAL VALIDATION
+11. Non Local 2D?
 
 ## Test index:
 
@@ -180,6 +180,7 @@ Note: Don't forget the docstring!
 - Test 14: Plane Stress 2 variable per node. Cantilever Beam - Serendipity
 - Test 15: Profile creation tool. Same as Test 14
 - Test 16: Non Local Plane Stress. [WIP]
+- Test 17: 1D Heat transfer
 
 ## References
 
