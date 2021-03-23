@@ -11,6 +11,19 @@ import matplotlib.pyplot as plt
 class Torsion2D(Core):
     """Create a torsional finite element problem
 
+    The differential equation is:
+
+    .. math::
+        -\\Nabla^2\\Psi=2
+
+    Where:
+
+    .. math::
+        \\sigma_xz=G\\theta\\frac{\\partial\\Psi}{\\partial y} \\\\
+        \\sigma_yz=-G\\theta\\frac{\\partial\\Psi}{\\partial x}
+
+    With :math:`\\Psi=0` on the boundary.
+
     Args:
             geometry (Geometry): 2D 1 variable per node geometry
             G (float): Shear moduli of elements
