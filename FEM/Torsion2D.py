@@ -19,8 +19,8 @@ class Torsion2D(Core):
     Where:
 
     .. math::
-        \\sigma_xz=G\\theta\\frac{\\partial\\Psi}{\\partial y} \\\\
-        \\sigma_yz=-G\\theta\\frac{\\partial\\Psi}{\\partial x}
+        \\sigma_{xz}=G\\theta\\frac{\\partial\\Psi}{\\partial y} \\\\
+        \\sigma_{yz}=-G\\theta\\frac{\\partial\\Psi}{\\partial x}
 
     With :math:`\\Psi=0` on the boundary.
 
