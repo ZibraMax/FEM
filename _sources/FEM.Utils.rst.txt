@@ -4,8 +4,6 @@ FEM.Utils package
 Submodules
 ----------
 
-FEM.Utils.polygonal module
---------------------------
 
 .. automodule:: FEM.Utils.polygonal
    :members:

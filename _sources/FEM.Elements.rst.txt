@@ -13,8 +13,6 @@ Subpackages
 Submodules
 ----------
 
-FEM.Elements.Element module
----------------------------
 
 .. automodule:: FEM.Elements.Element
    :members:
