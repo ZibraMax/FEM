@@ -3,7 +3,6 @@
 FEM/__pycache__/
 ipynb_checkpoints/
 Referencias/
-.vscode/
 dist/
 AFEM.egg-info/
 *.png
