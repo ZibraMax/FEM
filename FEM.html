@@ -337,9 +337,9 @@ be a 2-D Numpy Array.</p>
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.EDO1D.</span></code><code class="sig-name descname"><span class="pre">EDO1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D.EDO1D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Create a 1D 1 variable per node Finite Element problem</p>
-<p>The ordinary differential equation</p>
+<p>The differential equation is:</p>
 <div class="math notranslate nohighlight">
-\[a(x)\frac{d^2U}{dx^2}+c(x)u=f(x)\]</div>
+\[a(x)\frac{d^2u}{dx^2}+c(x)u=f(x)\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -405,6 +405,9 @@ be a 2-D Numpy Array.</p>
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Heat1D.</span></code><code class="sig-name descname"><span class="pre">Heat1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D.Heat1D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Creates a 1D Stady state heat problem. Convective border conditions can be applied</p>
+<p>The differential equation is:</p>
+<div class="math notranslate nohighlight">
+\[-\frac{d}{dx}\left(Ak\frac{dT}{dx}\right)+\beta P(T-T_{\infty})\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -413,7 +416,7 @@ be a 2-D Numpy Array.</p>
 <li><p><strong>P</strong> (<em>float</em><em> or </em><em>list</em>) – Section perimeter. If float, all elements will have the same perimeter. If list, the i-element will have the i-perimeter</p></li>
 <li><p><strong>k</strong> (<em>float</em><em> or </em><em>list</em>) – Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity</p></li>
 <li><p><strong>beta</strong> (<em>float</em><em> or </em><em>list</em>) – Transfer coeficient. If float, all elements will have the same transfer coeficient. If list, the i-element will have the i-transfer coeficient</p></li>
-<li><p><strong>Ta</strong> (<em>float</em>) – Ambient temperature</p></li>
+<li><p><strong>Ta</strong> (<em>float</em>) – Ambient temperature (also called T∞)</p></li>
 <li><p><strong>q</strong> (<em>float</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.</p></li>
 </ul>
 </dd>
@@ -633,6 +636,14 @@ be a 2-D Numpy Array.</p>
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Torsion2D.</span></code><code class="sig-name descname"><span class="pre">Torsion2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Torsion2D.Torsion2D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Create a torsional finite element problem</p>
+<p>The differential equation is:</p>
+<div class="math notranslate nohighlight">
+\[-\Nabla^2\Psi=2\]</div>
+<p>Where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_xz=G\theta\frac{\partial\Psi}{\partial y} \\
+\sigma_yz=-G\theta\frac{\partial\Psi}{\partial x}\end{split}\]</div>
+<p>With <span class="math notranslate nohighlight">\(\Psi=0\)</span> on the boundary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -761,9 +772,9 @@ be a 2-D Numpy Array.</p>
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">EDO1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Create a 1D 1 variable per node Finite Element problem</p>
-<p>The ordinary differential equation</p>
+<p>The differential equation is:</p>
 <div class="math notranslate nohighlight">
-\[a(x)\frac{d^2U}{dx^2}+c(x)u=f(x)\]</div>
+\[a(x)\frac{d^2u}{dx^2}+c(x)u=f(x)\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -821,6 +832,9 @@ be a 2-D Numpy Array.</p>
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">Heat1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Creates a 1D Stady state heat problem. Convective border conditions can be applied</p>
+<p>The differential equation is:</p>
+<div class="math notranslate nohighlight">
+\[-\frac{d}{dx}\left(Ak\frac{dT}{dx}\right)+\beta P(T-T_{\infty})\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -829,7 +843,7 @@ be a 2-D Numpy Array.</p>
 <li><p><strong>P</strong> (<em>float</em><em> or </em><em>list</em>) – Section perimeter. If float, all elements will have the same perimeter. If list, the i-element will have the i-perimeter</p></li>
 <li><p><strong>k</strong> (<em>float</em><em> or </em><em>list</em>) – Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity</p></li>
 <li><p><strong>beta</strong> (<em>float</em><em> or </em><em>list</em>) – Transfer coeficient. If float, all elements will have the same transfer coeficient. If list, the i-element will have the i-transfer coeficient</p></li>
-<li><p><strong>Ta</strong> (<em>float</em>) – Ambient temperature</p></li>
+<li><p><strong>Ta</strong> (<em>float</em>) – Ambient temperature (also called T∞)</p></li>
 <li><p><strong>q</strong> (<em>float</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.</p></li>
 </ul>
 </dd>
@@ -1033,6 +1047,14 @@ be a 2-D Numpy Array.</p>
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">Torsion2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Torsion2D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Create a torsional finite element problem</p>
+<p>The differential equation is:</p>
+<div class="math notranslate nohighlight">
+\[-\Nabla^2\Psi=2\]</div>
+<p>Where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_xz=G\theta\frac{\partial\Psi}{\partial y} \\
+\sigma_yz=-G\theta\frac{\partial\Psi}{\partial x}\end{split}\]</div>
+<p>With <span class="math notranslate nohighlight">\(\Psi=0\)</span> on the boundary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
