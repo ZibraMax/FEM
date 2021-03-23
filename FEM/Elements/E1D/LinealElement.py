@@ -13,13 +13,13 @@ class LinealElement(Element1D):
         n (int, optional): Number of gauss points. Defaults to 3.
     """
 
-    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 3):
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 2):
         """Create a lineal element
 
         Args:
             coords (np.ndarray): Element coordinates matrix
             gdl (np.ndarray): Element degree of freedom matrix
-            n (int, optional): Number of gauss points. Defaults to 3.
+            n (int, optional): Number of gauss points. Defaults to 2.
         """
         Element1D.__init__(self, coords, gdl, n)
 
