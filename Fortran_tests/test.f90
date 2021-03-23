@@ -20,8 +20,7 @@ contains
         REAL, INTENT(IN) :: x, y, z
         REAL :: theta, height
         theta = ACOS((x**2 + y**2 - z**2)/(2.0*x*y))
-        height = x*SIN(
-        theta)
+        height = x*SIN(theta)
         res = 0.5*y*height
     end function Area
 

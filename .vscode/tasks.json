@@ -2,9 +2,94 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "make build dir",
             "type": "shell",
-            "command": "echo Hello"
+            "command": "if not exist \"./F_BUILD/\" mkdir F_BUILD",
+            "presentation": {
+                "echo": false,
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "build file",
+            "command": "gfortran",
+            "args": [
+                "-g",
+                "-Wall",
+                "${file}",
+                "-o",
+                "${workspaceRoot}\\F_BUILD\\${fileBasenameNoExtension}.exe"
+            ],
+            "presentation": {
+                "echo": false,
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Build Fortran",
+            "dependsOn": ["make build dir", "build file"],
+            "group": "build",
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "Build/Run Fortran",
+            "dependsOn": ["make build dir", "build file"],
+            "group": "build",
+            "dependsOrder": "sequence",
+            "type": "shell",
+            "command": "\"${workspaceFolder}\\F_BUILD\\${fileBasenameNoExtension}.exe\"",
+            "presentation": {
+                "showReuseMessage": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Python Package",
+            "group": "build",
+            "type": "shell",
+            "command": "python",
+            "args": ["setup.py", "sdist", "bdist_wheel"],
+            "presentation": {
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Check Python Package",
+            "type": "shell",
+            "command": "twine",
+            "args": ["check", "dist/*"],
+            "presentation": {
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Upload to PyPi",
+            "type": "shell",
+            "command": "twine",
+            "args": ["upload", "dist/*"],
+            "presentation": {
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Build/Publish Python Package",
+            "group": "build",
+            "dependsOn": [
+                "Build Python Package",
+                "Check Python Package",
+                "Upload to PyPi"
+            ],
+            "dependsOrder": "sequence",
+            "presentation": {
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Compile docs",
+            "group": "build",
+            "type": "shell",
+            "command": "cd docs && make clean && cd .. && sphinx-apidoc -f -o docs/source FEM && cd docs && make singlehtml",
+            "problemMatcher": []
         }
     ]
 }
