@@ -4,6 +4,7 @@ FEM/__pycache__/
 ipynb_checkpoints/
 Referencias/
 dist/
+F_BUILD/
 AFEM.egg-info/
 *.png
 *.csv
