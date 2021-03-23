@@ -38,6 +38,14 @@ FEM.EulerBernoulliBeam module
    :undoc-members:
    :show-inheritance:
 
+FEM.Heat1D module
+-----------------
+
+.. automodule:: FEM.Heat1D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.PlaneStrain module
 ----------------------
 
@@ -66,6 +74,14 @@ FEM.Torsion2D module
 --------------------
 
 .. automodule:: FEM.Torsion2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.Transitory module
+---------------------
+
+.. automodule:: FEM.Transitory
    :members:
    :undoc-members:
    :show-inheritance:
