@@ -425,15 +425,15 @@ f (function): Function f, if f is constant you can use f = lambda x: [value]</p>
 <dl class="py method">
 <dt id="FEM.Heat1D.Heat1D.defineConvectiveBoderConditions">
 <code class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Heat1D.Heat1D.defineConvectiveBoderConditions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA
-rac{dt}{dx}+eta A(T-T_{\infty})=value\)</span></p>
-<blockquote>
-<div><dl class="simple">
-<dt>Args:</dt><dd><p>node (int): Node where the convective border condition is applied
-value (float, optional): Defined below. Defaults to 0.</p>
+<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA\frac{dt}{dx}+\beta A(T-T_{\infty})=value\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>int</em>) – Node where the convective border condition is applied</p></li>
+<li><p><strong>value</strong> (<em>float</em><em>, </em><em>optional</em>) – Defined below. Defaults to 0.</p></li>
+</ul>
 </dd>
 </dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
@@ -845,15 +845,15 @@ f (function): Function f, if f is constant you can use f = lambda x: [value]</p>
 <dl class="py method">
 <dt id="FEM.Heat1D.defineConvectiveBoderConditions">
 <code class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Heat1D.defineConvectiveBoderConditions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA
-rac{dt}{dx}+eta A(T-T_{\infty})=value\)</span></p>
-<blockquote>
-<div><dl class="simple">
-<dt>Args:</dt><dd><p>node (int): Node where the convective border condition is applied
-value (float, optional): Defined below. Defaults to 0.</p>
+<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA\frac{dt}{dx}+\beta A(T-T_{\infty})=value\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>int</em>) – Node where the convective border condition is applied</p></li>
+<li><p><strong>value</strong> (<em>float</em><em>, </em><em>optional</em>) – Defined below. Defaults to 0.</p></li>
+</ul>
 </dd>
 </dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
