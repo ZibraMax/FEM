@@ -13,11 +13,14 @@ da.rodriguezh@uniandes.edu.co
 Installation
 ============
 
-Via pip: pip install AFEM
+Via pip:
 
+.. code-block:: shell
+
+   pip install AFEM
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
 
    modules
