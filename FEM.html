@@ -337,23 +337,17 @@ be a 2-D Numpy Array.</p>
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.EDO1D.</span></code><code class="sig-name descname"><span class="pre">EDO1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D.EDO1D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Create a 1D 1 variable per node Finite Element problem</p>
-<blockquote>
-<div><p>The ordinary differential equation
-..math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>rac{d^2U}{dx^2}+c(x)u=f(x)</p>
-<blockquote>
-<div><dl class="simple">
-<dt>Args:</dt><dd><p>geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
-a (function): Function a, if a is constant you can use a = lambda x: [value]
-c (function): Function c, if c is constant you can use c = lambda x: [value]
-f (function): Function f, if f is constant you can use f = lambda x: [value]</p>
+<p>The ordinary differential equation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry" title="FEM.Mesh.Geometry"><em>Geometry</em></a>) – 1D Geometry of the problem. Use the Mesh.Lineal class</p></li>
+<li><p><strong>a</strong> (<em>function</em>) – Function a, if a is constant you can use a = lambda x: [value]</p></li>
+<li><p><strong>c</strong> (<em>function</em>) – Function c, if c is constant you can use c = lambda x: [value]</p></li>
+<li><p><strong>f</strong> (<em>function</em>) – Function f, if f is constant you can use f = lambda x: [value]</p></li>
+</ul>
 </dd>
 </dl>
-</div></blockquote>
 <dl class="py method">
 <dt id="FEM.EDO1D.EDO1D.elementMatrices">
 <code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.EDO1D.EDO1D.elementMatrices" title="Permalink to this definition">¶</a></dt>
@@ -425,7 +419,7 @@ f (function): Function f, if f is constant you can use f = lambda x: [value]</p>
 <dl class="py method">
 <dt id="FEM.Heat1D.Heat1D.defineConvectiveBoderConditions">
 <code class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Heat1D.Heat1D.defineConvectiveBoderConditions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA\frac{dt}{dx}+\beta A(T-T_{\infty})=value\)</span></p>
+<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA\frac{dT}{dx}+\beta A(T-T_{\infty})=value\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -765,23 +759,17 @@ be a 2-D Numpy Array.</p>
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.</span></code><code class="sig-name descname"><span class="pre">EDO1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EDO1D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Create a 1D 1 variable per node Finite Element problem</p>
-<blockquote>
-<div><p>The ordinary differential equation
-..math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>rac{d^2U}{dx^2}+c(x)u=f(x)</p>
-<blockquote>
-<div><dl class="simple">
-<dt>Args:</dt><dd><p>geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
-a (function): Function a, if a is constant you can use a = lambda x: [value]
-c (function): Function c, if c is constant you can use c = lambda x: [value]
-f (function): Function f, if f is constant you can use f = lambda x: [value]</p>
+<p>The ordinary differential equation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry" title="FEM.Mesh.Geometry"><em>Geometry</em></a>) – 1D Geometry of the problem. Use the Mesh.Lineal class</p></li>
+<li><p><strong>a</strong> (<em>function</em>) – Function a, if a is constant you can use a = lambda x: [value]</p></li>
+<li><p><strong>c</strong> (<em>function</em>) – Function c, if c is constant you can use c = lambda x: [value]</p></li>
+<li><p><strong>f</strong> (<em>function</em>) – Function f, if f is constant you can use f = lambda x: [value]</p></li>
+</ul>
 </dd>
 </dl>
-</div></blockquote>
 <dl class="py method">
 <dt id="FEM.EDO1D.elementMatrices">
 <code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.EDO1D.elementMatrices" title="Permalink to this definition">¶</a></dt>
@@ -845,7 +833,7 @@ f (function): Function f, if f is constant you can use f = lambda x: [value]</p>
 <dl class="py method">
 <dt id="FEM.Heat1D.defineConvectiveBoderConditions">
 <code class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Heat1D.defineConvectiveBoderConditions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA\frac{dt}{dx}+\beta A(T-T_{\infty})=value\)</span></p>
+<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA\frac{dT}{dx}+\beta A(T-T_{\infty})=value\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
