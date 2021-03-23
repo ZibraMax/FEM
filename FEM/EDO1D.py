@@ -13,14 +13,14 @@ class EDO1D(Core):
     """Create a 1D 1 variable per node Finite Element problem
 
     The ordinary differential equation
-    ..math::
-        a(x)\frac{d^2U}{dx^2}+c(x)u=f(x)
+
+    .. math::a(x)\\frac{d^2U}{dx^2}+c(x)u=f(x)
 
     Args:
-            geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
-            a (function): Function a, if a is constant you can use a = lambda x: [value]
-            c (function): Function c, if c is constant you can use c = lambda x: [value]
-            f (function): Function f, if f is constant you can use f = lambda x: [value]
+        geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
+        a (function): Function a, if a is constant you can use a = lambda x: [value]
+        c (function): Function c, if c is constant you can use c = lambda x: [value]
+        f (function): Function f, if f is constant you can use f = lambda x: [value]
     """
 
     def __init__(self, geometry: Geometry, a: Callable, c: Callable, f: Callable) -> None:

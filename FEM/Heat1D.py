@@ -74,7 +74,7 @@ class Heat1D(Core):
             e.Ke += K
 
     def defineConvectiveBoderConditions(self, node: int, value: float = 0) -> None:
-        """Add a convective border condition. The value is: :math:`kA\\frac{dt}{dx}+\\beta A(T-T_{\infty})=value`
+        """Add a convective border condition. The value is: :math:`kA\\frac{dT}{dx}+\\beta A(T-T_{\infty})=value`
 
         Args:
             node (int): Node where the convective border condition is applied
