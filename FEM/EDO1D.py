@@ -14,7 +14,8 @@ class EDO1D(Core):
 
     The ordinary differential equation
 
-    ..math::a(x)\\frac{d^2U}{dx^2}+c(x)u=f(x)
+    .. math::
+        a(x)\\frac{d^2U}{dx^2}+c(x)u=f(x)
 
     Args:
         geometry (Geometry): 1D Geometry of the problem. Use the Mesh.Lineal class
