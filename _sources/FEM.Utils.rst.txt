@@ -1,19 +1,18 @@
 FEM.Utils package
 =================
 
-Submodules
-----------
-
-
-.. automodule:: FEM.Utils.polygonal
+.. automodule:: FEM.Utils
    :members:
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
+Submodules
+----------
 
-.. automodule:: FEM.Utils
+FEM.Utils.polygonal module
+--------------------------
+
+.. automodule:: FEM.Utils.polygonal
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,6 +1,11 @@
 FEM.Elements package
 ====================
 
+.. automodule:: FEM.Elements
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -13,16 +18,10 @@ Subpackages
 Submodules
 ----------
 
+FEM.Elements.Element module
+---------------------------
 
 .. automodule:: FEM.Elements.Element
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: FEM.Elements
    :members:
    :undoc-members:
    :show-inheritance:

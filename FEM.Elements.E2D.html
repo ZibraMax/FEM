@@ -95,10 +95,19 @@
 <li class="toctree-l4"><a class="reference internal" href="FEM.Utils.html">FEM.Utils package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Core">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Core">FEM.Core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EDO1D">FEM.EDO1D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Heat1D">FEM.Heat1D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStressNonLocal">FEM.PlaneStressNonLocal module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Transitory">FEM.Transitory module</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 </ul>
@@ -174,10 +183,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="fem-elements-e2d-package">
-<h1>FEM.Elements.E2D package<a class="headerlink" href="#fem-elements-e2d-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-FEM.Elements.E2D">
+<span id="fem-elements-e2d-package"></span><h1>FEM.Elements.E2D package<a class="headerlink" href="#module-FEM.Elements.E2D" title="Permalink to this headline">¶</a></h1>
+<p>Collection of 2D Elements</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="module-FEM.Elements.E2D.Element2D">
-<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-FEM.Elements.E2D.Element2D" title="Permalink to this headline">¶</a></h2>
+<span id="fem-elements-e2d-element2d-module"></span><h2>FEM.Elements.E2D.Element2D module<a class="headerlink" href="#module-FEM.Elements.E2D.Element2D" title="Permalink to this headline">¶</a></h2>
 <p>Defines a general 2D element</p>
 <dl class="py class">
 <dt id="FEM.Elements.E2D.Element2D.Element2D">
@@ -224,7 +237,10 @@
 
 </dd></dl>
 
-<span class="target" id="module-FEM.Elements.E2D.LTriangular"></span><p>Defines a Lagrangian 1 order triangular element</p>
+</div>
+<div class="section" id="module-FEM.Elements.E2D.LTriangular">
+<span id="fem-elements-e2d-ltriangular-module"></span><h2>FEM.Elements.E2D.LTriangular module<a class="headerlink" href="#module-FEM.Elements.E2D.LTriangular" title="Permalink to this headline">¶</a></h2>
+<p>Defines a Lagrangian 1 order triangular element</p>
 <dl class="py class">
 <dt id="FEM.Elements.E2D.LTriangular.LTriangular">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.LTriangular.</span></code><code class="sig-name descname"><span class="pre">LTriangular</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular" title="Permalink to this definition">¶</a></dt>
@@ -275,7 +291,10 @@
 
 </dd></dl>
 
-<span class="target" id="module-FEM.Elements.E2D.QTriangular"></span><p>Defines a Lagrangian 2 order triangular element</p>
+</div>
+<div class="section" id="module-FEM.Elements.E2D.QTriangular">
+<span id="fem-elements-e2d-qtriangular-module"></span><h2>FEM.Elements.E2D.QTriangular module<a class="headerlink" href="#module-FEM.Elements.E2D.QTriangular" title="Permalink to this headline">¶</a></h2>
+<p>Defines a Lagrangian 2 order triangular element</p>
 <dl class="py class">
 <dt id="FEM.Elements.E2D.QTriangular.QTriangular">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.QTriangular.</span></code><code class="sig-name descname"><span class="pre">QTriangular</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular" title="Permalink to this definition">¶</a></dt>
@@ -326,7 +345,10 @@
 
 </dd></dl>
 
-<span class="target" id="module-FEM.Elements.E2D.Quadrilateral"></span><p>Defines a Lagrangian 1 order rectangular element</p>
+</div>
+<div class="section" id="module-FEM.Elements.E2D.Quadrilateral">
+<span id="fem-elements-e2d-quadrilateral-module"></span><h2>FEM.Elements.E2D.Quadrilateral module<a class="headerlink" href="#module-FEM.Elements.E2D.Quadrilateral" title="Permalink to this headline">¶</a></h2>
+<p>Defines a Lagrangian 1 order rectangular element</p>
 <dl class="py class">
 <dt id="FEM.Elements.E2D.Quadrilateral.Quadrilateral">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Quadrilateral.</span></code><code class="sig-name descname"><span class="pre">Quadrilateral</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral" title="Permalink to this definition">¶</a></dt>
@@ -377,7 +399,10 @@
 
 </dd></dl>
 
-<span class="target" id="module-FEM.Elements.E2D.RectangularScheme"></span><p>Define the rectangular scheme used by rectangular elements</p>
+</div>
+<div class="section" id="module-FEM.Elements.E2D.RectangularScheme">
+<span id="fem-elements-e2d-rectangularscheme-module"></span><h2>FEM.Elements.E2D.RectangularScheme module<a class="headerlink" href="#module-FEM.Elements.E2D.RectangularScheme" title="Permalink to this headline">¶</a></h2>
+<p>Define the rectangular scheme used by rectangular elements</p>
 <dl class="py class">
 <dt id="FEM.Elements.E2D.RectangularScheme.RectangularScheme">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.RectangularScheme.</span></code><code class="sig-name descname"><span class="pre">RectangularScheme</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.RectangularScheme.RectangularScheme" title="Permalink to this definition">¶</a></dt>
@@ -390,7 +415,10 @@
 </dl>
 </dd></dl>
 
-<span class="target" id="module-FEM.Elements.E2D.Serendipity"></span><p>Define a o2 serendipity element</p>
+</div>
+<div class="section" id="module-FEM.Elements.E2D.Serendipity">
+<span id="fem-elements-e2d-serendipity-module"></span><h2>FEM.Elements.E2D.Serendipity module<a class="headerlink" href="#module-FEM.Elements.E2D.Serendipity" title="Permalink to this headline">¶</a></h2>
+<p>Define a o2 serendipity element</p>
 <dl class="py class">
 <dt id="FEM.Elements.E2D.Serendipity.Serendipity">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Serendipity.</span></code><code class="sig-name descname"><span class="pre">Serendipity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity" title="Permalink to this definition">¶</a></dt>
@@ -441,7 +469,10 @@
 
 </dd></dl>
 
-<span class="target" id="module-FEM.Elements.E2D.TriangularScheme"></span><p>Define the triangular scheme used by triangular elements</p>
+</div>
+<div class="section" id="module-FEM.Elements.E2D.TriangularScheme">
+<span id="fem-elements-e2d-triangularscheme-module"></span><h2>FEM.Elements.E2D.TriangularScheme module<a class="headerlink" href="#module-FEM.Elements.E2D.TriangularScheme" title="Permalink to this headline">¶</a></h2>
+<p>Define the triangular scheme used by triangular elements</p>
 <dl class="py class">
 <dt id="FEM.Elements.E2D.TriangularScheme.TriangularScheme">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.TriangularScheme.</span></code><code class="sig-name descname"><span class="pre">TriangularScheme</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.TriangularScheme.TriangularScheme" title="Permalink to this definition">¶</a></dt>
@@ -454,10 +485,6 @@
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.Elements.E2D">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-FEM.Elements.E2D" title="Permalink to this headline">¶</a></h2>
-<p>Collection of 2D Elements</p>
 </div>
 </div>
 
