@@ -12,8 +12,9 @@ from .EulerBernoulliBeam import *
 from .PlaneStress import *
 from .PlaneStressNonLocal import *
 from .PlaneStrain import *
+from .Heat1D import *
 
 __author__ = "Arturo Rodriguez - da.rodriguezh@uniandes.edu.co"
 
 __all__ = ["Mesh", "Elements", "Core", "Torsion2D", "EDO1D", "EulerBernoulliBeam",
-           "PlaneStress", "PlaneStrain", "PlaneStressNonLocal", "Mesh"]
+           "PlaneStress", "PlaneStrain", "PlaneStressNonLocal", "Mesh", "Heat1D"]
