@@ -2,7 +2,7 @@
 """
 
 
-from .Element1D import *
+from .Element1D import Element1D, np
 
 
 class QuadraticElement(Element1D):
@@ -14,7 +14,7 @@ class QuadraticElement(Element1D):
         n (int, optional): Number of gauss points. Defaults to 3.
     """
 
-    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 3) -> None:
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 3, **kargs) -> None:
         """Create a quadratic element
 
         Args:
@@ -23,7 +23,7 @@ class QuadraticElement(Element1D):
             n (int, optional): Number of gauss points. Defaults to 3.
         """
 
-        Element1D.__init__(self, coords, gdl, n)
+        Element1D.__init__(self, coords, gdl, n, **kargs)
 
     def psis(self, z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of the lineal element of a given natural coordinates

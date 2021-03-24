@@ -181,6 +181,7 @@ Note: Don't forget the docstring!
 - Test 15: Profile creation tool. Same as Test 14
 - Test 16: Non Local Plane Stress. [WIP]
 - Test 17: 1D Heat transfer
+- Test 178: 2D bordr elements creation.
 
 ## References
 

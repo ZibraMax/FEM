@@ -2,8 +2,9 @@
 """
 
 
-from .Element2D import *
-from .RectangularScheme import *
+from .Element2D import Element2D, np
+from .RectangularScheme import RectangularScheme
+from ..E1D.QuadraticElement import QuadraticElement
 
 
 class Serendipity(Element2D, RectangularScheme):
@@ -25,7 +26,26 @@ class Serendipity(Element2D, RectangularScheme):
         """
 
         _coords = np.array([coords[i] for i in range(4)])
-        Element2D.__init__(self, np.array(coords), _coords, gdl)
+        coords = np.array(coords)
+
+        he1 = np.linalg.norm(coords[1]-coords[0])
+        e1 = QuadraticElement(np.array([[0], [he1*0.5], [he1]]),
+                              np.array([[-1, -1, -1]]), border=True)
+
+        he2 = np.linalg.norm(coords[2]-coords[1])
+        e2 = QuadraticElement(np.array([[0], [he2*0.5], [he2]]),
+                              np.array([[-1, -1, -1]]), border=True)
+
+        he3 = np.linalg.norm(coords[3]-coords[2])
+        e3 = QuadraticElement(np.array([[0], [he3*0.5], [he3]]),
+                              np.array([[-1, -1, -1]]), border=True)
+
+        he4 = np.linalg.norm(coords[0]-coords[3])
+        e4 = QuadraticElement(np.array([[0], [he4*0.5], [he4]]),
+                              np.array([[-1, -1, -1]]), border=True)
+
+        self.borders = [e1, e2, e3, e4]
+        Element2D.__init__(self, coords, _coords, gdl)
         RectangularScheme.__init__(self, n)
 
     def psis(self, z: np.ndarray) -> np.ndarray:

@@ -2,7 +2,7 @@
 """
 
 
-from .Geometry import *
+from .Geometry import Geometry, np
 
 
 class Lineal(Geometry):

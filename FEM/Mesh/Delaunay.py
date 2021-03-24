@@ -5,7 +5,7 @@
 import triangle as tr
 import numpy as np
 import matplotlib.pyplot as plt
-from .Geometry import *
+from .Geometry import Geometry
 
 
 class Delaunay(Geometry):

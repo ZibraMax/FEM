@@ -2,8 +2,9 @@
 """
 
 
-from .Element2D import *
-from .TriangularScheme import *
+from .Element2D import Element2D, np
+from ..E1D.LinealElement import LinealElement
+from .TriangularScheme import TriangularScheme
 
 
 class LTriangular(Element2D, TriangularScheme):
@@ -25,6 +26,19 @@ class LTriangular(Element2D, TriangularScheme):
         """
 
         coords = np.array(coords)
+        he1 = np.linalg.norm(coords[1]-coords[0])
+        e1 = LinealElement(np.array([[0], [he1]]),
+                           np.array([[-1, -1]]), border=True)
+
+        he2 = np.linalg.norm(coords[2]-coords[1])
+        e2 = LinealElement(np.array([[0], [he2]]),
+                           np.array([[-1, -1]]), border=True)
+
+        he3 = np.linalg.norm(coords[0]-coords[2])
+        e3 = LinealElement(np.array([[0], [he3]]),
+                           np.array([[-1, -1]]), border=True)
+
+        self.borders = [e1, e2, e3]
         Element2D.__init__(self, coords, coords, gdl)
         TriangularScheme.__init__(self, n)
 

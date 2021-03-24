@@ -5,9 +5,12 @@
 import numpy as np
 from ..Utils import isBetween
 import matplotlib.pyplot as plt
-from ..Elements import *
-from ..Elements.E1D import *
-from ..Elements.E2D import *
+from ..Elements.E1D.LinealElement import LinealElement
+from ..Elements.E1D.QuadraticElement import QuadraticElement
+from ..Elements.E2D.Serendipity import Serendipity
+from ..Elements.E2D.Quadrilateral import Quadrilateral
+from ..Elements.E2D.QTriangular import QTriangular
+from ..Elements.E2D.LTriangular import LTriangular
 # from ..Elements.E3D import *
 import re
 
@@ -290,7 +293,7 @@ class Geometry:
     def centroidsAndAreas(self) -> None:
         """Calculate elements centroids and areas
         """
-        for i, e in enumerate(self.elements):
+        for e in self.elements:
             coords = e._coords
             coords = np.array(coords.tolist() + [coords[0].tolist()])
             area = 0

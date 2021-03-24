@@ -15,27 +15,35 @@ class Element():
         gdl (np.ndarray): Degree of freedom matrix. Each row is a variable.
     """
 
-    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray) -> None:
+    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, border: bool = False) -> None:
         """Generates a generic element.
 
         Args:
             coords (np.ndarray): Vertical coordinates matrix
             _coords (np.ndarray): Vertical coordinates matrix for graphical interfaces
             gdl (np.ndarray): Degree of freedom matrix. Each row is a variable.
+            border (bool): True if the element is part of the border domain of another element.
         """
 
         self.coords = coords
         self._coords = _coords
+        self.border = border
         self.gdl = gdl
         self.gdlm = []
         for i in range(len(self.gdl)):
             for j in range(len(self.gdl[i])):
                 self.gdlm.append(self.gdl[i, j])
         self.n = int(len(self.gdl)*len(self.gdl[0]))
-        self.Ke = np.zeros([self.n, self.n])
-        self.Fe = np.zeros([self.n, 1])
-        self.Ue = np.zeros(self.gdl.shape)
-        self.Qe = np.zeros([self.n, 1])
+        if not self.border:
+            # TODO Esta vaina debería eliminarse.
+            # Los elementos no tienen porque guardar.
+            # Sus matrices y vectores. Esto gasta memoria.
+            # Las matrices y vectores solo se estan usando para ensamblar y
+            # eso se puede hacer directamente al calcular las matrices.
+            self.Ke = np.zeros([self.n, self.n])
+            self.Fe = np.zeros([self.n, 1])
+            self.Ue = np.zeros(self.gdl.shape)
+            self.Qe = np.zeros([self.n, 1])
 
     def T(self, z: np.ndarray) -> np.ndarray:
         """Give the global coordinates of given natural coordiantes over element
@@ -97,6 +105,7 @@ class Element():
             np.ndarray: Arrays of coordinates, solutions and second variables solutions.
         """
 
+        # TODO hacer una comprobación de frontera para evitar errores
         _z = self.domain
         _x, _p = self.T(_z.T)
         if SVSolution:
@@ -117,6 +126,8 @@ class Element():
         Returns:
             np.ndarray: Arrays of coordinates, solutions and second variables solutions.
         """
+
+        # TODO hacer una comprobación de frontera para evitar errores
         _x, _p = self.T(Z)
         if SVSolution:
             j, dpz = self.J(Z)  # TODO Revisar con Reddy
@@ -132,6 +143,7 @@ class Element():
             U (np.ndarray): Global solution
         """
 
+        # TODO hacer una comprobación de frontera para evitar errores
         for i in range(len(self.gdl)):
             self.Ue[i] = U[np.ix_(self.gdl[i])].flatten()
         n = len(self._coords)

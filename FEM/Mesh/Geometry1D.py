@@ -5,9 +5,9 @@
 import numpy as np
 from ..Utils import isBetween
 import matplotlib.pyplot as plt
-from ..Elements import *
-from ..Elements.E1D import *
-from .Geometry import *
+from ..Elements.E1D.LinealElement import LinealElement
+from ..Elements.E1D.QuadraticElement import QuadraticElement
+from .Geometry import Geometry
 import re
 
 
