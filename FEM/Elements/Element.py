@@ -13,6 +13,7 @@ class Element():
         coords (np.ndarray): Vertical coordinates matrix
         _coords (np.ndarray): Vertical coordinates matrix for graphical interfaces
         gdl (np.ndarray): Degree of freedom matrix. Each row is a variable.
+        border (bool): True if the element is part of the border domain of another element.
     """
 
     def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, border: bool = False) -> None:
