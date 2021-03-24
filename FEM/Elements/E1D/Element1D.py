@@ -2,7 +2,7 @@
 """
 
 
-from ..Element import *
+from ..Element import Element
 from .LinearScheme import *
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,7 +17,7 @@ class Element1D(Element, LinearScheme):
         n (int): Number of Gauss Points used in integration
     """
 
-    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int) -> None:
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int, **kargs) -> None:
         """Create a 1D Element
 
         Args:
@@ -28,7 +28,7 @@ class Element1D(Element, LinearScheme):
 
         coords = np.array(coords).reshape([len(coords), 1])
         _coords = np.array([coords[0][0], coords[-1][0]])
-        Element.__init__(self, coords, _coords, gdl)
+        Element.__init__(self, coords, _coords, gdl, **kargs)
         LinearScheme.__init__(self, n)
 
     def draw(self) -> None:
