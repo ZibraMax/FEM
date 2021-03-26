@@ -2,7 +2,7 @@
 """
 
 
-from .Core import *
+from .Core import Core, Geometry
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
@@ -56,7 +56,7 @@ class PlaneStress(Core):
             self.C66.append(C66)
         if geometry.nvn == 1:
             print(
-                'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
+                'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)\nRegenerating Geoemtry...')
             geometry.nvn = 2
             geometry.cbe = []
             geometry.cbn = []
@@ -66,12 +66,8 @@ class PlaneStress(Core):
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
         """
-# EKuu = lambda z, n: (C11 * dfdx(z, n, i) * dfdx(z, n, j) + C66 * dfdy(z, n, i) * dfdy(z, n, j)) * np.linalg.det(J(z, n))
-# EKuv = lambda z, n: (C12 * dfdx(z, n, i) * dfdy(z, n, j) + C66 * dfdy(z, n, i) * dfdx(z, n, j)) * np.linalg.det(J(z, n))
-# EKvu = lambda z, n: (C12 * dfdy(z, n, i) * dfdx(z, n, j) + C66 * dfdx(z, n, i) * dfdy(z, n, j)) * np.linalg.det(J(z, n))
-# EKvv = lambda z, n: (C11 * dfdy(z, n, i) * dfdy(z, n, j) + C66 * dfdx(z, n, i) * dfdx(z, n,j)) * np.linalg.det(J(z, n))
-        ee = 0
-        for e in tqdm(self.elements, unit='Element'):
+
+        for ee, e in enumerate(tqdm(self.elements, unit='Element')):
             m = len(e.gdl.T)
             Kuu = np.zeros([m, m])
             Kuv = np.zeros([m, m])
@@ -127,9 +123,6 @@ class PlaneStress(Core):
             e.Ke[np.ix_(subm[0], subm[1])] += self.t[ee]*(Kuv)
             e.Ke[np.ix_(subm[1], subm[0])] += self.t[ee]*(Kvu)
             e.Ke[np.ix_(subm[1], subm[1])] += self.t[ee]*(Kvv)
-            ee += 1
-            # e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
-            # e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
 
     def postProcess(self, mult: float = 1000) -> None:
         """Generate the stress surfaces and displacement fields for the geometry
@@ -191,7 +184,19 @@ class PlaneStress(Core):
             ax2.fill(Xs, Ys, color='white', zorder=30)
             ax3.fill(Xs, Ys, color='white', zorder=30)
 
-    def giveStressPoint(self, X):
+    def giveStressPoint(self, X: np.ndarray) -> Tuple[tuple, None]:
+        """Calculates the stress in a given set of points
+
+        Args:
+            X (np.ndarray): Points to calculate the Stress. 2D Matrix. with 2 rows.
+
+            First row is an array of 1 column with X coordinate
+
+            Second row is an array of 1 column with Y coordinate
+
+        Returns:
+            tuple or None: Tuple of stress (:math:`\sigma_x,\sigma_y,\sigma_{xy}`) if X,Y exists in domain.
+        """
         for ee, e in enumerate(self.elements):
             if e.isInside(X.T[0]):
                 z = e.inverseMapping(np.array([X.T[0]]).T)

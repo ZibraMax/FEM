@@ -2,7 +2,7 @@
 """
 
 
-from .Core import *
+from .Core import Core, Geometry
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
