@@ -28,9 +28,9 @@ class TriangularScheme():
         # points = np.array([points[0], points[1], 1 - points[0] - points[1]])
 
         self.Tj = [
-            lambda s: np.array([s, (s-s)]),
-            lambda s: np.array([1-s, s]),
-            lambda s: np.array([(s-s), 1-s]),
+            lambda s: np.array([(0.5*s+0.5), (s-s)]),
+            lambda s: np.array([1-(0.5*s+0.5), (0.5*s+0.5)]),
+            lambda s: np.array([(s-s), 1-(0.5*s+0.5)]),
         ]
 
         A0 = 1/3
