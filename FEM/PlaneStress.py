@@ -49,7 +49,7 @@ class PlaneStress(Core):
         self.fy = fy
         for i in range(len(self.E)):
             C11 = self.E[i] / (1 - self.v[i] ** 2)
-            C12 = self.v[i] * self.E[i] / (1 - self.v[i] ** 2)
+            C12 = self.v[i] * C11
             C66 = self.E[i] / 2 / (1 + self.v[i])
             self.C11.append(C11)
             self.C12.append(C12)
@@ -91,20 +91,18 @@ class PlaneStress(Core):
             for i in range(m):  # self part must be vectorized
                 for j in range(m):
                     for k in range(len(e.Z)):  # Iterate over gauss points on domain
-                        Kuu[i, j] += self.t[ee]*(self.C11[ee]*dpx[k, 0, i]*dpx[k, 0, j] +
-                                                 self.C66[ee]*dpx[k, 1, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
-                        Kuv[i, j] += self.t[ee]*(self.C12[ee]*dpx[k, 0, i]*dpx[k, 1, j] +
-                                                 self.C66[ee]*dpx[k, 1, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
-                        Kvu[i, j] += self.t[ee]*(self.C12[ee]*dpx[k, 1, i]*dpx[k, 0, j] +
-                                                 self.C66[ee]*dpx[k, 0, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
-                        Kvv[i, j] += self.t[ee]*(self.C11[ee]*dpx[k, 1, i]*dpx[k, 1, j] +
-                                                 self.C66[ee]*dpx[k, 0, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
+                        Kuu[i, j] += (self.C11[ee]*dpx[k, 0, i]*dpx[k, 0, j] +
+                                      self.C66[ee]*dpx[k, 1, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
+                        Kuv[i, j] += (self.C12[ee]*dpx[k, 0, i]*dpx[k, 1, j] +
+                                      self.C66[ee]*dpx[k, 1, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
+                        Kvu[i, j] += (self.C12[ee]*dpx[k, 1, i]*dpx[k, 0, j] +
+                                      self.C66[ee]*dpx[k, 0, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
+                        Kvv[i, j] += (self.C11[ee]*dpx[k, 1, i]*dpx[k, 1, j] +
+                                      self.C66[ee]*dpx[k, 0, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
                 for k in range(len(e.Z)):  # Iterate over gauss points on domain
 
-                    Fu[i][0] += self.t[ee]*_p[k, i] * \
-                        self.fx(_x[k])*detjac[k]*e.W[k]
-                    Fv[i][0] += self.t[ee]*_p[k, i] * \
-                        self.fy(_x[k])*detjac[k]*e.W[k]
+                    Fu[i][0] += _p[k, i] * self.fx(_x[k])*detjac[k]*e.W[k]
+                    Fv[i][0] += _p[k, i] * self.fy(_x[k])*detjac[k]*e.W[k]
 
             if e.intBorders:
                 for j in range(len(e.borders)):
@@ -123,12 +121,12 @@ class PlaneStress(Core):
                                     Fvx[i, 0] += fy(_s[k, 0])*_p[k, i] * \
                                         detjac*border.W[k]
             subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
-            e.Fe[np.ix_(subm[0])] += Fu+Fux
-            e.Fe[np.ix_(subm[1])] += Fv+Fvx
-            e.Ke[np.ix_(subm[0], subm[0])] += Kuu
-            e.Ke[np.ix_(subm[0], subm[1])] += Kuv
-            e.Ke[np.ix_(subm[1], subm[0])] += Kvu
-            e.Ke[np.ix_(subm[1], subm[1])] += Kvv
+            e.Fe[np.ix_(subm[0])] += self.t[ee]*(Fu)+Fux
+            e.Fe[np.ix_(subm[1])] += self.t[ee]*(Fv)+Fvx
+            e.Ke[np.ix_(subm[0], subm[0])] += self.t[ee]*(Kuu)
+            e.Ke[np.ix_(subm[0], subm[1])] += self.t[ee]*(Kuv)
+            e.Ke[np.ix_(subm[1], subm[0])] += self.t[ee]*(Kvu)
+            e.Ke[np.ix_(subm[1], subm[1])] += self.t[ee]*(Kvv)
             ee += 1
             # e.Fe[:,0] = 2*self.G*self._phi*detjac@_p
             # e.Ke = (np.transpose(dpx,axes=[0,2,1]) @ dpx).T @ detjac
@@ -192,6 +190,19 @@ class PlaneStress(Core):
             ax1.fill(Xs, Ys, color='white', zorder=30)
             ax2.fill(Xs, Ys, color='white', zorder=30)
             ax3.fill(Xs, Ys, color='white', zorder=30)
+
+    def giveStressPoint(self, X):
+        for ee, e in enumerate(self.elements):
+            if e.isInside(X.T[0]):
+                z = e.inverseMapping(np.array([X.T[0]]).T)
+                _, _, du = e.giveSolutionPoint(z, True)
+                # TODO Arreglar calculo de esfuerzos para PlaneStrain
+                sx = (self.C11[ee]*du[:, 0, 0] +
+                      self.C12[ee]*du[:, 1, 1]).tolist()
+                sy = (self.C12[ee]*du[:, 0, 0] +
+                      self.C11[ee]*du[:, 1, 1]).tolist()
+                sxy = (self.C66[ee]*(du[:, 0, 1]+du[:, 1, 0])).tolist()
+                return sx, sy, sxy
 
     def profile(self, p0: list, p1: list, n: float = 100) -> None:
         """Generate a profile between selected points

@@ -182,13 +182,13 @@ class Geometry:
     def generateElements(self) -> None:
         """Generate elements structure
         """
-        print('Creating Elements')
+        print('Generating element structure')
         self.elements = []
         for i, d in enumerate(tqdm(self.dictionary, unit='Element')):
             coords = np.array(self.gdls)[np.ix_(d)]
             gdl = np.zeros([self.nvn, len(d)])
-            for i in range(self.nvn):
-                gdl[i, :] = (np.array(d)*self.nvn+i)
+            for j in range(self.nvn):
+                gdl[j, :] = (np.array(d)*self.nvn+j)
             gdl = gdl.astype(int)
             if self.types[i] == 'T1V':
                 element = LTriangular(coords, gdl)
@@ -389,7 +389,7 @@ class Geometry:
                 a.append(e)
         return a
 
-    def loadOnSegment(self, segment, fx, fy, tol=1*10**(-5)):
+    def loadOnSegment(self, segment, fx=None, fy=None, tol=1*10**(-5)):
         a = self.giveElementsOfSegment(segment, tol)
         coordenadas = np.array(self.gdls)[self.segments[segment]]
         vect_seg = coordenadas[1]-coordenadas[0]
@@ -406,8 +406,10 @@ class Geometry:
                     e.borders[i].dir = sign
                     e.borders[i].s0 = np.linalg.norm(
                         e._coords[i]-coordenadas[0])
-                    e.borders[i].properties['load_x'].append(fx)
-                    e.borders[i].properties['load_y'].append(fy)
+                    if fx:
+                        e.borders[i].properties['load_x'].append(fx)
+                    if fy:
+                        e.borders[i].properties['load_y'].append(fy)
                 else:
                     e.borders[i].dir = 0.0
 
