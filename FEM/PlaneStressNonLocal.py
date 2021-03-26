@@ -2,7 +2,7 @@
 """
 
 
-from .Core import *
+from .Core import Core, Geometry
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
@@ -177,7 +177,7 @@ class PlaneStressNonLocal(Core):
             self.K[np.ix_(e.gdlm, e.gdlm)] += e.Ke*self.z1
             for i, eee in enumerate(e.enl):
                 enl = self.elements[eee]
-                this.K[np.ix_(e.gdlm, enl.gdlm)] += e.KNLS[i]*self.z2
+                self.K[np.ix_(e.gdlm, enl.gdlm)] += e.KNLS[i]*self.z2
             self.F[np.ix_(e.gdlm)] += e.Fe
             self.Q[np.ix_(e.gdlm)] += e.Qe
         print('Done!')

@@ -3,7 +3,7 @@
 
 
 from ..Element import Element
-from .LinearScheme import *
+from .LinearScheme import LinearScheme
 import numpy as np
 import matplotlib.pyplot as plt
 

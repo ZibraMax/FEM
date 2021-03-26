@@ -62,14 +62,22 @@ class Element():
         return p@self.coords, p
 
     def TS(self, z):
+        """Returns the transformation of a given set of points in the element. This method is used for border elements
+
+        Args:
+            z (np.ndarray): Natural coordinates matrix
+
+        Returns:
+            np.ndarray: Global coordinates matrix
+        """
         return self.s0+self.dir*self.T(z)[0]
 
     def inverseMapping(self, x0: np.ndarray, n: int = 100) -> np.ndarray:
         """Give the natural coordinates of given global coordinates over elements using Newton's method
 
         Args:
-            x0 (np.ndarray): Global coordinates matrix
-            n (int, optional): Máximun number of iterations. Defaults to 100.
+            x0(np.ndarray): Global coordinates matrix
+            n(int, optional): Máximun number of iterations. Defaults to 100.
 
         Returns:
             np.ndarray: Natural coordinates matrix
@@ -92,7 +100,7 @@ class Element():
         """Calculate the jacobian matrix over a set of natural coordinates
 
         Args:
-            z (np.ndarray): Natural coordinates matrix
+            z(np.ndarray): Natural coordinates matrix
 
         Returns:
             np.ndarray: Jacobian's matrices
@@ -105,7 +113,7 @@ class Element():
         """Calculate the interpolated solution over element domain
 
         Args:
-            SVSolution (bool, optional): To calculate second variable solutions. Defaults to False.
+            SVSolution(bool, optional): To calculate second variable solutions. Defaults to False.
 
         Returns:
             np.ndarray: Arrays of coordinates, solutions and second variables solutions.
@@ -126,8 +134,8 @@ class Element():
         """Calculate the interpolated solution over given set of points
 
         Args:
-            Z (np.ndarray): Natural coordintas to extract the solution
-            SVSolution (bool, optional): To calculate second variable solution. Defaults to False.
+            Z(np.ndarray): Natural coordintas to extract the solution
+            SVSolution(bool, optional): To calculate second variable solution. Defaults to False.
 
         Returns:
             np.ndarray: Arrays of coordinates, solutions and second variables solutions.
@@ -146,7 +154,7 @@ class Element():
         """Assing element local solution
 
         Args:
-            U (np.ndarray): Global solution
+            U(np.ndarray): Global solution
         """
 
         # TODO hacer una comprobación de frontera para evitar errores
@@ -162,7 +170,7 @@ class Element():
         """Calculate the integral of f function over element domain
 
         Args:
-            f (function): Function to be integrated
+            f(function): Function to be integrated
 
         Returns:
             float: Integral value
