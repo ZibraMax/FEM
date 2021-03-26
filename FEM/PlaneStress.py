@@ -79,6 +79,8 @@ class PlaneStress(Core):
             Kvv = np.zeros([m, m])
             Fu = np.zeros([m, 1])
             Fv = np.zeros([m, 1])
+            Fux = np.zeros([m, 1])
+            Fvx = np.zeros([m, 1])
             # Gauss points in global coordinates and Shape functions evaluated in gauss points
             _x, _p = e.T(e.Z.T)
             # Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
@@ -98,13 +100,31 @@ class PlaneStress(Core):
                         Kvv[i, j] += self.t[ee]*(self.C11[ee]*dpx[k, 1, i]*dpx[k, 1, j] +
                                                  self.C66[ee]*dpx[k, 0, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
                 for k in range(len(e.Z)):  # Iterate over gauss points on domain
+
                     Fu[i][0] += self.t[ee]*_p[k, i] * \
                         self.fx(_x[k])*detjac[k]*e.W[k]
                     Fv[i][0] += self.t[ee]*_p[k, i] * \
                         self.fy(_x[k])*detjac[k]*e.W[k]
+
+            if e.intBorders:
+                for j in range(len(e.borders)):
+                    border = e.borders[j]
+                    if not border.dir == 0.0:
+                        _x, _p = e.T(e.Tj[j](border.Z.T))
+                        _s = border.TS(border.Z.T)
+                        detjac = border.coords[-1, 0]*0.5
+                        for i in range(m):
+                            for fx in border.properties['load_x']:
+                                for k in range(len(border.Z)):
+                                    Fux[i, 0] += fx(_s[k, 0])*_p[k, i] * \
+                                        detjac*border.W[k]
+                            for fy in border.properties['load_y']:
+                                for k in range(len(border.Z)):
+                                    Fvx[i, 0] += fy(_s[k, 0])*_p[k, i] * \
+                                        detjac*border.W[k]
             subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
-            e.Fe[np.ix_(subm[0])] += Fu
-            e.Fe[np.ix_(subm[1])] += Fv
+            e.Fe[np.ix_(subm[0])] += Fu+Fux
+            e.Fe[np.ix_(subm[1])] += Fv+Fvx
             e.Ke[np.ix_(subm[0], subm[0])] += Kuu
             e.Ke[np.ix_(subm[0], subm[1])] += Kuv
             e.Ke[np.ix_(subm[1], subm[0])] += Kvu

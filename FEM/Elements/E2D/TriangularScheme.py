@@ -26,6 +26,13 @@ class TriangularScheme():
         # points = np.array([x.flatten(), y.flatten()])
         # weights = w.flatten()
         # points = np.array([points[0], points[1], 1 - points[0] - points[1]])
+
+        self.Tj = [
+            lambda s: np.array([s, (s-s)]),
+            lambda s: np.array([1-s, s]),
+            lambda s: np.array([(s-s), 1-s]),
+        ]
+
         A0 = 1/3
         A1 = 0.059715871789770
         A2 = 0.797426985353087
