@@ -18,6 +18,12 @@ class RectangularScheme():
         Args:
             n (int): Number of gauss points
         """
+        self.Tj = [
+            lambda s: np.array([s, -1*(s-s+1)]),
+            lambda s: np.array([1*(s-s+1), s]),
+            lambda s: np.array([-1*s, 1*(s-s+1)]),
+            lambda s: np.array([-1*(s-s+1), -1*s]),
+        ]
 
         DENSIDAD = 10
         XX, YY = np.meshgrid(np.linspace(-1, 1, DENSIDAD),

@@ -35,6 +35,8 @@ class Element():
             for j in range(len(self.gdl[i])):
                 self.gdlm.append(self.gdl[i, j])
         self.n = int(len(self.gdl)*len(self.gdl[0]))
+        self.properties = {'load_x': [], 'load_y': []}
+        self.intBorders = False
         if not self.border:
             # TODO Esta vaina debería eliminarse.
             # Los elementos no tienen porque guardar.
@@ -58,6 +60,9 @@ class Element():
 
         p = self.psis(z)
         return p@self.coords, p
+
+    def TS(self, z):
+        return self.s0+self.dir*self.T(z)[0]
 
     def inverseMapping(self, x0: np.ndarray, n: int = 100) -> np.ndarray:
         """Give the natural coordinates of given global coordinates over elements using Newton's method

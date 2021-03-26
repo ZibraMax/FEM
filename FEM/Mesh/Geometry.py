@@ -11,7 +11,8 @@ from ..Elements.E2D.Serendipity import Serendipity
 from ..Elements.E2D.Quadrilateral import Quadrilateral
 from ..Elements.E2D.QTriangular import QTriangular
 from ..Elements.E2D.LTriangular import LTriangular
-# from ..Elements.E3D import *
+from typing import Callable
+from tqdm import tqdm
 import re
 
 
@@ -181,8 +182,9 @@ class Geometry:
     def generateElements(self) -> None:
         """Generate elements structure
         """
+        print('Creating Elements')
         self.elements = []
-        for i, d in enumerate(self.dictionary):
+        for i, d in enumerate(tqdm(self.dictionary, unit='Element')):
             coords = np.array(self.gdls)[np.ix_(d)]
             gdl = np.zeros([self.nvn, len(d)])
             for i in range(self.nvn):
@@ -201,6 +203,7 @@ class Geometry:
             elif self.types[i] == 'L2V':
                 element = QuadraticElement(coords, gdl)
             self.elements.append(element)
+        print('Done!')
 
     def show(self, texto: int = 10, bolita: int = 0, figsize: list = [17, 10]) -> None:
         """Create a geometry graph
@@ -369,6 +372,45 @@ class Geometry:
                 a.append(i)
         return np.array(a)
 
+    def giveElementsOfSegment(self, segment: int, tol: float) -> list:
+        """Give elements over a segment
+
+        Args:
+            segment (int): Segment number. Start with 0
+            tol (float): Tolerance for finding nearest nodes
+
+        Returns:
+            lsit: List of elements in the specified segment
+        """
+        a = []
+        nodes = self.giveNodesOfSegment(segment, tol)
+        for e in self.elements:
+            if np.sum(np.isin(e.gdl[0], nodes*self.nvn)) > 0:
+                a.append(e)
+        return a
+
+    def loadOnSegment(self, segment, fx, fy, tol=1*10**(-5)):
+        a = self.giveElementsOfSegment(segment, tol)
+        coordenadas = np.array(self.gdls)[self.segments[segment]]
+        vect_seg = coordenadas[1]-coordenadas[0]
+        for e in a:
+            e.intBorders = True
+            for i in range(-1, len(e.borders)-1):
+                pertenece1 = isBetween(
+                    coordenadas[0], coordenadas[1], e._coords[i], tol)
+                pertenece2 = isBetween(
+                    coordenadas[0], coordenadas[1], e._coords[i+1], tol)
+                if pertenece1 and pertenece2:
+                    vect_lad = e._coords[i+1]-e._coords[i]
+                    sign = np.sign(vect_seg@vect_lad)
+                    e.borders[i].dir = sign
+                    e.borders[i].s0 = np.linalg.norm(
+                        e._coords[i]-coordenadas[0])
+                    e.borders[i].properties['load_x'].append(fx)
+                    e.borders[i].properties['load_y'].append(fy)
+                else:
+                    e.borders[i].dir = 0.0
+
     def cbFromSegment(self, segment: int, value: float, nv: int = 1, tol: float = 1*10**(-5)) -> list:
         """Generate a list of border conditions from specified border.
 
@@ -400,3 +442,6 @@ class Geometry:
         for s in range(len(self.segments)):
             for i in range(self.nvn):
                 self.cbe += self.cbFromSegment(s, value, (i+1), tol)
+
+    def setLoadSegment(self, segment: int, load: Callable, tol: float = 1*10**(-5)) -> None:
+        pass
