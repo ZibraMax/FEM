@@ -389,7 +389,20 @@ class Geometry:
                 a.append(e)
         return a
 
-    def loadOnSegment(self, segment, fx=None, fy=None, tol=1*10**(-5)):
+    def loadOnSegment(self, segment: int, fx: Callable = None, fy: Callable = None, tol: float = 1*10**(-5)) -> None:
+        """Assign a load over a geometry segment.
+
+        The start point of segment is the 0 point of load
+        The end point of segment is the end point of load
+
+        Load must be defined as a function (normal or lambda)
+
+        Args:
+            segment (int): Segment in wich load will be applied
+            fx (Callable, optional): Load Function x component. Defaults to None.
+            fy (Callable, optional): Load Function y component. Defaults to None.
+            tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
+        """
         a = self.giveElementsOfSegment(segment, tol)
         coordenadas = np.array(self.gdls)[self.segments[segment]]
         vect_seg = coordenadas[1]-coordenadas[0]
@@ -444,6 +457,3 @@ class Geometry:
         for s in range(len(self.segments)):
             for i in range(self.nvn):
                 self.cbe += self.cbFromSegment(s, value, (i+1), tol)
-
-    def setLoadSegment(self, segment: int, load: Callable, tol: float = 1*10**(-5)) -> None:
-        pass
