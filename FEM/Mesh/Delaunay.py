@@ -35,8 +35,26 @@ class Delaunay(Geometry):
             seg.append([i, i+1])
         seg.append([i+1, 0])
         hh = []
-        original = dict(vertices=np.array(vertices),
-                        segments=np.array(seg))
+        if fillets:
+            for fillet in fillets:
+                S1 = seg[fillet['start_segment']]
+                S2 = seg[fillet['end_segment']]
+
+                P1 = vertices[S1[0]]
+                P2 = vertices[S2[1]]
+                P = vertices[S1[1]]
+                r = fillet['r']
+                n = fillet['n']
+                if not S1[1] == S2[0]:
+                    raise Exception('The fillet segments are not valid')
+                O, sa, a = roundCorner(P1, P2, P, r)
+                f_vertices, f_segments = giveCoordsCircle(O, r, sa, a, n, True)
+                vertices[S1[1]] = f_vertices[0]
+                seg += (np.array(f_segments)+len(vertices)).tolist()
+                vertices += np.array(f_vertices).tolist()
+                seg[fillet['end_segment']][0] = len(vertices)-2
+
+        original = dict(vertices=np.array(vertices), segments=np.array(seg))
         if holes_dict:
             for hole in holes_dict:
                 hh += [hole['center']]
