@@ -1,10 +1,12 @@
 # Specify filepatterns you want git to ignore.
 
 FEM/__pycache__/
+FEM/Mesh/__pycache__/
 ipynb_checkpoints/
 Referencias/
 dist/
 F_BUILD/
 AFEM.egg-info/
 *.png
+*.pyc
 *.csv

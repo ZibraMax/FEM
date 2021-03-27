@@ -256,7 +256,7 @@ def roundCorner(P1: list, P2: list, P: list, r: float) -> tuple:
     return O, sangle, sweep
 
 
-def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: int = 10) -> Tuple[np.ndarray, list]:
+def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: int = 10, isFillet: bool = False) -> Tuple[np.ndarray, list]:
     """Calculates the coordinates of a circle
 
     Args:
@@ -272,13 +272,26 @@ def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: in
     coords = []
     segments = []
     h = a/n
-    for i in range(n):
-        if i < n-1:
+    if isFillet:
+        for i in range(n):
             segments += [[i, i+1]]
-        else:
-            segments += [[i, 0]]
-        theta = sa+h*i
+            theta = sa+h*i
+            x = r*np.cos(theta)
+            y = r*np.sin(theta)
+            coords += [[O[0]+x, O[1]+y]]
+        theta = a
         x = r*np.cos(theta)
         y = r*np.sin(theta)
         coords += [[O[0]+x, O[1]+y]]
+
+    else:
+        for i in range(n):
+            if i < n-1:
+                segments += [[i, i+1]]
+            else:
+                segments += [[i, 0]]
+            theta = sa+h*i
+            x = r*np.cos(theta)
+            y = r*np.sin(theta)
+            coords += [[O[0]+x, O[1]+y]]
     return np.array(coords), segments
