@@ -14,9 +14,23 @@ l = 20
 
 vertices = [[0.0, 0.0], [b, 0.0], [b, h], [b/2+2*l, h],
             [b/2+l, h+l], [b/2-l, h+l], [b/2-2*l, h], [0.0, h]]
+
+
+holes = []
+radi = 20
+cent = [b/2, h/2]
+vert, seg = giveCoordsCircle(cent, radi, n=50)
+hole = {'center': cent, 'segments': seg, 'vertices': vert}
+holes += [hole]
+
+fillets = [{'start_segment': 2, 'end_segment': 3, 'r': 20, 'n': 10},
+           {'start_segment': 3, 'end_segment': 4, 'r': 20, 'n': 10},
+           {'start_segment': 4, 'end_segment': 5, 'r': 20, 'n': 10},
+           {'start_segment': 5, 'end_segment': 6, 'r': 20, 'n': 10}]
+
 params = Delaunay._strdelaunay(
     constrained=True, delaunay=True, a='7', o=2)
-geometria = Delaunay(vertices, params)
+geometria = Delaunay(vertices, params, holes_dict=holes, fillets=fillets)
 geometria.show()
 plt.show()
 O = PlaneStrain(geometria, E, v, fy=lambda x: -gamma)

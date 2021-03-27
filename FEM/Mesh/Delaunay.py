@@ -51,7 +51,7 @@ class Delaunay(Geometry):
                     raise Exception('The fillet segments are not valid')
                 O, sa, a = roundCorner(P1, P2, P, r)
                 f_vertices, f_segments = giveCoordsCircle(O, r, sa, a, n, True)
-                vertices[S1[1]] = f_vertices[0].tolist()
+                vertices[S1[1]] = np.array(f_vertices[0]).tolist()
                 sp = (np.array(f_segments)+len(vertices)-2)[1:].tolist()
                 seg += [[S1[1], sp[1][0]]]+sp[1:]
                 vertices += np.array(f_vertices)[1:-1].tolist()
