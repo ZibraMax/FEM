@@ -4,6 +4,7 @@
 
 import triangle as tr
 import numpy as np
+import copy
 import matplotlib.pyplot as plt
 from .Geometry import Geometry
 from ..Utils import roundCorner, giveCoordsCircle
@@ -30,6 +31,7 @@ class Delaunay(Geometry):
                 holes (list, optional): A list of holes. Defaults to None.
                 fillets (list, optional): A list of fillets. Defaults to None.
         """
+        mask = copy.deepcopy(vertices)
         seg = []
         for i in range(len(vertices)-1):
             seg.append([i, i+1])
@@ -49,10 +51,12 @@ class Delaunay(Geometry):
                     raise Exception('The fillet segments are not valid')
                 O, sa, a = roundCorner(P1, P2, P, r)
                 f_vertices, f_segments = giveCoordsCircle(O, r, sa, a, n, True)
-                vertices[S1[1]] = f_vertices[0]
-                seg += (np.array(f_segments)+len(vertices)).tolist()
-                vertices += np.array(f_vertices).tolist()
-                seg[fillet['end_segment']][0] = len(vertices)-2
+                vertices[S1[1]] = f_vertices[0].tolist()
+                sp = (np.array(f_segments)+len(vertices)-2)[1:].tolist()
+                seg += [[S1[1], sp[1][0]]]+sp[1:]
+                vertices += np.array(f_vertices)[1:-1].tolist()
+                seg[fillet['end_segment']][0] = len(vertices)-1
+                # vertices += [O]
 
         original = dict(vertices=np.array(vertices), segments=np.array(seg))
         if holes_dict:
@@ -78,9 +82,11 @@ class Delaunay(Geometry):
                 dicc[3] = a1
                 dicc[4] = a2
                 dicc[5] = a3
-        Geometry.__init__(self, dictionary, gdls, tipos, nvn=nvn, segments=seg)
-        self.mask = vertices
+        Geometry.__init__(self, dictionary, gdls, tipos,
+                          nvn=nvn, segments=seg)
+        self.mask = mask
         self.holes = holes_dict
+        self.fillets = fillets
 
     @ staticmethod
     def _strdelaunay(constrained: bool = True, delaunay: bool = True, a: float = None, q: float = None, o: int = 1) -> str:

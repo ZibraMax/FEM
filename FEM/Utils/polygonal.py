@@ -213,47 +213,41 @@ def roundCorner(P1: list, P2: list, P: list, r: float) -> tuple:
     Returns:
         tuple: Circle center coordinates, start angle, sweep angle
     """
-    angle = (np.arctan2(P[1]-P1[1], P[0]-P1[0]) -
-             np.arctan2(P[1]-P2[1], P[0]-P2[0]))/2
-    segment = r/np.abs(np.tan(angle))
-    PC1 = segment
-    PC2 = segment
-    PP1 = np.sqrt((P[0]-P1[0])**2+(P[1]-P1[1])**2)
-    PP2 = np.sqrt((P[0]-P2[0])**2+(P[1]-P2[1])**2)
-    minr = min(PP1, PP2)/2
-    if segment > minr:
-        segment = minr
-        r = segment*np.abs(np.tan(angle))
-    PO = np.sqrt(r**2+segment**2)
-    C1 = [-1, -1]
-    C2 = [-1, -1]
-    C1[0] = P[0]-(P[0]-P1[0])*PC1/PP1
-    C1[1] = P[1]-(P[1]-P1[1])*PC1/PP1
+    def GetProportionPoint(point, segment, length, dx, dy):
+        factor = segment / length
+        return [point[0] - dx * factor, point[1] - dy * factor]
+    dx1 = P[0]-P1[0]
+    dy1 = P[1]-P1[1]
+    dx2 = P[0]-P2[0]
+    dy2 = P[1]-P2[1]
 
-    C2[0] = P[0]-(P[0]-P2[0])*PC2/PP2
-    C2[1] = P[1]-(P[1]-P2[1])*PC2/PP2
+    angle = (np.arctan2(dy1, dx1)-np.arctan2(dy2, dx2))/2
+    tan = np.abs(np.tan(angle))
+    segment = r/tan
 
-    C = [-1, -1]
-    C[0] = C1[0]+C2[0]-P[0]
-    C[1] = C1[1]+C2[1]-P[1]
-    dx = P[0]-C[0]
-    dy = P[1]-C[1]
-    PC = np.sqrt(dx**2+dy**2)
+    len1 = np.sqrt(dx1**2+dy1**2)
+    len2 = np.sqrt(dx2**2+dy2**2)
+    length = np.min([len1, len2])
+    if segment > length:
+        print('The fillet radius is big')
+    p1Cross = GetProportionPoint(P, segment, len1, dx1, dy1)
+    p2Cross = GetProportionPoint(P, segment, len2, dx2, dy2)
 
-    O = [-1, -1]
-    O[0] = P[0]-dx*PO/PC
-    O[1] = P[1]-dy*PO/PC
+    dx = P[0]*2-p1Cross[0]-p2Cross[0]
+    dy = P[1]*2-p1Cross[1]-p2Cross[1]
 
-    sangle = np.arctan((C1[1]-O[1])/(C1[0]-O[0]))
-    eangle = np.arctan((C2[1]-O[1])/(C2[0]-O[0]))
-
-    sweep = eangle - sangle
-    if sweep < 0.0:
-        sweep = -sweep
-        sangle = eangle
-    if sweep > np.pi:
-        sweep = np.pi-sweep
-    return O, sangle, sweep
+    L = (dx**2+dy**2)**0.5
+    d = (segment**2+r**2)**0.5
+    circlePoint = GetProportionPoint(P, d, L, dx, dy)
+    sa = np.arctan2(p1Cross[1]-circlePoint[1], p1Cross[0]-circlePoint[0])
+    ea = np.arctan2(p2Cross[1]-circlePoint[1], p2Cross[0]-circlePoint[0])
+    s = ea-sa
+    # if s < 0:
+    #     sa = ea
+    #     s = -s
+    if s > np.pi:
+        s = np.pi-s
+    return circlePoint, sa, s
 
 
 def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: int = 10, isFillet: bool = False) -> Tuple[np.ndarray, list]:
@@ -265,6 +259,7 @@ def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: in
         sa (float): Start angle. Defaults to 0
         a (float): End angle. Defaults to :math: `2\\pi`
         n (int, optional): Number of coords to calculate. Defaults to 10.
+        isFillet (bool, optional): If the circle will be used as fillet. Defaults to False.
 
     Returns:
         np.ndarray and list: Circle coordinates and segments
@@ -273,7 +268,7 @@ def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: in
     segments = []
     h = a/n
     if isFillet:
-        for i in range(n):
+        for i in range(n+1):
             segments += [[i, i+1]]
             theta = sa+h*i
             x = r*np.cos(theta)

@@ -102,6 +102,13 @@ class Torsion2D(Core):
 
         fig.colorbar(surf, ax=ax4)
         mask = self.geometry.mask
+        if self.geometry.holes:
+            for hole in self.geometry.holes:
+                Xs = np.array(hole['vertices'])[:, 0]
+                Ys = np.array(hole['vertices'])[:, 1]
+                ax2.fill(Xs, Ys, color='white', zorder=30)
+                ax3.fill(Xs, Ys, color='white', zorder=30)
+                ax4.fill(Xs, Ys, color='white', zorder=30)
         if not mask == None:
             mask = np.array(mask)
             cornersnt = np.array(mask[::-1])
