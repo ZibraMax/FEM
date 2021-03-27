@@ -73,6 +73,8 @@ geometria.generateSegmentsFromCoords(
 geometria.cbe = geometria.cbFromSegment(-2, 0, 1)
 geometria.cbe += geometria.cbFromSegment(-2, 0, 2)
 geometria.saveMesh('Mesh_tests/tunel')
+geometria.show()
+plt.show()
 geometria.loadOnSegment(-1, fy=lambda s: -p0)
 geometria.mask = None
 O = PlaneStrain(geometria, E, v)

@@ -12,6 +12,7 @@ from ..Elements.E2D.Quadrilateral import Quadrilateral
 from ..Elements.E2D.QTriangular import QTriangular
 from ..Elements.E2D.LTriangular import LTriangular
 from typing import Callable
+from ast import literal_eval
 from tqdm import tqdm
 import re
 
@@ -39,6 +40,8 @@ class Geometry:
         """
 
         self.mask = None
+        self.holes = None
+        self.fillets = None
         self.areas = []
         self.nvn = nvn
         self.dictionary = dictionary
@@ -49,7 +52,6 @@ class Geometry:
         self.cbe = []
         self.cbn = []
         self.centroids = []
-        self.holes = None
         self.initialize()
         try:
             self.centroidsAndAreas()
@@ -173,11 +175,27 @@ class Geometry:
         for _ in range(p[4]):
             cbn += [list(map(float, f.readline().split('\t')))]
         nvn = p[5]
+        try:
+            len_holes = p[6]
+        except:
+            len_holes = 0
+        try:
+            len_fillets = p[7]
+        except:
+            len_fillets = 0
+        fillets = []
+        holes = []
+        for _ in range(len_holes):
+            holes.append(literal_eval(f.readline()))
+        for _ in range(len_fillets):
+            fillets.append(literal_eval(f.readline()))
         f.close()
         print('File ' + filename + ' loaded')
         o = Geometry(dicc, gdls, types, nvn, seg)
         o.cbe = cbe
         o.cbn = cbn
+        o.holes = holes
+        o.fillets = fillets
         return o
 
     def generateElements(self) -> None:
@@ -206,7 +224,7 @@ class Geometry:
             self.elements.append(element)
         print('Done!')
 
-    def show(self, texto: int = 10, bolita: int = 0, figsize: list = [17, 10], draw_segs=True) -> None:
+    def show(self, texto: int = 10, bolita: int = 0, figsize: list = [17, 10], draw_segs=True, draw_labels=False) -> None:
         """Create a geometry graph
 
         Args:
@@ -214,6 +232,7 @@ class Geometry:
             bolita (int, optional): Node size. Defaults to 0.
             figsize (list, optional): Size of figure. Defaults to [17, 10].
             draw_segs (bool, optional): To draw or not draw the segments. Defaults to True.
+            draw_labels (bool, optional): To draw or not draw element labels. Defaults to False.
         """
 
         fig = plt.figure(figsize=figsize)
@@ -226,12 +245,13 @@ class Geometry:
             coords = np.array(coords.tolist() + [coords[0].tolist()])
             X = coords[:, 0]
             Y = coords[:, 1]
-            ax.plot(X, Y, 'o-', color='black', zorder=-10)
+            ax.plot(X, Y, '-', color='black', zorder=-10)
             cx = self.centroids[i][0]
             cy = self.centroids[i][1]
-            ax.plot(cx, cy, 'o', markersize=texto + bolita, color='yellow')
-            ax.annotate(format(i), [
-                        cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
+            if draw_labels:
+                ax.plot(cx, cy, 'o', markersize=texto + bolita, color='yellow')
+                ax.annotate(format(i), [
+                            cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
         try:
             if draw_segs:
                 verts = self.gdls
@@ -263,13 +283,13 @@ class Geometry:
         gdls = np.array(self.gdls)
 
         labels = np.linspace(0, gdls.shape[0] - 1, gdls.shape[0]).astype(int)
-
-        ax.plot(gdls[:, 0], gdls[:, 1], 'o',
-                markersize=texto+bolita, color='gray')
-
-        for p, l in zip(gdls, labels):
-            ax.annotate(l, p, size=texto, textcoords="offset points",
-                        xytext=(-0, -2.5), ha='center')
+        if draw_labels:
+            ax.plot(gdls[:, 0], gdls[:, 1], 'o',
+                    markersize=texto+bolita, color='gray')
+        if draw_labels:
+            for p, l in zip(gdls, labels):
+                ax.annotate(l, p, size=texto, textcoords="offset points",
+                            xytext=(-0, -2.5), ha='center')
 
     def saveMesh(self, ProjectName: str) -> None:
         """Saves the geometry to a MSH file with specified name
@@ -279,8 +299,16 @@ class Geometry:
         """
         filename = ProjectName + '.msh'
         f = open(filename, 'w')
+        try:
+            len_holes = len(self.holes)
+        except Exception as e:
+            len_holes = 0
+        try:
+            len_fillets = len(self.fillets)
+        except Exception as e:
+            len_fillets = 0
         p = [len(self.gdls), len(self.dictionary), len(
-            self.segments), len(self.cbe), len(self.cbn), self.nvn]
+            self.segments), len(self.cbe), len(self.cbn), self.nvn, len_holes, len_fillets]
         f.write('\t'.join(list(map(format, p))) + '\n')
         for e in self.gdls:
             f.write('\t'.join(list(map(format, e))) + '\n')
@@ -294,6 +322,12 @@ class Geometry:
             f.write(format(int(e[0]))+'\t'+format(e[1])+'\n')
         for e in self.cbn:
             f.write(format(int(e[0]))+'\t'+format(e[1])+'\n')
+        if self.holes:
+            for e in self.holes:
+                f.write(str(e)+'\n')
+        if self.fillets:
+            for e in self.fillets:
+                f.write(str(e)+'\n')
         f.close()
         print('File ' + filename + ' saved')
 
