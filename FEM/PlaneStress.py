@@ -168,6 +168,13 @@ class PlaneStress(Core):
         plt.colorbar(surf, ax=ax3)
         ax3.set_title(r'$\sigma_{xy}$')
         mask = self.geometry.mask
+        if self.geometry.holes:
+            for hole in self.geometry.holes:
+                Xs = np.array(hole['vertices'])[:, 0]
+                Ys = np.array(hole['vertices'])[:, 1]
+                ax1.fill(Xs, Ys, color='white', zorder=30)
+                ax2.fill(Xs, Ys, color='white', zorder=30)
+                ax3.fill(Xs, Ys, color='white', zorder=30)
         if not mask == None:
             mask = np.array(mask)
             cornersnt = np.array(mask[::-1])
@@ -185,14 +192,10 @@ class PlaneStress(Core):
             ax3.fill(Xs, Ys, color='white', zorder=30)
 
     def giveStressPoint(self, X: np.ndarray) -> Tuple[tuple, None]:
-        """Calculates the stress in a given set of points
+        """Calculates the stress in a given set of points.
 
         Args:
-            X (np.ndarray): Points to calculate the Stress. 2D Matrix. with 2 rows.
-
-            First row is an array of 1 column with X coordinate
-
-            Second row is an array of 1 column with Y coordinate
+            X (np.ndarray): Points to calculate the Stress. 2D Matrix. with 2 rows. First row is an array of 1 column with X coordinate. Second row is an array of 1 column with Y coordinate
 
         Returns:
             tuple or None: Tuple of stress (:math:`\sigma_x,\sigma_y,\sigma_{xy}`) if X,Y exists in domain.

@@ -5,6 +5,7 @@
 import numpy as np
 import random
 import math
+from typing import Tuple
 
 
 def enmalladoFernando(lx: float, ly: float, nex: int, ney: int, filename: str) -> None:
@@ -197,3 +198,87 @@ def isBetween(a: list, b: list, c: list, tol: float) -> bool:
     if abs(d) < tol:
         return True
     return False
+
+
+def roundCorner(P1: list, P2: list, P: list, r: float) -> tuple:
+    """Calculates the origin, start angle and sweep angle of a given corner with a given radius
+    Source: https://stackoverflow.com/questions/24771828/algorithm-for-creating-rounded-corners-in-a-polygon
+
+    Args:
+        P1 (list): First point
+        P2 (list): Second Point
+        P (list): Center point
+        r (float): Radius of corner
+
+    Returns:
+        tuple: Circle center coordinates, start angle, sweep angle
+    """
+    angle = (np.arctan2(P[1]-P1[1], P[0]-P1[0]) -
+             np.arctan2(P[1]-P2[1], P[0]-P2[0]))/2
+    segment = r/np.abs(np.tan(angle))
+    PC1 = segment
+    PC2 = segment
+    PP1 = np.sqrt((P[0]-P1[0])**2+(P[1]-P1[1])**2)
+    PP2 = np.sqrt((P[0]-P2[0])**2+(P[1]-P2[1])**2)
+    minr = min(PP1, PP2)/2
+    if segment > minr:
+        segment = minr
+        r = segment*np.abs(np.tan(angle))
+    PO = np.sqrt(r**2+segment**2)
+    C1 = [-1, -1]
+    C2 = [-1, -1]
+    C1[0] = P[0]-(P[0]-P1[0])*PC1/PP1
+    C1[1] = P[1]-(P[1]-P1[1])*PC1/PP1
+
+    C2[0] = P[0]-(P[0]-P2[0])*PC2/PP2
+    C2[1] = P[1]-(P[1]-P2[1])*PC2/PP2
+
+    C = [-1, -1]
+    C[0] = C1[0]+C2[0]-P[0]
+    C[1] = C1[1]+C2[1]-P[1]
+    dx = P[0]-C[0]
+    dy = P[1]-C[1]
+    PC = np.sqrt(dx**2+dy**2)
+
+    O = [-1, -1]
+    O[0] = P[0]-dx*PO/PC
+    O[1] = P[1]-dy*PO/PC
+
+    sangle = np.arctan((C1[1]-O[1])/(C1[0]-O[0]))
+    eangle = np.arctan((C2[1]-O[1])/(C2[0]-O[0]))
+
+    sweep = eangle - sangle
+    if sweep < 0.0:
+        sweep = -sweep
+        sangle = eangle
+    if sweep > np.pi:
+        sweep = np.pi-sweep
+    return O, sangle, sweep
+
+
+def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: int = 10) -> Tuple[np.ndarray, list]:
+    """Calculates the coordinates of a circle
+
+    Args:
+        O (list): Center coordinates of circle
+        r (float): Circle radius
+        sa (float): Start angle. Defaults to 0
+        a (float): End angle. Defaults to :math: `2\\pi`
+        n (int, optional): Number of coords to calculate. Defaults to 10.
+
+    Returns:
+        np.ndarray and list: Circle coordinates and segments
+    """
+    coords = []
+    segments = []
+    h = a/n
+    for i in range(n):
+        if i < n-1:
+            segments += [[i, i+1]]
+        else:
+            segments += [[i, 0]]
+        theta = sa+h*i
+        x = r*np.cos(theta)
+        y = r*np.sin(theta)
+        coords += [[O[0]+x, O[1]+y]]
+    return np.array(coords), segments

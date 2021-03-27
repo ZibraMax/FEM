@@ -6,6 +6,7 @@ import triangle as tr
 import numpy as np
 import matplotlib.pyplot as plt
 from .Geometry import Geometry
+from ..Utils import roundCorner, giveCoordsCircle
 
 
 class Delaunay(Geometry):
@@ -15,22 +16,34 @@ class Delaunay(Geometry):
             vertices (list): matrix containing the domain vertices coordinates
             params (str): Triangulation parameters, use the aux function _strdelaunay
             nvn (int, optional): Number of variables per node. Defaults to 1.
+            holes (list, optional): A list of holes. Defaults to None.
+            fillets (list, optional): A list of fillets. Defaults to None.
     """
 
-    def __init__(self, vertices: list, params: str, nvn: int = 1) -> None:
+    def __init__(self, vertices: list, params: str, nvn: int = 1, holes_dict=None, fillets=None) -> None:
         """Generate Delaunay triangulation
 
         Args:
                 vertices (list): matrix containing the domain vertices coordinates
                 params (str): Triangulation parameters, use the aux function _strdelaunay
                 nvn (int, optional): Number of variables per node. Defaults to 1.
+                holes (list, optional): A list of holes. Defaults to None.
+                fillets (list, optional): A list of fillets. Defaults to None.
         """
-
         seg = []
         for i in range(len(vertices)-1):
             seg.append([i, i+1])
         seg.append([i+1, 0])
-        original = dict(vertices=np.array(vertices), segments=np.array(seg))
+        hh = []
+        original = dict(vertices=np.array(vertices),
+                        segments=np.array(seg))
+        if holes_dict:
+            for hole in holes_dict:
+                hh += [hole['center']]
+                seg += (np.array(hole['segments'])+len(vertices)).tolist()
+                vertices += np.array(hole['vertices']).tolist()
+            original = dict(vertices=np.array(vertices),
+                            segments=np.array(seg), holes=hh)
         triangular = tr.triangulate(original, params)
         dictionary = triangular['triangles'].tolist()
         tipos = np.zeros([len(dictionary)]).astype(str)
@@ -49,8 +62,9 @@ class Delaunay(Geometry):
                 dicc[5] = a3
         Geometry.__init__(self, dictionary, gdls, tipos, nvn=nvn, segments=seg)
         self.mask = vertices
+        self.holes = holes_dict
 
-    @staticmethod
+    @ staticmethod
     def _strdelaunay(constrained: bool = True, delaunay: bool = True, a: float = None, q: float = None, o: int = 1) -> str:
         """Create a string for the delaunay triangulation constructor
 
