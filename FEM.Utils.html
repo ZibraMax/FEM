@@ -39,7 +39,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Test25 module" href="Test25.html" />
+    <link rel="next" title="setup module" href="setup.html" />
     <link rel="prev" title="FEM.Mesh package" href="FEM.Mesh.html" /> 
 </head>
 
@@ -107,7 +107,6 @@
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Transitory">FEM.Transitory module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="Test25.html">Test25 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
@@ -275,7 +274,7 @@
 
 <dl class="py function">
 <dt id="FEM.Utils.polygonal.giveCoordsCircle">
-<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">giveCoordsCircle</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">O</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#FEM.Utils.polygonal.giveCoordsCircle" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">giveCoordsCircle</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">O</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isFillet</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#FEM.Utils.polygonal.giveCoordsCircle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the coordinates of a circle</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -285,6 +284,7 @@
 <li><p><strong>sa</strong> (<em>float</em>) – Start angle. Defaults to 0</p></li>
 <li><p><strong>a</strong> (<em>float</em>) – End angle. Defaults to :math: <cite>2pi</cite></p></li>
 <li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of coords to calculate. Defaults to 10.</p></li>
+<li><p><strong>isFillet</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the circle will be used as fillet. Defaults to False.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -350,7 +350,7 @@ Source: <a class="reference external" href="https://stackoverflow.com/questions/
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="Test25.html" class="btn btn-neutral float-right" title="Test25 module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="setup.html" class="btn btn-neutral float-right" title="setup module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="FEM.Mesh.html" class="btn btn-neutral float-left" title="FEM.Mesh package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
