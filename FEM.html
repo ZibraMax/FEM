@@ -108,6 +108,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.Transitory">FEM.Transitory module</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="Test25.html">Test25 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
@@ -496,14 +497,10 @@ be a 2-D Numpy Array.</p>
 <dl class="py method">
 <dt id="FEM.PlaneStress.PlaneStress.giveStressPoint">
 <code class="sig-name descname"><span class="pre">giveStressPoint</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#FEM.PlaneStress.PlaneStress.giveStressPoint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the stress in a given set of points</p>
+<dd><p>Calculates the stress in a given set of points.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>np.ndarray</em>) – Points to calculate the Stress. 2D Matrix. with 2 rows.</p></li>
-<li><p><strong>row is an array of 1 column with X coordinate</strong> (<em>First</em>) – </p></li>
-<li><p><strong>row is an array of 1 column with Y coordinate</strong> (<em>Second</em>) – </p></li>
-</ul>
+<dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em>) – Points to calculate the Stress. 2D Matrix. with 2 rows. First row is an array of 1 column with X coordinate. Second row is an array of 1 column with Y coordinate</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Tuple of stress (<span class="math notranslate nohighlight">\(\sigma_x,\sigma_y,\sigma_{xy}\)</span>) if X,Y exists in domain.</p>
