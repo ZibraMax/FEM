@@ -3,7 +3,7 @@
 
 
 import numpy as np
-from ..Utils import isBetween
+from ..Utils import isBetween, roundCorner, giveCoordsCircle
 import matplotlib.pyplot as plt
 from ..Elements.E1D.LinealElement import LinealElement
 from ..Elements.E1D.QuadraticElement import QuadraticElement
@@ -49,6 +49,7 @@ class Geometry:
         self.cbe = []
         self.cbn = []
         self.centroids = []
+        self.holes = None
         self.initialize()
         try:
             self.centroidsAndAreas()
@@ -205,13 +206,14 @@ class Geometry:
             self.elements.append(element)
         print('Done!')
 
-    def show(self, texto: int = 10, bolita: int = 0, figsize: list = [17, 10]) -> None:
+    def show(self, texto: int = 10, bolita: int = 0, figsize: list = [17, 10], draw_segs=True) -> None:
         """Create a geometry graph
 
         Args:
             texto (int, optional): Text size. Defaults to 10.
             bolita (int, optional): Node size. Defaults to 0.
             figsize (list, optional): Size of figure. Defaults to [17, 10].
+            draw_segs (bool, optional): To draw or not draw the segments. Defaults to True.
         """
 
         fig = plt.figure(figsize=figsize)
@@ -231,25 +233,27 @@ class Geometry:
             ax.annotate(format(i), [
                         cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
         try:
-            verts = self.gdls
-            segs = self.segments
-            for i, seg in enumerate(segs):
-                x0, y0 = verts[int(seg[0])]
-                x1, y1 = verts[int(seg[1])]
+            if draw_segs:
+                verts = self.gdls
+                segs = self.segments
+                for i, seg in enumerate(segs):
+                    x0, y0 = verts[int(seg[0])]
+                    x1, y1 = verts[int(seg[1])]
 
-                ax.fill(
-                    [x0, x1],
-                    [y0, y1],
-                    facecolor='none',
-                    edgecolor='b',
-                    linewidth=3,
-                    zorder=0,
-                )
-                cx = (x0+x1)*0.5
-                cy = (y0+y1)*0.5
-                ax.plot(cx, cy, 'o', markersize=texto + bolita, color='pink')
-                ax.annotate(format(i), [
-                            cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
+                    ax.fill(
+                        [x0, x1],
+                        [y0, y1],
+                        facecolor='none',
+                        edgecolor='b',
+                        linewidth=3,
+                        zorder=0,
+                    )
+                    cx = (x0+x1)*0.5
+                    cy = (y0+y1)*0.5
+                    ax.plot(cx, cy, 'o', markersize=texto +
+                            bolita, color='pink')
+                    ax.annotate(format(i), [
+                                cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
         except:
             pass
         ax.set_xlabel('x')
