@@ -181,7 +181,18 @@ Note: Don't forget the docstring!
 - Test 15: Profile creation tool. Same as Test 14
 - Test 16: Non Local Plane Stress. [WIP]
 - Test 17: 1D Heat transfer
-- Test 178: 2D bordr elements creation.
+- Test 18: 2D border elements creation.
+- Test 19: Apply loads on segments. `loadOnSegment` method on Test 11
+- Test 20: Reddy's Example 11.7.1 Ed 3 
+- Test 21: Test 20 with serendipity elements.
+- Test 22: Test 20 with refined mesh.
+- Test 23: Reddy's Problem 11.1 Ed 3 Plain Strain
+- Test 24: Test 23 with refined mesh
+- Test 25: Holes concept. With Test 24
+- Test 26: Fillets concept.
+- Test 27: Combination of Holes an Fillets, Plane Stress
+- Test 28: Fillets and Holes mesh files of Test 27
+- Test 29: Fillets and Holes in Test 13
 
 ## References
 

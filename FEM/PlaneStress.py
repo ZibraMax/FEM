@@ -156,6 +156,7 @@ class PlaneStress(Core):
             ax5.plot(*e._coordsg.T, '--', color='gray', alpha=0.7)
             ax5.plot(*coordsNuevas.T, '-', color='black')
         ax5.legend(['Original Shape', 'Deformed Shape (x'+format(mult)+')'])
+        ax5.set_aspect('equal')
         surf = ax1.tricontourf(X, Y, U1, cmap='magma', levels=20)
         plt.colorbar(surf, ax=ax1)
         ax1.set_title(r'$\sigma_{xx}$')

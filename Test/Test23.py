@@ -2,7 +2,7 @@ from FEM.Mesh.Geometry import Geometry
 from FEM.PlaneStrain import PlaneStrain
 import matplotlib.pyplot as plt
 import numpy as np
-
+# P 11.1
 E = 30*10**(5)
 v = 0.25
 

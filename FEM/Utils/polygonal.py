@@ -250,7 +250,7 @@ def roundCorner(P1: list, P2: list, P: list, r: float) -> tuple:
     return circlePoint, sa, s
 
 
-def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: int = 10, isFillet: bool = False) -> Tuple[np.ndarray, list]:
+def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: int = 10, isFillet: bool = False) -> Tuple[list, list]:
     """Calculates the coordinates of a circle
 
     Args:
@@ -262,7 +262,7 @@ def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: in
         isFillet (bool, optional): If the circle will be used as fillet. Defaults to False.
 
     Returns:
-        np.ndarray and list: Circle coordinates and segments
+        list and list: Circle coordinates and segments
     """
     coords = []
     segments = []
@@ -289,4 +289,4 @@ def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: in
             x = r*np.cos(theta)
             y = r*np.sin(theta)
             coords += [[O[0]+x, O[1]+y]]
-    return np.array(coords), segments
+    return coords, segments

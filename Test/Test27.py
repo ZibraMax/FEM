@@ -22,6 +22,7 @@ geometria.cbe = geometria.cbFromSegment(7, 0, 1)
 geometria.cbe += geometria.cbFromSegment(7, 0, 2)
 
 geometria.show()
+geometria.saveMesh('Mesh_tests/pieza_acero')
 plt.show()
 
 E = 29000000
