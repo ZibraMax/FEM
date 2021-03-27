@@ -5,4 +5,5 @@ FEM
    :maxdepth: 4
 
    FEM
+   Test25
    setup
