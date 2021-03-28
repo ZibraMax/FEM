@@ -193,14 +193,227 @@
 </li>
 </ul>
 </div>
+<a class="reference external image-reference" href="https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml"><img alt="Build status" src="https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml/badge.svg" /></a>
+<a class="reference external image-reference" href="https://github.com/ZibraMax/FEM/actions/workflows/docs.yml"><img alt="Docs" src="https://github.com/ZibraMax/FEM/actions/workflows/docs.yml/badge.svg" /></a>
+<a class="reference external image-reference" href="https://badge.fury.io/py/AFEM"><img alt="PyPI version" src="https://badge.fury.io/py/AFEM.svg" /></a>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="afem">
+<h1>AFEM<a class="headerlink" href="#afem" title="Permalink to this headline">¶</a></h1>
+<p>A FEM implementation.</p>
+<p>N dimensional FEM implementation for M variables per node problems.</p>
+<div class="section" id="id1">
+<h2><a class="reference external" href="https://zibramax.github.io/FEM/">Docs</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tutorial">
+<h3>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="using-pre-implemented-equations">
+<h2>Using pre implemented equations<a class="headerlink" href="#using-pre-implemented-equations" title="Permalink to this headline">¶</a></h2>
+<p>Avaliable equations:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+<li><p>1D 1 Variable ordinary diferential equation</p></li>
+<li><p>1D 2 Variable Euler Bernoulli Beams [TODO]</p></li>
+<li><p>1D 2 Variable Timoshenko Beams [TODO]</p></li>
+<li><p>2D 1 Variable Torsion</p></li>
+<li><p>2D 2 Variable Plane Strees</p></li>
+<li><p>2D 2 Variable Plane Strain</p></li>
 </ul>
+<ul class="simple">
+<li><p>Create geometry (From coordinates or GiD)</p></li>
+<li><p>Create Border Conditions (Point and segment supported)</p></li>
+<li><p>Solve!</p></li>
+<li><p>For example: Test 2, Test 5, Test 11-14</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#Import libraries</span>
+<span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM Torsion class</span>
+<span class="kn">from</span> <span class="nn">FEM.Mesh.Delaunay</span> <span class="kn">import</span> <span class="n">Delaunay</span> <span class="c1">#Import Meshing tools</span>
+
+<span class="c1">#Define some variables with geometric properties</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">tw</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1">#Define material constants</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mi">200000</span>
+<span class="n">v</span> <span class="o">=</span> <span class="mf">0.27</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">v</span><span class="p">))</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#Rotation angle</span>
+
+<span class="c1">#Define domain coordinates</span>
+<span class="n">vertices</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">tf</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">tw</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tf</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">tw</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">tw</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">tw</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tf</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">tf</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="c1">#Define triangulation parameters with `_strdelaunay` method.</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">Delaunay</span><span class="o">.</span><span class="n">_strdelaunay</span><span class="p">(</span><span class="n">constrained</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delaunay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                    <span class="n">a</span><span class="o">=</span><span class="s1">&#39;0.00003&#39;</span><span class="p">,</span> <span class="n">o</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">#**Create** geometry using triangulation parameters. Geometry can be imported from .msh files.</span>
+<span class="n">geometry</span> <span class="o">=</span> <span class="n">Delaunay</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+<span class="c1">#Save geometry to .msh file</span>
+<span class="n">geometry</span><span class="o">.</span><span class="n">saveMesh</span><span class="p">(</span><span class="s1">&#39;I_test&#39;</span><span class="p">)</span>
+
+<span class="c1">#Create torsional 2D analysis.</span>
+<span class="n">O</span> <span class="o">=</span> <span class="n">Torsion2D</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
+<span class="c1">#Solve the equation in domain.</span>
+<span class="c1">#Post process and show results</span>
+<span class="n">O</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#Import libraries</span>
+<span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM</span>
+<span class="kn">from</span> <span class="nn">FEM.Mesh.Geometry</span> <span class="kn">import</span> <span class="n">Geometry</span> <span class="c1">#Import Geometry tools</span>
+
+<span class="c1">#Define material constants.</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mi">200000</span>
+<span class="n">v</span> <span class="o">=</span> <span class="mf">0.27</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">v</span><span class="p">))</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#Rotation angle</span>
+
+<span class="c1">#Load geometry with file.</span>
+<span class="n">geometry</span> <span class="o">=</span> <span class="n">Geometry</span><span class="o">.</span><span class="n">loadmsh</span><span class="p">(</span><span class="s1">&#39;I_test.msh&#39;</span><span class="p">)</span>
+
+<span class="c1">#Create torsional 2D analysis.</span>
+<span class="n">O</span> <span class="o">=</span> <span class="n">Torsion2D</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
+<span class="c1">#Solve the equation in domain.</span>
+<span class="c1">#Post process and show results</span>
+<span class="n">O</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-equation-classes">
+<h2>Creating equation classes<a class="headerlink" href="#creating-equation-classes" title="Permalink to this headline">¶</a></h2>
+<p>Note: Don’t forget the docstring!</p>
+<ol class="arabic">
+<li><p>Create a Python flie and import the libraries:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.Core</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Core: Solver</p></li>
+<li><p>Core: Numpy data</p></li>
+<li><p>Core: Matplotlib graphs</p></li>
+<li><p>Tqdm: Progressbars</p></li>
+</ul>
+</li>
+<li><p>Create a Python class with Core inheritance</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">class</span> <span class="nc">PlaneStress</span><span class="p">(</span><span class="n">Core</span><span class="p">):</span>
+       <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">geometry</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
+       <span class="c1">#Do stuff</span>
+       <span class="n">Core</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">geometry</span><span class="p">)</span>
+
+<span class="n">It</span> <span class="ow">is</span> <span class="n">important</span> <span class="n">to</span> <span class="n">manage</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">variables</span> <span class="n">per</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">geometry</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Define the matrix calculation methods and post porcessing methods
+.. code-block:: python</p>
+<blockquote>
+<div><p>def elementMatrices(self):
+def postProcess(self):</p>
+</div></blockquote>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">elementMatrices</span></code> method uses gauss integration points, so you must use the following structure:
+.. code-block:: python</p>
+<blockquote>
+<div><blockquote>
+<div><dl>
+<dt>for e in tqdm(self.elements,unit=’Element’):</dt><dd><p>_x,_p = e.T(e.Z.T) #Gauss points in global coordinates and Shape functions evaluated in gauss points
+jac,dpz = e.J(e.Z.T) #Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
+detjac = np.linalg.det(jac)
+_j = np.linalg.inv(jac) #Jacobian inverse
+dpx = _j &#64; dpz #Shape function derivatives in global coordinates
+for k in range(len(e.Z)): #Iterate over gauss points on domain</p>
+<blockquote>
+<div><p>#Calculate matrices with any finite element model</p>
+</div></blockquote>
+<p>#Assign matrices to element</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>A good example is the <code class="docutils literal notranslate"><span class="pre">PlaneStress</span></code> class</p>
+</div></blockquote>
+</li>
+</ol>
+<div class="section" id="roadmap">
+<h3>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Beam bending by Euler Bernoulli and Timoshenko equations</p></li>
+<li><p>2D elastic plate theory</p></li>
+<li><p>2D heat transfer</p></li>
+<li><p>Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes</p></li>
+<li><p>Transient analysis (Core modification)</p></li>
+<li><p>Elasticity in 3D (3D meshing and post process)</p></li>
+<li><p>Non Lineal analysis for 1D equation (All cases)</p></li>
+<li><p>Non Lineal for 2D equation (All cases)</p></li>
+<li><p>UNIT TESTING</p></li>
+<li><p>NUMERICAL VALIDATION</p></li>
+<li><p>Non Local 2D?</p></li>
+</ol>
+</div>
+<div class="section" id="test-index">
+<h3>Test index:<a class="headerlink" href="#test-index" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Test 1: Preliminar geometry test
+<span class="raw-html-m2r"><img src="Test/test_results/Test1.svg"></span></p></li>
+<li><p>Test 2: 2D Torsion 1 variable per node. H section - Triangular Quadratic</p></li>
+<li><p>Test 3: 2D Torsion 1 variable per node. Square section - Triangular Quadratic</p></li>
+<li><p>Test 4: 2D Torsion 1 variable per node. Mesh from internet - Square Lineal</p></li>
+<li><p>Test 5: 2D Torsion 1 variable per node. Creating and saving mesh - Triangular Quadratic</p></li>
+<li><p>Test 6: 1D random differential equation 1 variable per node. Linear Quadratic</p></li>
+<li><p>Test 7: GiD Mesh import test - Serendipity elements</p></li>
+<li><p>Test 8: Plane Stress 2 variable per node. Plate in tension - Serendipity</p></li>
+<li><p>Test 9: Plane Stress 2 variable per node. Simple Supported Beam - Serendipity</p></li>
+<li><p>Test 10: Plane Stress 2 variable per node. Cantilever Beam - Triangular Quadratic</p></li>
+<li><p>Test 11: Plane Stress 2 variable per node. Fixed-Fixed Beam - Serendipity</p></li>
+<li><p>Test 12: Plane Strain 2 variable per node. Embankment from GiD - Serendipity</p></li>
+<li><p>Test 13: Plane Strain 2 variable per node. Embankment - Triangular Quadratic</p></li>
+<li><p>Test 14: Plane Stress 2 variable per node. Cantilever Beam - Serendipity</p></li>
+<li><p>Test 15: Profile creation tool. Same as Test 14</p></li>
+<li><p>Test 16: Non Local Plane Stress. [WIP]</p></li>
+<li><p>Test 17: 1D Heat transfer</p></li>
+<li><p>Test 18: 2D border elements creation.</p></li>
+<li><p>Test 19: Apply loads on segments. <code class="docutils literal notranslate"><span class="pre">loadOnSegment</span></code> method on Test 11</p></li>
+<li><p>Test 20: Reddy’s Example 11.7.1 Ed 3</p></li>
+<li><p>Test 21: Test 20 with serendipity elements.</p></li>
+<li><p>Test 22: Test 20 with refined mesh.</p></li>
+<li><p>Test 23: Reddy’s Problem 11.1 Ed 3 Plain Strain</p></li>
+<li><p>Test 24: Test 23 with refined mesh</p></li>
+<li><p>Test 25: Holes concept. With Test 24</p></li>
+<li><p>Test 26: Fillets concept.</p></li>
+<li><p>Test 27: Combination of Holes an Fillets, Plane Stress</p></li>
+<li><p>Test 28: Fillets and Holes mesh files of Test 27</p></li>
+<li><p>Test 29: Fillets and Holes in Test 13</p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<ol class="upperalpha simple" start="10">
+<li><ol class="upperalpha simple" start="14">
+<li><p>Reddy. Introduction to the Finite Element Method, Third Edition (McGraw-Hill Education: New York, Chicago, San Francisco, Athens, London, Madrid, Mexico City, Milan, New Delhi, Singapore, Sydney, Toronto, 2006). <a class="reference external" href="https://www.accessengineeringlibrary.com/content/book/9780072466850">https://www.accessengineeringlibrary.com/content/book/9780072466850</a></p></li>
+</ol>
+</li>
+</ol>
+<p>Jonathan Richard Shewchuk, (1996) Triangle: Engineering a 2D Quality Mesh Generator and Delaunay Triangulator</p>
+</div>
+</div>
 </div>
 
 

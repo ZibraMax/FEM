@@ -10,6 +10,8 @@ A FEM implementation. Created by Arturo Rodriguez
 
 da.rodriguezh@uniandes.edu.co
 
+
+
 Installation
 ============
 
@@ -18,16 +20,20 @@ Via pip:
 .. code-block:: shell
 
    pip install AFEM
-
+   
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
 
    modules
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   
+   
+   
+   Indices and tables
+   ==================
+   
+   * :ref:`genindex`
+   * :ref:`modindex`
+   * :ref:`search`
+   
+.. mdinclude:: ../../README.md
