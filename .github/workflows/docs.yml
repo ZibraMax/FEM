@@ -22,8 +22,7 @@ jobs:
                   sphinx-apidoc -f --module-first -o docs/source ../FEM
                   cd docs
                   make html
-                  lr
-                  cp -avr ../Test ../docs/build/html/
+                  cp -r Test/* docs/build/html/*
             # ===============================
             - name: Commit documentation changes
               run: |
