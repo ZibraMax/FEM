@@ -1,7 +1,0 @@
-Test25 module
-=============
-
-.. automodule:: Test25
-   :members:
-   :undoc-members:
-   :show-inheritance:
