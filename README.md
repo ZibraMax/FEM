@@ -1,5 +1,6 @@
 [![Build status](https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml)
 [![Docs](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml/badge.svg)](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml)
+[![PyPI version](https://badge.fury.io/py/AFEM.svg)](https://badge.fury.io/py/AFEM)
 # AFEM
 A FEM implementation.
 
@@ -165,6 +166,8 @@ Note: Don't forget the docstring!
 ## Test index:
 
 - Test 1: Preliminar geometry test
+  <img src="Test/test_results/Test1.svg">
+
 - Test 2: 2D Torsion 1 variable per node. H section - Triangular Quadratic
 - Test 3: 2D Torsion 1 variable per node. Square section - Triangular Quadratic
 - Test 4: 2D Torsion 1 variable per node. Mesh from internet - Square Lineal

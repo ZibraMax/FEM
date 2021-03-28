@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from FEM.PlaneStrain import PlaneStrain
 from FEM.Mesh.Delaunay import Delaunay
-from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 
 E = 21000000.0  # MPa
 v = 0.2  # m

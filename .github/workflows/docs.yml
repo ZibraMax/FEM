@@ -15,7 +15,7 @@ jobs:
             - name: Install dependencies
               run: |
                   python -m pip install --upgrade pip
-                  pip install sphinx sphinx_rtd_theme numpy matplotlib triangle tqdm
+                  pip install sphinx sphinx_rtd_theme numpy matplotlib triangle tqdm m2r2
                   cd docs
                   make clean
                   cd ..
