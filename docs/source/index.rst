@@ -3,23 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to AFEM's documentation!
+AFEM's documentation
 ================================
 
-A FEM implementation. Created by Arturo Rodriguez
-
-da.rodriguezh@uniandes.edu.co
-
-
-
-Installation
-============
-
-Via pip:
-
-.. code-block:: shell
-
-   pip install AFEM
+Created by Arturo Rodriguez: da.rodriguezh@uniandes.edu.co
    
 .. toctree::
    :maxdepth: 4

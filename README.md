@@ -1,11 +1,26 @@
+<!-- LTeX: language=en -->
 [![Build status](https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml)
 [![Docs](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml/badge.svg)](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml)
 [![PyPI version](https://badge.fury.io/py/AFEM.svg)](https://badge.fury.io/py/AFEM)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/854107ce95794d28beac5ea5c44e1dd2)](https://www.codacy.com/gh/ZibraMax/FEM/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ZibraMax/FEM&amp;utm_campaign=Badge_Grade)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ZibraMax/FEM/blob/master/LICENSE)
 # AFEM
 A FEM implementation.
 
 N dimensional FEM implementation for M variables per node problems.
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install AFEM.
+
+```bash
+pip install AFEM
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
 
 ## [Full Docs](https://zibramax.github.io/FEM/)
 
@@ -132,7 +147,7 @@ Note: Don't forget the docstring!
 		Core.__init__(self,geometry)
 	```
 	It is important to manage the number of variables per node in the input geometry.
-3. Define the matrix calculation methods and post porcessing methods
+3. Define the matrix calculation methods and post porcessing methods.
 	```python
 	def elementMatrices(self):
 	def postProcess(self):
@@ -159,60 +174,60 @@ Note: Don't forget the docstring!
 4. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
 5. Transient analysis (Core modification)
 6. Elasticity in 3D (3D meshing and post process)
-7. Non Lineal analysis for 1D equation (All cases)
-8. Non Lineal for 2D equation (All cases)
+7. Non-Lineal analysis for 1D equation (All cases)
+8. Non-Lineal for 2D equation (All cases)
 9. UNIT TESTING
 10. NUMERICAL VALIDATION
-11. Non Local 2D?
+11. Non-Local 2D?
 
 ## Test index:
 
 - Test 1: Preliminar geometry test
 
-- Test 2: 2D Torsion 1 variable per node. H section - Triangular Quadratic
+- Test 2: 2D Torsion 1 variable per node. H section-Triangular Quadratic.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test2.png">
-- Test 3: 2D Torsion 1 variable per node. Square section - Triangular Quadratic
+- Test 3: 2D Torsion 1 variable per node. Square section-Triangular Quadratic.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png">
-- Test 4: 2D Torsion 1 variable per node. Mesh from internet - Square Lineal
+- Test 4: 2D Torsion 1 variable per node. Mesh from internet-Square Lineal.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test4.png">
-- Test 5: 2D Torsion 1 variable per node. Creating and saving mesh - Triangular Quadratic
+- Test 5: 2D Torsion 1 variable per node. Creating and saving mesh-Triangular Quadratic.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test5.png">
-- Test 6: 1D random differential equation 1 variable per node. Linear Quadratic
+- Test 6: 1D random differential equation 1 variable per node. Linear Quadratic.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test6.png">
-- Test 7: GiD Mesh import test - Serendipity elements
+- Test 7: GiD Mesh import test — Serendipity elements
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test7.png">
-- Test 8: Plane Stress 2 variable per node. Plate in tension - Serendipity
+- Test 8: Plane Stress 2 variable per node. Plate in tension — Serendipity.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test8.png">
-- Test 9: Plane Stress 2 variable per node. Simple Supported Beam - Serendipity
+- Test 9: Plane Stress 2 variable per node. Simple Supported Beam — Serendipity.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test9.png">
-- Test 10: Plane Stress 2 variable per node. Cantilever Beam - Triangular Quadratic
+- Test 10: Plane Stress 2 variable per node. Cantilever Beam — Triangular Quadratic.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test10.png">
-- Test 11: Plane Stress 2 variable per node. Fixed-Fixed Beam - Serendipity
+- Test 11: Plane Stress 2 variable per node. Fixed-Fixed Beam — Serendipity.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test11.png">
-- Test 12: Plane Strain 2 variable per node. Embankment from GiD - Serendipity
+- Test 12: Plane Strain 2 variable per node. Embankment from GiD — Serendipity.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test12.png">
-- Test 13: Plane Strain 2 variable per node. Embankment - Triangular Quadratic
+- Test 13: Plane Strain 2 variable per node. Embankment — Triangular Quadratic.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test13_geometry.png">
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png">
-- Test 14: Plane Stress 2 variable per node. Cantilever Beam - Serendipity
+- Test 14: Plane Stress 2 variable per node. Cantilever Beam — Serendipity.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test14.png">
 - Test 15: Profile creation tool. Same as Test 14
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test15.png">
-- Test 16: Non Local Plane Stress. [WIP]
+- Test 16: Non-Local Plane Stress. [WIP]
 - Test 17: 1D Heat transfer.
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test17.png">
@@ -242,7 +257,7 @@ Note: Don't forget the docstring!
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26_geometry.png">
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26.png">
-- Test 27: Combination of Holes an Fillets, Plane Stress
+- Test 27: Combination of Holes Fillets, Plane Stress
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test27_geometry.png">
 - Test 28: Fillets and Holes mesh files of Test 27
@@ -258,3 +273,6 @@ Note: Don't forget the docstring!
 J. N. Reddy. Introduction to the Finite Element Method, Third Edition (McGraw-Hill Education: New York, Chicago, San Francisco, Athens, London, Madrid, Mexico City, Milan, New Delhi, Singapore, Sydney, Toronto, 2006). https://www.accessengineeringlibrary.com/content/book/9780072466850
 
 Jonathan Richard Shewchuk, (1996) Triangle: Engineering a 2D Quality Mesh Generator and Delaunay Triangulator
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
