@@ -166,36 +166,90 @@ Note: Don't forget the docstring!
 ## Test index:
 
 - Test 1: Preliminar geometry test
-  <img src="Test/test_results/Test1.svg">
 
 - Test 2: 2D Torsion 1 variable per node. H section - Triangular Quadratic
+  
+  <img src="Test/test_results/Test2.svg">
 - Test 3: 2D Torsion 1 variable per node. Square section - Triangular Quadratic
+  
+  <img src="Test/test_results/Test3.svg">
 - Test 4: 2D Torsion 1 variable per node. Mesh from internet - Square Lineal
-- Test 5: 2D Torsion 1 variable per node. Creating and saving mesh - Triangular Quadratic 
+  
+  <img src="Test/test_results/Test4.svg">
+- Test 5: 2D Torsion 1 variable per node. Creating and saving mesh - Triangular Quadratic
+  
+  <img src="Test/test_results/Test5.svg">
 - Test 6: 1D random differential equation 1 variable per node. Linear Quadratic
+  
+  <img src="Test/test_results/Test6.svg">
 - Test 7: GiD Mesh import test - Serendipity elements
+  
+  <img src="Test/test_results/Test7.svg">
 - Test 8: Plane Stress 2 variable per node. Plate in tension - Serendipity
+  
+  <img src="Test/test_results/Test8.svg">
 - Test 9: Plane Stress 2 variable per node. Simple Supported Beam - Serendipity
+  
+  <img src="Test/test_results/Test9.svg">
 - Test 10: Plane Stress 2 variable per node. Cantilever Beam - Triangular Quadratic
+  
+  <img src="Test/test_results/Test10.svg">
 - Test 11: Plane Stress 2 variable per node. Fixed-Fixed Beam - Serendipity
+  
+  <img src="Test/test_results/Test11.svg">
 - Test 12: Plane Strain 2 variable per node. Embankment from GiD - Serendipity
+  
+  <img src="Test/test_results/Test12.svg">
 - Test 13: Plane Strain 2 variable per node. Embankment - Triangular Quadratic
+  
+  <img src="Test/test_results/Test13_geometry.svg">
+  <img src="Test/test_results/Test3.svg">
 - Test 14: Plane Stress 2 variable per node. Cantilever Beam - Serendipity
+  
+  <img src="Test/test_results/Test14.svg">
 - Test 15: Profile creation tool. Same as Test 14
+  
+  <img src="Test/test_results/Test15.svg">
 - Test 16: Non Local Plane Stress. [WIP]
-- Test 17: 1D Heat transfer
+- Test 17: 1D Heat transfer.
+  
+  <img src="Test/test_results/Test17.svg">
+
 - Test 18: 2D border elements creation.
+  
+  <img src="Test/test_results/Test18.svg">
 - Test 19: Apply loads on segments. `loadOnSegment` method on Test 11
+  
+  <img src="Test/test_results/Test19.svg">
 - Test 20: Reddy's Example 11.7.1 Ed 3 
 - Test 21: Test 20 with serendipity elements.
 - Test 22: Test 20 with refined mesh.
+  
+  <img src="Test/test_results/Test22.svg">
 - Test 23: Reddy's Problem 11.1 Ed 3 Plain Strain
+  
+  <img src="Test/test_results/Test23.svg">
 - Test 24: Test 23 with refined mesh
+  
+  <img src="Test/test_results/Test24.svg">
 - Test 25: Holes concept. With Test 24
+  
+  <img src="Test/test_results/Test25_geometry.svg">
+  <img src="Test/test_results/Test25.svg">
 - Test 26: Fillets concept.
+  
+  <img src="Test/test_results/Test26_geometry.svg">
+  <img src="Test/test_results/Test26.svg">
 - Test 27: Combination of Holes an Fillets, Plane Stress
+  
+  <img src="Test/test_results/Test27_geometry.svg">
 - Test 28: Fillets and Holes mesh files of Test 27
+  
+  <img src="Test/test_results/Test28.svg">
 - Test 29: Fillets and Holes in Test 13
+  
+  <img src="Test/test_results/Test29_geometry.svg">
+  <img src="Test/test_results/Test29.svg">
 
 ## References
 
