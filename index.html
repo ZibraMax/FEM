@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Welcome to AFEM’s documentation! &mdash; FEM __version__ = &#34;1.0.19&#34;
+  <title>AFEM’s documentation &mdash; FEM __version__ = &#34;1.0.19&#34;
  documentation</title>
   
 
@@ -135,7 +135,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Welcome to AFEM’s documentation!</li>
+      <li>AFEM’s documentation</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -154,17 +154,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-afem-s-documentation">
-<h1>Welcome to AFEM’s documentation!<a class="headerlink" href="#welcome-to-afem-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>A FEM implementation. Created by Arturo Rodriguez</p>
-<p><a class="reference external" href="mailto:da&#46;rodriguezh&#37;&#52;&#48;uniandes&#46;edu&#46;co">da<span>&#46;</span>rodriguezh<span>&#64;</span>uniandes<span>&#46;</span>edu<span>&#46;</span>co</a></p>
-</div>
-<div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>Via pip:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install AFEM
-</pre></div>
-</div>
+  <div class="section" id="afem-s-documentation">
+<h1>AFEM’s documentation<a class="headerlink" href="#afem-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Created by Arturo Rodriguez: <a class="reference external" href="mailto:da&#46;rodriguezh&#37;&#52;&#48;uniandes&#46;edu&#46;co">da<span>&#46;</span>rodriguezh<span>&#64;</span>uniandes<span>&#46;</span>edu<span>&#46;</span>co</a></p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -193,15 +185,29 @@
 </li>
 </ul>
 </div>
+<p><span class="raw-html-m2r"><!-- LTeX: language=en --></span></p>
 <a class="reference external image-reference" href="https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml"><img alt="Build status" src="https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml/badge.svg" /></a>
 <a class="reference external image-reference" href="https://github.com/ZibraMax/FEM/actions/workflows/docs.yml"><img alt="Docs" src="https://github.com/ZibraMax/FEM/actions/workflows/docs.yml/badge.svg" /></a>
 <a class="reference external image-reference" href="https://badge.fury.io/py/AFEM"><img alt="PyPI version" src="https://badge.fury.io/py/AFEM.svg" /></a>
 <a class="reference external image-reference" href="https://www.codacy.com/gh/ZibraMax/FEM/dashboard?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=ZibraMax/FEM&amp;amp;utm_campaign=Badge_Grade"><img alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/854107ce95794d28beac5ea5c44e1dd2" /></a>
+<a class="reference external image-reference" href="https://github.com/ZibraMax/FEM/blob/master/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
 </div>
 <div class="section" id="afem">
 <h1>AFEM<a class="headerlink" href="#afem" title="Permalink to this headline">¶</a></h1>
 <p>A FEM implementation.</p>
 <p>N dimensional FEM implementation for M variables per node problems.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Use the package manager <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> to install AFEM.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install AFEM
+</pre></div>
+</div>
+</div>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<p>Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.</p>
+<p>Please make sure to update tests as appropriate.</p>
+</div>
 <div class="section" id="id1">
 <h2><a class="reference external" href="https://zibramax.github.io/FEM/">Full Docs</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -335,7 +341,7 @@
 </pre></div>
 </div>
 </li>
-<li><p>Define the matrix calculation methods and post porcessing methods
+<li><p>Define the matrix calculation methods and post porcessing methods.
 .. code-block:: python</p>
 <blockquote>
 <div><p>def elementMatrices(self):
@@ -376,61 +382,61 @@ for k in range(len(e.Z)): #Iterate over gauss points on domain</p>
 <li><p>Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes</p></li>
 <li><p>Transient analysis (Core modification)</p></li>
 <li><p>Elasticity in 3D (3D meshing and post process)</p></li>
-<li><p>Non Lineal analysis for 1D equation (All cases)</p></li>
-<li><p>Non Lineal for 2D equation (All cases)</p></li>
+<li><p>Non-Lineal analysis for 1D equation (All cases)</p></li>
+<li><p>Non-Lineal for 2D equation (All cases)</p></li>
 <li><p>UNIT TESTING</p></li>
 <li><p>NUMERICAL VALIDATION</p></li>
-<li><p>Non Local 2D?</p></li>
+<li><p>Non-Local 2D?</p></li>
 </ol>
 </div>
 <div class="section" id="test-index">
 <h2>Test index:<a class="headerlink" href="#test-index" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Test 1: Preliminar geometry test</p></li>
-<li><p>Test 2: 2D Torsion 1 variable per node. H section - Triangular Quadratic</p>
+<li><p>Test 2: 2D Torsion 1 variable per node. H section-Triangular Quadratic.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test2.png"></span></p>
 </li>
-<li><p>Test 3: 2D Torsion 1 variable per node. Square section - Triangular Quadratic</p>
+<li><p>Test 3: 2D Torsion 1 variable per node. Square section-Triangular Quadratic.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png"></span></p>
 </li>
-<li><p>Test 4: 2D Torsion 1 variable per node. Mesh from internet - Square Lineal</p>
+<li><p>Test 4: 2D Torsion 1 variable per node. Mesh from internet-Square Lineal.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test4.png"></span></p>
 </li>
-<li><p>Test 5: 2D Torsion 1 variable per node. Creating and saving mesh - Triangular Quadratic</p>
+<li><p>Test 5: 2D Torsion 1 variable per node. Creating and saving mesh-Triangular Quadratic.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test5.png"></span></p>
 </li>
-<li><p>Test 6: 1D random differential equation 1 variable per node. Linear Quadratic</p>
+<li><p>Test 6: 1D random differential equation 1 variable per node. Linear Quadratic.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test6.png"></span></p>
 </li>
-<li><p>Test 7: GiD Mesh import test - Serendipity elements</p>
+<li><p>Test 7: GiD Mesh import test — Serendipity elements</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test7.png"></span></p>
 </li>
-<li><p>Test 8: Plane Stress 2 variable per node. Plate in tension - Serendipity</p>
+<li><p>Test 8: Plane Stress 2 variable per node. Plate in tension — Serendipity.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test8.png"></span></p>
 </li>
-<li><p>Test 9: Plane Stress 2 variable per node. Simple Supported Beam - Serendipity</p>
+<li><p>Test 9: Plane Stress 2 variable per node. Simple Supported Beam — Serendipity.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test9.png"></span></p>
 </li>
-<li><p>Test 10: Plane Stress 2 variable per node. Cantilever Beam - Triangular Quadratic</p>
+<li><p>Test 10: Plane Stress 2 variable per node. Cantilever Beam — Triangular Quadratic.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test10.png"></span></p>
 </li>
-<li><p>Test 11: Plane Stress 2 variable per node. Fixed-Fixed Beam - Serendipity</p>
+<li><p>Test 11: Plane Stress 2 variable per node. Fixed-Fixed Beam — Serendipity.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test11.png"></span></p>
 </li>
-<li><p>Test 12: Plane Strain 2 variable per node. Embankment from GiD - Serendipity</p>
+<li><p>Test 12: Plane Strain 2 variable per node. Embankment from GiD — Serendipity.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test12.png"></span></p>
 </li>
-<li><p>Test 13: Plane Strain 2 variable per node. Embankment - Triangular Quadratic</p>
+<li><p>Test 13: Plane Strain 2 variable per node. Embankment — Triangular Quadratic.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test13_geometry.png"></span>
 <span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png"></span></p>
 </li>
-<li><p>Test 14: Plane Stress 2 variable per node. Cantilever Beam - Serendipity</p>
+<li><p>Test 14: Plane Stress 2 variable per node. Cantilever Beam — Serendipity.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test14.png"></span></p>
 </li>
 <li><p>Test 15: Profile creation tool. Same as Test 14</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test15.png"></span></p>
 </li>
-<li><p>Test 16: Non Local Plane Stress. [WIP]</p></li>
+<li><p>Test 16: Non-Local Plane Stress. [WIP]</p></li>
 <li><p>Test 17: 1D Heat transfer.</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test17.png"></span></p>
 </li>
@@ -459,7 +465,7 @@ for k in range(len(e.Z)): #Iterate over gauss points on domain</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26_geometry.png"></span>
 <span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26.png"></span></p>
 </li>
-<li><p>Test 27: Combination of Holes an Fillets, Plane Stress</p>
+<li><p>Test 27: Combination of Holes Fillets, Plane Stress</p>
 <p><span class="raw-html-m2r"><img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test27_geometry.png"></span></p>
 </li>
 <li><p>Test 28: Fillets and Holes mesh files of Test 27</p>
@@ -480,6 +486,10 @@ for k in range(len(e.Z)): #Iterate over gauss points on domain</p>
 </li>
 </ol>
 <p>Jonathan Richard Shewchuk, (1996) Triangle: Engineering a 2D Quality Mesh Generator and Delaunay Triangulator</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://choosealicense.com/licenses/mit/">MIT</a></p>
 </div>
 </div>
 
