@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to AFEM's documentation!
-===============================
+================================
 
 A FEM implementation. Created by Arturo Rodriguez
 
