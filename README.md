@@ -7,7 +7,7 @@ A FEM implementation.
 
 N dimensional FEM implementation for M variables per node problems.
 
-### [Docs](https://zibramax.github.io/FEM/)
+## [Full Docs](https://zibramax.github.io/FEM/)
 
 ## Tutorial
 
@@ -15,6 +15,7 @@ N dimensional FEM implementation for M variables per node problems.
 
 Avaliable equations:
 - 1D 1 Variable ordinary diferential equation
+- 1D 1 Variable 1D Heat with convective border
 - 1D 2 Variable Euler Bernoulli Beams [TODO]
 - 1D 2 Variable Timoshenko Beams [TODO]
 - 2D 1 Variable Torsion
@@ -170,87 +171,87 @@ Note: Don't forget the docstring!
 
 - Test 2: 2D Torsion 1 variable per node. H section - Triangular Quadratic
   
-  <img src="Test/test_results/Test2.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test2.png">
 - Test 3: 2D Torsion 1 variable per node. Square section - Triangular Quadratic
   
-  <img src="Test/test_results/Test3.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png">
 - Test 4: 2D Torsion 1 variable per node. Mesh from internet - Square Lineal
   
-  <img src="Test/test_results/Test4.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test4.png">
 - Test 5: 2D Torsion 1 variable per node. Creating and saving mesh - Triangular Quadratic
   
-  <img src="Test/test_results/Test5.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test5.png">
 - Test 6: 1D random differential equation 1 variable per node. Linear Quadratic
   
-  <img src="Test/test_results/Test6.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test6.png">
 - Test 7: GiD Mesh import test - Serendipity elements
   
-  <img src="Test/test_results/Test7.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test7.png">
 - Test 8: Plane Stress 2 variable per node. Plate in tension - Serendipity
   
-  <img src="Test/test_results/Test8.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test8.png">
 - Test 9: Plane Stress 2 variable per node. Simple Supported Beam - Serendipity
   
-  <img src="Test/test_results/Test9.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test9.png">
 - Test 10: Plane Stress 2 variable per node. Cantilever Beam - Triangular Quadratic
   
-  <img src="Test/test_results/Test10.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test10.png">
 - Test 11: Plane Stress 2 variable per node. Fixed-Fixed Beam - Serendipity
   
-  <img src="Test/test_results/Test11.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test11.png">
 - Test 12: Plane Strain 2 variable per node. Embankment from GiD - Serendipity
   
-  <img src="Test/test_results/Test12.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test12.png">
 - Test 13: Plane Strain 2 variable per node. Embankment - Triangular Quadratic
   
-  <img src="Test/test_results/Test13_geometry.png">
-  <img src="Test/test_results/Test3.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test13_geometry.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png">
 - Test 14: Plane Stress 2 variable per node. Cantilever Beam - Serendipity
   
-  <img src="Test/test_results/Test14.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test14.png">
 - Test 15: Profile creation tool. Same as Test 14
   
-  <img src="Test/test_results/Test15.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test15.png">
 - Test 16: Non Local Plane Stress. [WIP]
 - Test 17: 1D Heat transfer.
   
-  <img src="Test/test_results/Test17.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test17.png">
 
 - Test 18: 2D border elements creation.
   
-  <img src="Test/test_results/Test18.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test18.png">
 - Test 19: Apply loads on segments. `loadOnSegment` method on Test 11
   
-  <img src="Test/test_results/Test19.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test19.png">
 - Test 20: Reddy's Example 11.7.1 Ed 3 
 - Test 21: Test 20 with serendipity elements.
 - Test 22: Test 20 with refined mesh.
   
-  <img src="Test/test_results/Test22.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test22.png">
 - Test 23: Reddy's Problem 11.1 Ed 3 Plain Strain
   
-  <img src="Test/test_results/Test23.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test23.png">
 - Test 24: Test 23 with refined mesh
   
-  <img src="Test/test_results/Test24.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test24.png">
 - Test 25: Holes concept. With Test 24
   
-  <img src="Test/test_results/Test25_geometry.png">
-  <img src="Test/test_results/Test25.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test25_geometry.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test25.png">
 - Test 26: Fillets concept.
   
-  <img src="Test/test_results/Test26_geometry.png">
-  <img src="Test/test_results/Test26.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26_geometry.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26.png">
 - Test 27: Combination of Holes an Fillets, Plane Stress
   
-  <img src="Test/test_results/Test27_geometry.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test27_geometry.png">
 - Test 28: Fillets and Holes mesh files of Test 27
   
-  <img src="Test/test_results/Test28.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test28.png">
 - Test 29: Fillets and Holes in Test 13
   
-  <img src="Test/test_results/Test29_geometry.png">
-  <img src="Test/test_results/Test29.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29_geometry.png">
+  <img src="[Test/test_results/](https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/)Test29.png">
 
 ## References
 

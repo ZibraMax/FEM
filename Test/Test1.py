@@ -65,7 +65,7 @@ print(z)
 # print(eTL.isInside(np.array([3.5,2.5])))
 
 
-# Jacobian Graph
+# Jacobian Graphs
 # for e in ELEMENTOS:
 # 	e.jacobianGraph()
 # 	plt.show()
