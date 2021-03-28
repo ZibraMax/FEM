@@ -9,3 +9,4 @@ F_BUILD/
 AFEM.egg-info/
 *.pyc
 *.csv
+*.svg
