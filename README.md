@@ -5,7 +5,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/854107ce95794d28beac5ea5c44e1dd2)](https://www.codacy.com/gh/ZibraMax/FEM/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ZibraMax/FEM&amp;utm_campaign=Badge_Grade)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ZibraMax/FEM/blob/master/LICENSE)
 # AFEM
-A FEM implementation.
+A [Python](https://www.python.org/) FEM implementation.
 
 N dimensional FEM implementation for M variables per node problems.
 
@@ -44,6 +44,8 @@ Avaliable equations:
 - For example: Test 2, Test 5, Test 11-14
 
 #### Example without geometry file (Test 2):
+
+
 ```python
 import matplotlib.pyplot as plt #Import libraries
 from FEM.Torsion2D import Torsion2D #import AFEM Torsion class
@@ -63,23 +65,23 @@ phi = 1 #Rotation angle
 
 #Define domain coordinates
 vertices = [
-    [0, 0],
-    [a, 0],
-    [a, tf],
-    [a / 2 + tw / 2, tf],
-    [a / 2 + tw / 2, tf + b],
-    [a, tf + b],
-    [a, 2 * tf + b],
-    [0, 2 * tf + b],
-    [0, tf + b],
-    [a / 2 - tw / 2, tf + b],
-    [a / 2 - tw / 2, tf],
-    [0, tf],
+        [0, 0],
+        [a, 0],
+        [a, tf],
+        [a / 2 + tw / 2, tf],
+        [a / 2 + tw / 2, tf + b],
+        [a, tf + b],
+        [a, 2 * tf + b],
+        [0, 2 * tf + b],
+        [0, tf + b],
+        [a / 2 - tw / 2, tf + b],
+        [a / 2 - tw / 2, tf],
+        [0, tf],
 ]
 
 #Define triangulation parameters with `_strdelaunay` method.
 params = Delaunay._strdelaunay(constrained=True, delaunay=True,
-                                    a='0.00003', o=2)
+                                                                        a='0.00003', o=2)
 #**Create** geometry using triangulation parameters. Geometry can be imported from .msh files.
 geometry = Delaunay(vertices, params)
 
@@ -96,6 +98,7 @@ plt.show()
 ```
 
 #### Example with geometry file (Test 2):
+
 
 ```python
 import matplotlib.pyplot as plt #Import libraries
@@ -127,49 +130,54 @@ Note: Don't forget the docstring!
 
 #### Steps
 1. Create a Python flie and import the libraries:
-	```python
-	from .Core import *
-	from tqdm import tqdm
-	import numpy as np
-	import matplotlib.pyplot as plt
-	```
 
-	- Core: Solver
-	- Core: Numpy data
-	- Core: Matplotlib graphs
-	- Tqdm: Progressbars
+    ```python
+    from .Core import *
+    from tqdm import tqdm
+    import numpy as np
+    import matplotlib.pyplot as plt
+    ```
+
+    - Core: Solver
+    - Core: Numpy data
+    - Core: Matplotlib graphs
+    - Tqdm: Progressbars
 
 2. Create a Python class with Core inheritance
-	```python
-	class PlaneStress(Core):
-		def __init__(self,geometry,*args,**kargs):
-		#Do stuff
-		Core.__init__(self,geometry)
-	```
-	It is important to manage the number of variables per node in the input geometry.
+    ```python
+    class PlaneStress(Core):
+        def __init__(self,geometry,*args,**kargs):
+        #Do stuff
+        Core.__init__(self,geometry)
+    ```
+    It is important to manage the number of variables per node in the input geometry.
 3. Define the matrix calculation methods and post porcessing methods.
-	```python
-	def elementMatrices(self):
-	def postProcess(self):
-	```
+    ```python
+    def elementMatrices(self):
+    def postProcess(self):
+    ```
+
 4. The `elementMatrices` method uses gauss integration points, so you must use the following structure:
-	```python
-	for e in tqdm(self.elements,unit='Element'):
-		_x,_p = e.T(e.Z.T) #Gauss points in global coordinates and Shape functions evaluated in gauss points
-		jac,dpz = e.J(e.Z.T) #Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
-		detjac = np.linalg.det(jac)
-		_j = np.linalg.inv(jac) #Jacobian inverse
-		dpx = _j @ dpz #Shape function derivatives in global coordinates
-		for k in range(len(e.Z)): #Iterate over gauss points on domain
-			#Calculate matrices with any finite element model
-		#Assign matrices to element
-	```
-	A good example is the `PlaneStress` class
+
+    ```python
+
+    for e in tqdm(self.elements,unit='Element'):
+        _x,_p = e.T(e.Z.T) #Gauss points in global coordinates and Shape functions evaluated in gauss points
+        jac,dpz = e.J(e.Z.T) #Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
+        detjac = np.linalg.det(jac)
+        _j = np.linalg.inv(jac) #Jacobian inverse
+        dpx = _j @ dpz #Shape function derivatives in global coordinates
+        for k in range(len(e.Z)): #Iterate over gauss points on domain
+            #Calculate matrices with any finite element model
+        #Assign matrices to element
+    ```
+
+A good example is the `PlaneStress` class
 
 ## Roadmap
 
-1. Beam bending by Euler Bernoulli and Timoshenko equations 
-2. 2D elastic plate theory 
+1. Beam bending by Euler Bernoulli and Timoshenko equations
+2. 2D elastic plate theory
 3. 2D heat transfer
 4. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
 5. Transient analysis (Core modification)
@@ -185,88 +193,88 @@ Note: Don't forget the docstring!
 - Test 1: Preliminar geometry test
 
 - Test 2: 2D Torsion 1 variable per node. H section-Triangular Quadratic.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test2.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test2.png">
 - Test 3: 2D Torsion 1 variable per node. Square section-Triangular Quadratic.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png">
 - Test 4: 2D Torsion 1 variable per node. Mesh from internet-Square Lineal.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test4.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test4.png">
 - Test 5: 2D Torsion 1 variable per node. Creating and saving mesh-Triangular Quadratic.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test5.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test5.png">
 - Test 6: 1D random differential equation 1 variable per node. Linear Quadratic.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test6.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test6.png">
 - Test 7: GiD Mesh import test — Serendipity elements
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test7.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test7.png">
 - Test 8: Plane Stress 2 variable per node. Plate in tension — Serendipity.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test8.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test8.png">
 - Test 9: Plane Stress 2 variable per node. Simple Supported Beam — Serendipity.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test9.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test9.png">
 - Test 10: Plane Stress 2 variable per node. Cantilever Beam — Triangular Quadratic.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test10.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test10.png">
 - Test 11: Plane Stress 2 variable per node. Fixed-Fixed Beam — Serendipity.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test11.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test11.png">
 - Test 12: Plane Strain 2 variable per node. Embankment from GiD — Serendipity.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test12.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test12.png">
 - Test 13: Plane Strain 2 variable per node. Embankment — Triangular Quadratic.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test13_geometry.png">
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test13_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png">
 - Test 14: Plane Stress 2 variable per node. Cantilever Beam — Serendipity.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test14.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test14.png">
 - Test 15: Profile creation tool. Same as Test 14
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test15.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test15.png">
 - Test 16: Non-Local Plane Stress. [WIP]
 - Test 17: 1D Heat transfer.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test17.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test17.png">
 
 - Test 18: 2D border elements creation.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test18.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test18.png">
 - Test 19: Apply loads on segments. `loadOnSegment` method on Test 11
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test19.png">
-- Test 20: Reddy's Example 11.7.1 Ed 3 
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test19.png">
+- Test 20: Reddy's Example 11.7.1 Ed 3
 - Test 21: Test 20 with serendipity elements.
 - Test 22: Test 20 with refined mesh.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test22.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test22.png">
 - Test 23: Reddy's Problem 11.1 Ed 3 Plain Strain
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test23.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test23.png">
 - Test 24: Test 23 with refined mesh
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test24.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test24.png">
 - Test 25: Holes concept. With Test 24
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test25_geometry.png">
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test25.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test25_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test25.png">
 - Test 26: Fillets concept.
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26_geometry.png">
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test26.png">
 - Test 27: Combination of Holes Fillets, Plane Stress
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test27_geometry.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test27_geometry.png">
 - Test 28: Fillets and Holes mesh files of Test 27
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test28.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test28.png">
 - Test 29: Fillets and Holes in Test 13
-  
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29_geometry.png">
-  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29.png">
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29.png">
 
 ## References
 
