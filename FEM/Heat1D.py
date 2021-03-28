@@ -87,7 +87,7 @@ class Heat1D(Core):
         """Add a convective border condition. The value is: :math:`kA\\frac{dT}{dx}+\\beta A(T-T_{\infty})=value`
 
         Args:
-            node (int): Node where the convective border condition is applied
+            node (int): Node where the above border condition is applied
             value (float, optional): Defined below. Defaults to 0.
         """
 
