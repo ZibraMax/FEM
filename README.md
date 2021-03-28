@@ -251,7 +251,7 @@ Note: Don't forget the docstring!
 - Test 29: Fillets and Holes in Test 13
   
   <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29_geometry.png">
-  <img src="[Test/test_results/](https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/)Test29.png">
+  <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29.png">
 
 ## References
 
