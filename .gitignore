@@ -7,6 +7,5 @@ Referencias/
 dist/
 F_BUILD/
 AFEM.egg-info/
-*.png
 *.pyc
 *.csv
