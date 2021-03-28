@@ -257,7 +257,7 @@ def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: in
         O (list): Center coordinates of circle
         r (float): Circle radius
         sa (float): Start angle. Defaults to 0
-        a (float): End angle. Defaults to :math: `2\\pi`
+        a (float): End angle. Defaults to :math:`2\\pi`
         n (int, optional): Number of coords to calculate. Defaults to 10.
         isFillet (bool, optional): If the circle will be used as fillet. Defaults to False.
 
