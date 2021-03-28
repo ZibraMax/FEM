@@ -4,7 +4,9 @@
 [![PyPI version](https://badge.fury.io/py/AFEM.svg)](https://badge.fury.io/py/AFEM)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/854107ce95794d28beac5ea5c44e1dd2)](https://www.codacy.com/gh/ZibraMax/FEM/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ZibraMax/FEM&amp;utm_campaign=Badge_Grade)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ZibraMax/FEM/blob/master/LICENSE)
-# AFEM
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![GitHub release](https://img.shields.io/github/v/release/ZibraMax/FEM.svg)](https://GitHub.com/ZibraMax/FEM/)
+
 A [Python](https://www.python.org/) FEM implementation.
 
 N dimensional FEM implementation for M variables per node problems.
