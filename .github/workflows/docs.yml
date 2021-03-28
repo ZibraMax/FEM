@@ -26,8 +26,8 @@ jobs:
             - name: Commit documentation changes
               run: |
                   git clone https://github.com/ZibraMax/FEM.git --branch gh-pages --single-branch gh-pages
+                  cp -r Test/* docs/build/html/
                   cp -r docs/build/html/* gh-pages/
-                  cp -r Test/* gh-pages/docs/build/html/
                   cd gh-pages
                   touch .nojekyll
                   git config --local user.email "action@github.com"
