@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>FEM.Utils package &mdash; FEM __version__ = &#34;1.0.19&#34;
+  <title>FEM.Utils package &mdash; FEM __version__ = &#34;1.0.20&#34;
  documentation</title>
   
 
@@ -191,6 +191,27 @@
 <div class="section" id="module-FEM.Utils.polygonal">
 <span id="fem-utils-polygonal-module"></span><h2>FEM.Utils.polygonal module<a class="headerlink" href="#module-FEM.Utils.polygonal" title="Permalink to this headline">¶</a></h2>
 <p>Polygonal help functions</p>
+<dl class="py function">
+<dt id="FEM.Utils.polygonal.angleBetweenAngles">
+<code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">angleBetweenAngles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#FEM.Utils.polygonal.angleBetweenAngles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates if a angle is between 2 angles</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>float</em>) – Start angle</p></li>
+<li><p><strong>end</strong> (<em>float</em>) – End angle</p></li>
+<li><p><strong>mid</strong> (<em>float</em>) – Angle to be evaluated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tru if mid is between start-end</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt id="FEM.Utils.polygonal.clip">
 <code class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></code><code class="sig-name descname"><span class="pre">clip</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#FEM.Utils.polygonal.clip" title="Permalink to this definition">¶</a></dt>
