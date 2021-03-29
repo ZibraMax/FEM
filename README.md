@@ -230,7 +230,7 @@ A good example is the `PlaneStress` class
 - Test 13: Plane Strain 2 variable per node. Embankment — Triangular Quadratic.
 
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test13_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test3.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test13.png">
 - Test 14: Plane Stress 2 variable per node. Cantilever Beam — Serendipity.
 
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test14.png">
