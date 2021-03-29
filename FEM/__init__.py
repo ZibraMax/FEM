@@ -14,3 +14,4 @@ from .PlaneStress import *
 from .PlaneStressNonLocal import *
 from .PlaneStrain import *
 from .Heat1D import *
+from .Heat2D import *

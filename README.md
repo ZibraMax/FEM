@@ -279,10 +279,25 @@ A good example is the `PlaneStress` class
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29.png">
 
 
-- Test 29: Border conditions in holes
+- Test 30: Border conditions and loads in holes
 
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test30_geometry.png">
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test30.png">
+
+- Test 31: 2D Heat with convective borders
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test31_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test31.png">
+
+- Test 32: Border conditions and loads in holes
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test32_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test32.png">
+
+- Test 33: Test 30 with Heat
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test33_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test33.png">
 
 ## References
 
