@@ -103,7 +103,7 @@ class PlaneStress(Core):
             if e.intBorders:
                 for j in range(len(e.borders)):
                     border = e.borders[j]
-                    if not border.dir == 0.0:
+                    if (len(border.properties['load_x']) + len(border.properties['load_y'])):
                         _x, _p = e.T(e.Tj[j](border.Z.T))
                         _s = border.TS(border.Z.T)
                         detjac = border.coords[-1, 0]*0.5

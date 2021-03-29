@@ -246,7 +246,7 @@ class Geometry:
             coords = np.array(coords.tolist() + [coords[0].tolist()])
             X = coords[:, 0]
             Y = coords[:, 1]
-            ax.plot(X, Y, '-', color='black', alpha=1-0.9*draw_bc, zorder=-10)
+            ax.plot(X, Y, '-', color='black', alpha=1-0.6*draw_bc, zorder=-10)
             cx = self.centroids[i][0]
             cy = self.centroids[i][1]
             if draw_labels:
@@ -268,16 +268,31 @@ class Geometry:
                         edgecolor='b',
                         linewidth=3,
                         zorder=0,
-                        alpha=1-0.9*draw_bc
+                        alpha=1-0.6*draw_bc
                     )
                     cx = (x0+x1)*0.5
                     cy = (y0+y1)*0.5
                     ax.plot(cx, cy, 'o', markersize=texto +
-                            bolita, color='pink', alpha=1-0.9*draw_bc)
+                            bolita, color='pink', alpha=1-0.6*draw_bc)
                     ax.annotate(format(i), [
-                                cx, cy], alpha=1-0.9*draw_bc, size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
+                                cx, cy], alpha=1-0.6*draw_bc, size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
         except:
             pass
+        for j, e in enumerate(self.elements):
+            if e.intBorders:
+                for i in range(-1, len(e.borders)-1):
+                    border = e.borders[i]
+                    if (len(border.properties['load_x']) + len(border.properties['load_y'])):
+                        coords_border_0 = e._coords[i]
+                        coords_border_1 = e._coords[i+1]
+                        ax.plot([coords_border_0[0], coords_border_1[0]], [coords_border_0[1], coords_border_1[1]],
+                                color='yellow',
+                                linewidth=5,
+                                zorder=50,
+                                )
+                        cx = (coords_border_0 + coords_border_1)/2
+                        ax.annotate(format(len(border.properties['load_x']) + len(border.properties['load_y'])), cx, size=texto,
+                                    textcoords="offset points", xytext=(-0, -2.5), ha='center', zorder=55)
         ax.set_xlabel('x')
         ax.set_ylabel('y')
         ax.set_title('Domain')

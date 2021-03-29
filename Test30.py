@@ -12,13 +12,13 @@ fillets = [{'start_segment': 1, 'end_segment': 2, 'r': 0.48, 'n': 5},
 holes = []
 radi = 0.5
 cent = [2, 1.5]
-vert, seg = giveCoordsCircle(cent, radi, n=50)
+vert, seg = giveCoordsCircle(cent, radi, n=70)
 hole = {'center': cent, 'segments': seg, 'vertices': vert}
 holes += [hole]
 
 radi = 0.5/2
 cent = [5, 1.5]
-vert, seg = giveCoordsCircle(cent, radi, n=21)
+vert, seg = giveCoordsCircle(cent, radi, n=40)
 hole = {'center': cent, 'segments': seg, 'vertices': vert}
 holes += [hole]
 
@@ -31,8 +31,6 @@ geometria.setCbe(cbe)
 
 # geometria.cbe = geometria.cbFromSegment(7, 0, 1)
 # geometria.cbe += geometria.cbFromSegment(7, 0, 2)
-geometria.show(draw_bc=True, label_bc=False)
-plt.show()
 # geometria.saveMesh('Mesh_tests/pieza_acero')
 
 E = 29000000
@@ -40,12 +38,14 @@ v = 0.26
 t = 0.5
 p0 = 5000
 p = p0/2
-geometria.loadOnSegment(3, lambda s: p)
+# geometria.loadOnSegment(3, lambda s: p)
 # for i in range(68, 89):
 #     geometria.loadOnSegment(i, lambda s: 10000)
 
-# geometria.loadOnHole(1, 0, 2*np.pi, lambda s: 10000)
+geometria.loadOnHole(1, np.pi/2, 3*np.pi/2, lambda s: p0/(2*np.pi*radi/2))
 geometria.mask = None
 O = PlaneStress(geometria, E, v, t)
+O.geometry.show(draw_bc=True, draw_segs=False)
+plt.show()
 O.solve()
 plt.show()
