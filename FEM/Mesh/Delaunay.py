@@ -63,6 +63,8 @@ class Delaunay(Geometry):
             for hole in holes_dict:
                 hh += [hole['center']]
                 seg += (np.array(hole['segments'])+len(vertices)).tolist()
+                hole['segments'] = (
+                    np.array(hole['segments'])+len(vertices)).tolist()
                 vertices += np.array(hole['vertices']).tolist()
             original = dict(vertices=np.array(vertices),
                             segments=np.array(seg), holes=hh)

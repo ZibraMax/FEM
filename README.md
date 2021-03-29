@@ -278,6 +278,12 @@ A good example is the `PlaneStress` class
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29_geometry.png">
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test29.png">
 
+
+- Test 29: Border conditions in holes
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test30_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test30.png">
+
 ## References
 
 J. N. Reddy. Introduction to the Finite Element Method, Third Edition (McGraw-Hill Education: New York, Chicago, San Francisco, Athens, London, Madrid, Mexico City, Milan, New Delhi, Singapore, Sydney, Toronto, 2006). https://www.accessengineeringlibrary.com/content/book/9780072466850
