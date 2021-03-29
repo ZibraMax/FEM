@@ -5,3 +5,4 @@ FEM
    :maxdepth: 4
 
    FEM
+   setup
