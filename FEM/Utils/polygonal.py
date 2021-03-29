@@ -290,3 +290,19 @@ def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: in
             y = r*np.sin(theta)
             coords += [[O[0]+x, O[1]+y]]
     return coords, segments
+
+
+def angleBetweenAngles(start: float, end: float, mid: float) -> bool:
+    """Evaluates if a angle is between 2 angles
+
+    Args:
+        start (float): Start angle
+        end (float): End angle
+        mid (float): Angle to be evaluated
+
+    Returns:
+        bool: Tru if mid is between start-end
+    """
+    end = end - start + 2*np.pi if (end - start) < 0.0 else end - start
+    mid = mid - start + 2*np.pi if (mid - start) < 0.0 else mid - start
+    return (mid < end)
