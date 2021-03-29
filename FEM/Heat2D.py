@@ -8,7 +8,46 @@ from typing import Callable, Tuple
 
 
 class Heat2D(Core):
+    """Creates a Heat2D problem with convective borders
+
+    The differential equation is:
+
+    .. math::
+        -\\frac{\\partial}{\\partial x}\\left(k_x\\frac{\\partial T}{\\partial x}\\right) - \\frac{\\partial}{\\partial y}\\left(k_y\\frac{\\partial T}{\\partial y}\\right)=f(x,y)
+
+    With convective border conditions:
+
+    .. math::
+        k_x\\frac{\\partial T}{\\partial x}n_x+k_y\\frac{\\partial T}{\\partial y}n_y+\\beta (T-T_\\infty)=\\hat{q_n}
+
+    Args:
+        geometry (Geometry): Input 1 variable per node geometry
+        kx (Tuple[float, list]): Heat transfer coeficient in x direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)
+        ky (Tuple[float, list]): Heat transfer coeficient in y direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)
+        Ta (float): Anbient temperature.
+        f (Callable, optional): Internal heat generation function. Defaults to None.
+        """
+
     def __init__(self, geometry: Geometry, kx: Tuple[float, list], ky: Tuple[float, list], Ta: float, f: Callable = None) -> None:
+        """Creates a Heat2D problem with convective borders
+
+        The differential equation is:
+
+        .. math::
+            -\\frac{\\partial}{\\partial x}\\left(k_x\\frac{\\partial T}{\\partial x}\\right) - \\frac{\\partial}{\\partial y}\\left(k_y\\frac{\\partial T}{\\partial y}\\right)=f(x,y)
+
+        With convective border conditions:
+
+        .. math::
+            k_x\\frac{\\partial T}{\\partial x}n_x+k_y\\frac{\\partial T}{\\partial y}n_y+\\beta (T-T_\\infty)=\\hat{q_n}
+
+        Args:
+            geometry (Geometry): Input 1 variable per node geometry
+            kx (Tuple[float, list]): Heat transfer coeficient in x direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)
+            ky (Tuple[float, list]): Heat transfer coeficient in y direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)
+            Ta (float): Anbient temperature.
+            f (Callable, optional): Internal heat generation function. Defaults to None.
+        """
         if type(kx) == float or type(kx) == int:
             kx = [kx]*len(geometry.elements)
         if type(ky) == float or type(ky) == int:
@@ -22,6 +61,8 @@ class Heat2D(Core):
         Core.__init__(self, geometry)
 
     def elementMatrices(self) -> None:
+        """Calculate the element matrices using Gauss Legendre quadrature.
+        """
         for ee, e in enumerate(tqdm(self.elements, unit='Element')):
             m = len(e.gdl.T)
             K = np.zeros([m, m])
@@ -63,6 +104,13 @@ class Heat2D(Core):
             e.Ke += K+H
 
     def defineConvectiveBoderConditions(self, segment: int, beta: float = 0, tol: float = 1*10**(-5)) -> None:
+        """Define convective borders
+
+        Args:
+            segment (int): Segment in wich load will be applied
+            beta (float, optional): Convective coeficient :math:`\\beta` . Defaults to 0.
+            tol (float, optional): Tolerancy to find adjacent nodes. Defaults to 1*10**(-5).
+        """
         self.geometry.loadOnSegment(segment, fx=lambda s: beta, tol=tol)
 
     def postProcess(self) -> None:

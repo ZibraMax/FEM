@@ -36,7 +36,7 @@ Avaliable equations:
 - 1D 2 Variable Euler Bernoulli Beams [TODO]
 - 1D 2 Variable Timoshenko Beams [TODO]
 - 2D 1 Variable Torsion
-- 22D 1 Variable 2D Heat with convective borders
+- 2D 1 Variable 2D Heat with convective borders
 - 2D 2 Variable Plane Strees
 - 2D 2 Variable Plane Strain
 
