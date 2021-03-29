@@ -1,0 +1,7 @@
+Test32 module
+=============
+
+.. automodule:: Test32
+   :members:
+   :undoc-members:
+   :show-inheritance:

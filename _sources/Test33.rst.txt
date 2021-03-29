@@ -1,0 +1,7 @@
+Test33 module
+=============
+
+.. automodule:: Test33
+   :members:
+   :undoc-members:
+   :show-inheritance:

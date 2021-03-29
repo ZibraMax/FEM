@@ -51,6 +51,14 @@ FEM.Heat1D module
    :undoc-members:
    :show-inheritance:
 
+FEM.Heat2D module
+-----------------
+
+.. automodule:: FEM.Heat2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.PlaneStrain module
 ----------------------
 

@@ -5,4 +5,8 @@ FEM
    :maxdepth: 4
 
    FEM
+   Test30
+   Test31
+   Test32
+   Test33
    setup
