@@ -36,6 +36,7 @@ Avaliable equations:
 - 1D 2 Variable Euler Bernoulli Beams [TODO]
 - 1D 2 Variable Timoshenko Beams [TODO]
 - 2D 1 Variable Torsion
+- 22D 1 Variable 2D Heat with convective borders
 - 2D 2 Variable Plane Strees
 - 2D 2 Variable Plane Strain
 
@@ -180,7 +181,6 @@ A good example is the `PlaneStress` class
 
 1. Beam bending by Euler Bernoulli and Timoshenko equations
 2. 2D elastic plate theory
-3. 2D heat transfer
 4. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
 5. Transient analysis (Core modification)
 6. Elasticity in 3D (3D meshing and post process)
