@@ -40,7 +40,6 @@ class Core():
             self.K[np.ix_(e.gdlm, e.gdlm)] += e.Ke
             self.F[np.ix_(e.gdlm)] += e.Fe
             self.Q[np.ix_(e.gdlm)] += e.Qe
-        self._K = np.copy(self.K)
         print('Done!')
 
     def borderConditions(self) -> None:

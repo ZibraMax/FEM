@@ -124,11 +124,12 @@ class PlaneStress(Core):
             e.Ke[np.ix_(subm[1], subm[0])] += self.t[ee]*(Kvu)
             e.Ke[np.ix_(subm[1], subm[1])] += self.t[ee]*(Kvv)
 
-    def postProcess(self, mult: float = 1000) -> None:
+    def postProcess(self, mult: float = 1000, gs=None, **kargs) -> None:
         """Generate the stress surfaces and displacement fields for the geometry
 
         Args:
                 mult (int, optional): Factor for displacements. Defaults to 1000.
+                gs (list, optional): List of 4 gridSpec matplotlib objects. Defaults to None.
         """
         X = []
         Y = []
@@ -136,13 +137,13 @@ class PlaneStress(Core):
         U2 = []
         U3 = []
         fig = plt.figure()
-
-        gs = gridspec.GridSpec(3, 3)
-
-        ax1 = fig.add_subplot(gs[0, 0])
-        ax2 = fig.add_subplot(gs[0, 1])
-        ax3 = fig.add_subplot(gs[0, 2])
-        ax5 = fig.add_subplot(gs[1:, :])
+        if not gs:
+            gss = gridspec.GridSpec(3, 3)
+            gs = [gss[0, 0], gss[0, 1], gss[0, 2], gss[1:, :]]
+        ax1 = fig.add_subplot(gs[0])
+        ax2 = fig.add_subplot(gs[1])
+        ax3 = fig.add_subplot(gs[2])
+        ax5 = fig.add_subplot(gs[3])
         ee = -1
         for e in tqdm(self.elements, unit='Element'):
             ee += 1
@@ -157,15 +158,18 @@ class PlaneStress(Core):
             ax5.plot(*coordsNuevas.T, '-', color='black')
         ax5.legend(['Original Shape', 'Deformed Shape (x'+format(mult)+')'])
         ax5.set_aspect('equal')
-        surf = ax1.tricontourf(X, Y, U1, cmap='magma', levels=20)
+        ax1.set_aspect('equal')
+        ax3.set_aspect('equal')
+        ax2.set_aspect('equal')
+        surf = ax1.tricontourf(X, Y, U1, cmap='magma', **kargs)
         plt.colorbar(surf, ax=ax1)
         ax1.set_title(r'$\sigma_{xx}$')
 
-        surf = ax2.tricontourf(X, Y, U2, cmap='magma', levels=20)
+        surf = ax2.tricontourf(X, Y, U2, cmap='magma', **kargs)
         plt.colorbar(surf, ax=ax2)
         ax2.set_title(r'$\sigma_{yy}$')
 
-        surf = ax3.tricontourf(X, Y, U3, cmap='magma', levels=20)
+        surf = ax3.tricontourf(X, Y, U3, cmap='magma', **kargs)
         plt.colorbar(surf, ax=ax3)
         ax3.set_title(r'$\sigma_{xy}$')
         mask = self.geometry.mask
