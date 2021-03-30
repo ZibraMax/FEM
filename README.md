@@ -299,6 +299,12 @@ A good example is the `PlaneStress` class
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test33_geometry.png">
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test33.png">
 
+- Test 34: Custom plots, Beam-Girder steel plate connection
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test34_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test34.png">
+    
+
 ## References
 
 J. N. Reddy. Introduction to the Finite Element Method, Third Edition (McGraw-Hill Education: New York, Chicago, San Francisco, Athens, London, Madrid, Mexico City, Milan, New Delhi, Singapore, Sydney, Toronto, 2006). https://www.accessengineeringlibrary.com/content/book/9780072466850
