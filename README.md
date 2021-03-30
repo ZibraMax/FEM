@@ -303,6 +303,11 @@ A good example is the `PlaneStress` class
 
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test34_geometry.png">
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test34.png">
+
+- Test 35: Torsion with fillets
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test35_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test35.png">
     
 
 ## References
