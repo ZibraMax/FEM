@@ -124,7 +124,7 @@ class PlaneStress(Core):
             e.Ke[np.ix_(subm[1], subm[0])] += self.t[ee]*(Kvu)
             e.Ke[np.ix_(subm[1], subm[1])] += self.t[ee]*(Kvv)
 
-    def postProcess(self, mult: float = 1000, gs=None, **kargs) -> None:
+    def postProcess(self, mult: float = 1000, gs=None, levels=1000, **kargs) -> None:
         """Generate the stress surfaces and displacement fields for the geometry
 
         Args:
@@ -161,15 +161,15 @@ class PlaneStress(Core):
         ax1.set_aspect('equal')
         ax3.set_aspect('equal')
         ax2.set_aspect('equal')
-        surf = ax1.tricontourf(X, Y, U1, cmap='magma', **kargs)
+        surf = ax1.tricontourf(X, Y, U1, cmap='magma', levels=levels, **kargs)
         plt.colorbar(surf, ax=ax1)
         ax1.set_title(r'$\sigma_{xx}$')
 
-        surf = ax2.tricontourf(X, Y, U2, cmap='magma', **kargs)
+        surf = ax2.tricontourf(X, Y, U2, cmap='magma', levels=levels, **kargs)
         plt.colorbar(surf, ax=ax2)
         ax2.set_title(r'$\sigma_{yy}$')
 
-        surf = ax3.tricontourf(X, Y, U3, cmap='magma', **kargs)
+        surf = ax3.tricontourf(X, Y, U3, cmap='magma', levels=levels, **kargs)
         plt.colorbar(surf, ax=ax3)
         ax3.set_title(r'$\sigma_{xy}$')
         mask = self.geometry.mask

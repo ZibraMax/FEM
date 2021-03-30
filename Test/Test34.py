@@ -39,5 +39,5 @@ plt.show()
 O.solve(plot=False)
 gss = gridspec.GridSpec(1, 4)
 gs = [gss[0, 0], gss[0, 1], gss[0, 2], gss[0, 3]]
-O.postProcess(gs=gs, levels=1000)
+O.postProcess(gs=gs)
 plt.show()
