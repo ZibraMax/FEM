@@ -64,7 +64,7 @@ class Torsion2D(Core):
             e.Fe[:, 0] = 2*self.G*self._phi*detjac@_p
             e.Ke = (np.transpose(dpx, axes=[0, 2, 1]) @ dpx).T @ detjac
 
-    def postProcess(self) -> None:
+    def postProcess(self, levels=1000) -> None:
         """Create graphs for stress function and derivatives.
         """
 
@@ -90,15 +90,15 @@ class Torsion2D(Core):
         surf = ax1.plot_trisurf(X, Y, U1, cmap='magma')
         fig.colorbar(surf, ax=ax1)
 
-        surf = ax2.tricontourf(X, Y, U2, cmap='magma')
+        surf = ax2.tricontourf(X, Y, U2, cmap='magma', levels=levels)
 
         fig.colorbar(surf, ax=ax2)
 
-        surf = ax3.tricontourf(X, Y, U3, cmap='magma')
+        surf = ax3.tricontourf(X, Y, U3, cmap='magma', levels=levels)
 
         fig.colorbar(surf, ax=ax3)
 
-        surf = ax4.tricontourf(X, Y, U4, cmap='magma')
+        surf = ax4.tricontourf(X, Y, U4, cmap='magma', levels=levels)
 
         fig.colorbar(surf, ax=ax4)
         mask = self.geometry.mask
@@ -122,5 +122,8 @@ class Torsion2D(Core):
             Xs = [xmin, xmax, xmax, xmin]+cornersnt[:, 0].tolist()
             Ys = [ymin, ymin, ymax, ymax]+cornersnt[:, 1].tolist()
             ax2.fill(Xs, Ys, color='white', zorder=30)
+            ax2.set_aspect('equal')
             ax3.fill(Xs, Ys, color='white', zorder=30)
+            ax3.set_aspect('equal')
             ax4.fill(Xs, Ys, color='white', zorder=30)
+            ax4.set_aspect('equal')
