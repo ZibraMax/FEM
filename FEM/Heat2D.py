@@ -113,7 +113,7 @@ class Heat2D(Core):
         """
         self.geometry.loadOnSegment(segment, fx=lambda s: beta, tol=tol)
 
-    def postProcess(self) -> None:
+    def postProcess(self, levels=1000) -> None:
         """Generate the temperature surface for the geometry
 
         """
@@ -127,7 +127,7 @@ class Heat2D(Core):
             X += _x.T[0].tolist()
             Y += _x.T[1].tolist()
             U += _u[0].tolist()
-        surf = ax.tricontourf(X, Y, U, cmap='magma', levels=20)
+        surf = ax.tricontourf(X, Y, U, cmap='magma', levels=levels)
         plt.colorbar(surf, ax=ax)
         ax.set_title(r'$T$')
         mask = self.geometry.mask

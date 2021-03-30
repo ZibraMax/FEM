@@ -43,7 +43,6 @@ p = p0/2
 #     geometria.loadOnSegment(i, lambda s: 10000)
 
 geometria.loadOnHole(1, 3*np.pi/2, np.pi/2, lambda s: -p0/(2*np.pi*radi/2))
-geometria.mask = None
 O = PlaneStress(geometria, E, v, t)
 O.geometry.show(draw_bc=True, draw_segs=False)
 plt.show()

@@ -31,16 +31,27 @@ class Delaunay(Geometry):
                 holes (list, optional): A list of holes. Defaults to None.
                 fillets (list, optional): A list of fillets. Defaults to None.
         """
-        mask = copy.deepcopy(vertices)
+        # mask = copy.deepcopy(vertices)
+        # try:
+        # mask = mask.tolist()
+        # except:
+        # pass
         seg = []
         for i in range(len(vertices)-1):
             seg.append([i, i+1])
         seg.append([i+1, 0])
         hh = []
+        mascarita = copy.deepcopy(seg)
         if fillets:
             for fillet in fillets:
                 S1 = seg[fillet['start_segment']]
                 S2 = seg[fillet['end_segment']]
+                for i, maskarita in enumerate(mascarita):
+                    if maskarita == S1:
+                        indice_importante = i
+
+                mizq = mascarita[:indice_importante]
+                mder = mascarita[indice_importante:]
 
                 P1 = vertices[S1[0]]
                 P2 = vertices[S2[1]]
@@ -54,6 +65,13 @@ class Delaunay(Geometry):
                 vertices[S1[1]] = np.array(f_vertices[0]).tolist()
                 sp = (np.array(f_segments)+len(vertices)-2)[1:].tolist()
                 seg += [[S1[1], sp[1][0]]]+sp[1:]
+                mder = mder[1:]
+                spp = copy.deepcopy(sp)
+                ss1 = copy.deepcopy(S1)
+                if mder:
+                    mder[0][0] = spp[-1][-1]
+                mascarita = mizq+[[mizq[-1][-1], ss1[1]],
+                                  [ss1[1], spp[1][0]]]+spp[1:]+mder
                 vertices += np.array(f_vertices)[1:-1].tolist()
                 seg[fillet['end_segment']][0] = len(vertices)-1
                 # vertices += [O]
@@ -86,6 +104,9 @@ class Delaunay(Geometry):
                 dicc[5] = a3
         Geometry.__init__(self, dictionary, gdls, tipos,
                           nvn=nvn, segments=seg)
+        mask = []
+        for segmento in mascarita:
+            mask += [gdls[segmento[0]]]
         self.mask = mask
         self.holes = holes_dict
         self.fillets = fillets
