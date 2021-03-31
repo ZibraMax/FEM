@@ -31,7 +31,7 @@ class Delaunay(Geometry):
                 holes (list, optional): A list of holes. Defaults to None.
                 fillets (list, optional): A list of fillets. Defaults to None.
         """
-        # mask = copy.deepcopy(vertices)
+        mask = copy.deepcopy(vertices)
         # try:
         # mask = mask.tolist()
         # except:
@@ -107,7 +107,9 @@ class Delaunay(Geometry):
         mask = []
         for segmento in mascarita:
             mask += [gdls[segmento[0]]]
-        self.mask = mask
+        if fillets:
+            self.mask = mask
+
         self.holes = holes_dict
         self.fillets = fillets
 

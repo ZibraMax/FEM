@@ -24,11 +24,10 @@ class Heat2D(Core):
         geometry (Geometry): Input 1 variable per node geometry
         kx (Tuple[float, list]): Heat transfer coeficient in x direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)
         ky (Tuple[float, list]): Heat transfer coeficient in y direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)
-        Ta (float): Anbient temperature.
         f (Callable, optional): Internal heat generation function. Defaults to None.
         """
 
-    def __init__(self, geometry: Geometry, kx: Tuple[float, list], ky: Tuple[float, list], Ta: float, f: Callable = None) -> None:
+    def __init__(self, geometry: Geometry, kx: Tuple[float, list], ky: Tuple[float, list], f: Callable = None) -> None:
         """Creates a Heat2D problem with convective borders
 
         The differential equation is:
@@ -45,7 +44,6 @@ class Heat2D(Core):
             geometry (Geometry): Input 1 variable per node geometry
             kx (Tuple[float, list]): Heat transfer coeficient in x direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)
             ky (Tuple[float, list]): Heat transfer coeficient in y direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)
-            Ta (float): Anbient temperature.
             f (Callable, optional): Internal heat generation function. Defaults to None.
         """
         if type(kx) == float or type(kx) == int:
@@ -55,7 +53,6 @@ class Heat2D(Core):
 
         self.kx = kx
         self.ky = ky
-        self.Ta = Ta
         self.f = f
         self.geometry = geometry
         Core.__init__(self, geometry)
@@ -94,7 +91,7 @@ class Heat2D(Core):
                         for i in range(m):
                             for fx in border.properties['load_x']:
                                 for k in range(len(border.Z)):
-                                    P[i, 0] += self.Ta*fx(_s[k, 0])*_p[k, i] * \
+                                    P[i, 0] += border.properties['Ta']*fx(_s[k, 0])*_p[k, i] * \
                                         detjac*border.W[k]
                                 for j in range(m):
                                     for k in range(len(border.Z)):
@@ -103,7 +100,7 @@ class Heat2D(Core):
             e.Fe += F+P
             e.Ke += K+H
 
-    def defineConvectiveBoderConditions(self, segment: int, beta: float = 0, tol: float = 1*10**(-5)) -> None:
+    def defineConvectiveBoderConditions(self, segment: int, beta: float = 0, Ta: float = 0, tol: float = 1*10**(-5)) -> None:
         """Define convective borders
 
         Args:
@@ -111,7 +108,8 @@ class Heat2D(Core):
             beta (float, optional): Convective coeficient :math:`\\beta` . Defaults to 0.
             tol (float, optional): Tolerancy to find adjacent nodes. Defaults to 1*10**(-5).
         """
-        self.geometry.loadOnSegment(segment, fx=lambda s: beta, tol=tol)
+        self.geometry.loadOnSegment(
+            segment, fx=lambda s: beta, tol=tol, add={'Ta': Ta})
 
     def postProcess(self, levels=1000) -> None:
         """Generate the temperature surface for the geometry
@@ -127,7 +125,11 @@ class Heat2D(Core):
             X += _x.T[0].tolist()
             Y += _x.T[1].tolist()
             U += _u[0].tolist()
-        surf = ax.tricontourf(X, Y, U, cmap='magma', levels=levels)
+        surf = ax.tricontourf(X, Y, U, cmap='rainbow',
+                              levels=levels)
+        CS = ax.tricontour(X, Y, U, colors='k', levels=12, alpha=0.6)
+        ax.clabel(CS, CS.levels, inline=True,
+                  fmt=lambda x: format(x, '.3f'), colors='k', use_clabeltext=True, fontsize=7)
         plt.colorbar(surf, ax=ax)
         ax.set_title(r'$T$')
         mask = self.geometry.mask
