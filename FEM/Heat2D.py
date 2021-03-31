@@ -4,6 +4,7 @@
 
 from .Core import Core, tqdm, np, Geometry
 import matplotlib.pyplot as plt
+import matplotlib
 from typing import Callable, Tuple
 
 
@@ -106,6 +107,7 @@ class Heat2D(Core):
         Args:
             segment (int): Segment in wich load will be applied
             beta (float, optional): Convective coeficient :math:`\\beta` . Defaults to 0.
+            Ta (float, optional): Ambient temperature in convective border. Defaults to 0.
             tol (float, optional): Tolerancy to find adjacent nodes. Defaults to 1*10**(-5).
         """
         self.geometry.loadOnSegment(
@@ -118,13 +120,19 @@ class Heat2D(Core):
         X = []
         Y = []
         U = []
+        DUX = []
+        DUY = []
         fig = plt.figure()
-        ax = fig.add_subplot()
+        ax = fig.add_subplot(1, 2, 1)
+        ee = -1
         for e in tqdm(self.elements, unit='Element'):
-            _x, _u, _ = e.giveSolution(True)
+            ee += 1
+            _x, _u, _du = e.giveSolution(True)
             X += _x.T[0].tolist()
             Y += _x.T[1].tolist()
             U += _u[0].tolist()
+            DUX += (self.kx[ee]*_du[:, 0, 0]).tolist()
+            DUY += (self.ky[ee]*_du[:, 0, 1]).tolist()
         surf = ax.tricontourf(X, Y, U, cmap='rainbow',
                               levels=levels)
         CS = ax.tricontour(X, Y, U, colors='k', levels=12, alpha=0.6)
@@ -132,12 +140,24 @@ class Heat2D(Core):
                   fmt=lambda x: format(x, '.3f'), colors='k', use_clabeltext=True, fontsize=7)
         plt.colorbar(surf, ax=ax)
         ax.set_title(r'$T$')
+        ax.set_aspect('equal')
+
+        ax2 = fig.add_subplot(1, 2, 2)
+        # ax2.tricontourf(X, Y, U, cmap='rainbow', levels=levels)
+        M = np.hypot(DUX, DUY)
+        surf = ax2.quiver(X, Y, DUX, DUY, M, units='x', cmap='rainbow')
+        plt.colorbar(surf, ax=ax2)
+
+        ax2.set_title(
+            r'$\{k_x\frac{\partial T}{\partial x},k_y\frac{\partial T}{\partial y}\}$')
+
         mask = self.geometry.mask
         if self.geometry.holes:
             for hole in self.geometry.holes:
                 Xs = np.array(hole['vertices'])[:, 0]
                 Ys = np.array(hole['vertices'])[:, 1]
                 ax.fill(Xs, Ys, color='white', zorder=30)
+                ax2.fill(Xs, Ys, color='white', zorder=30)
         if not mask == None:
             mask = np.array(mask)
             cornersnt = np.array(mask[::-1])
@@ -148,4 +168,5 @@ class Heat2D(Core):
             Xs = [xmin, xmax, xmax, xmin]+cornersnt[:, 0].tolist()
             Ys = [ymin, ymin, ymax, ymax]+cornersnt[:, 1].tolist()
             ax.fill(Xs, Ys, color='white', zorder=30)
-        ax.set_aspect('equal')
+            ax2.fill(Xs, Ys, color='white', zorder=30)
+        ax2.set_aspect('equal')
