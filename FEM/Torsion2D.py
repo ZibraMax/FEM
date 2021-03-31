@@ -87,18 +87,18 @@ class Torsion2D(Core):
             U3 += du[:, 0, 1].tolist()
             U1 += _u[0].tolist()
             U4 += np.sqrt(du[:, 0, 0]**2 + du[:, 0, 1]**2).tolist()
-        surf = ax1.plot_trisurf(X, Y, U1, cmap='magma')
+        surf = ax1.plot_trisurf(X, Y, U1, cmap='rainbow')
         fig.colorbar(surf, ax=ax1)
 
-        surf = ax2.tricontourf(X, Y, U2, cmap='magma', levels=levels)
+        surf = ax2.tricontourf(X, Y, U2, cmap='rainbow', levels=levels)
 
         fig.colorbar(surf, ax=ax2)
 
-        surf = ax3.tricontourf(X, Y, U3, cmap='magma', levels=levels)
+        surf = ax3.tricontourf(X, Y, U3, cmap='rainbow', levels=levels)
 
         fig.colorbar(surf, ax=ax3)
 
-        surf = ax4.tricontourf(X, Y, U4, cmap='magma', levels=levels)
+        surf = ax4.tricontourf(X, Y, U4, cmap='rainbow', levels=levels)
 
         fig.colorbar(surf, ax=ax4)
         mask = self.geometry.mask
@@ -122,8 +122,9 @@ class Torsion2D(Core):
             Xs = [xmin, xmax, xmax, xmin]+cornersnt[:, 0].tolist()
             Ys = [ymin, ymin, ymax, ymax]+cornersnt[:, 1].tolist()
             ax2.fill(Xs, Ys, color='white', zorder=30)
-            ax2.set_aspect('equal')
             ax3.fill(Xs, Ys, color='white', zorder=30)
-            ax3.set_aspect('equal')
             ax4.fill(Xs, Ys, color='white', zorder=30)
-            ax4.set_aspect('equal')
+
+        ax4.set_aspect('equal')
+        ax2.set_aspect('equal')
+        ax3.set_aspect('equal')

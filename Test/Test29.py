@@ -30,14 +30,16 @@ fillets = [{'start_segment': 2, 'end_segment': 3, 'r': 20, 'n': 10},
 
 params = Delaunay._strdelaunay(
     constrained=True, delaunay=True, a='7', o=2)
-geometria = Delaunay(vertices, params, holes_dict=holes, fillets=fillets)
+geometria = Delaunay(vertices, params, nvn=2,
+                     holes_dict=holes, fillets=fillets)
+cb = geometria.cbFromSegment(0, 0, 1)
+cb += geometria.cbFromSegment(0, 0, 2)
+cb += geometria.cbFromSegment(1, 0, 1)
+cb += geometria.cbFromSegment(7, 0, 1)
+geometria.setCbe(cb)
+geometria.saveMesh('Mesh_tests/Talud_hueco_redondos')
 geometria.show()
 plt.show()
 O = PlaneStrain(geometria, E, v, fy=lambda x: -gamma)
-cb = O.geometry.cbFromSegment(0, 0, 1)
-cb += O.geometry.cbFromSegment(0, 0, 2)
-cb += O.geometry.cbFromSegment(1, 0, 1)
-cb += O.geometry.cbFromSegment(7, 0, 1)
-O.cbe = cb
 O.solve()
 plt.show()

@@ -308,6 +308,15 @@ A good example is the `PlaneStress` class
 
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test35_geometry.png">
     <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test35.png">
+
+- Test 36: Convective Heat Transfer from [Samson-Mano's software](https://github.com/Samson-Mano/2D_Heat_transfer)
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test36.png">
+
+- Test 36: Convective Heat Transfer from [Samson-Mano's software](https://github.com/Samson-Mano/2D_Heat_transfer)
+
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test37_geometry.png">
+    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/test_results/Test37.png">
     
 
 ## References

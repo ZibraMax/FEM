@@ -33,7 +33,7 @@ kx = 15/2.54
 ky = 15/2.54
 Ta = 20
 beta = 5
-O = Heat2D(geometria, kx, ky, Ta)
+O = Heat2D(geometria, kx, ky)
 O.geometry.show(draw_bc=True, draw_segs=False)
 plt.show()
 O.solve()

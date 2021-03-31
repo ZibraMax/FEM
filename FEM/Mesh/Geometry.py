@@ -183,12 +183,19 @@ class Geometry:
             len_fillets = p[7]
         except:
             len_fillets = 0
+        try:
+            len_mask = p[8]
+        except:
+            len_mask = 0
         fillets = []
         holes = []
+        mask = []
         for _ in range(len_holes):
             holes.append(literal_eval(f.readline()))
         for _ in range(len_fillets):
             fillets.append(literal_eval(f.readline()))
+        for _ in range(len_mask):
+            mask += [list(map(float, f.readline().split('\t')))]
         f.close()
         print('File ' + filename + ' loaded')
         o = Geometry(dicc, gdls, types, nvn, seg)
@@ -196,6 +203,7 @@ class Geometry:
         o.cbn = cbn
         o.holes = holes
         o.fillets = fillets
+        o.mask = mask
         return o
 
     def generateElements(self) -> None:
@@ -352,8 +360,12 @@ class Geometry:
             len_fillets = len(self.fillets)
         except Exception as e:
             len_fillets = 0
+        try:
+            len_mask = len(self.mask)
+        except Exception as e:
+            len_mask = 0
         p = [len(self.gdls), len(self.dictionary), len(
-            self.segments), len(self.cbe), len(self.cbn), self.nvn, len_holes, len_fillets]
+            self.segments), len(self.cbe), len(self.cbn), self.nvn, len_holes, len_fillets, len_mask]
         f.write('\t'.join(list(map(format, p))) + '\n')
         for e in self.gdls:
             f.write('\t'.join(list(map(format, e))) + '\n')
@@ -373,6 +385,9 @@ class Geometry:
         if self.fillets:
             for e in self.fillets:
                 f.write(str(e)+'\n')
+        if self.mask:
+            for e in self.mask:
+                f.write('\t'.join(list(map(format, e)))+'\n')
         f.close()
         print('File ' + filename + ' saved')
 
@@ -484,7 +499,7 @@ class Geometry:
                 a.append(e)
         return a
 
-    def loadOnSegment(self, segment: int, fx: Callable = None, fy: Callable = None, tol: float = 1*10**(-5)) -> None:
+    def loadOnSegment(self, segment: int, fx: Callable = None, fy: Callable = None, tol: float = 1*10**(-5), add=None) -> None:
         """Assign a load over a geometry segment.
 
         The start point of segment is the 0 point of load
@@ -518,6 +533,8 @@ class Geometry:
                         e.borders[i].properties['load_x'].append(fx)
                     if fy:
                         e.borders[i].properties['load_y'].append(fy)
+                    if add:
+                        e.borders[i].properties.update(add)
                 else:
                     e.borders[i].dir = 0.0
 

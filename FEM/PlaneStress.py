@@ -161,17 +161,21 @@ class PlaneStress(Core):
         ax1.set_aspect('equal')
         ax3.set_aspect('equal')
         ax2.set_aspect('equal')
-        surf = ax1.tricontourf(X, Y, U1, cmap='magma', levels=levels, **kargs)
+        cmap = 'rainbow'
+        def fmt(x): return format(x, '.3f')
+
+        surf = ax1.tricontourf(X, Y, U1, cmap=cmap, levels=levels, **kargs)
         plt.colorbar(surf, ax=ax1)
         ax1.set_title(r'$\sigma_{xx}$')
 
-        surf = ax2.tricontourf(X, Y, U2, cmap='magma', levels=levels, **kargs)
+        surf = ax2.tricontourf(X, Y, U2, cmap=cmap, levels=levels, **kargs)
         plt.colorbar(surf, ax=ax2)
         ax2.set_title(r'$\sigma_{yy}$')
 
-        surf = ax3.tricontourf(X, Y, U3, cmap='magma', levels=levels, **kargs)
+        surf = ax3.tricontourf(X, Y, U3, cmap=cmap, levels=levels, **kargs)
         plt.colorbar(surf, ax=ax3)
         ax3.set_title(r'$\sigma_{xy}$')
+
         mask = self.geometry.mask
         if self.geometry.holes:
             for hole in self.geometry.holes:

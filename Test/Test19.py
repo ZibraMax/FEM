@@ -19,6 +19,7 @@ geometria.cbe = cbe
 geometria.loadOnSegment(2, fy=lambda s: -23.54*b*h)
 O = PlaneStress(geometria, E, v, b)
 O.geometry.show()
+O.geometry.mask = None
 plt.show()
 O.solve()
 n = len(O.U)
