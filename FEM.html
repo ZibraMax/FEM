@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>FEM package &mdash; FEM __version__ = &#34;1.0.24&#34;
+  <title>FEM package &mdash; FEM __version__ = &#34;1.0.25&#34;
  documentation</title>
   
 
@@ -102,11 +102,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.Heat1D">FEM.Heat1D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.Heat2D">FEM.Heat2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.ParabolicCore">FEM.ParabolicCore module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStressNonLocal">FEM.PlaneStressNonLocal module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-FEM.Transitory">FEM.Transitory module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
@@ -451,7 +451,7 @@ be a 2-D Numpy Array.</p>
 <p>2D Stady state heat with convective border conditions</p>
 <dl class="py class">
 <dt id="FEM.Heat2D.Heat2D">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Heat2D.</span></code><code class="sig-name descname"><span class="pre">Heat2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kx</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ky</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat2D.Heat2D" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Heat2D.</span></code><code class="sig-name descname"><span class="pre">Heat2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kx</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ky</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat2D.Heat2D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Creates a Heat2D problem with convective borders</p>
 <p>The differential equation is:</p>
@@ -466,14 +466,13 @@ be a 2-D Numpy Array.</p>
 <li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><em>Geometry</em></a>) – Input 1 variable per node geometry</p></li>
 <li><p><strong>kx</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Heat transfer coeficient in x direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)</p></li>
 <li><p><strong>ky</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Heat transfer coeficient in y direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)</p></li>
-<li><p><strong>Ta</strong> (<em>float</em>) – Anbient temperature.</p></li>
 <li><p><strong>f</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Internal heat generation function. Defaults to None.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="FEM.Heat2D.Heat2D.defineConvectiveBoderConditions">
-<code class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Heat2D.Heat2D.defineConvectiveBoderConditions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Heat2D.Heat2D.defineConvectiveBoderConditions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define convective borders</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -498,6 +497,16 @@ be a 2-D Numpy Array.</p>
 <dd><p>Generate the temperature surface for the geometry</p>
 </dd></dl>
 
+</dd></dl>
+
+</div>
+<div class="section" id="module-FEM.ParabolicCore">
+<span id="fem-paraboliccore-module"></span><h2>FEM.ParabolicCore module<a class="headerlink" href="#module-FEM.ParabolicCore" title="Permalink to this headline">¶</a></h2>
+<p>Transitory analysis core</p>
+<dl class="py class">
+<dt id="FEM.ParabolicCore.ParabolicCore">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.ParabolicCore.</span></code><code class="sig-name descname"><span class="pre">ParabolicCore</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.ParabolicCore.ParabolicCore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 </dd></dl>
 
 </div>
@@ -704,16 +713,6 @@ be a 2-D Numpy Array.</p>
 <dd><p>Create graphs for stress function and derivatives.</p>
 </dd></dl>
 
-</dd></dl>
-
-</div>
-<div class="section" id="module-FEM.Transitory">
-<span id="fem-transitory-module"></span><h2>FEM.Transitory module<a class="headerlink" href="#module-FEM.Transitory" title="Permalink to this headline">¶</a></h2>
-<p>Transitory analysis core</p>
-<dl class="py class">
-<dt id="FEM.Transitory.Transitory">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Transitory.</span></code><code class="sig-name descname"><span class="pre">Transitory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Transitory.Transitory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 </dd></dl>
 
 </div>

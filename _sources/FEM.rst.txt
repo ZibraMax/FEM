@@ -59,6 +59,14 @@ FEM.Heat2D module
    :undoc-members:
    :show-inheritance:
 
+FEM.ParabolicCore module
+------------------------
+
+.. automodule:: FEM.ParabolicCore
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.PlaneStrain module
 ----------------------
 
@@ -87,14 +95,6 @@ FEM.Torsion2D module
 --------------------
 
 .. automodule:: FEM.Torsion2D
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FEM.Transitory module
----------------------
-
-.. automodule:: FEM.Transitory
    :members:
    :undoc-members:
    :show-inheritance:
