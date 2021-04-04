@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>FEM package &mdash; FEM __version__ = &#34;1.0.25&#34;
@@ -86,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">FEM</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">FEM package</a><ul>
@@ -181,10 +182,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-FEM">
+  <section id="module-FEM">
 <span id="fem-package"></span><h1>FEM package<a class="headerlink" href="#module-FEM" title="Permalink to this headline">¶</a></h1>
 <p>FEM implementation for N dimensional and M variables per node.</p>
-<div class="section" id="subpackages">
+<section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -230,11 +231,11 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="submodules">
+</section>
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-FEM.Core">
+</section>
+<section id="module-FEM.Core">
 <span id="fem-core-module"></span><h2>FEM.Core module<a class="headerlink" href="#module-FEM.Core" title="Permalink to this headline">¶</a></h2>
 <p>Define the structure of a finite element problem. This is the parent class of individual equation classes.</p>
 <p>The individual children classes must implement the method for calculating the element matrices and post processing.</p>
@@ -324,8 +325,8 @@ be a 2-D Numpy Array.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.EDO1D">
+</section>
+<section id="module-FEM.EDO1D">
 <span id="fem-edo1d-module"></span><h2>FEM.EDO1D module<a class="headerlink" href="#module-FEM.EDO1D" title="Permalink to this headline">¶</a></h2>
 <p>Solve a 1D 1 variable per node Finite Element problem</p>
 <dl class="py class">
@@ -360,8 +361,8 @@ be a 2-D Numpy Array.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.EulerBernoulliBeam">
+</section>
+<section id="module-FEM.EulerBernoulliBeam">
 <span id="fem-eulerbernoullibeam-module"></span><h2>FEM.EulerBernoulliBeam module<a class="headerlink" href="#module-FEM.EulerBernoulliBeam" title="Permalink to this headline">¶</a></h2>
 <p>Euler Bernoulli Beam implementation [WIP]</p>
 <dl class="py class">
@@ -392,8 +393,8 @@ be a 2-D Numpy Array.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.Heat1D">
+</section>
+<section id="module-FEM.Heat1D">
 <span id="fem-heat1d-module"></span><h2>FEM.Heat1D module<a class="headerlink" href="#module-FEM.Heat1D" title="Permalink to this headline">¶</a></h2>
 <p>1D Stady state heat with convective border conditions</p>
 <dl class="py class">
@@ -445,8 +446,8 @@ be a 2-D Numpy Array.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.Heat2D">
+</section>
+<section id="module-FEM.Heat2D">
 <span id="fem-heat2d-module"></span><h2>FEM.Heat2D module<a class="headerlink" href="#module-FEM.Heat2D" title="Permalink to this headline">¶</a></h2>
 <p>2D Stady state heat with convective border conditions</p>
 <dl class="py class">
@@ -500,8 +501,8 @@ be a 2-D Numpy Array.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.ParabolicCore">
+</section>
+<section id="module-FEM.ParabolicCore">
 <span id="fem-paraboliccore-module"></span><h2>FEM.ParabolicCore module<a class="headerlink" href="#module-FEM.ParabolicCore" title="Permalink to this headline">¶</a></h2>
 <p>Transitory analysis core</p>
 <dl class="py class">
@@ -510,8 +511,8 @@ be a 2-D Numpy Array.</p>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.PlaneStrain">
+</section>
+<section id="module-FEM.PlaneStrain">
 <span id="fem-planestrain-module"></span><h2>FEM.PlaneStrain module<a class="headerlink" href="#module-FEM.PlaneStrain" title="Permalink to this headline">¶</a></h2>
 <p>2D Elasticity: Plane Strain</p>
 <dl class="py class">
@@ -532,8 +533,8 @@ be a 2-D Numpy Array.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.PlaneStress">
+</section>
+<section id="module-FEM.PlaneStress">
 <span id="fem-planestress-module"></span><h2>FEM.PlaneStress module<a class="headerlink" href="#module-FEM.PlaneStress" title="Permalink to this headline">¶</a></h2>
 <p>2D Elasticity: Plane Stress</p>
 <dl class="py class">
@@ -607,8 +608,8 @@ be a 2-D Numpy Array.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.PlaneStressNonLocal">
+</section>
+<section id="module-FEM.PlaneStressNonLocal">
 <span id="fem-planestressnonlocal-module"></span><h2>FEM.PlaneStressNonLocal module<a class="headerlink" href="#module-FEM.PlaneStressNonLocal" title="Permalink to this headline">¶</a></h2>
 <p>2D Elasticity: Plane Stress non local</p>
 <dl class="py class">
@@ -676,8 +677,8 @@ be a 2-D Numpy Array.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-FEM.Torsion2D">
+</section>
+<section id="module-FEM.Torsion2D">
 <span id="fem-torsion2d-module"></span><h2>FEM.Torsion2D module<a class="headerlink" href="#module-FEM.Torsion2D" title="Permalink to this headline">¶</a></h2>
 <p>Solve the torsion Poisson equation for a 2D domain.</p>
 <dl class="py class">
@@ -716,8 +717,8 @@ be a 2-D Numpy Array.</p>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
