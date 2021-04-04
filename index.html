@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>AFEM’s documentation &mdash; FEM __version__ = &#34;1.0.25&#34;
@@ -84,7 +85,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">FEM</a></li>
 </ul>
@@ -154,11 +155,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="afem-s-documentation">
+  <section id="afem-s-documentation">
 <h1>AFEM’s documentation<a class="headerlink" href="#afem-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p>Created by Arturo Rodriguez: <a class="reference external" href="mailto:da&#46;rodriguezh&#37;&#52;&#48;uniandes&#46;edu&#46;co">da<span>&#46;</span>rodriguezh<span>&#64;</span>uniandes<span>&#46;</span>edu<span>&#46;</span>co</a></p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">FEM</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="FEM.html">FEM package</a><ul>
@@ -196,24 +197,24 @@
 <a class="reference external image-reference" href="https://github.com/ZibraMax/FEM/releases/"><img alt="GitHub release" src="https://img.shields.io/github/v/release/ZibraMax/FEM.svg" /></a>
 <p>A <a class="reference external" href="https://www.python.org/">Python</a> FEM implementation.</p>
 <p>N dimensional FEM implementation for M variables per node problems.</p>
-<div class="section" id="installation">
+<section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Use the package manager <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> to install AFEM.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install AFEM
 </pre></div>
 </div>
-</div>
-<div class="section" id="contributing">
+</section>
+<section id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
 <p>Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.</p>
 <p>Please make sure to update tests as appropriate.</p>
-</div>
-<div class="section" id="id1">
+</section>
+<section id="id1">
 <h2><a class="reference external" href="https://zibramax.github.io/FEM/">Full Docs</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="tutorial">
+</section>
+<section id="tutorial">
 <h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="using-pre-implemented-equations">
+<section id="using-pre-implemented-equations">
 <h3>Using pre implemented equations<a class="headerlink" href="#using-pre-implemented-equations" title="Permalink to this headline">¶</a></h3>
 <p>Avaliable equations:</p>
 <ul class="simple">
@@ -226,7 +227,7 @@
 <li><p>2D 2 Variable Plane Strees</p></li>
 <li><p>2D 2 Variable Plane Strain</p></li>
 </ul>
-<div class="section" id="steps">
+<section id="steps">
 <h4>Steps:<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Create geometry (From coordinates or GiD)</p></li>
@@ -234,8 +235,8 @@
 <li><p>Solve!</p></li>
 <li><p>For example: Test 2, Test 5, Test 11-14</p></li>
 </ul>
-</div>
-<div class="section" id="example-without-geometry-file-test-2">
+</section>
+<section id="example-without-geometry-file-test-2">
 <h4>Example without geometry file (Test 2):<a class="headerlink" href="#example-without-geometry-file-test-2" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#Import libraries</span>
 <span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM Torsion class</span>
@@ -286,8 +287,8 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-with-geometry-file-test-2">
+</section>
+<section id="example-with-geometry-file-test-2">
 <h4>Example with geometry file (Test 2):<a class="headerlink" href="#example-with-geometry-file-test-2" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#Import libraries</span>
 <span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM</span>
@@ -310,12 +311,12 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="creating-equation-classes">
+</section>
+</section>
+<section id="creating-equation-classes">
 <h3>Creating equation classes<a class="headerlink" href="#creating-equation-classes" title="Permalink to this headline">¶</a></h3>
 <p>Note: Don’t forget the docstring!</p>
-<div class="section" id="id2">
+<section id="id2">
 <h4>Steps<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic">
 <li><p>Create a Python flie and import the libraries:</p>
@@ -363,10 +364,10 @@
 </li>
 </ol>
 <p>A good example is the <code class="docutils literal notranslate"><span class="pre">PlaneStress</span></code> class</p>
-</div>
-</div>
-</div>
-<div class="section" id="roadmap">
+</section>
+</section>
+</section>
+<section id="roadmap">
 <h2>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Beam bending by Euler Bernoulli and Timoshenko equations</p></li>
@@ -380,8 +381,8 @@
 <li><p>NUMERICAL VALIDATION</p></li>
 <li><p>Non-Local 2D?</p></li>
 </ol>
-</div>
-<div class="section" id="test-index">
+</section>
+<section id="test-index">
 <h2>Test index:<a class="headerlink" href="#test-index" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Test 1: Preliminar geometry test</p></li>
@@ -565,8 +566,8 @@
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="references">
+</section>
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ol class="upperalpha simple" start="10">
 <li><ol class="upperalpha simple" start="14">
@@ -575,12 +576,12 @@
 </li>
 </ol>
 <p>Jonathan Richard Shewchuk, (1996) Triangle: Engineering a 2D Quality Mesh Generator and Delaunay Triangulator</p>
-</div>
-<div class="section" id="license">
+</section>
+<section id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://choosealicense.com/licenses/mit/">MIT</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
