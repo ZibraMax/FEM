@@ -12,7 +12,7 @@ function readSingleFile(e) {
     reader.readAsText(file);
 }
 
-function loadMSH(str) {
+async function loadMSH(str) {
     let lineas = str.split("\n");
     let parametros = lineas[0].split("\t").map((x) => parseFloat(x));
     for (let i = parametros.length - 1; i < 9; i++) {
@@ -109,13 +109,44 @@ function loadMSH(str) {
     let multx = two.width / maxx;
     let multy = two.height / maxy;
     let mult = Math.min(multx, multy);
-    console.log(mult, maxx, maxy, multx, multy);
+    console.log(mult, cx, cy);
+
     draw(GEOMETRY, mult, cx, cy);
+    two.unbind("update");
 }
 
-function draw(geometry, mult, cx, cy) {
-    let nn = [];
-    let nnl = [];
+function drawCircle(coord, mult) {
+    return new Promise((resolve) => {
+        const circle = two.makeCircle(
+            coord[0] * mult,
+            two.height - coord[1] * mult,
+            3
+        );
+        circle.fill = "orangered";
+        circle.noStroke();
+        resolve(circle);
+    });
+}
+function drawLine(coord, coordi, mult) {
+    return new Promise((resolve) => {
+        const line = two.makeLine(
+            coord[0] * mult,
+            two.height - coord[1] * mult,
+            coordi[0] * mult,
+            two.height - coordi[1] * mult
+        );
+        line.stroke = "#f7924a";
+        line.linewidth = 2;
+        resolve(line);
+    });
+}
+
+let nn = [];
+let nnl = [];
+async function draw(geometry, mult, cx, cy) {
+    var lineas = two.makeGroup(nnl);
+    var nodos = two.makeGroup(nn);
+    console.time("Contando");
     for (let i = 0; i < geometry.elements.length; i++) {
         for (let j = 0; j < 3; j++) {
             let coord = geometry.gdls[geometry.elements[i][j]];
@@ -123,27 +154,12 @@ function draw(geometry, mult, cx, cy) {
             if (j == 2) {
                 coordi = geometry.gdls[geometry.elements[i][0]];
             }
-            var circle = two.makeCircle(
-                coord[0] * mult,
-                two.height - coord[1] * mult,
-                3
-            );
-            let line = two.makeLine(
-                coord[0] * mult,
-                two.height - coord[1] * mult,
-                coordi[0] * mult,
-                two.height - coordi[1] * mult
-            );
-            circle.fill = "orangered";
-            circle.linewidth = 0;
-            line.stroke = "#f7924a";
-            line.linewidth = 2;
-            nn.push(circle);
-            nnl.push(line);
+            let circle = await drawCircle(coord, mult);
+            let line = await drawLine(coord, coordi, mult);
+            nodos.add(circle);
+            lineas.add(line);
         }
     }
-    var lineas = two.makeGroup(nnl);
-    var nodos = two.makeGroup(nn);
     let scale = 0.75;
     lineas.scale = scale;
     lineas.translation.set(
@@ -156,6 +172,7 @@ function draw(geometry, mult, cx, cy) {
         two.height / 2 - cy * mult * scale
     );
     two.update();
+    console.timeEnd("Contando");
 }
 
 var GEOMETRY = undefined;
@@ -163,10 +180,23 @@ var elem = document.getElementById("main");
 let pad = 2 * parseInt(getComputedStyle(elem).padding, 10);
 let width = elem.offsetWidth - pad;
 let height = elem.offsetHeight - pad;
-var two = new Two({ autostart: true, width: width, height: height }).appendTo(
-    elem
-);
+var two = new Two({
+    autostart: true,
+    width: width,
+    height: height,
+    type: Two.Types.canvas,
+}).appendTo(elem);
 var mouse = new Two.Vector();
+two.renderer.domElement.addEventListener("mousedown", mousedown, false);
+two.renderer.domElement.addEventListener("mousewheel", mousewheel, false);
+var zui = new Two.ZUI(two.scene);
+zui.addLimits(0.06, 8);
+var $stage = $(two.renderer.domElement);
+var SELECCIONANDO = false;
+
+function toogleSelect() {
+    SELECCIONANDO = !SELECCIONANDO;
+}
 
 function mousedown(e) {
     mouse.x = e.clientX;
@@ -206,12 +236,6 @@ function panmove(e) {
     mouse.set(touch.clientX, touch.clientY);
 }
 
-two.renderer.domElement.addEventListener("mousedown", mousedown, false);
-two.renderer.domElement.addEventListener("mousewheel", mousewheel, false);
-
-var zui = new Two.ZUI(two.scene);
-zui.addLimits(0.06, 8);
-var $stage = $(two.renderer.domElement);
 $stage.bind("mousewheel wheel", function (event) {
     var e = event.originalEvent;
     e.stopPropagation();
