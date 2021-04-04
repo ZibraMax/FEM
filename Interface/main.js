@@ -115,19 +115,19 @@ async function loadMSH(str) {
     two.unbind("update");
 }
 
-function drawCircle(coord, mult) {
+function drawCircle(coord, mult, color = "orangered") {
     return new Promise((resolve) => {
         const circle = two.makeCircle(
             coord[0] * mult,
             two.height - coord[1] * mult,
             3
         );
-        circle.fill = "orangered";
+        circle.fill = color;
         circle.noStroke();
         resolve(circle);
     });
 }
-function drawLine(coord, coordi, mult) {
+function drawLine(coord, coordi, mult, color = "#f7924a") {
     return new Promise((resolve) => {
         const line = two.makeLine(
             coord[0] * mult,
@@ -135,17 +135,17 @@ function drawLine(coord, coordi, mult) {
             coordi[0] * mult,
             two.height - coordi[1] * mult
         );
-        line.stroke = "#f7924a";
+        line.stroke = color;
         line.linewidth = 2;
         resolve(line);
     });
 }
 
-let nn = [];
-let nnl = [];
 async function draw(geometry, mult, cx, cy) {
-    var lineas = two.makeGroup(nnl);
-    var nodos = two.makeGroup(nn);
+    var lineas = two.makeGroup();
+    var nodos = two.makeGroup();
+    var segmentos = two.makeGroup();
+    var holes = two.makeGroup();
     console.time("Contando");
     for (let i = 0; i < geometry.elements.length; i++) {
         for (let j = 0; j < 3; j++) {
@@ -160,14 +160,38 @@ async function draw(geometry, mult, cx, cy) {
             lineas.add(line);
         }
     }
+    for (let i = 0; i < geometry.segments.length; i++) {
+        const segment = geometry.segments[i]; //#0000FF
+        const p0 = geometry.gdls[segment[0]];
+        const pf = geometry.gdls[segment[1]];
+        let line = await drawLine(p0, pf, mult, "#0000FF");
+        let cx = (p0[0] + pf[0]) * 0.5;
+        let cy = (p0[1] + pf[1]) * 0.5;
+        let text = new Two.Text("" + i, cx * mult, two.height - cy * mult, {
+            size: 5,
+        });
+        segmentos.add(line);
+        segmentos.add(text);
+    }
+    for (let i = 0; i < geometry.holes.length; i++) {
+        const hole = geometry.holes[i];
+        const center = hole.center;
+        let point = await drawCircle(center, mult, "red");
+        let text = new Two.Text(
+            "Hole " + i,
+            center[0] * mult,
+            two.height - center[1] * mult,
+            {
+                size: 5,
+            }
+        );
+        holes.add(point);
+        holes.add(text);
+    }
     let scale = 0.75;
-    lineas.scale = scale;
-    lineas.translation.set(
-        two.width / 2 - cx * mult * scale,
-        two.height / 2 - cy * mult * scale
-    );
-    nodos.scale = scale;
-    nodos.translation.set(
+    let figura = two.makeGroup([lineas, nodos, segmentos, holes]);
+    figura.scale = scale;
+    figura.translation.set(
         two.width / 2 - cx * mult * scale,
         two.height / 2 - cy * mult * scale
     );
