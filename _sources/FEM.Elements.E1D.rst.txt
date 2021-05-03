@@ -17,6 +17,14 @@ FEM.Elements.E1D.Element1D module
    :undoc-members:
    :show-inheritance:
 
+FEM.Elements.E1D.EulerBernoulliElement module
+---------------------------------------------
+
+.. automodule:: FEM.Elements.E1D.EulerBernoulliElement
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Elements.E1D.LinealElement module
 -------------------------------------
 
