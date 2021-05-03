@@ -325,5 +325,7 @@ J. N. Reddy. Introduction to the Finite Element Method, Third Edition (McGraw-Hi
 
 Jonathan Richard Shewchuk, (1996) Triangle: Engineering a 2D Quality Mesh Generator and Delaunay Triangulator
 
+Ramirez, F. (2020). ICYA 4414 Modelación con Elementos Finitos [Class handout]. Universidad de Los Andes.
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
