@@ -33,6 +33,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -92,7 +93,10 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Test package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-Test.test_Geometry">Test.test_Geometry module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-Test.test_PlaneStress">Test.test_PlaneStress module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Test.test_PlaneStress">Test.test_PlaneStress module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-validation-of-the-planestress-class">Numerical validation of the PlaneStress Class</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
@@ -175,25 +179,67 @@
 </div>
 <div class="section" id="module-Test.test_Geometry">
 <span id="test-test-geometry-module"></span><h2>Test.test_Geometry module<a class="headerlink" href="#module-Test.test_Geometry" title="Permalink to this headline">¶</a></h2>
+<p>Geometry tests</p>
 <dl class="py class">
 <dt id="Test.test_Geometry.TestGeometry">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">Test.test_Geometry.</span></code><code class="sig-name descname"><span class="pre">TestGeometry</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Test the geometry class</p>
 <dl class="py method">
 <dt id="Test.test_Geometry.TestGeometry.test_generateSegmentFromCoords">
 <code class="sig-name descname"><span class="pre">test_generateSegmentFromCoords</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry.test_generateSegmentFromCoords" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Test if the generated geometry can be modified with segments from coordinates. Then saves the new geometry to a file</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="Test.test_Geometry.TestGeometry.test_meshRect">
 <code class="sig-name descname"><span class="pre">test_meshRect</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry.test_meshRect" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Creation a rectangular geometry file</p>
+</dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="module-Test.test_PlaneStress">
 <span id="test-test-planestress-module"></span><h2>Test.test_PlaneStress module<a class="headerlink" href="#module-Test.test_PlaneStress" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="numerical-validation-of-the-planestress-class">
+<h3>Numerical validation of the PlaneStress Class<a class="headerlink" href="#numerical-validation-of-the-planestress-class" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="tests">
+<h4>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
+<p>5 tests where made for validating the PlaneStress class.</p>
+<p>All of these 5 test are based in the same procedure. The objective is to compare the solution of the displacements profile in a cantilever beam.</p>
+</div>
+<div class="section" id="geometry">
+<h4>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h4>
+<p>The input geometry has 400 elements, 10 in y direction, 40 in x directions. The input geometry file can be generated using TestGeometry class.</p>
+<p>The beam geometrical properties are:
+- b: 0.3 m
+- h: 0.5 m
+- L = 2 m
+The material porperties are
+- E = 20000 KPa
+- <span class="math notranslate nohighlight">\(\gamma=23.54\frac{kN}{m^3}\)</span>
+- <span class="math notranslate nohighlight">\(v=0.2\)</span></p>
+<p>All tests are compared whit the analitycal solution of the beam deflections.</p>
+<p>The results are obtained using the profile option of the package. The location of all profiles are in the centroid of the beam alog the y axis.</p>
+<p>The Plane Stress formulation include shear effects. So, It is needed to obtain analytical solutions that includes such effects. The easyest way is to obtain the analytical solution using the virtual work statement.</p>
+</div>
+<div class="section" id="virtual-work-procedure-for-a-cantilever-beam">
+<h4>Virtual work procedure for a cantilever beam<a class="headerlink" href="#virtual-work-procedure-for-a-cantilever-beam" title="Permalink to this headline">¶</a></h4>
+<p>The virtual work statement is useful for calculate the dispacements in a given point. The displacements with felxion and shear effects can be calculated as:</p>
+<div class="math notranslate nohighlight">
+\[\hat{p}U=\int_{0}^{L} \frac{\hat{M}M}{EI} dx + \int_{0}^{L} \frac{\hat{V}V}{kAG} dx\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{p}\)</span> is point load applied in the place where the displacement want to be calculated. The load magnitude is 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{M}\)</span> is the moment diagram produced by the load <span class="math notranslate nohighlight">\(\hat{p}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{V}\)</span> is the shear diagram produced by the load <span class="math notranslate nohighlight">\(\hat{p}\)</span>.</p></li>
+</ul>
+<p>For calculate the displacements in any point of the element lenght, the load <span class="math notranslate nohighlight">\(\hat{p}\)</span> have to be applied in a distance <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/VW.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/VW.png" /></a>
+<p class="caption"><span class="caption-text">Moment and shear diagram for virtual load.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <dl class="py class">
 <dt id="Test.test_PlaneStress.TestPlaneStress">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">Test.test_PlaneStress.</span></code><code class="sig-name descname"><span class="pre">TestPlaneStress</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress" title="Permalink to this definition">¶</a></dt>
@@ -225,6 +271,8 @@
 
 </dd></dl>
 
+</div>
+</div>
 </div>
 </div>
 
