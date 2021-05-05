@@ -17,12 +17,19 @@ Geometry
 The input geometry has 400 elements, 10 in y direction, 40 in x directions. The input geometry file can be generated using TestGeometry class.
 
 The beam geometrical properties are:
+
 - b: 0.3 m
+
 - h: 0.5 m
+
 - L = 2 m
-The material porperties are
+
+The material porperties are:
+
 - E = 20000 KPa
+
 - :math:`\\gamma=23.54\\frac{kN}{m^3}`
+
 - :math:`v=0.2`
 
 All tests are compared whit the analitycal solution of the beam deflections.
@@ -48,7 +55,7 @@ where:
 
 For calculate the displacements in any point of the element lenght, the load :math:`\\hat{p}` have to be applied in a distance :math:`z`.
 
-.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/VW.png
+.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png
    :scale: 50 %
    :alt: Virtual work statement
 
