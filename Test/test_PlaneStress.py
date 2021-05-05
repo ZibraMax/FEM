@@ -21,9 +21,6 @@ The beam geometrical properties are:
 - b = 0.3 m
 - h = 0.5 m
 - L = 2 m
-
-The material porperties are:
-
 - E = 20000 KPa
 - :math:`\\gamma=23.54\\frac{kN}{m^3}`
 - :math:`v=0.2`
@@ -56,9 +53,14 @@ For calculate the displacements in any point of the element lenght, the load :ma
    :alt: Virtual work statement
 
    Moment and shear diagram for virtual load.
+   
+Since the diagrams are only different from 0 in length z, the virtual work statement can be rewritten as:
 
+.. math::
 
-    
+    \\hat{p}U=\\int_{0}^{z} \\frac{\\hat{M}M}{EI} dx + \\int_{0}^{z} \\frac{\\hat{V}V}{kAG} dx
+
+:math:`M` and :math:`V` are case dependent an these expresions will be developed for each test case.
 
 """
 
@@ -74,7 +76,40 @@ TOL = 0.1
 
 
 class TestPlaneStress(unittest.TestCase):
+    """Plane Stress tests
+    1. Uniform load applied as an uniform load in all elements.
+    2. Uniform load applied as a external load in the superior elements of the beam.
+    3. Point load applied in the beam lenght. The load is applied as a shear stress load.
+    4. Point load applied in the beam lenght. The load is applied as point load in the corner node.
+    5. Triangular load applied in the superior elements of the beam.
+    """
+
     def test_cantilever_beam_uniform_1(self):
+        """Test if the FEM solution matches the next analytical solution:
+
+        For the load condition, the moment an shear diagram can be described by the following equations:
+
+        .. math::
+
+            M=WLx-\\frac{WL^2}{2}-\\frac{Wx^2}{2}
+
+        .. math::
+
+            V=W(L-x)
+
+        Solving the virtual work statement, the analitycal displacement can be calculated as:
+
+        .. math::
+
+            U = \\frac{Wx^2}{24EI}\\left(x^2+6L^2-4Lx\\right)+\\frac{W}{kAG}\\left(Lx-\\frac{x^2}{2}\\right)
+
+        .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_1.png
+            :scale: 50 %
+            :alt: Virtual work statement
+
+            FEM solution compared whit analytical solution
+
+        """
         geometry = Geometry.loadmsh(FILENAME)
         cb = geometry.cbFromSegment(3, 0.0, 1)
         cb += geometry.cbFromSegment(3, 0.0, 2)
@@ -114,6 +149,31 @@ class TestPlaneStress(unittest.TestCase):
         self.assertTrue(errores < TOL)
 
     def test_cantilever_beam_uniform_2(self):
+        """Test if the FEM solution matches the next analytical solution:
+
+        For the load condition, the moment an shear diagram can be described by the following equations:
+
+        .. math::
+
+            M=WLx-\\frac{WL^2}{2}-\\frac{Wx^2}{2}
+
+        .. math::
+
+            V=W(L-x)
+
+        Solving the virtual work statement, the analitycal displacement can be calculated as:
+
+        .. math::
+
+            U = \\frac{Wx^2}{24EI}\\left(x^2+6L^2-4Lx\\right)+\\frac{W}{kAG}\\left(Lx-\\frac{x^2}{2}\\right)
+
+        .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_2.png
+            :scale: 50 %
+            :alt: Virtual work statement
+
+            FEM solution compared whit analytical solution
+        """
+
         geometry = Geometry.loadmsh(FILENAME)
         cb = geometry.cbFromSegment(3, 0.0, 1)
         cb += geometry.cbFromSegment(3, 0.0, 2)
@@ -154,6 +214,25 @@ class TestPlaneStress(unittest.TestCase):
         self.assertTrue(errores < TOL)
 
     def test_cantilever_beam_point_1(self):
+        """Test if the FEM solution matches the next analytical solution:
+
+        For the load condition, the moment an shear diagram can be described by the following equations:
+
+        .. math::
+
+            M=PL\\left(1-\\frac{x}{L}\\right)
+
+        .. math::
+
+            V=P
+
+        Solving the virtual work statement, the analitycal displacement can be calculated as:
+
+        .. math::
+
+            U = \\frac{P^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
+
+        """
         h = 0.5
         L = 2.0
         E = 20000
@@ -199,6 +278,25 @@ class TestPlaneStress(unittest.TestCase):
         self.assertTrue(errores < TOL)
 
     def test_cantilever_beam_point_2(self):
+        """Test if the FEM solution matches the next analytical solution:
+
+        For the load condition, the moment an shear diagram can be described by the following equations:
+
+        .. math::
+
+            M=PL\\left(1-\\frac{x}{L}\\right)
+
+        .. math::
+
+            V=P
+
+        Solving the virtual work statement, the analitycal displacement can be calculated as:
+
+        .. math::
+
+            U = \\frac{P^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
+
+        """
         h = 0.5
         L = 2.0
         E = 20000
@@ -245,6 +343,25 @@ class TestPlaneStress(unittest.TestCase):
         self.assertTrue(errores < TOL)
 
     def test_cantilever_beam_triangular_3(self):
+        """Test if the FEM solution matches the next analytical solution:
+
+        For the load condition, the moment an shear diagram can be described by the following equations:
+
+        .. math::
+
+            M=\\frac{-WL^2}{6}+\\frac{LW}{2}x-\\frac{x}{2}\\left(Wx\\left(1-\\frac{x}{L}\\right)\\right)-\\frac{2}{3}x\\left(\\frac{Wx^2}{2L}\\right)
+
+        .. math::
+
+            V=\\frac{Wx^2}{2L}+Wx\\left(1-\\frac{x}{L}\\right)-\\frac{LW}{2}
+
+        Solving the virtual work statement, the analitycal displacement can be calculated as:
+
+        .. math::
+
+            U = \\frac{Wx^2}{120LEI}\\left(10L^3-10L^2x+5Lx^2-x^3\\right)+\\frac{Wx}{6kAGL}\\left(x^2-3Lx+3L^2\\right)
+
+        """
         geometry = Geometry.loadmsh(FILENAME)
         cb = geometry.cbFromSegment(3, 0.0, 1)
         cb += geometry.cbFromSegment(3, 0.0, 2)
