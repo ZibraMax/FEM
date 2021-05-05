@@ -23,7 +23,7 @@ def enmalladoFernando(lx: float, ly: float, nex: int, ney: int, filename: str) -
     ly = float(ly)
     nex = int(nex)
     ney = int(ney)
-    lr = 6*l
+    lr = 0
     nne = 8
     hx = lx/nex
     hy = ly/ney

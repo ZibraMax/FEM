@@ -14,7 +14,7 @@ class QuadraticElement(Element1D):
         n (int, optional): Number of gauss points. Defaults to 3.
     """
 
-    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 3, **kargs) -> None:
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 4, **kargs) -> None:
         """Create a quadratic element
 
         Args:

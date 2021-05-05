@@ -233,6 +233,7 @@ class PlaneStress(Core):
         _x = np.linspace(p0[0], p1[0], n)
         _y = np.linspace(p0[1], p1[1], n)
         X = np.array([_x, _y])
+        U = []
         U1 = []
         U2 = []
         U3 = []
@@ -242,8 +243,9 @@ class PlaneStress(Core):
             for ee, e in enumerate(self.elements):
                 if e.isInside(X.T[i]):
                     z = e.inverseMapping(np.array([X.T[i]]).T)
-                    _, _, du = e.giveSolutionPoint(z, True)
+                    _, u, du = e.giveSolutionPoint(z, True)
                     # TODO Arreglar calculo de esfuerzos para PlaneStrain
+                    U += [u.tolist()]
                     U1 += (self.C11[ee]*du[:, 0, 0] +
                            self.C12[ee]*du[:, 1, 1]).tolist()
                     U2 += (self.C12[ee]*du[:, 0, 0] +
@@ -267,3 +269,4 @@ class PlaneStress(Core):
         ax.grid()
         ax.set_xlabel('d')
         ax.set_ylabel(r'$\sigma_{xy}$')
+        return _X,U
