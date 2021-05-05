@@ -19,11 +19,9 @@ sys.path.insert(0, os.path.abspath('../..'))
 project = 'FEM'
 copyright = '2021, Arturo Rodriguez'
 author = 'Arturo Rodriguez'
-about = {}
 try:
     with open('../../'+project+'/__version__.py') as f:
-        exec(f.read(), about)
-        release = about['__version__']
+        release = f.read()
 except:
     raise Exception("ERROR PARSING MODULE VERSION FILE")
 
