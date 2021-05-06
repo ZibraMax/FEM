@@ -19,9 +19,7 @@ jobs:
                   cd docs
                   make clean
                   cd ..
-                  cd ..
                   sphinx-apidoc -f --module-first -o docs/source ./
-                  cd FEM
                   cd docs
                   make html
             # ===============================
