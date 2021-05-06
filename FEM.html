@@ -101,6 +101,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.Heat1D">FEM.Heat1D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.Heat2D">FEM.Heat2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.ODE2D">FEM.ODE2D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.ParabolicCore">FEM.ParabolicCore module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
@@ -109,6 +110,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example37.html">example37 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
@@ -497,6 +499,50 @@ be a 2-D Numpy Array.</p>
 <dt id="FEM.Heat2D.Heat2D.postProcess">
 <code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Heat2D.Heat2D.postProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate the temperature surface for the geometry</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-FEM.ODE2D">
+<span id="fem-ode2d-module"></span><h2>FEM.ODE2D module<a class="headerlink" href="#module-FEM.ODE2D" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="FEM.ODE2D.ODE2D">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.ODE2D.</span></code><code class="sig-name descname"><span class="pre">ODE2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">FEM.Mesh.Geometry.Geometry</span></em>, <em class="sig-param"><span class="pre">a11=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">a12=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">a21=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">a22=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></em>, <em class="sig-param"><span class="pre">a00=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.ODE2D.ODE2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<dl class="py method">
+<dt id="FEM.ODE2D.ODE2D.elementMatrices">
+<code class="sig-name descname"><span class="pre">elementMatrices</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.ODE2D.ODE2D.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.ODE2D.ODE2D.postProcess">
+<code class="sig-name descname"><span class="pre">postProcess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.ODE2D.ODE2D.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the stress surfaces and displacement fields for the geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mult</strong> (<em>int</em><em>, </em><em>optional</em>) – Factor for displacements. Defaults to 1000.</p></li>
+<li><p><strong>gs</strong> (<em>list</em><em>, </em><em>optional</em>) – List of 4 gridSpec matplotlib objects. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.ODE2D.ODE2D.profile">
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.ODE2D.ODE2D.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a profile between selected points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p0</strong> (<em>list</em>) – start point of the profile [x0,y0]</p></li>
+<li><p><strong>p1</strong> (<em>list</em>) – end point of the profile [xf,yf]</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – NUmber of samples for graph. Defaults to 100.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
