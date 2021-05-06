@@ -49,7 +49,8 @@ where:
 For calculate the displacements in any point of the element lenght, the load :math:`\\hat{p}` have to be applied in a distance :math:`z`.
 
 .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png
-   :scale: 50 %
+   :scale: 80 %
+   :align: center
    :alt: Virtual work statement
 
    Moment and shear diagram for virtual load.
@@ -107,7 +108,7 @@ class TestPlaneStress(unittest.TestCase):
             :scale: 50 %
             :alt: Virtual work statement
 
-            FEM solution compared whit analytical solution
+            Test result: FEM solution compared whit analytical solution
 
         """
         geometry = Geometry.loadmsh(FILENAME)
@@ -137,13 +138,13 @@ class TestPlaneStress(unittest.TestCase):
         err = U - anal
         err = err[1:]
         errores = np.max(np.abs(err/anal[1:]))
-        print(errores)
+
         plt.plot(X, U, '--*', color='black', label='FEM')
         plt.plot(X, anal, '-^', color='black', label='Analytical')
         plt.grid()
         plt.legend()
         plt.xlabel('x [m]')
-        plt.ylabel(r'\Delta [m]')
+        plt.ylabel(r'$\Delta [m]$')
         plt.savefig('Test/resources/results/test_cantilever_beam_uniform_1.png')
         plt.close()
         self.assertTrue(errores < TOL)
@@ -202,13 +203,13 @@ class TestPlaneStress(unittest.TestCase):
         err = U - anal
         err = err[1:].flatten()
         errores = np.max(np.abs(err/anal[1:]))
-        print(errores)
+
         plt.plot(X, U, '--*', color='black', label='FEM')
         plt.plot(X, anal, '-^', color='black', label='Analytical')
         plt.grid()
         plt.legend()
         plt.xlabel('x [m]')
-        plt.ylabel(r'\Delta [m]')
+        plt.ylabel(r'$\Delta [m]$')
         plt.savefig('Test/resources/results/test_cantilever_beam_uniform_2.png')
         plt.close()
         self.assertTrue(errores < TOL)
@@ -272,13 +273,13 @@ class TestPlaneStress(unittest.TestCase):
         err = U - anal
         err = err[1:].flatten()
         errores = np.max(np.abs(err/anal[1:]))
-        print(errores)
+
         plt.plot(X, U, '--*', color='black', label='FEM')
         plt.plot(X, anal, '-^', color='black', label='Analytical')
         plt.grid()
         plt.legend()
         plt.xlabel('x [m]')
-        plt.ylabel(r'\Delta [m]')
+        plt.ylabel(r'$\Delta [m]$')
         plt.savefig('Test/resources/results/test_cantilever_beam_point_1.png')
         plt.close()
         self.assertTrue(errores < TOL)
@@ -343,13 +344,13 @@ class TestPlaneStress(unittest.TestCase):
         err = U - anal
         err = err[1:].flatten()
         errores = np.max(np.abs(err/anal[1:]))
-        print(errores)
+
         plt.plot(X, U, '--*', color='black', label='FEM')
         plt.plot(X, anal, '-^', color='black', label='Analytical')
         plt.grid()
         plt.legend()
         plt.xlabel('x [m]')
-        plt.ylabel(r'\Delta [m]')
+        plt.ylabel(r'$\Delta [m]$')
         plt.savefig('Test/resources/results/test_cantilever_beam_point_2.png')
         plt.close()
         self.assertTrue(errores < TOL)
@@ -410,13 +411,13 @@ class TestPlaneStress(unittest.TestCase):
         err = U - anal
         err = err[1:].flatten()
         errores = np.max(np.abs(err/anal[1:]))
-        print(errores)
+
         plt.plot(X, U, '--*', color='black', label='FEM')
         plt.plot(X, anal, '-^', color='black', label='Analytical')
         plt.grid()
         plt.legend()
         plt.xlabel('x [m]')
-        plt.ylabel(r'\Delta [m]')
+        plt.ylabel(r'$\Delta [m]$')
         plt.savefig(
             'Test/resources/results/test_cantilever_beam_triangular_3.png')
         plt.close()
