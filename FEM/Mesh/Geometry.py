@@ -499,6 +499,28 @@ class Geometry:
                 a.append(e)
         return a
 
+    def loadOnSegmentVF(self, segment: int, f: Callable = None, tol: float = 1*10**(-5), add=None) -> None:
+        """Assign a load over a geometry segment.
+
+        The start point of segment is the 0 point of load
+        The end point of segment is the end point of load
+
+        Load must be defined as a function (normal or lambda)
+
+        Args:
+            segment (int): Segment in wich load will be applied
+            f (Callable, optional): Load Function. Defaults to None.
+            tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
+        """
+        c0, cf = [self.gdls[self.segments[segment][0]],
+                  self.gdls[self.segments[segment][1]]]
+        dy = cf[1]-c0[1]
+        dx = cf[0]-c0[0]
+        theta = np.arctan2(dy, dx)
+        def fx(s): return f(c0[0]+s*np.cos(theta))[0]
+        def fy(s): return f(c0[1]+s*np.sin(theta))[1]
+        self.loadOnSegment(segment=segment, fx=fx, fy=fy, tol=tol, add=add)
+
     def loadOnSegment(self, segment: int, fx: Callable = None, fy: Callable = None, tol: float = 1*10**(-5), add=None) -> None:
         """Assign a load over a geometry segment.
 
