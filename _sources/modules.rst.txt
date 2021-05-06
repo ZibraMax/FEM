@@ -1,5 +1,5 @@
-work
-====
+FEM
+===
 
 .. toctree::
    :maxdepth: 4
