@@ -101,6 +101,7 @@
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Heat1D">FEM.Heat1D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Heat2D">FEM.Heat2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.ODE2D">FEM.ODE2D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.ParabolicCore">FEM.ParabolicCore module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
@@ -109,6 +110,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example37.html">example37 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
@@ -439,6 +441,24 @@ The end point of segment is the end point of load</p>
 <li><p><strong>segment</strong> (<em>int</em>) – Segment in wich load will be applied</p></li>
 <li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function x component. Defaults to None.</p></li>
 <li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function y component. Defaults to None.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.loadOnSegmentVF">
+<code class="sig-name descname"><span class="pre">loadOnSegmentVF</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Mesh.Geometry.loadOnSegmentVF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign a load over a geometry segment.</p>
+<p>The start point of segment is the 0 point of load
+The end point of segment is the end point of load</p>
+<p>Load must be defined as a function (normal or lambda)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<em>int</em>) – Segment in wich load will be applied</p></li>
+<li><p><strong>f</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function. Defaults to None.</p></li>
 <li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
 </ul>
 </dd>
@@ -856,6 +876,24 @@ The end point of segment is the end point of load</p>
 <li><p><strong>segment</strong> (<em>int</em>) – Segment in wich load will be applied</p></li>
 <li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function x component. Defaults to None.</p></li>
 <li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function y component. Defaults to None.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FEM.Mesh.Geometry.Geometry.loadOnSegmentVF">
+<code class="sig-name descname"><span class="pre">loadOnSegmentVF</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Mesh.Geometry.Geometry.loadOnSegmentVF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign a load over a geometry segment.</p>
+<p>The start point of segment is the 0 point of load
+The end point of segment is the end point of load</p>
+<p>Load must be defined as a function (normal or lambda)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<em>int</em>) – Segment in wich load will be applied</p></li>
+<li><p><strong>f</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function. Defaults to None.</p></li>
 <li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
 </ul>
 </dd>

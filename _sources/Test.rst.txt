@@ -17,6 +17,14 @@ Test.test\_Geometry module
    :undoc-members:
    :show-inheritance:
 
+Test.test\_ODE2D module
+-----------------------
+
+.. automodule:: Test.test_ODE2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Test.test\_PlaneStress module
 -----------------------------
 

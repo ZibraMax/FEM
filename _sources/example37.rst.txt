@@ -1,0 +1,7 @@
+example37 module
+================
+
+.. automodule:: example37
+   :members:
+   :undoc-members:
+   :show-inheritance:
