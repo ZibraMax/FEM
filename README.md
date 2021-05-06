@@ -1,8 +1,9 @@
 <!-- LTeX: language=en -->
+
 [![Build status](https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ZibraMax/FEM/actions/workflows/python-publish.yml)
 [![Docs](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml/badge.svg)](https://github.com/ZibraMax/FEM/actions/workflows/docs.yml)
 [![PyPI version](https://badge.fury.io/py/AFEM.svg)](https://badge.fury.io/py/AFEM)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/854107ce95794d28beac5ea5c44e1dd2)](https://www.codacy.com/gh/ZibraMax/FEM/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ZibraMax/FEM&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/854107ce95794d28beac5ea5c44e1dd2)](https://www.codacy.com/gh/ZibraMax/FEM/dashboard?utm_source=github.com&utm_medium=referral&utm_content=ZibraMax/FEM&utm_campaign=Badge_Grade)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ZibraMax/FEM/blob/master/LICENSE)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![GitHub release](https://img.shields.io/github/v/release/ZibraMax/FEM.svg)](https://github.com/ZibraMax/FEM/releases/)
@@ -20,6 +21,7 @@ pip install AFEM
 ```
 
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
@@ -31,23 +33,35 @@ Please make sure to update tests as appropriate.
 ### Using pre implemented equations
 
 Avaliable equations:
-- 1D 1 Variable ordinary diferential equation
-- 1D 1 Variable 1D Heat with convective border
-- 1D 2 Variable Euler Bernoulli Beams [TODO]
-- 1D 2 Variable Timoshenko Beams [TODO]
-- 2D 1 Variable Torsion
-- 2D 1 Variable 2D Heat with convective borders
-- 2D 2 Variable Plane Strees
-- 2D 2 Variable Plane Strain
+
+-   1D 1 Variable ordinary diferential equation
+-   1D 1 Variable 1D Heat with convective border
+-   1D 2 Variable Euler Bernoulli Beams [TODO]
+-   1D 2 Variable Timoshenko Beams [TODO]
+-   2D 1 Variable Torsion
+-   2D 1 Variable 2D Heat with convective borders
+-   2D 2 Variable Plane Strees
+-   2D 2 Variable Plane Strain
+
+Numerical Validation:
+
+-   [x] 1D 1 Variable ordinary diferential equation
+-   [ ] 1D 1 Variable 1D Heat with convective border
+-   [ ] 1D 2 Variable Euler Bernoulli Beams [TODO]
+-   [ ] 1D 2 Variable Timoshenko Beams [TODO]
+-   [ ] 2D 1 Variable Torsion
+-   [ ] 2D 1 Variable 2D Heat with convective borders
+-   [x] 2D 2 Variable Plane Strees
+-   [x] 2D 2 Variable Plane Strain
 
 #### Steps:
-- Create geometry (From coordinates or GiD)
-- Create Border Conditions (Point and segment supported)
-- Solve!
-- For example: Example 2, Example 5, Example 11-14
+
+-   Create geometry (From coordinates or GiD)
+-   Create Border Conditions (Point and segment supported)
+-   Solve!
+-   For example: Example 2, Example 5, Example 11-14
 
 #### Example without geometry file (Test 2):
-
 
 ```python
 import matplotlib.pyplot as plt #Import libraries
@@ -102,7 +116,6 @@ plt.show()
 
 #### Example with geometry file (Example 2):
 
-
 ```python
 import matplotlib.pyplot as plt #Import libraries
 from FEM.Torsion2D import Torsion2D #import AFEM
@@ -132,6 +145,7 @@ plt.show()
 Note: Don't forget the docstring!
 
 #### Steps
+
 1. Create a Python flie and import the libraries:
 
     ```python
@@ -155,6 +169,7 @@ Note: Don't forget the docstring!
     ```
     It is important to manage the number of variables per node in the input geometry.
 3. Define the matrix calculation methods and post porcessing methods.
+
     ```python
     def elementMatrices(self):
     def postProcess(self):
@@ -181,143 +196,163 @@ A good example is the `PlaneStress` class
 
 1. Beam bending by Euler Bernoulli and Timoshenko equations
 2. 2D elastic plate theory
-4. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
-5. Transient analysis (Core modification)
-6. Elasticity in 3D (3D meshing and post process)
-7. Non-Lineal analysis for 1D equation (All cases)
-8. Non-Lineal for 2D equation (All cases)
-9. UNIT TESTING
-10. NUMERICAL VALIDATION
-11. Non-Local 2D?
+3. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
+4. Transient analysis (Core modification)
+5. Elasticity in 3D (3D meshing and post process)
+6. Non-Lineal analysis for 1D equation (All cases)
+7. Non-Lineal for 2D equation (All cases)
+8. Testing and numerical validation (WIP)
+ <!-- 10. Non-Local 2D? -->
 
 ## Example index:
 
-- Example 1: Preliminar geometry test
+-   Example 1: Preliminar geometry test
 
-- Example 2: 2D Torsion 1 variable per node. H section-Triangular Quadratic.
+-   Example 2: 2D Torsion 1 variable per node. H section-Triangular Quadratic.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2.png">
-- Example 3: 2D Torsion 1 variable per node. Square section-Triangular Quadratic.
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example3.png">
-- Example 4: 2D Torsion 1 variable per node. Mesh from internet-Square Lineal.
+-   Example 3: 2D Torsion 1 variable per node. Square section-Triangular Quadratic.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example4.png">
-- Example 5: 2D Torsion 1 variable per node. Creating and saving mesh-Triangular Quadratic.
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example3.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example5.png">
-- Example 6: 1D random differential equation 1 variable per node. Linear Quadratic.
+-   Example 4: 2D Torsion 1 variable per node. Mesh from internet-Square Lineal.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example6.png">
-- Example 7: GiD Mesh import test — Serendipity elements
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example4.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example7.png">
-- Example 8: Plane Stress 2 variable per node. Plate in tension — Serendipity.
+-   Example 5: 2D Torsion 1 variable per node. Creating and saving mesh-Triangular Quadratic.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example8.png">
-- Example 9: Plane Stress 2 variable per node. Simple Supported Beam — Serendipity.
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example5.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example9.png">
-- Example 10: Plane Stress 2 variable per node. Cantilever Beam — Triangular Quadratic.
+-   Example 6: 1D random differential equation 1 variable per node. Linear Quadratic.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example10.png">
-- Example 11: Plane Stress 2 variable per node. Fixed-Fixed Beam — Serendipity.
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example6.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example11.png">
-- Example 12: Plane Strain 2 variable per node. Embankment from GiD — Serendipity.
+-   Example 7: GiD Mesh import test — Serendipity elements
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example12.png">
-- Example 13: Plane Strain 2 variable per node. Embankment — Triangular Quadratic.
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example7.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example13_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example13.png">
-- Example 14: Plane Stress 2 variable per node. Cantilever Beam — Serendipity.
+-   Example 8: Plane Stress 2 variable per node. Plate in tension — Serendipity.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example14.png">
-- Example 15: Profile creation tool. Same as Example 14
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example8.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example15.png">
-- Example 16: Non-Local Plane Stress. [WIP]
-- Example 17: 1D Heat transfer.
+-   Example 9: Plane Stress 2 variable per node. Simple Supported Beam — Serendipity.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example17.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example9.png">
 
-- Example 18: 2D border elements creation.
+-   Example 10: Plane Stress 2 variable per node. Cantilever Beam — Triangular Quadratic.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example18.png">
-- Example 19: Apply loads on segments. `loadOnSegment` method on Test 11
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example10.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example19.png">
-- Example 20: Reddy's Example 11.7.1 Ed 3
-- Example 21: Example 20 with serendipity elements.
-- Example 22: Example 20 with refined mesh.
+-   Example 11: Plane Stress 2 variable per node. Fixed-Fixed Beam — Serendipity.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example22.png">
-- Example 23: Reddy's Problem 11.1 Ed 3 Plain Strain
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example11.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example23.png">
-- Example 24: Example 23 with refined mesh
+-   Example 12: Plane Strain 2 variable per node. Embankment from GiD — Serendipity.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example24.png">
-- Example 25: Holes concept. With Example 24
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example12.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example25_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example25.png">
-- Example 26: Fillets concept.
+-   Example 13: Plane Strain 2 variable per node. Embankment — Triangular Quadratic.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example26_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example26.png">
-- Example 27: Combination of Holes Fillets, Plane Stress
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example13_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example13.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example27_geometry.png">
-- Example 28: Fillets and Holes mesh files of Example 27
+-   Example 14: Plane Stress 2 variable per node. Cantilever Beam — Serendipity.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example28.png">
-- Example 29: Fillets and Holes in Example 13
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example14.png">
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example29_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example29.png">
+-   Example 15: Profile creation tool. Same as Example 14
 
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example15.png">
 
-- Example 30: Border conditions and loads in holes
+-   Example 16: Non-Local Plane Stress. [WIP]
+-   Example 17: 1D Heat transfer.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example30_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example30.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example17.png">
 
-- Example 31: 2D Heat with convective borders
+-   Example 18: 2D border elements creation.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example31_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example31.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example18.png">
 
-- Example 32: Border conditions and loads in holes
+-   Example 19: Apply loads on segments. `loadOnSegment` method on Test 11
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example32_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example32.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example19.png">
 
-- Example 33: Example 30 with Heat
+-   Example 20: Reddy's Example 11.7.1 Ed 3
+-   Example 21: Example 20 with serendipity elements.
+-   Example 22: Example 20 with refined mesh.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example33_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example33.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example22.png">
 
-- Example 34: Custom plots, Beam-Girder steel plate connection
+-   Example 23: Reddy's Problem 11.1 Ed 3 Plain Strain
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example34_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example34.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example23.png">
 
-- Example 35: Torsion with fillets
+-   Example 24: Example 23 with refined mesh
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example35_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example35.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example24.png">
 
-- Example 36: Convective Heat Transfer from [Samson-Mano's software](https://github.com/Samson-Mano/2D_Heat_transfer)
+-   Example 25: Holes concept. With Example 24
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example36.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example25_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example25.png">
 
-- Example 36: Convective Heat Transfer from [Samson-Mano's software](https://github.com/Samson-Mano/2D_Heat_transfer)
+-   Example 26: Fillets concept.
 
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example37_geometry.png">
-    <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example37.png">
-    
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example26_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example26.png">
+
+-   Example 27: Combination of Holes Fillets, Plane Stress
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example27_geometry.png">
+
+-   Example 28: Fillets and Holes mesh files of Example 27
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example28.png">
+
+-   Example 29: Fillets and Holes in Example 13
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example29_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example29.png">
+
+-   Example 30: Border conditions and loads in holes
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example30_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example30.png">
+
+-   Example 31: 2D Heat with convective borders
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example31_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example31.png">
+
+-   Example 32: Border conditions and loads in holes
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example32_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example32.png">
+
+-   Example 33: Example 30 with Heat
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example33_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example33.png">
+
+-   Example 34: Custom plots, Beam-Girder steel plate connection
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example34_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example34.png">
+
+-   Example 35: Torsion with fillets
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example35_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example35.png">
+
+-   Example 36: Convective Heat Transfer from [Samson-Mano's software](https://github.com/Samson-Mano/2D_Heat_transfer)
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example36.png">
+
+-   Example 36: Convective Heat Transfer from [Samson-Mano's software](https://github.com/Samson-Mano/2D_Heat_transfer)
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example37_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example37.png">
 
 ## References
 
@@ -328,4 +363,5 @@ Jonathan Richard Shewchuk, (1996) Triangle: Engineering a 2D Quality Mesh Genera
 Ramirez, F. (2020). ICYA 4414 Modelación con Elementos Finitos [Class handout]. Universidad de Los Andes.
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)
