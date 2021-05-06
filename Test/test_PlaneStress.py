@@ -232,6 +232,12 @@ class TestPlaneStress(unittest.TestCase):
 
             U = \\frac{P^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
 
+        .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_1.png
+            :scale: 50 %
+            :alt: Virtual work statement
+
+            FEM solution compared whit analytical solution
+
         """
         h = 0.5
         L = 2.0
@@ -295,6 +301,12 @@ class TestPlaneStress(unittest.TestCase):
         .. math::
 
             U = \\frac{P^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
+
+        .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_2.png
+            :scale: 50 %
+            :alt: Virtual work statement
+
+            FEM solution compared whit analytical solution
 
         """
         h = 0.5
@@ -360,6 +372,12 @@ class TestPlaneStress(unittest.TestCase):
         .. math::
 
             U = \\frac{Wx^2}{120LEI}\\left(10L^3-10L^2x+5Lx^2-x^3\\right)+\\frac{Wx}{6kAGL}\\left(x^2-3Lx+3L^2\\right)
+
+        .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_triangular_3.png
+            :scale: 50 %
+            :alt: Virtual work statement
+
+            FEM solution compared whit analytical solution
 
         """
         geometry = Geometry.loadmsh(FILENAME)
