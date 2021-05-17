@@ -77,6 +77,7 @@ class Delaunay(Geometry):
                 # vertices += [O]
 
         original = dict(vertices=np.array(vertices), segments=np.array(seg))
+        self.original = original
         if holes_dict:
             for hole in holes_dict:
                 hh += [hole['center']]
@@ -87,6 +88,7 @@ class Delaunay(Geometry):
             original = dict(vertices=np.array(vertices),
                             segments=np.array(seg), holes=hh)
         triangular = tr.triangulate(original, params)
+        self.triangulation = triangular
         dictionary = triangular['triangles'].tolist()
         tipos = np.zeros([len(dictionary)]).astype(str)
         if 'o2' in params:

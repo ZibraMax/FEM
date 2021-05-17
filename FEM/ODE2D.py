@@ -33,7 +33,6 @@ class ODE2D(Core):
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
         """
-        m = len(e.gdl.T)
         a11 = self.a11
         a12 = self.a12
         a21 = self.a21
@@ -41,6 +40,7 @@ class ODE2D(Core):
         a00 = self.a00
 
         for ee, e in enumerate(tqdm(self.elements, unit='Element')):
+            m = len(e.gdl.T)
             # Gauss points in global coordinates and Shape functions evaluated in gauss points
             _x, _p = e.T(e.Z.T)
             # Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates

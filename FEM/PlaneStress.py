@@ -2,12 +2,14 @@
 """
 
 
-from .Core import Core, Geometry
-from tqdm import tqdm
-import numpy as np
+from typing import Callable, Tuple
+
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib import gridspec
-from typing import Tuple, Callable
+from tqdm import tqdm
+
+from .Core import Core, Geometry
 
 
 class PlaneStress(Core):
@@ -269,4 +271,4 @@ class PlaneStress(Core):
         ax.grid()
         ax.set_xlabel('d')
         ax.set_ylabel(r'$\sigma_{xy}$')
-        return _X,U
+        return _X, U

@@ -83,7 +83,7 @@ class Core():
             e.setUe(self.U)
         print('Done!')
 
-    def solve(self, path: str = '', plot: bool = True) -> None:
+    def solve(self, path: str = '', plot: bool = True, **kargs) -> None:
         """A series of Finite Element steps
 
         Args:
@@ -98,10 +98,10 @@ class Core():
         self.solveES(path)
         if plot:
             print('Post processing solution...')
-            self.postProcess()
+            self.postProcess(**kargs)
             print('Done!')
 
-    def solveFromFile(self, file: str, plot: bool = True) -> None:
+    def solveFromFile(self, file: str, plot: bool = True, **kargs) -> None:
         """Load a solution file and show the post process for a given geometry
 
         Args:
@@ -114,7 +114,23 @@ class Core():
         print('Done!')
         if plot:
             print('Post processing solution...')
-            self.postProcess()
+            self.postProcess(**kargs)
+            print('Done!')
+
+    def solveFromArray(self, solution: np.ndarray, plot: bool = True, **kargs) -> None:
+        """Load a solution array to the problem.
+
+        Args:
+                solution (np.ndarray): Solution vertical array with shape (self.ngdl,1)
+        """
+        print('Casting solution')
+        self.U = solution
+        for e in self.elements:
+            e.setUe(self.U)
+        print('Done!')
+        if plot:
+            print('Post processing solution...')
+            self.postProcess(**kargs)
             print('Done!')
 
     def profile(self) -> None:
