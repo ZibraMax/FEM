@@ -5,6 +5,7 @@ FEM
    :maxdepth: 4
 
    FEM
+   MeshingNet
    Test
    example37
    setup

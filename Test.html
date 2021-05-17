@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,10 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -40,7 +43,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="example37 module" href="example37.html" />
-    <link rel="prev" title="FEM.Utils package" href="FEM.Utils.html" /> 
+    <link rel="prev" title="MeshingNet module" href="MeshingNet.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,6 +92,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">FEM</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="FEM.html">FEM package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MeshingNet.html">MeshingNet module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Test package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-Test.test_Geometry">Test.test_Geometry module</a></li>
@@ -185,19 +189,19 @@
 <span id="test-test-geometry-module"></span><h2>Test.test_Geometry module<a class="headerlink" href="#module-Test.test_Geometry" title="Permalink to this headline">¶</a></h2>
 <p>Geometry tests</p>
 <dl class="py class">
-<dt id="Test.test_Geometry.TestGeometry">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">Test.test_Geometry.</span></code><code class="sig-name descname"><span class="pre">TestGeometry</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_Geometry.TestGeometry">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Test.test_Geometry.</span></span><span class="sig-name descname"><span class="pre">TestGeometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
 <p>Test the geometry class</p>
 <dl class="py method">
-<dt id="Test.test_Geometry.TestGeometry.test_generateSegmentFromCoords">
-<code class="sig-name descname"><span class="pre">test_generateSegmentFromCoords</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry.test_generateSegmentFromCoords" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_Geometry.TestGeometry.test_generateSegmentFromCoords">
+<span class="sig-name descname"><span class="pre">test_generateSegmentFromCoords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry.test_generateSegmentFromCoords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if the generated geometry can be modified with segments from coordinates. Then saves the new geometry to a file</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="Test.test_Geometry.TestGeometry.test_meshRect">
-<code class="sig-name descname"><span class="pre">test_meshRect</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry.test_meshRect" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_Geometry.TestGeometry.test_meshRect">
+<span class="sig-name descname"><span class="pre">test_meshRect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry.test_meshRect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creation a rectangular geometry file</p>
 </dd></dl>
 
@@ -211,13 +215,13 @@
 <div class="section" id="tests">
 <h4>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
-<dt id="Test.test_ODE2D.TestODE2D">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">Test.test_ODE2D.</span></code><code class="sig-name descname"><span class="pre">TestODE2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_ODE2D.TestODE2D" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_ODE2D.TestODE2D">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Test.test_ODE2D.</span></span><span class="sig-name descname"><span class="pre">TestODE2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_ODE2D.TestODE2D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
 <p>Parial differential equations in 2D tests</p>
 <dl class="py method">
-<dt id="Test.test_ODE2D.TestODE2D.test_polinomyal_function">
-<code class="sig-name descname"><span class="pre">test_polinomyal_function</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_ODE2D.TestODE2D.test_polinomyal_function" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_ODE2D.TestODE2D.test_polinomyal_function">
+<span class="sig-name descname"><span class="pre">test_polinomyal_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_ODE2D.TestODE2D.test_polinomyal_function" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -271,8 +275,8 @@
 \[\hat{p}U=\int_{0}^{z} \frac{\hat{M}M}{EI} dx + \int_{0}^{z} \frac{\hat{V}V}{kAG} dx\]</div>
 <p><span class="math notranslate nohighlight">\(M\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are case dependent an these expresions will be developed for each test case.</p>
 <dl class="py class">
-<dt id="Test.test_PlaneStress.TestPlaneStress">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">Test.test_PlaneStress.</span></code><code class="sig-name descname"><span class="pre">TestPlaneStress</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Test.test_PlaneStress.</span></span><span class="sig-name descname"><span class="pre">TestPlaneStress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
 <p>Plane Stress tests
 1. Uniform load applied as an uniform load in all elements.
@@ -281,8 +285,8 @@
 4. Point load applied in the beam lenght. The load is applied as point load in the corner node.
 5. Triangular load applied in the superior elements of the beam.</p>
 <dl class="py method">
-<dt id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1">
-<code class="sig-name descname"><span class="pre">test_cantilever_beam_point_1</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math notranslate nohighlight">
@@ -299,8 +303,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2">
-<code class="sig-name descname"><span class="pre">test_cantilever_beam_point_2</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math notranslate nohighlight">
@@ -317,8 +321,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_triangular_3">
-<code class="sig-name descname"><span class="pre">test_cantilever_beam_triangular_3</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_triangular_3" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_triangular_3">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_triangular_3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_triangular_3" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math notranslate nohighlight">
@@ -335,8 +339,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_1">
-<code class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_1</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_1" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_1">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math notranslate nohighlight">
@@ -353,8 +357,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_2">
-<code class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_2</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_2">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math notranslate nohighlight">
@@ -384,7 +388,7 @@
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="example37.html" class="btn btn-neutral float-right" title="example37 module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="FEM.Utils.html" class="btn btn-neutral float-left" title="FEM.Utils package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MeshingNet.html" class="btn btn-neutral float-left" title="MeshingNet module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

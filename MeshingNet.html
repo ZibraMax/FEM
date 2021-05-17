@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>MeshingNet module &mdash; FEM 1.0.25 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Test package" href="Test.html" />
+    <link rel="prev" title="FEM.Utils package" href="FEM.Utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FEM
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">FEM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FEM.html">FEM package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MeshingNet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example37.html">example37 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FEM</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">FEM</a> &raquo;</li>
+        
+      <li>MeshingNet module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/MeshingNet.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-MeshingNet">
+<span id="meshingnet-module"></span><h1>MeshingNet module<a class="headerlink" href="#module-MeshingNet" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="MeshingNet.areaCorrection">
+<span class="sig-prename descclassname"><span class="pre">MeshingNet.</span></span><span class="sig-name descname"><span class="pre">areaCorrection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">errors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.67</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MeshingNet.areaCorrection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the new area based on lineal model of the paper</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>errors</strong> (<em>np.ndarray</em>) – Errors in the LDUM nodes</p></li>
+<li><p><strong>K</strong> (<em>float</em><em>, </em><em>optional</em>) – K parameter. Defaults to 0.5.</p></li>
+<li><p><strong>alpha</strong> (<em>int</em><em>, </em><em>optional</em>) – Alpha value. Defaults to 1.</p></li>
+<li><p><strong>area0</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximun area value. Defaults to 1.67.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Area value in the LDUM nodes</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="MeshingNet.areaRefiner">
+<span class="sig-prename descclassname"><span class="pre">MeshingNet.</span></span><span class="sig-name descname"><span class="pre">areaRefiner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">LDUM</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MeshingNet.areaRefiner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the min of area for each element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>LDUM</strong> (<a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D" title="FEM.Torsion2D.Torsion2D"><em>Torsion2D</em></a>) – The LDUM</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The list of the new areas of the triangulation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="MeshingNet.error">
+<span class="sig-prename descclassname"><span class="pre">MeshingNet.</span></span><span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">LDUM</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D" title="FEM.Torsion2D.Torsion2D"><span class="pre">FEM.Torsion2D.Torsion2D</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">HDUM</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D" title="FEM.Torsion2D.Torsion2D"><span class="pre">FEM.Torsion2D.Torsion2D</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MeshingNet.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the error between two Torsion2D objetcs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>LDUM</strong> (<a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D" title="FEM.Torsion2D.Torsion2D"><em>Torsion2D</em></a>) – The LDUM</p></li>
+<li><p><strong>HDUM</strong> (<a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D" title="FEM.Torsion2D.Torsion2D"><em>Torsion2D</em></a>) – The HDUM</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An array with the calculated error in the LDUM nodes</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="MeshingNet.extractTrainDataset">
+<span class="sig-prename descclassname"><span class="pre">MeshingNet.</span></span><span class="sig-name descname"><span class="pre">extractTrainDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">areasR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MeshingNet.extractTrainDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates the dataset over a single model. One row for element</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D" title="FEM.Torsion2D.Torsion2D"><em>Torsion2D</em></a>) – The LDUM</p></li>
+<li><p><strong>areasR</strong> (<em>list</em>) – The new areas generated by the areaRefiner function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dataset matrix</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="MeshingNet.generatePair">
+<span class="sig-prename descclassname"><span class="pre">MeshingNet.</span></span><span class="sig-name descname"><span class="pre">generatePair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">irre</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spik</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">areaLDUM</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">areaHDUM</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0425</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valuebc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MeshingNet.generatePair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random geometry pair. Low Density Uniform Mesh (LDUM) and High Density Uniform Mesh (HDUM)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cx</strong> (<em>float</em><em>, </em><em>optional</em>) – X centroid of genometry. Defaults to 10.0.</p></li>
+<li><p><strong>cy</strong> (<em>float</em><em>, </em><em>optional</em>) – Y centroid of geometry. Defaults to 10.0.</p></li>
+<li><p><strong>r</strong> (<em>float</em><em>, </em><em>optional</em>) – Polygon equivalent radius. Defaults to 5.0.</p></li>
+<li><p><strong>irre</strong> (<em>float</em><em>, </em><em>optional</em>) – Irregularity of polygon [0,1]. Defaults to 0.5.</p></li>
+<li><p><strong>spik</strong> (<em>float</em><em>, </em><em>optional</em>) – Spikeness of polygon [0,1]. Defaults to 0.3.</p></li>
+<li><p><strong>vert</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of vertices of polygon. Defaults to 8.</p></li>
+<li><p><strong>areaLDUM</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximun trinagle area for the LDUM. Defaults to 0.5.</p></li>
+<li><p><strong>areaHDUM</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximun trinagle area for the HDUM. Defaults to 0.0425.</p></li>
+<li><p><strong>bc</strong> (<em>list</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – List of borders in which border conditions will be applied. If none, the border conditions is applied in all borders. Defaults to None.</p></li>
+<li><p><strong>valuebc</strong> (<em>float</em><em>, </em><em>optional</em>) – Border condition value. Defaults to 0.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>LDUM and HDUM as Torsion2D objects.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[<a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D" title="FEM.Torsion2D.Torsion2D">Torsion2D</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="MeshingNet.inverseMappingSolution">
+<span class="sig-prename descclassname"><span class="pre">MeshingNet.</span></span><span class="sig-name descname"><span class="pre">inverseMappingSolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MeshingNet.inverseMappingSolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the interpolated solution in a given point. This functions only works with lineal triangular elements</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>e</strong> (<a class="reference internal" href="FEM.Elements.html#FEM.Elements.Element.Element" title="FEM.Elements.Element.Element"><em>Element</em></a>) – Elemento for interpolate the solution</p></li>
+<li><p><strong>x</strong> (<em>float</em>) – X coordinate</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Y coordinate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The solution ibnterpolate value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Test.html" class="btn btn-neutral float-right" title="Test package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="FEM.Utils.html" class="btn btn-neutral float-left" title="FEM.Utils package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Arturo Rodriguez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

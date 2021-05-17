@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +31,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="MeshingNet.html">MeshingNet module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example37.html">example37 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
@@ -196,8 +200,8 @@
 <span id="fem-elements-e1d-element1d-module"></span><h2>FEM.Elements.E1D.Element1D module<a class="headerlink" href="#module-FEM.Elements.E1D.Element1D" title="Permalink to this headline">¶</a></h2>
 <p>1D Elements general class</p>
 <dl class="py class">
-<dt id="FEM.Elements.E1D.Element1D.Element1D">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.Element1D.</span></code><code class="sig-name descname"><span class="pre">Element1D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.Element1D.Element1D" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.Element1D.Element1D">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.Element1D.</span></span><span class="sig-name descname"><span class="pre">Element1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.Element1D.Element1D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="FEM.Elements.html#FEM.Elements.Element.Element" title="FEM.Elements.Element.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.Element.Element</span></code></a>, <a class="reference internal" href="#FEM.Elements.E1D.LinearScheme.LinearScheme" title="FEM.Elements.E1D.LinearScheme.LinearScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E1D.LinearScheme.LinearScheme</span></code></a></p>
 <p>Create a 1D Element</p>
 <dl class="field-list simple">
@@ -210,14 +214,14 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="FEM.Elements.E1D.Element1D.Element1D.draw">
-<code class="sig-name descname"><span class="pre">draw</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Elements.E1D.Element1D.Element1D.draw" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.Element1D.Element1D.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Elements.E1D.Element1D.Element1D.draw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a element graph over domain</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E1D.Element1D.Element1D.isInside">
-<code class="sig-name descname"><span class="pre">isInside</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.Element1D.Element1D.isInside" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.Element1D.Element1D.isInside">
+<span class="sig-name descname"><span class="pre">isInside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.Element1D.Element1D.isInside" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if a given points is inside element domain</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -233,8 +237,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E1D.Element1D.Element1D.jacobianGraph">
-<code class="sig-name descname"><span class="pre">jacobianGraph</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Elements.E1D.Element1D.Element1D.jacobianGraph" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.Element1D.Element1D.jacobianGraph">
+<span class="sig-name descname"><span class="pre">jacobianGraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Elements.E1D.Element1D.Element1D.jacobianGraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Jacobian is constant in lineal elements</p>
 </dd></dl>
 
@@ -244,8 +248,8 @@
 <div class="section" id="module-FEM.Elements.E1D.EulerBernoulliElement">
 <span id="fem-elements-e1d-eulerbernoullielement-module"></span><h2>FEM.Elements.E1D.EulerBernoulliElement module<a class="headerlink" href="#module-FEM.Elements.E1D.EulerBernoulliElement" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.EulerBernoulliElement.</span></code><code class="sig-name descname"><span class="pre">EulerBernoulliElement</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.EulerBernoulliElement.</span></span><span class="sig-name descname"><span class="pre">EulerBernoulliElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement" title="FEM.Elements.E1D.QuadraticElement.QuadraticElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E1D.QuadraticElement.QuadraticElement</span></code></a></p>
 <p>docstring for EulerBernoulliElement</p>
 </dd></dl>
@@ -255,8 +259,8 @@
 <span id="fem-elements-e1d-linealelement-module"></span><h2>FEM.Elements.E1D.LinealElement module<a class="headerlink" href="#module-FEM.Elements.E1D.LinealElement" title="Permalink to this headline">¶</a></h2>
 <p>Lineal element definition</p>
 <dl class="py class">
-<dt id="FEM.Elements.E1D.LinealElement.LinealElement">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.LinealElement.</span></code><code class="sig-name descname"><span class="pre">LinealElement</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.LinealElement.LinealElement" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.LinealElement.LinealElement">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.LinealElement.</span></span><span class="sig-name descname"><span class="pre">LinealElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.LinealElement.LinealElement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E1D.Element1D.Element1D" title="FEM.Elements.E1D.Element1D.Element1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E1D.Element1D.Element1D</span></code></a></p>
 <p>Create a lineal element</p>
 <dl class="field-list simple">
@@ -269,8 +273,8 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="FEM.Elements.E1D.LinealElement.LinealElement.dpsis">
-<code class="sig-name descname"><span class="pre">dpsis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.LinealElement.LinealElement.dpsis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.LinealElement.LinealElement.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.LinealElement.LinealElement.dpsis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions derivatives of the lineal element of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -286,8 +290,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E1D.LinealElement.LinealElement.psis">
-<code class="sig-name descname"><span class="pre">psis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.LinealElement.LinealElement.psis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.LinealElement.LinealElement.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.LinealElement.LinealElement.psis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions of the lineal element of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -309,8 +313,8 @@
 <span id="fem-elements-e1d-linearscheme-module"></span><h2>FEM.Elements.E1D.LinearScheme module<a class="headerlink" href="#module-FEM.Elements.E1D.LinearScheme" title="Permalink to this headline">¶</a></h2>
 <p>Defines a linear scheme for lineal elements</p>
 <dl class="py class">
-<dt id="FEM.Elements.E1D.LinearScheme.LinearScheme">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.LinearScheme.</span></code><code class="sig-name descname"><span class="pre">LinearScheme</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.LinearScheme.LinearScheme" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.LinearScheme.LinearScheme">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.LinearScheme.</span></span><span class="sig-name descname"><span class="pre">LinearScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.LinearScheme.LinearScheme" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Creates a Linear Scheme</p>
 <dl class="field-list simple">
@@ -325,8 +329,8 @@
 <span id="fem-elements-e1d-quadraticelement-module"></span><h2>FEM.Elements.E1D.QuadraticElement module<a class="headerlink" href="#module-FEM.Elements.E1D.QuadraticElement" title="Permalink to this headline">¶</a></h2>
 <p>Lineal element definition</p>
 <dl class="py class">
-<dt id="FEM.Elements.E1D.QuadraticElement.QuadraticElement">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.QuadraticElement.</span></code><code class="sig-name descname"><span class="pre">QuadraticElement</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.QuadraticElement.QuadraticElement">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.QuadraticElement.</span></span><span class="sig-name descname"><span class="pre">QuadraticElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E1D.Element1D.Element1D" title="FEM.Elements.E1D.Element1D.Element1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E1D.Element1D.Element1D</span></code></a></p>
 <p>Create a quadratic element</p>
 <dl class="field-list simple">
@@ -339,8 +343,8 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="FEM.Elements.E1D.QuadraticElement.QuadraticElement.dpsis">
-<code class="sig-name descname"><span class="pre">dpsis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement.dpsis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.QuadraticElement.QuadraticElement.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement.dpsis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions derivatives of the lineal element of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -356,8 +360,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E1D.QuadraticElement.QuadraticElement.psis">
-<code class="sig-name descname"><span class="pre">psis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement.psis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E1D.QuadraticElement.QuadraticElement.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement.psis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions of the lineal element of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
