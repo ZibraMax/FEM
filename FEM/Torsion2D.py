@@ -64,7 +64,7 @@ class Torsion2D(Core):
             e.Fe[:, 0] = 2*self.G*self._phi*detjac@_p
             e.Ke = (np.transpose(dpx, axes=[0, 2, 1]) @ dpx).T @ detjac
 
-    def postProcess(self, levels=1000) -> None:
+    def postProcess(self, levels=1000, derivatives=True) -> None:
         """Create graphs for stress function and derivatives.
         """
 
@@ -74,57 +74,87 @@ class Torsion2D(Core):
         U2 = []
         U3 = []
         U4 = []
-        fig = plt.figure()
-        ax1 = fig.add_subplot(2, 2, 1, projection='3d')
-        ax2 = fig.add_subplot(2, 2, 2)
-        ax3 = fig.add_subplot(2, 2, 3)
-        ax4 = fig.add_subplot(2, 2, 4)
-        for e in tqdm(self.elements, unit='Element'):
-            _x, _u, du = e.giveSolution(True)
-            X += _x.T[0].tolist()
-            Y += _x.T[1].tolist()
-            U2 += du[:, 0, 0].tolist()
-            U3 += du[:, 0, 1].tolist()
-            U1 += _u[0].tolist()
-            U4 += np.sqrt(du[:, 0, 0]**2 + du[:, 0, 1]**2).tolist()
-        surf = ax1.plot_trisurf(X, Y, U1, cmap='rainbow')
-        fig.colorbar(surf, ax=ax1)
+        if derivatives:
+            fig = plt.figure()
+            ax1 = fig.add_subplot(2, 2, 1, projection='3d')
+            ax2 = fig.add_subplot(2, 2, 2)
+            ax3 = fig.add_subplot(2, 2, 3)
+            ax4 = fig.add_subplot(2, 2, 4)
+            for e in tqdm(self.elements, unit='Element'):
+                _x, _u, du = e.giveSolution(True)
+                X += _x.T[0].tolist()
+                Y += _x.T[1].tolist()
+                U2 += du[:, 0, 0].tolist()
+                U3 += du[:, 0, 1].tolist()
+                U1 += _u[0].tolist()
+                U4 += np.sqrt(du[:, 0, 0]**2 + du[:, 0, 1]**2).tolist()
+            surf = ax1.plot_trisurf(X, Y, U1, cmap='rainbow')
+            fig.colorbar(surf, ax=ax1)
 
-        surf = ax2.tricontourf(X, Y, U2, cmap='rainbow', levels=levels)
+            surf = ax2.tricontourf(X, Y, U2, cmap='rainbow', levels=levels)
 
-        fig.colorbar(surf, ax=ax2)
+            fig.colorbar(surf, ax=ax2)
 
-        surf = ax3.tricontourf(X, Y, U3, cmap='rainbow', levels=levels)
+            surf = ax3.tricontourf(X, Y, U3, cmap='rainbow', levels=levels)
 
-        fig.colorbar(surf, ax=ax3)
+            fig.colorbar(surf, ax=ax3)
 
-        surf = ax4.tricontourf(X, Y, U4, cmap='rainbow', levels=levels)
+            surf = ax4.tricontourf(X, Y, U4, cmap='rainbow', levels=levels)
 
-        fig.colorbar(surf, ax=ax4)
-        mask = self.geometry.mask
-        if self.geometry.holes:
-            for hole in self.geometry.holes:
-                Xs = np.array(hole['vertices'])[:, 0]
-                Ys = np.array(hole['vertices'])[:, 1]
+            fig.colorbar(surf, ax=ax4)
+            mask = self.geometry.mask
+            if self.geometry.holes:
+                for hole in self.geometry.holes:
+                    Xs = np.array(hole['vertices'])[:, 0]
+                    Ys = np.array(hole['vertices'])[:, 1]
+                    ax2.fill(Xs, Ys, color='white', zorder=30)
+                    ax3.fill(Xs, Ys, color='white', zorder=30)
+                    ax4.fill(Xs, Ys, color='white', zorder=30)
+            if not mask == None:
+                mask = np.array(mask)
+                cornersnt = np.array(mask[::-1])
+
+                xmin = np.min(cornersnt[:, 0])
+                xmax = np.max(cornersnt[:, 0])
+
+                ymin = np.min(cornersnt[:, 1])
+                ymax = np.max(cornersnt[:, 1])
+
+                Xs = [xmin, xmax, xmax, xmin]+cornersnt[:, 0].tolist()
+                Ys = [ymin, ymin, ymax, ymax]+cornersnt[:, 1].tolist()
                 ax2.fill(Xs, Ys, color='white', zorder=30)
                 ax3.fill(Xs, Ys, color='white', zorder=30)
                 ax4.fill(Xs, Ys, color='white', zorder=30)
-        if not mask == None:
-            mask = np.array(mask)
-            cornersnt = np.array(mask[::-1])
 
-            xmin = np.min(cornersnt[:, 0])
-            xmax = np.max(cornersnt[:, 0])
+            ax4.set_aspect('equal')
+            ax2.set_aspect('equal')
+            ax3.set_aspect('equal')
+        else:
+            fig = plt.figure()
+            ax1 = fig.add_subplot(1, 1, 1)
+            for e in tqdm(self.elements, unit='Element'):
+                _x, _u, du = e.giveSolution(True)
+                X += _x.T[0].tolist()
+                Y += _x.T[1].tolist()
+                U1 += _u[0].tolist()
+            surf = ax1.tricontourf(X, Y, U1, cmap='rainbow', levels=levels)
+            fig.colorbar(surf, ax=ax1)
+            mask = self.geometry.mask
+            if self.geometry.holes:
+                for hole in self.geometry.holes:
+                    Xs = np.array(hole['vertices'])[:, 0]
+                    Ys = np.array(hole['vertices'])[:, 1]
+                    ax1.fill(Xs, Ys, color='white', zorder=30)
+            if not mask == None:
+                mask = np.array(mask)
+                cornersnt = np.array(mask[::-1])
 
-            ymin = np.min(cornersnt[:, 1])
-            ymax = np.max(cornersnt[:, 1])
+                xmin = np.min(cornersnt[:, 0])
+                xmax = np.max(cornersnt[:, 0])
 
-            Xs = [xmin, xmax, xmax, xmin]+cornersnt[:, 0].tolist()
-            Ys = [ymin, ymin, ymax, ymax]+cornersnt[:, 1].tolist()
-            ax2.fill(Xs, Ys, color='white', zorder=30)
-            ax3.fill(Xs, Ys, color='white', zorder=30)
-            ax4.fill(Xs, Ys, color='white', zorder=30)
+                ymin = np.min(cornersnt[:, 1])
+                ymax = np.max(cornersnt[:, 1])
 
-        ax4.set_aspect('equal')
-        ax2.set_aspect('equal')
-        ax3.set_aspect('equal')
+                Xs = [xmin, xmax, xmax, xmin]+cornersnt[:, 0].tolist()
+                Ys = [ymin, ymin, ymax, ymax]+cornersnt[:, 1].tolist()
+                ax1.fill(Xs, Ys, color='white', zorder=30)

@@ -2,8 +2,9 @@
 """
 
 
-from .PlaneStress import PlaneStress, Geometry
-from typing import Tuple, Callable
+from typing import Callable, Tuple
+
+from .PlaneStress import Geometry, PlaneStress
 
 
 class PlaneStrain(PlaneStress):

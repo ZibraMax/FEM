@@ -24,12 +24,6 @@ class RectangularScheme():
             lambda s: np.array([-1*s, 1*(s-s+1)]),
             lambda s: np.array([-1*(s-s+1), -1*s]),
         ]
-
-        DENSIDAD = 10
-        XX, YY = np.meshgrid(np.linspace(-1, 1, DENSIDAD),
-                             np.linspace(-1, 1, DENSIDAD))
-        _z = XX.reshape([DENSIDAD**2, 1])[:, 0]
-        _n = YY.reshape([DENSIDAD**2, 1])[:, 0]
         _Z, _W = np.polynomial.legendre.leggauss(n)
         self.Z = []
         self.W = []
