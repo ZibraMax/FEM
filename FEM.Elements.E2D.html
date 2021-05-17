@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +31,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -108,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="MeshingNet.html">MeshingNet module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example37.html">example37 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
@@ -196,8 +200,8 @@
 <span id="fem-elements-e2d-element2d-module"></span><h2>FEM.Elements.E2D.Element2D module<a class="headerlink" href="#module-FEM.Elements.E2D.Element2D" title="Permalink to this headline">¶</a></h2>
 <p>Defines a general 2D element</p>
 <dl class="py class">
-<dt id="FEM.Elements.E2D.Element2D.Element2D">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Element2D.</span></code><code class="sig-name descname"><span class="pre">Element2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Element2D.Element2D" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Element2D.Element2D">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Element2D.</span></span><span class="sig-name descname"><span class="pre">Element2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Element2D.Element2D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="FEM.Elements.html#FEM.Elements.Element.Element" title="FEM.Elements.Element.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.Element.Element</span></code></a></p>
 <p>Create a 2D element</p>
 <dl class="field-list simple">
@@ -210,14 +214,14 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="FEM.Elements.E2D.Element2D.Element2D.draw">
-<code class="sig-name descname"><span class="pre">draw</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Elements.E2D.Element2D.Element2D.draw" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Element2D.Element2D.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Elements.E2D.Element2D.Element2D.draw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a graph of element</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E2D.Element2D.Element2D.isInside">
-<code class="sig-name descname"><span class="pre">isInside</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Element2D.Element2D.isInside" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Element2D.Element2D.isInside">
+<span class="sig-name descname"><span class="pre">isInside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Element2D.Element2D.isInside" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if a given points is inside element domain</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -233,8 +237,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E2D.Element2D.Element2D.jacobianGraph">
-<code class="sig-name descname"><span class="pre">jacobianGraph</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Elements.E2D.Element2D.Element2D.jacobianGraph" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Element2D.Element2D.jacobianGraph">
+<span class="sig-name descname"><span class="pre">jacobianGraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Elements.E2D.Element2D.Element2D.jacobianGraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the determinant jacobian graph</p>
 </dd></dl>
 
@@ -245,8 +249,8 @@
 <span id="fem-elements-e2d-ltriangular-module"></span><h2>FEM.Elements.E2D.LTriangular module<a class="headerlink" href="#module-FEM.Elements.E2D.LTriangular" title="Permalink to this headline">¶</a></h2>
 <p>Defines a Lagrangian 1 order triangular element</p>
 <dl class="py class">
-<dt id="FEM.Elements.E2D.LTriangular.LTriangular">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.LTriangular.</span></code><code class="sig-name descname"><span class="pre">LTriangular</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.LTriangular.LTriangular">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.LTriangular.</span></span><span class="sig-name descname"><span class="pre">LTriangular</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E2D.Element2D.Element2D" title="FEM.Elements.E2D.Element2D.Element2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E2D.Element2D.Element2D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E2D.TriangularScheme.TriangularScheme" title="FEM.Elements.E2D.TriangularScheme.TriangularScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E2D.TriangularScheme.TriangularScheme</span></code></a></p>
 <p>Creates a lagrangian triangular element of order 1</p>
 <dl class="field-list simple">
@@ -259,8 +263,8 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="FEM.Elements.E2D.LTriangular.LTriangular.dpsis">
-<code class="sig-name descname"><span class="pre">dpsis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular.dpsis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.LTriangular.LTriangular.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular.dpsis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -276,8 +280,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E2D.LTriangular.LTriangular.psis">
-<code class="sig-name descname"><span class="pre">psis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular.psis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.LTriangular.LTriangular.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular.psis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -299,8 +303,8 @@
 <span id="fem-elements-e2d-qtriangular-module"></span><h2>FEM.Elements.E2D.QTriangular module<a class="headerlink" href="#module-FEM.Elements.E2D.QTriangular" title="Permalink to this headline">¶</a></h2>
 <p>Defines a Lagrangian 2 order triangular element</p>
 <dl class="py class">
-<dt id="FEM.Elements.E2D.QTriangular.QTriangular">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.QTriangular.</span></code><code class="sig-name descname"><span class="pre">QTriangular</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.QTriangular.QTriangular">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.QTriangular.</span></span><span class="sig-name descname"><span class="pre">QTriangular</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E2D.Element2D.Element2D" title="FEM.Elements.E2D.Element2D.Element2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E2D.Element2D.Element2D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E2D.TriangularScheme.TriangularScheme" title="FEM.Elements.E2D.TriangularScheme.TriangularScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E2D.TriangularScheme.TriangularScheme</span></code></a></p>
 <p>Creates a lagrangian element of order 2</p>
 <dl class="field-list simple">
@@ -313,8 +317,8 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="FEM.Elements.E2D.QTriangular.QTriangular.dpsis">
-<code class="sig-name descname"><span class="pre">dpsis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular.dpsis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.QTriangular.QTriangular.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular.dpsis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -330,8 +334,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E2D.QTriangular.QTriangular.psis">
-<code class="sig-name descname"><span class="pre">psis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular.psis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.QTriangular.QTriangular.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular.psis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -353,8 +357,8 @@
 <span id="fem-elements-e2d-quadrilateral-module"></span><h2>FEM.Elements.E2D.Quadrilateral module<a class="headerlink" href="#module-FEM.Elements.E2D.Quadrilateral" title="Permalink to this headline">¶</a></h2>
 <p>Defines a Lagrangian 1 order rectangular element</p>
 <dl class="py class">
-<dt id="FEM.Elements.E2D.Quadrilateral.Quadrilateral">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Quadrilateral.</span></code><code class="sig-name descname"><span class="pre">Quadrilateral</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Quadrilateral.Quadrilateral">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Quadrilateral.</span></span><span class="sig-name descname"><span class="pre">Quadrilateral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E2D.Element2D.Element2D" title="FEM.Elements.E2D.Element2D.Element2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E2D.Element2D.Element2D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E2D.RectangularScheme.RectangularScheme" title="FEM.Elements.E2D.RectangularScheme.RectangularScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E2D.RectangularScheme.RectangularScheme</span></code></a></p>
 <p>Creates a lagrangian rectangular element of order 1</p>
 <dl class="field-list simple">
@@ -367,8 +371,8 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="FEM.Elements.E2D.Quadrilateral.Quadrilateral.dpsis">
-<code class="sig-name descname"><span class="pre">dpsis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral.dpsis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Quadrilateral.Quadrilateral.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral.dpsis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -384,8 +388,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E2D.Quadrilateral.Quadrilateral.psis">
-<code class="sig-name descname"><span class="pre">psis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral.psis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Quadrilateral.Quadrilateral.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral.psis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -407,8 +411,8 @@
 <span id="fem-elements-e2d-rectangularscheme-module"></span><h2>FEM.Elements.E2D.RectangularScheme module<a class="headerlink" href="#module-FEM.Elements.E2D.RectangularScheme" title="Permalink to this headline">¶</a></h2>
 <p>Define the rectangular scheme used by rectangular elements</p>
 <dl class="py class">
-<dt id="FEM.Elements.E2D.RectangularScheme.RectangularScheme">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.RectangularScheme.</span></code><code class="sig-name descname"><span class="pre">RectangularScheme</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.RectangularScheme.RectangularScheme" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.RectangularScheme.RectangularScheme">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.RectangularScheme.</span></span><span class="sig-name descname"><span class="pre">RectangularScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.RectangularScheme.RectangularScheme" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generates a rectangular integration scheme</p>
 <dl class="field-list simple">
@@ -423,8 +427,8 @@
 <span id="fem-elements-e2d-serendipity-module"></span><h2>FEM.Elements.E2D.Serendipity module<a class="headerlink" href="#module-FEM.Elements.E2D.Serendipity" title="Permalink to this headline">¶</a></h2>
 <p>Define a o2 serendipity element</p>
 <dl class="py class">
-<dt id="FEM.Elements.E2D.Serendipity.Serendipity">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Serendipity.</span></code><code class="sig-name descname"><span class="pre">Serendipity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Serendipity.Serendipity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Serendipity.</span></span><span class="sig-name descname"><span class="pre">Serendipity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E2D.Element2D.Element2D" title="FEM.Elements.E2D.Element2D.Element2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E2D.Element2D.Element2D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E2D.RectangularScheme.RectangularScheme" title="FEM.Elements.E2D.RectangularScheme.RectangularScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E2D.RectangularScheme.RectangularScheme</span></code></a></p>
 <p>Creates a Serendipity element</p>
 <dl class="field-list simple">
@@ -437,8 +441,8 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="FEM.Elements.E2D.Serendipity.Serendipity.dpsis">
-<code class="sig-name descname"><span class="pre">dpsis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity.dpsis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Serendipity.Serendipity.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity.dpsis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -454,8 +458,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FEM.Elements.E2D.Serendipity.Serendipity.psis">
-<code class="sig-name descname"><span class="pre">psis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity.psis" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Serendipity.Serendipity.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity.psis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -477,8 +481,8 @@
 <span id="fem-elements-e2d-triangularscheme-module"></span><h2>FEM.Elements.E2D.TriangularScheme module<a class="headerlink" href="#module-FEM.Elements.E2D.TriangularScheme" title="Permalink to this headline">¶</a></h2>
 <p>Define the triangular scheme used by triangular elements</p>
 <dl class="py class">
-<dt id="FEM.Elements.E2D.TriangularScheme.TriangularScheme">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.TriangularScheme.</span></code><code class="sig-name descname"><span class="pre">TriangularScheme</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.TriangularScheme.TriangularScheme" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.E2D.TriangularScheme.TriangularScheme">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.TriangularScheme.</span></span><span class="sig-name descname"><span class="pre">TriangularScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.TriangularScheme.TriangularScheme" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generate a triangular integration scheme</p>
 <dl class="field-list simple">

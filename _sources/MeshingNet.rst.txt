@@ -1,0 +1,7 @@
+MeshingNet module
+=================
+
+.. automodule:: MeshingNet
+   :members:
+   :undoc-members:
+   :show-inheritance:
