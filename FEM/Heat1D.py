@@ -12,7 +12,7 @@ class Heat1D(Core):
     The differential equation is:
 
     .. math::
-        -\\frac{d}{dx}\\left(Ak\\frac{dT}{dx}\\right)+\\beta P(T-T_{\\infty})
+        -\\frac{d}{dx}\\left(Ak\\frac{dT}{dx}\\right)+\\beta P(T-T_{\\infty})=0
 
     Args:
         geometry (Geometry): Input 1D Geometry. 1 variable per node

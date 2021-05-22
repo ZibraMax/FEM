@@ -82,7 +82,7 @@ class EDO1D(Core):
             U1 += _u[0].tolist()
             U2 += (du[:, 0, 0]).tolist()
         ax1.plot(X, U1)
-        ax2.plot(X, U2)
+        ax2.plot(X, np.array(U2))
         ax1.grid()
         ax2.grid()
         ax1.set_title(r'$U(x)$')
