@@ -1,0 +1,7 @@
+Ejemplo module
+==============
+
+.. automodule:: Ejemplo
+   :members:
+   :undoc-members:
+   :show-inheritance:
