@@ -4,9 +4,7 @@ FEM
 .. toctree::
    :maxdepth: 4
 
-   Ejemplo
    FEM
    MeshingNet
    Test
-   example37
    setup
