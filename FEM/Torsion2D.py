@@ -38,7 +38,8 @@ class Torsion2D(Core):
                 G (float): Shear moduli of elements
                 phi (float): Rotation angle in radians
         """
-
+        if type(G) == float or type(G) == int:
+            G = [G]*len(geometry.elements)
         self.G = G
         self._phi = phi
         geometry.cbeAllBorders(0)
@@ -47,8 +48,9 @@ class Torsion2D(Core):
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
         """
-
+        ee = -1
         for e in tqdm(self.elements, unit='Element'):
+            ee += 1
             # Gauss points in global coordinates and Shape functions evaluated in gauss points
             _x, _p = e.T(e.Z.T)
             # Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
@@ -61,10 +63,11 @@ class Torsion2D(Core):
             # 		for j in range(e.n):
             # 			e.Ke[i,j] += (dpx[k][0][i]*dpx[k][0][j] + dpx[k][1][i]*dpx[k][1][j])*detjac[k]*e.W[k]
             # 		e.Fe[i][0] += 2*self.G*self._phi*_p[k][i]*detjac[k]*e.W[k]
-            e.Fe[:, 0] = 2*self.G*self._phi*detjac@_p
-            e.Ke = (np.transpose(dpx, axes=[0, 2, 1]) @ dpx).T @ detjac
+            e.Fe[:, 0] = self._phi*detjac@_p
+            e.Ke = (np.transpose(dpx, axes=[0, 2, 1])
+                    @ dpx).T @ detjac/2/self.G[ee]
 
-    def postProcess(self, levels=1000, derivatives=True) -> None:
+    def postProcess(self, levels=30, derivatives=True) -> None:
         """Create graphs for stress function and derivatives.
         """
 
@@ -76,7 +79,7 @@ class Torsion2D(Core):
         U4 = []
         if derivatives:
             fig = plt.figure()
-            ax1 = fig.add_subplot(2, 2, 1, projection='3d')
+            ax1 = fig.add_subplot(2, 2, 1)
             ax2 = fig.add_subplot(2, 2, 2)
             ax3 = fig.add_subplot(2, 2, 3)
             ax4 = fig.add_subplot(2, 2, 4)
@@ -88,7 +91,7 @@ class Torsion2D(Core):
                 U3 += du[:, 0, 1].tolist()
                 U1 += _u[0].tolist()
                 U4 += np.sqrt(du[:, 0, 0]**2 + du[:, 0, 1]**2).tolist()
-            surf = ax1.plot_trisurf(X, Y, U1, cmap='rainbow')
+            surf = ax1.tricontourf(X, Y, U1, cmap='rainbow', levels=levels)
             fig.colorbar(surf, ax=ax1)
 
             surf = ax2.tricontourf(X, Y, U2, cmap='rainbow', levels=levels)
@@ -127,6 +130,7 @@ class Torsion2D(Core):
                 ax4.fill(Xs, Ys, color='white', zorder=30)
 
             ax4.set_aspect('equal')
+            ax1.set_aspect('equal')
             ax2.set_aspect('equal')
             ax3.set_aspect('equal')
         else:
