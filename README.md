@@ -349,10 +349,20 @@ A good example is the `PlaneStress` class
 
       <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example36.png">
 
--   Example 36: Convective Heat Transfer from [Samson-Mano's software](https://github.com/Samson-Mano/2D_Heat_transfer)
+-   Example 37: Convective Heat Transfer from [Samson-Mano's software](https://github.com/Samson-Mano/2D_Heat_transfer)
 
       <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example37_geometry.png">
       <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example37.png">
+
+-   Example 38: Elements with different properties: Torsion with holes
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example38_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example38.png">
+
+-   Example 37: Elements with different properties: Torsion with holes Symetrical
+
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example39_geometry.png">
+      <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example39.png">
 
 ## References
 
