@@ -32,3 +32,11 @@ Test.test\_PlaneStress module
    :members:
    :undoc-members:
    :show-inheritance:
+
+Test.test\_Torsion2D module
+---------------------------
+
+.. automodule:: Test.test_Torsion2D
+   :members:
+   :undoc-members:
+   :show-inheritance:

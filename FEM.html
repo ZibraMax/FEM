@@ -746,23 +746,25 @@ be a 2-D Numpy Array.</p>
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Torsion2D.</span></span><span class="sig-name descname"><span class="pre">Torsion2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Torsion2D.Torsion2D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
 <p>Create a torsional finite element problem</p>
-<p>The differential equation is:</p>
+<blockquote>
+<div><p>The differential equation is:</p>
 <div class="math notranslate nohighlight">
-\[-\nabla^2\Psi=2\]</div>
-<p>Where:</p>
+\[-\]</div>
+</div></blockquote>
+<p>rac{-1}{G}nabla^2Psi=2theta</p>
+<blockquote>
+<div><p>Where:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\sigma_{xz}=G\theta\frac{\partial\Psi}{\partial y} \\
-\sigma_{yz}=-G\theta\frac{\partial\Psi}{\partial x}\end{split}\]</div>
+\[\begin{split}\sigma_{xz}\frac{\partial\Psi}{\partial y} \\
+\sigma_{yz}=-\frac{\partial\Psi}{\partial x}\end{split}\]</div>
 <p>With <span class="math notranslate nohighlight">\(\Psi=0\)</span> on the boundary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><em>Geometry</em></a>) – 2D 1 variable per node geometry</p></li>
-<li><p><strong>G</strong> (<em>float</em>) – Shear moduli of elements</p></li>
-<li><p><strong>phi</strong> (<em>float</em>) – Rotation angle in radians</p></li>
-</ul>
+<dl class="simple">
+<dt>Args:</dt><dd><p>geometry (Geometry): 2D 1 variable per node geometry
+G (float): Shear moduli of elements
+phi (float): Rotation angle in radians</p>
 </dd>
 </dl>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Torsion2D.Torsion2D.elementMatrices">
 <span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Torsion2D.Torsion2D.elementMatrices" title="Permalink to this definition">¶</a></dt>
