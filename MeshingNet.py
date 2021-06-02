@@ -32,7 +32,7 @@ def generatePair(cx=10.0, cy=10.0, r=5.0, irre=0.5, spik=0.3, vert=8, areaLDUM=0
     LDUMgeometry.maskFromSegments()
     HDUMgeometry = Delaunay(polygon, paramsHD)
     HDUMgeometry.maskFromSegments()
-    G = 0.5  # -∇²Ψ = 2Gϕ  #If you want to set the poisson equation to a specific value you can change the G value
+    G = 0.5  # -∇/G²Ψ = 2ϕ  #If you want to set the poisson equation to a specific value you can change the ϕ value
     phi = 1
     LDUM = Torsion2D(LDUMgeometry, G, phi)
     HDUM = Torsion2D(HDUMgeometry, G, phi)
