@@ -37,6 +37,7 @@ Where:
 - :math:`\\zeta_i` is the Gauss-Legendre quadrature point.
 - :math:`W_i` is the weight of the i-Gauss point.
 - :math:`N` is the number of Gauss points.
+- :math:`n` is the number of elements.
 
 Hollow shapes
 #############
@@ -118,7 +119,7 @@ class TestTorsion2D(unittest.TestCase):
 
         .. math::
 
-            J = \\frac{\\pi}{2}\\left(r^2\\right)
+            J = \\frac{\\pi}{2}\\left(r^4\\right)
 
         Where:
 
