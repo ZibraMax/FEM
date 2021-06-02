@@ -49,7 +49,7 @@ Numerical Validation:
 -   [ ] 1D 1 Variable 1D Heat with convective border
 -   [ ] 1D 2 Variable Euler Bernoulli Beams [TODO]
 -   [ ] 1D 2 Variable Timoshenko Beams [TODO]
--   [ ] 2D 1 Variable Torsion
+-   [x] 2D 1 Variable Torsion
 -   [ ] 2D 1 Variable 2D Heat with convective borders
 -   [x] 2D 2 Variable Plane Strees
 -   [x] 2D 2 Variable Plane Strain

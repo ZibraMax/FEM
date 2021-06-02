@@ -26,11 +26,10 @@ hole = {'center': [-2*r, 2*r], 'segments': segextra, 'vertices': vertextra}
 holes += [hole]
 
 
-params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.001', o=2)
+params = Delaunay._strdelaunay(
+    constrained=True, delaunay=True, a='0.005', o=2)
 
 geometria = Delaunay(vert, params, nvn=1, holes_dict=holes)
-geometria.show()
-plt.show()
 GG = []
 su = 0
 for centroide in geometria.centroids:
@@ -43,8 +42,15 @@ seg1[-1][-1] = a+1
 geometria.segments = seg1
 geometria.mask = None
 O = Torsion2D(geometria, GG, phi)
-O.geometry.show(label_bc=True)
+O.geometry.show()
 plt.show()
 O.geometry.holes = None
 O.solve()
 plt.show()
+integral = 0
+for i, e in enumerate(O.elements):
+    _, _u = e.giveSolution(domain='gauss-points')
+    jac, dpz = e.J(e.Z.T)
+    detjac = np.linalg.det(jac)
+    integral += np.sum(_u*e.W*detjac)
+print(integral*2/G)

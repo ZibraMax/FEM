@@ -87,22 +87,26 @@ class Torsion2D(Core):
                 _x, _u, du = e.giveSolution(True)
                 X += _x.T[0].tolist()
                 Y += _x.T[1].tolist()
-                U2 += du[:, 0, 0].tolist()
+                U2 += (-du[:, 0, 0]).tolist()
                 U3 += du[:, 0, 1].tolist()
                 U1 += _u[0].tolist()
                 U4 += np.sqrt(du[:, 0, 0]**2 + du[:, 0, 1]**2).tolist()
             surf = ax1.tricontourf(X, Y, U1, cmap='rainbow', levels=levels)
             fig.colorbar(surf, ax=ax1)
+            ax1.set_title(r'$\Psi$')
 
             surf = ax2.tricontourf(X, Y, U2, cmap='rainbow', levels=levels)
+            ax2.set_title(r'$\sigma_{yz}$')
 
             fig.colorbar(surf, ax=ax2)
 
             surf = ax3.tricontourf(X, Y, U3, cmap='rainbow', levels=levels)
+            ax3.set_title(r'$\sigma_{xz}$')
 
             fig.colorbar(surf, ax=ax3)
 
             surf = ax4.tricontourf(X, Y, U4, cmap='rainbow', levels=levels)
+            ax4.set_title(r'$\sqrt{\sigma_{xz}^2+\sigma_{yz}^2}$')
 
             fig.colorbar(surf, ax=ax4)
             mask = self.geometry.mask
@@ -125,6 +129,7 @@ class Torsion2D(Core):
 
                 Xs = [xmin, xmax, xmax, xmin]+cornersnt[:, 0].tolist()
                 Ys = [ymin, ymin, ymax, ymax]+cornersnt[:, 1].tolist()
+                ax1.fill(Xs, Ys, color='white', zorder=30)
                 ax2.fill(Xs, Ys, color='white', zorder=30)
                 ax3.fill(Xs, Ys, color='white', zorder=30)
                 ax4.fill(Xs, Ys, color='white', zorder=30)

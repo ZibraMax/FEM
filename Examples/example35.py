@@ -42,3 +42,10 @@ print(len(geometria.elements))
 O = Torsion2D(geometria, G, phi)
 O.solve()
 plt.show()
+integral = 0
+for i, e in enumerate(O.elements):
+    _, _u = e.giveSolution(domain='gauss-points')
+    jac, dpz = e.J(e.Z.T)
+    detjac = np.linalg.det(jac)
+    integral += np.sum(_u*e.W*detjac)
+print(integral*2/G)
