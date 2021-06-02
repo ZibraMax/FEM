@@ -104,6 +104,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#numerical-validation-of-the-planestress-class">Numerical validation of the PlaneStress Class</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#module-Test.test_Torsion2D">Test.test_Torsion2D module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-validation-of-the-trosion2d-class">Numerical validation of the Trosion2D Class</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
@@ -265,9 +269,9 @@
 <li><p><span class="math notranslate nohighlight">\(\hat{V}\)</span> is the shear diagram produced by the load <span class="math notranslate nohighlight">\(\hat{p}\)</span>.</p></li>
 </ul>
 <p>For calculate the displacements in any point of the element lenght, the load <span class="math notranslate nohighlight">\(\hat{p}\)</span> have to be applied in a distance <span class="math notranslate nohighlight">\(z\)</span>.</p>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png" /></a>
-<p class="caption"><span class="caption-text">Moment and shear diagram for virtual load.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Moment and shear diagram for virtual load.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>Since the diagrams are only different from 0 in length z, the virtual work statement can be rewritten as:</p>
 <div class="math notranslate nohighlight">
@@ -295,9 +299,9 @@
 <p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
 <div class="math notranslate nohighlight">
 \[U = \frac{P^2}{6EI}\left(3L-x\right)+\frac{Px}{kAG}\]</div>
-<div class="figure align-default" id="id3">
+<div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_1.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_1.png" /></a>
-<p class="caption"><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </dd></dl>
 
@@ -313,9 +317,9 @@
 <p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
 <div class="math notranslate nohighlight">
 \[U = \frac{P^2}{6EI}\left(3L-x\right)+\frac{Px}{kAG}\]</div>
-<div class="figure align-default" id="id4">
+<div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_2.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_2.png" /></a>
-<p class="caption"><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 </dd></dl>
 
@@ -331,9 +335,9 @@
 <p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
 <div class="math notranslate nohighlight">
 \[U = \frac{Wx^2}{120LEI}\left(10L^3-10L^2x+5Lx^2-x^3\right)+\frac{Wx}{6kAGL}\left(x^2-3Lx+3L^2\right)\]</div>
-<div class="figure align-default" id="id5">
+<div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_triangular_3.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_triangular_3.png" /></a>
-<p class="caption"><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </dd></dl>
 
@@ -349,9 +353,9 @@
 <p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
 <div class="math notranslate nohighlight">
 \[U = \frac{Wx^2}{24EI}\left(x^2+6L^2-4Lx\right)+\frac{W}{kAG}\left(Lx-\frac{x^2}{2}\right)\]</div>
-<div class="figure align-default" id="id6">
+<div class="figure align-default" id="id7">
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_1.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_1.png" /></a>
-<p class="caption"><span class="caption-text">Test result: FEM solution compared whit analytical solution</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Test result: FEM solution compared whit analytical solution</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 </dd></dl>
 
@@ -367,10 +371,82 @@
 <p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
 <div class="math notranslate nohighlight">
 \[U = \frac{Wx^2}{24EI}\left(x^2+6L^2-4Lx\right)+\frac{W}{kAG}\left(Lx-\frac{x^2}{2}\right)\]</div>
-<div class="figure align-default" id="id7">
+<div class="figure align-default" id="id8">
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_2.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_2.png" /></a>
-<p class="caption"><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="module-Test.test_Torsion2D">
+<span id="test-test-torsion2d-module"></span><h2>Test.test_Torsion2D module<a class="headerlink" href="#module-Test.test_Torsion2D" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="numerical-validation-of-the-trosion2d-class">
+<h3>Numerical validation of the Trosion2D Class<a class="headerlink" href="#numerical-validation-of-the-trosion2d-class" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h4>Tests<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>2 tests where made for validating the Torsion2D class. The objective of the test is to calculate the calculating polar moment of inertia (J) of a section.</p>
+</div>
+<div class="section" id="calculating-polar-moment-of-inertia-j">
+<h4>Calculating polar moment of inertia (J)<a class="headerlink" href="#calculating-polar-moment-of-inertia-j" title="Permalink to this headline">¶</a></h4>
+<p>Using the formulation of the Torsion2D class, the polar moment of inertia can be calculated as:</p>
+<div class="math notranslate nohighlight">
+\[J = \frac{2}{G}\int_{A}{\Psi}dA\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\Psi\)</span> is the main variable solution of the Torsion2D class.</p>
+<p>The integral can be computed by element using the following expresion:”</p>
+<div class="math notranslate nohighlight">
+\[\int_{A}{\Psi}dA = \sum_{j=1}^{n}I(e_j)\]</div>
+<div class="math notranslate nohighlight">
+\[I(e)= \sum_{i=1}^{N}(U(\zeta_i)|Jac_i(\zeta_i)|)W_i\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(e\)</span> is a single area element.</p></li>
+<li><p><span class="math notranslate nohighlight">\(|Jac(\zeta_i)|\)</span> is the determinant of the jacobian matrix.</p></li>
+<li><p><span class="math notranslate nohighlight">\(U(\zeta_i)\)</span> is the interpolated solution of the main variable.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\zeta_i\)</span> is the Gauss-Legendre quadrature point.</p></li>
+<li><p><span class="math notranslate nohighlight">\(W_i\)</span> is the weight of the i-Gauss point.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> is the number of Gauss points.</p></li>
+</ul>
+</div>
+<div class="section" id="hollow-shapes">
+<h4>Hollow shapes<a class="headerlink" href="#hollow-shapes" title="Permalink to this headline">¶</a></h4>
+<p>Due to the boundary conditions of the equation, it is not possible to introduce holes in the geometry.
+The holes can be modeled using elements affecting the shear modulus. The hole elements will have relatively close to zero shear modulus, while the material elements will have a higher shear modulus.
+In this case, a shear modulus of 80000 is used for material elements and a shear modulus of 1*10^-6 is used for hole elements.</p>
+<p>A rotation angle of 1 is selected for all test cases.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Test.test_Torsion2D.TestTorsion2D">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Test.test_Torsion2D.</span></span><span class="sig-name descname"><span class="pre">TestTorsion2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Torsion2D Tests
+1. Hollow circle.
+2. Circle.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_Torsion2D.TestTorsion2D.test_inertia_circle">
+<span class="sig-name descname"><span class="pre">test_inertia_circle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D.test_inertia_circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if the polar moment of inertia (J) matches the analytical solution for circle. In this case, the analytical solutions is given by:</p>
+<div class="math notranslate nohighlight">
+\[J = \frac{\pi}{2}\left(r^2\right)\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{r}\)</span> is the radius.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_Torsion2D.TestTorsion2D.test_inertia_hollow_circle">
+<span class="sig-name descname"><span class="pre">test_inertia_hollow_circle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D.test_inertia_hollow_circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if the polar moment of inertia (J) matches the analytical solution for a hollow circle. In this case, the analytical solutions is given by:</p>
+<div class="math notranslate nohighlight">
+\[J = \frac{\pi}{2}\left(r_1^2-r_2^2\right)\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{r_1}\)</span> is the external radius.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{r_2}\)</span> is the inner radius.</p></li>
+</ul>
 </dd></dl>
 
 </dd></dl>
