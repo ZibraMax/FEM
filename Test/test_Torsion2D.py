@@ -71,12 +71,12 @@ class TestTorsion2D(unittest.TestCase):
 
         .. math::
 
-            J = \\frac{\\pi}{2}\\left(r_1^2-r_2^2\\right)
+            J = \\frac{\\pi}{2}\\left(r_1^4-r_2^4\\right)
 
         Where:
 
-        - :math:`\\hat{r_1}` is the external radius.
-        - :math:`\\hat{r_2}` is the inner radius.
+        - :math:`r_1` is the external radius.
+        - :math:`r_2` is the inner radius.
         """
 
         r = 1.0
@@ -122,7 +122,7 @@ class TestTorsion2D(unittest.TestCase):
 
         Where:
 
-        - :math:`\\hat{r}` is the radius.
+        - :math:`r` is the radius.
         """
         r = 1.0
         N = 100
