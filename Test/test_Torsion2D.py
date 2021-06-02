@@ -8,6 +8,11 @@ Tests
 
 2 tests where made for validating the Torsion2D class. The objective of the test is to calculate the calculating polar moment of inertia (J) of a section.
 
+.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/CS.png
+   :scale: 80 %
+   :align: center
+   :alt: Problem statement
+
 Calculating polar moment of inertia (J)
 #######################################
 
