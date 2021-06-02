@@ -14,13 +14,13 @@ class Torsion2D(Core):
     The differential equation is:
 
     .. math::
-        -\\nabla^2\\Psi=2
+        -\frac{-1}{G}\\nabla^2\\Psi=2\\theta
 
     Where:
 
     .. math::
-        \\sigma_{xz}=G\\theta\\frac{\\partial\\Psi}{\\partial y} \\\\
-        \\sigma_{yz}=-G\\theta\\frac{\\partial\\Psi}{\\partial x}
+        \\sigma_{xz}\\frac{\\partial\\Psi}{\\partial y} \\\\
+        \\sigma_{yz}=-\\frac{\\partial\\Psi}{\\partial x}
 
     With :math:`\\Psi=0` on the boundary.
 
