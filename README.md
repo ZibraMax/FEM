@@ -14,7 +14,7 @@ N dimensional FEM implementation for M variables per node problems.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install AFEM.
+Use the package manager [pip](https://pypi.org/project/AFEM/) to install AFEM.
 
 ```bash
 pip install AFEM
