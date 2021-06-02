@@ -109,7 +109,7 @@ class Element():
         dpsis = self.dpsis(z).T
         return dpsis @ self.coords, dpsis
 
-    def giveSolution(self, SVSolution: bool = False) -> np.ndarray:
+    def giveSolution(self, SVSolution: bool = False, domain: str = 'domain') -> np.ndarray:
         """Calculate the interpolated solution over element domain
 
         Args:
@@ -121,6 +121,8 @@ class Element():
 
         # TODO hacer una comprobación de frontera para evitar errores
         _z = self.domain
+        if domain == 'gauss-points':
+            _z = self.Z
         _x, _p = self.T(_z.T)
         if SVSolution:
             j, dpz = self.J(_z.T)  # TODO Revisar con Reddy

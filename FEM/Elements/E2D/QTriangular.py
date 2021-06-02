@@ -30,30 +30,16 @@ class QTriangular(Element2D, TriangularScheme):
         he1 = np.linalg.norm(delta)
         e1 = QuadraticElement(np.array([[0], [he1*0.5], [he1]]),
                               np.array([[-1, -1, -1]]), border=True)
-        angle = np.arctan2(delta[1], delta[0])
-        theta = np.pi/2-angle
-        theta2 = theta+np.pi
-        e1.nx = np.cos(theta2)
-        e1.ny = np.sin(theta2)
 
         delta = coords[2]-coords[1]
         he2 = np.linalg.norm(delta)
         e2 = QuadraticElement(np.array([[0], [he2*0.5], [he2]]),
                               np.array([[-1, -1, -1]]), border=True)
-        angle = np.arctan2(delta[1], delta[0])
-        theta = np.pi/2-angle
-        theta2 = theta+np.pi
-        e1.nx = np.cos(theta2)
-        e1.ny = np.sin(theta2)
 
         delta = coords[0]-coords[2]
         he3 = np.linalg.norm(coords[0]-coords[2])
         e3 = QuadraticElement(np.array([[0], [he3*0.5], [he3]]),
                               np.array([[-1, -1, -1]]), border=True)
-        theta = np.pi/2-angle
-        theta2 = theta+np.pi
-        e1.nx = np.cos(theta2)
-        e1.ny = np.sin(theta2)
         self.borders = [e1, e2, e3]
 
         _coords = np.array([coords[i] for i in range(3)])

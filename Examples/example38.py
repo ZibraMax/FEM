@@ -10,7 +10,7 @@ r = 1.0
 hueco = 0.4
 N = 100
 phi = 1.0
-G = 80000.0
+G = 1000.0
 
 vert, seg = giveCoordsCircle([0, 0], r, n=N)
 vertextra = [[-hueco, -hueco], [hueco, -hueco],
@@ -21,8 +21,7 @@ holes = []
 hole = {'center': [-2*r, 2*r], 'segments': segextra, 'vertices': vertextra}
 holes += [hole]
 
-
-params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.003', o=2)
+params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.005', o=2)
 
 geometria = Delaunay(vert, params, nvn=1, holes_dict=holes)
 geometria.show()
@@ -34,10 +33,15 @@ for centroide in geometria.centroids:
     inside2 = path.contains_points([centroide])
     GG += [G]
     if inside2[0]:
-        GG[-1] = 1
+        GG[-1] = 1*10**-3
 geometria.segments = seg
-geometria.mask = None
 O = Torsion2D(geometria, GG, phi)
-O.geometry.holes = None
 O.solve()
 plt.show()
+integral = 0
+for i, e in enumerate(O.elements):
+    _, _u = e.giveSolution(domain='gauss-points')
+    jac, dpz = e.J(e.Z.T)
+    detjac = np.linalg.det(jac)
+    integral += np.sum(_u*e.W*detjac)
+print(integral*2/G)

@@ -30,6 +30,13 @@ class Element2D(Element):
         Element.__init__(self, coords, _coords, gdl)
         self._coordsg = np.array(
             self._coords.tolist()+[self._coords[0].tolist()])
+        for i, e in enumerate(self.borders):
+            delta = self._coordsg[i+1]-self._coordsg[i]
+            delta[0] *= -1
+            delta = delta[::-1]
+            delta = delta/np.linalg.norm(delta)
+            e.nx = delta[0]
+            e.ny = delta[1]
 
     def draw(self) -> None:
         """Create a graph of element
