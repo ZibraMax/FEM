@@ -5,6 +5,7 @@ ipynb_checkpoints/
 References/
 dist/
 build/
+temp/
 interface/js/
 F_BUILD/
 AFEM.egg-info/
