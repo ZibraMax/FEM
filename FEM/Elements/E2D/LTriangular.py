@@ -42,6 +42,41 @@ class LTriangular(Element2D, TriangularScheme):
         Element2D.__init__(self, coords, coords, gdl)
         TriangularScheme.__init__(self, n)
 
+    @classmethod
+    def description(self):
+        self = TriangularScheme(2)
+
+        def bmatrix(a, header=[], caption='', table=False):
+            rv = []
+            if len(a.shape) > 2:
+                raise ValueError('bmatrix can at most display two dimensions')
+            if table:
+                rv += [r"""\begin{table}
+        \centering
+        \caption{"""+caption+"""}"""]
+                rv += [r'\begin{tabular}{' + '|c'*len(a[0]) + '|}\hline']
+                rv += ['  ' +
+                       ' & '.join([r'\textbf{'+i+'}' for i in header])+r'\\\hline']
+                lines = str(a).replace('[', '').replace(
+                    ']', '').splitlines()
+                rv += ['  ' + ' & '.join(l.split()) +
+                       r'\\ \hline' for l in lines]
+                rv += [r'\end{tabular}']
+                rv += [r"""\end{table}"""]
+            else:
+                lines = str(a).replace('[', '').replace(
+                    ']', '').splitlines()
+                rv += [r'\begin{bmatrix}']
+                rv += ['  ' + ' & '.join(l.split()) + r'\\' for l in lines]
+                rv += [r'\end{bmatrix}']
+            return '\n'.join(rv)
+        return r"""Elemento de 3 nodos. El primer nodo se encuentra centrado en el origen y los otros dos nodos se encuentran a una unidad en ambas direcciones. Los nodos se enumeran en el orden contrario a las manecillas del reloj.
+        Para calcular las integrales de este elemento se usan """+format(len(self.Z))+r""" puntos de Gauss:\\$$\zeta="""+bmatrix(self.Z)+"""$$$$W="""+bmatrix(self.W)+r"""$$\\\\ Para este elemento se usaron las siguientes funciones de forma:
+        $$\Psi_0=1-\zeta-\eta$$
+        $$\Psi_1=\zeta$$
+        $$\Psi_2=\eta$$
+        """
+
     def psis(self, z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates
 

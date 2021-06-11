@@ -6,7 +6,10 @@ The individual children classes must implement the method for calculating the el
 
 from tqdm import tqdm
 import numpy as np
+import matplotlib.pyplot as plt
 from .Mesh import Geometry
+import os
+from .Elements import *
 
 
 class Core():
@@ -147,3 +150,191 @@ class Core():
         """Post process the solution
         """
         pass
+
+    def print(self, filename='report.tex', aux='temp', **kargs):
+        def bmatrix(a, header=[], caption='', table=False):
+            rv = []
+            if len(a.shape) > 2:
+                raise ValueError('bmatrix can at most display two dimensions')
+            if table:
+                rv += [r"""\begin{table}
+        \centering
+        \caption{"""+caption+"""}"""]
+                rv += [r'\begin{tabular}{' + '|c'*len(a[0]) + '|}\hline']
+                rv += ['  ' +
+                       ' & '.join([r'\textbf{'+i+'}' for i in header])+r'\\\hline']
+                lines = str(a).replace('[', '').replace(
+                    ']', '').splitlines()
+                rv += ['  ' + ' & '.join(l.split()) +
+                       r'\\ \hline' for l in lines]
+                rv += [r'\end{tabular}']
+                rv += [r"""\end{table}"""]
+            else:
+                lines = str(a).replace('[', '').replace(
+                    ']', '').splitlines()
+                rv += [r'\begin{bmatrix}']
+                rv += ['  ' + ' & '.join(l.split()) + r'\\' for l in lines]
+                rv += [r'\end{bmatrix}']
+            return '\n'.join(rv)
+        try:
+            os.makedirs(aux)
+        except Exception as e:
+            print(f'{aux} folder already exists', e)
+        self.geometry.show(**kargs)
+        plt.savefig(aux+f'/{filename}_geometry.pdf')
+        plt.close('all')
+        self.solve()
+        plt.savefig(aux+f'/{filename}_solution.pdf')
+        plt.close('all')
+        with open(f'{aux}/{filename}', 'w', encoding="utf-8") as f:
+            f.write(r"""\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{float}
+\usepackage{vmargin}
+\usepackage{wrapfig}
+\usepackage{titlesec}
+\usepackage{lastpage}
+\usepackage[spanish]{babel}
+\decimalpoint
+
+\usepackage{pgfplots}
+\DeclareUnicodeCharacter{2212}{−}
+\usepgfplotslibrary{groupplots,dateplot}
+\usetikzlibrary{patterns,shapes.arrows}
+\pgfplotsset{compat=newest}
+\usepackage{hyperref}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\titleformat{\section}
+{\sffamily}{\bfseries}{0pt}{\LARGE}
+
+\titleformat{\subsection}
+{\sffamily}{\bfseries}{0pt}{\Large}
+
+\DeclareCaptionFont{captionFont}{\sffamily}
+
+\captionsetup{
+    width=0.9\linewidth, % width of caption is 90% of current textwidth
+    labelfont=bf,        % the label, e.g. figure 12, is bold
+    font=small,          % the whole caption text (label + content) is small
+    labelsep=period,
+    font=captionFont,
+}
+
+\setpapersize{A4}
+\setmargins{3cm}        % Margen izquierda
+{1cm}                   % Margen superior
+{15cm}                  % Margen derecha
+{22.42cm}               % Margen inferior
+{10pt}
+{1cm}
+{0pt}
+{1cm}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+
+
+\newcommand\course{\sffamily AFEM - A Python FEM Implementation}
+\newcommand\hwnumber{\sffamily 2}
+\newcommand\NetIDb{\sffamily \today}
+\newcommand\NetIDc{\sffamily ZibraMax}
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
+
+\lhead{\NetIDc}
+\rhead{\sffamily da.rodriguezh@uniandes.edu.co\\\course}
+\lhead{\NetIDc\\\NetIDb}
+	
+
+\lfoot{\sffamily AFEM}
+\cfoot{}
+\rfoot{\sffamily Página \textbf{\thepage\ }de \textbf{\pageref{LastPage}}}
+\headsep 1.5em
+
+\renewcommand{\footrulewidth}{0.4pt}
+
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+
+\begin{document}
+\sffamily
+\setlength{\headheight}{80pt}
+
+\title{Reporte de resultados}
+\author{}
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+\newpage
+\pagestyle{fancy}"""+'\n')
+            f.write(r'\section{\textbf{Definición del modelo}}'+'\n')
+            f.write(
+                f'El modelo cuenta con un total del {self.ngdl} grados de libertad y {len(self.elements)} elementos. Para esta ecuación diferencial se tienen {self.geometry.nvn} variables por nodo.'+'\n')
+
+            f.write(r'\subsection{\textbf{Elementos usados}}'+'\n')
+            f.write(
+                'Para este modelo se usaron los siguientes tipos de elementos: '+'\n')
+            f.write(r'\begin{enumerate}'+'\n')
+            nombres_elementos = {'T1V': 'Triangular de orden 1', 'T2V': 'Triangular de orden 2',
+                                 'C1V': 'Cuadrilatero de orden 1', 'C2V': 'Cuadrilatero de orden 2 (Serendipity)'}
+            tipos_elementos = {'T1V': LTriangular, 'T2V': QTriangular,
+                               'C1V': Quadrilateral, 'C2V': Serendipity}
+            for e in np.unique(self.geometry.types):
+                f.write(r'\item [] \textbf{'+nombres_elementos[e]+'}\n')
+                f.write(tipos_elementos[e].description()+'\n')
+
+            f.write(r'\end{enumerate}'+'\n')
+
+            f.write(r'\subsection{\textbf{Geometría}}'+'\n')
+            f.write(r"""\begin{figure}
+            \centering
+            \includegraphics[width=0.95\textwidth]{"""+filename+"""_geometry.pdf}
+            \caption{Geometría}
+            \label{fig:figurauno}
+        \end{figure}"""+'\n')
+
+            f.write(
+                r'\subsection{\textbf{Condiciones de borde escenciales}}'+'\n')
+            f.write(
+                r'Las condiciones de borde se dan a nivel de nodo. La numeración de los nodos se encuentra en la Figura \ref{fig:figurauno}.'+'\n')
+            if len(self.cbe) > 0:
+                f.write(
+                    bmatrix(np.array(self.cbe), header=['Nodo', 'Valor'], caption='Condiciones de borde', table=True))
+            else:
+                f.write('No se definieron condiciones de borde escenciales \n')
+
+            f.write(
+                r'\subsection{\textbf{Condiciones de borde naturales}}'+'\n')
+            if len(self.cbn) > 0:
+                f.write(
+                    bmatrix(np.array(self.cbn), header=['Nodo', 'Valor'], caption='Condiciones de borde', table=True))
+            else:
+                f.write('No se definieron condiciones de borde naturales \n')
+
+            f.write(r'\section{\textbf{Solución}}'+'\n')
+            f.write(r"""\begin{figure}
+            \centering
+            \includegraphics[width=0.95\textwidth]{"""+filename+"""_solution.pdf}
+            \caption{Solución interpolada}
+            \label{fig:Figurados}
+        \end{figure}"""+'\n')
+            f.write(
+                r'\section{\textbf{Matrices y vectores de elementos}}'+'\n')
+            for i, e in enumerate(self.elements):
+                f.write(r'\subsection{Elemento '+format(i+1)+'}\n')
+                f.write('Elemento con las siguientes coordenadas:'+'\n')
+                f.write(bmatrix(e.coords, table=True,
+                        header=['X', 'Y'], caption='Tabla de coordenadas para el elemento') + """\n""")
+                f.write('Elemento con los siguientes grados de libertad:'+'\n')
+                f.write(bmatrix(
+                    e.gdl.T, table=True, header=['Variable '+format(i+1) for i in range(len(e.gdl))], caption='Tabla de grados de libertad para el elemento') + """\n""")
+                f.write("""\small{$$K=""" + bmatrix(e.Ke) + """$$}\n""")
+                f.write("""\small{$$F=""" + bmatrix(e.Fe) +
+                        r'\hspace{0.5cm}Q='+bmatrix(e.Qe) + """$$}\n""")
+                f.write("""\small{$$U_e=""" + bmatrix(e.Ue)+"""$$}\n""")
+            f.write(r'\end{document}')

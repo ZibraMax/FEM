@@ -48,6 +48,15 @@ class Element():
             self.Ue = np.zeros(self.gdl.shape)
             self.Qe = np.zeros([self.n, 1])
 
+    @classmethod
+    def description(self):
+        """Creates the elemetn description
+
+        Returns:
+            str: Description of the element
+        """
+        return ''
+
     def T(self, z: np.ndarray) -> np.ndarray:
         """Give the global coordinates of given natural coordiantes over element
 

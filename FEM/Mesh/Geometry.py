@@ -341,6 +341,24 @@ class Geometry:
                     color = 'black'
                     ax.annotate(f"{i}: {cb[1]}"*label_bc, xy=coords_cb, xytext=(
                         coords_cb[0]-tFlecha, coords_cb[1]), horizontalalignment='center', verticalalignment='center', arrowprops=dict(arrowstyle="->", facecolor=color))
+            for i, cb in enumerate(self.cbn):
+                coords_cb = gdls[int(cb[0]//self.nvn)]
+                if cb[0] % self.nvn == 0:
+                    color = 'red'
+                    ax.annotate(f"NBC {i}: {cb[1]}"*label_bc, xy=coords_cb, xytext=(
+                        coords_cb[0]-tFlecha, coords_cb[1]), horizontalalignment='center', verticalalignment='center', arrowprops=dict(arrowstyle="->", facecolor=color))
+                elif cb[0] % self.nvn == 1:
+                    color = 'blue'
+                    ax.annotate(f"NBC {i}: {cb[1]}"*label_bc, xy=coords_cb, xytext=(
+                        coords_cb[0], coords_cb[1]+tFlecha), horizontalalignment='center', verticalalignment='center', arrowprops=dict(arrowstyle="->", facecolor=color))
+                elif cb[0] % self.nvn == 2:
+                    color = 'yellow'
+                    ax.annotate(f"NBC {i}: {cb[1]}"*label_bc, xy=coords_cb, xytext=(
+                        coords_cb[0]-tFlecha, coords_cb[1]-tFlecha), horizontalalignment='center', verticalalignment='center', arrowprops=dict(arrowstyle="->", facecolor=color))
+                else:
+                    color = 'black'
+                    ax.annotate(f"NBC {i}: {cb[1]}"*label_bc, xy=coords_cb, xytext=(
+                        coords_cb[0]-tFlecha, coords_cb[1]), horizontalalignment='center', verticalalignment='center', arrowprops=dict(arrowstyle="->", facecolor=color))
         figManager = plt.get_current_fig_manager()
         figManager.full_screen_toggle()
 
