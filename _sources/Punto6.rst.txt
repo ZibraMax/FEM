@@ -1,0 +1,7 @@
+Punto6 module
+=============
+
+.. automodule:: Punto6
+   :members:
+   :undoc-members:
+   :show-inheritance:

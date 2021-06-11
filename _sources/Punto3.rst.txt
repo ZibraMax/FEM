@@ -1,0 +1,7 @@
+Punto3 module
+=============
+
+.. automodule:: Punto3
+   :members:
+   :undoc-members:
+   :show-inheritance:
