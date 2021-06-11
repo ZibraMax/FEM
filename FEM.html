@@ -109,10 +109,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.PlaneStressNonLocal">FEM.PlaneStressNonLocal module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-FEM.Poisson2D">FEM.Poisson2D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="MeshingNet.html">MeshingNet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Punto3.html">Punto3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Punto6.html">Punto6 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
@@ -282,6 +285,11 @@ be a 2-D Numpy Array.</p>
 <span class="sig-name descname"><span class="pre">postProcess</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Core.Core.postProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p>Post process the solution</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Core.Core.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'report.tex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aux</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'temp'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Core.Core.profile">
@@ -733,6 +741,40 @@ be a 2-D Numpy Array.</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-FEM.Poisson2D">
+<span id="fem-poisson2d-module"></span><h2>FEM.Poisson2D module<a class="headerlink" href="#module-FEM.Poisson2D" title="Permalink to this headline">¶</a></h2>
+<p>Solve the Poisson equation for a 2D domain.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Poisson2D.Poisson2D">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FEM.Poisson2D.</span></span><span class="sig-name descname"><span class="pre">Poisson2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><span class="pre">FEM.Mesh.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Poisson2D.Poisson2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<p>Create a Poisson2D finite element problem</p>
+<p>The differential equation is:</p>
+<div class="math notranslate nohighlight">
+\[-\nabla^2\Psi=\theta\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Mesh.html#FEM.Mesh.Geometry.Geometry" title="FEM.Mesh.Geometry.Geometry"><em>Geometry</em></a>) – 2D 1 variable per node geometry</p></li>
+<li><p><strong>phi</strong> (<em>float</em>) – Value</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Poisson2D.Poisson2D.elementMatrices">
+<span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Poisson2D.Poisson2D.elementMatrices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Poisson2D.Poisson2D.postProcess">
+<span class="sig-name descname"><span class="pre">postProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">derivatives</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#FEM.Poisson2D.Poisson2D.postProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create graphs for solution and derivatives.</p>
 </dd></dl>
 
 </dd></dl>

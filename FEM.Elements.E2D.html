@@ -108,10 +108,13 @@
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStressNonLocal">FEM.PlaneStressNonLocal module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Poisson2D">FEM.Poisson2D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="MeshingNet.html">MeshingNet module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Punto3.html">Punto3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Punto6.html">Punto6 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
@@ -262,6 +265,20 @@
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.LTriangular.LTriangular.description">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the elemetn description</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Description of the element</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E2D.LTriangular.LTriangular.dpsis">
 <span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular.dpsis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
@@ -316,6 +333,20 @@
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.QTriangular.QTriangular.description">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the elemetn description</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Description of the element</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E2D.QTriangular.QTriangular.dpsis">
 <span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular.dpsis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
@@ -369,6 +400,20 @@
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Quadrilateral.Quadrilateral.description">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the elemetn description</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Description of the element</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E2D.Quadrilateral.Quadrilateral.dpsis">
 <span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral.dpsis" title="Permalink to this definition">¶</a></dt>
@@ -439,6 +484,20 @@
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Serendipity.Serendipity.description">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the elemetn description</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Description of the element</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E2D.Serendipity.Serendipity.dpsis">
 <span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity.dpsis" title="Permalink to this definition">¶</a></dt>

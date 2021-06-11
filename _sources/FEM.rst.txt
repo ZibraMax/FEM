@@ -99,6 +99,14 @@ FEM.PlaneStressNonLocal module
    :undoc-members:
    :show-inheritance:
 
+FEM.Poisson2D module
+--------------------
+
+.. automodule:: FEM.Poisson2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Torsion2D module
 --------------------
 
