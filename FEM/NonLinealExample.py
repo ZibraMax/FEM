@@ -27,7 +27,7 @@ class NonLinealSimpleEquation(Core):
         """Creates a nonlineal 1D equation with the form:
 
         .. math::
-            -\frac{d}{dx}\left(a(x)u\\frac{du}{dx}\right)=f(x)
+            -\\frac{d}{dx}\\left(a(x)u\\frac{du}{dx}\\right)=f(x)
 
         Args:
             geometry (Geometry): Input lineal geometry
