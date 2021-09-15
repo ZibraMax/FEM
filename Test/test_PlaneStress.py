@@ -54,7 +54,7 @@ For calculate the displacements in any point of the element lenght, the load :ma
    :alt: Virtual work statement
 
    Moment and shear diagram for virtual load.
-   
+
 Since the diagrams are only different from 0 in length z, the virtual work statement can be rewritten as:
 
 .. math::
@@ -65,6 +65,8 @@ Since the diagrams are only different from 0 in length z, the virtual work state
 
 """
 
+from FEM.Mesh.Geometry import Geometry
+from FEM.PlaneStrain import PlaneStress
 import matplotlib.pyplot as plt
 import unittest
 import os

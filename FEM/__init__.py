@@ -11,8 +11,10 @@ from .Torsion2D import *
 from .EDO1D import *
 from .EulerBernoulliBeam import *
 from .PlaneStress import *
+from .PlaneStressOrthotropic import *
 from .ODE2D import *
 from .PlaneStressNonLocal import *
+from .NonLinealExample import *
 from .PlaneStrain import *
 from .Heat1D import *
 from .Heat2D import *

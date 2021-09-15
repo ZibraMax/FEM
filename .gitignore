@@ -12,4 +12,5 @@ AFEM.egg-info/
 *.pyc
 *.cpython-37.pyc
 *.csv
+*.log
 *.svg

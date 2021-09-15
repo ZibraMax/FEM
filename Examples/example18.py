@@ -28,5 +28,5 @@ coords = [[1, 1], [3, 2], [3.5, 3], [0.5, 4]]
 gdl = np.array([[1, 2, 3, 4]])
 e4 = Quadrilateral(coords, gdl)
 
-e3.borders[0].draw()
+e.borders[0].draw()
 plt.show()

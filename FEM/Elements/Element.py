@@ -57,6 +57,15 @@ class Element():
         """
         return ''
 
+    def restartMatrix(self):
+        """Sets all element matrices and vectors to 0 state
+        """
+        if not self.border:
+            self.Ke[:, :] = 0.0
+            self.Fe[:, :] = 0.0
+            self.Ue[:, :] = 0.0
+            self.Qe[:, :] = 0.0
+
     def T(self, z: np.ndarray) -> np.ndarray:
         """Give the global coordinates of given natural coordiantes over element
 

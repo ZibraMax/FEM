@@ -8,6 +8,8 @@ Tests
 
 """
 
+from FEM.Mesh.Geometry import Geometry
+from FEM.EDO2D import EDO2D
 import matplotlib.pyplot as plt
 import unittest
 import os

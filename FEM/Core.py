@@ -4,22 +4,34 @@ The individual children classes must implement the method for calculating the el
 """
 
 
+from typing import Union
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 from .Mesh import Geometry
 import os
 from .Elements import *
+from .Solvers import *
+import logging
+from .FEMLogger import FEMLogger
+from functools import partialmethod
 
 
 class Core():
-    def __init__(self, geometry: Geometry) -> None:
+    def __init__(self, geometry: Geometry, solver: Union[Lineal, NonLinealSolver] = None, verbose: bool = False) -> None:
         """Create the Finite Element problem.
 
             Args:
                 geometry (Geometry): Input geometry. The geometry must contain the elements, and the border conditions.
                 You can create the geometry of the problem using the Geometry class.
+                solver (Union[Lineal, NonLinealSolver], optional): Finite Element solver. If not provided, Lineal solver is used.
+                verbose (bool, optional): To print console messages and progress bars. Defaults to False.
+
         """
+        self.logger = FEMLogger()
+        if verbose:
+            self.logger.setup_logging(console_log_level="info")
+        self.logger.setup_logging()
         self.geometry = geometry
         self.ngdl = self.geometry.ngdl
         self.K = np.zeros([self.ngdl, self.ngdl])
@@ -30,6 +42,15 @@ class Core():
         self.cbe = self.geometry.cbe
         self.cbn = self.geometry.cbn
         self.elements = self.geometry.elements
+        self.verbose = verbose
+        tqdm.__init__ = partialmethod(tqdm.__init__, disable=not verbose)
+
+        if not solver:
+            self.solver = Lineal(self)
+        else:
+            self.solver = solver(self)
+        if self.solver.type == 'non-lineal-newton':
+            self.T = np.zeros([self.ngdl, self.ngdl])
 
     def ensembling(self) -> None:
         """Ensembling of equation system. This method use the element gdl
@@ -38,12 +59,30 @@ class Core():
         the gdl will be flattened. This ensure that the element matrices will always 
         be a 2-D Numpy Array.
         """
-        print('Ensembling equation system...')
-        for e in tqdm(self.elements, unit='Element'):
+        logging.info('Ensembling equation system...')
+
+        for e in self.elements:
             self.K[np.ix_(e.gdlm, e.gdlm)] += e.Ke
             self.F[np.ix_(e.gdlm)] += e.Fe
             self.Q[np.ix_(e.gdlm)] += e.Qe
-        print('Done!')
+            try:
+                self.T[np.ix_(e.gdlm, e.gdlm)] += e.Te
+            except:
+                pass
+        logging.info('Done!')
+
+    def restartMatrix(self):
+        """Sets all model matrices and vectors to 0 state
+        """
+        self.K[:, :] = 0.0
+        self.F[:, :] = 0.0
+        self.Q[:, :] = 0.0
+        self.S[:, :] = 0.0
+
+        try:
+            self.T[:, :] = 0.0
+        except:
+            pass
 
     def borderConditions(self) -> None:
         """Assign border conditions to the system. 
@@ -55,7 +94,7 @@ class Core():
         This ensures that in a node with 2 border conditions
         the essential border conditions will be applied.
         """
-        print('Border conditions...')
+        logging.info('Border conditions...')
         for i in tqdm(self.cbn, unit=' Natural'):
             self.Q[int(i[0])] = i[1]
         for i in tqdm(self.cbe, unit=' Essential'):
@@ -66,25 +105,21 @@ class Core():
             self.K[int(i[0]), :] = 0
             self.K[:, int(i[0])] = 0
             self.K[int(i[0]), int(i[0])] = 1
+            try:
+                self.T[int(i[0]), :] = 0
+                self.T[:, int(i[0])] = 0
+                self.T[int(i[0]), int(i[0])] = 1
+            except:
+                pass
         self.S = self.S + self.F + self.Q
         for i in self.cbe:
             self.S[int(i[0])] = i[1]
-        print('Done!')
+        logging.info('Done!')
 
-    def solveES(self, path: str = '') -> None:
-        """Solve the equation system using numpy.solve algorithm
-
-        Args:
-                path (str, optional): Path to save a text file with the solution of the problem
-                This file can be loaded witouth spendign time in other finite element steps. Defaults to ''.
+    def solveES(self, **kargs) -> None:
+        """Solve the finite element problem
         """
-        print('Solving equation system...')
-        self.U = np.linalg.solve(self.K, self.S)
-        if not path == '':
-            np.savetxt(path, self.U, delimiter=',')
-        for e in self.elements:
-            e.setUe(self.U)
-        print('Done!')
+        self.solver.run(**kargs)
 
     def solve(self, path: str = '', plot: bool = True, **kargs) -> None:
         """A series of Finite Element steps
@@ -93,16 +128,16 @@ class Core():
                 path (str, optional): Path to save a text file with the solution of the problem
                 This file can be loaded witouth spendign time in other finite element steps. Defaults to ''.
         """
-        print('Creating element matrices...')
+        logging.info('Creating element matrices...')
         self.elementMatrices()
-        print('Done!')
+        logging.info('Done!')
         self.ensembling()
         self.borderConditions()
-        self.solveES(path)
+        self.solveES(**kargs)
         if plot:
-            print('Post processing solution...')
+            logging.info('Post processing solution...')
             self.postProcess(**kargs)
-            print('Done!')
+            logging.info('Done!')
 
     def solveFromFile(self, file: str, plot: bool = True, **kargs) -> None:
         """Load a solution file and show the post process for a given geometry
@@ -110,15 +145,15 @@ class Core():
         Args:
                 file (str): Path to the previously generated solution file.
         """
-        print('Loading File...')
+        logging.info('Loading File...')
         self.U = np.loadtxt(file)
         for e in self.elements:
             e.setUe(self.U)
-        print('Done!')
+        logging.info('Done!')
         if plot:
-            print('Post processing solution...')
+            logging.info('Post processing solution...')
             self.postProcess(**kargs)
-            print('Done!')
+            logging.info('Done!')
 
     def solveFromArray(self, solution: np.ndarray, plot: bool = True, **kargs) -> None:
         """Load a solution array to the problem.
@@ -126,15 +161,15 @@ class Core():
         Args:
                 solution (np.ndarray): Solution vertical array with shape (self.ngdl,1)
         """
-        print('Casting solution')
+        logging.info('Casting solution')
         self.U = solution
         for e in self.elements:
             e.setUe(self.U)
-        print('Done!')
+        logging.info('Done!')
         if plot:
-            print('Post processing solution...')
+            logging.info('Post processing solution...')
             self.postProcess(**kargs)
-            print('Done!')
+            logging.info('Done!')
 
     def profile(self) -> None:
         """Create a profile for a 3D or 2D problem.
@@ -179,7 +214,7 @@ class Core():
         try:
             os.makedirs(aux)
         except Exception as e:
-            print(f'{aux} folder already exists', e)
+            logging.warning(f'{aux} folder already exists', e)
         self.geometry.show(**kargs)
         plt.savefig(aux+f'/{filename}_geometry.pdf')
         plt.close('all')

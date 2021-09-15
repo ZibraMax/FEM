@@ -56,6 +56,9 @@ A rotation angle of 1 is selected for all test cases.
 
 """
 
+from FEM.Mesh.Delaunay import Delaunay
+from FEM.Utils.polygonal import giveCoordsCircle
+from FEM.Torsion2D import Torsion2D
 import matplotlib.path as mpltPath
 import unittest
 import os
