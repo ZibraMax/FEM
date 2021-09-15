@@ -24,7 +24,7 @@ class PlaneStress(Core):
             fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
     """
 
-    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0) -> None:
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
         """Create a Plain Stress problem
 
         Args:
@@ -63,7 +63,7 @@ class PlaneStress(Core):
             geometry.cbe = []
             geometry.cbn = []
             geometry.initialize()
-        Core.__init__(self, geometry)
+        Core.__init__(self, geometry, **kargs)
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
