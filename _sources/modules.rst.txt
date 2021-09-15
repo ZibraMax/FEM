@@ -5,8 +5,5 @@ FEM
    :maxdepth: 4
 
    FEM
-   MeshingNet
-   Punto3
-   Punto6
    Test
    setup

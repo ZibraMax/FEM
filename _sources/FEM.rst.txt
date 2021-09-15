@@ -14,6 +14,7 @@ Subpackages
 
    FEM.Elements
    FEM.Mesh
+   FEM.Solvers
    FEM.Utils
 
 Submodules
@@ -43,6 +44,14 @@ FEM.EulerBernoulliBeam module
    :undoc-members:
    :show-inheritance:
 
+FEM.FEMLogger module
+--------------------
+
+.. automodule:: FEM.FEMLogger
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Heat1D module
 -----------------
 
@@ -55,6 +64,14 @@ FEM.Heat2D module
 -----------------
 
 .. automodule:: FEM.Heat2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.NonLinealExample module
+---------------------------
+
+.. automodule:: FEM.NonLinealExample
    :members:
    :undoc-members:
    :show-inheritance:
@@ -95,6 +112,14 @@ FEM.PlaneStressNonLocal module
 ------------------------------
 
 .. automodule:: FEM.PlaneStressNonLocal
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.PlaneStressOrthotropic module
+---------------------------------
+
+.. automodule:: FEM.PlaneStressOrthotropic
    :members:
    :undoc-members:
    :show-inheritance:
