@@ -8,12 +8,25 @@ from tqdm import tqdm
 
 class NonLinealSolver():
     """General class for non lineal solvers
+    Args:
+        tol (float): Tolerance for the maximum absolute value for the delta vector
+        n (int): Maximum number of iterations per step
     """
 
-    def __init__(self):
+    def __init__(self, tol: float, n: int) -> None:
         """General class for non lineal solvers
+        Args:
+            tol (float): Tolerance for the maximum absolute value for the delta vector
+            n (int): Maximum number of iterations per step
         """
+        self.maxiter = n
+        self.tol = tol
         self.type = 'non-lineal'
+
+    def run(self, **kargs) -> None:
+        """Solves the equation system using newtons method
+        """
+        self.solve(**kargs)
 
 
 class Newton(NonLinealSolver):
@@ -23,7 +36,7 @@ class Newton(NonLinealSolver):
             FEMObject (Core): Finite Element Model. The model have to calculate tangent matrix T in the self.elementMatrices() method.
         """
 
-    def __init__(self, FEMObject: 'Core', tol: float = 10**(-10), n: int = 50):
+    def __init__(self, FEMObject: 'Core', tol: float = 10**(-10), n: int = 50) -> None:
         """Creates a Newton Raphson iterative solver
 
         Args:
@@ -32,17 +45,10 @@ class Newton(NonLinealSolver):
             n (int, optional): Maximum number of iterations per step. Defaults to 50.
         """
         self.system = FEMObject
-        self.maxiter = n
-        self.tol = tol
-        NonLinealSolver.__init__(self)
+        NonLinealSolver.__init__(self, tol, n)
         self.type = 'non-lineal-newton'
 
-    def run(self, **kargs):
-        """Solves the equation system using newtons method
-        """
-        self.solve(**kargs)
-
-    def solve(self, path: str = '', **kargs):
+    def solve(self, path: str = '', **kargs) -> None:
         """Solves the equation system using newtons method
         """
 
@@ -82,6 +88,70 @@ class Newton(NonLinealSolver):
                 e.setUe(self.system.U)
             logging.debug(f'Updated elements')
             err = np.max(np.abs(du))
+            logging.info(
+                f'----------------- Iteration error {err} -------------------')
+            if err < self.tol:
+                break
+        logging.info('Done!')
+
+
+class DirectIteration(NonLinealSolver):
+    """docstring for DirectIteration
+    """
+
+    def __init__(self, FEMObject: 'Core', tol: float = 10**(-10), n: int = 50) -> None:
+        """Creates a Direct Iteration iterative solver
+
+        Args:
+            FEMObject (Core): Finite Element Model. The model have to calculate tangent matrix T in the self.elementMatrices() method.
+            tol (float, optional): Tolerance for the maximum absolute value for the delta vector. Defaults to 10**(-10).
+            n (int, optional): Maximum number of iterations per step. Defaults to 50.
+        """
+        self.system = FEMObject
+        NonLinealSolver.__init__(self, tol, n)
+        self.type = 'non-lineal-direct'
+
+    def solve(self, path: str = '', **kargs) -> None:
+        """Solves the equation system using newtons method
+        """
+
+        logging.info('Starting iterations.')
+        logging.info(f'tol: {self.tol}, maxiter: {self.maxiter}')
+        self.system.U = np.zeros(self.system.U.shape)+1.0
+        for i in self.system.cbe:
+            self.system.U[int(i[0])] = i[1]
+
+        for e in self.system.elements:
+            e.restartMatrix()
+            e.setUe(self.system.U)
+
+        for i in tqdm(range(self.maxiter), disable=False):
+            logging.debug(
+                f'----------------- Iteration {i} -------------------')
+            self.system.restartMatrix()
+            logging.debug(f'Matrix at 0')
+            self.system.elementMatrices()
+            logging.debug(f'Calculating element matrix')
+            self.system.ensembling()
+            logging.debug(f'Matrices enssembling')
+            self.system.borderConditions()
+            logging.debug(f'Border conditions')
+            uim11 = self.system.U.copy()
+            try:
+                self.system.U = np.linalg.solve(self.system.K, self.system.S)
+            except Exception as e:
+                logging.error(e)
+                raise e
+            logging.debug(f'Equation system solved')
+
+            R = (self.system.U - uim11)/self.system.U
+            logging.debug(f'Residual')
+
+            for e in self.system.elements:
+                e.restartMatrix()
+                e.setUe(self.system.U)
+            logging.debug(f'Updated elements')
+            err = np.max(np.abs(R))
             logging.info(
                 f'----------------- Iteration error {err} -------------------')
             if err < self.tol:

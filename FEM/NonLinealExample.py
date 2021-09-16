@@ -37,7 +37,7 @@ class NonLinealSimpleEquation(Core):
 
         self.a = a
         self.f = f
-        Core.__init__(self, geometry, solver=NoLineal.Newton, **kargs)
+        Core.__init__(self, geometry, solver=NoLineal.DirectIteration, **kargs)
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's non lineal finite element model. Element matrices and forces are calculated with Gauss-Legendre quadrature. Point number depends of element discretization.
