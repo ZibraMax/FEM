@@ -37,7 +37,7 @@ class NonLinealSimpleEquation(Core):
 
         self.a = a
         self.f = f
-        Core.__init__(self, geometry, solver=NoLineal.DirectIteration, **kargs)
+        Core.__init__(self, geometry, solver=NoLineal.Newton, **kargs)
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's non lineal finite element model. Element matrices and forces are calculated with Gauss-Legendre quadrature. Point number depends of element discretization.
@@ -56,14 +56,13 @@ class NonLinealSimpleEquation(Core):
             dpx = _j @ dpz  # Shape function derivatives in global coordinates
             for i in range(e.n):  # self part must be vectorized
                 for j in range(e.n):
-                    for h in range(e.n):
-                        for k in range(len(e.Z)):  # Iterate over gauss points on domain
-                            e.Ke[i, j] += e.Ue[0][h] * \
-                                (self.a(_x[k])*_p[k][h]*dpx[k][0]
-                                 [i]*dpx[k][0][j])*detjac[k]*e.W[k]
-                            e.Te[i, j] += e.Ue[0][h] * \
-                                (_p[k][j]*dpx[k][0]
-                                 [i]*dpx[k][0][h])*detjac[k]*e.W[k]
+                    for k in range(len(e.Z)):  # Iterate over gauss points on domain
+                        e.Ke[i, j] += \
+                            (self.a(_x[k])*e.Ue[0]@_p[k]*dpx[k][0]
+                                [i]*dpx[k][0][j])*detjac[k]*e.W[k]
+                        e.Te[i, j] += \
+                            (_p[k][j]*dpx[k][0]
+                                [i]*e.Ue[0]@dpx[k][0])*detjac[k]*e.W[k]
                 for k in range(len(e.Z)):  # Iterate over gauss points on domain
                     e.Fe[i][0] += self.f(_x[k])*_p[k][i]*detjac[k]*e.W[k]
             e.Te += e.Ke
