@@ -4,6 +4,7 @@ FEM
 .. toctree::
    :maxdepth: 4
 
+   EBBT
    FEM
    Test
    setup

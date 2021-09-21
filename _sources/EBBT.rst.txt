@@ -1,0 +1,7 @@
+EBBT module
+===========
+
+.. automodule:: EBBT
+   :members:
+   :undoc-members:
+   :show-inheritance:
