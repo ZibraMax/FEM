@@ -18,7 +18,7 @@ class PlaneStrain(PlaneStress):
             fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
     """
 
-    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0) -> None:
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
         """Create a Plain Strain problem
 
         Args:
@@ -29,7 +29,7 @@ class PlaneStrain(PlaneStress):
                 fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
         """
 
-        PlaneStress.__init__(self, geometry, E, v, 1, fx, fy)
+        PlaneStress.__init__(self, geometry, E, v, 1, fx, fy, **kargs)
         self.C11 = []
         self.C12 = []
         self.C66 = []
