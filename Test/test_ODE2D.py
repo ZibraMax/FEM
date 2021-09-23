@@ -9,7 +9,7 @@ Tests
 """
 
 from FEM.Mesh.Geometry import Geometry
-from FEM.EDO2D import EDO2D
+from FEM.ODE2D import ODE2D
 import matplotlib.pyplot as plt
 import unittest
 import os
