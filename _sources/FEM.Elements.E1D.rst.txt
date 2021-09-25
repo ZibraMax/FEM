@@ -9,6 +9,14 @@ FEM.Elements.E1D package
 Submodules
 ----------
 
+FEM.Elements.E1D.CubicElement module
+------------------------------------
+
+.. automodule:: FEM.Elements.E1D.CubicElement
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Elements.E1D.Element1D module
 ---------------------------------
 
