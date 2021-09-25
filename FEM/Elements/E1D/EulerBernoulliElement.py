@@ -6,12 +6,17 @@ class EulerBernoulliElement(LinealElement):
     """docstring for EulerBernoulliElement
     """
 
-    def __init__(self, coords, gdl):
+    def __init__(self, coords, gdl, n=2, nvn=2):
         gdlcopy = gdl.copy()
         gdl[0, 1] = gdlcopy[1, 0]
         gdl[1, 0] = gdlcopy[0, 1]
-        LinealElement.__init__(self, coords, gdl, n=5)
+        if nvn > 2:
+            gdl = gdlcopy.T.reshape([3, 2])
+
+        LinealElement.__init__(self, coords, gdl, n=n)
         self.he = np.linalg.norm(self.coords[-1]-self.coords[0])
+        self.Zr, self.Wr = np.polynomial.legendre.leggauss(n-1)
+        self.n = 2*nvn
 
     def hermit(self, z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of the lineal element of a given natural coordinates

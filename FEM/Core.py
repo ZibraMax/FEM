@@ -128,11 +128,12 @@ class Core():
                 path (str, optional): Path to save a text file with the solution of the problem
                 This file can be loaded witouth spendign time in other finite element steps. Defaults to ''.
         """
-        logging.info('Creating element matrices...')
-        self.elementMatrices()
-        logging.info('Done!')
-        self.ensembling()
-        self.borderConditions()
+        if self.solver.type == 'lineal':
+            logging.info('Creating element matrices...')
+            self.elementMatrices()
+            logging.info('Done!')
+            self.ensembling()
+            self.borderConditions()
         self.solveES(**kargs)
         if plot:
             logging.info('Post processing solution...')

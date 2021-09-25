@@ -6,6 +6,7 @@ import numpy as np
 from ..Utils import isBetween, roundCorner, giveCoordsCircle, angleBetweenAngles
 import matplotlib.pyplot as plt
 from ..Elements.E1D.LinealElement import LinealElement
+from ..Elements.E1D.CubicElement import CubicElement
 from ..Elements.E1D.QuadraticElement import QuadraticElement
 from ..Elements.E2D.Serendipity import Serendipity
 from ..Elements.E2D.Quadrilateral import Quadrilateral
@@ -229,6 +230,8 @@ class Geometry:
                 element = LinealElement(coords, gdl)
             elif self.types[i] == 'L2V':
                 element = QuadraticElement(coords, gdl)
+            elif self.types[i] == 'L3V':
+                element = CubicElement(coords, gdl)
             self.elements.append(element)
         print('Done!')
 

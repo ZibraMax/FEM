@@ -111,13 +111,16 @@ class DirectIteration(NonLinealSolver):
         NonLinealSolver.__init__(self, tol, n)
         self.type = 'non-lineal-direct'
 
-    def solve(self, path: str = '', **kargs) -> None:
+    def solve(self, path: str = '', guess=None, _guess=False, **kargs) -> None:
         """Solves the equation system using newtons method
         """
 
         logging.info('Starting iterations.')
         logging.info(f'tol: {self.tol}, maxiter: {self.maxiter}')
-        self.system.U = np.zeros(self.system.U.shape)+1.0
+        if _guess:
+            self.system.U = guess
+        else:
+            self.system.U = np.zeros(self.system.U.shape)
         for i in self.system.cbe:
             self.system.U[int(i[0])] = i[1]
 
@@ -127,7 +130,7 @@ class DirectIteration(NonLinealSolver):
 
         for i in tqdm(range(self.maxiter), disable=False):
             logging.debug(
-                f'----------------- Iteration {i} -------------------')
+                f'----------------- Iteration {i+1} -------------------')
             self.system.restartMatrix()
             logging.debug(f'Matrix at 0')
             self.system.elementMatrices()
@@ -144,7 +147,7 @@ class DirectIteration(NonLinealSolver):
                 raise e
             logging.debug(f'Equation system solved')
 
-            R = (self.system.U - uim11)/self.system.U
+            R = (self.system.U - uim11)
             logging.debug(f'Residual')
 
             for e in self.system.elements:
@@ -157,3 +160,32 @@ class DirectIteration(NonLinealSolver):
             if err < self.tol:
                 break
         logging.info('Done!')
+
+
+class LoadControl(DirectIteration):
+    """General class for non lineal solvers
+    Args:
+        tol (float): Tolerance for the maximum absolute value for the delta vector
+        n (int): Maximum number of iterations per step
+    """
+
+    def __init__(self, FEMObject, tol: float = 10**(-10), n: int = 500, N=10) -> None:
+        """General class for non lineal solvers
+        Args:
+            tol (float): Tolerance for the maximum absolute value for the delta vector
+            n (int): Maximum number of iterations per step
+        """
+        self.NLS = N
+        DirectIteration.__init__(self, FEMObject, tol=tol, n=n)
+
+    def run(self, **kargs) -> None:
+        """Solves the equation system using newtons method
+        """
+        guess = None
+        for i in range(self.NLS):
+            logging.info(f'================LOAD STEP {i+1}===================')
+
+            self.system.fx = lambda x: self.system.fx0(x)/self.NLS*(i+1)
+            self.system.fy = lambda x: self.system.fy0(x)/self.NLS*(i+1)
+            guess = self.system.U
+            self.solve(guess=guess, _guess=(i >= 1), **kargs)

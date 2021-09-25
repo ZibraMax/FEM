@@ -34,14 +34,19 @@ class Lineal(Geometry):
             if o == 1:
                 gdls += [xa]
                 dictionary += [[i, i+1]]
-            else:
+            elif o == 2:
                 gdls += [xa, xa+he/2]
                 dictionary += [[i*o, i*o+1, i*o+2]]
+            else:
+                gdls += [xa, xa+he/3, xa+2*he/3]
+                dictionary += [[i*o, i*o+1, i*o+2, i*o+3]]
         gdls += [self.lenght]
         if o == 1:
             tipo = 'L1V'
-        else:
+        elif o == 2:
             tipo = 'L2V'
+        else:
+            tipo = 'L3V'
         types = [tipo]*len(dictionary)
         gdls = np.array(gdls).reshape([len(gdls), 1])
         Geometry.__init__(self, dictionary, gdls, types, nvn=nvn, segments=[])
