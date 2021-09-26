@@ -75,7 +75,7 @@ class PlaneStressNonLocal(Core):
             geometry.cbe = []
             geometry.cbn = []
             geometry.initialize()
-        Core.__init__(self, geometry)
+        Core.__init__(self, geometry, verbose=True)
         nonlocals = self.geometry.detectNonLocal(Lr)
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
@@ -126,6 +126,11 @@ class PlaneStressNonLocal(Core):
 
             e.knls = []
             eenl = 0
+            # MatricesFlatten = np.loadtxt(
+            #     f'Matrices/e{ee+1}.txt', delimiter=',')
+            # MatricesFlatten = MatricesFlatten.reshape([len(e.enl), 16*16])
+            # e.knls = [i.reshape([16, 16]) for i in MatricesFlatten]
+
             for inl in tqdm(e.enl, unit='Element Non Local'):
                 enl = self.elements[inl]
                 o = len(enl.gdl.T)
@@ -161,8 +166,10 @@ class PlaneStressNonLocal(Core):
                 Knl[np.ix_(subm[1], subm[0])] += Kvu
                 Knl[np.ix_(subm[1], subm[1])] += Kvv
                 e.knls.append(Knl)
-                eenl += 1
+            eenl += 1
             ee += 1
+            # np.savetxt(f'Matrices/e{ee}.txt',
+            #            np.array(e.knls).flatten(), delimiter=',')
 
     def ensembling(self) -> None:
         """Ensembling of equation system. This method use the element gdl
@@ -177,7 +184,7 @@ class PlaneStressNonLocal(Core):
             self.K[np.ix_(e.gdlm, e.gdlm)] += e.Ke*self.z1
             for i, eee in enumerate(e.enl):
                 enl = self.elements[eee]
-                self.K[np.ix_(e.gdlm, enl.gdlm)] += e.KNLS[i]*self.z2
+                self.K[np.ix_(e.gdlm, enl.gdlm)] += e.knls[i]*self.z2
             self.F[np.ix_(e.gdlm)] += e.Fe
             self.Q[np.ix_(e.gdlm)] += e.Qe
         print('Done!')
@@ -208,9 +215,9 @@ class PlaneStressNonLocal(Core):
             _x, _u, du = e.giveSolution(True)
             X += _x.T[0].tolist()
             Y += _x.T[1].tolist()
-            U1 += (self.C11[ee]*du[:, 0, 0]+self.C12[ee]*du[:, 1, 1]).tolist()
-            U2 += (self.C12[ee]*du[:, 0, 0]+self.C11[ee]*du[:, 1, 1]).tolist()
-            U3 += (self.C66[ee]*(du[:, 0, 1]+du[:, 1, 0])).tolist()
+            U1 += (du[:, 0, 0]).tolist()
+            U2 += (du[:, 1, 1]).tolist()
+            U3 += (1/2*(du[:, 0, 1]+du[:, 1, 0])).tolist()
             coordsNuevas = e._coordsg + e._Ueg * mult
             ax5.plot(*e._coordsg.T, '--', color='gray', alpha=0.7)
             ax5.plot(*coordsNuevas.T, '-', color='black')
@@ -226,22 +233,6 @@ class PlaneStressNonLocal(Core):
         surf = ax3.tricontourf(X, Y, U3, cmap='magma', levels=20)
         plt.colorbar(surf, ax=ax3)
         ax3.set_title(r'$\sigma_{xy}$')
-        mask = self.geometry.mask
-        if not mask == None:
-            mask = np.array(mask)
-            cornersnt = np.array(mask[::-1])
-
-            xmin = np.min(cornersnt[:, 0])
-            xmax = np.max(cornersnt[:, 0])
-
-            ymin = np.min(cornersnt[:, 1])
-            ymax = np.max(cornersnt[:, 1])
-
-            Xs = [xmin, xmax, xmax, xmin]+cornersnt[:, 0].tolist()
-            Ys = [ymin, ymin, ymax, ymax]+cornersnt[:, 1].tolist()
-            ax1.fill(Xs, Ys, color='white', zorder=30)
-            ax2.fill(Xs, Ys, color='white', zorder=30)
-            ax3.fill(Xs, Ys, color='white', zorder=30)
 
     def profile(self, p0: list, p1: list, n: float = 100) -> None:
         """Generate a profile between selected points
@@ -267,11 +258,9 @@ class PlaneStressNonLocal(Core):
                     z = e.inverseMapping(np.array([X.T[i]]).T)
                     _, _, du = e.giveSolutionPoint(z, True)
                     # TODO Arreglar calculo de esfuerzos para PlaneStrain
-                    U1 += (self.C11[ee]*du[:, 0, 0] +
-                           self.C12[ee]*du[:, 1, 1]).tolist()
-                    U2 += (self.C12[ee]*du[:, 0, 0] +
-                           self.C11[ee]*du[:, 1, 1]).tolist()
-                    U3 += (self.C66[ee]*(du[:, 0, 1]+du[:, 1, 0])).tolist()
+                    U1 += (du[:, 0, 0]).tolist()
+                    U2 += (du[:, 1, 1]).tolist()
+                    U3 += (1/2*(du[:, 0, 1]+du[:, 1, 0])).tolist()
                     _X.append(dist(X.T[i]))
                     break
         fig = plt.figure()
@@ -290,3 +279,4 @@ class PlaneStressNonLocal(Core):
         ax.grid()
         ax.set_xlabel('d')
         ax.set_ylabel(r'$\sigma_{xy}$')
+        return _X, U1, U2, U3
