@@ -36,8 +36,9 @@ Avaliable equations:
 
 -   1D 1 Variable ordinary diferential equation
 -   1D 1 Variable 1D Heat with convective border
--   1D 2 Variable Euler Bernoulli Beams [TODO]
--   1D 2 Variable Timoshenko Beams [TODO]
+-   1D 2 Variable Euler Bernoulli Beams
+-   1D 3 Variable Non-linear Euler Bernoulli Beams
+-   1D 2 Variable Timoshenko Beams [WIP]
 -   2D 1 Variable Torsion
 -   2D 1 Variable Poisson equation
 -   2D 1 Variable second order PDE
@@ -50,8 +51,9 @@ Numerical Validation:
 
 -   [x] 1D 1 Variable ordinary diferential equation
 -   [ ] 1D 1 Variable 1D Heat with convective border
--   [ ] 1D 2 Variable Euler Bernoulli Beams [TODO]
--   [ ] 1D 2 Variable Timoshenko Beams [TODO]
+-   [ ] 1D 2 Variable Euler Bernoulli Beams
+-   [ ] 1D 3 Variable Non-linear Euler Bernoulli Beams
+-   [ ] 1D 2 Variable Timoshenko Beams [WIP]
 -   [x] 2D 1 Variable Torsion
 -   [ ] 2D 1 Variable 2D Heat with convective borders
 -   [x] 2D 2 Variable Plane Strees
@@ -366,6 +368,12 @@ A good example is the `PlaneStress` class
 
       <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example39_geometry.png">
       <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example39.png">
+
+-   Example 38 & 39: Polar moment of inertia for hollow sections
+-   Example 40 & 41: Euler Bernoulli beams, linear and non-linear
+-   Example 42: Non-linear equation solver test
+-   Example 43: Orthotripic plane stress
+-   Example 44: MeshingNet data creation code
 
 ## References
 

@@ -53,4 +53,4 @@ for i, e in enumerate(O.elements):
     jac, dpz = e.J(e.Z.T)
     detjac = np.linalg.det(jac)
     integral += np.sum(_u*e.W*detjac)
-print(integral*2/G)
+print(integral*2/G*4)
