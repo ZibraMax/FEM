@@ -750,8 +750,37 @@ be a 2-D Numpy Array.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.PlaneStressNonLocal.PlaneStressNonLocal.postProcessStress">
+<span class="sig-name descname"><span class="pre">postProcessStress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.PlaneStressNonLocal.PlaneStressNonLocal.postProcessStress" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the stress surfaces and displacement fields for the geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mult</strong> (<em>int</em><em>, </em><em>optional</em>) – Factor for displacements. Defaults to 1000.</p></li>
+<li><p><strong>gs</strong> (<em>list</em><em>, </em><em>optional</em>) – List of 4 gridSpec matplotlib objects. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.PlaneStressNonLocal.PlaneStressNonLocal.profile">
 <span class="sig-name descname"><span class="pre">profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.PlaneStressNonLocal.PlaneStressNonLocal.profile" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a profile between selected points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p0</strong> (<em>list</em>) – start point of the profile [x0,y0]</p></li>
+<li><p><strong>p1</strong> (<em>list</em>) – end point of the profile [xf,yf]</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – NUmber of samples for graph. Defaults to 100.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.PlaneStressNonLocal.PlaneStressNonLocal.profileStress">
+<span class="sig-name descname"><span class="pre">profileStress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.PlaneStressNonLocal.PlaneStressNonLocal.profileStress" title="Permalink to this definition"></a></dt>
 <dd><p>Generate a profile between selected points</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
