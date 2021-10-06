@@ -17,8 +17,7 @@ cbe += geometria.cbFromSegment(3, 0, 1)
 cbe += geometria.cbFromSegment(3, 0, 2)
 geometria.cbe = cbe
 O = PlaneStress(geometria, E, v, b, fy=lambda x: -gamma*b)
+O.geometry.mask = None
 O.solve()
-n = len(O.U)
-pares = np.linspace(0, n-1, n)
-print(np.max(np.abs(O.U[pares % 2 == 0])), np.max(np.abs(O.U[pares % 2 == 1])))
+np.savetxt('U_1.csv', O.U, delimiter=',')
 plt.show()
