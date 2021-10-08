@@ -2,6 +2,7 @@
 """
 
 
+from threading import Thread
 from .Core import Core, Geometry
 from tqdm import tqdm
 import numpy as np
@@ -80,56 +81,154 @@ class PlaneStressNonLocal(Core):
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
 
+    def elementMatrix(self, ee) -> None:
+        e = self.elements[ee]
+        m = len(e.gdl.T)
+        Kuu = np.zeros([m, m])
+        Kuv = np.zeros([m, m])
+        Kvu = np.zeros([m, m])
+        Kvv = np.zeros([m, m])
+        Fu = np.zeros([m, 1])
+        Fv = np.zeros([m, 1])
+        # Gauss points in global coordinates and Shape functions evaluated in gauss points
+        _x, _p = e.T(e.Z.T)
+        # Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
+        jac, dpz = e.J(e.Z.T)
+        detjac = np.linalg.det(jac)
+        _j = np.linalg.inv(jac)  # Jacobian inverse
+        dpx = _j @ dpz  # Shape function derivatives in global coordinates
+        for i in range(m):  # self part must be vectorized
+            for j in range(m):
+                for k in range(len(e.Z)):  # Iterate over gauss points on domain
+                    Kuu[i, j] += self.t[ee]*(self.C11[ee]*dpx[k, 0, i]*dpx[k, 0, j] +
+                                             self.C66[ee]*dpx[k, 1, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
+                    Kuv[i, j] += self.t[ee]*(self.C12[ee]*dpx[k, 0, i]*dpx[k, 1, j] +
+                                             self.C66[ee]*dpx[k, 1, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
+                    Kvu[i, j] += self.t[ee]*(self.C12[ee]*dpx[k, 1, i]*dpx[k, 0, j] +
+                                             self.C66[ee]*dpx[k, 0, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
+                    Kvv[i, j] += self.t[ee]*(self.C11[ee]*dpx[k, 1, i]*dpx[k, 1, j] +
+                                             self.C66[ee]*dpx[k, 0, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
+            for k in range(len(e.Z)):  # Iterate over gauss points on domain
+                Fu[i][0] += self.t[ee]*_p[k, i] * \
+                    self.fx(_x[k])*detjac[k]*e.W[k]
+                Fv[i][0] += self.t[ee]*_p[k, i] * \
+                    self.fy(_x[k])*detjac[k]*e.W[k]
+        subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
+        e.Fe[np.ix_(subm[0])] += Fu
+        e.Fe[np.ix_(subm[1])] += Fv
+        e.Ke[np.ix_(subm[0], subm[0])] += Kuu
+        e.Ke[np.ix_(subm[0], subm[1])] += Kuv
+        e.Ke[np.ix_(subm[1], subm[0])] += Kvu
+        e.Ke[np.ix_(subm[1], subm[1])] += Kvv
+
+        e.knls = []
+        eenl = 0
+        # MatricesFlatten = np.loadtxt(
+        #     f'Matrices/e{ee+1}.txt', delimiter=',')
+        # MatricesFlatten = MatricesFlatten.reshape([len(e.enl), 16*16])
+        # e.knls = [i.reshape([16, 16]) for i in MatricesFlatten]
+
+        for inl in tqdm(e.enl, unit=' Nolocal'):
+            enl = self.elements[inl]
+            o = len(enl.gdl.T)
+            Kuu = np.zeros([m, o])
+            Kuv = np.zeros([m, o])
+            Kvu = np.zeros([m, o])
+            Kvv = np.zeros([m, o])
+
+            Knl = np.zeros([2*m, 2*o])
+
+            _xnl, _pnl = enl.T(enl.Z.T)
+            jacnl, dpznl = enl.J(enl.Z.T)
+            detjacnl = np.linalg.det(jacnl)
+            _jnl = np.linalg.inv(jacnl)
+            dpxnl = _jnl @ dpznl
+            for i in range(m):
+                for j in range(o):
+                    for k in range(len(e.Z)):
+                        for knl in range(len(enl.Z)):
+                            ro = np.linalg.norm(_x[k]-_xnl[knl])/self.l
+                            azn = self.af(self.l0, ro)
+                            Kuu[i, j] += azn*self.t[ee]*self.t[inl]*(
+                                self.C11[ee]*dpx[k, 0, i]*dpxnl[k, 0, j]+self.C66[ee]*dpx[k, 1, i]*dpxnl[k, 1, j])*detjac[k]*e.W[k]*detjacnl[knl]*enl.W[knl]
+                            Kuv[i, j] += azn*self.t[ee]*self.t[inl]*(
+                                self.C12[ee]*dpx[k, 0, i]*dpxnl[k, 1, j]+self.C66[ee]*dpx[k, 1, i]*dpxnl[k, 0, j])*detjac[k]*e.W[k]*detjacnl[knl]*enl.W[knl]
+                            Kvu[i, j] += azn*self.t[ee]*self.t[inl]*(
+                                self.C12[ee]*dpx[k, 1, i]*dpxnl[k, 0, j]+self.C66[ee]*dpx[k, 0, i]*dpxnl[k, 1, j])*detjac[k]*e.W[k]*detjacnl[knl]*enl.W[knl]
+                            Kvv[i, j] += azn*self.t[ee]*self.t[inl]*(
+                                self.C11[ee]*dpx[k, 1, i]*dpxnl[k, 1, j]+self.C66[ee]*dpx[k, 0, i]*dpxnl[k, 0, j])*detjac[k]*e.W[k]*detjacnl[knl]*enl.W[knl]
+            subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
+            Knl[np.ix_(subm[0], subm[0])] += Kuu
+            Knl[np.ix_(subm[0], subm[1])] += Kuv
+            Knl[np.ix_(subm[1], subm[0])] += Kvu
+            Knl[np.ix_(subm[1], subm[1])] += Kvv
+            e.knls.append(Knl)
+            eenl += 1
+
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's(2005) finite element model
         """
+        nel = len(self.elements)
+        batchsize = 12
+        nbatches = int(nel/batchsize)+1
+        actual = 0
+        final = actual+batchsize
 
-        ee = 0
-        for e in tqdm(self.elements, unit='Element'):
-            m = len(e.gdl.T)
-            Kuu = np.zeros([m, m])
-            Kuv = np.zeros([m, m])
-            Kvu = np.zeros([m, m])
-            Kvv = np.zeros([m, m])
-            Fu = np.zeros([m, 1])
-            Fv = np.zeros([m, 1])
-            # Gauss points in global coordinates and Shape functions evaluated in gauss points
-            _x, _p = e.T(e.Z.T)
-            # Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
-            jac, dpz = e.J(e.Z.T)
-            detjac = np.linalg.det(jac)
-            _j = np.linalg.inv(jac)  # Jacobian inverse
-            dpx = _j @ dpz  # Shape function derivatives in global coordinates
-            for i in range(m):  # self part must be vectorized
-                for j in range(m):
-                    for k in range(len(e.Z)):  # Iterate over gauss points on domain
-                        Kuu[i, j] += self.t[ee]*(self.C11[ee]*dpx[k, 0, i]*dpx[k, 0, j] +
-                                                 self.C66[ee]*dpx[k, 1, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
-                        Kuv[i, j] += self.t[ee]*(self.C12[ee]*dpx[k, 0, i]*dpx[k, 1, j] +
-                                                 self.C66[ee]*dpx[k, 1, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
-                        Kvu[i, j] += self.t[ee]*(self.C12[ee]*dpx[k, 1, i]*dpx[k, 0, j] +
-                                                 self.C66[ee]*dpx[k, 0, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
-                        Kvv[i, j] += self.t[ee]*(self.C11[ee]*dpx[k, 1, i]*dpx[k, 1, j] +
-                                                 self.C66[ee]*dpx[k, 0, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
-                for k in range(len(e.Z)):  # Iterate over gauss points on domain
-                    Fu[i][0] += self.t[ee]*_p[k, i] * \
-                        self.fx(_x[k])*detjac[k]*e.W[k]
-                    Fv[i][0] += self.t[ee]*_p[k, i] * \
-                        self.fy(_x[k])*detjac[k]*e.W[k]
-            subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
-            e.Fe[np.ix_(subm[0])] += Fu
-            e.Fe[np.ix_(subm[1])] += Fv
-            e.Ke[np.ix_(subm[0], subm[0])] += Kuu
-            e.Ke[np.ix_(subm[0], subm[1])] += Kuv
-            e.Ke[np.ix_(subm[1], subm[0])] += Kvu
-            e.Ke[np.ix_(subm[1], subm[1])] += Kvv
+        with tqdm(total=len(self.elements), unit='Batchs') as pbar:
+            for b in range(nbatches):
+                final = min(actual+batchsize, nel)
+                threads = [Thread(target=self.elementMatrix, args=(i, ))
+                           for i in range(actual, final)]
+                [t.start() for t in threads]
+                [t.join() for t in threads]
+                [pbar.update(1) for t in threads]
 
-            e.knls = []
-            eenl = 0
-            MatricesFlatten = np.loadtxt(
-                f'Matrices/e{ee+1}.txt', delimiter=',')
-            MatricesFlatten = MatricesFlatten.reshape([len(e.enl), 16*16])
-            e.knls = [i.reshape([16, 16]) for i in MatricesFlatten]
+                actual += batchsize
+
+            # m = len(e.gdl.T)
+            # Kuu = np.zeros([m, m])
+            # Kuv = np.zeros([m, m])
+            # Kvu = np.zeros([m, m])
+            # Kvv = np.zeros([m, m])
+            # Fu = np.zeros([m, 1])
+            # Fv = np.zeros([m, 1])
+            # # Gauss points in global coordinates and Shape functions evaluated in gauss points
+            # _x, _p = e.T(e.Z.T)
+            # # Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
+            # jac, dpz = e.J(e.Z.T)
+            # detjac = np.linalg.det(jac)
+            # _j = np.linalg.inv(jac)  # Jacobian inverse
+            # dpx = _j @ dpz  # Shape function derivatives in global coordinates
+            # for i in range(m):  # self part must be vectorized
+            #     for j in range(m):
+            #         for k in range(len(e.Z)):  # Iterate over gauss points on domain
+            #             Kuu[i, j] += self.t[ee]*(self.C11[ee]*dpx[k, 0, i]*dpx[k, 0, j] +
+            #                                      self.C66[ee]*dpx[k, 1, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
+            #             Kuv[i, j] += self.t[ee]*(self.C12[ee]*dpx[k, 0, i]*dpx[k, 1, j] +
+            #                                      self.C66[ee]*dpx[k, 1, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
+            #             Kvu[i, j] += self.t[ee]*(self.C12[ee]*dpx[k, 1, i]*dpx[k, 0, j] +
+            #                                      self.C66[ee]*dpx[k, 0, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
+            #             Kvv[i, j] += self.t[ee]*(self.C11[ee]*dpx[k, 1, i]*dpx[k, 1, j] +
+            #                                      self.C66[ee]*dpx[k, 0, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
+            #     for k in range(len(e.Z)):  # Iterate over gauss points on domain
+            #         Fu[i][0] += self.t[ee]*_p[k, i] * \
+            #             self.fx(_x[k])*detjac[k]*e.W[k]
+            #         Fv[i][0] += self.t[ee]*_p[k, i] * \
+            #             self.fy(_x[k])*detjac[k]*e.W[k]
+            # subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
+            # e.Fe[np.ix_(subm[0])] += Fu
+            # e.Fe[np.ix_(subm[1])] += Fv
+            # e.Ke[np.ix_(subm[0], subm[0])] += Kuu
+            # e.Ke[np.ix_(subm[0], subm[1])] += Kuv
+            # e.Ke[np.ix_(subm[1], subm[0])] += Kvu
+            # e.Ke[np.ix_(subm[1], subm[1])] += Kvv
+
+            # e.knls = []
+            # eenl = 0
+            # # MatricesFlatten = np.loadtxt(
+            # #     f'Matrices/e{ee+1}.txt', delimiter=',')
+            # # MatricesFlatten = MatricesFlatten.reshape([len(e.enl), 16*16])
+            # # e.knls = [i.reshape([16, 16]) for i in MatricesFlatten]
 
             # for inl in tqdm(e.enl, unit='Element Non Local'):
             #     enl = self.elements[inl]
@@ -152,13 +251,13 @@ class PlaneStressNonLocal(Core):
             #                 for knl in range(len(enl.Z)):
             #                     ro = np.linalg.norm(_x[k]-_xnl[knl])/self.l
             #                     azn = self.af(self.l0, ro)
-            #                     Kuu[i, j] += azn*self.t[ee]*self.t[eenl]*(
-            #                         self.C11[ee]*dpx[k, 0, i]*dpxnl[k, 0, j]+self.C66[eenl]*dpx[k, 1, i]*dpxnl[k, 1, j])*detjac[k]*e.W[k]*detjacnl[knl]*enl.W[knl]
-            #                     Kuv[i, j] += azn*self.t[ee]*self.t[eenl]*(
+            #                     Kuu[i, j] += azn*self.t[ee]*self.t[inl]*(
+            #                         self.C11[ee]*dpx[k, 0, i]*dpxnl[k, 0, j]+self.C66[ee]*dpx[k, 1, i]*dpxnl[k, 1, j])*detjac[k]*e.W[k]*detjacnl[knl]*enl.W[knl]
+            #                     Kuv[i, j] += azn*self.t[ee]*self.t[inl]*(
             #                         self.C12[ee]*dpx[k, 0, i]*dpxnl[k, 1, j]+self.C66[ee]*dpx[k, 1, i]*dpxnl[k, 0, j])*detjac[k]*e.W[k]*detjacnl[knl]*enl.W[knl]
-            #                     Kvu[i, j] += azn*self.t[ee]*self.t[eenl]*(
+            #                     Kvu[i, j] += azn*self.t[ee]*self.t[inl]*(
             #                         self.C12[ee]*dpx[k, 1, i]*dpxnl[k, 0, j]+self.C66[ee]*dpx[k, 0, i]*dpxnl[k, 1, j])*detjac[k]*e.W[k]*detjacnl[knl]*enl.W[knl]
-            #                     Kvv[i, j] += azn*self.t[ee]*self.t[eenl]*(
+            #                     Kvv[i, j] += azn*self.t[ee]*self.t[inl]*(
             #                         self.C11[ee]*dpx[k, 1, i]*dpxnl[k, 1, j]+self.C66[ee]*dpx[k, 0, i]*dpxnl[k, 0, j])*detjac[k]*e.W[k]*detjacnl[knl]*enl.W[knl]
             #     subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
             #     Knl[np.ix_(subm[0], subm[0])] += Kuu
@@ -167,9 +266,9 @@ class PlaneStressNonLocal(Core):
             #     Knl[np.ix_(subm[1], subm[1])] += Kvv
             #     e.knls.append(Knl)
             #     eenl += 1
-            ee += 1
-            # np.savetxt(f'Matrices/e{ee}.txt',
-            #            np.array(e.knls).flatten(), delimiter=',')
+            # ee += 1
+            # # np.savetxt(f'Matrices/e{ee}.txt',
+            # #            np.array(e.knls).flatten(), delimiter=',')
 
     def ensembling(self) -> None:
         """Ensembling of equation system. This method use the element gdl
