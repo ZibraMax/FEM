@@ -8,6 +8,7 @@ from .Core import Core, Geometry
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
+import logging
 
 
 class EulerBernoulliBeam(Core):
@@ -19,7 +20,7 @@ class EulerBernoulliBeam(Core):
         cf (float, optional): Soil coeficient. Defaults to 0.
     """
 
-    def __init__(self, geometry: Geometry, EI: float, f: float = 0) -> None:
+    def __init__(self, geometry: Geometry, EI: float, cf: float = 0, f: float = 0) -> None:
         """Creates a Euler Bernoulli beam problem
 
         Args:
@@ -29,12 +30,15 @@ class EulerBernoulliBeam(Core):
         """
         self.a = EI
         self.f = f
+        self.cf = cf
         if isinstance(EI, float):
             self.a = lambda x: EI
         if isinstance(f, float):
             self.f = lambda x: f
+        if isinstance(f, float):
+            self.cf = lambda x: cf
         if geometry.nvn == 1:
-            print(
+            logging.warning(
                 'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
         Core.__init__(self, geometry)
         for i in range(len(self.elements)):
@@ -57,11 +61,11 @@ class EulerBernoulliBeam(Core):
                     for k in range(len(e.Z)):
                         # + self.c(_x[k])*_p[k][i]*_p[k][j]
                         e.Ke[i, j] += (self.a(_x[k])*_dh[1][i][k]
-                                       * _dh[1][j][k])*detjac[k]*e.W[k]
+                                       * _dh[1][j][k]+self.cf(_x[k, 0])*_h[k][i]*_h[k][j])*detjac[k]*e.W[k]
                 for k in range(len(e.Z)):
                     e.Fe[i][0] += self.f(_x[k])*_h[k][i]*detjac[k]*e.W[k]
 
-    def postProcess(self) -> None:
+    def postProcess(self, plot=True) -> None:
         """Post process the solution. Shows graphs of displacement, rotation, shear and moment.
         """
         X = []
@@ -69,32 +73,34 @@ class EulerBernoulliBeam(Core):
         U2 = []
         U3 = []
         U4 = []
-        fig = plt.figure()
-        ax1 = fig.add_subplot(2, 2, 1)
-        ax2 = fig.add_subplot(2, 2, 2)
-        ax3 = fig.add_subplot(2, 2, 3)
-        ax4 = fig.add_subplot(2, 2, 4)
         for e in self.elements:
             _x, _u, du = e.giveSolution(True)
             X += _x.T[0].tolist()
             U1 += _u.tolist()
             U2 += (du[:, 0]).tolist()
-            U3 += (du[:, 1]).tolist()
-            U4 += (du[:, 2]).tolist()
-        ax1.plot(X, U1)
-        ax1.grid()
-        ax2.plot(X, U2)
-        ax2.grid()
+            U3 += (du[:, 1]*self.a(_x.T[0])).tolist()
+            U4 += (du[:, 2]*self.a(_x.T[0])).tolist()
+        if plot:
+            fig = plt.figure()
+            ax1 = fig.add_subplot(2, 2, 1)
+            ax2 = fig.add_subplot(2, 2, 2)
+            ax3 = fig.add_subplot(2, 2, 3)
+            ax4 = fig.add_subplot(2, 2, 4)
+            ax1.plot(X, U1)
+            ax1.grid()
+            ax2.plot(X, U2)
+            ax2.grid()
 
-        ax3.plot(X, U3)
-        ax3.grid()
+            ax3.plot(X, U3)
+            ax3.grid()
 
-        ax4.plot(X, U4)
-        ax4.grid()
-        ax1.set_title(r'$U(x)$')
-        ax2.set_title(r'$\frac{dU}{dx}$')
-        ax3.set_title(r'$\frac{d^2U}{dx^2}$')
-        ax4.set_title(r'$\frac{d^3U}{dx^3}$')
+            ax4.plot(X, U4)
+            ax4.grid()
+            ax1.set_title(r'$U(x)$')
+            ax2.set_title(r'$\frac{dU}{dx}$')
+            ax3.set_title(r'$\frac{d^2U}{dx^2}$')
+            ax4.set_title(r'$\frac{d^3U}{dx^3}$')
+        return X, U1, U2, U3, U4
 
 
 class EulerBernoulliBeamNonLineal(Core):
@@ -127,7 +133,7 @@ class EulerBernoulliBeamNonLineal(Core):
         if isinstance(fy, float):
             self.fy0 = lambda x: fy
         if geometry.nvn == 1:
-            print(
+            logging.warning(
                 'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
         Core.__init__(self, geometry, solver=NoLineal.LoadControl)
         for i in range(len(self.elements)):
@@ -194,7 +200,7 @@ class EulerBernoulliBeamNonLineal(Core):
             e.Fe[[0, 3]] = f1
             e.Fe[[1, 2, 4, 5]] = f2
 
-    def postProcess(self) -> None:
+    def postProcess(self, plot=True) -> None:
         """Post process the solution. Shows graphs of displacement, rotation, shear and moment.
         """
         X = []
@@ -202,11 +208,6 @@ class EulerBernoulliBeamNonLineal(Core):
         U2 = []
         U3 = []
         U4 = []
-        fig = plt.figure()
-        ax1 = fig.add_subplot(2, 2, 1)
-        ax2 = fig.add_subplot(2, 2, 2)
-        ax3 = fig.add_subplot(2, 2, 3)
-        ax4 = fig.add_subplot(2, 2, 4)
         for e in self.elements:
             ueflex = e.Ue.flatten()[[1, 2, 4, 5]]
             ueax = e.Ue.flatten()[[0, 3]]
@@ -217,17 +218,24 @@ class EulerBernoulliBeamNonLineal(Core):
             U2 += (du[:, 0]).tolist()
             U3 += (du[:, 1]).tolist()
             U4 += (du[:, 2]).tolist()
-        ax1.plot(X, U1)
-        ax1.grid()
-        ax2.plot(X, U2)
-        ax2.grid()
+        if plot:
+            fig = plt.figure()
+            ax1 = fig.add_subplot(2, 2, 1)
+            ax2 = fig.add_subplot(2, 2, 2)
+            ax3 = fig.add_subplot(2, 2, 3)
+            ax4 = fig.add_subplot(2, 2, 4)
+            ax1.plot(X, U1)
+            ax1.grid()
+            ax2.plot(X, U2)
+            ax2.grid()
 
-        ax3.plot(X, U3)
-        ax3.grid()
+            ax3.plot(X, U3)
+            ax3.grid()
 
-        ax4.plot(X, U4)
-        ax4.grid()
-        ax1.set_title(r'$U(x)$')
-        ax2.set_title(r'$\frac{dU}{dx}$')
-        ax3.set_title(r'$\frac{d^2U}{dx^2}$')
-        ax4.set_title(r'$\frac{d^3U}{dx^3}$')
+            ax4.plot(X, U4)
+            ax4.grid()
+            ax1.set_title(r'$U(x)$')
+            ax2.set_title(r'$\frac{dU}{dx}$')
+            ax3.set_title(r'$\frac{d^2U}{dx^2}$')
+            ax4.set_title(r'$\frac{d^3U}{dx^3}$')
+        return X, U1, U2, U3, U4
