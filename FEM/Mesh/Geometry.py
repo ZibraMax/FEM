@@ -3,6 +3,7 @@
 
 
 import numpy as np
+import json
 from ..Utils import isBetween, roundCorner, giveCoordsCircle, angleBetweenAngles
 import matplotlib.pyplot as plt
 from ..Elements.E1D.LinealElement import LinealElement
@@ -673,3 +674,23 @@ class Geometry:
         for s in range(len(self.segments)):
             for i in range(self.nvn):
                 self.cbe += self.cbFromSegment(s, value, (i+1), tol)
+
+    def exportJSON(self, filename: str):
+        x = {
+            "nodes":self.gdls,
+            "dictionary":self.dictionary,
+            "types":self.types,
+            "regions":self.segments,
+            "ebc":self.cbe,
+            "nbc":self.cbn,
+            "nvn":self.nvn,
+            "ngdl":self.ngdl,
+            }
+        y = json.dumps(x)
+        with open(filename,"w") as f:
+            f.write(y)
+
+    @staticmethod
+    def importJSON(filename: str):
+        o = Geometry([], [], [])
+        return o

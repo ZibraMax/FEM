@@ -16,6 +16,7 @@ cbe += geometria.cbFromSegment(1, 0, 2)
 cbe += geometria.cbFromSegment(3, 0, 1)
 cbe += geometria.cbFromSegment(3, 0, 2)
 geometria.cbe = cbe
+geometria.exportJSON('beam_geometry.json')
 O = PlaneStress(geometria, E, v, b, fy=lambda x: -gamma*b)
 O.geometry.mask = None
 O.solve()
