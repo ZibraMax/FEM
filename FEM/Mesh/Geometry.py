@@ -14,7 +14,7 @@ from ..Elements.E2D.Quadrilateral import Quadrilateral
 from ..Elements.E2D.QTriangular import QTriangular
 from ..Elements.E2D.LTriangular import LTriangular
 from typing import Callable
-from ast import literal_eval
+from ast import literal_eval, parse
 from tqdm import tqdm
 import re
 
@@ -677,20 +677,29 @@ class Geometry:
 
     def exportJSON(self, filename: str):
         x = {
-            "nodes":self.gdls,
-            "dictionary":self.dictionary,
-            "types":self.types,
-            "regions":self.segments,
-            "ebc":self.cbe,
-            "nbc":self.cbn,
-            "nvn":self.nvn,
-            "ngdl":self.ngdl,
-            }
+            "nodes": self.gdls,
+            "dictionary": self.dictionary,
+            "types": self.types,
+            "regions": self.segments,
+            "ebc": self.cbe,
+            "nbc": self.cbn,
+            "nvn": self.nvn,
+            "ngdl": self.ngdl,
+        }
         y = json.dumps(x)
-        with open(filename,"w") as f:
+        with open(filename, "w") as f:
             f.write(y)
 
     @staticmethod
     def importJSON(filename: str):
-        o = Geometry([], [], [])
-        return o
+        with open(filename) as f:
+            parsed = json.loads(f.readlines())
+            dcc = parsed['dictionary']
+            nodes = parsed['nodes']
+            types = parsed['types']
+            nvn = parsed['nvn']
+            regions = parsed['regions']
+            o = Geometry(dcc, nodes, types, nvn, regions)
+            o.cbe = parsed['ebc']
+            o.cbn = parsed['nbc']
+            return o
