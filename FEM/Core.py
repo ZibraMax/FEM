@@ -97,11 +97,14 @@ class Core():
         logging.info('Border conditions...')
         for i in tqdm(self.cbn, unit=' Natural'):
             self.Q[int(i[0])] = i[1]
+
+        border_conditions = np.zeros([self.ngdl, 1])
+        cb = np.array(self.cbe)
+        ncb = len(cb)
+        border_conditions[np.ix_(cb[:, 0].astype(int))
+                          ] = cb[:, 1].reshape([ncb, 1])
+        self.S = self.S - (border_conditions.T@self.K).T
         for i in tqdm(self.cbe, unit=' Essential'):
-            ui = np.zeros([self.ngdl, 1])
-            ui[int(i[0])] = i[1]
-            vv = np.dot(self.K, ui)
-            self.S = self.S - vv
             self.K[int(i[0]), :] = 0
             self.K[:, int(i[0])] = 0
             self.K[int(i[0]), int(i[0])] = 1

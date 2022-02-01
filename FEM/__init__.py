@@ -18,3 +18,5 @@ from .NonLinealExample import *
 from .PlaneStrain import *
 from .Heat1D import *
 from .Heat2D import *
+
+from .Elasticity3D import *

@@ -13,6 +13,7 @@ from ..Elements.E2D.Serendipity import Serendipity
 from ..Elements.E2D.Quadrilateral import Quadrilateral
 from ..Elements.E2D.QTriangular import QTriangular
 from ..Elements.E2D.LTriangular import LTriangular
+from ..Elements.E3D.Brick import Brick
 from typing import Callable
 from ast import literal_eval, parse
 from tqdm import tqdm
@@ -233,6 +234,8 @@ class Geometry:
                 element = QuadraticElement(coords, gdl)
             elif self.types[i] == 'L3V':
                 element = CubicElement(coords, gdl)
+            elif self.types[i] == 'B1V':
+                element = Brick(coords, gdl)
             self.elements.append(element)
         print('Done!')
 
