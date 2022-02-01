@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FEM.Elements.E3D package &mdash; FEM 1.0.27 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FEM.Mesh package" href="FEM.Mesh.html" />
+    <link rel="prev" title="FEM.Elements.E2D package" href="FEM.Elements.E2D.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> FEM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">FEM</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="FEM.html">FEM package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="FEM.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="FEM.Elements.html">FEM.Elements package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Mesh.html">FEM.Mesh package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html">FEM.Solvers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Utils.html">FEM.Utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Core">FEM.Core module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EDO1D">FEM.EDO1D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Elasticity3D">FEM.Elasticity3D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.FEMLogger">FEM.FEMLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Heat1D">FEM.Heat1D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Heat2D">FEM.Heat2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.NonLinealExample">FEM.NonLinealExample module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.ODE2D">FEM.ODE2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.ParabolicCore">FEM.ParabolicCore module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStressNonLocal">FEM.PlaneStressNonLocal module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStressOrthotropic">FEM.PlaneStressOrthotropic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Poisson2D">FEM.Poisson2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FEM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">FEM</a> &raquo;</li>
+          <li><a href="FEM.html">FEM package</a> &raquo;</li>
+          <li><a href="FEM.Elements.html">FEM.Elements package</a> &raquo;</li>
+      <li>FEM.Elements.E3D package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/FEM.Elements.E3D.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-FEM.Elements.E3D">
+<span id="fem-elements-e3d-package"></span><h1>FEM.Elements.E3D package<a class="headerlink" href="#module-FEM.Elements.E3D" title="Permalink to this headline"></a></h1>
+<p>Collection of 3D Elements</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-FEM.Elements.E3D.Brick">
+<span id="fem-elements-e3d-brick-module"></span><h2>FEM.Elements.E3D.Brick module<a class="headerlink" href="#module-FEM.Elements.E3D.Brick" title="Permalink to this headline"></a></h2>
+<p>Defines a Lagrangian 1 order rectangular element</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">Brick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.Element3D.Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.BrickScheme.BrickScheme" title="FEM.Elements.E3D.BrickScheme.BrickScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.BrickScheme.BrickScheme</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick.dpsis" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Shape function derivatives evaluated in Z points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick.psis" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates the shape functions of a given natural coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Shape function evaluated in Z points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-FEM.Elements.E3D.BrickScheme">
+<span id="fem-elements-e3d-brickscheme-module"></span><h2>FEM.Elements.E3D.BrickScheme module<a class="headerlink" href="#module-FEM.Elements.E3D.BrickScheme" title="Permalink to this headline"></a></h2>
+<p>Define the brick scheme used by brick elements</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.BrickScheme.BrickScheme">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.BrickScheme.</span></span><span class="sig-name descname"><span class="pre">BrickScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.BrickScheme.BrickScheme" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generate a brick integration scheme</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – Number of gauss points</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-FEM.Elements.E3D.Element3D">
+<span id="fem-elements-e3d-element3d-module"></span><h2>FEM.Elements.E3D.Element3D module<a class="headerlink" href="#module-FEM.Elements.E3D.Element3D" title="Permalink to this headline"></a></h2>
+<p>Defines a general 2D element</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Element3D.Element3D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Element3D.</span></span><span class="sig-name descname"><span class="pre">Element3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="FEM.Elements.html#FEM.Elements.Element.Element" title="FEM.Elements.Element.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.Element.Element</span></code></a></p>
+<p>Create a 3D element</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<em>np.ndarray</em>) – Element coordinate matrix</p></li>
+<li><p><strong>_coords</strong> (<em>np.ndarray</em>) – Element coordinate matrix for graphical interface purposes</p></li>
+<li><p><strong>gdl</strong> (<em>np.ndarray</em>) – Degree of freedom matrix</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Element3D.Element3D.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D.draw" title="Permalink to this definition"></a></dt>
+<dd><p>Create a graph of element</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Element3D.Element3D.isInside">
+<span class="sig-name descname"><span class="pre">isInside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D.isInside" title="Permalink to this definition"></a></dt>
+<dd><p>Test if a given points is inside element domain</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>np.ndarray</em>) – Point to be tested</p>
+</dd>
+</dl>
+<p># Returns:
+#     np.ndarray: Bolean array of test result
+#</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Element3D.Element3D.jacobianGraph">
+<span class="sig-name descname"><span class="pre">jacobianGraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D.jacobianGraph" title="Permalink to this definition"></a></dt>
+<dd><p>Create the determinant jacobian graph</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="FEM.Elements.E2D.html" class="btn btn-neutral float-left" title="FEM.Elements.E2D package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="FEM.Mesh.html" class="btn btn-neutral float-right" title="FEM.Mesh package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Arturo Rodriguez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -36,6 +36,14 @@ FEM.EDO1D module
    :undoc-members:
    :show-inheritance:
 
+FEM.Elasticity3D module
+-----------------------
+
+.. automodule:: FEM.Elasticity3D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.EulerBernoulliBeam module
 -----------------------------
 
