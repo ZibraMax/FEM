@@ -18,7 +18,7 @@ from functools import partialmethod
 
 
 class Core():
-    def __init__(self, geometry: Geometry, solver: Union[Lineal, NonLinealSolver] = None, verbose: bool = False) -> None:
+    def __init__(self, geometry: Geometry, solver: Union[Lineal, NonLinealSolver] = None, sparse: bool = False, verbose: bool = False) -> None:
         """Create the Finite Element problem.
 
             Args:
@@ -34,7 +34,8 @@ class Core():
         self.logger.setup_logging()
         self.geometry = geometry
         self.ngdl = self.geometry.ngdl
-        self.K = np.zeros([self.ngdl, self.ngdl])
+        if not sparse:
+            self.K = np.zeros([self.ngdl, self.ngdl])
         self.F = np.zeros([self.ngdl, 1])
         self.Q = np.zeros([self.ngdl, 1])
         self.U = np.zeros([self.ngdl, 1])

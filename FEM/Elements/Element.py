@@ -16,7 +16,7 @@ class Element():
         border (bool): True if the element is part of the border domain of another element.
     """
 
-    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, border: bool = False) -> None:
+    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, border: bool = False, fast: bool = False) -> None:
         """Generates a generic element.
 
         Args:
@@ -30,6 +30,7 @@ class Element():
         self._coords = _coords
         self.border = border
         self.gdl = gdl
+        self.fast = fast
         self.gdlm = []
         for i in range(len(self.gdl)):
             for j in range(len(self.gdl[i])):
@@ -37,7 +38,7 @@ class Element():
         self.n = int(len(self.gdl)*len(self.gdl[0]))
         self.properties = {'load_x': [], 'load_y': []}
         self.intBorders = False
-        if not self.border:
+        if not self.border or self.fast:
             # TODO Esta vaina debería eliminarse.
             # Los elementos no tienen porque guardar.
             # Sus matrices y vectores. Esto gasta memoria.
@@ -45,8 +46,8 @@ class Element():
             # eso se puede hacer directamente al calcular las matrices.
             self.Ke = np.zeros([self.n, self.n])
             self.Fe = np.zeros([self.n, 1])
-            self.Ue = np.zeros(self.gdl.shape)
             self.Qe = np.zeros([self.n, 1])
+        self.Ue = np.zeros(self.gdl.shape)
 
     @classmethod
     def description(self):

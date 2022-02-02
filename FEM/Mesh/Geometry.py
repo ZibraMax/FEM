@@ -31,7 +31,7 @@ class Geometry:
         segments (list, optional): Domain segments. Defaults to [].
     """
 
-    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, segments: list = []) -> None:
+    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, segments: list = [], fast=False) -> None:
         """Define geometry structure
 
         Args:
@@ -55,6 +55,7 @@ class Geometry:
         self.cbe = []
         self.cbn = []
         self.centroids = []
+        self.fast = fast
         self.initialize()
         try:
             self.centroidsAndAreas()
@@ -221,21 +222,21 @@ class Geometry:
                 gdl[j, :] = (np.array(d)*self.nvn+j)
             gdl = gdl.astype(int)
             if self.types[i] == 'T1V':
-                element = LTriangular(coords, gdl)
+                element = LTriangular(coords, gdl, fast=self.fast)
             elif self.types[i] == 'T2V':
-                element = QTriangular(coords, gdl)
+                element = QTriangular(coords, gdl, fast=self.fast)
             elif self.types[i] == 'C1V':
-                element = Quadrilateral(coords, gdl)
+                element = Quadrilateral(coords, gdl, fast=self.fast)
             elif self.types[i] == 'C2V':
-                element = Serendipity(coords, gdl)
+                element = Serendipity(coords, gdl, fast=self.fast)
             elif self.types[i] == 'L1V':
-                element = LinealElement(coords, gdl)
+                element = LinealElement(coords, gdl, fast=self.fast)
             elif self.types[i] == 'L2V':
-                element = QuadraticElement(coords, gdl)
+                element = QuadraticElement(coords, gdl, fast=self.fast)
             elif self.types[i] == 'L3V':
-                element = CubicElement(coords, gdl)
+                element = CubicElement(coords, gdl, fast=self.fast)
             elif self.types[i] == 'B1V':
-                element = Brick(coords, gdl)
+                element = Brick(coords, gdl, fast=self.fast)
             self.elements.append(element)
         print('Done!')
 
