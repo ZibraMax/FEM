@@ -1,0 +1,7 @@
+example13 module
+================
+
+.. automodule:: example13
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -6,4 +6,6 @@ FEM
 
    FEM
    Test
+   example13
+   exampleA
    setup

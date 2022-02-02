@@ -132,6 +132,14 @@ FEM.PlaneStressOrthotropic module
    :undoc-members:
    :show-inheritance:
 
+FEM.PlaneStressSparse module
+----------------------------
+
+.. automodule:: FEM.PlaneStressSparse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Poisson2D module
 --------------------
 
