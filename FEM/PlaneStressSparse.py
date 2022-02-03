@@ -1,4 +1,4 @@
-"""2D Elasticity: Plane Stress
+"""2D Elasticity: Plane Stress using sparse matrix
 """
 
 
@@ -8,15 +8,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import gridspec
 from tqdm import tqdm
+from scipy import sparse
+from scipy.sparse.linalg import spsolve
 
-from .Core import Core, Geometry
+from .Core import Core, Geometry, logging
 
 
-class PlaneStress(Core):
-    """Create a Plain Stress problem
+class PlaneStressSparse(Core):
+    """Create a Plain Stress problem using sparse matrix
 
     Args:
-            geometry (Geometry): 2D 2 variables per node geometry
+            geometry (Geometry): 2D 2 variables per node geometry with fast elements
             E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
             v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
             t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
@@ -25,10 +27,10 @@ class PlaneStress(Core):
     """
 
     def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
-        """Create a Plain Stress problem
+        """Create a Plain Stress problem using sparse matrix
 
         Args:
-                geometry (Geometry): 2D 2 variables per node geometry
+                geometry (Geometry): 2D 2 variables per node geometry with fast elements
                 E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
                 v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
                 t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
@@ -63,7 +65,13 @@ class PlaneStress(Core):
             geometry.cbe = []
             geometry.cbn = []
             geometry.initialize()
-        Core.__init__(self, geometry, **kargs)
+        Core.__init__(self, geometry, sparse=True, **kargs)
+        count = 0
+        for e in self.elements:
+            count += e.gdl.size
+        self.I = []
+        self.J = []
+        self.V = []
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
@@ -119,12 +127,39 @@ class PlaneStress(Core):
                                     Fvx[i, 0] += fy(_s[k, 0])*_p[k, i] * \
                                         detjac*border.W[k]
             subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
-            e.Fe[np.ix_(subm[0])] += self.t[ee]*(Fu)+Fux
-            e.Fe[np.ix_(subm[1])] += self.t[ee]*(Fv)+Fvx
-            e.Ke[np.ix_(subm[0], subm[0])] += self.t[ee]*(Kuu)
-            e.Ke[np.ix_(subm[0], subm[1])] += self.t[ee]*(Kuv)
-            e.Ke[np.ix_(subm[1], subm[0])] += self.t[ee]*(Kvu)
-            e.Ke[np.ix_(subm[1], subm[1])] += self.t[ee]*(Kvv)
+
+            Ke = np.zeros([2*m, 2*m])
+            Fe = np.zeros([2*m, 1])
+
+            Fe[np.ix_(subm[0])] += self.t[ee]*(Fu)+Fux
+            Fe[np.ix_(subm[1])] += self.t[ee]*(Fv)+Fvx
+
+            Ke[np.ix_(subm[0], subm[0])] += self.t[ee]*(Kuu)
+            Ke[np.ix_(subm[0], subm[1])] += self.t[ee]*(Kuv)
+            Ke[np.ix_(subm[1], subm[0])] += self.t[ee]*(Kvu)
+            Ke[np.ix_(subm[1], subm[1])] += self.t[ee]*(Kvv)
+            self.F[np.ix_(e.gdlm)] += Fe
+            for gdl in e.gdlm:
+                self.I += [gdl]*(2*m)
+                self.J += e.gdlm
+            self.V += Ke.flatten().tolist()
+
+    def ensembling(self) -> None:
+        """Creation of the system sparse matrix. Force vector is ensembled in integration method
+        """
+        logging.info('Ensembling equation system...')
+        self.K = sparse.coo_matrix(
+            (self.V, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tolil()
+        logging.info('Done!')
+
+    def solveES(self, **kargs) -> None:
+        logging.info('Converting to csr format')
+        self.K = self.K.tocsr()
+        logging.info('Solving...')
+        self.U = spsolve(self.K, self.S)
+        for e in self.elements:
+            e.setUe(self.U)
+        logging.info('Solved!')
 
     def postProcess(self, mult: float = 1000, gs=None, levels=1000, **kargs) -> None:
         """Generate the stress surfaces and displacement fields for the geometry

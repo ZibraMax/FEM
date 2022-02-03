@@ -8,11 +8,11 @@ from .BrickScheme import BrickScheme
 
 class Brick(Element3D, BrickScheme):
 
-    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 2) -> None:
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 2, **kargs) -> None:
 
         coords = np.array(coords)
 
-        Element3D.__init__(self, coords, coords, gdl)
+        Element3D.__init__(self, coords, coords, gdl, **kargs)
         BrickScheme.__init__(self, n)
 
     def psis(self, _z: np.ndarray) -> np.ndarray:

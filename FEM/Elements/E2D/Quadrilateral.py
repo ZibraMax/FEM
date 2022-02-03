@@ -16,7 +16,7 @@ class Quadrilateral(Element2D, RectangularScheme):
         n (int, optional): Number of Gauss Points. Defaults to 2.
     """
 
-    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 2) -> None:
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 2, **kargs) -> None:
         """Creates a lagrangian rectangular element of order 1
 
         Args:
@@ -45,7 +45,7 @@ class Quadrilateral(Element2D, RectangularScheme):
 
         self.borders = [e1, e2, e3, e4]
 
-        Element2D.__init__(self, coords, coords, gdl)
+        Element2D.__init__(self, coords, coords, gdl, **kargs)
         RectangularScheme.__init__(self, n)
 
     @classmethod

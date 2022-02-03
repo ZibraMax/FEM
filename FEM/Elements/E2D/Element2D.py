@@ -17,7 +17,7 @@ class Element2D(Element):
         gdl (np.ndarray): Degree of freedom matrix
     """
 
-    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray) -> None:
+    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, **kargs) -> None:
         """Create a 2D element
 
         Args:
@@ -26,7 +26,7 @@ class Element2D(Element):
             gdl (np.ndarray): Degree of freedom matrix
         """
 
-        Element.__init__(self, coords, _coords, gdl)
+        Element.__init__(self, coords, _coords, gdl, **kargs)
         self._coordsg = np.array(
             self._coords.tolist()+[self._coords[0].tolist()])
         for i, e in enumerate(self.borders):
