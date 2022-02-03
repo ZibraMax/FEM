@@ -108,6 +108,14 @@ FEM.PlaneStrain module
    :undoc-members:
    :show-inheritance:
 
+FEM.PlaneStrainSparse module
+----------------------------
+
+.. automodule:: FEM.PlaneStrainSparse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.PlaneStress module
 ----------------------
 
