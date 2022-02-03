@@ -94,19 +94,24 @@ class PlaneStressSparse(Core):
             detjac = np.linalg.det(jac)
             _j = np.linalg.inv(jac)  # Jacobian inverse
             dpx = _j @ dpz  # Shape function derivatives in global coordinates
-            for i in range(m):  # self part must be vectorized
-                for j in range(m):
-                    for k in range(len(e.Z)):  # Iterate over gauss points on domain
-                        Kuu[i, j] += (self.C11[ee]*dpx[k, 0, i]*dpx[k, 0, j] +
-                                      self.C66[ee]*dpx[k, 1, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
-                        Kuv[i, j] += (self.C12[ee]*dpx[k, 0, i]*dpx[k, 1, j] +
-                                      self.C66[ee]*dpx[k, 1, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
-                        Kvu[i, j] += (self.C12[ee]*dpx[k, 1, i]*dpx[k, 0, j] +
-                                      self.C66[ee]*dpx[k, 0, i]*dpx[k, 1, j])*detjac[k]*e.W[k]
-                        Kvv[i, j] += (self.C11[ee]*dpx[k, 1, i]*dpx[k, 1, j] +
-                                      self.C66[ee]*dpx[k, 0, i]*dpx[k, 0, j])*detjac[k]*e.W[k]
-                for k in range(len(e.Z)):  # Iterate over gauss points on domain
+            c11 = self.C11[ee]
+            c12 = self.C12[ee]
+            c66 = self.C66[ee]
+            C = np.array([
+                [c11, c12, 0.0],
+                [c12, c11, 0.0],
+                [0.0, 0.0, c66]])
+            Ke = np.zeros([2*m, 2*m])
 
+            o = [0.0]*m
+            for k in range(len(e.Z)):  # Iterate over gauss points on domain
+                B = np.array([
+                    [*dpx[k, 0, :], *o],
+                    [*o, *dpx[k, 1, :]],
+                    [*dpx[k, 1, :], *dpx[k, 0, :]]])
+                Ke += self.t[ee]*(B.T@C@B)*detjac[k]*e.W[k]
+            for i in range(m):  # self part must be vectorized
+                for k in range(len(e.Z)):  # Iterate over gauss points on domain
                     Fu[i][0] += _p[k, i] * self.fx(_x[k])*detjac[k]*e.W[k]
                     Fv[i][0] += _p[k, i] * self.fy(_x[k])*detjac[k]*e.W[k]
 
@@ -128,16 +133,10 @@ class PlaneStressSparse(Core):
                                         detjac*border.W[k]
             subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
 
-            Ke = np.zeros([2*m, 2*m])
             Fe = np.zeros([2*m, 1])
-
             Fe[np.ix_(subm[0])] += self.t[ee]*(Fu)+Fux
             Fe[np.ix_(subm[1])] += self.t[ee]*(Fv)+Fvx
 
-            Ke[np.ix_(subm[0], subm[0])] += self.t[ee]*(Kuu)
-            Ke[np.ix_(subm[0], subm[1])] += self.t[ee]*(Kuv)
-            Ke[np.ix_(subm[1], subm[0])] += self.t[ee]*(Kvu)
-            Ke[np.ix_(subm[1], subm[1])] += self.t[ee]*(Kvv)
             self.F[np.ix_(e.gdlm)] += Fe
             for gdl in e.gdlm:
                 self.I += [gdl]*(2*m)
