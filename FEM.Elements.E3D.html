@@ -51,21 +51,21 @@
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Core">FEM.Core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EDO1D">FEM.EDO1D module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Elasticity3D">FEM.Elasticity3D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-elasticity3d-module">FEM.Elasticity3D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.FEMLogger">FEM.FEMLogger module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Heat1D">FEM.Heat1D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Heat2D">FEM.Heat2D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.NonLinealExample">FEM.NonLinealExample module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.ODE2D">FEM.ODE2D module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.ParabolicCore">FEM.ParabolicCore module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-paraboliccore-module">FEM.ParabolicCore module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStrain">FEM.PlaneStrain module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-planestrainsparse-module">FEM.PlaneStrainSparse module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStress">FEM.PlaneStress module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStressNonLocal">FEM.PlaneStressNonLocal module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.PlaneStressOrthotropic">FEM.PlaneStressOrthotropic module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-planestresssparse-module">FEM.PlaneStressSparse module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Poisson2D">FEM.Poisson2D module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#fem-poisson2d-module">FEM.Poisson2D module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D module</a></li>
 </ul>
 </li>
@@ -113,7 +113,7 @@
 <p>Defines a Lagrangian 1 order rectangular element</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">Brick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">Brick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.Element3D.Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.BrickScheme.BrickScheme" title="FEM.Elements.E3D.BrickScheme.BrickScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.BrickScheme.BrickScheme</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick.dpsis">
