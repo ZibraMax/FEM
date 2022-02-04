@@ -12,7 +12,7 @@ from tqdm import tqdm
 from .Core import Core, Geometry
 
 
-class PlaneStress(Core):
+class PlaneStressSparse(Core):
     """Create a Plain Stress problem
 
     Args:
@@ -63,7 +63,8 @@ class PlaneStress(Core):
             geometry.cbe = []
             geometry.cbn = []
             geometry.initialize()
-        Core.__init__(self, geometry, **kargs)
+        Core.__init__(self, geometry, sparse=True, **kargs)
+        # self.K = Sparse()
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
