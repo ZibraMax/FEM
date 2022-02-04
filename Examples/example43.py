@@ -1,5 +1,5 @@
 from FEM.Elements import E1D
-from FEM.PlaneStressOrthotropic import PlaneStressOrthotropic as pso
+from FEM.Elasticity2D import PlaneStressOrthotropic as pso
 from FEM.Mesh.Geometry import Geometry
 import matplotlib.pyplot as plt
 

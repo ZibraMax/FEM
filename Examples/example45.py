@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from FEM.PlaneStrainSparse import PlaneStrainSparse
+from FEM.Elasticity2D import PlaneStrainSparse
 from FEM.Mesh.Delaunay import Delaunay
 
 E = 21000000.0  # MPa

@@ -1,6 +1,6 @@
 from FEM.Mesh.Geometry import Geometry
 from FEM.Mesh.Delaunay import Delaunay
-from FEM.PlaneStrain import PlaneStrain
+from FEM.Elasticity2D import PlaneStrain
 import matplotlib.pyplot as plt
 import numpy as np
 

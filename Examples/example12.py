@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Mesh.Geometry import Geometry
-from FEM.PlaneStrain import PlaneStrain
+from FEM.Elasticity2D import PlaneStrain
 
 E = 21000000.0  # MPa
 v = 0.2  # m

@@ -2,7 +2,7 @@ import scipy
 from fileinput import filename
 import numpy as np
 import matplotlib.pyplot as plt
-from FEM.PlaneStressSparse import PlaneStressSparse
+from FEM.Elasticity2D import PlaneStressSparse
 from FEM.Mesh.Geometry import Geometry
 from FEM.Utils.polygonal import enmalladoFernando
 

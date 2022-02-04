@@ -66,7 +66,7 @@ Since the diagrams are only different from 0 in length z, the virtual work state
 """
 
 from FEM.Mesh.Geometry import Geometry
-from FEM.PlaneStrain import PlaneStress
+from FEM.Elasticity2D import PlaneStress
 import matplotlib.pyplot as plt
 import unittest
 import os
@@ -432,5 +432,5 @@ if __name__ == '__main__':
     parentdir = os.path.dirname(currentdir)
     sys.path.insert(0, parentdir)
     from FEM.Mesh.Geometry import Geometry
-    from FEM.PlaneStrain import PlaneStress
+    from FEM.Elasticity2D import PlaneStress
     unittest.main()
