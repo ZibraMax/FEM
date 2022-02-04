@@ -384,8 +384,9 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
         logging.info('Ensembling equation system...')
         self.K = sparse.coo_matrix(
             (self.V, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tolil()
-        self.M = sparse.coo_matrix(
-            (self.Vm, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tocsr()
+        if self.calculateMass:
+            self.M = sparse.coo_matrix(
+                (self.Vm, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tocsr()
         logging.info('Done!')
 
     def solveES(self, **kargs) -> None:
@@ -478,13 +479,15 @@ class PlaneStrain(PlaneStress):
 
         PlaneStress.__init__(self, geometry, E, v, 1, rho, fx, fy, **kargs)
         self.C11 = []
+        self.C22 = []
         self.C12 = []
         self.C66 = []
-        for i in range(len(self.E)):
-            C11 = self.E[i]*(1-self.v[i])/(1+self.v[i])/(1-2*self.v[i])
-            C12 = self.E[i]*(self.v[i])/(1+self.v[i])/(1-2*self.v[i])
-            C66 = self.E[i] / 2 / (1 + self.v[i])
+        for i in range(len(self.geometry.elements)):
+            C11 = self.E1[i]*(1-self.v12[i])/(1+self.v12[i])/(1-2*self.v12[i])
+            C12 = self.E1[i]*(self.v12[i])/(1+self.v12[i])/(1-2*self.v12[i])
+            C66 = self.E1[i] / 2 / (1 + self.v12[i])
             self.C11.append(C11)
+            self.C22.append(C11)
             self.C12.append(C12)
             self.C66.append(C66)
 
@@ -514,12 +517,14 @@ class PlaneStrainSparse(PlaneStressSparse):
         PlaneStressSparse.__init__(
             self, geometry, E, v, 1, rho, fx, fy, **kargs)
         self.C11 = []
+        self.C22 = []
         self.C12 = []
         self.C66 = []
-        for i in range(len(self.E)):
-            C11 = self.E[i]*(1-self.v[i])/(1+self.v[i])/(1-2*self.v[i])
-            C12 = self.E[i]*(self.v[i])/(1+self.v[i])/(1-2*self.v[i])
-            C66 = self.E[i] / 2 / (1 + self.v[i])
+        for i in range(len(self.geometry.elements)):
+            C11 = self.E1[i]*(1-self.v12[i])/(1+self.v12[i])/(1-2*self.v12[i])
+            C12 = self.E1[i]*(self.v12[i])/(1+self.v12[i])/(1-2*self.v12[i])
+            C66 = self.E1[i] / 2 / (1 + self.v12[i])
             self.C11.append(C11)
+            self.C22.append(C11)
             self.C12.append(C12)
             self.C66.append(C66)
