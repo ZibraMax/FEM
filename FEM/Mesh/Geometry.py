@@ -679,7 +679,7 @@ class Geometry:
             for i in range(self.nvn):
                 self.cbe += self.cbFromSegment(s, value, (i+1), tol)
 
-    def exportJSON(self, filename: str):
+    def exportJSON(self, filename: str = None):
         x = {
             "nodes": self.gdls,
             "dictionary": self.dictionary,
@@ -691,8 +691,10 @@ class Geometry:
             "ngdl": self.ngdl,
         }
         y = json.dumps(x)
-        with open(filename, "w") as f:
-            f.write(y)
+        if filename:
+            with open(filename, "w") as f:
+                f.write(y)
+        return y
 
     @staticmethod
     def importJSON(filename: str):

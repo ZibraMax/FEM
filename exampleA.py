@@ -1,3 +1,4 @@
+import json
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity3D import Elasticity
@@ -15,9 +16,9 @@ _a = L
 _b = h
 _c = b
 
-nx = 100
-ny = 10
-nz = 10
+nx = 50
+ny = 6
+nz = 6
 
 dx = _a/nx
 dy = _b/nx
@@ -75,5 +76,11 @@ ax = fig.add_subplot(projection='3d')
 ax.plot(*coords.T, '-o', color='black')
 # plt.show()
 O.solve()
+y = O.geometry.exportJSON()
+pjson = json.loads(y)
+pjson["disp_field"] = O.U.tolist()
+y = json.dumps(pjson)
+with open("exported.json", "w") as f:
+    f.write(y)
 np.savetxt('a.csv', O.U, delimiter=',', fmt='%s')
 a = 0
