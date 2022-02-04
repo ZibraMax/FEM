@@ -146,7 +146,7 @@ class Geometry:
         return o
 
     @staticmethod
-    def loadmsh(filename: str):
+    def loadmsh(filename: str, **kargs):
         """Load geometry from previously generated MSH file
 
         Args:
@@ -202,7 +202,7 @@ class Geometry:
             mask += [list(map(float, f.readline().split('\t')))]
         f.close()
         print('File ' + filename + ' loaded')
-        o = Geometry(dicc, gdls, types, nvn, seg)
+        o = Geometry(dicc, gdls, types, nvn, seg, **kargs)
         o.cbe = cbe
         o.cbn = cbn
         o.holes = holes

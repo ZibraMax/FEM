@@ -8,7 +8,7 @@ E = 21000000.0
 v = 0.2
 h = 0.6
 b = 0.3
-L = 2.5
+L = 3.5
 gamma = 23.54
 
 _a = L
@@ -58,7 +58,7 @@ for i in range(nx):
 def fy(x): return -gamma
 
 
-geometria = Geometry(dicc, coords, ["B1V"]*len(dicc), nvn=3)
+geometria = Geometry(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
 cbe = []
 for i in range(len(coords)):
     if 0.0 == coords[i][0]:
@@ -67,7 +67,13 @@ for i in range(len(coords)):
         cbe += [[i*3+2, 0.0]]
 geometria.cbe = cbe
 
-O = Elasticity(geometria, E, v, fy=fy, verbose=True)
+O = Elasticity(geometria, E, v, gamma, fy=fy, verbose=True)
+e = O.elements[-50]
+coords = e.coords
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+ax.plot(*coords.T, '-o', color='black')
+# plt.show()
 O.solve()
 np.savetxt('a.csv', O.U, delimiter=',', fmt='%s')
 a = 0

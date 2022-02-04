@@ -26,7 +26,7 @@ class PlaneStressSparse(Core):
             fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
     """
 
-    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], rho: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
         """Create a Plain Stress problem using sparse matrix
 
         Args:
@@ -34,16 +34,21 @@ class PlaneStressSparse(Core):
                 E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
                 v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
                 t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+                rho (int or float or list): Element density. If number, all element will have the same density. If list, each position will be the element density, so len(rho) == len(self.elements)
                 fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
                 fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
         """
         if type(t) == float or type(t) == int:
             t = [t]*len(geometry.elements)
+
+        if type(rho) == float or type(rho) == int:
+            rho = [rho]*len(geometry.elements)
         if type(E) == float or type(E) == int:
             E = [E]*len(geometry.elements)
         if type(v) == float or type(v) == int:
             v = [v]*len(geometry.elements)
         self.t = t
+        self.rho = rho
         self.E = E
         self.v = v
         self.C11 = []
@@ -66,12 +71,10 @@ class PlaneStressSparse(Core):
             geometry.cbn = []
             geometry.initialize()
         Core.__init__(self, geometry, sparse=True, **kargs)
-        count = 0
-        for e in self.elements:
-            count += e.gdl.size
         self.I = []
         self.J = []
         self.V = []
+        self.Vm = []
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
@@ -79,10 +82,6 @@ class PlaneStressSparse(Core):
 
         for ee, e in enumerate(tqdm(self.elements, unit='Element')):
             m = len(e.gdl.T)
-            Kuu = np.zeros([m, m])
-            Kuv = np.zeros([m, m])
-            Kvu = np.zeros([m, m])
-            Kvv = np.zeros([m, m])
             Fu = np.zeros([m, 1])
             Fv = np.zeros([m, 1])
             Fux = np.zeros([m, 1])
@@ -102,6 +101,7 @@ class PlaneStressSparse(Core):
                 [c12, c11, 0.0],
                 [0.0, 0.0, c66]])
             Ke = np.zeros([2*m, 2*m])
+            Me = np.zeros([2*m, 2*m])
 
             o = [0.0]*m
             for k in range(len(e.Z)):  # Iterate over gauss points on domain
@@ -109,7 +109,12 @@ class PlaneStressSparse(Core):
                     [*dpx[k, 0, :], *o],
                     [*o, *dpx[k, 1, :]],
                     [*dpx[k, 1, :], *dpx[k, 0, :]]])
+
+                P = np.array([
+                    [*_p[k], *o],
+                    [*o, *_p[k]]])
                 Ke += self.t[ee]*(B.T@C@B)*detjac[k]*e.W[k]
+                Me += self.rho[ee]*self.t[ee]*(P.T@P)*detjac[k]*e.W[k]
             for i in range(m):  # self part must be vectorized
                 for k in range(len(e.Z)):  # Iterate over gauss points on domain
                     Fu[i][0] += _p[k, i] * self.fx(_x[k])*detjac[k]*e.W[k]
@@ -142,6 +147,7 @@ class PlaneStressSparse(Core):
                 self.I += [gdl]*(2*m)
                 self.J += e.gdlm
             self.V += Ke.flatten().tolist()
+            self.Vm += Me.flatten().tolist()
 
     def ensembling(self) -> None:
         """Creation of the system sparse matrix. Force vector is ensembled in integration method
@@ -149,6 +155,8 @@ class PlaneStressSparse(Core):
         logging.info('Ensembling equation system...')
         self.K = sparse.coo_matrix(
             (self.V, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tolil()
+        self.M = sparse.coo_matrix(
+            (self.Vm, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tocsr()
         logging.info('Done!')
 
     def solveES(self, **kargs) -> None:
