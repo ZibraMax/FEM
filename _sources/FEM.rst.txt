@@ -36,6 +36,14 @@ FEM.EDO1D module
    :undoc-members:
    :show-inheritance:
 
+FEM.Elasticity2D module
+-----------------------
+
+.. automodule:: FEM.Elasticity2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Elasticity3D module
 -----------------------
 
@@ -92,58 +100,10 @@ FEM.ODE2D module
    :undoc-members:
    :show-inheritance:
 
-FEM.ParabolicCore module
-------------------------
-
-.. automodule:: FEM.ParabolicCore
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FEM.PlaneStrain module
-----------------------
-
-.. automodule:: FEM.PlaneStrain
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FEM.PlaneStrainSparse module
-----------------------------
-
-.. automodule:: FEM.PlaneStrainSparse
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FEM.PlaneStress module
-----------------------
-
-.. automodule:: FEM.PlaneStress
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 FEM.PlaneStressNonLocal module
 ------------------------------
 
 .. automodule:: FEM.PlaneStressNonLocal
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FEM.PlaneStressOrthotropic module
----------------------------------
-
-.. automodule:: FEM.PlaneStressOrthotropic
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FEM.PlaneStressSparse module
-----------------------------
-
-.. automodule:: FEM.PlaneStressSparse
    :members:
    :undoc-members:
    :show-inheritance:
