@@ -4,6 +4,7 @@ The individual children classes must implement the method for calculating the el
 """
 
 
+from asyncio.log import logger
 from typing import Union
 from tqdm import tqdm
 import numpy as np
@@ -31,7 +32,8 @@ class Core():
         self.logger = FEMLogger()
         if verbose:
             self.logger.setup_logging(console_log_level="info")
-        self.logger.setup_logging()
+        else:
+            self.logger.setup_logging()
         self.geometry = geometry
         self.ngdl = self.geometry.ngdl
         if not sparse:
@@ -143,6 +145,8 @@ class Core():
             logging.info('Post processing solution...')
             self.postProcess(**kargs)
             logging.info('Done!')
+        self.logger.end_timer()
+        logging.info("End!")
 
     def solveFromFile(self, file: str, plot: bool = True, **kargs) -> None:
         """Load a solution file and show the post process for a given geometry

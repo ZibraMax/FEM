@@ -17,8 +17,8 @@ t0 = 1034.21  # kpa
 rho = 7.860
 
 filename = "viga_voladizo.msh"
-nx = 4
-ny = 1
+nx = 500
+ny = 10
 enmalladoFernando(L, h, nx, ny, filename)
 geometria = Geometry.loadmsh(filename, fast=True)
 geometria.generateSegmentsFromCoords([0, 0], [L, 0])
@@ -36,12 +36,12 @@ O = PlaneStressSparse(geometria, E, v, b, rho=rho, verbose=True)
 O.geometry.mask = None
 O.solve()
 # np.savetxt('U_2_Local.csv', O.U, delimiter=',')
-
-O.elementMatrices()
-O.ensembling()
-O.borderConditions()
-OM = scipy.sparse.linalg.spsolve(O.M, O.K)
-omega = scipy.sparse.linalg.eigs(
-    OM, 10, return_eigenvectors=False, which="SM")**0.5
-print(omega)
 plt.show()
+
+# O.elementMatrices()
+# O.ensembling()
+# O.borderConditions()
+# OM = scipy.sparse.linalg.spsolve(O.M, O.K)
+# omega = scipy.sparse.linalg.eigs(
+#     OM, 10, return_eigenvectors=False, which="SM")**0.5
+# print(omega)

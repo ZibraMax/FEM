@@ -20,6 +20,7 @@
 import os
 import sys
 import logging
+from datetime import date, datetime
 
 
 class LogFormatter(logging.Formatter):
@@ -49,7 +50,7 @@ class LogFormatter(logging.Formatter):
 
 
 class FEMLogger():
-    """docstring for FEMLogger
+    """Creation of a Logger for FEM purposes. Based on Python Logger by Fonic <https://github.com/fonic>   
     """
 
     def setup_logging(self, console_log_output="stdout", console_log_level="warning", console_log_color=True, logfile_file=None, logfile_log_level="debug", logfile_log_color=False, log_line_template="%(color_on)s[%(levelname)-8s] %(message)s%(color_off)s"):
@@ -114,6 +115,15 @@ class FEMLogger():
             fmt='[%(asctime)s] '+log_line_template, color=logfile_log_color)
         logfile_handler.setFormatter(logfile_formatter)
         logger.addHandler(logfile_handler)
-        logging.debug('Session started')
+        self.start_time = datetime.now()
+        logging.debug(
+            f'Session started @ {self.start_time.strftime("%d/%m/%Y - %H:%M:%S")}')
         # Success
         return True
+
+    def end_timer(self):
+        self.end_time = datetime.now()
+        logging.debug(
+            f'Session ended @ {self.end_time.strftime("%d/%m/%Y - %H:%M:%S")}')
+        logging.debug(
+            f'Duration: {(self.end_time-self.start_time)}')
