@@ -16,13 +16,13 @@ _a = L
 _b = h
 _c = b
 
-nx = 50
-ny = 6
-nz = 6
+nx = 100
+ny = 10
+nz = 10
 
 dx = _a/nx
-dy = _b/nx
-dz = _c/nx
+dy = _b/ny
+dz = _c/nz
 
 coords = []
 
