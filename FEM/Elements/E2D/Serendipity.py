@@ -16,7 +16,7 @@ class Serendipity(Element2D, RectangularScheme):
         n (int, optional): Number of gauss points. Defaults to 3.
     """
 
-    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 3) -> None:
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 3, **kargs) -> None:
         """Creates a Serendipity element
 
         Args:
@@ -45,7 +45,7 @@ class Serendipity(Element2D, RectangularScheme):
                               np.array([[-1, -1, -1]]), border=True)
 
         self.borders = [e1, e2, e3, e4]
-        Element2D.__init__(self, coords, _coords, gdl)
+        Element2D.__init__(self, coords, _coords, gdl, **kargs)
         RectangularScheme.__init__(self, n)
 
     @classmethod

@@ -16,7 +16,7 @@ class LTriangular(Element2D, TriangularScheme):
         n (int, optional): Number of Gauss Points. Defaults to 2.
     """
 
-    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 2) -> None:
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 2, **kargs) -> None:
         """Creates a lagrangian triangular element of order 1
 
         Args:
@@ -39,7 +39,7 @@ class LTriangular(Element2D, TriangularScheme):
                            np.array([[-1, -1]]), border=True)
 
         self.borders = [e1, e2, e3]
-        Element2D.__init__(self, coords, coords, gdl)
+        Element2D.__init__(self, coords, coords, gdl, **kargs)
         TriangularScheme.__init__(self, n)
 
     @classmethod

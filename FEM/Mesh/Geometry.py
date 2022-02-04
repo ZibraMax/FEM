@@ -146,7 +146,7 @@ class Geometry:
         return o
 
     @staticmethod
-    def loadmsh(filename: str):
+    def loadmsh(filename: str, **kargs):
         """Load geometry from previously generated MSH file
 
         Args:
@@ -202,7 +202,7 @@ class Geometry:
             mask += [list(map(float, f.readline().split('\t')))]
         f.close()
         print('File ' + filename + ' loaded')
-        o = Geometry(dicc, gdls, types, nvn, seg)
+        o = Geometry(dicc, gdls, types, nvn, seg, **kargs)
         o.cbe = cbe
         o.cbn = cbn
         o.holes = holes
@@ -214,7 +214,7 @@ class Geometry:
         """Generate elements structure
         """
         print('Generating element structure')
-        self.elements = []
+        self.elements = [0.0]*len(self.dictionary)
         for i, d in enumerate(tqdm(self.dictionary, unit='Element')):
             coords = np.array(self.gdls)[np.ix_(d)]
             gdl = np.zeros([self.nvn, len(d)])
@@ -237,7 +237,7 @@ class Geometry:
                 element = CubicElement(coords, gdl, fast=self.fast)
             elif self.types[i] == 'B1V':
                 element = Brick(coords, gdl, fast=self.fast)
-            self.elements.append(element)
+            self.elements[i] = element
         print('Done!')
 
     def show(self, texto: int = 10, bolita: int = 0, draw_segs: bool = True, draw_labels: bool = False, draw_bc: bool = False, label_bc: bool = False) -> None:

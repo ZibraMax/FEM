@@ -5,29 +5,27 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import gridspec
 from tqdm import tqdm
+from scipy import sparse
+from scipy.sparse.linalg import spsolve
 
-from .Core import Core, Geometry
+from .Core import Core, Geometry, logging
 
 
 class Elasticity(Core):
 
-    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], rho: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
         if type(E) == float or type(E) == int:
             E = [E]*len(geometry.elements)
         if type(v) == float or type(v) == int:
             v = [v]*len(geometry.elements)
+        if type(rho) == float or type(rho) == int:
+            rho = [rho]*len(geometry.elements)
         self.E = E
         self.v = v
-        self.ld = []
-        self.mu = []
+        self.rho = rho
         self.fx = fx
         self.fy = fy
         self.fz = fz
-        for i in range(len(self.E)):
-            ld = E[i]*v[i]/(1.0+v[i])/(1.0-2.0*v[i])
-            mu = E[i]/2.0/(1.0+v[i])
-            self.ld.append(ld)
-            self.mu.append(mu)
         if not geometry.nvn == 3:
             print(
                 'Border conditions lost, please usea a geometry with 3 variables per node (nvn=3)\nRegenerating Geoemtry...')
@@ -35,7 +33,12 @@ class Elasticity(Core):
             geometry.cbe = []
             geometry.cbn = []
             geometry.initialize()
-        Core.__init__(self, geometry, **kargs)
+        Core.__init__(self, geometry, sparse=True, **kargs)
+
+        self.I = []
+        self.J = []
+        self.V = []
+        self.Vm = []
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
@@ -56,28 +59,44 @@ class Elasticity(Core):
             _j = np.linalg.inv(jac)  # Jacobian inverse
             dpx = _j @ dpz  # Shape function derivatives in global coordinates
 
-            mu = self.mu[ee]
-            ld = self.ld[ee]
-            C = np.array([
-                [2*mu+ld, ld, ld, 0.0, 0.0, 0.0],
-                [ld, 2*mu+ld, ld, 0.0, 0.0, 0.0],
-                [ld, ld, 2*mu+ld, 0.0, 0.0, 0.0],
-                [0.0, 0.0, 0.0, mu, 0.0, 0.0],
-                [0.0, 0.0, 0.0, 0.0, mu, 0.0],
-                [0.0, 0.0, 0.0, 0.0, 0.0, mu]])
+            E = self.E[ee]
+            v = self.v[ee]
+
+            C = E/((1.0+v)*(1.0-2.0*v))*np.array([
+                [1.0-v, v, v, 0.0, 0.0, 0.0],
+                [v, 1.0-v, v, 0.0, 0.0, 0.0],
+                [v, v, 1.0-v, 0.0, 0.0, 0.0],
+                [0.0, 0.0, 0.0, (1.0-2.0*v)/2.0, 0.0, 0.0],
+                [0.0, 0.0, 0.0, 0.0, (1.0-2.0*v)/2.0, 0.0],
+                [0.0, 0.0, 0.0, 0.0, 0.0, (1.0-2.0*v)/2.0]])
 
             o = [0.0]*m
+            Ke = np.zeros([3*m, 3*m])
+            Me = np.zeros([3*m, 3*m])
+            Fe = np.zeros([3*m, 1])
+
             for k in range(len(e.Z)):  # Iterate over gauss points on domain
                 B = np.array([
                     [*dpx[k, 0, :], *o, *o],
                     [*o, *dpx[k, 1, :], *o],
                     [*o, *o, *dpx[k, 2, :]],
-                    [*dpx[k, 1, :], *dpx[k, 0, :], *o],
                     [*dpx[k, 2, :], *o, *dpx[k, 0, :]],
-                    [*o, *dpx[k, 2, :], *dpx[k, 1, :]]])
+                    [*o, *dpx[k, 2, :], *dpx[k, 1, :]],
+                    [*dpx[k, 1, :], *dpx[k, 0, :], *o]])
+                P = np.array([
+                    [*_p[k], *o, *o],
+                    [*o, *_p[k], *o],
+                    [*o, *o, *_p[k]]])
 
-                e.Ke += (B.T@C@B)*detjac[k]*e.W[k]
+                Ke += (B.T@C@B)*detjac[k]*e.W[k]
+                Me += self.rho[ee]*(P.T@P)*detjac[k]*e.W[k]
 
+                _fx = self.fx(_x[k])
+                _fy = self.fy(_x[k])
+                _fz = self.fz(_x[k])
+
+                F = np.array([[_fx], [_fy], [_fz]])
+                Fe += (P.T @ F)*detjac[k]*e.W[k]
             for i in range(m):  # self part must be vectorized
                 for k in range(len(e.Z)):  # Iterate over gauss points on domain
 
@@ -85,9 +104,34 @@ class Elasticity(Core):
                     Fv[i][0] += _p[k, i] * self.fy(_x[k])*detjac[k]*e.W[k]
                     Fw[i][0] += _p[k, i] * self.fz(_x[k])*detjac[k]*e.W[k]
 
-            e.Fe[0:m] += Fu
-            e.Fe[m:2*m] += Fv
-            e.Fe[2*m:3*m] += Fw
+            self.F[np.ix_(e.gdlm)] += Fe
+
+            for gdl in e.gdlm:
+                self.I += [gdl]*(3*m)
+                self.J += e.gdlm
+            self.V += Ke.flatten().tolist()
+            self.Vm += Me.flatten().tolist()
+
+            end = 1
+
+    def ensembling(self) -> None:
+        """Creation of the system sparse matrix. Force vector is ensembled in integration method
+        """
+        logging.info('Ensembling equation system...')
+        self.K = sparse.coo_matrix(
+            (self.V, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tolil()
+        self.M = sparse.coo_matrix(
+            (self.Vm, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tocsr()
+        logging.info('Done!')
+
+    def solveES(self, **kargs) -> None:
+        logging.info('Converting to csr format')
+        self.K = self.K.tocsr()
+        logging.info('Solving...')
+        self.U = spsolve(self.K, self.S)
+        for e in self.elements:
+            e.setUe(self.U)
+        logging.info('Solved!')
 
     def postProcess(self, mult: float = 1000, gs=None, levels=1000, **kargs) -> None:
         """Generate the stress surfaces and displacement fields for the geometry

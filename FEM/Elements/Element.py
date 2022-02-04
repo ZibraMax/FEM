@@ -38,7 +38,7 @@ class Element():
         self.n = int(len(self.gdl)*len(self.gdl[0]))
         self.properties = {'load_x': [], 'load_y': []}
         self.intBorders = False
-        if not self.border or self.fast:
+        if not self.border and not self.fast:
             # TODO Esta vaina debería eliminarse.
             # Los elementos no tienen porque guardar.
             # Sus matrices y vectores. Esto gasta memoria.

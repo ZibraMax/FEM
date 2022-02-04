@@ -21,7 +21,7 @@ class Delaunay(Geometry):
             fillets (list, optional): A list of fillets. Defaults to None.
     """
 
-    def __init__(self, vertices: list, params: str, nvn: int = 1, holes_dict=None, fillets=None) -> None:
+    def __init__(self, vertices: list, params: str, nvn: int = 1, holes_dict=None, fillets=None, fast=False) -> None:
         """Generate Delaunay triangulation
 
         Args:
@@ -105,7 +105,7 @@ class Delaunay(Geometry):
                 dicc[4] = a2
                 dicc[5] = a3
         Geometry.__init__(self, dictionary, gdls, tipos,
-                          nvn=nvn, segments=seg)
+                          nvn=nvn, segments=seg, fast=fast)
         mask = []
         for segmento in mascarita:
             mask += [gdls[segmento[0]]]
