@@ -339,7 +339,7 @@ class NonLocalElasticity(Elasticity):
             for gdl in e.gdlm:
                 self.I += [gdl]*(3*m)
                 self.J += e.gdlm
-            self.V += Ke.flatten().tolist()
+            self.V += (Ke*self.z1).flatten().tolist()
             self.Vm += Me.flatten().tolist()
 
             e.knls = []
@@ -375,6 +375,9 @@ class NonLocalElasticity(Elasticity):
 
                         Knl += azn*(Bnl.T@C@B)*detjac[k] * \
                             e.W[k]*detjacnl[knl]*enl.W[knl]
-                e.knls.append(Knl)
+                for gdl in e.gdlm:
+                    self.I += [gdl]*(m+mnl)
+                    self.J += enl.gdlm
+                self.V += (Knl*self.z2).flatten().tolist()
 
-                # TODO Ensamblaje y detección de elementos No Locales
+                # TODO detección de elementos No Locales

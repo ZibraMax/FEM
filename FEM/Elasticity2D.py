@@ -528,3 +528,178 @@ class PlaneStrainSparse(PlaneStressSparse):
             self.C22.append(C11)
             self.C12.append(C12)
             self.C66.append(C66)
+
+
+class PlaneStressNonLocalSparse(PlaneStressSparse):
+
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
+        self.l = l
+        self.Lr = Lr
+        self.af = af
+        self.z1 = z1
+        self.l0 = 0.5/np.pi/l/l/t
+        self.z2 = 1.0-self.z1
+
+        PlaneStressSparse.__init__(
+            self, geometry, E, v, t, rho, fx, fy, **kargs)
+        nonlocals = self.geometry.detectNonLocal(Lr)
+        for e, dno in zip(self.elements, nonlocals):
+            e.enl = dno
+
+    def elementMatrices(self) -> None:
+        for ee in tqdm(range(len(self.elements)), unit='Local'):
+            self.elementMatrix(ee)
+
+    def elementMatrix(self, ee) -> None:
+        e = self.elements[ee]
+        m = len(e.gdl.T)
+
+        Fux = np.zeros([m, 1])
+        Fvx = np.zeros([m, 1])
+
+        _x, _p = e.T(e.Z.T)
+        jac, dpz = e.J(e.Z.T)
+        detjac = np.linalg.det(jac)
+        _j = np.linalg.inv(jac)  # Jacobian inverse
+        dpx = _j @ dpz  # Shape function derivatives in global coordinates
+
+        c11 = self.C11[ee]
+        c12 = self.C12[ee]
+        c22 = self.C22[ee]
+        c66 = self.C66[ee]
+        C = np.array([
+            [c11, c12, 0.0],
+            [c12, c22, 0.0],
+            [0.0, 0.0, c66]])
+
+        Fe = np.zeros([2*m, 1])
+        Ke = np.zeros([2*m, 2*m])
+        if self.calculateMass:
+            Me = np.zeros([2*m, 2*m])
+
+        o = [0.0]*m
+        for k in range(len(e.Z)):  # Iterate over gauss points on domain
+            B = np.array([
+                [*dpx[k, 0, :], *o],
+                [*o, *dpx[k, 1, :]],
+                [*dpx[k, 1, :], *dpx[k, 0, :]]])
+
+            P = np.array([
+                [*_p[k], *o],
+                [*o, *_p[k]]])
+            Ke += self.t[ee]*(B.T@C@B)*detjac[k]*e.W[k]
+            if self.calculateMass:
+                Me += self.rho[ee]*self.t[ee]*(P.T@P)*detjac[k]*e.W[k]
+            Fe += self.t[ee]*(P.T@np.array([[self.fx(_x[k])],
+                                            [self.fy(_x[k])]]))*detjac[k]*e.W[k]
+
+        if e.intBorders:  # Cambiar esto a la notación matricial
+            for j in range(len(e.borders)):
+                border = e.borders[j]
+                if (len(border.properties['load_x']) + len(border.properties['load_y'])):
+                    _x, _p = e.T(e.Tj[j](border.Z.T))
+                    _s = border.TS(border.Z.T)
+                    detjac = border.coords[-1, 0]*0.5
+                    for i in range(m):
+                        for fx in border.properties['load_x']:
+                            for k in range(len(border.Z)):
+                                Fux[i, 0] += fx(_s[k, 0])*_p[k, i] * \
+                                    detjac*border.W[k]
+                        for fy in border.properties['load_y']:
+                            for k in range(len(border.Z)):
+                                Fvx[i, 0] += fy(_s[k, 0])*_p[k, i] * \
+                                    detjac*border.W[k]
+        subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
+        Fe[np.ix_(subm[0])] += Fux
+        Fe[np.ix_(subm[1])] += Fvx
+        self.F[np.ix_(e.gdlm)] += Fe
+
+        for gdl in e.gdlm:
+            self.I += [gdl]*(2*m)
+            self.J += e.gdlm
+        self.V += (Ke*self.z1).flatten().tolist()
+        if self.calculateMass:
+            self.Vm += Me.flatten().tolist()
+
+        # e.knls = []
+        for inl in tqdm(e.enl, unit=' Nolocal'):
+            enl = self.elements[inl]
+            mnl = len(enl.gdl.T)
+            onl = [0.0]*mnl
+            Knl = np.zeros([2*m, 2*mnl])
+            _xnl, _ = enl.T(enl.Z.T)
+            jacnl, dpznl = enl.J(enl.Z.T)
+            detjacnl = np.linalg.det(jacnl)
+            _jnl = np.linalg.inv(jacnl)
+            dpxnl = _jnl @ dpznl
+
+            for k in range(len(e.Z)):
+                B = np.array([
+                    [*dpx[k, 0, :], *o],
+                    [*o, *dpx[k, 1, :]],
+                    [*dpx[k, 1, :], *dpx[k, 0, :]]])
+
+                for knl in range(len(enl.Z)):
+                    ro = np.linalg.norm(_x[k]-_xnl[knl])/self.l
+                    azn = self.af(self.l0, ro)
+                    Bnl = np.array([
+                        [*dpxnl[knl, 0, :], *onl],
+                        [*onl, *dpxnl[knl, 1, :]],
+                        [*dpxnl[knl, 1, :], *dpxnl[knl, 0, :]]])
+
+                    Knl += azn*(Bnl.T@C@B)*detjac[k] * \
+                        e.W[k]*detjacnl[knl]*enl.W[knl]
+            # e.knls.append(Knl)
+            for gdl in e.gdlm:
+                self.I += [gdl]*(m+mnl)
+                self.J += enl.gdlm
+            self.V += (Knl*self.z2).flatten().tolist()
+
+    def profile(self, p0: list, p1: list, n: float = 100) -> None:
+        """Generate a profile between selected points
+
+        Args:
+            p0 (list): start point of the profile [x0,y0]
+            p1 (list): end point of the profile [xf,yf]
+            n (int, optional): NUmber of samples for graph. Defaults to 100.
+
+        """
+
+        _x = np.linspace(p0[0], p1[0], n)
+        _y = np.linspace(p0[1], p1[1], n)
+        X = np.array([_x, _y])
+        U = []
+        U1 = []
+        U2 = []
+        U3 = []
+        _X = []
+        def dist(X): return np.sqrt((p0[0]-X[0])**2+(p0[1]-X[1])**2)
+        for i in range(n):
+            for ee, e in enumerate(self.elements):
+                if e.isInside(X.T[i]):
+                    z = e.inverseMapping(np.array([X.T[i]]).T)
+                    _, u, du = e.giveSolutionPoint(z, True)
+                    # TODO Arreglar calculo de esfuerzos para PlaneStrain
+                    U += [u.tolist()]
+                    U1 += (du[:, 0, 0]).tolist()
+                    U2 += (du[:, 1, 1]).tolist()
+                    U3 += (1/2*(du[:, 0, 1]+du[:, 1, 0])).tolist()
+                    _X.append(dist(X.T[i]))
+                    break
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 3, 1)
+        ax.plot(_X, U1, color='black')
+        ax.grid()
+        ax.set_xlabel('d')
+        ax.set_ylabel(r'$\varepsilon_{xx}$')
+        ax = fig.add_subplot(1, 3, 2)
+        ax.plot(_X, U2, color='black')
+        ax.grid()
+        ax.set_xlabel('d')
+        ax.set_ylabel(r'$\varepsilon_{yy}$')
+        ax = fig.add_subplot(1, 3, 3)
+        ax.plot(_X, U3, color='black')
+        ax.grid()
+        ax.set_xlabel('d')
+        ax.set_ylabel(r'$\varepsilon_{xy}$')
+        return _X, U1, U2, U3, U
