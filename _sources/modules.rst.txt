@@ -6,5 +6,4 @@ FEM
 
    FEM
    Test
-   nolocalsparsetest
    setup
