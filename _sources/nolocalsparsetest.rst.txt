@@ -1,0 +1,7 @@
+nolocalsparsetest module
+========================
+
+.. automodule:: nolocalsparsetest
+   :members:
+   :undoc-members:
+   :show-inheritance:
