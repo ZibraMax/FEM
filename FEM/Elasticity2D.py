@@ -647,7 +647,7 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
                         [*onl, *dpxnl[knl, 1, :]],
                         [*dpxnl[knl, 1, :], *dpxnl[knl, 0, :]]])
 
-                    Knl += azn*(Bnl.T@C@B)*detjac[k] * \
+                    Knl += self.t[ee]*self.t[inl]*azn*(Bnl.T@C@B)*detjac[k] * \
                         e.W[k]*detjacnl[knl]*enl.W[knl]
             # e.knls.append(Knl)
             for gdl in e.gdlm:
