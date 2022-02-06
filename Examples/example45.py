@@ -14,7 +14,7 @@ l = 20
 vertices = [[0.0, 0.0], [b, 0.0], [b, h], [b/2+2*l, h],
             [b/2+l, h+l], [b/2-l, h+l], [b/2-2*l, h], [0.0, h]]
 params = Delaunay._strdelaunay(
-    constrained=True, delaunay=True, a='8', o=2)
+    constrained=True, delaunay=True, a='2', o=2)
 geometria = Delaunay(vertices, params, nvn=2, fast=True)
 O = PlaneStrainSparse(geometria, E, v, fy=lambda x: -gamma, verbose=True)
 cb = O.geometry.cbFromSegment(0, 0, 1)

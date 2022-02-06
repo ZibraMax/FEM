@@ -2,17 +2,18 @@ from tabnanny import verbose
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStressNonLocalSparse
+from FEM.Elasticity2D import PlaneStress
 from FEM.Mesh.Delaunay import Delaunay
 from FEM.Mesh.Geometry import Geometry
+
 
 E = 2.1*10**6
 v = 0.2
 u = 0.001
-t = 1
+t = 0.5
 l = 0.1
 z1 = 0.5
 LR = 6*l
-fact = 10
 P = 1
 a = 5
 # coords = np.array([[0, 0], [1, 0], [1, 1], [0, 1]])*a
