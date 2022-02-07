@@ -1,936 +1,1089 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; FEM 1.0.28 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-    <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
-</head>
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> FEM
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/><title>Index - FEM 1.0.28 documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">FEM 1.0.28 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">FEM 1.0.28 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">FEM</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">FEM</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="FEM.html">FEM package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="FEM.Elements.html">FEM.Elements package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E1D.html">FEM.Elements.E1D package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E2D.html">FEM.Elements.E2D package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E3D.html">FEM.Elements.E3D package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.Geometry.html">FEM.Geometry package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.Solvers.html">FEM.Solvers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.Utils.html">FEM.Utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+</ul>
+</li>
 </ul>
 
-        </div>
+</div>
+</div>
       </div>
-    </nav>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#J"><strong>J</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#Q"><strong>Q</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a></div>
+</section>
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Utils.html#FEM.Utils.polygonal.angleBetweenAngles">angleBetweenAngles() (in module FEM.Utils.polygonal)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">FEM</a>
-      </nav>
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.html#FEM.Core.Core.borderConditions">borderConditions() (FEM.Core.Core method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Brick.Brick">Brick (class in FEM.Elements.E3D.Brick)</a>
+</li>
+        <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.BrickScheme.BrickScheme">BrickScheme (class in FEM.Elements.E3D.BrickScheme)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
-      <li class="wy-breadcrumbs-aside">
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbeAllBorders">cbeAllBorders() (FEM.Geometry.Geometry.Geometry method)</a>
+</li>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbFromSegment">cbFromSegment() (FEM.Geometry.Geometry.Geometry method)</a>
+</li>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbOnHole">cbOnHole() (FEM.Geometry.Geometry.Geometry method)</a>
+</li>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.centroidsAndAreas">centroidsAndAreas() (FEM.Geometry.Geometry.Geometry method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Utils.html#FEM.Utils.polygonal.clip">clip() (in module FEM.Utils.polygonal)</a>
+</li>
+        <li><a href="FEM.html#FEM.FEMLogger.LogFormatter.COLOR_CODES">COLOR_CODES (FEM.FEMLogger.LogFormatter attribute)</a>
+</li>
+        <li><a href="FEM.html#FEM.Core.Core">Core (class in FEM.Core)</a>
+</li>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.CubicElement.CubicElement">CubicElement (class in FEM.Elements.E1D.CubicElement)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h1 id="index">Index</h1>
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Delaunay.Delaunay">Delaunay (class in FEM.Geometry.Delaunay)</a>
+</li>
+        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular.description">description() (FEM.Elements.E2D.LTriangular.LTriangular class method)</a>
 
-<div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
- | <a href="#C"><strong>C</strong></a>
- | <a href="#D"><strong>D</strong></a>
- | <a href="#E"><strong>E</strong></a>
- | <a href="#F"><strong>F</strong></a>
- | <a href="#G"><strong>G</strong></a>
- | <a href="#H"><strong>H</strong></a>
- | <a href="#I"><strong>I</strong></a>
- | <a href="#J"><strong>J</strong></a>
- | <a href="#L"><strong>L</strong></a>
- | <a href="#M"><strong>M</strong></a>
- | <a href="#N"><strong>N</strong></a>
- | <a href="#P"><strong>P</strong></a>
- | <a href="#Q"><strong>Q</strong></a>
- | <a href="#R"><strong>R</strong></a>
- | <a href="#S"><strong>S</strong></a>
- | <a href="#T"><strong>T</strong></a>
- 
-</div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Utils.html#FEM.Utils.polygonal.angleBetweenAngles">angleBetweenAngles() (in module FEM.Utils.polygonal)</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.QTriangular.QTriangular.description">(FEM.Elements.E2D.QTriangular.QTriangular class method)</a>
 </li>
-  </ul></td>
-</tr></table>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral.description">(FEM.Elements.E2D.Quadrilateral.Quadrilateral class method)</a>
+</li>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Serendipity.Serendipity.description">(FEM.Elements.E2D.Serendipity.Serendipity class method)</a>
+</li>
+          <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.description">(FEM.Elements.Element.Element class method)</a>
+</li>
+        </ul></li>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.detectNonLocal">detectNonLocal() (FEM.Geometry.Geometry.Geometry method)</a>
+</li>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.dhermit">dhermit() (FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement method)</a>
+</li>
+        <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.DirectIteration">DirectIteration (class in FEM.Solvers.NoLineal)</a>
+</li>
+        <li><a href="FEM.Utils.html#FEM.Utils.polygonal.dist">dist() (in module FEM.Utils.polygonal)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.CubicElement.CubicElement.dpsis">dpsis() (FEM.Elements.E1D.CubicElement.CubicElement method)</a>
 
-<h2 id="B">B</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.html#FEM.Core.Core.borderConditions">borderConditions() (FEM.Core.Core method)</a>
+        <ul>
+          <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.LinealElement.LinealElement.dpsis">(FEM.Elements.E1D.LinealElement.LinealElement method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Brick.Brick">Brick (class in FEM.Elements.E3D.Brick)</a>
+          <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.QuadraticElement.QuadraticElement.dpsis">(FEM.Elements.E1D.QuadraticElement.QuadraticElement method)</a>
 </li>
-      <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.BrickScheme.BrickScheme">BrickScheme (class in FEM.Elements.E3D.BrickScheme)</a>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular.dpsis">(FEM.Elements.E2D.LTriangular.LTriangular method)</a>
 </li>
-  </ul></td>
-</tr></table>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.QTriangular.QTriangular.dpsis">(FEM.Elements.E2D.QTriangular.QTriangular method)</a>
+</li>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral.dpsis">(FEM.Elements.E2D.Quadrilateral.Quadrilateral method)</a>
+</li>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Serendipity.Serendipity.dpsis">(FEM.Elements.E2D.Serendipity.Serendipity method)</a>
+</li>
+          <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Brick.Brick.dpsis">(FEM.Elements.E3D.Brick.Brick method)</a>
+</li>
+        </ul></li>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.Element1D.Element1D.draw">draw() (FEM.Elements.E1D.Element1D.Element1D method)</a>
 
-<h2 id="C">C</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbeAllBorders">cbeAllBorders() (FEM.Geometry.Geometry.Geometry method)</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Element2D.Element2D.draw">(FEM.Elements.E2D.Element2D.Element2D method)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbFromSegment">cbFromSegment() (FEM.Geometry.Geometry.Geometry method)</a>
+          <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Element3D.Element3D.draw">(FEM.Elements.E3D.Element3D.Element3D method)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbOnHole">cbOnHole() (FEM.Geometry.Geometry.Geometry method)</a>
-</li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.centroidsAndAreas">centroidsAndAreas() (FEM.Geometry.Geometry.Geometry method)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Utils.html#FEM.Utils.polygonal.clip">clip() (in module FEM.Utils.polygonal)</a>
-</li>
-      <li><a href="FEM.html#FEM.FEMLogger.LogFormatter.COLOR_CODES">COLOR_CODES (FEM.FEMLogger.LogFormatter attribute)</a>
-</li>
-      <li><a href="FEM.html#FEM.Core.Core">Core (class in FEM.Core)</a>
-</li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.CubicElement.CubicElement">CubicElement (class in FEM.Elements.E1D.CubicElement)</a>
-</li>
-  </ul></td>
-</tr></table>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="D">D</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Delaunay.Delaunay">Delaunay (class in FEM.Geometry.Delaunay)</a>
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.html#FEM.EDO1D.EDO1D">EDO1D (class in FEM.EDO1D)</a>
 </li>
-      <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular.description">description() (FEM.Elements.E2D.LTriangular.LTriangular class method)</a>
+        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element">Element (class in FEM.Elements.Element)</a>
+</li>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.Element1D.Element1D">Element1D (class in FEM.Elements.E1D.Element1D)</a>
+</li>
+        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Element2D.Element2D">Element2D (class in FEM.Elements.E2D.Element2D)</a>
+</li>
+        <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Element3D.Element3D">Element3D (class in FEM.Elements.E3D.Element3D)</a>
+</li>
+        <li><a href="FEM.html#FEM.Core.Core.elementMatrices">elementMatrices() (FEM.Core.Core method)</a>
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.QTriangular.QTriangular.description">(FEM.Elements.E2D.QTriangular.QTriangular class method)</a>
+        <ul>
+          <li><a href="FEM.html#FEM.EDO1D.EDO1D.elementMatrices">(FEM.EDO1D.EDO1D method)</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral.description">(FEM.Elements.E2D.Quadrilateral.Quadrilateral class method)</a>
+          <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam.elementMatrices">(FEM.EulerBernoulliBeam.EulerBernoulliBeam method)</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Serendipity.Serendipity.description">(FEM.Elements.E2D.Serendipity.Serendipity class method)</a>
+          <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal.elementMatrices">(FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal method)</a>
 </li>
-        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.description">(FEM.Elements.Element.Element class method)</a>
+          <li><a href="FEM.html#FEM.Torsion2D.Torsion2D.elementMatrices">(FEM.Torsion2D.Torsion2D method)</a>
 </li>
-      </ul></li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.detectNonLocal">detectNonLocal() (FEM.Geometry.Geometry.Geometry method)</a>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.html#FEM.FEMLogger.FEMLogger.end_timer">end_timer() (FEM.FEMLogger.FEMLogger method)</a>
 </li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.dhermit">dhermit() (FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement method)</a>
+        <li><a href="FEM.Utils.html#FEM.Utils.polygonal.enmalladoFernando">enmalladoFernando() (in module FEM.Utils.polygonal)</a>
 </li>
-      <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.DirectIteration">DirectIteration (class in FEM.Solvers.NoLineal)</a>
+        <li><a href="FEM.html#FEM.Core.Core.ensembling">ensembling() (FEM.Core.Core method)</a>
 </li>
-      <li><a href="FEM.Utils.html#FEM.Utils.polygonal.dist">dist() (in module FEM.Utils.polygonal)</a>
+        <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam">EulerBernoulliBeam (class in FEM.EulerBernoulliBeam)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.CubicElement.CubicElement.dpsis">dpsis() (FEM.Elements.E1D.CubicElement.CubicElement method)</a>
+        <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal">EulerBernoulliBeamNonLineal (class in FEM.EulerBernoulliBeam)</a>
+</li>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement">EulerBernoulliElement (class in FEM.Elements.E1D.EulerBernoulliElement)</a>
+</li>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.exportJSON">exportJSON() (FEM.Geometry.Geometry.Geometry method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
 
-      <ul>
-        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.LinealElement.LinealElement.dpsis">(FEM.Elements.E1D.LinealElement.LinealElement method)</a>
-</li>
-        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.QuadraticElement.QuadraticElement.dpsis">(FEM.Elements.E1D.QuadraticElement.QuadraticElement method)</a>
-</li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular.dpsis">(FEM.Elements.E2D.LTriangular.LTriangular method)</a>
-</li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.QTriangular.QTriangular.dpsis">(FEM.Elements.E2D.QTriangular.QTriangular method)</a>
-</li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral.dpsis">(FEM.Elements.E2D.Quadrilateral.Quadrilateral method)</a>
-</li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Serendipity.Serendipity.dpsis">(FEM.Elements.E2D.Serendipity.Serendipity method)</a>
-</li>
-        <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Brick.Brick.dpsis">(FEM.Elements.E3D.Brick.Brick method)</a>
-</li>
-      </ul></li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.Element1D.Element1D.draw">draw() (FEM.Elements.E1D.Element1D.Element1D method)</a>
-
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Element2D.Element2D.draw">(FEM.Elements.E2D.Element2D.Element2D method)</a>
-</li>
-        <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Element3D.Element3D.draw">(FEM.Elements.E3D.Element3D.Element3D method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.html#FEM.EDO1D.EDO1D">EDO1D (class in FEM.EDO1D)</a>
-</li>
-      <li><a href="FEM.Elements.html#FEM.Elements.Element.Element">Element (class in FEM.Elements.Element)</a>
-</li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.Element1D.Element1D">Element1D (class in FEM.Elements.E1D.Element1D)</a>
-</li>
-      <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Element2D.Element2D">Element2D (class in FEM.Elements.E2D.Element2D)</a>
-</li>
-      <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Element3D.Element3D">Element3D (class in FEM.Elements.E3D.Element3D)</a>
-</li>
-      <li><a href="FEM.html#FEM.Core.Core.elementMatrices">elementMatrices() (FEM.Core.Core method)</a>
-
-      <ul>
-        <li><a href="FEM.html#FEM.EDO1D.EDO1D.elementMatrices">(FEM.EDO1D.EDO1D method)</a>
-</li>
-        <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam.elementMatrices">(FEM.EulerBernoulliBeam.EulerBernoulliBeam method)</a>
-</li>
-        <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal.elementMatrices">(FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal method)</a>
-</li>
-        <li><a href="FEM.html#FEM.Torsion2D.Torsion2D.elementMatrices">(FEM.Torsion2D.Torsion2D method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.html#FEM.FEMLogger.FEMLogger.end_timer">end_timer() (FEM.FEMLogger.FEMLogger method)</a>
-</li>
-      <li><a href="FEM.Utils.html#FEM.Utils.polygonal.enmalladoFernando">enmalladoFernando() (in module FEM.Utils.polygonal)</a>
-</li>
-      <li><a href="FEM.html#FEM.Core.Core.ensembling">ensembling() (FEM.Core.Core method)</a>
-</li>
-      <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam">EulerBernoulliBeam (class in FEM.EulerBernoulliBeam)</a>
-</li>
-      <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal">EulerBernoulliBeamNonLineal (class in FEM.EulerBernoulliBeam)</a>
-</li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement">EulerBernoulliElement (class in FEM.Elements.E1D.EulerBernoulliElement)</a>
-</li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.exportJSON">exportJSON() (FEM.Geometry.Geometry.Geometry method)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="F">F</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
     FEM.Core
 
-      <ul>
-        <li><a href="FEM.html#module-FEM.Core">module</a>
+        <ul>
+          <li><a href="FEM.html#module-FEM.Core">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.EDO1D
 
-      <ul>
-        <li><a href="FEM.html#module-FEM.EDO1D">module</a>
+        <ul>
+          <li><a href="FEM.html#module-FEM.EDO1D">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements
 
-      <ul>
-        <li><a href="FEM.Elements.html#module-FEM.Elements">module</a>
+        <ul>
+          <li><a href="FEM.Elements.html#module-FEM.Elements">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E1D
 
-      <ul>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E1D.CubicElement
 
-      <ul>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.CubicElement">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.CubicElement">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E1D.Element1D
 
-      <ul>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.Element1D">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.Element1D">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E1D.EulerBernoulliElement
 
-      <ul>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.EulerBernoulliElement">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.EulerBernoulliElement">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E1D.LinealElement
 
-      <ul>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.LinealElement">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.LinealElement">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E1D.LinearScheme
 
-      <ul>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.LinearScheme">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.LinearScheme">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E1D.QuadraticElement
 
-      <ul>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.QuadraticElement">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.QuadraticElement">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E2D
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E2D.Element2D
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Element2D">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Element2D">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E2D.LTriangular
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.LTriangular">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.LTriangular">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E2D.QTriangular
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.QTriangular">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.QTriangular">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E2D.Quadrilateral
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Quadrilateral">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Quadrilateral">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E2D.RectangularScheme
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.RectangularScheme">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.RectangularScheme">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E2D.Serendipity
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Serendipity">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Serendipity">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E2D.TriangularScheme
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.TriangularScheme">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.TriangularScheme">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E3D
 
-      <ul>
-        <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D">module</a>
 </li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
     FEM.Elements.E3D.Brick
 
-      <ul>
-        <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.Brick">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.Brick">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E3D.BrickScheme
 
-      <ul>
-        <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.BrickScheme">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.BrickScheme">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.E3D.Element3D
 
-      <ul>
-        <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.Element3D">module</a>
+        <ul>
+          <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.Element3D">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Elements.Element
 
-      <ul>
-        <li><a href="FEM.Elements.html#module-FEM.Elements.Element">module</a>
+        <ul>
+          <li><a href="FEM.Elements.html#module-FEM.Elements.Element">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.EulerBernoulliBeam
 
-      <ul>
-        <li><a href="FEM.html#module-FEM.EulerBernoulliBeam">module</a>
+        <ul>
+          <li><a href="FEM.html#module-FEM.EulerBernoulliBeam">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.FEMLogger
 
-      <ul>
-        <li><a href="FEM.html#module-FEM.FEMLogger">module</a>
+        <ul>
+          <li><a href="FEM.html#module-FEM.FEMLogger">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Geometry
 
-      <ul>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry">module</a>
+        <ul>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Geometry.Delaunay
 
-      <ul>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry.Delaunay">module</a>
+        <ul>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry.Delaunay">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Geometry.Geometry
 
-      <ul>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry.Geometry">module</a>
+        <ul>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry.Geometry">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Geometry.Geometry1D
 
-      <ul>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry.Geometry1D">module</a>
+        <ul>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry.Geometry1D">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Geometry.Lineal
 
-      <ul>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry.Lineal">module</a>
+        <ul>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry.Lineal">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Solvers
 
-      <ul>
-        <li><a href="FEM.Solvers.html#module-FEM.Solvers">module</a>
+        <ul>
+          <li><a href="FEM.Solvers.html#module-FEM.Solvers">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Solvers.Lineal
 
-      <ul>
-        <li><a href="FEM.Solvers.html#module-FEM.Solvers.Lineal">module</a>
+        <ul>
+          <li><a href="FEM.Solvers.html#module-FEM.Solvers.Lineal">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Solvers.NoLineal
 
-      <ul>
-        <li><a href="FEM.Solvers.html#module-FEM.Solvers.NoLineal">module</a>
+        <ul>
+          <li><a href="FEM.Solvers.html#module-FEM.Solvers.NoLineal">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Torsion2D
 
-      <ul>
-        <li><a href="FEM.html#module-FEM.Torsion2D">module</a>
+        <ul>
+          <li><a href="FEM.html#module-FEM.Torsion2D">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Utils
 
-      <ul>
-        <li><a href="FEM.Utils.html#module-FEM.Utils">module</a>
+        <ul>
+          <li><a href="FEM.Utils.html#module-FEM.Utils">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     FEM.Utils.polygonal
 
-      <ul>
-        <li><a href="FEM.Utils.html#module-FEM.Utils.polygonal">module</a>
+        <ul>
+          <li><a href="FEM.Utils.html#module-FEM.Utils.polygonal">module</a>
 </li>
-      </ul></li>
-      <li><a href="FEM.html#FEM.FEMLogger.FEMLogger">FEMLogger (class in FEM.FEMLogger)</a>
+        </ul></li>
+        <li><a href="FEM.html#FEM.FEMLogger.FEMLogger">FEMLogger (class in FEM.FEMLogger)</a>
 </li>
-      <li><a href="FEM.html#FEM.FEMLogger.LogFormatter.format">format() (FEM.FEMLogger.LogFormatter method)</a>
+        <li><a href="FEM.html#FEM.FEMLogger.LogFormatter.format">format() (FEM.FEMLogger.LogFormatter method)</a>
 </li>
-  </ul></td>
-</tr></table>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="G">G</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.generateBCFromCoords">generateBCFromCoords() (FEM.Geometry.Geometry.Geometry method)</a>
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.generateBCFromCoords">generateBCFromCoords() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.generateElements">generateElements() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.generateElements">generateElements() (FEM.Geometry.Geometry.Geometry method)</a>
 
-      <ul>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D.generateElements">(FEM.Geometry.Geometry1D.Geometry1D method)</a>
+        <ul>
+          <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D.generateElements">(FEM.Geometry.Geometry1D.Geometry1D method)</a>
 </li>
-      </ul></li>
-      <li><a href="FEM.Utils.html#FEM.Utils.polygonal.generatePolygon">generatePolygon() (in module FEM.Utils.polygonal)</a>
+        </ul></li>
+        <li><a href="FEM.Utils.html#FEM.Utils.polygonal.generatePolygon">generatePolygon() (in module FEM.Utils.polygonal)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.generateSegmentsFromCoords">generateSegmentsFromCoords() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.generateSegmentsFromCoords">generateSegmentsFromCoords() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry">Geometry (class in FEM.Geometry.Geometry)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry">Geometry (class in FEM.Geometry.Geometry)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D">Geometry1D (class in FEM.Geometry.Geometry1D)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D">Geometry1D (class in FEM.Geometry.Geometry1D)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Utils.html#FEM.Utils.polygonal.giveCoordsCircle">giveCoordsCircle() (in module FEM.Utils.polygonal)</a>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Utils.html#FEM.Utils.polygonal.giveCoordsCircle">giveCoordsCircle() (in module FEM.Utils.polygonal)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.giveElementsOfSegment">giveElementsOfSegment() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.giveElementsOfSegment">giveElementsOfSegment() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.giveNodesOfSegment">giveNodesOfSegment() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.giveNodesOfSegment">giveNodesOfSegment() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.giveSolution">giveSolution() (FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement method)</a>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.giveSolution">giveSolution() (FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement method)</a>
 
-      <ul>
-        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.giveSolution">(FEM.Elements.Element.Element method)</a>
+        <ul>
+          <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.giveSolution">(FEM.Elements.Element.Element method)</a>
 </li>
-      </ul></li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.giveSolutionPoint">giveSolutionPoint() (FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement method)</a>
+        </ul></li>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.giveSolutionPoint">giveSolutionPoint() (FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement method)</a>
 
-      <ul>
-        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.giveSolutionPoint">(FEM.Elements.Element.Element method)</a>
+        <ul>
+          <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.giveSolutionPoint">(FEM.Elements.Element.Element method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-</tr></table>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="H">H</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.hermit">hermit() (FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement method)</a>
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.hermit">hermit() (FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement method)</a>
 </li>
-  </ul></td>
-</tr></table>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="I">I</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.importJSON">importJSON() (FEM.Geometry.Geometry.Geometry static method)</a>
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.importJSON">importJSON() (FEM.Geometry.Geometry.Geometry static method)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.initialize">initialize() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.initialize">initialize() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.integrate">integrate() (FEM.Elements.Element.Element method)</a>
+        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.integrate">integrate() (FEM.Elements.Element.Element method)</a>
 </li>
-      <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.inverseMapping">inverseMapping() (FEM.Elements.Element.Element method)</a>
+        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.inverseMapping">inverseMapping() (FEM.Elements.Element.Element method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Utils.html#FEM.Utils.polygonal.isBetween">isBetween() (in module FEM.Utils.polygonal)</a>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Utils.html#FEM.Utils.polygonal.isBetween">isBetween() (in module FEM.Utils.polygonal)</a>
 </li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.Element1D.Element1D.isInside">isInside() (FEM.Elements.E1D.Element1D.Element1D method)</a>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.Element1D.Element1D.isInside">isInside() (FEM.Elements.E1D.Element1D.Element1D method)</a>
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Element2D.Element2D.isInside">(FEM.Elements.E2D.Element2D.Element2D method)</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Element2D.Element2D.isInside">(FEM.Elements.E2D.Element2D.Element2D method)</a>
 </li>
-        <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Element3D.Element3D.isInside">(FEM.Elements.E3D.Element3D.Element3D method)</a>
+          <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Element3D.Element3D.isInside">(FEM.Elements.E3D.Element3D.Element3D method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-</tr></table>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="J">J</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.J">J() (FEM.Elements.Element.Element method)</a>
+<section id="J" class="genindex-section">
+  <h2>J</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.J">J() (FEM.Elements.Element.Element method)</a>
 </li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.Element1D.Element1D.jacobianGraph">jacobianGraph() (FEM.Elements.E1D.Element1D.Element1D method)</a>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.Element1D.Element1D.jacobianGraph">jacobianGraph() (FEM.Elements.E1D.Element1D.Element1D method)</a>
 
-      <ul>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Element2D.Element2D.jacobianGraph">(FEM.Elements.E2D.Element2D.Element2D method)</a>
+        <ul>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Element2D.Element2D.jacobianGraph">(FEM.Elements.E2D.Element2D.Element2D method)</a>
 </li>
-        <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Element3D.Element3D.jacobianGraph">(FEM.Elements.E3D.Element3D.Element3D method)</a>
+          <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Element3D.Element3D.jacobianGraph">(FEM.Elements.E3D.Element3D.Element3D method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-</tr></table>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="L">L</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Lineal.Lineal">Lineal (class in FEM.Geometry.Lineal)</a>
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Lineal.Lineal">Lineal (class in FEM.Geometry.Lineal)</a>
 
-      <ul>
-        <li><a href="FEM.Solvers.html#FEM.Solvers.Lineal.Lineal">(class in FEM.Solvers.Lineal)</a>
+        <ul>
+          <li><a href="FEM.Solvers.html#FEM.Solvers.Lineal.Lineal">(class in FEM.Solvers.Lineal)</a>
 </li>
-      </ul></li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.LinealElement.LinealElement">LinealElement (class in FEM.Elements.E1D.LinealElement)</a>
+        </ul></li>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.LinealElement.LinealElement">LinealElement (class in FEM.Elements.E1D.LinealElement)</a>
 </li>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.LinearScheme.LinearScheme">LinearScheme (class in FEM.Elements.E1D.LinearScheme)</a>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.LinearScheme.LinearScheme">LinearScheme (class in FEM.Elements.E1D.LinearScheme)</a>
 </li>
-      <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.LoadControl">LoadControl (class in FEM.Solvers.NoLineal)</a>
+        <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.LoadControl">LoadControl (class in FEM.Solvers.NoLineal)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadGiDMsh">loadGiDMsh() (FEM.Geometry.Geometry.Geometry static method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadGiDMsh">loadGiDMsh() (FEM.Geometry.Geometry.Geometry static method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadmsh">loadmsh() (FEM.Geometry.Geometry.Geometry static method)</a>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadmsh">loadmsh() (FEM.Geometry.Geometry.Geometry static method)</a>
 
-      <ul>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D.loadmsh">(FEM.Geometry.Geometry1D.Geometry1D static method)</a>
+        <ul>
+          <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D.loadmsh">(FEM.Geometry.Geometry1D.Geometry1D static method)</a>
 </li>
-      </ul></li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadOnHole">loadOnHole() (FEM.Geometry.Geometry.Geometry method)</a>
+        </ul></li>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadOnHole">loadOnHole() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadOnSegment">loadOnSegment() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadOnSegment">loadOnSegment() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadOnSegmentVF">loadOnSegmentVF() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadOnSegmentVF">loadOnSegmentVF() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li><a href="FEM.html#FEM.FEMLogger.LogFormatter">LogFormatter (class in FEM.FEMLogger)</a>
+        <li><a href="FEM.html#FEM.FEMLogger.LogFormatter">LogFormatter (class in FEM.FEMLogger)</a>
 </li>
-      <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular">LTriangular (class in FEM.Elements.E2D.LTriangular)</a>
+        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular">LTriangular (class in FEM.Elements.E2D.LTriangular)</a>
 </li>
-  </ul></td>
-</tr></table>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="M">M</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.maskFromSegments">maskFromSegments() (FEM.Geometry.Geometry.Geometry method)</a>
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.maskFromSegments">maskFromSegments() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li>
+        <li>
     module
 
-      <ul>
-        <li><a href="FEM.html#module-FEM.Core">FEM.Core</a>
+        <ul>
+          <li><a href="FEM.html#module-FEM.Core">FEM.Core</a>
 </li>
-        <li><a href="FEM.html#module-FEM.EDO1D">FEM.EDO1D</a>
+          <li><a href="FEM.html#module-FEM.EDO1D">FEM.EDO1D</a>
 </li>
-        <li><a href="FEM.Elements.html#module-FEM.Elements">FEM.Elements</a>
+          <li><a href="FEM.Elements.html#module-FEM.Elements">FEM.Elements</a>
 </li>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D">FEM.Elements.E1D</a>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D">FEM.Elements.E1D</a>
 </li>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.CubicElement">FEM.Elements.E1D.CubicElement</a>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.CubicElement">FEM.Elements.E1D.CubicElement</a>
 </li>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.Element1D">FEM.Elements.E1D.Element1D</a>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.Element1D">FEM.Elements.E1D.Element1D</a>
 </li>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.EulerBernoulliElement">FEM.Elements.E1D.EulerBernoulliElement</a>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.EulerBernoulliElement">FEM.Elements.E1D.EulerBernoulliElement</a>
 </li>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.LinealElement">FEM.Elements.E1D.LinealElement</a>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.LinealElement">FEM.Elements.E1D.LinealElement</a>
 </li>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.LinearScheme">FEM.Elements.E1D.LinearScheme</a>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.LinearScheme">FEM.Elements.E1D.LinearScheme</a>
 </li>
-        <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.QuadraticElement">FEM.Elements.E1D.QuadraticElement</a>
+          <li><a href="FEM.Elements.E1D.html#module-FEM.Elements.E1D.QuadraticElement">FEM.Elements.E1D.QuadraticElement</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D">FEM.Elements.E2D</a>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D">FEM.Elements.E2D</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Element2D">FEM.Elements.E2D.Element2D</a>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Element2D">FEM.Elements.E2D.Element2D</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.LTriangular">FEM.Elements.E2D.LTriangular</a>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.LTriangular">FEM.Elements.E2D.LTriangular</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.QTriangular">FEM.Elements.E2D.QTriangular</a>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.QTriangular">FEM.Elements.E2D.QTriangular</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Quadrilateral">FEM.Elements.E2D.Quadrilateral</a>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Quadrilateral">FEM.Elements.E2D.Quadrilateral</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.RectangularScheme">FEM.Elements.E2D.RectangularScheme</a>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.RectangularScheme">FEM.Elements.E2D.RectangularScheme</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Serendipity">FEM.Elements.E2D.Serendipity</a>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Serendipity">FEM.Elements.E2D.Serendipity</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.TriangularScheme">FEM.Elements.E2D.TriangularScheme</a>
+          <li><a href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.TriangularScheme">FEM.Elements.E2D.TriangularScheme</a>
 </li>
-        <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D">FEM.Elements.E3D</a>
+          <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D">FEM.Elements.E3D</a>
 </li>
-        <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.Brick">FEM.Elements.E3D.Brick</a>
+          <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.Brick">FEM.Elements.E3D.Brick</a>
 </li>
-        <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.BrickScheme">FEM.Elements.E3D.BrickScheme</a>
+          <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.BrickScheme">FEM.Elements.E3D.BrickScheme</a>
 </li>
-        <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.Element3D">FEM.Elements.E3D.Element3D</a>
+          <li><a href="FEM.Elements.E3D.html#module-FEM.Elements.E3D.Element3D">FEM.Elements.E3D.Element3D</a>
 </li>
-        <li><a href="FEM.Elements.html#module-FEM.Elements.Element">FEM.Elements.Element</a>
+          <li><a href="FEM.Elements.html#module-FEM.Elements.Element">FEM.Elements.Element</a>
 </li>
-        <li><a href="FEM.html#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam</a>
+          <li><a href="FEM.html#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam</a>
 </li>
-        <li><a href="FEM.html#module-FEM.FEMLogger">FEM.FEMLogger</a>
+          <li><a href="FEM.html#module-FEM.FEMLogger">FEM.FEMLogger</a>
 </li>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry">FEM.Geometry</a>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry">FEM.Geometry</a>
 </li>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry.Delaunay">FEM.Geometry.Delaunay</a>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry.Delaunay">FEM.Geometry.Delaunay</a>
 </li>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry.Geometry">FEM.Geometry.Geometry</a>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry.Geometry">FEM.Geometry.Geometry</a>
 </li>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry.Geometry1D">FEM.Geometry.Geometry1D</a>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry.Geometry1D">FEM.Geometry.Geometry1D</a>
 </li>
-        <li><a href="FEM.Geometry.html#module-FEM.Geometry.Lineal">FEM.Geometry.Lineal</a>
+          <li><a href="FEM.Geometry.html#module-FEM.Geometry.Lineal">FEM.Geometry.Lineal</a>
 </li>
-        <li><a href="FEM.Solvers.html#module-FEM.Solvers">FEM.Solvers</a>
+          <li><a href="FEM.Solvers.html#module-FEM.Solvers">FEM.Solvers</a>
 </li>
-        <li><a href="FEM.Solvers.html#module-FEM.Solvers.Lineal">FEM.Solvers.Lineal</a>
+          <li><a href="FEM.Solvers.html#module-FEM.Solvers.Lineal">FEM.Solvers.Lineal</a>
 </li>
-        <li><a href="FEM.Solvers.html#module-FEM.Solvers.NoLineal">FEM.Solvers.NoLineal</a>
+          <li><a href="FEM.Solvers.html#module-FEM.Solvers.NoLineal">FEM.Solvers.NoLineal</a>
 </li>
-        <li><a href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D</a>
+          <li><a href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D</a>
 </li>
-        <li><a href="FEM.Utils.html#module-FEM.Utils">FEM.Utils</a>
+          <li><a href="FEM.Utils.html#module-FEM.Utils">FEM.Utils</a>
 </li>
-        <li><a href="FEM.Utils.html#module-FEM.Utils.polygonal">FEM.Utils.polygonal</a>
+          <li><a href="FEM.Utils.html#module-FEM.Utils.polygonal">FEM.Utils.polygonal</a>
 </li>
-        <li><a href="Test.html#module-Test">Test</a>
+          <li><a href="Test.html#module-Test">Test</a>
 </li>
-        <li><a href="Test.html#module-Test.test_Geometry">Test.test_Geometry</a>
+          <li><a href="Test.html#module-Test.test_Geometry">Test.test_Geometry</a>
 </li>
-        <li><a href="Test.html#module-Test.test_Torsion2D">Test.test_Torsion2D</a>
+          <li><a href="Test.html#module-Test.test_Torsion2D">Test.test_Torsion2D</a>
 </li>
-      </ul></li>
-  </ul></td>
-</tr></table>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="N">N</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.Newton">Newton (class in FEM.Solvers.NoLineal)</a>
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.Newton">Newton (class in FEM.Solvers.NoLineal)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.NonLinealSolver">NonLinealSolver (class in FEM.Solvers.NoLineal)</a>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.NonLinealSolver">NonLinealSolver (class in FEM.Solvers.NoLineal)</a>
 </li>
-  </ul></td>
-</tr></table>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="P">P</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.html#FEM.Core.Core.postProcess">postProcess() (FEM.Core.Core method)</a>
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.html#FEM.Core.Core.postProcess">postProcess() (FEM.Core.Core method)</a>
 
-      <ul>
-        <li><a href="FEM.html#FEM.EDO1D.EDO1D.postProcess">(FEM.EDO1D.EDO1D method)</a>
+        <ul>
+          <li><a href="FEM.html#FEM.EDO1D.EDO1D.postProcess">(FEM.EDO1D.EDO1D method)</a>
 </li>
-        <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam.postProcess">(FEM.EulerBernoulliBeam.EulerBernoulliBeam method)</a>
+          <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam.postProcess">(FEM.EulerBernoulliBeam.EulerBernoulliBeam method)</a>
 </li>
-        <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal.postProcess">(FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal method)</a>
+          <li><a href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal.postProcess">(FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLineal method)</a>
 </li>
-        <li><a href="FEM.html#FEM.Torsion2D.Torsion2D.postProcess">(FEM.Torsion2D.Torsion2D method)</a>
+          <li><a href="FEM.html#FEM.Torsion2D.Torsion2D.postProcess">(FEM.Torsion2D.Torsion2D method)</a>
 </li>
-      </ul></li>
-      <li><a href="FEM.html#FEM.Core.Core.print">print() (FEM.Core.Core method)</a>
+        </ul></li>
+        <li><a href="FEM.html#FEM.Core.Core.print">print() (FEM.Core.Core method)</a>
 </li>
-      <li><a href="FEM.html#FEM.Core.Core.profile">profile() (FEM.Core.Core method)</a>
+        <li><a href="FEM.html#FEM.Core.Core.profile">profile() (FEM.Core.Core method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.CubicElement.CubicElement.psis">psis() (FEM.Elements.E1D.CubicElement.CubicElement method)</a>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.CubicElement.CubicElement.psis">psis() (FEM.Elements.E1D.CubicElement.CubicElement method)</a>
 
-      <ul>
-        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.LinealElement.LinealElement.psis">(FEM.Elements.E1D.LinealElement.LinealElement method)</a>
+        <ul>
+          <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.LinealElement.LinealElement.psis">(FEM.Elements.E1D.LinealElement.LinealElement method)</a>
 </li>
-        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.QuadraticElement.QuadraticElement.psis">(FEM.Elements.E1D.QuadraticElement.QuadraticElement method)</a>
+          <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.QuadraticElement.QuadraticElement.psis">(FEM.Elements.E1D.QuadraticElement.QuadraticElement method)</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular.psis">(FEM.Elements.E2D.LTriangular.LTriangular method)</a>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular.psis">(FEM.Elements.E2D.LTriangular.LTriangular method)</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.QTriangular.QTriangular.psis">(FEM.Elements.E2D.QTriangular.QTriangular method)</a>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.QTriangular.QTriangular.psis">(FEM.Elements.E2D.QTriangular.QTriangular method)</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral.psis">(FEM.Elements.E2D.Quadrilateral.Quadrilateral method)</a>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral.psis">(FEM.Elements.E2D.Quadrilateral.Quadrilateral method)</a>
 </li>
-        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Serendipity.Serendipity.psis">(FEM.Elements.E2D.Serendipity.Serendipity method)</a>
+          <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Serendipity.Serendipity.psis">(FEM.Elements.E2D.Serendipity.Serendipity method)</a>
 </li>
-        <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Brick.Brick.psis">(FEM.Elements.E3D.Brick.Brick method)</a>
+          <li><a href="FEM.Elements.E3D.html#FEM.Elements.E3D.Brick.Brick.psis">(FEM.Elements.E3D.Brick.Brick method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-</tr></table>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="Q">Q</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.QTriangular.QTriangular">QTriangular (class in FEM.Elements.E2D.QTriangular)</a>
+<section id="Q" class="genindex-section">
+  <h2>Q</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.QTriangular.QTriangular">QTriangular (class in FEM.Elements.E2D.QTriangular)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.QuadraticElement.QuadraticElement">QuadraticElement (class in FEM.Elements.E1D.QuadraticElement)</a>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.QuadraticElement.QuadraticElement">QuadraticElement (class in FEM.Elements.E1D.QuadraticElement)</a>
 </li>
-      <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral">Quadrilateral (class in FEM.Elements.E2D.Quadrilateral)</a>
+        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral">Quadrilateral (class in FEM.Elements.E2D.Quadrilateral)</a>
 </li>
-  </ul></td>
-</tr></table>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="R">R</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.RectangularScheme.RectangularScheme">RectangularScheme (class in FEM.Elements.E2D.RectangularScheme)</a>
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.RectangularScheme.RectangularScheme">RectangularScheme (class in FEM.Elements.E2D.RectangularScheme)</a>
 </li>
-      <li><a href="FEM.html#FEM.FEMLogger.LogFormatter.RESET_CODE">RESET_CODE (FEM.FEMLogger.LogFormatter attribute)</a>
+        <li><a href="FEM.html#FEM.FEMLogger.LogFormatter.RESET_CODE">RESET_CODE (FEM.FEMLogger.LogFormatter attribute)</a>
 </li>
-      <li><a href="FEM.html#FEM.Core.Core.restartMatrix">restartMatrix() (FEM.Core.Core method)</a>
+        <li><a href="FEM.html#FEM.Core.Core.restartMatrix">restartMatrix() (FEM.Core.Core method)</a>
 
-      <ul>
-        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.restartMatrix">(FEM.Elements.Element.Element method)</a>
+        <ul>
+          <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.restartMatrix">(FEM.Elements.Element.Element method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Utils.html#FEM.Utils.polygonal.roundCorner">roundCorner() (in module FEM.Utils.polygonal)</a>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Utils.html#FEM.Utils.polygonal.roundCorner">roundCorner() (in module FEM.Utils.polygonal)</a>
 </li>
-      <li><a href="FEM.Solvers.html#FEM.Solvers.Lineal.Lineal.run">run() (FEM.Solvers.Lineal.Lineal method)</a>
+        <li><a href="FEM.Solvers.html#FEM.Solvers.Lineal.Lineal.run">run() (FEM.Solvers.Lineal.Lineal method)</a>
 
-      <ul>
-        <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.LoadControl.run">(FEM.Solvers.NoLineal.LoadControl method)</a>
+        <ul>
+          <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.LoadControl.run">(FEM.Solvers.NoLineal.LoadControl method)</a>
 </li>
-        <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.NonLinealSolver.run">(FEM.Solvers.NoLineal.NonLinealSolver method)</a>
+          <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.NonLinealSolver.run">(FEM.Solvers.NoLineal.NonLinealSolver method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-</tr></table>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.saveMesh">saveMesh() (FEM.Geometry.Geometry.Geometry method)</a>
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.saveMesh">saveMesh() (FEM.Geometry.Geometry.Geometry method)</a>
 
-      <ul>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D.saveMesh">(FEM.Geometry.Geometry1D.Geometry1D method)</a>
+        <ul>
+          <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D.saveMesh">(FEM.Geometry.Geometry1D.Geometry1D method)</a>
 </li>
-      </ul></li>
-      <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Serendipity.Serendipity">Serendipity (class in FEM.Elements.E2D.Serendipity)</a>
+        </ul></li>
+        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.Serendipity.Serendipity">Serendipity (class in FEM.Elements.E2D.Serendipity)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.setCbe">setCbe() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.setCbe">setCbe() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-      <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.setUe">setUe() (FEM.Elements.Element.Element method)</a>
+        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.setUe">setUe() (FEM.Elements.Element.Element method)</a>
 </li>
-      <li><a href="FEM.html#FEM.FEMLogger.FEMLogger.setup_logging">setup_logging() (FEM.FEMLogger.FEMLogger method)</a>
+        <li><a href="FEM.html#FEM.FEMLogger.FEMLogger.setup_logging">setup_logging() (FEM.FEMLogger.FEMLogger method)</a>
 </li>
-      <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.show">show() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.show">show() (FEM.Geometry.Geometry.Geometry method)</a>
 
-      <ul>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D.show">(FEM.Geometry.Geometry1D.Geometry1D method)</a>
+        <ul>
+          <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry1D.Geometry1D.show">(FEM.Geometry.Geometry1D.Geometry1D method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.html#FEM.Core.Core.solve">solve() (FEM.Core.Core method)</a>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.html#FEM.Core.Core.solve">solve() (FEM.Core.Core method)</a>
 
-      <ul>
-        <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.DirectIteration.solve">(FEM.Solvers.NoLineal.DirectIteration method)</a>
+        <ul>
+          <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.DirectIteration.solve">(FEM.Solvers.NoLineal.DirectIteration method)</a>
 </li>
-        <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.Newton.solve">(FEM.Solvers.NoLineal.Newton method)</a>
+          <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.Newton.solve">(FEM.Solvers.NoLineal.Newton method)</a>
 </li>
-      </ul></li>
-      <li><a href="FEM.html#FEM.Core.Core.solveES">solveES() (FEM.Core.Core method)</a>
+        </ul></li>
+        <li><a href="FEM.html#FEM.Core.Core.solveES">solveES() (FEM.Core.Core method)</a>
 </li>
-      <li><a href="FEM.html#FEM.Core.Core.solveFromArray">solveFromArray() (FEM.Core.Core method)</a>
+        <li><a href="FEM.html#FEM.Core.Core.solveFromArray">solveFromArray() (FEM.Core.Core method)</a>
 </li>
-      <li><a href="FEM.html#FEM.Core.Core.solveFromFile">solveFromFile() (FEM.Core.Core method)</a>
+        <li><a href="FEM.html#FEM.Core.Core.solveFromFile">solveFromFile() (FEM.Core.Core method)</a>
 </li>
-  </ul></td>
-</tr></table>
+    </ul></td>
+  </tr></table>
+</section>
 
-<h2 id="T">T</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.T">T() (FEM.Elements.Element.Element method)</a>
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.T">T() (FEM.Elements.Element.Element method)</a>
 </li>
-      <li>
+        <li>
     Test
 
-      <ul>
-        <li><a href="Test.html#module-Test">module</a>
+        <ul>
+          <li><a href="Test.html#module-Test">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     Test.test_Geometry
 
-      <ul>
-        <li><a href="Test.html#module-Test.test_Geometry">module</a>
+        <ul>
+          <li><a href="Test.html#module-Test.test_Geometry">module</a>
 </li>
-      </ul></li>
-      <li>
+        </ul></li>
+        <li>
     Test.test_Torsion2D
 
-      <ul>
-        <li><a href="Test.html#module-Test.test_Torsion2D">module</a>
+        <ul>
+          <li><a href="Test.html#module-Test.test_Torsion2D">module</a>
 </li>
-      </ul></li>
-      <li><a href="Test.html#Test.test_Geometry.TestGeometry.test_generateSegmentFromCoords">test_generateSegmentFromCoords() (Test.test_Geometry.TestGeometry method)</a>
+        </ul></li>
+        <li><a href="Test.html#Test.test_Geometry.TestGeometry.test_generateSegmentFromCoords">test_generateSegmentFromCoords() (Test.test_Geometry.TestGeometry method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="Test.html#Test.test_Torsion2D.TestTorsion2D.test_inertia_circle">test_inertia_circle() (Test.test_Torsion2D.TestTorsion2D method)</a>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="Test.html#Test.test_Torsion2D.TestTorsion2D.test_inertia_circle">test_inertia_circle() (Test.test_Torsion2D.TestTorsion2D method)</a>
 </li>
-      <li><a href="Test.html#Test.test_Torsion2D.TestTorsion2D.test_inertia_hollow_circle">test_inertia_hollow_circle() (Test.test_Torsion2D.TestTorsion2D method)</a>
+        <li><a href="Test.html#Test.test_Torsion2D.TestTorsion2D.test_inertia_hollow_circle">test_inertia_hollow_circle() (Test.test_Torsion2D.TestTorsion2D method)</a>
 </li>
-      <li><a href="Test.html#Test.test_Geometry.TestGeometry.test_meshRect">test_meshRect() (Test.test_Geometry.TestGeometry method)</a>
+        <li><a href="Test.html#Test.test_Geometry.TestGeometry.test_meshRect">test_meshRect() (Test.test_Geometry.TestGeometry method)</a>
 </li>
-      <li><a href="Test.html#Test.test_Geometry.TestGeometry">TestGeometry (class in Test.test_Geometry)</a>
+        <li><a href="Test.html#Test.test_Geometry.TestGeometry">TestGeometry (class in Test.test_Geometry)</a>
 </li>
-      <li><a href="Test.html#Test.test_Torsion2D.TestTorsion2D">TestTorsion2D (class in Test.test_Torsion2D)</a>
+        <li><a href="Test.html#Test.test_Torsion2D.TestTorsion2D">TestTorsion2D (class in Test.test_Torsion2D)</a>
 </li>
-      <li><a href="FEM.html#FEM.Torsion2D.Torsion2D">Torsion2D (class in FEM.Torsion2D)</a>
+        <li><a href="FEM.html#FEM.Torsion2D.Torsion2D">Torsion2D (class in FEM.Torsion2D)</a>
 </li>
-      <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.TriangularScheme.TriangularScheme">TriangularScheme (class in FEM.Elements.E2D.TriangularScheme)</a>
+        <li><a href="FEM.Elements.E2D.html#FEM.Elements.E2D.TriangularScheme.TriangularScheme">TriangularScheme (class in FEM.Elements.E2D.TriangularScheme)</a>
 </li>
-      <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.TS">TS() (FEM.Elements.Element.Element method)</a>
+        <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.TS">TS() (FEM.Elements.Element.Element method)</a>
 </li>
-  </ul></td>
-</tr></table>
+    </ul></td>
+  </tr></table>
+</section>
 
 
-
-           </div>
-          </div>
-          <footer>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Arturo Rodriguez.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
-        </div>
+        </article>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
 
-</body>
+        <div class="related-information">
+              Copyright &#169; 2021, Arturo Rodriguez |
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
 </html>
