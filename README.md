@@ -38,7 +38,6 @@ Avaliable equations:
 -   1D 1 Variable 1D Heat with convective border
 -   1D 2 Variable Euler Bernoulli Beams
 -   1D 3 Variable Non-linear Euler Bernoulli Beams
--   1D 2 Variable Timoshenko Beams [WIP]
 -   2D 1 Variable Torsion
 -   2D 1 Variable Poisson equation
 -   2D 1 Variable second order PDE
@@ -46,6 +45,7 @@ Avaliable equations:
 -   2D 2 Variable Plane Strees
 -   2D 2 Variable Plane Strees Orthotropic
 -   2D 2 Variable Plane Strain
+-   3D 3 variables per node isotropic elasticity
 
 Numerical Validation:
 
@@ -53,7 +53,6 @@ Numerical Validation:
 -   [ ] 1D 1 Variable 1D Heat with convective border
 -   [ ] 1D 2 Variable Euler Bernoulli Beams
 -   [ ] 1D 3 Variable Non-linear Euler Bernoulli Beams
--   [ ] 1D 2 Variable Timoshenko Beams [WIP]
 -   [x] 2D 1 Variable Torsion
 -   [ ] 2D 1 Variable 2D Heat with convective borders
 -   [x] 2D 2 Variable Plane Strees
@@ -161,8 +160,8 @@ Note: Don't forget the docstring!
     ```
 
     - Core: Solver
-    - Core: Numpy data
-    - Core: Matplotlib graphs
+    - Numpy: Numpy data
+    - Matplotlib: Matplotlib graphs
     - Tqdm: Progressbars
 
 2. Create a Python class with Core inheritance
@@ -195,19 +194,15 @@ Note: Don't forget the docstring!
         #Assign matrices to element
     ```
 
-A good example is the `PlaneStress` class
+A good example is the `PlaneStress` class in the `Elasticity2D.py` file.
 
 ## Roadmap
 
-1. Beam bending by Euler Bernoulli and Timoshenko equations
 2. 2D elastic plate theory
 3. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
 4. Transient analysis (Core modification)
-5. Elasticity in 3D (3D meshing and post process)
-6. Non-Lineal analysis for 1D equation (All cases)
 7. Non-Lineal for 2D equation (All cases)
 8. Testing and numerical validation (WIP)
- <!-- 10. Non-Local 2D? -->
 
 ## Example index:
 
