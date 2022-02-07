@@ -9,6 +9,7 @@ import matplotlib.path as mpltPath
 
 
 class Element2D(Element):
+
     """Create a 2D element
 
     Args:
@@ -38,8 +39,7 @@ class Element2D(Element):
             e.ny = delta[1]
 
     def draw(self) -> None:
-        """Create a graph of element
-        """
+        """Create a graph of element"""
 
         _z = self.domain
         _x, _p = self.T(_z.T)

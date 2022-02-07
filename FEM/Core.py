@@ -59,7 +59,7 @@ class Core():
         """Ensembling of equation system. This method use the element gdl
         and the element matrices. The element matrices degrees of fredom must
         match the dimension of the element gdl. For m>1 variables per node,
-        the gdl will be flattened. This ensure that the element matrices will always 
+        the gdl will be flattened. This ensure that the element matrices will always
         be a 2-D Numpy Array.
         """
         logging.info('Ensembling equation system...')
@@ -68,10 +68,13 @@ class Core():
             self.K[np.ix_(e.gdlm, e.gdlm)] += e.Ke
             self.F[np.ix_(e.gdlm)] += e.Fe
             self.Q[np.ix_(e.gdlm)] += e.Qe
-            try:
-                self.T[np.ix_(e.gdlm, e.gdlm)] += e.Te
-            except:
-                pass
+            if 'newton' in self.solver.type:
+                try:
+                    self.T[np.ix_(e.gdlm, e.gdlm)] += e.Te
+                except Exception as e:
+                    logging.error(
+                        "Impossible to access tangent matrix. Check tangent matrix creation in integration class.")
+                    raise e
         logging.info('Done!')
 
     def restartMatrix(self):
@@ -81,11 +84,12 @@ class Core():
         self.F[:, :] = 0.0
         self.Q[:, :] = 0.0
         self.S[:, :] = 0.0
-
-        try:
-            self.T[:, :] = 0.0
-        except:
-            pass
+        if 'newton' in self.solver.type:
+            try:
+                self.T[:, :] = 0.0
+            except Exception as e:
+                logging.error("Impossible to clear tangent matrix.")
+                raise e
 
     def borderConditions(self) -> None:
         """Assign border conditions to the system. 
@@ -112,12 +116,15 @@ class Core():
                 self.K[int(i[0]), :] = 0
                 self.K[:, int(i[0])] = 0
                 self.K[int(i[0]), int(i[0])] = 1
-                try:
-                    self.T[int(i[0]), :] = 0
-                    self.T[:, int(i[0])] = 0
-                    self.T[int(i[0]), int(i[0])] = 1
-                except:
-                    pass
+                if 'newton' in self.solver.type:
+                    try:
+                        self.T[int(i[0]), :] = 0
+                        self.T[:, int(i[0])] = 0
+                        self.T[int(i[0]), int(i[0])] = 1
+                    except Exception as e:
+                        logging.error("Impossible to access tangent matrix.")
+                        raise e
+
         self.S = self.S + self.F + self.Q
         for i in self.cbe:
             self.S[int(i[0])] = i[1]

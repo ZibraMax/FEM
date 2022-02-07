@@ -3,7 +3,6 @@ from FEM.Geometry.Delaunay import Delaunay
 from FEM.Torsion2D import Torsion2D
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import matplotlib.pyplot as plt
-import numpy as np
 
 coords = [[0, 0], [1, 0], [1, 1], [0, 1]]
 fillets = [{'start_segment': 3, 'end_segment': 0, 'r': 0.5, 'n': 10}]

@@ -1,5 +1,4 @@
-"""Define the structure of a non lineal finite element solver
-"""
+"""Define the structure of a non lineal finite element solver"""
 
 import numpy as np
 import logging

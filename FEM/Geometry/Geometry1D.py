@@ -1,5 +1,4 @@
-"""General geometry 1D class.
-"""
+"""General geometry 1D class."""
 
 
 import numpy as np

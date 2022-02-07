@@ -2,8 +2,6 @@ from tabnanny import verbose
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStressNonLocalSparse
-from FEM.Elasticity2D import PlaneStress
-from FEM.Geometry.Delaunay import Delaunay
 from FEM.Geometry.Geometry import Geometry
 
 
@@ -16,13 +14,6 @@ z1 = 0.5
 LR = 6*l
 P = 1
 a = 5
-# coords = np.array([[0, 0], [1, 0], [1, 1], [0, 1]])*a
-# params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.02', o=2)
-# geometria = Delaunay(coords, params, nvn=2, fast=True)
-# cb = geometria.cbFromSegment(3, 0, 1)
-# cb += geometria.cbFromSegment(3, 0, 2)
-# cb += geometria.cbFromSegment(1, u, 1)
-# geometria.setCbe(cb)
 
 
 geometria = Geometry.loadmsh('Mesh_tests/EnmalladoTesis.msh', fast=True)

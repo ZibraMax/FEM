@@ -1,12 +1,22 @@
+"""Creates a 1D beam element
+"""
 from .LinealElement import LinealElement
 import numpy as np
 
 
 class EulerBernoulliElement(LinealElement):
-    """docstring for EulerBernoulliElement
+    """Creates a 1D beam element
     """
 
-    def __init__(self, coords, gdl, n=2, nvn=2):
+    def __init__(self, coords, gdl, n=2, nvn=2) -> None:
+        """Creates a 1D beam element
+
+        Args:
+            coords (list): Beam coordiantes
+            gdl (list): Degrees of freedom
+            n (int, optional): Number of gauss points. Defaults to 2.
+            nvn (int, optional): Number of vairables per node. Defaults to 2.
+        """
         gdlcopy = gdl.copy()
         gdl[0, 1] = gdlcopy[1, 0]
         gdl[1, 0] = gdlcopy[0, 1]
@@ -19,7 +29,8 @@ class EulerBernoulliElement(LinealElement):
         self.n = 2*nvn
 
     def hermit(self, z: np.ndarray) -> np.ndarray:
-        """Calculates the shape functions of the lineal element of a given natural coordinates
+        """
+        Calculates the shape functions of the lineal element of a given natural coordinates
 
         Args:
             z (np.ndarray): Natural coordinates matrix

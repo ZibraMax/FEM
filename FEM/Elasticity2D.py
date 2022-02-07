@@ -17,20 +17,47 @@ from .Core import Core, Geometry, logging
 
 class PlaneStressOrthotropic(Core):
 
+    """Creates a plane stress problem with orthotropic formulation
+
+        Args:
+            geometry (Geometry): Input geometry
+            E1 (Tuple[float, list]): Young moduli in direction 1 (x)
+            E2 (Tuple[float, list]): Young moduli in direction 2 (y)
+            G12 (Tuple[float, list]): Shear moduli
+            v12 (Tuple[float, list]): Poisson moduli
+            t (Tuple[float, list]): Thickness
+            rho (Tuple[float, list], optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
+            fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+            fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+        """
+
     def __init__(self, geometry: Geometry, E1: Tuple[float, list], E2: Tuple[float, list], G12: Tuple[float, list], v12: Tuple[float, list], t: Tuple[float, list], rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
-        if type(t) == float or type(t) == int:
+        """Creates a plane stress problem with orthotropic formulation
+
+        Args:
+            geometry (Geometry): Input geometry
+            E1 (Tuple[float, list]): Young moduli in direction 1 (x)
+            E2 (Tuple[float, list]): Young moduli in direction 2 (y)
+            G12 (Tuple[float, list]): Shear moduli
+            v12 (Tuple[float, list]): Poisson moduli
+            t (Tuple[float, list]): Thickness
+            rho (Tuple[float, list], optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
+            fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+            fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+        """
+        if isinstance(t, float) or isinstance(t, int):
             t = [t]*len(geometry.elements)
-        if type(E1) == float or type(E1) == int:
+        if isinstance(E1, float) or isinstance(E1, int):
             E1 = [E1]*len(geometry.elements)
-        if type(E2) == float or type(E2) == int:
+        if isinstance(E2, float) or isinstance(E2, int):
             E2 = [E2]*len(geometry.elements)
-        if type(G12) == float or type(G12) == int:
+        if isinstance(G12, float) or isinstance(G12, int):
             G12 = [G12]*len(geometry.elements)
-        if type(v12) == float or type(v12) == int:
+        if isinstance(v12, float) or isinstance(v12, int):
             v12 = [v12]*len(geometry.elements)
         self.calculateMass = False
         if rho:
-            if type(rho) == float or type(rho) == int:
+            if isinstance(rho, int) or isinstance(rho, float):
                 self.rho = [rho]*len(geometry.elements)
                 self.calculateMass = True
         self.t = t
@@ -232,7 +259,8 @@ class PlaneStressOrthotropic(Core):
                 return sx, sy, sxy
 
     def profile(self, p0: list, p1: list, n: float = 100) -> None:
-        """Generate a profile between selected points
+        """
+        Generate a profile between selected points
 
         Args:
             p0 (list): start point of the profile [x0,y0]
@@ -379,8 +407,7 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
                 self.Vm += Me.flatten().tolist()
 
     def ensembling(self) -> None:
-        """Creation of the system sparse matrix. Force vector is ensembled in integration method
-        """
+        """Creation of the system sparse matrix. Force vector is ensembled in integration method"""
         logging.info('Ensembling equation system...')
         self.K = sparse.coo_matrix(
             (self.V, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tolil()
@@ -400,6 +427,7 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
 
 
 class PlaneStress(PlaneStressOrthotropic):
+
     """Create a Plain Stress problem
 
     Args:
@@ -428,6 +456,7 @@ class PlaneStress(PlaneStressOrthotropic):
 
 
 class PlaneStressSparse(PlaneStressOrthotropicSparse):
+
     """Create a Plain Stress problem
 
     Args:

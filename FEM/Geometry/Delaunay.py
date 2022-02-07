@@ -11,6 +11,7 @@ from ..Utils import roundCorner, giveCoordsCircle
 
 
 class Delaunay(Geometry):
+
     """Generate Delaunay triangulation using Triangle
 
     Args:

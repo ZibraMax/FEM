@@ -93,7 +93,6 @@ class QTriangular(Element2D, TriangularScheme):
         Returns:
             np.ndarray: Shape function evaluated in Z points
         """
-
         return np.array([
             2.0*(z[0]+z[1]-1.0)*(z[0]+z[1]-0.5),
             2.0*z[0]*(z[0]-0.5),

@@ -1,5 +1,4 @@
-"""Defines a general 2D element
-"""
+"""Defines a general 2D element"""
 
 
 from ..Element import Element

@@ -1,5 +1,4 @@
-"""Define a o2 serendipity element
-"""
+"""Define a o2 serendipity element"""
 
 
 from .Element2D import Element2D, np

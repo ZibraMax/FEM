@@ -1,11 +1,11 @@
-"""Generate a 1D Domain
-"""
+"""Generate a 1D Domain"""
 
 
 from .Geometry import Geometry, np
 
 
 class Lineal(Geometry):
+
     """Generate a evenly spaced elements domain
 
     Args:
