@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStress
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry
 # 11.7.1 Ed 3
 b = 120
 h = 160

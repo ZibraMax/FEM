@@ -1,7 +1,7 @@
 """Geometry tests"""
 
 from FEM.Utils import polygonal
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry
 import unittest
 import os
 import sys
@@ -43,5 +43,5 @@ if __name__ == '__main__':
         inspect.getfile(inspect.currentframe())))
     parentdir = os.path.dirname(currentdir)
     sys.path.insert(0, parentdir)
-    from FEM.Mesh.Geometry import Geometry
+    from FEM.Geometry.Geometry import Geometry
     unittest.main()

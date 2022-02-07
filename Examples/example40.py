@@ -1,5 +1,5 @@
 from FEM.EulerBernoulliBeam import EulerBernoulliBeam
-from FEM.Mesh.Lineal import Lineal
+from FEM.Geometry.Lineal import Lineal
 import numpy as np
 import matplotlib.pyplot as plt
 

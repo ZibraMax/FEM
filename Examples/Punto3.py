@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry
 from FEM.Poisson2D import Poisson2D
 phi = 0
 nodos = [[0.5, 0.0], [1.0, 0.0], [0.5, 0.5],

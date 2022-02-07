@@ -1,6 +1,6 @@
 from FEM.Elements import E1D
 from FEM.Elasticity2D import PlaneStressOrthotropic as pso
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry
 import matplotlib.pyplot as plt
 
 a = 120.0

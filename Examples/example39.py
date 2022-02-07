@@ -1,6 +1,6 @@
 from numpy.testing._private.nosetester import get_package_name
 from FEM.Torsion2D import Torsion2D
-from FEM.Mesh.Delaunay import Delaunay
+from FEM.Geometry.Delaunay import Delaunay
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import numpy as np
 import matplotlib.pyplot as plt

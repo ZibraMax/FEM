@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStress
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry
 
 a = 5
 u0 = 0.001

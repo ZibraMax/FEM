@@ -1,6 +1,6 @@
 import triangle
 from FEM.Heat2D import Heat2D
-from FEM.Mesh.Delaunay import Delaunay
+from FEM.Geometry.Delaunay import Delaunay
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import numpy as np
 import matplotlib.pyplot as plt

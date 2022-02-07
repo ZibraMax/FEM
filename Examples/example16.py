@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.PlaneStressNonLocal import PlaneStressNonLocal
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry
 
 E = 2.1*10**6
 v = 0.2

@@ -1,4 +1,4 @@
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry
 from FEM.Heat2D import Heat2D
 import matplotlib.pyplot as plt
 b = 4

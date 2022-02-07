@@ -9,7 +9,7 @@ from typing import Union
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
-from .Mesh import Geometry
+from .Geometry import Geometry
 import os
 from .Elements import *
 from .Solvers import *

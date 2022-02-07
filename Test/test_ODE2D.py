@@ -8,7 +8,7 @@ Tests
 
 """
 
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry
 from FEM.ODE2D import ODE2D
 import matplotlib.pyplot as plt
 import unittest
@@ -32,6 +32,6 @@ if __name__ == '__main__':
         inspect.getfile(inspect.currentframe())))
     parentdir = os.path.dirname(currentdir)
     sys.path.insert(0, parentdir)
-    from FEM.Mesh.Geometry import Geometry
-    from FEM.EDO2D import EDO2D
+    from FEM.Geometry.Geometry import Geometry
+    from FEM.ODE2D import ODE2D
     unittest.main()

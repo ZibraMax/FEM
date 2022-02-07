@@ -1,4 +1,4 @@
-from FEM.Mesh.Lineal import Lineal
+from FEM.Geometry.Lineal import Lineal
 from FEM.Heat1D import Heat1D
 
 L = 0.1

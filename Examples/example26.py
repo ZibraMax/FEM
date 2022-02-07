@@ -1,5 +1,5 @@
-from FEM.Mesh.Geometry import Geometry
-from FEM.Mesh.Delaunay import Delaunay
+from FEM.Geometry.Geometry import Geometry
+from FEM.Geometry.Delaunay import Delaunay
 from FEM.Torsion2D import Torsion2D
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import matplotlib.pyplot as plt

@@ -1,5 +1,5 @@
 from FEM.Heat2D import Heat2D
-from FEM.Mesh.Delaunay import Delaunay
+from FEM.Geometry.Delaunay import Delaunay
 import numpy as np
 import matplotlib.pyplot as plt
 # https://github.com/Samson-Mano/2D_Heat_transfer

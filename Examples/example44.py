@@ -1,5 +1,5 @@
 # %% Functions
-from FEM.Mesh.Delaunay import Delaunay
+from FEM.Geometry.Delaunay import Delaunay
 from FEM.Torsion2D import Torsion2D
 from FEM.Utils.polygonal import generatePolygon
 import numpy as np

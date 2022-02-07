@@ -56,7 +56,7 @@ A rotation angle of 1 is selected for all test cases.
 
 """
 
-from FEM.Mesh.Delaunay import Delaunay
+from FEM.Geometry.Delaunay import Delaunay
 from FEM.Utils.polygonal import giveCoordsCircle
 from FEM.Torsion2D import Torsion2D
 import matplotlib.path as mpltPath
@@ -159,7 +159,7 @@ if __name__ == '__main__':
         inspect.getfile(inspect.currentframe())))
     parentdir = os.path.dirname(currentdir)
     sys.path.insert(0, parentdir)
-    from FEM.Mesh.Delaunay import Delaunay
+    from FEM.Geometry.Delaunay import Delaunay
     from FEM.Torsion2D import Torsion2D
     from FEM.Utils.polygonal import giveCoordsCircle
     unittest.main()

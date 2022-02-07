@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.NonLinealExample import NonLinealSimpleEquation
-from FEM.Mesh.Lineal import Lineal
+from FEM.Geometry.Lineal import Lineal
 
 f0 = -1
 Q = 0

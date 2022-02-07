@@ -3,8 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStressNonLocalSparse
 from FEM.Elasticity2D import PlaneStress
-from FEM.Mesh.Delaunay import Delaunay
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Delaunay import Delaunay
+from FEM.Geometry.Geometry import Geometry
 
 
 E = 2.1*10**6

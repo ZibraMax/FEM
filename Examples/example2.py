@@ -3,8 +3,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Torsion2D import Torsion2D
-from FEM.Mesh.Delaunay import Delaunay
-from FEM.Mesh.Geometry import Geometry
+from FEM.Geometry.Delaunay import Delaunay
+from FEM.Geometry.Geometry import Geometry
 
 a = 0.3
 b = 0.3

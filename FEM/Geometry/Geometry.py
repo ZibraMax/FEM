@@ -668,7 +668,7 @@ class Geometry:
         cb += cbe.tolist()
         return cb
 
-    def cbeAllBorders(self, value: float, tol: float = 1*10**(-5)):
+    def cbeAllBorders(self, value: float, tol: float = 1*10**(-5)) -> None:
         """Set all segments border conditions to the specified value
 
         Args:
@@ -679,7 +679,15 @@ class Geometry:
             for i in range(self.nvn):
                 self.cbe += self.cbFromSegment(s, value, (i+1), tol)
 
-    def exportJSON(self, filename: str = None):
+    def exportJSON(self, filename: str = None) -> str:
+        """Export geometry definition as JSON file or JSON string
+
+        Args:
+            filename (str, optional): If given, a JSON file is created. Defaults to None.
+
+        Returns:
+            str: JSON string
+        """
         x = {
             "nodes": self.gdls,
             "dictionary": self.dictionary,
@@ -697,7 +705,15 @@ class Geometry:
         return y
 
     @staticmethod
-    def importJSON(filename: str):
+    def importJSON(filename: str) -> 'Geometry':
+        """Import geometry definition from JSON file
+
+        Args:
+            filename (str): Path to the JSON file
+
+        Returns:
+            Geometry: Generated JSON file
+        """
         with open(filename) as f:
             parsed = json.loads(f.readlines())
             dcc = parsed['dictionary']

@@ -1,4 +1,4 @@
-from FEM.Mesh.Delaunay import Delaunay
+from FEM.Geometry.Delaunay import Delaunay
 from FEM.Elasticity2D import PlaneStress
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import matplotlib.pyplot as plt
