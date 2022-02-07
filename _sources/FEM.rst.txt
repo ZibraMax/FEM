@@ -100,14 +100,6 @@ FEM.ODE2D module
    :undoc-members:
    :show-inheritance:
 
-FEM.PlaneStressNonLocal module
-------------------------------
-
-.. automodule:: FEM.PlaneStressNonLocal
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 FEM.Poisson2D module
 --------------------
 
