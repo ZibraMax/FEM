@@ -1,0 +1,117 @@
+FEM package
+===========
+
+.. automodule:: FEM
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   FEM.Elements
+   FEM.Geometry
+   FEM.Solvers
+   FEM.Utils
+
+Submodules
+----------
+
+FEM.Core module
+---------------
+
+.. automodule:: FEM.Core
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.EDO1D module
+----------------
+
+.. automodule:: FEM.EDO1D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.Elasticity2D module
+-----------------------
+
+.. automodule:: FEM.Elasticity2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.Elasticity3D module
+-----------------------
+
+.. automodule:: FEM.Elasticity3D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.EulerBernoulliBeam module
+-----------------------------
+
+.. automodule:: FEM.EulerBernoulliBeam
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.FEMLogger module
+--------------------
+
+.. automodule:: FEM.FEMLogger
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.Heat1D module
+-----------------
+
+.. automodule:: FEM.Heat1D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.Heat2D module
+-----------------
+
+.. automodule:: FEM.Heat2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.NonLinealExample module
+---------------------------
+
+.. automodule:: FEM.NonLinealExample
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.ODE2D module
+----------------
+
+.. automodule:: FEM.ODE2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.Poisson2D module
+--------------------
+
+.. automodule:: FEM.Poisson2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.Torsion2D module
+--------------------
+
+.. automodule:: FEM.Torsion2D
+   :members:
+   :undoc-members:
+   :show-inheritance:

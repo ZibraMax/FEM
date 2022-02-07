@@ -14,7 +14,7 @@ class Torsion2D(Core):
     The differential equation is:
 
     .. math::
-        -\frac{-1}{G}\\nabla^2\\Psi=2\\theta
+        -\\frac{-1}{G}\\nabla^2\\Psi=2\\theta
 
     Where:
 
