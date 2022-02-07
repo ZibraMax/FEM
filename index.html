@@ -324,7 +324,6 @@
 <li><p>1D 1 Variable 1D Heat with convective border</p></li>
 <li><p>1D 2 Variable Euler Bernoulli Beams</p></li>
 <li><p>1D 3 Variable Non-linear Euler Bernoulli Beams</p></li>
-<li><p>1D 2 Variable Timoshenko Beams [WIP]</p></li>
 <li><p>2D 1 Variable Torsion</p></li>
 <li><p>2D 1 Variable Poisson equation</p></li>
 <li><p>2D 1 Variable second order PDE</p></li>
@@ -332,6 +331,7 @@
 <li><p>2D 2 Variable Plane Strees</p></li>
 <li><p>2D 2 Variable Plane Strees Orthotropic</p></li>
 <li><p>2D 2 Variable Plane Strain</p></li>
+<li><p>3D 3 variables per node isotropic elasticity</p></li>
 </ul>
 <p>Numerical Validation:</p>
 <ul class="simple">
@@ -339,7 +339,6 @@
 <li><p>[ ] 1D 1 Variable 1D Heat with convective border</p></li>
 <li><p>[ ] 1D 2 Variable Euler Bernoulli Beams</p></li>
 <li><p>[ ] 1D 3 Variable Non-linear Euler Bernoulli Beams</p></li>
-<li><p>[ ] 1D 2 Variable Timoshenko Beams [WIP]</p></li>
 <li><p>[x] 2D 1 Variable Torsion</p></li>
 <li><p>[ ] 2D 1 Variable 2D Heat with convective borders</p></li>
 <li><p>[x] 2D 2 Variable Plane Strees</p></li>
@@ -446,8 +445,8 @@
 </div>
 <ul class="simple">
 <li><p>Core: Solver</p></li>
-<li><p>Core: Numpy data</p></li>
-<li><p>Core: Matplotlib graphs</p></li>
+<li><p>Numpy: Numpy data</p></li>
+<li><p>Matplotlib: Matplotlib graphs</p></li>
 <li><p>Tqdm: Progressbars</p></li>
 </ul>
 </li>
@@ -481,22 +480,18 @@
 </div>
 </li>
 </ol>
-<p>A good example is the <code class="docutils literal notranslate"><span class="pre">PlaneStress</span></code> class</p>
+<p>A good example is the <code class="docutils literal notranslate"><span class="pre">PlaneStress</span></code> class in the <code class="docutils literal notranslate"><span class="pre">Elasticity2D.py</span></code> file.</p>
 </section>
 </section>
 </section>
 <section id="roadmap">
 <h2>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic">
-<li><p>Beam bending by Euler Bernoulli and Timoshenko equations</p></li>
+<ol class="arabic simple">
 <li><p>2D elastic plate theory</p></li>
 <li><p>Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes</p></li>
 <li><p>Transient analysis (Core modification)</p></li>
-<li><p>Elasticity in 3D (3D meshing and post process)</p></li>
-<li><p>Non-Lineal analysis for 1D equation (All cases)</p></li>
 <li><p>Non-Lineal for 2D equation (All cases)</p></li>
-<li><p>Testing and numerical validation (WIP)</p>
-<!-- 10. Non-Local 2D? --></li>
+<li><p>Testing and numerical validation (WIP)</p></li>
 </ol>
 </section>
 <section id="example-index">
