@@ -13,7 +13,7 @@ Subpackages
    :maxdepth: 4
 
    FEM.Elements
-   FEM.Mesh
+   FEM.Geometry
    FEM.Solvers
    FEM.Utils
 
