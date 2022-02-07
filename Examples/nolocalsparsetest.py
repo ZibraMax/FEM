@@ -1,4 +1,3 @@
-from tabnanny import verbose
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStressNonLocalSparse
@@ -16,7 +15,8 @@ P = 1
 a = 5
 
 
-geometria = Geometry.loadmsh('Mesh_tests/EnmalladoTesis.msh', fast=True)
+geometria = Geometry.loadmsh(
+    'Examples/Mesh_tests/EnmalladoTesis.msh', fast=True)
 geometria.generateSegmentsFromCoords([0, 0], [a, 0])
 geometria.generateSegmentsFromCoords([a, 0], [a, a])
 geometria.generateSegmentsFromCoords([a, a], [0, a])
@@ -37,7 +37,6 @@ def af(l0, rho):
 
 O = PlaneStressNonLocalSparse(
     geometria, E, v, t, l, z1, Lr=6*l, af=af, verbose=True)
-O.geometry.mask = None
 O.solve()
 plt.show()
 

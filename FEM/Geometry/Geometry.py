@@ -1,7 +1,6 @@
 """General geometry class.
 """
 
-
 import numpy as np
 import json
 from ..Utils import isBetween, roundCorner, giveCoordsCircle, angleBetweenAngles
@@ -45,7 +44,6 @@ class Geometry:
         self.mask = None
         self.holes = None
         self.fillets = None
-        self.areas = []
         self.nvn = nvn
         self.dictionary = dictionary
         self.elements = []
@@ -57,10 +55,7 @@ class Geometry:
         self.centroids = []
         self.fast = fast
         self.initialize()
-        try:
-            self.centroidsAndAreas()
-        except:
-            pass
+        self.calculateCentroids()
 
     def maskFromSegments(self) -> None:
         """Create the display mask from geometry segments
@@ -86,16 +81,16 @@ class Geometry:
         Returns:
             list: Non local element dictionary
         """
-
+        print('Detecting non local elements')
         diccionariosnl = []
-        for i in range(len(self.dictionary)):
-            cxl, cyl = self.centroids[i]
+        for i in tqdm(range(len(self.dictionary)), unit='Elements'):
+            ci = self.centroids[i]
             linea = []
             linea.append(i)
             for j in range(len(self.dictionary)):
                 if not j == i:
-                    cxnl, cynl = self.centroids[j]
-                    d = ((cxl-cxnl)**2+(cyl-cynl)**2)**0.5
+                    cnl = self.centroids[j]
+                    d = np.linalg.norm(np.array(cnl)-np.array(ci))
                     if d <= lr:
                         linea.append(j)
             diccionariosnl.append(linea)
@@ -194,6 +189,8 @@ class Geometry:
         fillets = []
         holes = []
         mask = []
+        if len_mask == 0:
+            mask = None
         for _ in range(len_holes):
             holes.append(literal_eval(f.readline()))
         for _ in range(len_fillets):
@@ -417,23 +414,13 @@ class Geometry:
         f.close()
         print('File ' + filename + ' saved')
 
-    def centroidsAndAreas(self) -> None:
-        """Calculate elements centroids and areas
+    def calculateCentroids(self) -> None:
+        """Calculate elements centroids
         """
         for e in self.elements:
-            coords = e._coords
-            coords = np.array(coords.tolist() + [coords[0].tolist()])
-            area = 0
-            cx = 0
-            cy = 0
-            for j in range(len(coords)-1):
-                area += coords[j][0]*coords[j+1][1]-coords[j+1][0]*coords[j][1]
-                mult = (coords[j][0]*coords[j+1][1] -
-                        coords[j+1][0]*coords[j][1])
-                cx += (coords[j][0]+coords[j+1][0])*mult
-                cy += (coords[j][1]+coords[j+1][1])*mult
-            self.areas.append(np.abs(area/2))
-            self.centroids.append([cx/3/area, cy/3/area])
+            coords = np.array(e._coords)
+            centroid = np.average(coords, 0)
+            self.centroids.append(centroid.tolist())
 
     def setCbe(self, cbe: list) -> None:
         """This method have to be used to assign essential boundary conditions. Thes method prevents to assign duplicated border conditions

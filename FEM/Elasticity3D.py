@@ -274,8 +274,13 @@ class NonLocalElasticity(Elasticity):
         Elasticity.__init__(self, geometry, E, v, rho, fx, fy, fz, **kargs)
         self.l = l
         self.z1 = z1
+        self.z2 = 1.0-z1
+
         self.af = af
         self.Lr = Lr
+        nonlocals = self.geometry.detectNonLocal(Lr)
+        for e, dno in zip(self.elements, nonlocals):
+            e.enl = dno
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
@@ -343,7 +348,7 @@ class NonLocalElasticity(Elasticity):
             for inl in tqdm(e.enl, unit=' Nolocal'):
                 enl = self.elements[inl]
                 mnl = len(enl.gdl.T)
-                Knl = np.zeros([2*m, 2*mnl])
+                Knl = np.zeros([3*m, 3*mnl])
                 _xnl, _ = enl.T(enl.Z.T)
                 jacnl, dpznl = enl.J(enl.Z.T)
                 detjacnl = np.linalg.det(jacnl)
@@ -361,7 +366,7 @@ class NonLocalElasticity(Elasticity):
 
                     for knl in range(len(enl.Z)):
                         ro = np.linalg.norm(_x[k]-_xnl[knl])/self.l
-                        azn = self.af(self.l0, ro)
+                        azn = self.af(ro)
                         Bnl = np.array([
                             [*dpxnl[knl, 0, :], *o, *o],
                             [*o, *dpxnl[knl, 1, :], *o],
