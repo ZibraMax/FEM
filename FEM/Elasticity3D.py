@@ -47,13 +47,11 @@ class Elasticity(Core):
         for ee, e in enumerate(tqdm(self.elements, unit='Element')):
             m = len(e.gdl.T)
 
-            # Gauss points in global coordinates and Shape functions evaluated in gauss points
             _x, _p = e.T(e.Z.T)
-            # Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
             jac, dpz = e.J(e.Z.T)
             detjac = np.linalg.det(jac)
-            _j = np.linalg.inv(jac)  # Jacobian inverse
-            dpx = _j @ dpz  # Shape function derivatives in global coordinates
+            _j = np.linalg.inv(jac)
+            dpx = _j @ dpz
 
             E = self.E[ee]
             v = self.v[ee]
@@ -219,12 +217,11 @@ class Elasticity(Core):
         # return sx, sy, sxy
         pass
 
-    def profile(self, p0: list, p1: list, n: float = 100) -> None:
+    def profile(self, region: int, vn: list[int] = None, n: float = 100) -> None:
         """Generate a profile between selected points
 
         Args:
-            p0 (list): start point of the profile [x0,y0]
-            p1 (list): end point of the profile [xf,yf]
+            region (int): Geometry region 
             n (int, optional): NUmber of samples for graph. Defaults to 100.
 
         """
