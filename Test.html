@@ -225,18 +225,187 @@
 </dd></dl>
 </dd></dl>
 </section>
-<section id="test-test-ode2d-module">
-<h2>Test.test_ODE2D module<a class="headerlink" href="#test-test-ode2d-module" title="Permalink to this headline">¶</a></h2>
+<section id="module-Test.test_ODE2D">
+<span id="test-test-ode2d-module"></span><h2>Test.test_ODE2D module<a class="headerlink" href="#module-Test.test_ODE2D" title="Permalink to this headline">¶</a></h2>
+<section id="numerical-validation-of-the-ode2d-class">
+<h3>Numerical validation of the ODE2D Class<a class="headerlink" href="#numerical-validation-of-the-ode2d-class" title="Permalink to this headline">¶</a></h3>
+<section id="tests">
+<h4>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
+<dl class="py class">
+<dt class="sig sig-object py" id="Test.test_ODE2D.TestODE2D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_ODE2D.</span></span><span class="sig-name descname"><span class="pre">TestODE2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_ODE2D.TestODE2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Parial differential equations in 2D tests</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_ODE2D.TestODE2D.test_polinomyal_function">
+<span class="sig-name descname"><span class="pre">test_polinomyal_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_ODE2D.TestODE2D.test_polinomyal_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
 </section>
-<section id="test-test-planestress-module">
-<h2>Test.test_PlaneStress module<a class="headerlink" href="#test-test-planestress-module" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="module-Test.test_PlaneStress">
+<span id="test-test-planestress-module"></span><h2>Test.test_PlaneStress module<a class="headerlink" href="#module-Test.test_PlaneStress" title="Permalink to this headline">¶</a></h2>
+<section id="numerical-validation-of-the-planestress-class">
+<h3>Numerical validation of the PlaneStress Class<a class="headerlink" href="#numerical-validation-of-the-planestress-class" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h4>Tests<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>5 tests where made for validating the PlaneStress class.</p>
+<p>All of these 5 test are based in the same procedure. The objective is to compare the solution of the displacements profile in a cantilever beam.</p>
+</section>
+<section id="geometry">
+<h4>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h4>
+<p>The input geometry has 400 elements, 10 in y direction, 40 in x directions. The input geometry file can be generated using TestGeometry class.</p>
+<p>The beam geometrical properties are:</p>
+<ul class="simple">
+<li><p>b = 0.3 m</p></li>
+<li><p>h = 0.5 m</p></li>
+<li><p>L = 2 m</p></li>
+<li><p>E = 20000 KPa</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma=23.54\frac{kN}{m^3}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v=0.2\)</span></p></li>
+</ul>
+<p>All tests are compared whit the analitycal solution of the beam deflections.</p>
+<p>The results are obtained using the profile option of the package. The location of all profiles are in the centroid of the beam alog the y axis.</p>
+<p>The Plane Stress formulation include shear effects. So, It is needed to obtain analytical solutions that includes such effects. The easyest way is to obtain the analytical solution using the virtual work statement.</p>
+</section>
+<section id="virtual-work-procedure-for-a-cantilever-beam">
+<h4>Virtual work procedure for a cantilever beam<a class="headerlink" href="#virtual-work-procedure-for-a-cantilever-beam" title="Permalink to this headline">¶</a></h4>
+<p>The virtual work statement is useful for calculate the dispacements in a given point. The displacements with felxion and shear effects can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\hat{p}U=\int_{0}^{L} \frac{\hat{M}M}{EI} dx + \int_{0}^{L} \frac{\hat{V}V}{kAG} dx\]</div></div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{p}\)</span> is point load applied in the place where the displacement want to be calculated. The load magnitude is 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{M}\)</span> is the moment diagram produced by the load <span class="math notranslate nohighlight">\(\hat{p}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{V}\)</span> is the shear diagram produced by the load <span class="math notranslate nohighlight">\(\hat{p}\)</span>.</p></li>
+</ul>
+<p>For calculate the displacements in any point of the element lenght, the load <span class="math notranslate nohighlight">\(\hat{p}\)</span> have to be applied in a distance <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png"/></a>
+<figcaption>
+<p><span class="caption-text">Moment and shear diagram for virtual load.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Since the diagrams are only different from 0 in length z, the virtual work statement can be rewritten as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\hat{p}U=\int_{0}^{z} \frac{\hat{M}M}{EI} dx + \int_{0}^{z} \frac{\hat{V}V}{kAG} dx\]</div></div>
+<p><span class="math notranslate nohighlight">\(M\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are case dependent an these expresions will be developed for each test case.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_PlaneStress.</span></span><span class="sig-name descname"><span class="pre">TestPlaneStress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Plane Stress tests
+1. Uniform load applied as an uniform load in all elements.
+2. Uniform load applied as a external load in the superior elements of the beam.
+3. Point load applied in the beam lenght. The load is applied as a shear stress load.
+4. Point load applied in the beam lenght. The load is applied as point load in the corner node.
+5. Triangular load applied in the superior elements of the beam.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=PL\left(1-\frac{x}{L}\right)\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=P\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{P^2}{6EI}\left(3L-x\right)+\frac{Px}{kAG}\]</div></div>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_1.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_1.png"/></a>
+<figcaption>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=PL\left(1-\frac{x}{L}\right)\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=P\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{P^2}{6EI}\left(3L-x\right)+\frac{Px}{kAG}\]</div></div>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_2.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_2.png"/></a>
+<figcaption>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_triangular_3">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_triangular_3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_triangular_3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=\frac{-WL^2}{6}+\frac{LW}{2}x-\frac{x}{2}\left(Wx\left(1-\frac{x}{L}\right)\right)-\frac{2}{3}x\left(\frac{Wx^2}{2L}\right)\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=\frac{Wx^2}{2L}+Wx\left(1-\frac{x}{L}\right)-\frac{LW}{2}\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{Wx^2}{120LEI}\left(10L^3-10L^2x+5Lx^2-x^3\right)+\frac{Wx}{6kAGL}\left(x^2-3Lx+3L^2\right)\]</div></div>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_triangular_3.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_triangular_3.png"/></a>
+<figcaption>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_1">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=WLx-\frac{WL^2}{2}-\frac{Wx^2}{2}\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=W(L-x)\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{Wx^2}{24EI}\left(x^2+6L^2-4Lx\right)+\frac{W}{kAG}\left(Lx-\frac{x^2}{2}\right)\]</div></div>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_1.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_1.png"/></a>
+<figcaption>
+<p><span class="caption-text">Test result: FEM solution compared whit analytical solution</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_2">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=WLx-\frac{WL^2}{2}-\frac{Wx^2}{2}\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=W(L-x)\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{Wx^2}{24EI}\left(x^2+6L^2-4Lx\right)+\frac{W}{kAG}\left(Lx-\frac{x^2}{2}\right)\]</div></div>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_2.png"><img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_2.png"/></a>
+<figcaption>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+</dd></dl>
+</section>
+</section>
 </section>
 <section id="module-Test.test_Torsion2D">
 <span id="test-test-torsion2d-module"></span><h2>Test.test_Torsion2D module<a class="headerlink" href="#module-Test.test_Torsion2D" title="Permalink to this headline">¶</a></h2>
 <section id="numerical-validation-of-the-trosion2d-class">
 <h3>Numerical validation of the Trosion2D Class<a class="headerlink" href="#numerical-validation-of-the-trosion2d-class" title="Permalink to this headline">¶</a></h3>
-<section id="tests">
-<h4>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
+<section id="id2">
+<h4>Tests<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>2 tests where made for validating the Torsion2D class. The objective of the test is to calculate the calculating polar moment of inertia (J) of a section.</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/CS.png"><img alt="Problem statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/CS.png"/></a>
@@ -360,11 +529,25 @@ In this case, a shear modulus of 80000 is used for material elements and a shear
 <li><a class="reference internal" href="#">Test package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-Test.test_Geometry">Test.test_Geometry module</a></li>
-<li><a class="reference internal" href="#test-test-ode2d-module">Test.test_ODE2D module</a></li>
-<li><a class="reference internal" href="#test-test-planestress-module">Test.test_PlaneStress module</a></li>
+<li><a class="reference internal" href="#module-Test.test_ODE2D">Test.test_ODE2D module</a><ul>
+<li><a class="reference internal" href="#numerical-validation-of-the-ode2d-class">Numerical validation of the ODE2D Class</a><ul>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Test.test_PlaneStress">Test.test_PlaneStress module</a><ul>
+<li><a class="reference internal" href="#numerical-validation-of-the-planestress-class">Numerical validation of the PlaneStress Class</a><ul>
+<li><a class="reference internal" href="#id1">Tests</a></li>
+<li><a class="reference internal" href="#geometry">Geometry</a></li>
+<li><a class="reference internal" href="#virtual-work-procedure-for-a-cantilever-beam">Virtual work procedure for a cantilever beam</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-Test.test_Torsion2D">Test.test_Torsion2D module</a><ul>
 <li><a class="reference internal" href="#numerical-validation-of-the-trosion2d-class">Numerical validation of the Trosion2D Class</a><ul>
-<li><a class="reference internal" href="#tests">Tests</a></li>
+<li><a class="reference internal" href="#id2">Tests</a></li>
 <li><a class="reference internal" href="#calculating-polar-moment-of-inertia-j">Calculating polar moment of inertia (J)</a></li>
 <li><a class="reference internal" href="#hollow-shapes">Hollow shapes</a></li>
 </ul>
