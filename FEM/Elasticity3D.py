@@ -36,7 +36,9 @@ class Elasticity(Core):
         Core.__init__(self, geometry, sparse=True, **kargs)
 
         self.I = []
+        self.Im = []
         self.J = []
+        self.Jm = []
         self.V = []
         self.Vm = []
 
@@ -341,6 +343,9 @@ class NonLocalElasticity(Elasticity):
             for gdl in e.gdlm:
                 self.I += [gdl]*(3*m)
                 self.J += e.gdlm
+                self.Im += [gdl]*(3*m)
+                self.Jm += e.gdlm
+
             self.V += (Ke*self.z1).flatten().tolist()
             self.Vm += Me.flatten().tolist()
 
@@ -378,8 +383,17 @@ class NonLocalElasticity(Elasticity):
                         Knl += azn*(Bnl.T@C@B)*detjac[k] * \
                             e.W[k]*detjacnl[knl]*enl.W[knl]
                 for gdl in e.gdlm:
-                    self.I += [gdl]*(m+mnl)
+                    self.I += [gdl]*(3*m)
                     self.J += enl.gdlm
                 self.V += (Knl*self.z2).flatten().tolist()
 
                 # TODO detección de elementos No Locales
+    def ensembling(self) -> None:
+        """Creation of the system sparse matrix. Force vector is ensembled in integration method
+        """
+        logging.info('Ensembling equation system...')
+        self.K = sparse.coo_matrix(
+            (self.V, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tolil()
+        self.M = sparse.coo_matrix(
+            (self.Vm, (self.Im, self.Jm)), shape=(self.ngdl, self.ngdl)).tocsr()
+        logging.info('Done!')

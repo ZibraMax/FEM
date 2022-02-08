@@ -11,7 +11,6 @@ t = 0.5
 l = 0.1
 z1 = 0.5
 Lr = 6*l
-P = 1
 a = 5.0
 
 u0 = 0.001
@@ -20,7 +19,7 @@ gamma = 23.54/9.81
 
 
 def af(rho):
-    return np.exp(-rho)
+    return (1/(8*np.pi*l**3))*np.exp(-rho)  # No referencia, sacada a mano
 
 
 nx = 30
@@ -78,8 +77,6 @@ for i in range(len(coords)):
 for i in range(len(coords)):  # ATENCIÓN SE ESTAN COMPARANDO FLOTANTES TENER MUCHO CUIDADO!!!!
     if a == coords[i][0]:
         cbe += [[i*3, u0]]
-        cbe += [[i*3+1, u0]]
-        cbe += [[i*3+2, u0]]
 
 geometria.cbe = cbe
 
