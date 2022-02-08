@@ -41,5 +41,5 @@ O.solve()
 plt.show()
 
 _X, U1, U2, U3, U = O.profile([0, 0.019], [a, 0.019])
-np.savetxt('a2.csv', [_X, U1], delimiter=',')
+np.savetxt('a3.csv', [_X, U1], delimiter=',')
 plt.show()

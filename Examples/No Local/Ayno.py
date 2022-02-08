@@ -1,12 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from FEM.PlaneStressNonLocal import PlaneStressNonLocal
+from FEM.Elasticity2D import PlaneStressNonLocal
 from FEM.Geometry.Delaunay import Delaunay
 
 E = 2.1*10**6
 v = 0.2
 u = 0.001
-t = 1
+t = 0.5
 l = 0.1
 z1 = 0.5
 LR = 6*l

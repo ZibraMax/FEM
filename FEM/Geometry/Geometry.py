@@ -692,7 +692,7 @@ class Geometry:
         return y
 
     @staticmethod
-    def importJSON(filename: str) -> 'Geometry':
+    def importJSON(filename: str, **kargs) -> 'Geometry':
         """Import geometry definition from JSON file
 
         Args:
@@ -702,13 +702,13 @@ class Geometry:
             Geometry: Generated JSON file
         """
         with open(filename) as f:
-            parsed = json.loads(f.readlines())
+            parsed = json.loads(f.read())
             dcc = parsed['dictionary']
             nodes = parsed['nodes']
             types = parsed['types']
             nvn = parsed['nvn']
             regions = parsed['regions']
-            o = Geometry(dcc, nodes, types, nvn, regions)
+            o = Geometry(dcc, nodes, types, nvn, regions, **kargs)
             o.cbe = parsed['ebc']
             o.cbn = parsed['nbc']
             return o

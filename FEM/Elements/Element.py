@@ -39,11 +39,6 @@ class Element():
         self.properties = {'load_x': [], 'load_y': []}
         self.intBorders = False
         if not self.border and not self.fast:
-            # TODO Esta vaina debería eliminarse.
-            # Los elementos no tienen porque guardar.
-            # Sus matrices y vectores. Esto gasta memoria.
-            # Las matrices y vectores solo se estan usando para ensamblar y
-            # eso se puede hacer directamente al calcular las matrices.
             self.Ke = np.zeros([self.n, self.n])
             self.Fe = np.zeros([self.n, 1])
             self.Qe = np.zeros([self.n, 1])
@@ -138,16 +133,14 @@ class Element():
             np.ndarray: Arrays of coordinates, solutions and second variables solutions.
         """
 
-        # TODO hacer una comprobación de frontera para evitar errores
         _z = self.domain
         if domain == 'gauss-points':
             _z = self.Z
         _x, _p = self.T(_z.T)
         if SVSolution:
-            j, dpz = self.J(_z.T)  # TODO Revisar con Reddy
+            j, dpz = self.J(_z.T)
             dpx = np.linalg.inv(j) @ dpz
             # print((self.Ue @ np.transpose(dpx,axes=[0,2,1])).shape)
-            # TODO REVISAR VS
             return _x, self.Ue@_p.T, self.Ue @ np.transpose(dpx, axes=[0, 2, 1])
         return _x, self.Ue@_p.T
 
@@ -162,12 +155,10 @@ class Element():
             np.ndarray: Arrays of coordinates, solutions and second variables solutions.
         """
 
-        # TODO hacer una comprobación de frontera para evitar errores
         _x, _p = self.T(Z)
         if SVSolution:
-            j, dpz = self.J(Z)  # TODO Revisar con Reddy
+            j, dpz = self.J(Z)
             dpx = np.linalg.inv(j) @ dpz
-            # TODO REVISAR VS
             return _x, self.Ue@_p.T, self.Ue @ np.transpose(dpx, axes=[0, 2, 1])
         return _x, self.Ue@_p.T
 
@@ -178,7 +169,6 @@ class Element():
             U(np.ndarray): Global solution
         """
 
-        # TODO hacer una comprobación de frontera para evitar errores
         for i in range(len(self.gdl)):
             self.Ue[i] = U[np.ix_(self.gdl[i])].flatten()
         n = len(self._coords)

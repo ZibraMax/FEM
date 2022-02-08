@@ -79,7 +79,7 @@ for i in range(len(coords)):  # ATENCIÓN SE ESTAN COMPARANDO FLOTANTES TENER MU
         cbe += [[i*3, u0]]
 
 geometria.cbe = cbe
-
+geometria.exportJSON('3DNonLocal.json')
 O = NonLocalElasticity(geometria, E, v, gamma, l, z1, Lr, af, verbose=True)
 arr = []
 for e in O.elements:
