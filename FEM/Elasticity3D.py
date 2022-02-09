@@ -8,6 +8,8 @@ from tqdm import tqdm
 from scipy import sparse
 from scipy.sparse.linalg import spsolve
 
+from .Elements.E2D import Quadrilateral
+
 from .Core import Core, Geometry, logging
 
 
@@ -197,36 +199,24 @@ class Elasticity(Core):
         #     ax2.fill(Xs, Ys, color='white', zorder=30)
         #     ax3.fill(Xs, Ys, color='white', zorder=30)
 
-    def giveStressPoint(self, X: np.ndarray) -> Tuple[tuple, None]:
-        """Calculates the stress in a given set of points.
+    def profile(self, region: list[float], n: float = 10) -> None:
+        coords = np.array(region)
+        gdl = np.array([[-1]*len(coords)])
+        e = Quadrilateral(coords, gdl, n)
+        _x, _p = e.T(e.domain.T)
+        valuesU = []
+        valuesDU = []
+        for x in tqdm(_x, unit='point'):
+            for e in self.elements:
+                if e.isInside([x])[0]:
+                    np.array([[1.3, 2.5, 3.5], [1.5, 2.6, 8.5]])
+                    z = e.inverseMapping(x.reshape([3, 1]))
+                    xx, u, du = e.giveSolutionPoint(z, True)
+                    valuesU += [u]
+                    valuesDU += [du]
 
-        Args:
-            X (np.ndarray): Points to calculate the Stress. 2D Matrix. with 2 rows. First row is an array of 1 column with X coordinate. Second row is an array of 1 column with Y coordinate
+        return _x, np.array(valuesU), np.array(valuesDU)
 
-        Returns:
-            tuple or None: Tuple of stress (:math:`\sigma_x,\sigma_y,\sigma_{xy}`) if X,Y exists in domain.
-        """
-        # for ee, e in enumerate(self.elements):
-        #     if e.isInside(X.T[0]):
-        #         z = e.inverseMapping(np.array([X.T[0]]).T)
-        #         _, _, du = e.giveSolutionPoint(z, True)
-        #         # TODO Arreglar calculo de esfuerzos para PlaneStrain
-        #         sx = (self.C11[ee]*du[:, 0, 0] +
-        #               self.C12[ee]*du[:, 1, 1]).tolist()
-        #         sy = (self.C12[ee]*du[:, 0, 0] +
-        #               self.C11[ee]*du[:, 1, 1]).tolist()
-        #         sxy = (self.C66[ee]*(du[:, 0, 1]+du[:, 1, 0])).tolist()
-        # return sx, sy, sxy
-        pass
-
-    def profile(self, region: int, vn: list[int] = None, n: float = 100) -> None:
-        """Generate a profile between selected points
-
-        Args:
-            region (int): Geometry region 
-            n (int, optional): NUmber of samples for graph. Defaults to 100.
-
-        """
         pass
         # _x = np.linspace(p0[0], p1[0], n)
         # _y = np.linspace(p0[1], p1[1], n)

@@ -98,7 +98,7 @@ class Element():
         """
 
         tol = 1*10**(-6)
-        zi = np.zeros(x0.shape)+0.1
+        zi = np.zeros(x0.shape)+0.25
         for _ in range(n):
             xi = x0 - self.T(zi)[0].T
             _J = np.linalg.inv(self.J(zi)[0])
