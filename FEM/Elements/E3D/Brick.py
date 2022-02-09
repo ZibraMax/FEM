@@ -2,6 +2,7 @@
 """
 
 
+from ..E2D.Quadrilateral import Quadrilateral
 from .Element3D import Element3D, np
 from .BrickScheme import BrickScheme
 
@@ -11,6 +12,14 @@ class Brick(Element3D, BrickScheme):
     def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 3, **kargs) -> None:
 
         coords = np.array(coords)
+        self.faces = [
+            [0, 1, 5, 4],
+            [1, 2, 6, 5],
+            [4, 5, 6, 7],
+            [3, 2, 1, 0],
+            [2, 3, 7, 6],
+            [4, 7, 3, 0]]
+        self.face_element = Quadrilateral
 
         Element3D.__init__(self, coords, coords, gdl, **kargs)
         BrickScheme.__init__(self, n)
@@ -24,6 +33,7 @@ class Brick(Element3D, BrickScheme):
         Returns:
             np.ndarray: Shape function evaluated in Z points
         """
+
         z = _z[0]
         n = _z[1]
         g = _z[2]

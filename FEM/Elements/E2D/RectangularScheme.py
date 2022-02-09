@@ -34,5 +34,6 @@ class RectangularScheme():
 
         self.Z = np.array(self.Z)
         self.W = np.array(self.W)
+        self.center = np.array([[0.0, 0.0]])
         self.domain = np.array(
             [[-1, -1], [1, -1], [1, 1], [-1, 1]] + self.Z.tolist())

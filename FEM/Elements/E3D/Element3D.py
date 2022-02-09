@@ -59,25 +59,7 @@ class Element3D(Element):
     def jacobianGraph(self) -> None:
         """Create the determinant jacobian graph
         """
-
-        # _z = self.domain
-        # _x, _p = self.T(_z.T)
-        # _j = self.J(_z.T)[0]
-        # __j = np.linalg.det(_j)
-        # fig = plt.figure()
-        # ax = fig.add_subplot(projection='3d')
-        # l = []
-        # surf = ax.plot_trisurf(*_x.T, __j, cmap='magma')
-        # surf._facecolors2d = surf._facecolors3d
-        # surf._edgecolors2d = surf._edgecolors3d
-        # l.append('Element')
-        # l.append('Nodes')
-        # l.append(r'$|J|$')
-        # cbar = fig.colorbar(surf)
-        # __coords = np.array(self._coords.tolist()+[self._coords[0].tolist()]).T
-        # ax.plot(*__coords, [0]*len(__coords.T), '-', color='black')
-        # ax.plot(*self.coords.T, [0]*len(self.coords), 'o', color='blue')
-        # ax.legend(l)
+        pass
 
     def isInside(self, x: np.ndarray) -> np.ndarray:
         """Test if a given points is inside element domain
@@ -85,9 +67,23 @@ class Element3D(Element):
         Args:
             x (np.ndarray): Point to be tested
 
-        # Returns:
-        #     np.ndarray: Bolean array of test result
-        # """
-        # path = mpltPath.Path(self._coords)
-        # inside2 = path.contains_points([x])
-        # return inside2[0]
+        Returns:
+            np.ndarray: Bolean array of test result
+        """
+        rest = [True]*len(x)
+        i = -1
+        for p in x:
+            i += 1
+            for f in self.faces:
+                coords = self.coords[np.ix_(f)]
+                gdl = np.array([[-1]*len(coords)])
+                e = self.face_element(coords, gdl)
+                _x, _p = e.T(e.center.T)
+                _j, _dp = e.J(e.center.T)
+                normal = np.cross(_j[:, 0, :].T, _j[:, 1, :].T, axis=0)
+                vector = p - _x[0]
+                res = np.dot(vector, normal.flatten())
+                if res > 0:
+                    rest[i] = False
+                    break
+        return rest

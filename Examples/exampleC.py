@@ -24,7 +24,7 @@ def af(rho):
 
 nx = 30
 ny = 30
-nz = 6
+nz = 1
 
 _a = a
 _b = a
@@ -79,18 +79,17 @@ for i in range(len(coords)):  # ATENCIÓN SE ESTAN COMPARANDO FLOTANTES TENER MU
         cbe += [[i*3, u0]]
 
 geometria.cbe = cbe
-geometria.exportJSON('3DNonLocal.json')
 O = NonLocalElasticity(geometria, E, v, gamma, l, z1, Lr, af, verbose=True)
 arr = []
 for e in O.elements:
     arr += [e.enl]
 # np.savetxt('nolocales.csv', arr, delimiter=',')
 O.solve()
-y = O.geometry.exportJSON()
-pjson = json.loads(y)
-pjson["disp_field"] = O.U.tolist()
-y = json.dumps(pjson)
-with open("exported.json", "w") as f:
-    f.write(y)
-np.savetxt('a.csv', O.U, delimiter=',', fmt='%s')
+# y = O.geometry.exportJSON()
+# pjson = json.loads(y)
+# pjson["disp_field"] = O.U.tolist()
+# y = json.dumps(pjson)
+# with open("exported.json", "w") as f:
+#     f.write(y)
+# np.savetxt('a.csv', O.U, delimiter=',', fmt='%s')
 a = 0

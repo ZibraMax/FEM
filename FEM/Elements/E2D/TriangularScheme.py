@@ -46,4 +46,5 @@ class TriangularScheme():
         W = [W0, W1, W1, W1, W2, W2, W2]
         self.Z = np.array([X, Y]).T
         self.W = np.array(W)
+        self.center = np.array([[0.25, 0.25]])
         self.domain = np.array([[0, 0], [1, 0], [0, 1]] + self.Z.tolist())
