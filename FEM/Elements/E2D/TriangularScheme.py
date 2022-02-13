@@ -12,7 +12,7 @@ class TriangularScheme():
         n (int): Number of gauss points
     """
 
-    def __init__(self, n: int) -> None:
+    def __init__(self, n: int, **kargs) -> None:
         """Generate a triangular integration scheme
 
         Args:

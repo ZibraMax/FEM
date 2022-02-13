@@ -234,6 +234,15 @@ class Geometry:
                 element = CubicElement(coords, gdl, fast=self.fast)
             elif self.types[i] == 'B1V':
                 element = Brick(coords, gdl, fast=self.fast)
+
+            if i > 1 and isinstance(element, self.elements[-1].__class__):
+                _p = self.elements[-1]._p
+                dpz = self.elements[-1].dpz
+            else:
+                _p = element.psis(element.Z.T)
+                dpz = element.dpsis(element.Z.T).T
+            element.fastInit(_p, dpz)
+
             self.elements[i] = element
         print('Done!')
 

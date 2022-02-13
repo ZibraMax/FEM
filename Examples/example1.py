@@ -16,6 +16,7 @@ coords = [[1, 1], [3, 2], [3.5, 3], [0.5, 4], [2, 1.5],
           [3.25, 2.5], [(3.5+.5)/2, 3.5], [(0.5+1)/2, 5/2]]
 gdl = np.array([[1, 2, 3, 4, 5, 6, 7, 8]])
 eRS = Serendipity(coords, gdl)
+eRS2 = Serendipity(coords, gdl)
 ELEMENTOS.append(eRS)
 
 coords = [[1, 1], [3, 2], [3.5, 3], [0.5, 4]]

@@ -46,7 +46,7 @@ class Quadrilateral(Element2D, RectangularScheme):
         self.borders = [e1, e2, e3, e4]
 
         Element2D.__init__(self, coords, coords, gdl, **kargs)
-        RectangularScheme.__init__(self, n)
+        RectangularScheme.__init__(self, n, **kargs)
 
     @classmethod
     def description(self):

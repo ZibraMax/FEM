@@ -22,7 +22,7 @@ class Brick(Element3D, BrickScheme):
         self.face_element = Quadrilateral
 
         Element3D.__init__(self, coords, coords, gdl, **kargs)
-        BrickScheme.__init__(self, n)
+        BrickScheme.__init__(self, n, **kargs)
 
     def psis(self, _z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates

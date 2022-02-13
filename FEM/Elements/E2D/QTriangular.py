@@ -44,7 +44,7 @@ class QTriangular(Element2D, TriangularScheme):
 
         _coords = np.array([coords[i] for i in range(3)])
         Element2D.__init__(self, coords, _coords, gdl, **kargs)
-        TriangularScheme.__init__(self, n)
+        TriangularScheme.__init__(self, n, **kargs)
 
     @classmethod
     def description(self):

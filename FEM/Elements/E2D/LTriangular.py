@@ -40,7 +40,7 @@ class LTriangular(Element2D, TriangularScheme):
 
         self.borders = [e1, e2, e3]
         Element2D.__init__(self, coords, coords, gdl, **kargs)
-        TriangularScheme.__init__(self, n)
+        TriangularScheme.__init__(self, n, **kargs)
 
     @classmethod
     def description(self):

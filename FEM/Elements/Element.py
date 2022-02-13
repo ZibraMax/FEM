@@ -44,6 +44,20 @@ class Element():
             self.Qe = np.zeros([self.n, 1])
         self.Ue = np.zeros(self.gdl.shape)
 
+        self._x = None
+        self._p = None
+        self.detjac = None
+        self.dpx = None
+        self.dpz = None
+
+    def fastInit(self, _p, dpz):
+        self._p = _p
+        self.dpz = dpz
+        self._x, _ = self.T(self.Z.T)
+        jac, _ = self.J(self.Z.T)
+        self.detjac = np.linalg.det(jac)
+        self.dpx = np.linalg.solve(jac, self.dpz)
+
     @classmethod
     def description(self):
         """Creates the elemetn description
@@ -71,8 +85,9 @@ class Element():
         Returns:
             np.ndarray: Global coordinates matrix
         """
-
-        p = self.psis(z)
+        p = self._p
+        if self._p is None:
+            p = self.psis(z)
         return p@self.coords, p
 
     def TS(self, z):
@@ -119,8 +134,9 @@ class Element():
         Returns:
             np.ndarray: Jacobian's matrices
         """
-
-        dpsis = self.dpsis(z).T
+        dpsis = self.dpz
+        if self.dpz is None:
+            dpsis = self.dpsis(z).T
         return dpsis @ self.coords, dpsis
 
     def giveSolution(self, SVSolution: bool = False, domain: str = 'domain') -> np.ndarray:

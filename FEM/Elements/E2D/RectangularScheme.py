@@ -12,7 +12,7 @@ class RectangularScheme():
         n (int): Number of gauss points
     """
 
-    def __init__(self, n: int) -> None:
+    def __init__(self, n: int, **kargs) -> None:
         """Generates a rectangular integration scheme
 
         Args:
