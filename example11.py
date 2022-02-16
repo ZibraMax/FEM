@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from FEM.Elasticity2D import PlaneStress
+from FEM.Elasticity2D import PlaneStress, PlaneStressSparse
 from FEM.Geometry.Geometry import Geometry
 
 E = 21000000.0  # MPa
@@ -17,7 +17,7 @@ cbe += geometria.cbFromSegment(3, 0, 1)
 cbe += geometria.cbFromSegment(3, 0, 2)
 geometria.cbe = cbe
 geometria.exportJSON('beam_geometry.json')
-O = PlaneStress(geometria, E, v, b, fy=lambda x: -gamma*b)
+O = PlaneStress(geometria, E, v, b, fy=lambda x: -gamma*b,verbose=True)
 O.geometry.mask = None
 O.solve()
 np.savetxt('U_1.csv', O.U, delimiter=',')
