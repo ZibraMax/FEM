@@ -269,29 +269,6 @@
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.cbOnHole">
-<span class="sig-name descname"><span class="pre">cbOnHole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ea</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.cbOnHole" title="Permalink to this definition">#</a></dt>
-<dd><p>Generate a list of border conditions from specified hole.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>hole</strong> (<em>int</em>) – Hole index in wich load will be applied</p></li>
-<li><p><strong>value</strong> (<em>float</em>) – Value of the bc</p></li>
-<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number, starts with 1. Defaults to 1.</p></li>
-<li><p><strong>sa</strong> (<em>float</em><em>, </em><em>optional</em>) – Start face angle. Defaults to 0.</p></li>
-<li><p><strong>ea</strong> (<em>float</em><em>, </em><em>optional</em>) – Finish face angle. Defaults to <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
-<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>List of border conditions that can be concatenated or assigned to the geometry</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.cbeAllBorders">
 <span class="sig-name descname"><span class="pre">cbeAllBorders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.cbeAllBorders" title="Permalink to this definition">#</a></dt>
 <dd><p>Set all segments border conditions to the specified value</p>
@@ -337,43 +314,9 @@
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.generateBCFromCoords">
-<span class="sig-name descname"><span class="pre">generateBCFromCoords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.generateBCFromCoords" title="Permalink to this definition">#</a></dt>
-<dd><p>Generates border conditions by coordinates. The border condition is applied to the nearest node</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>float</em>) – X coordinate of point</p></li>
-<li><p><strong>y</strong> (<em>float</em>) – Y coordinate of point</p></li>
-<li><p><strong>value</strong> (<em>float</em><em>, </em><em>optional</em>) – Value of the border condition. Defaults to 0.</p></li>
-<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number. The first variable is 1. Defaults to 1.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Matrix of border coordinates that can be concatenated</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.generateElements">
 <span class="sig-name descname"><span class="pre">generateElements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.generateElements" title="Permalink to this definition">#</a></dt>
 <dd><p>Generate elements structure</p>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.generateSegmentsFromCoords">
-<span class="sig-name descname"><span class="pre">generateSegmentsFromCoords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.generateSegmentsFromCoords" title="Permalink to this definition">#</a></dt>
-<dd><p>Generates a geometry segment by specified coordinates</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p0</strong> (<em>list</em>) – Segment start point</p></li>
-<li><p><strong>p1</strong> (<em>list</em>) – Segment end point</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.giveElementsOfSegment">
@@ -390,7 +333,7 @@
 <dd class="field-even"><p>List of elements in the specified segment</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>lsit</p>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
@@ -435,74 +378,6 @@
 <dd><p>Calculates the total number of GDL’s and generates the elements structure</p>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.loadGiDMsh">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">loadGiDMsh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.loadGiDMsh" title="Permalink to this definition">#</a></dt>
-<dd><p>Load geometry from GiD msh file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Path to GiD file</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result geometry</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry">Geometry</a></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.loadOnHole">
-<span class="sig-name descname"><span class="pre">loadOnHole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ea</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.loadOnHole" title="Permalink to this definition">#</a></dt>
-<dd><p>Assign loads over a hole.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>hole</strong> (<em>int</em>) – Hole index in wich load will be applied</p></li>
-<li><p><strong>sa</strong> (<em>float</em><em>, </em><em>optional</em>) – Start face angle. Defaults to 0.</p></li>
-<li><p><strong>ea</strong> (<em>float</em><em>, </em><em>optional</em>) – Finish face angle. Defaults to <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
-<li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function x component. Defaults to None.</p></li>
-<li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function y component. Defaults to None.</p></li>
-<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.loadOnSegment">
-<span class="sig-name descname"><span class="pre">loadOnSegment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.loadOnSegment" title="Permalink to this definition">#</a></dt>
-<dd><p>Assign a load over a geometry segment.</p>
-<p>The start point of segment is the 0 point of load
-The end point of segment is the end point of load</p>
-<p>Load must be defined as a function (normal or lambda)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>segment</strong> (<em>int</em>) – Segment in wich load will be applied</p></li>
-<li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function x component. Defaults to None.</p></li>
-<li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function y component. Defaults to None.</p></li>
-<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.loadOnSegmentVF">
-<span class="sig-name descname"><span class="pre">loadOnSegmentVF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.loadOnSegmentVF" title="Permalink to this definition">#</a></dt>
-<dd><p>Assign a load over a geometry segment.</p>
-<p>The start point of segment is the 0 point of load
-The end point of segment is the end point of load</p>
-<p>Load must be defined as a function (normal or lambda)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>segment</strong> (<em>int</em>) – Segment in wich load will be applied</p></li>
-<li><p><strong>f</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function. Defaults to None.</p></li>
-<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.loadmsh">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">loadmsh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.loadmsh" title="Permalink to this definition">#</a></dt>
 <dd><p>Load geometry from previously generated MSH file</p>
@@ -545,20 +420,8 @@ The end point of segment is the end point of load</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.show">
-<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bolita</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_segs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_bc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_bc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.show" title="Permalink to this definition">#</a></dt>
-<dd><p>Create a geometry graph</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>texto</strong> (<em>int</em><em>, </em><em>optional</em>) – Text size. Defaults to 10.</p></li>
-<li><p><strong>bolita</strong> (<em>int</em><em>, </em><em>optional</em>) – Node size. Defaults to 0.</p></li>
-<li><p><strong>draw_segs</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw or not draw the segments. Defaults to True.</p></li>
-<li><p><strong>draw_labels</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw or not draw element labels. Defaults to False.</p></li>
-<li><p><strong>draw_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw border conditions. Defaults to False.</p></li>
-<li><p><strong>label_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw labels on border conditions. Defaults to False.</p></li>
-</ul>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.show" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a geometry graph</p>
 </dd></dl>
 </dd></dl>
 </section>
@@ -624,6 +487,155 @@ The end point of segment is the end point of load</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-FEM.Geometry.Geometry2D">
+<span id="fem-geometry-geometry2d-module"></span><h2>FEM.Geometry.Geometry2D module<a class="headerlink" href="#module-FEM.Geometry.Geometry2D" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry2D.Geometry2D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry2D.</span></span><span class="sig-name descname"><span class="pre">Geometry2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry2D.Geometry2D" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Geometry.Geometry.Geometry</span></code></a></p>
+<p>Creates a 2D geometry</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry2D.Geometry2D.cbOnHole">
+<span class="sig-name descname"><span class="pre">cbOnHole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ea</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry2D.Geometry2D.cbOnHole" title="Permalink to this definition">#</a></dt>
+<dd><p>Generate a list of border conditions from specified hole.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hole</strong> (<em>int</em>) – Hole index in wich load will be applied</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – Value of the bc</p></li>
+<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number, starts with 1. Defaults to 1.</p></li>
+<li><p><strong>sa</strong> (<em>float</em><em>, </em><em>optional</em>) – Start face angle. Defaults to 0.</p></li>
+<li><p><strong>ea</strong> (<em>float</em><em>, </em><em>optional</em>) – Finish face angle. Defaults to <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of border conditions that can be concatenated or assigned to the geometry</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry2D.Geometry2D.generateBCFromCoords">
+<span class="sig-name descname"><span class="pre">generateBCFromCoords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry2D.Geometry2D.generateBCFromCoords" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates border conditions by coordinates. The border condition is applied to the nearest node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – X coordinate of point</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Y coordinate of point</p></li>
+<li><p><strong>value</strong> (<em>float</em><em>, </em><em>optional</em>) – Value of the border condition. Defaults to 0.</p></li>
+<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number. The first variable is 1. Defaults to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Matrix of border coordinates that can be concatenated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry2D.Geometry2D.generateSegmentsFromCoords">
+<span class="sig-name descname"><span class="pre">generateSegmentsFromCoords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry2D.Geometry2D.generateSegmentsFromCoords" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates a geometry segment by specified coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p0</strong> (<em>list</em>) – Segment start point</p></li>
+<li><p><strong>p1</strong> (<em>list</em>) – Segment end point</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry2D.Geometry2D.loadOnHole">
+<span class="sig-name descname"><span class="pre">loadOnHole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ea</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry2D.Geometry2D.loadOnHole" title="Permalink to this definition">#</a></dt>
+<dd><p>Assign loads over a hole.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hole</strong> (<em>int</em>) – Hole index in wich load will be applied</p></li>
+<li><p><strong>sa</strong> (<em>float</em><em>, </em><em>optional</em>) – Start face angle. Defaults to 0.</p></li>
+<li><p><strong>ea</strong> (<em>float</em><em>, </em><em>optional</em>) – Finish face angle. Defaults to <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
+<li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function x component. Defaults to None.</p></li>
+<li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function y component. Defaults to None.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry2D.Geometry2D.loadOnSegment">
+<span class="sig-name descname"><span class="pre">loadOnSegment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry2D.Geometry2D.loadOnSegment" title="Permalink to this definition">#</a></dt>
+<dd><p>Assign a load over a geometry segment.</p>
+<p>The start point of segment is the 0 point of load
+The end point of segment is the end point of load</p>
+<p>Load must be defined as a function (normal or lambda)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<em>int</em>) – Segment in wich load will be applied</p></li>
+<li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function x component. Defaults to None.</p></li>
+<li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function y component. Defaults to None.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry2D.Geometry2D.loadOnSegmentVF">
+<span class="sig-name descname"><span class="pre">loadOnSegmentVF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry2D.Geometry2D.loadOnSegmentVF" title="Permalink to this definition">#</a></dt>
+<dd><p>Assign a load over a geometry segment.</p>
+<p>The start point of segment is the 0 point of load
+The end point of segment is the end point of load</p>
+<p>Load must be defined as a function (normal or lambda)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>segment</strong> (<em>int</em>) – Segment in wich load will be applied</p></li>
+<li><p><strong>f</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function. Defaults to None.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy for finding nodes. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry2D.Geometry2D.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bolita</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_segs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_bc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_bc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry2D.Geometry2D.show" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a geometry graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>texto</strong> (<em>int</em><em>, </em><em>optional</em>) – Text size. Defaults to 10.</p></li>
+<li><p><strong>bolita</strong> (<em>int</em><em>, </em><em>optional</em>) – Node size. Defaults to 0.</p></li>
+<li><p><strong>draw_segs</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw or not draw the segments. Defaults to True.</p></li>
+<li><p><strong>draw_labels</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw or not draw element labels. Defaults to False.</p></li>
+<li><p><strong>draw_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw border conditions. Defaults to False.</p></li>
+<li><p><strong>label_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw labels on border conditions. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-FEM.Geometry.Geometry3D">
+<span id="fem-geometry-geometry3d-module"></span><h2>FEM.Geometry.Geometry3D module<a class="headerlink" href="#module-FEM.Geometry.Geometry3D" title="Permalink to this headline">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry3D.Geometry3D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry3D.</span></span><span class="sig-name descname"><span class="pre">Geometry3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry3D.Geometry3D" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Geometry.Geometry.Geometry</span></code></a></p>
+<p>Creates a 3D geometry</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry3D.Geometry3D.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bolita</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_segs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_bc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_bc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry3D.Geometry3D.show" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a geometry graph</p>
 </dd></dl>
 </dd></dl>
 </section>
@@ -711,6 +723,8 @@ The end point of segment is the end point of load</p>
 <li><a class="reference internal" href="#module-FEM.Geometry.Delaunay">FEM.Geometry.Delaunay module</a></li>
 <li><a class="reference internal" href="#module-FEM.Geometry.Geometry">FEM.Geometry.Geometry module</a></li>
 <li><a class="reference internal" href="#module-FEM.Geometry.Geometry1D">FEM.Geometry.Geometry1D module</a></li>
+<li><a class="reference internal" href="#module-FEM.Geometry.Geometry2D">FEM.Geometry.Geometry2D module</a></li>
+<li><a class="reference internal" href="#module-FEM.Geometry.Geometry3D">FEM.Geometry.Geometry3D module</a></li>
 <li><a class="reference internal" href="#module-FEM.Geometry.Lineal">FEM.Geometry.Lineal module</a></li>
 </ul>
 </li>
