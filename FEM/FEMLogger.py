@@ -63,7 +63,7 @@ class FEMLogger():
         # for logging throughout the script. An alternative would be exporting
         # the logger, i.e. 'global logger; logger = logging.getLogger("<name>")'
         logger = logging.getLogger()
-        logging.getLogger('matplotlib.font_manager').setLevel(logging.WARNING)
+        logging.getLogger('matplotlib').setLevel(logging.WARNING)
         # Set global log level to 'debug' (required for handler levels to work)
         logger.setLevel(logging.DEBUG)
 
