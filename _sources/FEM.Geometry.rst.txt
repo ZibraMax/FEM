@@ -25,30 +25,6 @@ FEM.Geometry.Geometry module
    :undoc-members:
    :show-inheritance:
 
-FEM.Geometry.Geometry1D module
-------------------------------
-
-.. automodule:: FEM.Geometry.Geometry1D
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FEM.Geometry.Geometry2D module
-------------------------------
-
-.. automodule:: FEM.Geometry.Geometry2D
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FEM.Geometry.Geometry3D module
-------------------------------
-
-.. automodule:: FEM.Geometry.Geometry3D
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 FEM.Geometry.Lineal module
 --------------------------
 
