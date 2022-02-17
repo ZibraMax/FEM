@@ -22,7 +22,7 @@ class TestGeometry(unittest.TestCase):
         polygonal.enmalladoFernando(L, h, nex, ney, FILENAME)
         geometry = Geometry.loadmsh(FILENAME)
         self.assertEqual(len(geometry.elements), nex*ney)
-        self.assertEqual(len(geometry.segments), 0)
+        self.assertEqual(len(geometry.regions), 0)
 
     def test_generateSegmentFromCoords(self):
         """Test if the generated geometry can be modified with segments from coordinates. Then saves the new geometry to a file
@@ -34,7 +34,7 @@ class TestGeometry(unittest.TestCase):
         geometry.generateSegmentsFromCoords([L, 0], [L, h])
         geometry.generateSegmentsFromCoords([L, h], [0, h])
         geometry.generateSegmentsFromCoords([0, h], [0, 0])
-        self.assertEqual(len(geometry.segments), 4)
+        self.assertEqual(len(geometry.regions), 4)
         geometry.saveMesh('Test/resources/beam_ws')
 
 

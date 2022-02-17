@@ -43,7 +43,7 @@ def generatePair(cx=10.0, cy=10.0, r=5.0, irre=0.5, spik=0.3, vert=8, areaLDUM=0
             LDUM.geometry.cbe += LDUM.geometry.cbFromSegment(s, valuebc)
             HDUM.geometry.cbe += HDUM.geometry.cbFromSegment(s, valuebc)
     else:
-        for s in range(len(LDUM.geometry.segments)):
+        for s in range(len(LDUM.geometry.regions)):
             LDUM.geometry.cbe += LDUM.geometry.cbFromSegment(s, valuebc)
             HDUM.geometry.cbe += HDUM.geometry.cbFromSegment(s, valuebc)
     return LDUM, HDUM

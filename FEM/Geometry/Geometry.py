@@ -32,7 +32,7 @@ class Geometry:
         segments (list, optional): Domain segments. Defaults to [].
     """
 
-    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, segments: list = [], fast=False) -> None:
+    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, regions: list = None, fast=False) -> None:
         """Define geometry structure
 
         Args:
@@ -51,7 +51,7 @@ class Geometry:
         self.elements = []
         self.gdls = gdls
         self.types = types
-        self.segments = segments
+        self.regions = regions if regions else []
         self.cbe = []
         self.cbn = []
         self.centroids = []
@@ -64,7 +64,7 @@ class Geometry:
         """
 
         self.mask = []
-        for s in self.segments:
+        for s in self.regions:
             self.mask += np.array(self.gdls)[np.ix_(s)].tolist()
 
     def initialize(self) -> None:
@@ -84,7 +84,7 @@ class Geometry:
             list: Non local element dictionary
         """
         print('Detecting non local elements')
-        # TODO hacerlo mas eficiente.
+        # FIXME hacerlo mas eficiente.
         diccionariosnl = []
         for i in tqdm(range(len(self.dictionary)), unit='Elements'):
             ci = self.centroids[i]
@@ -230,7 +230,7 @@ class Geometry:
         except Exception as e:
             len_mask = 0
         p = [len(self.gdls), len(self.dictionary), len(
-            self.segments), len(self.cbe), len(self.cbn), self.nvn, len_holes, len_fillets, len_mask]
+            self.regions), len(self.cbe), len(self.cbn), self.nvn, len_holes, len_fillets, len_mask]
         f.write('\t'.join(list(map(format, p))) + '\n')
         for e in self.gdls:
             f.write('\t'.join(list(map(format, e))) + '\n')
@@ -238,7 +238,7 @@ class Geometry:
             f.write(e + '\n')
         for e in self.dictionary:
             f.write('\t'.join(list(map(format, e))) + '\n')
-        for e in self.segments:
+        for e in self.regions:
             f.write('\t'.join(list(map(format, e))) + '\n')
         for e in self.cbe:
             f.write(format(int(e[0]))+'\t'+format(e[1])+'\n')
@@ -275,7 +275,7 @@ class Geometry:
                 res.append(i)
         self.cbe = res
 
-    def giveNodesOfSegment(self, segment: int, tol: float) -> np.ndarray:
+    def giveNodesOfSegment(self, segment: int, tol: float = 1*10**(-5)) -> np.ndarray:
         """Give nodes over a segment
 
         Args:
@@ -287,9 +287,9 @@ class Geometry:
         """
         # TODO Hacer que esto sea n dimensional
         a = []
-        ps = np.array(self.gdls)[self.segments[segment]].tolist()
+        region = self.regions[segment]
         for i, p in enumerate(self.gdls):
-            if isBetween(ps[0], ps[1], p, tol):
+            if region.isBetween(p, tol):
                 a.append(i)
         return np.array(a)
 
@@ -338,7 +338,7 @@ class Geometry:
             value (float): Value of the border condition
             tol (float, optional): Tolerance for finding near nodes in segments. Defaults to 1*10**(-5).
         """
-        for s in range(len(self.segments)):
+        for s in range(len(self.regions)):
             for i in range(self.nvn):
                 self.cbe += self.cbFromSegment(s, value, (i+1), tol)
 
@@ -356,7 +356,7 @@ class Geometry:
             "nodes": self.gdls,
             "dictionary": self.dictionary,
             "types": self.types,
-            "regions": self.segments,
+            "regions": self.regions,
             "ebc": self.cbe,
             "nbc": self.cbn,
             "nvn": self.nvn,
@@ -495,7 +495,7 @@ class Geometry1D(Geometry):
         filename = ProjectName + '.msh'
         f = open(filename, 'w')
         p = [len(self.gdls), len(self.dictionary), len(
-            self.segments), len(self.cbe), len(self.cbn), self.nvn]
+            self.regions), len(self.cbe), len(self.cbn), self.nvn]
         f.write('\t'.join(list(map(str, p))) + '\n')
         for e in self.gdls:
             f.write('\t'.join(list(map(str, e))) + '\n')
@@ -503,7 +503,7 @@ class Geometry1D(Geometry):
             f.write(e + '\n')
         for e in self.dictionary:
             f.write('\t'.join(list(map(str, e))) + '\n')
-        for e in self.segments:
+        for e in self.regions:
             f.write('\t'.join(list(map(str, e))) + '\n')
         for e in self.cbe:
             f.write('\t'.join(list(map(str, e))) + '\n')
@@ -539,7 +539,7 @@ class Geometry2D(Geometry):
             if r2 < d2:
                 d2 = r2
                 masCercano2 = i
-        self.segments.append([masCercano1, masCercano2])
+        self.regions.append([masCercano1, masCercano2])
 
     def generateBCFromCoords(self, x: float, y: float, value: float = 0, nv: int = 1) -> list:
         """Generates border conditions by coordinates. The border condition is applied to the nearest node
@@ -576,8 +576,8 @@ class Geometry2D(Geometry):
             f (Callable, optional): Load Function. Defaults to None.
             tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
         """
-        c0, cf = [self.gdls[self.segments[segment][0]],
-                  self.gdls[self.segments[segment][1]]]
+        c0, cf = [self.gdls[self.regions[segment][0]],
+                  self.gdls[self.regions[segment][1]]]
         dy = cf[1]-c0[1]
         dx = cf[0]-c0[0]
         theta = np.arctan2(dy, dx)
@@ -600,7 +600,7 @@ class Geometry2D(Geometry):
             tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
         """
         a = self.giveElementsOfSegment(segment, tol)
-        coordenadas = np.array(self.gdls)[self.segments[segment]]
+        coordenadas = np.array(self.gdls)[self.regions[segment]]
         vect_seg = coordenadas[1]-coordenadas[0]
         for e in a:
             e.intBorders = True
@@ -647,7 +647,7 @@ class Geometry2D(Geometry):
             if angleBetweenAngles(sa, ea, angle):
                 segments_apply.append(segmento)
         for segmento in segments_apply:
-            for i, seg in enumerate(self.segments):
+            for i, seg in enumerate(self.regions):
                 if seg == segmento:
                     self.loadOnSegment(i, fx, fy, tol)
                     break
@@ -679,7 +679,7 @@ class Geometry2D(Geometry):
             if angleBetweenAngles(sa, ea, angle):
                 segments_apply.append(segmento)
         for segmento in segments_apply:
-            for i, seg in enumerate(self.segments):
+            for i, seg in enumerate(self.regions):
                 if seg == segmento:
                     bc += self.cbFromSegment(i, value, nv, tol)
                     break
@@ -717,7 +717,7 @@ class Geometry2D(Geometry):
         try:
             if draw_segs:
                 verts = self.gdls
-                segs = self.segments
+                segs = self.regions
                 for i, seg in enumerate(segs):
                     x0, y0 = verts[int(seg[0])]
                     x1, y1 = verts[int(seg[1])]
@@ -820,10 +820,14 @@ class Geometry3D(Geometry):
     """Creates a 3D geometry"""
 
     def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, segments: list = [], fast=False):
+        self.regions = []
         Geometry.__init__(self, dictionary, gdls, types, nvn, segments, fast)
 
     def show(self, texto: int = 10, bolita: int = 0, draw_segs: bool = True, draw_labels: bool = False, draw_bc: bool = False, label_bc: bool = False) -> None:
         pass
+
+    def addRegion(self, region):
+        self.regions.append(region)
 
 
 class Lineal(Geometry):

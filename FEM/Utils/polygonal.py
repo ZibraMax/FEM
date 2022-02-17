@@ -174,12 +174,11 @@ def dist(a: list, b: list) -> float:
     Returns:
         float: Distance between a and b
     """
-
-    return math.sqrt((a[0]-b[0])**2+(a[1]-b[1])**2)
+    return np.linalg.norm(np.array(a)-np.array(b))
 
 
 def isBetween(a: list, b: list, c: list, tol: float) -> bool:
-    """Test if a point is between a line in a given tolerance
+    """Test if a point is between a line in a given tolerance. Works in 2D and 3D.
 
     Args:
         a (list): Start point of line
@@ -190,7 +189,10 @@ def isBetween(a: list, b: list, c: list, tol: float) -> bool:
     Returns:
         bool: True if point is in line
     """
-
+    a = a.flatten()
+    b = b.flatten()
+    c = c.flatten()
+    
     d1 = dist(a, c)
     d2 = dist(b, c)
     d3 = dist(a, b)
