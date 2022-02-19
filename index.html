@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="FEM" href="modules.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.02.14.1"/>
-        <title>FEM 1.0.28 documentation</title>
+        <title>FEM 1.0.29 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=a8f031f701c6af50c9919b48f173a5785af06fac" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -119,7 +119,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">FEM 1.0.28 documentation</div></a>
+      <a href="#"><div class="brand">FEM 1.0.29 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -142,7 +142,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
   
   
-  <span class="sidebar-brand-text">FEM 1.0.28 documentation</span>
+  <span class="sidebar-brand-text">FEM 1.0.29 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -342,7 +342,7 @@
 <section id="steps">
 <h4>Steps:<a class="headerlink" href="#steps" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
-<li><p>Create geometry (From coordinates or GiD)</p></li>
+<li><p>Create geometry</p></li>
 <li><p>Create Border Conditions (Point and regions supported)</p></li>
 <li><p>Solve!</p></li>
 <li><p>For example: Example 2, Example 5, Example 11-14</p></li>
@@ -352,7 +352,7 @@
 <h4>Example without geometry file (Test 2):<a class="headerlink" href="#example-without-geometry-file-test-2" title="Permalink to this headline">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#Import libraries</span>
 <span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM Torsion class</span>
-<span class="kn">from</span> <span class="nn">FEM.Mesh.Delaunay</span> <span class="kn">import</span> <span class="n">Delaunay</span> <span class="c1">#Import Meshing tools</span>
+<span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Delaunay</span> <span class="c1">#Import Meshing tools</span>
 
 <span class="c1">#Define some variables with geometric properties</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mf">0.3</span>
@@ -388,8 +388,8 @@
 <span class="c1">#**Create** geometry using triangulation parameters. Geometry can be imported from .msh files.</span>
 <span class="n">geometry</span> <span class="o">=</span> <span class="n">Delaunay</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
 
-<span class="c1">#Save geometry to .msh file</span>
-<span class="n">geometry</span><span class="o">.</span><span class="n">saveMesh</span><span class="p">(</span><span class="s1">'I_test'</span><span class="p">)</span>
+<span class="c1">#Save geometry to .json file</span>
+<span class="n">geometry</span><span class="o">.</span><span class="n">exportJSON</span><span class="p">(</span><span class="s1">'I_test.json'</span><span class="p">)</span>
 
 <span class="c1">#Create torsional 2D analysis.</span>
 <span class="n">O</span> <span class="o">=</span> <span class="n">Torsion2D</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
@@ -404,7 +404,7 @@
 <h4>Example with geometry file (Example 2):<a class="headerlink" href="#example-with-geometry-file-example-2" title="Permalink to this headline">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#Import libraries</span>
 <span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM</span>
-<span class="kn">from</span> <span class="nn">FEM.Mesh.Geometry</span> <span class="kn">import</span> <span class="n">Geometry</span> <span class="c1">#Import Geometry tools</span>
+<span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Geometry</span> <span class="c1">#Import Geometry tools</span>
 
 <span class="c1">#Define material constants.</span>
 <span class="n">E</span> <span class="o">=</span> <span class="mi">200000</span>
@@ -413,7 +413,7 @@
 <span class="n">phi</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#Rotation angle</span>
 
 <span class="c1">#Load geometry with file.</span>
-<span class="n">geometry</span> <span class="o">=</span> <span class="n">Geometry</span><span class="o">.</span><span class="n">loadmsh</span><span class="p">(</span><span class="s1">'I_test.msh'</span><span class="p">)</span>
+<span class="n">geometry</span> <span class="o">=</span> <span class="n">Geometry</span><span class="o">.</span><span class="n">importJSON</span><span class="p">(</span><span class="s1">'I_test.json'</span><span class="p">)</span>
 
 <span class="c1">#Create torsional 2D analysis.</span>
 <span class="n">O</span> <span class="o">=</span> <span class="n">Torsion2D</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
@@ -483,7 +483,6 @@
 <h2>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">#</a></h2>
 <ol class="arabic simple">
 <li><p>2D elastic plate theory</p></li>
-<li><p>Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes</p></li>
 <li><p>Transient analysis (Core modification)</p></li>
 <li><p>Non-Lineal for 2D equation (All cases)</p></li>
 <li><p>Testing and numerical validation (WIP)</p></li>
