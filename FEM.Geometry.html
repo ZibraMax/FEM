@@ -166,6 +166,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example27.html">example27 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example28.html">example28 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
@@ -385,35 +387,9 @@
 <dd><p>Calculates the total number of GDL’s and generates the elements structure</p>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.loadmsh">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">loadmsh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.loadmsh" title="Permalink to this definition">#</a></dt>
-<dd><p>Load geometry from previously generated MSH file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Path to msh file</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Output geometry</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry">Geometry</a></p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.maskFromRegions">
 <span class="sig-name descname"><span class="pre">maskFromRegions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.maskFromRegions" title="Permalink to this definition">#</a></dt>
 <dd><p>Create the display mask from geometry regions</p>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.saveMesh">
-<span class="sig-name descname"><span class="pre">saveMesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ProjectName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.saveMesh" title="Permalink to this definition">#</a></dt>
-<dd><p>Saves the geometry to a MSH file with specified name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ProjectName</strong> (<em>str</em>) – Project name without extension</p>
-</dd>
-</dl>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.setCbe">
@@ -433,7 +409,7 @@
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry1D">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Geometry1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry1D" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Geometry1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry1D" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Geometry.Geometry.Geometry</span></code></a></p>
 <p>Define geometry structure</p>
 <dl class="field-list simple">
@@ -612,7 +588,7 @@ The end point of region is the end point of load</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Lineal">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Lineal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lenght</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Lineal" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Geometry.Geometry.Geometry</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry1D" title="FEM.Geometry.Geometry.Geometry1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Geometry.Geometry.Geometry1D</span></code></a></p>
 <p>Generate a evenly spaced elements domain</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
