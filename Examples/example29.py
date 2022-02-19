@@ -20,7 +20,7 @@ holes = []
 radi = 20
 cent = [b/2, h/2]
 vert, seg = giveCoordsCircle(cent, radi, n=50)
-hole = {'center': cent, 'segments': seg, 'vertices': vert}
+hole = {'center': cent, 'regions': seg, 'vertices': vert}
 holes += [hole]
 
 fillets = [{'start_segment': 2, 'end_segment': 3, 'r': 20, 'n': 10},
@@ -32,10 +32,10 @@ params = Delaunay._strdelaunay(
     constrained=True, delaunay=True, a='7', o=2)
 geometria = Delaunay(vertices, params, nvn=2,
                      holes_dict=holes, fillets=fillets)
-cb = geometria.cbFromSegment(0, 0, 1)
-cb += geometria.cbFromSegment(0, 0, 2)
-cb += geometria.cbFromSegment(1, 0, 1)
-cb += geometria.cbFromSegment(7, 0, 1)
+cb = geometria.cbFromRegion(0, 0, 1)
+cb += geometria.cbFromRegion(0, 0, 2)
+cb += geometria.cbFromRegion(1, 0, 1)
+cb += geometria.cbFromRegion(7, 0, 1)
 geometria.setCbe(cb)
 geometria.saveMesh('Mesh_tests/Talud_hueco_redondos')
 geometria.show()

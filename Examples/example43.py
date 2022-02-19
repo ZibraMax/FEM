@@ -17,12 +17,12 @@ gdls = [[0.0, 0.0], [a, 0.0], [a, b], [0, b]]
 diccs = [[0, 1, 2], [0, 2, 3]]
 types = ['T1V', 'T1V']
 nvn = 2
-segments = [[0, 1], [1, 2], [2, 3], [3, 0]]
+regions = [[0, 1], [1, 2], [2, 3], [3, 0]]
 geometry = Geometry(dictionary=diccs, gdls=gdls,
-                    types=types, nvn=nvn, segments=segments)
+                    types=types, nvn=nvn, regions=regions)
 
-cb = geometry.cbFromSegment(3, 0.0, 1)
-cb += geometry.cbFromSegment(3, 0.0, 2)
+cb = geometry.cbFromRegion(3, 0.0, 1)
+cb += geometry.cbFromRegion(3, 0.0, 2)
 geometry.setCbe(cb)
 def f(s): return p0
 

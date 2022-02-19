@@ -30,7 +30,7 @@ geometria.generateRegionFromCoords([0, 0], [b, 0])
 geometria.generateRegionFromCoords([b, 0], [b, h])
 geometria.generateRegionFromCoords([b, h], [0, h])
 geometria.generateRegionFromCoords([0, h], [0, 0])
-cbe = geometria.cbFromSegment(2, T0)
+cbe = geometria.cbFromRegion(2, T0)
 geometria.setCbe(cbe)
 
 O = Heat2D(geometria, kx, ky)

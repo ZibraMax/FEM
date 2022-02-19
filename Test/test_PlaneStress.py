@@ -113,8 +113,8 @@ class TestPlaneStress(unittest.TestCase):
 
         """
         geometry = Geometry2D.importJSON(FILENAME)
-        cb = geometry.cbFromSegment(3, 0.0, 1)
-        cb += geometry.cbFromSegment(3, 0.0, 2)
+        cb = geometry.cbFromRegion(3, 0.0, 1)
+        cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
         geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
@@ -177,8 +177,8 @@ class TestPlaneStress(unittest.TestCase):
         """
 
         geometry = Geometry2D.importJSON(FILENAME)
-        cb = geometry.cbFromSegment(3, 0.0, 1)
-        cb += geometry.cbFromSegment(3, 0.0, 2)
+        cb = geometry.cbFromRegion(3, 0.0, 1)
+        cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
         geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
@@ -256,8 +256,8 @@ class TestPlaneStress(unittest.TestCase):
         P = 1
 
         geometry = Geometry2D.importJSON(FILENAME)
-        cb = geometry.cbFromSegment(3, 0.0, 1)
-        cb += geometry.cbFromSegment(3, 0.0, 2)
+        cb = geometry.cbFromRegion(3, 0.0, 1)
+        cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
 
         geometry.maskFromRegions()
@@ -326,8 +326,8 @@ class TestPlaneStress(unittest.TestCase):
         P = 1
 
         geometry = Geometry2D.importJSON(FILENAME)
-        cb = geometry.cbFromSegment(3, 0.0, 1)
-        cb += geometry.cbFromSegment(3, 0.0, 2)
+        cb = geometry.cbFromRegion(3, 0.0, 1)
+        cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
         cbn = geometry.generateBCFromCoords(L, h, -P, 2)
         geometry.cbn = cbn
@@ -383,8 +383,8 @@ class TestPlaneStress(unittest.TestCase):
 
         """
         geometry = Geometry2D.importJSON(FILENAME)
-        cb = geometry.cbFromSegment(3, 0.0, 1)
-        cb += geometry.cbFromSegment(3, 0.0, 2)
+        cb = geometry.cbFromRegion(3, 0.0, 1)
+        cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
         geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)

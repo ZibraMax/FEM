@@ -12,10 +12,10 @@ a = h**2/100
 gamma = 23.54
 geometria = Geometry.loadmsh(
     'Examples/Mesh_tests/Beam_serendipity.msh')
-cbe = geometria.cbFromSegment(1, 0, 1)
-cbe += geometria.cbFromSegment(1, 0, 2)
-cbe += geometria.cbFromSegment(3, 0, 1)
-cbe += geometria.cbFromSegment(3, 0, 2)
+cbe = geometria.cbFromRegion(1, 0, 1)
+cbe += geometria.cbFromRegion(1, 0, 2)
+cbe += geometria.cbFromRegion(3, 0, 1)
+cbe += geometria.cbFromRegion(3, 0, 2)
 geometria.cbe = cbe
 O = PlaneStress(geometria, E, v, b, fy=lambda x: -gamma*b, verbose=True)
 O.geometry.mask = None

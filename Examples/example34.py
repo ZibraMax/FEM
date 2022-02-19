@@ -21,14 +21,14 @@ for i in range(n):
     radi = dh/2
     cent = [b/2, h/(n+1)*(i+1)]
     vert, seg = giveCoordsCircle(cent, radi, n=20)
-    hole = {'center': cent, 'segments': seg, 'vertices': vert}
+    hole = {'center': cent, 'regions': seg, 'vertices': vert}
     holes += [hole]
 
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.05', o=2)
 geometria = Delaunay(coords, params, nvn=2, holes_dict=holes)
 
-cbe = geometria.cbFromSegment(3, 0, 1)
-cbe += geometria.cbFromSegment(3, 0, 2)
+cbe = geometria.cbFromRegion(3, 0, 1)
+cbe += geometria.cbFromRegion(3, 0, 2)
 geometria.setCbe(cbe)
 
 for i in range(n):

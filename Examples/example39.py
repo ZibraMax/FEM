@@ -22,7 +22,7 @@ vertextra = [[hueco, 0], [hueco, hueco], [0, hueco]]
 segextra = [[0, 1], [1, 2]]
 
 holes = []
-hole = {'center': [-2*r, 2*r], 'segments': segextra, 'vertices': vertextra}
+hole = {'center': [-2*r, 2*r], 'regions': segextra, 'vertices': vertextra}
 holes += [hole]
 
 
@@ -39,7 +39,7 @@ for centroide in geometria.centroids:
     if inside2[0]:
         GG[-1] = 1
 seg1[-1][-1] = a+1
-geometria.segments = seg1
+geometria.regions = seg1
 geometria.mask = None
 O = Torsion2D(geometria, GG, phi)
 O.geometry.show()

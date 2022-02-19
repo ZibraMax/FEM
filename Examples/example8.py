@@ -12,9 +12,9 @@ t = 0.5
 
 geometria = Geometry.loadmsh("Mesh_tests/rect.msh")
 O = PlaneStress(geometria, E, v, t)
-cbe = O.geometry.cbFromSegment(3, 0, 1)
-cbe += O.geometry.cbFromSegment(3, 0, 2)
-cbe += O.geometry.cbFromSegment(1, u0, 1)
+cbe = O.geometry.cbFromRegion(3, 0, 1)
+cbe += O.geometry.cbFromRegion(3, 0, 2)
+cbe += O.geometry.cbFromRegion(1, u0, 1)
 O.cbe = cbe
 O.solve()
 plt.show()

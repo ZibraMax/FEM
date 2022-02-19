@@ -42,7 +42,7 @@ class Torsion2D(Core):
             G = [G]*len(geometry.elements)
         self.G = G
         self._phi = phi
-        geometry.cbeAllBorders(0)
+        geometry.cbeAllRegions(0)
         Core.__init__(self, geometry)
 
     def elementMatrices(self) -> None:

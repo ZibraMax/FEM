@@ -56,15 +56,18 @@ A rotation angle of 1 is selected for all test cases.
 
 """
 
-from FEM.Geometry.Delaunay import Delaunay
+from FEM.Geometry import Delaunay
 from FEM.Utils.polygonal import giveCoordsCircle
 from FEM.Torsion2D import Torsion2D
+import matplotlib.pyplot as plt
 import matplotlib.path as mpltPath
 import unittest
 import os
 import numpy as np
 import sys
 import inspect
+
+from FEM.Geometry.Region import Region1D
 
 TOL = 0.01
 
@@ -97,19 +100,24 @@ class TestTorsion2D(unittest.TestCase):
         vertextra, segextra = giveCoordsCircle([0, 0], r2, n=int(N/2))
         holes = []
         hole = {'center': [-2*r, 2*r],
-                'segments': segextra, 'vertices': vertextra}
+                'regions': segextra, 'vertices': vertextra}
         holes += [hole]
         params = Delaunay._strdelaunay(
             constrained=True, delaunay=True, a='0.003', o=2)
         geometria = Delaunay(vert, params, nvn=1, holes_dict=holes)
+
         GG = []
+        path = mpltPath.Path(vertextra)
         for centroide in geometria.centroids:
-            path = mpltPath.Path(vertextra)
-            inside2 = path.contains_points([centroide])
+            inside2 = path.contains_points([centroide[0]])
             GG += [G]
             if inside2[0]:
                 GG[-1] = 1*10**-6
-        geometria.segments = seg
+        regions = []
+        for s in seg:
+            regions.append(Region1D(geometria.gdls[np.ix_(s)]))
+        geometria.regions = []
+        geometria.addRegions(regions)
         O = Torsion2D(geometria, GG, phi)
         O.solve()
         integral = 0
@@ -159,7 +167,7 @@ if __name__ == '__main__':
         inspect.getfile(inspect.currentframe())))
     parentdir = os.path.dirname(currentdir)
     sys.path.insert(0, parentdir)
-    from FEM.Geometry.Delaunay import Delaunay
+    from FEM.Geometry import Delaunay
     from FEM.Torsion2D import Torsion2D
     from FEM.Utils.polygonal import giveCoordsCircle
     unittest.main()

@@ -16,7 +16,7 @@ cent = [0, 0]
 vert_orig, seg_orig = giveCoordsCircle(cent, radi, n=150)
 
 vert, seg = giveCoordsCircle([0, 1], 1, n=50)
-holes = [{'center': [0, 1], 'segments': seg, 'vertices': vert}]
+holes = [{'center': [0, 1], 'regions': seg, 'vertices': vert}]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.03', o=1)
 geometria = Delaunay(vert_orig, params, 1, holes_dict=holes)
 geometria.setCbe(geometria.cbOnHole(0, t0, 1))

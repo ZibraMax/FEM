@@ -18,7 +18,7 @@ class TestGeometry2D(unittest.TestCase):
         self.assertEqual(len(geometry.regions), 0)
 
     def test_addRegions(self):
-        """Test if the generated geometry can be modified with segments from coordinates. Then saves the new geometry to a file
+        """Test if the generated geometry can be modified with regions from coordinates. Then saves the new geometry to a file
         """
         h = 0.5
         L = 2.0

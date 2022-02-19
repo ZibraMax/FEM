@@ -63,15 +63,15 @@ holes = []
 radi = 2
 cent = [b, h/2]
 vert, seg = giveCoordsCircle(cent, radi, n=50)
-hole = {'center': cent, 'segments': seg, 'vertices': vert}
+hole = {'center': cent, 'regions': seg, 'vertices': vert}
 holes += [hole]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.1', o=2)
 geometria = Delaunay(c, params, nvn=2, holes_dict=holes)
 geometria.generateRegionFromCoords([0, 0], [2*b, 0])
 geometria.generateRegionFromCoords(
     [2*b-parabola(4*he), 4*he], [parabola(4*he), 4*he])
-geometria.cbe = geometria.cbFromSegment(-2, 0, 1)
-geometria.cbe += geometria.cbFromSegment(-2, 0, 2)
+geometria.cbe = geometria.cbFromRegion(-2, 0, 1)
+geometria.cbe += geometria.cbFromRegion(-2, 0, 2)
 geometria.saveMesh('Mesh_tests/tunel')
 geometria.show()
 plt.show()

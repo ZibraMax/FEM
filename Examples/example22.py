@@ -13,8 +13,8 @@ v = 0.25
 gdls = [[0, 0], [b, 0],  [b, h], [0, h]]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='10', o=2)
 geometria = Delaunay(gdls, params, nvn=2)
-cbe = geometria.cbFromSegment(3, 0, 1)
-cbe += geometria.cbFromSegment(3, 0, 2)
+cbe = geometria.cbFromRegion(3, 0, 1)
+cbe += geometria.cbFromRegion(3, 0, 2)
 geometria.cbe = cbe
 geometria.loadOnRegion(1, fx=lambda s: 10, fy=lambda s: 0)
 O = PlaneStress(geometria, E, v, t)

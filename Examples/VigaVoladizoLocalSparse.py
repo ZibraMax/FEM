@@ -26,7 +26,7 @@ geometria.generateRegionFromCoords([L, 0], [L, h])
 geometria.generateRegionFromCoords([L, h], [0, h])
 geometria.generateRegionFromCoords([0, h], [0, 0])
 
-cbe = geometria.cbFromSegment(1, 0.0, 1)
+cbe = geometria.cbFromRegion(1, 0.0, 1)
 cbe += geometria.generateBCFromCoords(L, h/2, 0.0, 2)
 
 geometria.loadOnRegion(3, fy=lambda s: -t0*b)

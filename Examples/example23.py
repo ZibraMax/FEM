@@ -100,8 +100,8 @@ segmentos = [[0, 4], [32, 36]]
 nvn = 2
 geometria = Geometry((np.array(elementos)-1).astype(int).tolist(),
                      coordendas, tipos, nvn, segmentos)
-geometria.cbe = geometria.cbFromSegment(0, 0, 1)
-geometria.cbe += geometria.cbFromSegment(0, 0, 2)
+geometria.cbe = geometria.cbFromRegion(0, 0, 1)
+geometria.cbe += geometria.cbFromRegion(0, 0, 2)
 geometria.cbn = [[50, ppx], [51, ppy]]
 geometria.loadOnRegion(1, fy=lambda s: -p0)
 O = PlaneStrain(geometria, E, v)

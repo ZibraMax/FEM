@@ -274,7 +274,7 @@ A good example is the `PlaneStress` class in the `Elasticity2D.py` file.
 
       <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example18.png">
 
--   Example 19: Apply loads on segments. `loadOnRegion` method on Test 11
+-   Example 19: Apply loads on regions. `loadOnRegion` method on Test 11
 
       <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example19.png">
 

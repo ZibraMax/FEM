@@ -13,13 +13,13 @@ holes = []
 radi = 0.5
 cent = [2, 1.5]
 vert, seg = giveCoordsCircle(cent, radi, n=50)
-hole = {'center': cent, 'segments': seg, 'vertices': vert}
+hole = {'center': cent, 'regions': seg, 'vertices': vert}
 holes += [hole]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.01', o=2)
 geometria = Delaunay(coords, params, nvn=2, fillets=fillets, holes_dict=holes)
 
-geometria.cbe = geometria.cbFromSegment(7, 0, 1)
-geometria.cbe += geometria.cbFromSegment(7, 0, 2)
+geometria.cbe = geometria.cbFromRegion(7, 0, 1)
+geometria.cbe += geometria.cbFromRegion(7, 0, 2)
 
 geometria.show()
 geometria.saveMesh('Mesh_tests/pieza_acero')

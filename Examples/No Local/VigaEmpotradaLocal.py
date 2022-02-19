@@ -28,8 +28,8 @@ geometria.generateRegionFromCoords([0, 0], [L, 0])
 geometria.generateRegionFromCoords([L, 0], [L, h])
 geometria.generateRegionFromCoords([L, h], [0, h])
 geometria.generateRegionFromCoords([0, h], [0, 0])
-cbe = geometria.cbFromSegment(3, 0, 1)
-cbe += geometria.cbFromSegment(3, 0, 2)
+cbe = geometria.cbFromRegion(3, 0, 1)
+cbe += geometria.cbFromRegion(3, 0, 2)
 geometria.cbe = cbe
 O = PlaneStress(geometria, E, v, b, fy=lambda x: -gamma*b)
 O.geometry.mask = None

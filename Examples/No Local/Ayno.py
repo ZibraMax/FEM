@@ -16,9 +16,9 @@ a = 5
 coords = np.array([[0, 0], [1, 0], [1, 1], [0, 1]])*a
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.02', o=2)
 geometria = Delaunay(coords, params, nvn=2)
-cb = geometria.cbFromSegment(3, 0, 1)
-cb += geometria.cbFromSegment(3, 0, 2)
-cb += geometria.cbFromSegment(1, u, 1)
+cb = geometria.cbFromRegion(3, 0, 1)
+cb += geometria.cbFromRegion(3, 0, 2)
+cb += geometria.cbFromRegion(1, u, 1)
 geometria.setCbe(cb)
 geometria.show(draw_bc=True, label_bc=True)
 plt.show()

@@ -11,8 +11,8 @@ L = 2.5  # m
 a = h**2/100
 gamma = 23.54
 geometria = Geometry.loadmsh('Mesh_tests/beam_serendipity.msh')
-geometria.cbe = geometria.cbFromSegment(3, 0, 1)
-geometria.cbe += geometria.cbFromSegment(3, 0, 2)
+geometria.cbe = geometria.cbFromRegion(3, 0, 1)
+geometria.cbe += geometria.cbFromRegion(3, 0, 2)
 O = PlaneStress(geometria, E, v, b, fy=lambda x: -gamma)
 O.solve('Fast_test_ser.csv')
 plt.show()

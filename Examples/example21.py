@@ -14,9 +14,9 @@ elemento1 = [0, 1, 3, 2]
 dicc = [elemento1]
 tipos = ['C1V']
 segmentos = [[0, 1], [1, 3], [3, 2], [2, 0]]
-geometria = Geometry(dicc, gdls, tipos, nvn=2, segments=segmentos)
-cbe = geometria.cbFromSegment(3, 0, 1)
-cbe += geometria.cbFromSegment(3, 0, 2)
+geometria = Geometry(dicc, gdls, tipos, nvn=2, regions=segmentos)
+cbe = geometria.cbFromRegion(3, 0, 1)
+cbe += geometria.cbFromRegion(3, 0, 2)
 geometria.cbe = cbe
 geometria.loadOnRegion(1, fx=lambda s: 10, fy=lambda s: 0)
 

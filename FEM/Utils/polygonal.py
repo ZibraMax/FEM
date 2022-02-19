@@ -265,14 +265,14 @@ def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: in
         isFillet (bool, optional): If the circle will be used as fillet. Defaults to False.
 
     Returns:
-        list and list: Circle coordinates and segments
+        list and list: Circle coordinates and regions
     """
     coords = []
-    segments = []
+    regions = []
     h = a/n
     if isFillet:
         for i in range(n+1):
-            segments += [[i, i+1]]
+            regions += [[i, i+1]]
             theta = sa+h*i
             x = r*np.cos(theta)
             y = r*np.sin(theta)
@@ -285,14 +285,14 @@ def giveCoordsCircle(O: list, r: float, sa: float = 0, a: float = np.pi*2, n: in
     else:
         for i in range(n):
             if i < n-1:
-                segments += [[i, i+1]]
+                regions += [[i, i+1]]
             else:
-                segments += [[i, 0]]
+                regions += [[i, 0]]
             theta = sa+h*i
             x = r*np.cos(theta)
             y = r*np.sin(theta)
             coords += [[O[0]+x, O[1]+y]]
-    return coords, segments
+    return coords, regions
 
 
 def angleBetweenAngles(start: float, end: float, mid: float) -> bool:

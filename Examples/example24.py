@@ -62,8 +62,8 @@ geometria = Delaunay(c, params, nvn=2)
 geometria.generateRegionFromCoords([0, 0], [2*b, 0])
 geometria.generateRegionFromCoords(
     [2*b-parabola(4*he), 4*he], [parabola(4*he), 4*he])
-geometria.cbe = geometria.cbFromSegment(-2, 0, 1)
-geometria.cbe += geometria.cbFromSegment(-2, 0, 2)
+geometria.cbe = geometria.cbFromRegion(-2, 0, 1)
+geometria.cbe += geometria.cbFromRegion(-2, 0, 2)
 cbn = geometria.generateBCFromCoords(parabola(h/2), h/2, ppx, nv=1)
 cbn += geometria.generateBCFromCoords(parabola(h/2), h/2, ppx, nv=2)
 geometria.cbn = cbn

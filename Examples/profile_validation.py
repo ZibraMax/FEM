@@ -76,9 +76,9 @@ geometria2D = Geometry(dicc, coords, ['C1V']*len(dicc), 2, fast=True)
 # geometria.generateRegionFromCoords([a, 0], [a, a])
 # geometria.generateRegionFromCoords([a, a], [0, a])
 # geometria.generateRegionFromCoords([0, a], [0, 0])
-# cb = geometria.cbFromSegment(3, 0, 1)
-# cb += geometria.cbFromSegment(3, 0, 2)
-# cb += geometria.cbFromSegment(1, u, 1)
+# cb = geometria.cbFromRegion(3, 0, 1)
+# cb += geometria.cbFromRegion(3, 0, 2)
+# cb += geometria.cbFromRegion(1, u, 1)
 # geometria.setCbe(cb)
 
 

@@ -25,7 +25,7 @@ seg_hueco = [[0, 1], [1, 2], [2, 3], [3, 0]]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True,
                                a='5', o=2)
 cent = [b/2, h/2]
-hole = {'center': cent, 'segments': seg_hueco, 'vertices': coords_hueco}
+hole = {'center': cent, 'regions': seg_hueco, 'vertices': coords_hueco}
 holes = [hole]
 
 geometria = Delaunay(coords, params, 1, holes_dict=holes)
