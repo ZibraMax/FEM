@@ -301,10 +301,6 @@ be a 2-D Numpy Array.</p>
 <dd><p>Post process the solution</p>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Core.Core.print">
-<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'report.tex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aux</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'temp'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.print" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Core.Core.profile">
 <span class="sig-name descname"><span class="pre">profile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Core.Core.profile" title="Permalink to this definition">#</a></dt>
 <dd><p>Create a profile for a 3D or 2D problem.</p>
@@ -316,13 +312,13 @@ be a 2-D Numpy Array.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Core.Core.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Core.Core.solve" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Core.Core.solve" title="Permalink to this definition">#</a></dt>
 <dd><p>A series of Finite Element steps</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to save a text file with the solution of the problem</p></li>
-<li><p><strong>''.</strong> (<em>This file can be loaded witouth spendign time in other finite element steps. Defaults to</em>) – </p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – To post process the solution. Defaults to True.</p></li>
+<li><p><strong>**kargs</strong> – Solver specific parameters.</p></li>
 </ul>
 </dd>
 </dl>
@@ -338,7 +334,10 @@ be a 2-D Numpy Array.</p>
 <dd><p>Load a solution array to the problem.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>solution</strong> (<em>np.ndarray</em>) – Solution vertical array with shape (self.ngdl,1)</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solution</strong> (<em>np.ndarray</em>) – Solution vertical array with shape (self.ngdl,1)</p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – To post process the solution. Defaults to True.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -348,7 +347,10 @@ be a 2-D Numpy Array.</p>
 <dd><p>Load a solution file and show the post process for a given geometry</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>file</strong> (<em>str</em>) – Path to the previously generated solution file.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> (<em>str</em>) – Path to the previously generated solution file.</p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – To post process the solution. Defaults to True.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -637,7 +639,7 @@ be a 2-D Numpy Array.</p>
 </section>
 <section id="module-FEM.EulerBernoulliBeam">
 <span id="fem-eulerbernoullibeam-module"></span><h2>FEM.EulerBernoulliBeam module<a class="headerlink" href="#module-FEM.EulerBernoulliBeam" title="Permalink to this headline">#</a></h2>
-<p>Euler Bernoulli Beam implementation [WIP]</p>
+<p>Euler Bernoulli Beam implementation</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.EulerBernoulliBeam.EulerBernoulliBeam">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.EulerBernoulliBeam.</span></span><span class="sig-name descname"><span class="pre">EulerBernoulliBeam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">FEM.Geometry.Geometry.Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">EI</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.EulerBernoulliBeam.EulerBernoulliBeam" title="Permalink to this definition">#</a></dt>
