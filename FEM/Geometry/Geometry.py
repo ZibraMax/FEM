@@ -17,7 +17,7 @@ from ..Elements.E2D.LTriangular import LTriangular
 from ..Elements.E3D.Brick import Brick
 from .Region import Region, Region1D, Region2D
 from typing import Callable
-from ast import literal_eval
+from ast import literal_eval, parse
 from tqdm import tqdm
 import re
 
@@ -45,8 +45,8 @@ class Geometry:
         """
 
         self.mask = None
-        self.holes = None
-        self.fillets = None
+        self.holes = []
+        self.fillets = []
         self.nvn = nvn
         self.dictionary = dictionary
         self.elements = []
@@ -105,76 +105,6 @@ class Geometry:
             diccionariosnl.append(linea)
         return diccionariosnl
 
-    @classmethod
-    def loadmsh(self, filename: str, **kargs):  # Fuckit
-        """Load geometry from previously generated MSH file
-
-        Args:
-            filename (str): Path to msh file
-
-        Returns:
-            Geometry: Output geometry
-        """
-        print('Loading ' + filename)
-        f = open(filename, 'r')
-        dicc = []
-        gdls = []
-        types = []
-        seg = []
-        cbe = []
-        cbn = []
-        nvn = 1
-        p = list(map(int, re.findall(r'\S+', f.readline())))
-        for _ in range(p[0]):
-            gdls += [list(map(float, f.readline().split('\t')))]
-        for _ in range(p[1]):
-            types += [f.readline().split('\n')[0]]
-        for _ in range(p[1]):
-            dicc += [list(map(int, f.readline().split('\t')))]
-        for _ in range(p[2]):
-            seg += [list(map(int, f.readline().split('\t')))]
-        for _ in range(p[3]):
-            cbe += [list(map(float, f.readline().split('\t')))]
-        for _ in range(p[4]):
-            cbn += [list(map(float, f.readline().split('\t')))]
-        nvn = p[5]
-        try:
-            len_holes = p[6]
-        except:
-            len_holes = 0
-        try:
-            len_fillets = p[7]
-        except:
-            len_fillets = 0
-        try:
-            len_mask = p[8]
-        except:
-            len_mask = 0
-        fillets = []
-        holes = []
-        mask = []
-        if len_mask == 0:
-            mask = None
-        for _ in range(len_holes):
-            holes.append(literal_eval(f.readline()))
-        for _ in range(len_fillets):
-            fillets.append(literal_eval(f.readline()))
-        for _ in range(len_mask):
-            mask += [list(map(float, f.readline().split('\t')))]
-        f.close()
-        gdls = np.array(gdls)
-        print('File ' + filename + ' loaded')
-        for i in range(len(seg)):
-            seg[i] = Region1D(gdls[np.ix_(seg[i])])
-
-        o = self(dicc, gdls, types, nvn, seg, **kargs)
-        o.cbe = cbe
-        o.cbn = cbn
-        o.holes = holes
-        o.fillets = fillets
-        o.mask = mask
-        return o
-
     def generateElements(self) -> None:
         """Generate elements structure
         """
@@ -217,54 +147,6 @@ class Geometry:
     def show(self):
         """Creates a geometry graph"""
         pass
-
-    def saveMesh(self, ProjectName: str) -> None:
-        """Saves the geometry to a MSH file with specified name
-
-        Args:
-            ProjectName (str): Project name without extension
-        """
-        filename = ProjectName + '.msh'
-        f = open(filename, 'w')
-        try:
-            len_holes = len(self.holes)
-        except Exception as e:
-            len_holes = 0
-        try:
-            len_fillets = len(self.fillets)
-        except Exception as e:
-            len_fillets = 0
-        try:
-            len_mask = len(self.mask)
-        except Exception as e:
-            len_mask = 0
-        p = [len(self.gdls), len(self.dictionary), len(
-            self.regions), len(self.cbe), len(self.cbn), self.nvn, len_holes, len_fillets, len_mask]
-        f.write('\t'.join(list(map(format, p))) + '\n')
-        for e in self.gdls:
-            f.write('\t'.join(list(map(format, e))) + '\n')
-        for e in self.types:
-            f.write(e + '\n')
-        for e in self.dictionary:
-            f.write('\t'.join(list(map(format, e))) + '\n')
-        for e in self.regions:
-            pass
-            # f.write('\t'.join(list(map(format, e))) + '\n') FUCKIT
-        for e in self.cbe:
-            f.write(format(int(e[0]))+'\t'+format(e[1])+'\n')
-        for e in self.cbn:
-            f.write(format(int(e[0]))+'\t'+format(e[1])+'\n')
-        if self.holes:
-            for e in self.holes:
-                f.write(str(e)+'\n')
-        if self.fillets:
-            for e in self.fillets:
-                f.write(str(e)+'\n')
-        if self.mask:
-            for e in self.mask:
-                f.write('\t'.join(list(map(format, e)))+'\n')
-        f.close()
-        print('File ' + filename + ' saved')
 
     def calculateCentroids(self) -> None:
         """Calculate elements centroids
@@ -365,6 +247,8 @@ class Geometry:
             "nbc": self.cbn,
             "nvn": self.nvn,
             "ngdl": self.ngdl,
+            "holes": self.holes,
+            "fillets": self.fillets,
         }
         y = json.dumps(x)
         if filename:
@@ -408,6 +292,8 @@ class Geometry:
             o = self(dcc, nodes, types, nvn, regions, **kargs)
             o.cbe = parsed['ebc']
             o.cbn = parsed['nbc']
+            o.holes = parsed['holes']
+            o.fillets = parsed['fillets']
             return o
 
 
@@ -421,7 +307,7 @@ class Geometry1D(Geometry):
         nvn (int, optional): Nunmber of variables per node. Defaults to 1.
     """
 
-    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1) -> None:
+    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, fast=False) -> None:
         """Define geometry structure
 
         Args:
@@ -431,15 +317,7 @@ class Geometry1D(Geometry):
             nvn (int, optional): Nunmber of variables per node. Defaults to 1.
         """
 
-        self.nvn = nvn
-        self.dictionary = dictionary
-        self.elements = []
-        self.gdls = gdls
-        self.types = types
-        self.cbe = []
-        self.cbn = []
-        self.ngdl = int(len(self.gdls)*self.nvn)
-        self.generateElements()
+        Geometry.__init__(self, dictionary, gdls, types, nvn, [], fast)
 
     def generateElements(self) -> None:
         """Generate elements structure
@@ -784,7 +662,7 @@ class Geometry3D(Geometry):
         pass
 
 
-class Lineal(Geometry):
+class Lineal(Geometry1D):
 
     """Generate a evenly spaced elements domain
 
@@ -829,8 +707,8 @@ class Lineal(Geometry):
             tipo = 'L3V'
         types = [tipo]*len(dictionary)
         gdls = np.array(gdls).reshape([len(gdls), 1])
-        Geometry.__init__(self, dictionary, gdls, types,
-                          nvn=nvn, regions=[])
+        Geometry1D.__init__(self, dictionary, gdls, types,
+                            nvn=nvn)
 
 
 class Delaunay(Geometry2D):
@@ -914,11 +792,10 @@ class Delaunay(Geometry2D):
         triangular = tr.triangulate(original, params)
         self.triangulation = triangular
         dictionary = triangular['triangles'].tolist()
-        tipos = np.zeros([len(dictionary)]).astype(str)
         if 'o2' in params:
-            tipos[:] = 'T2V'
+            tipos = ['T2V']*len(dictionary)
         else:
-            tipos[:] = 'T1V'
+            tipos = ['T1V']*len(dictionary)
         gdls = triangular['vertices']
         if tipos[0] == 'T2V':
             for dicc in dictionary:

@@ -1,9 +1,9 @@
-from FEM.Geometry.Geometry import Geometry
+from FEM.Geometry import Geometry2D
 from FEM.Elasticity2D import PlaneStress
 import matplotlib.pyplot as plt
 import numpy as np
 
-geometria = Geometry.loadmsh('Mesh_tests/pieza_acero.msh')
+geometria = Geometry2D.importJSON('Examples/Mesh_tests/pieza_acero.json')
 geometria.show()
 plt.show()
 E = 29000000
