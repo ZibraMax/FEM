@@ -202,7 +202,7 @@
   <h2>A</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D.addRegion">addRegion() (FEM.Geometry.Geometry.Geometry3D method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.addRegions">addRegions() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
@@ -234,14 +234,16 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.calculateCentroids">calculateCentroids() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.calculateRegions">calculateRegions() (FEM.Geometry.Geometry.Geometry method)</a>
+</li>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbeAllBorders">cbeAllBorders() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbFromSegment">cbFromSegment() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.cbOnHole">cbOnHole() (FEM.Geometry.Geometry.Geometry2D method)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.cbOnHole">cbOnHole() (FEM.Geometry.Geometry.Geometry2D method)</a>
+</li>
         <li><a href="FEM.Utils.html#FEM.Utils.polygonal.clip">clip() (in module FEM.Utils.polygonal)</a>
 </li>
         <li><a href="FEM.html#FEM.FEMLogger.LogFormatter.COLOR_CODES">COLOR_CODES (FEM.FEMLogger.LogFormatter attribute)</a>
@@ -720,7 +722,7 @@
         </ul></li>
         <li><a href="FEM.Utils.html#FEM.Utils.polygonal.generatePolygon">generatePolygon() (in module FEM.Utils.polygonal)</a>
 </li>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.generateSegmentsFromCoords">generateSegmentsFromCoords() (FEM.Geometry.Geometry.Geometry2D method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.generateRegionFromCoords">generateRegionFromCoords() (FEM.Geometry.Geometry.Geometry2D method)</a>
 </li>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry">Geometry (class in FEM.Geometry.Geometry)</a>
 </li>
@@ -728,15 +730,17 @@
 </li>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D">Geometry2D (class in FEM.Geometry.Geometry)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D">Geometry3D (class in FEM.Geometry.Geometry)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="FEM.Utils.html#FEM.Utils.polygonal.giveCoordsCircle">giveCoordsCircle() (in module FEM.Utils.polygonal)</a>
 </li>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.giveElementsOfSegment">giveElementsOfSegment() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.giveNodesOfSegment">giveNodesOfSegment() (FEM.Geometry.Geometry.Geometry method)</a>
+</li>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.giveRegions">giveRegions() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
         <li><a href="FEM.Elements.E1D.html#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.giveSolution">giveSolution() (FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement method)</a>
 
@@ -776,7 +780,7 @@
   <h2>I</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.importJSON">importJSON() (FEM.Geometry.Geometry.Geometry static method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.importJSON">importJSON() (FEM.Geometry.Geometry.Geometry class method)</a>
 </li>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.initialize">initialize() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
@@ -840,7 +844,7 @@
 </li>
         <li><a href="FEM.Solvers.html#FEM.Solvers.NoLineal.LoadControl">LoadControl (class in FEM.Solvers.NoLineal)</a>
 </li>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadmsh">loadmsh() (FEM.Geometry.Geometry.Geometry static method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.loadmsh">loadmsh() (FEM.Geometry.Geometry.Geometry class method)</a>
 
         <ul>
           <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry1D.loadmsh">(FEM.Geometry.Geometry.Geometry1D static method)</a>
@@ -850,9 +854,9 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.loadOnHole">loadOnHole() (FEM.Geometry.Geometry.Geometry2D method)</a>
 </li>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.loadOnSegment">loadOnSegment() (FEM.Geometry.Geometry.Geometry2D method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.loadOnRegion">loadOnRegion() (FEM.Geometry.Geometry.Geometry2D method)</a>
 </li>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.loadOnSegmentVF">loadOnSegmentVF() (FEM.Geometry.Geometry.Geometry2D method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.loadOnRegionVF">loadOnRegionVF() (FEM.Geometry.Geometry.Geometry2D method)</a>
 </li>
         <li><a href="FEM.html#FEM.FEMLogger.LogFormatter">LogFormatter (class in FEM.FEMLogger)</a>
 </li>
@@ -866,7 +870,7 @@
   <h2>M</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.maskFromSegments">maskFromSegments() (FEM.Geometry.Geometry.Geometry method)</a>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.maskFromRegions">maskFromRegions() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
         <li>
     module
@@ -959,6 +963,8 @@
           <li><a href="Test.html#module-Test">Test</a>
 </li>
           <li><a href="Test.html#module-Test.test_Geometry">Test.test_Geometry</a>
+</li>
+          <li><a href="Test.html#module-Test.test_Geometry2D">Test.test_Geometry2D</a>
 </li>
           <li><a href="Test.html#module-Test.test_ODE2D">Test.test_ODE2D</a>
 </li>
@@ -1149,6 +1155,8 @@
 </li>
         <li><a href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.setCbe">setCbe() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
+        <li><a href="FEM.Geometry.html#FEM.Geometry.Region.Region.setNodesOfRegion">setNodesOfRegion() (FEM.Geometry.Region.Region method)</a>
+</li>
         <li><a href="FEM.Elements.html#FEM.Elements.Element.Element.setUe">setUe() (FEM.Elements.Element.Element method)</a>
 </li>
         <li><a href="FEM.html#FEM.FEMLogger.FEMLogger.setup_logging">setup_logging() (FEM.FEMLogger.FEMLogger method)</a>
@@ -1210,6 +1218,13 @@
 </li>
         </ul></li>
         <li>
+    Test.test_Geometry2D
+
+        <ul>
+          <li><a href="Test.html#module-Test.test_Geometry2D">module</a>
+</li>
+        </ul></li>
+        <li>
     Test.test_ODE2D
 
         <ul>
@@ -1223,25 +1238,29 @@
           <li><a href="Test.html#module-Test.test_PlaneStress">module</a>
 </li>
         </ul></li>
-        <li><a href="Test.html#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1">test_cantilever_beam_point_1() (Test.test_PlaneStress.TestPlaneStress method)</a>
+        <li><a href="Test.html#Test.test_Geometry2D.TestGeometry2D.test_addRegions">test_addRegions() (Test.test_Geometry2D.TestGeometry2D method)</a>
 </li>
-        <li><a href="Test.html#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2">test_cantilever_beam_point_2() (Test.test_PlaneStress.TestPlaneStress method)</a>
+        <li><a href="Test.html#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1">test_cantilever_beam_point_1() (Test.test_PlaneStress.TestPlaneStress method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="Test.html#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2">test_cantilever_beam_point_2() (Test.test_PlaneStress.TestPlaneStress method)</a>
+</li>
         <li><a href="Test.html#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_triangular_3">test_cantilever_beam_triangular_3() (Test.test_PlaneStress.TestPlaneStress method)</a>
 </li>
         <li><a href="Test.html#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_1">test_cantilever_beam_uniform_1() (Test.test_PlaneStress.TestPlaneStress method)</a>
 </li>
         <li><a href="Test.html#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_2">test_cantilever_beam_uniform_2() (Test.test_PlaneStress.TestPlaneStress method)</a>
 </li>
-        <li><a href="Test.html#Test.test_Geometry.TestGeometry.test_generateSegmentFromCoords">test_generateSegmentFromCoords() (Test.test_Geometry.TestGeometry method)</a>
+        <li><a href="Test.html#Test.test_Geometry2D.TestGeometry2D.test_importJSON">test_importJSON() (Test.test_Geometry2D.TestGeometry2D method)</a>
 </li>
         <li><a href="Test.html#Test.test_Geometry.TestGeometry.test_meshRect">test_meshRect() (Test.test_Geometry.TestGeometry method)</a>
 </li>
         <li><a href="Test.html#Test.test_ODE2D.TestODE2D.test_polinomyal_function">test_polinomyal_function() (Test.test_ODE2D.TestODE2D method)</a>
 </li>
         <li><a href="Test.html#Test.test_Geometry.TestGeometry">TestGeometry (class in Test.test_Geometry)</a>
+</li>
+        <li><a href="Test.html#Test.test_Geometry2D.TestGeometry2D">TestGeometry2D (class in Test.test_Geometry2D)</a>
 </li>
         <li><a href="Test.html#Test.test_ODE2D.TestODE2D">TestODE2D (class in Test.test_ODE2D)</a>
 </li>
