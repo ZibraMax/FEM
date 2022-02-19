@@ -16,7 +16,7 @@ cbe += geometria.cbFromSegment(1, 0, 2)
 cbe += geometria.cbFromSegment(3, 0, 1)
 cbe += geometria.cbFromSegment(3, 0, 2)
 geometria.cbe = cbe
-geometria.loadOnSegment(2, fy=lambda s: -23.54*b*h)
+geometria.loadOnRegion(2, fy=lambda s: -23.54*b*h)
 O = PlaneStress(geometria, E, v, b)
 O.geometry.show()
 O.geometry.mask = None

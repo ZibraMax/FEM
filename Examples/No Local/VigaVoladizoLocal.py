@@ -21,10 +21,10 @@ def af(l0, rho):
 
 
 geometria = Geometry.loadmsh('viga_empotrada.msh')
-geometria.generateSegmentsFromCoords([0, 0], [L, 0])
-geometria.generateSegmentsFromCoords([L, 0], [L, h])
-geometria.generateSegmentsFromCoords([L, h], [0, h])
-geometria.generateSegmentsFromCoords([0, h], [0, 0])
+geometria.generateRegionFromCoords([0, 0], [L, 0])
+geometria.generateRegionFromCoords([L, 0], [L, h])
+geometria.generateRegionFromCoords([L, h], [0, h])
+geometria.generateRegionFromCoords([0, h], [0, 0])
 cbe = geometria.cbFromSegment(3, 0, 1)
 cbe += geometria.cbFromSegment(3, 0, 2)
 cbe += geometria.cbFromSegment(1, 0, 1)

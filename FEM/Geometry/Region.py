@@ -11,7 +11,17 @@ class Region():
     # TODO hacer los docstrigns
 
     def __init__(self, coords):
+        if not isinstance(coords, np.ndarray):
+            coords = np.array(coords)
         self.coords = coords
+        self.nodes = []
+
+    def setNodesOfRegion(self, geometry, tol=10**(-5)):
+        self.nodes = []
+        for i, p in enumerate(geometry.gdls):
+            if self.isBetween(p, tol):
+                self.nodes.append(i)
+        self.nodes = np.array(self.nodes)
 
 
 class Region1D(Region):

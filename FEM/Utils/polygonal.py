@@ -8,7 +8,7 @@ import math
 from typing import Tuple
 
 
-def enmalladoFernando(lx: float, ly: float, nex: int, ney: int, filename: str) -> None:
+def enmalladoFernando(lx: float, ly: float, nex: int, ney: int) -> None:
     """Crea un enmallado 2D de un rectangulo
 
     Args:
@@ -32,7 +32,7 @@ def enmalladoFernando(lx: float, ly: float, nex: int, ney: int, filename: str) -
     y = np.zeros([nnd])
     nel = nex*ney
     nle = []
-    elm = np.zeros([nel, 9])
+    elm = np.zeros([nel, 8])
     ntel = 1
     # Coordinate Generation
     print('Generando Coordenadas')
@@ -67,7 +67,6 @@ def enmalladoFernando(lx: float, ly: float, nex: int, ney: int, filename: str) -
         elm[ne, 7] = elm[ne, 0]+2*nex+1
         elm[ne, 6] = elm[ne, 3]+1
         elm[ne, 5] = elm[ne, 7]+1
-        elm[ne, 8] = 1
         for j in range(1, nex):
             ne = ne+1
             elm[ne, 0] = elm[ne-1, 1]
@@ -78,20 +77,22 @@ def enmalladoFernando(lx: float, ly: float, nex: int, ney: int, filename: str) -
             elm[ne, 7] = elm[ne-1, 5]
             elm[ne, 6] = elm[ne, 3]+1
             elm[ne, 5] = elm[ne, 7]+1
-            elm[ne, 8] = 1
 
-    print('Guardando Archivo')
-    f = open(filename, 'w')
-    f.write(format(nnd)+'\t'+format(nel)+'\t0\t0\t0\t2'+'\n')
-    for i in range(nnd):
-        f.write(format(x[i])+'\t'+format(y[i])+'\n')
-    for i in range(nel):
-        f.write('C2V'+'\n')
-    for i in range(nel):
-        def fun(x): return str(int(x)-1)
-        f.write('\t'.join(map(fun, [elm[i, 0], elm[i, 1], elm[i, 2],
-                elm[i, 3], elm[i, 4], elm[i, 5], elm[i, 6], elm[i, 7]]))+'\n')
-    f.close()
+    # print('Guardando Archivo')
+    # f = open(filename, 'w')
+    # f.write(format(nnd)+'\t'+format(nel)+'\t0\t0\t0\t2'+'\n')
+    # for i in range(nnd):
+    #     f.write(format(x[i])+'\t'+format(y[i])+'\n')
+    # for i in range(nel):
+    #     f.write('C2V'+'\n')
+    # for i in range(nel):
+    #     def fun(x): return str(int(x)-1)
+    #     f.write('\t'.join(map(fun, [elm[i, 0], elm[i, 1], elm[i, 2],
+    #             elm[i, 3], elm[i, 4], elm[i, 5], elm[i, 6], elm[i, 7]]))+'\n')
+    # f.close()
+    coords = np.array([x, y]).T
+    dicc = (elm-1).astype(int).tolist()
+    return coords, dicc
     print('Archivo ' + filename + ' Guardado')
 
 
@@ -192,7 +193,7 @@ def isBetween(a: list, b: list, c: list, tol: float) -> bool:
     a = a.flatten()
     b = b.flatten()
     c = c.flatten()
-    
+
     d1 = dist(a, c)
     d2 = dist(b, c)
     d3 = dist(a, b)

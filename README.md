@@ -201,8 +201,8 @@ A good example is the `PlaneStress` class in the `Elasticity2D.py` file.
 2. 2D elastic plate theory
 3. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
 4. Transient analysis (Core modification)
-7. Non-Lineal for 2D equation (All cases)
-8. Testing and numerical validation (WIP)
+5. Non-Lineal for 2D equation (All cases)
+6. Testing and numerical validation (WIP)
 
 ## Example index:
 
@@ -274,7 +274,7 @@ A good example is the `PlaneStress` class in the `Elasticity2D.py` file.
 
       <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example18.png">
 
--   Example 19: Apply loads on segments. `loadOnSegment` method on Test 11
+-   Example 19: Apply loads on segments. `loadOnRegion` method on Test 11
 
       <img src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example19.png">
 

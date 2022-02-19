@@ -103,7 +103,7 @@ geometria = Geometry((np.array(elementos)-1).astype(int).tolist(),
 geometria.cbe = geometria.cbFromSegment(0, 0, 1)
 geometria.cbe += geometria.cbFromSegment(0, 0, 2)
 geometria.cbn = [[50, ppx], [51, ppy]]
-geometria.loadOnSegment(1, fy=lambda s: -p0)
+geometria.loadOnRegion(1, fy=lambda s: -p0)
 O = PlaneStrain(geometria, E, v)
 O.elementMatrices()
 O.ensembling()

@@ -59,15 +59,15 @@ for i in reversed(range(n)):
     c += [[x, y]]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.5', o=2)
 geometria = Delaunay(c, params, nvn=2)
-geometria.generateSegmentsFromCoords([0, 0], [2*b, 0])
-geometria.generateSegmentsFromCoords(
+geometria.generateRegionFromCoords([0, 0], [2*b, 0])
+geometria.generateRegionFromCoords(
     [2*b-parabola(4*he), 4*he], [parabola(4*he), 4*he])
 geometria.cbe = geometria.cbFromSegment(-2, 0, 1)
 geometria.cbe += geometria.cbFromSegment(-2, 0, 2)
 cbn = geometria.generateBCFromCoords(parabola(h/2), h/2, ppx, nv=1)
 cbn += geometria.generateBCFromCoords(parabola(h/2), h/2, ppx, nv=2)
 geometria.cbn = cbn
-geometria.loadOnSegment(-1, fy=lambda s: -p0)
+geometria.loadOnRegion(-1, fy=lambda s: -p0)
 O = PlaneStrain(geometria, E, v)
 O.elementMatrices()
 O.ensembling()

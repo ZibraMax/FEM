@@ -15,6 +15,7 @@ from ..Elements.E2D.Quadrilateral import Quadrilateral
 from ..Elements.E2D.QTriangular import QTriangular
 from ..Elements.E2D.LTriangular import LTriangular
 from ..Elements.E3D.Brick import Brick
+from .Region import Region, Region1D, Region2D
 from typing import Callable
 from ast import literal_eval
 from tqdm import tqdm
@@ -49,23 +50,28 @@ class Geometry:
         self.nvn = nvn
         self.dictionary = dictionary
         self.elements = []
-        self.gdls = gdls
+        self.gdls = np.array(gdls)
         self.types = types
-        self.regions = regions if regions else []
+        self.regions = regions or []
         self.cbe = []
         self.cbn = []
         self.centroids = []
         self.fast = fast
         self.initialize()
+        self.calculateRegions()
         self.calculateCentroids()
 
-    def maskFromSegments(self) -> None:
+    def calculateRegions(self):
+        for region in tqdm(self.regions, unit="Region"):
+            region.setNodesOfRegion(self)
+
+    def maskFromRegions(self) -> None:
         """Create the display mask from geometry segments
         """
-
-        self.mask = []
-        for s in self.regions:
-            self.mask += np.array(self.gdls)[np.ix_(s)].tolist()
+        pass  # FIXME
+        # self.mask = []
+        # for s in self.regions:
+        #     self.mask += np.array(self.gdls)[np.ix_(s)].tolist()
 
     def initialize(self) -> None:
         """Calculates the total number of GDL's and generates the elements structure
@@ -99,8 +105,8 @@ class Geometry:
             diccionariosnl.append(linea)
         return diccionariosnl
 
-    @staticmethod
-    def loadmsh(filename: str, **kargs):
+    @classmethod
+    def loadmsh(self, filename: str, **kargs):  # Fuckit
         """Load geometry from previously generated MSH file
 
         Args:
@@ -109,7 +115,6 @@ class Geometry:
         Returns:
             Geometry: Output geometry
         """
-        # TODO poner esto como un constructor?
         print('Loading ' + filename)
         f = open(filename, 'r')
         dicc = []
@@ -157,8 +162,12 @@ class Geometry:
         for _ in range(len_mask):
             mask += [list(map(float, f.readline().split('\t')))]
         f.close()
+        gdls = np.array(gdls)
         print('File ' + filename + ' loaded')
-        o = Geometry(dicc, gdls, types, nvn, seg, **kargs)
+        for i in range(len(seg)):
+            seg[i] = Region1D(gdls[np.ix_(seg[i])])
+
+        o = self(dicc, gdls, types, nvn, seg, **kargs)
         o.cbe = cbe
         o.cbn = cbn
         o.holes = holes
@@ -172,7 +181,7 @@ class Geometry:
         print('Generating element structure')
         self.elements = [0.0]*len(self.dictionary)
         for i, d in enumerate(tqdm(self.dictionary, unit='Element')):
-            coords = np.array(self.gdls)[np.ix_(d)]
+            coords = self.gdls[np.ix_(d)]
             gdl = np.zeros([self.nvn, len(d)])
             for j in range(self.nvn):
                 gdl[j, :] = (np.array(d)*self.nvn+j)
@@ -239,7 +248,8 @@ class Geometry:
         for e in self.dictionary:
             f.write('\t'.join(list(map(format, e))) + '\n')
         for e in self.regions:
-            f.write('\t'.join(list(map(format, e))) + '\n')
+            pass
+            # f.write('\t'.join(list(map(format, e))) + '\n') FUCKIT
         for e in self.cbe:
             f.write(format(int(e[0]))+'\t'+format(e[1])+'\n')
         for e in self.cbn:
@@ -275,7 +285,7 @@ class Geometry:
                 res.append(i)
         self.cbe = res
 
-    def giveNodesOfSegment(self, segment: int, tol: float = 1*10**(-5)) -> np.ndarray:
+    def giveNodesOfSegment(self, segment: int, tol) -> np.ndarray:
         """Give nodes over a segment
 
         Args:
@@ -285,13 +295,7 @@ class Geometry:
         Returns:
             np.ndarray: List of nodes in the specified segment
         """
-        # TODO Hacer que esto sea n dimensional
-        a = []
-        region = self.regions[segment]
-        for i, p in enumerate(self.gdls):
-            if region.isBetween(p, tol):
-                a.append(i)
-        return np.array(a)
+        return self.regions[segment].nodes
 
     def giveElementsOfSegment(self, segment: int, tol: float) -> list:
         """Give elements over a segment
@@ -353,10 +357,10 @@ class Geometry:
         """
         # TODO Faltan los holes y los fillets
         x = {
-            "nodes": self.gdls,
+            "nodes": self.gdls.tolist(),
             "dictionary": self.dictionary,
             "types": self.types,
-            "regions": self.regions,
+            "regions": self.giveRegions(),
             "ebc": self.cbe,
             "nbc": self.cbn,
             "nvn": self.nvn,
@@ -368,8 +372,18 @@ class Geometry:
                 f.write(y)
         return y
 
-    @staticmethod
-    def importJSON(filename: str, **kargs) -> 'Geometry':
+    def giveRegions(self):
+        coords = []
+        for reg in self.regions:
+            coords += [reg.coords.tolist()]
+        return coords
+
+    def addRegions(self, regions):
+        self.regions += regions
+        self.calculateRegions()
+
+    @classmethod
+    def importJSON(self, filename: str, **kargs) -> 'Geometry':
         """Import geometry definition from JSON file
 
         Args:
@@ -384,8 +398,14 @@ class Geometry:
             nodes = parsed['nodes']
             types = parsed['types']
             nvn = parsed['nvn']
-            regions = parsed['regions']
-            o = Geometry(dcc, nodes, types, nvn, regions, **kargs)
+            regions = []
+            regions_parsed = parsed['regions']
+            for coords in regions_parsed:
+                if len(coords) == 2:
+                    regions.append(Region1D(coords))
+                elif len(coords) == 4:
+                    regions.append(Region2D(coords))
+            o = self(dcc, nodes, types, nvn, regions, **kargs)
             o.cbe = parsed['ebc']
             o.cbn = parsed['nbc']
             return o
@@ -456,7 +476,8 @@ class Geometry1D(Geometry):
         nvn = p[5]
         f.close()
         print('File ' + filename + ' loaded')
-        o = Geometry(dicc, gdls, types, nvn, seg)
+
+        o = __class__(dicc, gdls, types, nvn, seg)
         o.cbe = cbe
         o.cbn = cbn
         return o
@@ -519,7 +540,7 @@ class Geometry2D(Geometry):
     def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, segments: list = [], fast=False):
         Geometry.__init__(self, dictionary, gdls, types, nvn, segments, fast)
 
-    def generateSegmentsFromCoords(self, p0: list, p1: list) -> None:
+    def generateRegionFromCoords(self, p0: list, p1: list) -> None:
         """Generates a geometry segment by specified coordinates
 
         Args:
@@ -539,7 +560,9 @@ class Geometry2D(Geometry):
             if r2 < d2:
                 d2 = r2
                 masCercano2 = i
-        self.regions.append([masCercano1, masCercano2])
+        coords = np.array([self.gdls[masCercano1], self.gdls[masCercano2]])
+        self.regions.append(Region1D(coords))
+        self.regions[-1].setNodesOfRegion(self)
 
     def generateBCFromCoords(self, x: float, y: float, value: float = 0, nv: int = 1) -> list:
         """Generates border conditions by coordinates. The border condition is applied to the nearest node
@@ -563,7 +586,7 @@ class Geometry2D(Geometry):
                 masCercano1 = i
         return [[masCercano1*self.nvn+(nv-1), value]]
 
-    def loadOnSegmentVF(self, segment: int, f: Callable = None, tol: float = 1*10**(-5), add=None) -> None:
+    def loadOnRegionVF(self, segment: int, f: Callable = None, tol: float = 1*10**(-5), add=None) -> None:
         """Assign a load over a geometry segment.
 
         The start point of segment is the 0 point of load
@@ -576,16 +599,16 @@ class Geometry2D(Geometry):
             f (Callable, optional): Load Function. Defaults to None.
             tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
         """
-        c0, cf = [self.gdls[self.regions[segment][0]],
-                  self.gdls[self.regions[segment][1]]]
+        c0, cf = self.regions[segment].coords
         dy = cf[1]-c0[1]
         dx = cf[0]-c0[0]
         theta = np.arctan2(dy, dx)
         def fx(s): return f(c0[0]+s*np.cos(theta))[0]
         def fy(s): return f(c0[1]+s*np.sin(theta))[1]
-        self.loadOnSegment(segment=segment, fx=fx, fy=fy, tol=tol, add=add)
+        self.loadOnRegion(segment=segment, fx=fx,
+                          fy=fy, tol=tol, add=add)
 
-    def loadOnSegment(self, segment: int, fx: Callable = None, fy: Callable = None, tol: float = 1*10**(-5), add=None) -> None:
+    def loadOnRegion(self, segment: int, fx: Callable = None, fy: Callable = None, tol: float = 1*10**(-5), add=None) -> None:
         """Assign a load over a geometry segment.
 
         The start point of segment is the 0 point of load
@@ -600,7 +623,7 @@ class Geometry2D(Geometry):
             tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
         """
         a = self.giveElementsOfSegment(segment, tol)
-        coordenadas = np.array(self.gdls)[self.regions[segment]]
+        coordenadas = self.regions[segment].coords
         vect_seg = coordenadas[1]-coordenadas[0]
         for e in a:
             e.intBorders = True
@@ -649,7 +672,7 @@ class Geometry2D(Geometry):
         for segmento in segments_apply:
             for i, seg in enumerate(self.regions):
                 if seg == segmento:
-                    self.loadOnSegment(i, fx, fy, tol)
+                    self.loadOnRegion(i, fx, fy, tol)
                     break
 
     def cbOnHole(self, hole: int, value: float, nv: int = 1, sa: float = 0, ea: float = 2*np.pi, tol: float = 1*10**(-5)) -> list:
@@ -707,11 +730,13 @@ class Geometry2D(Geometry):
             coords = np.array(coords.tolist() + [coords[0].tolist()])
             X = coords[:, 0]
             Y = coords[:, 1]
-            ax.plot(X, Y, '-', color='black', alpha=1-0.6*draw_bc, zorder=-10)
-            cx = self.centroids[i][0]
-            cy = self.centroids[i][1]
+            ax.plot(X, Y, '-', color='black',
+                    alpha=1-0.6*draw_bc, zorder=-10)
+            cx = self.centroids[i][0][0]
+            cy = self.centroids[i][0][1]
             if draw_labels:
-                ax.plot(cx, cy, 'o', markersize=texto + bolita, color='yellow')
+                ax.plot(cx, cy, 'o', markersize=texto +
+                        bolita, color='yellow')
                 ax.annotate(format(i), [
                             cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
         try:
@@ -719,8 +744,8 @@ class Geometry2D(Geometry):
                 verts = self.gdls
                 segs = self.regions
                 for i, seg in enumerate(segs):
-                    x0, y0 = verts[int(seg[0])]
-                    x1, y1 = verts[int(seg[1])]
+                    x0, y0 = seg.coords[0]
+                    x1, y1 = seg.coords[1]
 
                     ax.fill(
                         [x0, x1],
@@ -820,14 +845,10 @@ class Geometry3D(Geometry):
     """Creates a 3D geometry"""
 
     def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, segments: list = [], fast=False):
-        self.regions = []
         Geometry.__init__(self, dictionary, gdls, types, nvn, segments, fast)
 
     def show(self, texto: int = 10, bolita: int = 0, draw_segs: bool = True, draw_labels: bool = False, draw_bc: bool = False, label_bc: bool = False) -> None:
         pass
-
-    def addRegion(self, region):
-        self.regions.append(region)
 
 
 class Lineal(Geometry):
@@ -875,7 +896,8 @@ class Lineal(Geometry):
             tipo = 'L3V'
         types = [tipo]*len(dictionary)
         gdls = np.array(gdls).reshape([len(gdls), 1])
-        Geometry.__init__(self, dictionary, gdls, types, nvn=nvn, segments=[])
+        Geometry.__init__(self, dictionary, gdls, types,
+                          nvn=nvn, segments=[])
 
 
 class Delaunay(Geometry):
@@ -941,7 +963,7 @@ class Delaunay(Geometry):
                     mder[0][0] = spp[-1][-1]
                 mascarita = mizq+[[mizq[-1][-1], ss1[1]],
                                   [ss1[1], spp[1][0]]]+spp[1:]+mder
-                vertices += np.array(f_vertices)[1:-1].tolist()
+                vertices += np.array(f_vertices)[1: -1].tolist()
                 seg[fillet['end_segment']][0] = len(vertices)-1
                 # vertices += [O]
 
@@ -964,7 +986,7 @@ class Delaunay(Geometry):
             tipos[:] = 'T2V'
         else:
             tipos[:] = 'T1V'
-        gdls = triangular['vertices'].tolist()
+        gdls = triangular['vertices']
         if tipos[0] == 'T2V':
             for dicc in dictionary:
                 a1 = dicc[5]
@@ -973,8 +995,12 @@ class Delaunay(Geometry):
                 dicc[3] = a1
                 dicc[4] = a2
                 dicc[5] = a3
-        Geometry.__init__(self, dictionary, gdls, tipos,
-                          nvn=nvn, segments=seg, fast=fast)
+        segments_f = []
+        for s in seg:
+            region = Region1D(gdls[np.ix_(s)])
+            segments_f.append(region)
+        Geometry2D.__init__(self, dictionary, gdls, tipos,
+                            nvn=nvn, segments=segments_f, fast=fast)
         mask = []
         for segmento in mascarita:
             mask += [gdls[segmento[0]]]

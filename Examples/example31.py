@@ -26,10 +26,10 @@ for j in range(ny):
                        * (nx+1)]]
 tipos = ['C1V']*len(elementos)
 geometria = Geometry(elementos, gdls, tipos, 1)
-geometria.generateSegmentsFromCoords([0, 0], [b, 0])
-geometria.generateSegmentsFromCoords([b, 0], [b, h])
-geometria.generateSegmentsFromCoords([b, h], [0, h])
-geometria.generateSegmentsFromCoords([0, h], [0, 0])
+geometria.generateRegionFromCoords([0, 0], [b, 0])
+geometria.generateRegionFromCoords([b, 0], [b, h])
+geometria.generateRegionFromCoords([b, h], [0, h])
+geometria.generateRegionFromCoords([0, h], [0, 0])
 cbe = geometria.cbFromSegment(2, T0)
 geometria.setCbe(cbe)
 

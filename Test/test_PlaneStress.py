@@ -64,8 +64,7 @@ Since the diagrams are only different from 0 in length z, the virtual work state
 :math:`M` and :math:`V` are case dependent an these expresions will be developed for each test case.
 
 """
-
-from FEM.Geometry.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry2D
 from FEM.Elasticity2D import PlaneStress
 import matplotlib.pyplot as plt
 import unittest
@@ -74,7 +73,7 @@ import numpy as np
 import sys
 import inspect
 
-FILENAME = 'Test/resources/beam_ws.msh'
+FILENAME = 'Test/resources/beam_ws.json'
 TOL = 0.1
 
 
@@ -113,11 +112,11 @@ class TestPlaneStress(unittest.TestCase):
             Test result: FEM solution compared whit analytical solution
 
         """
-        geometry = Geometry.loadmsh(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME)
         cb = geometry.cbFromSegment(3, 0.0, 1)
         cb += geometry.cbFromSegment(3, 0.0, 2)
-        geometry.cbe = cb
-        geometry.maskFromSegments()
+        geometry.setCbe(cb)
+        geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
         h = 0.5
         L = 2.0
@@ -177,11 +176,11 @@ class TestPlaneStress(unittest.TestCase):
             FEM solution compared whit analytical solution
         """
 
-        geometry = Geometry.loadmsh(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME)
         cb = geometry.cbFromSegment(3, 0.0, 1)
         cb += geometry.cbFromSegment(3, 0.0, 2)
-        geometry.cbe = cb
-        geometry.maskFromSegments()
+        geometry.setCbe(cb)
+        geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
         h = 0.5
         L = 2.0
@@ -195,7 +194,7 @@ class TestPlaneStress(unittest.TestCase):
         G = E/(2*(1+v))
         W = A*gamma
         O = PlaneStress(geometry, E, v, b)
-        O.geometry.loadOnSegment(2, fy=lambda x: -W)
+        O.geometry.loadOnRegion(2, fy=lambda x: -W)
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
         U = np.array(U)[:, 1].flatten()
@@ -256,16 +255,16 @@ class TestPlaneStress(unittest.TestCase):
 
         P = 1
 
-        geometry = Geometry.loadmsh(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME)
         cb = geometry.cbFromSegment(3, 0.0, 1)
         cb += geometry.cbFromSegment(3, 0.0, 2)
-        geometry.cbe = cb
+        geometry.setCbe(cb)
 
-        geometry.maskFromSegments()
+        geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
 
         O = PlaneStress(geometry, E, v, b)
-        O.geometry.loadOnSegment(1, fy=lambda x: -P/A*b)
+        O.geometry.loadOnRegion(1, fy=lambda x: -P/A*b)
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
         U = np.array(U)[:, 1].flatten()
@@ -326,14 +325,14 @@ class TestPlaneStress(unittest.TestCase):
 
         P = 1
 
-        geometry = Geometry.loadmsh(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME)
         cb = geometry.cbFromSegment(3, 0.0, 1)
         cb += geometry.cbFromSegment(3, 0.0, 2)
+        geometry.setCbe(cb)
         cbn = geometry.generateBCFromCoords(L, h, -P, 2)
-        geometry.cbe = cb
         geometry.cbn = cbn
 
-        geometry.maskFromSegments()
+        geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
 
         O = PlaneStress(geometry, E, v, b)
@@ -383,11 +382,11 @@ class TestPlaneStress(unittest.TestCase):
             FEM solution compared whit analytical solution
 
         """
-        geometry = Geometry.loadmsh(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME)
         cb = geometry.cbFromSegment(3, 0.0, 1)
         cb += geometry.cbFromSegment(3, 0.0, 2)
-        geometry.cbe = cb
-        geometry.maskFromSegments()
+        geometry.setCbe(cb)
+        geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
         h = 0.5
         L = 2.0
@@ -401,7 +400,7 @@ class TestPlaneStress(unittest.TestCase):
         G = E/(2*(1+v))
         k = 5/6
         O = PlaneStress(geometry, E, v, b)
-        O.geometry.loadOnSegment(2, fy=lambda x: -W*(x/L))
+        O.geometry.loadOnRegion(2, fy=lambda x: -W*(x/L))
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
         U = np.array(U)[:, 1].flatten()
@@ -431,6 +430,6 @@ if __name__ == '__main__':
         inspect.getfile(inspect.currentframe())))
     parentdir = os.path.dirname(currentdir)
     sys.path.insert(0, parentdir)
-    from FEM.Geometry.Geometry import Geometry
+    from FEM.Geometry.Geometry import Geometry2D
     from FEM.Elasticity2D import PlaneStress
     unittest.main()

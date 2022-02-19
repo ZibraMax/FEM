@@ -21,15 +21,15 @@ nx = 500
 ny = 10
 enmalladoFernando(L, h, nx, ny, filename)
 geometria = Geometry.loadmsh(filename, fast=True)
-geometria.generateSegmentsFromCoords([0, 0], [L, 0])
-geometria.generateSegmentsFromCoords([L, 0], [L, h])
-geometria.generateSegmentsFromCoords([L, h], [0, h])
-geometria.generateSegmentsFromCoords([0, h], [0, 0])
+geometria.generateRegionFromCoords([0, 0], [L, 0])
+geometria.generateRegionFromCoords([L, 0], [L, h])
+geometria.generateRegionFromCoords([L, h], [0, h])
+geometria.generateRegionFromCoords([0, h], [0, 0])
 
 cbe = geometria.cbFromSegment(1, 0.0, 1)
 cbe += geometria.generateBCFromCoords(L, h/2, 0.0, 2)
 
-geometria.loadOnSegment(3, fy=lambda s: -t0*b)
+geometria.loadOnRegion(3, fy=lambda s: -t0*b)
 
 geometria.setCbe(cbe)
 O = PlaneStressSparse(geometria, E, v, b, rho=rho, verbose=True)

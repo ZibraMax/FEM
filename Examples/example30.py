@@ -38,9 +38,9 @@ v = 0.26
 t = 0.5
 p0 = 5000
 p = p0/2
-# geometria.loadOnSegment(3, lambda s: p)
+# geometria.loadOnRegion(3, lambda s: p)
 # for i in range(68, 89):
-#     geometria.loadOnSegment(i, lambda s: 10000)
+#     geometria.loadOnRegion(i, lambda s: 10000)
 
 geometria.loadOnHole(1, np.pi/2, 3*np.pi/2, lambda s: p0/(2*np.pi*radi/2))
 O = PlaneStress(geometria, E, v, t)

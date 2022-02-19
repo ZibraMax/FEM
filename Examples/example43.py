@@ -27,7 +27,7 @@ geometry.setCbe(cb)
 def f(s): return p0
 
 
-geometry.loadOnSegment(1, f)
+geometry.loadOnRegion(1, f)
 # geometry.show(draw_labels=True, draw_bc=True, label_bc=True)
 # plt.show()
 OFEM = pso(geometry, E1, E2, G12, v12, t)

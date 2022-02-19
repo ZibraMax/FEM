@@ -110,7 +110,7 @@ class Heat2D(Core):
             Ta (float, optional): Ambient temperature in convective border. Defaults to 0.
             tol (float, optional): Tolerancy to find adjacent nodes. Defaults to 1*10**(-5).
         """
-        self.geometry.loadOnSegment(
+        self.geometry.loadOnRegion(
             segment, fx=lambda s: beta, tol=tol, add={'Ta': Ta})
 
     def postProcess(self, levels=1000) -> None:

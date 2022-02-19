@@ -18,7 +18,7 @@ geometria = Geometry(dicc, gdls, tipos, nvn=2, segments=segmentos)
 cbe = geometria.cbFromSegment(3, 0, 1)
 cbe += geometria.cbFromSegment(3, 0, 2)
 geometria.cbe = cbe
-geometria.loadOnSegment(1, fx=lambda s: 10, fy=lambda s: 0)
+geometria.loadOnRegion(1, fx=lambda s: 10, fy=lambda s: 0)
 
 O = PlaneStress(geometria, E, v, t)
 O.elementMatrices()

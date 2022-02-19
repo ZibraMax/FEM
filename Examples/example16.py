@@ -11,10 +11,10 @@ t = 0.5
 l = 0.1
 z1 = 0.5
 geometria = Geometry.loadmsh('Mesh_tests/EnmalladoTesis.msh')
-geometria.generateSegmentsFromCoords([0, 0], [a, 0])
-geometria.generateSegmentsFromCoords([a, 0], [a, a])
-geometria.generateSegmentsFromCoords([a, a], [0, a])
-geometria.generateSegmentsFromCoords([0, a], [0, 0])
+geometria.generateRegionFromCoords([0, 0], [a, 0])
+geometria.generateRegionFromCoords([a, 0], [a, a])
+geometria.generateRegionFromCoords([a, a], [0, a])
+geometria.generateRegionFromCoords([0, a], [0, 0])
 cb = geometria.cbFromSegment(3, 0, 1)
 cb += geometria.cbFromSegment(3, 0, 2)
 cb += geometria.cbFromSegment(1, u, 1)
