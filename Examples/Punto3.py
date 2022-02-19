@@ -15,8 +15,6 @@ geometry.cbn = [[2, 0]]
 O = Poisson2D(geometry, phi)
 O.solve(plot=False)
 # plt.show()
-O.print(filename='Caso1.tex', draw_segs=True,
-        draw_labels=True, draw_bc=True, label_bc=True)
 print(O.U[2, 0])
 plt.show()
 
@@ -32,8 +30,6 @@ O = Poisson2D(geometry, phi)
 O.solve()
 print(O.U[2, 0])
 plt.show()
-O.print(filename='Caso2.tex', draw_segs=True,
-        draw_labels=True, draw_bc=True, label_bc=True)
 elementos = [[0, 1, 2], [2, 1, 3], [2, 3, 5], [2, 5, 4]]
 tipos = ['T1V', 'T1V', 'T1V', 'T1V']
 geometry = Geometry(elementos, nodos, tipos)
@@ -45,6 +41,3 @@ O = Poisson2D(geometry, phi)
 O.solve()
 print(O.U[2, 0])
 plt.show()
-
-O.print(filename='Caso3.tex', draw_segs=True,
-        draw_labels=True, draw_bc=True, label_bc=True)

@@ -1,5 +1,4 @@
-"""Euler Bernoulli Beam implementation [WIP]
-"""
+"""Euler Bernoulli Beam implementation"""
 
 
 from .Solvers import NoLineal

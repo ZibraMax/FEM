@@ -1,9 +1,7 @@
 """3D Isotropic elasticity"""
 
 from typing import Callable, Tuple
-import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib import gridspec
 from tqdm import tqdm
 from scipy import sparse
 from scipy.sparse.linalg import spsolve

@@ -12,7 +12,7 @@ class TestGeometry2D(unittest.TestCase):
     """Test the geometry class"""
 
     def test_importJSON(self):
-        """Creation a rectangular geometry file
+        """Import of geometry using file
         """
         geometry = Geometry2D.importJSON(FILENAME)
         self.assertEqual(len(geometry.regions), 0)

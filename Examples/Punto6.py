@@ -16,6 +16,4 @@ geometry.cbn = [[6, 0], [1, 0]]
 O = Poisson2D(geometry, phi)
 O.solve(plot=False)
 # plt.show()
-O.print(filename='Torsion.tex', draw_segs=True,
-        draw_labels=True, draw_bc=True, label_bc=True)
 plt.show()
