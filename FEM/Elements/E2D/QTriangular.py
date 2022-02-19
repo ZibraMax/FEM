@@ -74,7 +74,7 @@ class QTriangular(Element2D, TriangularScheme):
                 rv += ['  ' + ' & '.join(l.split()) + r'\\' for l in lines]
                 rv += [r'\end{bmatrix}']
             return '\n'.join(rv)
-        return r"""Elemento de 6 nodos. El primer nodo se encuentra centrado en el origen y los otros dos nodos principales se encuentran a una unidad en ambas direcciones. Se crean nodos secundarios en los segmentos que forma cada pareja de nodos primaros. Los nodos se enumeran en el orden contrario a las manecillas del reloj empezando por los nodos primarios y posteriormente los nodos secundarios.
+        return r"""Elemento de 6 nodos. El primer nodo se encuentra centrado en el origen y los otros dos nodos principales se encuentran a una unidad en ambas direcciones. Se crean nodos secundarios en los regiones que forma cada pareja de nodos primaros. Los nodos se enumeran en el orden contrario a las manecillas del reloj empezando por los nodos primarios y posteriormente los nodos secundarios.
         Para calcular las integrales de este elemento se usan """+format(len(self.Z))+r""" puntos de Gauss:\\$$\zeta="""+bmatrix(self.Z)+"""$$$$W="""+bmatrix(self.W)+r"""$$\\\\ Para este elemento se usaron las siguientes funciones de forma:
         $$\Psi_0=2(\zeta+\eta-1)(\zeta+\eta-0.5)$$
         $$\Psi_1=2\zeta(\zeta-0.5)$$

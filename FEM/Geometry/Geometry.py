@@ -593,18 +593,18 @@ class Geometry2D(Geometry):
         """
         holee = self.holes[hole]
         regions_apply = []
-        for i, segmento in enumerate(holee['regions']):
-            seg_coords = np.array(self.gdls)[segmento]
+        for i, region in enumerate(holee['regions']):
+            seg_coords = np.array(self.gdls)[region]
             centradas = seg_coords[1]-seg_coords[0]
             angle = np.arctan2(centradas[1], centradas[0])
             angle += np.pi/2
             if angle < 0:
                 angle += 2*np.pi
             if angleBetweenAngles(sa, ea, angle):
-                regions_apply.append(segmento)
-        for segmento in regions_apply:
+                regions_apply.append(region)
+        for region in regions_apply:
             for i, seg in enumerate(self.regions):
-                if seg == segmento:
+                if seg == region:
                     self.loadOnRegion(i, fx, fy, tol)
                     break
 
@@ -625,18 +625,18 @@ class Geometry2D(Geometry):
         holee = self.holes[hole]
         regions_apply = []
         bc = []
-        for i, segmento in enumerate(holee['regions']):
-            seg_coords = np.array(self.gdls)[segmento]
+        for i, region in enumerate(holee['regions']):
+            seg_coords = np.array(self.gdls)[region]
             centradas = seg_coords[1]-seg_coords[0]
             angle = np.arctan2(centradas[1], centradas[0])
             angle += np.pi/2
             if angle < 0:
                 angle += 2*np.pi
             if angleBetweenAngles(sa, ea, angle):
-                regions_apply.append(segmento)
-        for segmento in regions_apply:
+                regions_apply.append(region)
+        for region in regions_apply:
             for i, seg in enumerate(self.regions):
-                if seg == segmento:
+                if seg == region:
                     bc += self.cbFromRegion(i, value, nv, tol)
                     break
         return bc
@@ -868,8 +868,8 @@ class Delaunay(Geometry2D):
         mascarita = copy.deepcopy(seg)
         if fillets:
             for fillet in fillets:
-                S1 = seg[fillet['start_segment']]
-                S2 = seg[fillet['end_segment']]
+                S1 = seg[fillet['start_region']]
+                S2 = seg[fillet['end_region']]
                 for i, maskarita in enumerate(mascarita):
                     if maskarita == S1:
                         indice_importante = i
@@ -897,7 +897,7 @@ class Delaunay(Geometry2D):
                 mascarita = mizq+[[mizq[-1][-1], ss1[1]],
                                   [ss1[1], spp[1][0]]]+spp[1:]+mder
                 vertices += np.array(f_vertices)[1: -1].tolist()
-                seg[fillet['end_segment']][0] = len(vertices)-1
+                seg[fillet['end_region']][0] = len(vertices)-1
                 # vertices += [O]
 
         original = dict(vertices=np.array(vertices), segments=np.array(seg))
@@ -935,8 +935,8 @@ class Delaunay(Geometry2D):
         Geometry2D.__init__(self, dictionary, gdls, tipos,
                             nvn=nvn, regions=regions_f, fast=fast)
         mask = []
-        for segmento in mascarita:
-            mask += [gdls[segmento[0]]]
+        for region in mascarita:
+            mask += [gdls[region[0]]]
         if fillets:
             self.mask = mask
 

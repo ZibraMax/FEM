@@ -7,8 +7,8 @@ import numpy as np
 
 coords = [[0, 0], [4, 0], [4, 0.5], [6, 0.5],
           [6, 2.5], [4, 2.5], [4, 3], [0, 3]]
-fillets = [{'start_segment': 1, 'end_segment': 2, 'r': 0.48, 'n': 5},
-           {'start_segment': 4, 'end_segment': 5, 'r': 0.48, 'n': 5}]
+fillets = [{'start_region': 1, 'end_region': 2, 'r': 0.48, 'n': 5},
+           {'start_region': 4, 'end_region': 5, 'r': 0.48, 'n': 5}]
 holes = []
 radi = 0.5
 cent = [2, 1.5]

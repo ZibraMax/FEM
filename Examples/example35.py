@@ -26,10 +26,10 @@ vertices = [
     [0, tf],
 ]
 fillet_radius = 0.0254
-fillets = [{'start_segment': 2, 'end_segment': 3, 'r': fillet_radius, 'n': 10},
-           {'start_segment': 3, 'end_segment': 4, 'r': fillet_radius, 'n': 10},
-           {'start_segment': 8, 'end_segment': 9, 'r': fillet_radius, 'n': 10},
-           {'start_segment': 9, 'end_segment': 10, 'r': fillet_radius, 'n': 10}]
+fillets = [{'start_region': 2, 'end_region': 3, 'r': fillet_radius, 'n': 10},
+           {'start_region': 3, 'end_region': 4, 'r': fillet_radius, 'n': 10},
+           {'start_region': 8, 'end_region': 9, 'r': fillet_radius, 'n': 10},
+           {'start_region': 9, 'end_region': 10, 'r': fillet_radius, 'n': 10}]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True,
                                a='0.00003', o=2)
 geometria = Delaunay(vertices, params, fillets=fillets)

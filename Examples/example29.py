@@ -23,10 +23,10 @@ vert, seg = giveCoordsCircle(cent, radi, n=50)
 hole = {'center': cent, 'regions': seg, 'vertices': vert}
 holes += [hole]
 
-fillets = [{'start_segment': 2, 'end_segment': 3, 'r': 20, 'n': 10},
-           {'start_segment': 3, 'end_segment': 4, 'r': 20, 'n': 10},
-           {'start_segment': 4, 'end_segment': 5, 'r': 20, 'n': 10},
-           {'start_segment': 5, 'end_segment': 6, 'r': 20, 'n': 10}]
+fillets = [{'start_region': 2, 'end_region': 3, 'r': 20, 'n': 10},
+           {'start_region': 3, 'end_region': 4, 'r': 20, 'n': 10},
+           {'start_region': 4, 'end_region': 5, 'r': 20, 'n': 10},
+           {'start_region': 5, 'end_region': 6, 'r': 20, 'n': 10}]
 
 params = Delaunay._strdelaunay(
     constrained=True, delaunay=True, a='7', o=2)

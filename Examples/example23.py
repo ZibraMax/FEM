@@ -96,10 +96,10 @@ elementos = [
     [25, 27, 35, 33, 26, 31, 34, 30],
     [27, 29, 37, 35, 28, 32, 36, 31]]
 tipos = ['C2V']*len(elementos)
-segmentos = [[0, 4], [32, 36]]
+regiones = [[0, 4], [32, 36]]
 nvn = 2
 geometria = Geometry((np.array(elementos)-1).astype(int).tolist(),
-                     coordendas, tipos, nvn, segmentos)
+                     coordendas, tipos, nvn, regiones)
 geometria.cbe = geometria.cbFromRegion(0, 0, 1)
 geometria.cbe += geometria.cbFromRegion(0, 0, 2)
 geometria.cbn = [[50, ppx], [51, ppy]]

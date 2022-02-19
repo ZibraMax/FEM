@@ -5,7 +5,7 @@ from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import matplotlib.pyplot as plt
 
 coords = [[0, 0], [1, 0], [1, 1], [0, 1]]
-fillets = [{'start_segment': 3, 'end_segment': 0, 'r': 0.5, 'n': 10}]
+fillets = [{'start_region': 3, 'end_region': 0, 'r': 0.5, 'n': 10}]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.005', o=2)
 geometria = Delaunay(coords, params, nvn=1, fillets=fillets)
 geometria.show()

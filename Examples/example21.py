@@ -13,8 +13,8 @@ gdls = [[0, 0], [b, 0], [0, h], [b, h]]
 elemento1 = [0, 1, 3, 2]
 dicc = [elemento1]
 tipos = ['C1V']
-segmentos = [[0, 1], [1, 3], [3, 2], [2, 0]]
-geometria = Geometry(dicc, gdls, tipos, nvn=2, regions=segmentos)
+regiones = [[0, 1], [1, 3], [3, 2], [2, 0]]
+geometria = Geometry(dicc, gdls, tipos, nvn=2, regions=regiones)
 cbe = geometria.cbFromRegion(3, 0, 1)
 cbe += geometria.cbFromRegion(3, 0, 2)
 geometria.cbe = cbe

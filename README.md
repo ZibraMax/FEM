@@ -61,7 +61,7 @@ Numerical Validation:
 #### Steps:
 
 -   Create geometry (From coordinates or GiD)
--   Create Border Conditions (Point and segment supported)
+-   Create Border Conditions (Point and regions supported)
 -   Solve!
 -   For example: Example 2, Example 5, Example 11-14
 

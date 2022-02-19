@@ -75,7 +75,7 @@ class Serendipity(Element2D, RectangularScheme):
                 rv += ['  ' + ' & '.join(l.split()) + r'\\' for l in lines]
                 rv += [r'\end{bmatrix}']
             return '\n'.join(rv)
-        return r"""Elemento de 8 nodos. El primer nodo se encuentra en las coordenadas $\zeta,\eta=[-1,-1]$ y los otros nodos principales se encuentran a dos unidadades en ambas direcciones. Se crean nodos secundarios en los segmentos que forma cada pareja de nodos primaros. Los nodos se enumeran en el orden contrario a las manecillas del reloj empezando por los nodos primarios y posteriormente los nodos secundarios.
+        return r"""Elemento de 8 nodos. El primer nodo se encuentra en las coordenadas $\zeta,\eta=[-1,-1]$ y los otros nodos principales se encuentran a dos unidadades en ambas direcciones. Se crean nodos secundarios en los regiones que forma cada pareja de nodos primaros. Los nodos se enumeran en el orden contrario a las manecillas del reloj empezando por los nodos primarios y posteriormente los nodos secundarios.
         Para calcular las integrales de este elemento se usan """+format(len(self.Z))+r""" puntos de Gauss:\\$$\zeta="""+bmatrix(self.Z)+"""$$$$W="""+bmatrix(self.W)+r"""$$\\\\ Para este elemento se usaron las siguientes funciones de forma:
         $$\Psi_0=0.25(1-\zeta)(1-\eta)(-1-\zeta-\eta)$$
         $$\Psi_1=0.25(1+\zeta)(1-\eta)(-1+\zeta-\eta)$$
