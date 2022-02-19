@@ -1,9 +1,6 @@
-from ast import Del
-import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStressSparse
-from FEM.Geometry import Geometry2D, Delaunay
-
+from FEM.Geometry import Geometry2D
 E = 21000000.0  # MPa
 v = 0.2  # m
 h = 0.6  # m

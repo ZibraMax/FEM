@@ -1,8 +1,7 @@
-from tabnanny import verbose
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStressSparse
-from FEM.Geometry import Geometry2D, Delaunay
+from FEM.Geometry import Delaunay
 
 b = 120
 h = 160

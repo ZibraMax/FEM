@@ -250,7 +250,6 @@ class PlaneStressOrthotropic(Core):
             if e.isInside(X.T[0]):
                 z = e.inverseMapping(np.array([X.T[0]]).T)
                 _, _, du = e.giveSolutionPoint(z, True)
-                # TODO Arreglar calculo de esfuerzos para PlaneStrain
                 sx = (self.C11[ee]*du[:, 0, 0] +
                       self.C12[ee]*du[:, 1, 1]).tolist()
                 sy = (self.C12[ee]*du[:, 0, 0] +
@@ -282,7 +281,6 @@ class PlaneStressOrthotropic(Core):
                 if e.isInside(X.T[i]):
                     z = e.inverseMapping(np.array([X.T[i]]).T)
                     _, u, du = e.giveSolutionPoint(z, True)
-                    # TODO Arreglar calculo de esfuerzos para PlaneStrain
                     U += [u.tolist()]
                     U1 += (self.C11[ee]*du[:, 0, 0] +
                            self.C12[ee]*du[:, 1, 1]).tolist()
@@ -426,7 +424,7 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
         logging.info('Solved!')
 
 
-class PlaneStressSparse(PlaneStressOrthotropic):
+class PlaneStress(PlaneStressOrthotropic):
 
     """Create a Plain Stress problem
 
@@ -709,7 +707,6 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
                 if e.isInside(X.T[i]):
                     z = e.inverseMapping(np.array([X.T[i]]).T)
                     _, u, du = e.giveSolutionPoint(z, True)
-                    # TODO Arreglar calculo de esfuerzos para PlaneStrain
                     U += [u.tolist()]
                     U1 += (du[:, 0, 0]).tolist()
                     U2 += (du[:, 1, 1]).tolist()

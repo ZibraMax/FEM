@@ -265,7 +265,6 @@ class NonLocalElasticity(Elasticity):
                     self.J += enl.gdlm
                 self.V += (Knl*self.z2).flatten().tolist()
 
-                # TODO detección de elementos No Locales
     def ensembling(self) -> None:
         """Creation of the system sparse matrix. Force vector is ensembled in integration method
         """

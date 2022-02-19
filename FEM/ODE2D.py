@@ -173,7 +173,6 @@ class ODE2D(Core):
                 if e.isInside(X.T[i]):
                     z = e.inverseMapping(np.array([X.T[i]]).T)
                     _, u, du = e.giveSolutionPoint(z, True)
-                    # TODO Arreglar calculo de esfuerzos para PlaneStrain
                     U += [u.tolist()]
                     U1 += (self.C11[ee]*du[:, 0, 0] +
                            self.C12[ee]*du[:, 1, 1]).tolist()

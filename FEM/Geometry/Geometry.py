@@ -238,7 +238,6 @@ class Geometry:
         Returns:
             str: JSON string
         """
-        # TODO Faltan los holes y los fillets
         x = {
             "nodes": self.gdls.tolist(),
             "dictionary": self.dictionary,

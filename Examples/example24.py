@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from FEM.Geometry import Delaunay
 from FEM.Elasticity2D import PlaneStrain
 import matplotlib.pyplot as plt

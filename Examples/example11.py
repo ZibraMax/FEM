@@ -1,6 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from FEM.Elasticity2D import PlaneStressSparse, PlaneStressSparse
+from FEM.Elasticity2D import PlaneStressSparse
 from FEM.Geometry import Geometry2D
 
 E = 21000000.0  # MPa

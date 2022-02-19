@@ -1,8 +1,7 @@
-import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Geometry import Geometry2D
 from FEM.Elasticity2D import PlaneStressSparse
-from FEM.Utils.polygonal import enmalladoFernando
+from FEM.Utils.polygonal import
 
 E = 21000000.0  # MPa
 v = 0.2  # m

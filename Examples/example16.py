@@ -1,4 +1,3 @@
-from tabnanny import verbose
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStressNonLocalSparse

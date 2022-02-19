@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from FEM.Geometry import Geometry2D
 from FEM.Elasticity2D import PlaneStrain
 from FEM.Geometry.Region import Region1D
