@@ -53,6 +53,9 @@ class FEMLogger():
     """Creation of a Logger for FEM purposes. Based on Python Logger by Fonic <https://github.com/fonic>   
     """
 
+    def __init__(self, strr) -> None:
+        self.name = strr
+
     def setup_logging(self, console_log_output="stdout", console_log_level="warning", console_log_color=True, logfile_file=None, logfile_log_level="debug", logfile_log_color=False, log_line_template="%(color_on)s[%(levelname)-8s] %(message)s%(color_off)s"):
         script_name = os.path.splitext(os.path.basename(sys.argv[0]))[0]
         if not logfile_file:
@@ -116,6 +119,8 @@ class FEMLogger():
         logfile_handler.setFormatter(logfile_formatter)
         logger.addHandler(logfile_handler)
         self.start_time = datetime.now()
+        logging.debug(
+            f'============================{__name__}============================')
         logging.debug(
             f'Session started @ {self.start_time.strftime("%d/%m/%Y - %H:%M:%S")}')
         # Success

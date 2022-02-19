@@ -9,14 +9,6 @@ FEM.Geometry package
 Submodules
 ----------
 
-FEM.Geometry.Delaunay module
-----------------------------
-
-.. automodule:: FEM.Geometry.Delaunay
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 FEM.Geometry.Geometry module
 ----------------------------
 
@@ -25,18 +17,10 @@ FEM.Geometry.Geometry module
    :undoc-members:
    :show-inheritance:
 
-FEM.Geometry.Geometry1D module
-------------------------------
-
-.. automodule:: FEM.Geometry.Geometry1D
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FEM.Geometry.Lineal module
+FEM.Geometry.Region module
 --------------------------
 
-.. automodule:: FEM.Geometry.Lineal
+.. automodule:: FEM.Geometry.Region
    :members:
    :undoc-members:
    :show-inheritance:
