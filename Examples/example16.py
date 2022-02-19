@@ -1,7 +1,8 @@
+from tabnanny import verbose
 import numpy as np
 import matplotlib.pyplot as plt
-from FEM.PlaneStressNonLocal import PlaneStressNonLocal
-from FEM.Geometry.Geometry import Geometry
+from FEM.Elasticity2D import PlaneStressNonLocalSparse
+from FEM.Geometry import Geometry2D
 
 E = 2.1*10**6
 v = 0.2
@@ -10,11 +11,7 @@ a = 5
 t = 0.5
 l = 0.1
 z1 = 0.5
-geometria = Geometry.loadmsh('Mesh_tests/EnmalladoTesis.msh')
-geometria.generateRegionFromCoords([0, 0], [a, 0])
-geometria.generateRegionFromCoords([a, 0], [a, a])
-geometria.generateRegionFromCoords([a, a], [0, a])
-geometria.generateRegionFromCoords([0, a], [0, 0])
+geometria = Geometry2D.importJSON('Examples/Mesh_tests/rect2.json', fast=True)
 cb = geometria.cbFromRegion(3, 0, 1)
 cb += geometria.cbFromRegion(3, 0, 2)
 cb += geometria.cbFromRegion(1, u, 1)
@@ -27,14 +24,11 @@ def af(l0, rho):
     return l0*np.exp(-rho)
 
 
-O = PlaneStressNonLocal(geometria, E, v, t, l, z1, Lr=6*l, af=af)
-O.elementMatrices()
-O.ensembling()
-O.borderConditions()
-O.solveES(path='NonLocalGT.csv')
-O.postProcess()
+O = PlaneStressNonLocalSparse(
+    geometria, E, v, t, l, z1, Lr=6*l, af=af, verbose=True)
+O.solve()
 plt.show()
 
 _X, U1, U2, U3, U = O.profile([0, 0.019], [a, 0.019])
-np.savetxt('a2gt.csv', [_X, U1], delimiter=',')
+# np.savetxt('a2gt.csv', [_X, U1], delimiter=',')
 plt.show()

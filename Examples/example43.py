@@ -1,7 +1,8 @@
-from FEM.Elements import E1D
 from FEM.Elasticity2D import PlaneStressOrthotropic as pso
-from FEM.Geometry.Geometry import Geometry
+from FEM.Geometry import Geometry2D
 import matplotlib.pyplot as plt
+import numpy as np
+from FEM.Geometry.Region import Region1D
 
 a = 120.0
 b = 160.0
@@ -13,13 +14,17 @@ G12 = 0.75*10**6
 v12 = 0.28
 t = 0.036
 
-gdls = [[0.0, 0.0], [a, 0.0], [a, b], [0, b]]
+gdls = np.array([[0.0, 0.0], [a, 0.0], [a, b], [0, b]])
 diccs = [[0, 1, 2], [0, 2, 3]]
 types = ['T1V', 'T1V']
 nvn = 2
 regions = [[0, 1], [1, 2], [2, 3], [3, 0]]
-geometry = Geometry(dictionary=diccs, gdls=gdls,
-                    types=types, nvn=nvn, regions=regions)
+regs = []
+for r in regions:
+    regs += [Region1D(gdls[np.ix_(r)])]
+
+geometry = Geometry2D(dictionary=diccs, gdls=gdls,
+                      types=types, nvn=nvn, regions=regs)
 
 cb = geometry.cbFromRegion(3, 0.0, 1)
 cb += geometry.cbFromRegion(3, 0.0, 2)

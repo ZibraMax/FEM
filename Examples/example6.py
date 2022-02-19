@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.EDO1D import EDO1D
-from FEM.Geometry.Lineal import Lineal
+from FEM.Geometry import Lineal
 
 
 def a(x): return (x[0]**2-2)

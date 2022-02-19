@@ -1,5 +1,5 @@
 from FEM.Heat2D import Heat2D
-from FEM.Geometry.Delaunay import Delaunay
+from FEM.Geometry import Delaunay
 from FEM.Utils.polygonal import giveCoordsCircle
 import matplotlib.pyplot as plt
 import numpy as np

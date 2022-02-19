@@ -1,5 +1,7 @@
-from FEM.Geometry.Geometry import Geometry
+from tabnanny import verbose
+from FEM.Geometry import Geometry2D
 from FEM.Elasticity2D import PlaneStrain
+from FEM.Geometry.Region import Region1D
 import matplotlib.pyplot as plt
 import numpy as np
 # P 11.1
@@ -39,7 +41,7 @@ def darPolinomio(X, Y):
 
 parabola = darPolinomio(np.array([0, 10, 20]), np.array(
     [0, b-ancho_en_h10_in/2, b-ancho_en_h20_in/2]))
-coordendas = [
+coordendas = np.array([
     [0, 0],
     [b/2, 0],
     [b, 0],
@@ -84,7 +86,7 @@ coordendas = [
     [b/2+parabola(4*he)/2, 4*he],
     [b, 4*he],
     [3*b/2-parabola(4*he)/2, 4*he],
-    [2*b-parabola(4*he), 4*he]]
+    [2*b-parabola(4*he), 4*he]])
 
 elementos = [
     [1, 3, 11, 9, 2, 7, 10, 6],
@@ -97,14 +99,17 @@ elementos = [
     [27, 29, 37, 35, 28, 32, 36, 31]]
 tipos = ['C2V']*len(elementos)
 regiones = [[0, 4], [32, 36]]
+regions = []
+for reg in regiones:
+    regions += [Region1D(coordendas[np.ix_(reg)])]
 nvn = 2
-geometria = Geometry((np.array(elementos)-1).astype(int).tolist(),
-                     coordendas, tipos, nvn, regiones)
+geometria = Geometry2D((np.array(elementos)-1).astype(int).tolist(),
+                       coordendas, tipos, nvn, regions, fast=True)
 geometria.cbe = geometria.cbFromRegion(0, 0, 1)
 geometria.cbe += geometria.cbFromRegion(0, 0, 2)
 geometria.cbn = [[50, ppx], [51, ppy]]
 geometria.loadOnRegion(1, fy=lambda s: -p0)
-O = PlaneStrain(geometria, E, v)
+O = PlaneStrain(geometria, E, v, verbose=True)
 O.elementMatrices()
 O.ensembling()
 O.borderConditions()

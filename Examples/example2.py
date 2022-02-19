@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
 from FEM.Torsion2D import Torsion2D
-from FEM.Geometry.Delaunay import Delaunay
-from FEM.Geometry.Geometry import Geometry
+from FEM.Geometry import Delaunay, Geometry2D
 
 a = 0.3
 b = 0.3
@@ -31,8 +30,8 @@ params = Delaunay._strdelaunay(constrained=True, delaunay=True,
                                a='0.00003', o=2)
 geometria = Delaunay(vertices, params)
 
-# geometria.saveMesh('Mesh_tests/I_test')
-# geometria = Mesh.Geometry.loadmsh('Mesh_tests/I_test.msh')
+geometria.exportJSON('Examples/Mesh_tests/I_test.json')
+geometria = Geometry2D.importJSON('Examples/Mesh_tests/I_test.json')
 
 print(len(geometria.elements))
 O = Torsion2D(geometria, G, phi)

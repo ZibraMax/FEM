@@ -1,5 +1,5 @@
-from FEM.Geometry.Delaunay import Delaunay
-from FEM.Elasticity2D import PlaneStress
+from FEM.Geometry import Delaunay
+from FEM.Elasticity2D import PlaneStressSparse
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import matplotlib.pyplot as plt
 import numpy as np
@@ -25,7 +25,7 @@ for i in range(n):
     holes += [hole]
 
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.05', o=2)
-geometria = Delaunay(coords, params, nvn=2, holes_dict=holes)
+geometria = Delaunay(coords, params, nvn=2, holes_dict=holes, fast=True)
 
 cbe = geometria.cbFromRegion(3, 0, 1)
 cbe += geometria.cbFromRegion(3, 0, 2)
@@ -33,7 +33,7 @@ geometria.setCbe(cbe)
 
 for i in range(n):
     geometria.loadOnHole(i, 2*np.pi, np.pi, fy=lambda s: -vu/(2*np.pi*dh/2/2))
-O = PlaneStress(geometria, E, v, t)
+O = PlaneStressSparse(geometria, E, v, t, verbose=True)
 O.geometry.show(draw_bc=True)
 plt.show()
 O.solve(plot=False)

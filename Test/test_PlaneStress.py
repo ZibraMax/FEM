@@ -65,7 +65,7 @@ Since the diagrams are only different from 0 in length z, the virtual work state
 
 """
 from FEM.Geometry.Geometry import Geometry2D
-from FEM.Elasticity2D import PlaneStress
+from FEM.Elasticity2D import PlaneStressSparse
 import matplotlib.pyplot as plt
 import unittest
 import os
@@ -129,7 +129,7 @@ class TestPlaneStress(unittest.TestCase):
         G = E/(2*(1+v))
         gamma = 23.54
         W = A*gamma
-        O = PlaneStress(geometry, E, v, b, fy=lambda x: -gamma)
+        O = PlaneStressSparse(geometry, E, v, b, fy=lambda x: -gamma)
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
         U = np.array(U)[:, 1].flatten()
@@ -193,7 +193,7 @@ class TestPlaneStress(unittest.TestCase):
         k = 5/6
         G = E/(2*(1+v))
         W = A*gamma
-        O = PlaneStress(geometry, E, v, b)
+        O = PlaneStressSparse(geometry, E, v, b)
         O.geometry.loadOnRegion(2, fy=lambda x: -W)
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
@@ -263,7 +263,7 @@ class TestPlaneStress(unittest.TestCase):
         geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
 
-        O = PlaneStress(geometry, E, v, b)
+        O = PlaneStressSparse(geometry, E, v, b)
         O.geometry.loadOnRegion(1, fy=lambda x: -P/A*b)
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
@@ -335,7 +335,7 @@ class TestPlaneStress(unittest.TestCase):
         geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
 
-        O = PlaneStress(geometry, E, v, b)
+        O = PlaneStressSparse(geometry, E, v, b)
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
         U = np.array(U)[:, 1].flatten()
@@ -399,7 +399,7 @@ class TestPlaneStress(unittest.TestCase):
         W = A*gamma
         G = E/(2*(1+v))
         k = 5/6
-        O = PlaneStress(geometry, E, v, b)
+        O = PlaneStressSparse(geometry, E, v, b)
         O.geometry.loadOnRegion(2, fy=lambda x: -W*(x/L))
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)

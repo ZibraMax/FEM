@@ -1,6 +1,6 @@
-from FEM.Geometry.Geometry import Geometry
-from FEM.Geometry.Delaunay import Delaunay
-from FEM.Elasticity2D import PlaneStress
+from tabnanny import verbose
+from FEM.Geometry import Delaunay
+from FEM.Elasticity2D import PlaneStressSparse
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import matplotlib.pyplot as plt
 import numpy as np
@@ -23,7 +23,8 @@ hole = {'center': cent, 'regions': seg, 'vertices': vert}
 holes += [hole]
 
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.01', o=2)
-geometria = Delaunay(coords, params, nvn=2, fillets=fillets, holes_dict=holes)
+geometria = Delaunay(coords, params, nvn=2, fillets=fillets,
+                     holes_dict=holes, fast=True)
 
 cbe = geometria.cbOnHole(0, 0, 1, 3*np.pi/2, np.pi/2)
 cbe += geometria.cbOnHole(0, 0, 2, 3*np.pi/2, np.pi/2)
@@ -43,8 +44,8 @@ p = p0/2
 #     geometria.loadOnRegion(i, lambda s: 10000)
 
 geometria.loadOnHole(1, np.pi/2, 3*np.pi/2, lambda s: p0/(2*np.pi*radi/2))
-O = PlaneStress(geometria, E, v, t)
-O.geometry.show(draw_bc=True, draw_segs=False)
+geometria.show(draw_bc=True, draw_segs=True)
 plt.show()
+O = PlaneStressSparse(geometria, E, v, t, verbose=True)
 O.solve()
 plt.show()

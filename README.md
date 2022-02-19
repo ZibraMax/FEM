@@ -60,7 +60,7 @@ Numerical Validation:
 
 #### Steps:
 
--   Create geometry (From coordinates or GiD)
+-   Create geometry
 -   Create Border Conditions (Point and regions supported)
 -   Solve!
 -   For example: Example 2, Example 5, Example 11-14
@@ -70,7 +70,7 @@ Numerical Validation:
 ```python
 import matplotlib.pyplot as plt #Import libraries
 from FEM.Torsion2D import Torsion2D #import AFEM Torsion class
-from FEM.Mesh.Delaunay import Delaunay #Import Meshing tools
+from FEM.Geometry import Delaunay #Import Meshing tools
 
 #Define some variables with geometric properties
 a = 0.3
@@ -106,8 +106,8 @@ params = Delaunay._strdelaunay(constrained=True, delaunay=True,
 #**Create** geometry using triangulation parameters. Geometry can be imported from .msh files.
 geometry = Delaunay(vertices, params)
 
-#Save geometry to .msh file
-geometry.saveMesh('I_test')
+#Save geometry to .json file
+geometry.exportJSON('I_test.json')
 
 #Create torsional 2D analysis.
 O = Torsion2D(geometry, G, phi)
@@ -123,7 +123,7 @@ plt.show()
 ```python
 import matplotlib.pyplot as plt #Import libraries
 from FEM.Torsion2D import Torsion2D #import AFEM
-from FEM.Mesh.Geometry import Geometry #Import Geometry tools
+from FEM.Geometry import Geometry #Import Geometry tools
 
 #Define material constants.
 E = 200000
@@ -132,7 +132,7 @@ G = E / (2 * (1 + v))
 phi = 1 #Rotation angle
 
 #Load geometry with file.
-geometry = Geometry.loadmsh('I_test.msh')
+geometry = Geometry.importJSON('I_test.json')
 
 #Create torsional 2D analysis.
 O = Torsion2D(geometry, G, phi)
@@ -198,11 +198,10 @@ A good example is the `PlaneStress` class in the `Elasticity2D.py` file.
 
 ## Roadmap
 
-2. 2D elastic plate theory
-3. Geometry class modification for hierarchy with 1D, 2D and 3D geometry child classes
-4. Transient analysis (Core modification)
-5. Non-Lineal for 2D equation (All cases)
-6. Testing and numerical validation (WIP)
+1. 2D elastic plate theory
+2. Transient analysis (Core modification)
+3. Non-Lineal for 2D equation (All cases)
+4. Testing and numerical validation (WIP)
 
 ## Example index:
 

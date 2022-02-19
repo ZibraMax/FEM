@@ -1,5 +1,4 @@
-from FEM.Geometry.Geometry import Geometry
-from FEM.Geometry.Delaunay import Delaunay
+from FEM.Geometry import Delaunay
 from FEM.Elasticity2D import PlaneStrain
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import matplotlib.pyplot as plt
@@ -66,18 +65,18 @@ vert, seg = giveCoordsCircle(cent, radi, n=50)
 hole = {'center': cent, 'regions': seg, 'vertices': vert}
 holes += [hole]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.1', o=2)
-geometria = Delaunay(c, params, nvn=2, holes_dict=holes)
+geometria = Delaunay(c, params, nvn=2, holes_dict=holes, fast=True)
 geometria.generateRegionFromCoords([0, 0], [2*b, 0])
 geometria.generateRegionFromCoords(
     [2*b-parabola(4*he), 4*he], [parabola(4*he), 4*he])
 geometria.cbe = geometria.cbFromRegion(-2, 0, 1)
 geometria.cbe += geometria.cbFromRegion(-2, 0, 2)
-geometria.saveMesh('Mesh_tests/tunel')
+geometria.exportJSON('Examples/Mesh_tests/tunel.json')
 geometria.show()
 plt.show()
 geometria.loadOnRegion(-1, fy=lambda s: -p0)
 geometria.mask = None
-O = PlaneStrain(geometria, E, v)
+O = PlaneStrain(geometria, E, v, verbose=True)
 O.elementMatrices()
 O.ensembling()
 O.borderConditions()

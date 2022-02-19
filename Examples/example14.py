@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from FEM.Elasticity2D import PlaneStress
-from FEM.Geometry.Geometry import Geometry
+from FEM.Elasticity2D import PlaneStressSparse
+from FEM.Geometry.Geometry import Geometry2D
 
 E = 21000000.0  # MPa
 v = 0.2  # m
@@ -10,9 +10,10 @@ b = 0.3  # m
 L = 2.5  # m
 a = h**2/100
 gamma = 23.54
-geometria = Geometry.loadmsh('Mesh_tests/beam_serendipity.msh')
+geometria = Geometry2D.importJSON(
+    'Examples/Mesh_tests/beam_serendipity.json', fast=True)
 geometria.cbe = geometria.cbFromRegion(3, 0, 1)
 geometria.cbe += geometria.cbFromRegion(3, 0, 2)
-O = PlaneStress(geometria, E, v, b, fy=lambda x: -gamma)
-O.solve('Fast_test_ser.csv')
+O = PlaneStressSparse(geometria, E, v, b, fy=lambda x: -gamma, verbose=True)
+O.solve()
 plt.show()

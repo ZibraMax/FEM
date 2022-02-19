@@ -2,7 +2,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity3D import Elasticity
-from FEM.Geometry.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry3D
 
 
 E = 21000000.0
@@ -59,7 +59,7 @@ for i in range(nx):
 def fy(x): return -gamma
 
 
-geometria = Geometry(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
+geometria = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
 cbe = []
 for i in range(len(coords)):
     if 0.0 == coords[i][0]:

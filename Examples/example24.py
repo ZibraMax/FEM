@@ -1,5 +1,5 @@
-from FEM.Geometry.Geometry import Geometry
-from FEM.Geometry.Delaunay import Delaunay
+from tabnanny import verbose
+from FEM.Geometry import Delaunay
 from FEM.Elasticity2D import PlaneStrain
 import matplotlib.pyplot as plt
 import numpy as np
@@ -58,7 +58,7 @@ for i in reversed(range(n)):
     y = h/n*i
     c += [[x, y]]
 params = Delaunay._strdelaunay(constrained=True, delaunay=True, a='0.5', o=2)
-geometria = Delaunay(c, params, nvn=2)
+geometria = Delaunay(c, params, nvn=2, fast=True)
 geometria.generateRegionFromCoords([0, 0], [2*b, 0])
 geometria.generateRegionFromCoords(
     [2*b-parabola(4*he), 4*he], [parabola(4*he), 4*he])
@@ -68,7 +68,7 @@ cbn = geometria.generateBCFromCoords(parabola(h/2), h/2, ppx, nv=1)
 cbn += geometria.generateBCFromCoords(parabola(h/2), h/2, ppx, nv=2)
 geometria.cbn = cbn
 geometria.loadOnRegion(-1, fy=lambda s: -p0)
-O = PlaneStrain(geometria, E, v)
+O = PlaneStrain(geometria, E, v, verbose=True)
 O.elementMatrices()
 O.ensembling()
 O.borderConditions()

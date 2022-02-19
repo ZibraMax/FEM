@@ -1,6 +1,6 @@
 import triangle
 from FEM.Heat2D import Heat2D
-from FEM.Geometry.Delaunay import Delaunay
+from FEM.Geometry import Delaunay
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import numpy as np
 import matplotlib.pyplot as plt
@@ -45,11 +45,6 @@ for i in range(m-1):
         piramides += [[p[2], p[5], p[0], p[1]]]
         piramides += [[p[0], p[5], p[3], p[4]]]
         piramides += [[p[0], p[5], p[4], p[1]]]
-
-dictionary = {"coords": dddnodes.tolist(), "prisms": piramides}
-
-with open('geometry.json', 'w') as f:
-    f.write(format(dictionary).replace("'", '"'))
 
 
 O = Heat2D(geometria, k, k)

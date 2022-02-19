@@ -30,7 +30,7 @@ class Torsion2D(Core):
             phi (float): Rotation angle in radians
     """
 
-    def __init__(self, geometry: Geometry, G: float, phi: float) -> None:
+    def __init__(self, geometry: Geometry, G: float, phi: float, **kargs) -> None:
         """Create a torsional finite element problem
 
         Args:
@@ -43,7 +43,7 @@ class Torsion2D(Core):
         self.G = G
         self._phi = phi
         geometry.cbeAllRegions(0)
-        Core.__init__(self, geometry)
+        Core.__init__(self, geometry, **kargs)
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model

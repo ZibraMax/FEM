@@ -1,7 +1,7 @@
-from numpy.testing._private.nosetester import get_package_name
 from FEM.Torsion2D import Torsion2D
-from FEM.Geometry.Delaunay import Delaunay
+from FEM.Geometry import Delaunay
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
+from FEM.Geometry.Region import Region1D
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.path as mpltPath
@@ -34,12 +34,16 @@ GG = []
 su = 0
 for centroide in geometria.centroids:
     path = mpltPath.Path([[0, 0], [hueco, 0], [hueco, hueco], [0, hueco]])
-    inside2 = path.contains_points([centroide])
+    inside2 = path.contains_points([centroide[0]])
     GG += [G]
     if inside2[0]:
         GG[-1] = 1
 seg1[-1][-1] = a+1
-geometria.regions = seg1
+regs = []
+for s in seg1:
+    regs += [Region1D(geometria.gdls[np.ix_(s)])]
+geometria.regions = []
+geometria.addRegions(regs)
 geometria.mask = None
 O = Torsion2D(geometria, GG, phi)
 O.geometry.show()

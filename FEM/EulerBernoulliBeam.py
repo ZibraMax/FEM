@@ -20,7 +20,7 @@ class EulerBernoulliBeam(Core):
         cf (float, optional): Soil coeficient. Defaults to 0.
     """
 
-    def __init__(self, geometry: Geometry, EI: float, cf: float = 0, f: float = 0) -> None:
+    def __init__(self, geometry: Geometry, EI: float, cf: float = 0.0, f: float = 0.0) -> None:
         """Creates a Euler Bernoulli beam problem
 
         Args:
@@ -31,11 +31,11 @@ class EulerBernoulliBeam(Core):
         self.a = EI
         self.f = f
         self.cf = cf
-        if isinstance(EI, float):
+        if isinstance(EI, float) or isinstance(EI, int):
             self.a = lambda x: EI
-        if isinstance(f, float):
+        if isinstance(f, float) or isinstance(f, int):
             self.f = lambda x: f
-        if isinstance(f, float):
+        if isinstance(cf, float) or isinstance(cf, int):
             self.cf = lambda x: cf
         if geometry.nvn == 1:
             logging.warning(
@@ -112,7 +112,7 @@ class EulerBernoulliBeamNonLineal(Core):
         cf (float, optional): Soil coeficient. Defaults to 0.
     """
 
-    def __init__(self, geometry: Geometry, EI: float, EA: float, fx: float = 0, fy: float = 0) -> None:
+    def __init__(self, geometry: Geometry, EI: float, EA: float, fx: float = 0.0, fy: float = 0.0) -> None:
         """Creates a Euler Bernoulli beam problem
 
         Args:
@@ -124,13 +124,13 @@ class EulerBernoulliBeamNonLineal(Core):
         self.Dxx = EA
         self.fx0 = fx
         self.fy0 = fy
-        if isinstance(EI, float):
+        if isinstance(EA, float) or isinstance(EA, int):
             self.Axx = lambda x: EA
-        if isinstance(EI, float):
+        if isinstance(EI, float) or isinstance(EI, int):
             self.Dxx = lambda x: EI
-        if isinstance(fx, float):
+        if isinstance(fx, float) or isinstance(fx, int):
             self.fx0 = lambda x: fx
-        if isinstance(fy, float):
+        if isinstance(fy, float) or isinstance(fy, int):
             self.fy0 = lambda x: fy
         if geometry.nvn == 1:
             logging.warning(

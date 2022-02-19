@@ -1,4 +1,4 @@
-from FEM.Geometry.Geometry import Geometry
+from FEM.Geometry import Geometry2D
 from FEM.Heat2D import Heat2D
 import matplotlib.pyplot as plt
 b = 4
@@ -25,7 +25,7 @@ for j in range(ny):
         elementos += [[i+j*(nx+1), i+1+j*(nx+1), i+1+(j+1)*(nx+1), i+(j+1)
                        * (nx+1)]]
 tipos = ['C1V']*len(elementos)
-geometria = Geometry(elementos, gdls, tipos, 1)
+geometria = Geometry2D(elementos, gdls, tipos, 1)
 geometria.generateRegionFromCoords([0, 0], [b, 0])
 geometria.generateRegionFromCoords([b, 0], [b, h])
 geometria.generateRegionFromCoords([b, h], [0, h])
@@ -39,4 +39,4 @@ O.geometry.show(draw_segs=True, draw_bc=True)
 plt.show()
 O.solve()
 plt.show()
-O.print()
+# O.print()

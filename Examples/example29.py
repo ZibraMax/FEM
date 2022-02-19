@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity2D import PlaneStrain
-from FEM.Geometry.Delaunay import Delaunay
+from FEM.Geometry import Delaunay
 from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 
 E = 21000000.0  # MPa
@@ -31,13 +31,13 @@ fillets = [{'start_region': 2, 'end_region': 3, 'r': 20, 'n': 10},
 params = Delaunay._strdelaunay(
     constrained=True, delaunay=True, a='7', o=2)
 geometria = Delaunay(vertices, params, nvn=2,
-                     holes_dict=holes, fillets=fillets)
+                     holes_dict=holes, fillets=fillets, fast=True)
 cb = geometria.cbFromRegion(0, 0, 1)
 cb += geometria.cbFromRegion(0, 0, 2)
 cb += geometria.cbFromRegion(1, 0, 1)
 cb += geometria.cbFromRegion(7, 0, 1)
 geometria.setCbe(cb)
-geometria.saveMesh('Mesh_tests/Talud_hueco_redondos')
+geometria.exportJSON('Examples/Mesh_tests/Talud_hueco_redondos.json')
 geometria.show()
 plt.show()
 O = PlaneStrain(geometria, E, v, fy=lambda x: -gamma)

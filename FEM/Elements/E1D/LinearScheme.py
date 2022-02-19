@@ -17,6 +17,6 @@ class LinearScheme():
         Args:
             n (int): Number of gauss points
         """
-        if not 'fast' in kargs.keys():
-            self.Z, self.W = np.polynomial.legendre.leggauss(n)
+        self.center = np.array([[0.0]])
+        self.Z, self.W = np.polynomial.legendre.leggauss(n)
         self.domain = np.array([[-1] + self.Z.tolist() + [1]])[0]

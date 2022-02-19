@@ -1,7 +1,5 @@
-from FEM.Geometry.Geometry import Geometry
-from FEM.Geometry.Delaunay import Delaunay
+from FEM.Geometry import Delaunay
 from FEM.Torsion2D import Torsion2D
-from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 import matplotlib.pyplot as plt
 
 coords = [[0, 0], [1, 0], [1, 1], [0, 1]]
@@ -11,5 +9,6 @@ geometria = Delaunay(coords, params, nvn=1, fillets=fillets)
 geometria.show()
 plt.show()
 O = Torsion2D(geometria, 1, 1)
+O.geometry.mask = None
 O.solve()
 plt.show()

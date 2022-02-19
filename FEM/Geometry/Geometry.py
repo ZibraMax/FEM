@@ -58,7 +58,6 @@ class Geometry:
         self.centroids = []
         self.fast = fast
         self.initialize()
-        self.calculateRegions()
         self.calculateCentroids()
 
     def calculateRegions(self):
@@ -79,6 +78,7 @@ class Geometry:
 
         self.ngdl = int(len(self.gdls)*self.nvn)
         self.generateElements()
+        self.calculateRegions()
 
     def detectNonLocal(self, lr: float) -> list:
         """Detect adjacent elements between a distance Lr
@@ -224,6 +224,7 @@ class Geometry:
             value (float): Value of the border condition
             tol (float, optional): Tolerance for finding near nodes in regions. Defaults to 1*10**(-5).
         """
+        self.cbe = []
         for s in range(len(self.regions)):
             for i in range(self.nvn):
                 self.cbe += self.cbFromRegion(s, value, (i+1), tol)
@@ -472,7 +473,7 @@ class Geometry2D(Geometry):
         holee = self.holes[hole]
         regions_apply = []
         for i, region in enumerate(holee['regions']):
-            seg_coords = np.array(self.gdls)[region]
+            seg_coords = self.gdls[region]
             centradas = seg_coords[1]-seg_coords[0]
             angle = np.arctan2(centradas[1], centradas[0])
             angle += np.pi/2
@@ -482,7 +483,7 @@ class Geometry2D(Geometry):
                 regions_apply.append(region)
         for region in regions_apply:
             for i, seg in enumerate(self.regions):
-                if seg == region:
+                if (seg.coords == self.gdls[np.ix_(region)]).all():
                     self.loadOnRegion(i, fx, fy, tol)
                     break
 
@@ -504,7 +505,7 @@ class Geometry2D(Geometry):
         regions_apply = []
         bc = []
         for i, region in enumerate(holee['regions']):
-            seg_coords = np.array(self.gdls)[region]
+            seg_coords = self.gdls[region]
             centradas = seg_coords[1]-seg_coords[0]
             angle = np.arctan2(centradas[1], centradas[0])
             angle += np.pi/2
@@ -514,7 +515,7 @@ class Geometry2D(Geometry):
                 regions_apply.append(region)
         for region in regions_apply:
             for i, seg in enumerate(self.regions):
-                if seg == region:
+                if (seg.coords == self.gdls[np.ix_(region)]).all():
                     bc += self.cbFromRegion(i, value, nv, tol)
                     break
         return bc

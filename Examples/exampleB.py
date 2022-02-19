@@ -3,7 +3,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 from FEM.Elasticity3D import Elasticity
-from FEM.Geometry.Geometry import Geometry
+from FEM.Geometry.Geometry import Geometry3D
 
 
 E = 21000000.0
@@ -58,7 +58,7 @@ for i in range(nx):
             dicc += [[node1, node2, node3, node4, node5, node6, node7, node8]]
 
 
-geometria = Geometry(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
+geometria = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
 
 O = Elasticity(geometria, E, v, gamma, verbose=True)
 O.solve()
