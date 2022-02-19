@@ -441,46 +441,6 @@ class Geometry1D(Geometry):
         self.ngdl = int(len(self.gdls)*self.nvn)
         self.generateElements()
 
-    @staticmethod
-    def loadmsh(filename: str) -> Geometry:
-        """Load geometry from previously generated MSH file
-
-        Args:
-            filename (str): Path to msh file
-
-        Returns:
-            Geometry: Output geometry
-        """
-        f = open(filename, 'r')
-        dicc = []
-        gdls = []
-        types = []
-        seg = []
-        cbe = []
-        cbn = []
-        nvn = 1
-        p = list(map(int, f.readline().split('\t')))
-        for _ in range(p[0]):
-            gdls += [list(map(float, f.readline().split('\t')))]
-        for _ in range(p[1]):
-            types += [f.readline().split('\n')[0]]
-        for _ in range(p[1]):
-            dicc += [list(map(int, f.readline().split('\t')))]
-        for _ in range(p[2]):
-            seg += [list(map(int, f.readline().split('\t')))]
-        for _ in range(p[3]):
-            cbe += [list(map(int, f.readline().split('\t')))]
-        for _ in range(p[4]):
-            cbn += [list(map(int, f.readline().split('\t')))]
-        nvn = p[5]
-        f.close()
-        print('File ' + filename + ' loaded')
-
-        o = __class__(dicc, gdls, types, nvn, seg)
-        o.cbe = cbe
-        o.cbn = cbn
-        return o
-
     def generateElements(self) -> None:
         """Generate elements structure
         """
@@ -505,32 +465,6 @@ class Geometry1D(Geometry):
             figsize (list, optional): Size of figure. Defaults to [17, 10].
         """
         pass
-
-    def saveMesh(self, ProjectName: str) -> None:
-        """Saves the geometry to a MSH file with specified name
-
-        Args:
-            ProjectName (str): Project name without extension
-        """
-        filename = ProjectName + '.msh'
-        f = open(filename, 'w')
-        p = [len(self.gdls), len(self.dictionary), len(
-            self.regions), len(self.cbe), len(self.cbn), self.nvn]
-        f.write('\t'.join(list(map(str, p))) + '\n')
-        for e in self.gdls:
-            f.write('\t'.join(list(map(str, e))) + '\n')
-        for e in self.types:
-            f.write(e + '\n')
-        for e in self.dictionary:
-            f.write('\t'.join(list(map(str, e))) + '\n')
-        for e in self.regions:
-            f.write('\t'.join(list(map(str, e))) + '\n')
-        for e in self.cbe:
-            f.write('\t'.join(list(map(str, e))) + '\n')
-        for e in self.cbn:
-            f.write('\t'.join(list(map(str, e))) + '\n')
-        f.close()
-        print('File ' + filename + ' saved')
 
 
 class Geometry2D(Geometry):

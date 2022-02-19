@@ -2,9 +2,9 @@
     -   [ ] Brick orden 2.
     -   [ ] Pirámide orden 1.
     -   [ ] Pirámide orden 2.
--   [ ] Modificar geometría para que sea una clase mas general.
-    -   [ ] La clase gemoetría 2D debe tener los métodos que se tienen en la clase geometría actualmente.
-    -   [ ] Se deben agregar métodos equivalentes en la clase geometría 1D y 3D.
+-   [x] Modificar geometría para que sea una clase mas general.
+    -   [x] La clase gemoetría 2D debe tener los métodos que se tienen en la clase geometría actualmente.
+    -   [x] Se deben agregar métodos equivalentes en la clase geometría 1D y 3D.
 -   [ ] Actualizar el formato de guardado de los archivos.
     -   [ ] Los archivos deben guardar información sobre las propiedades del problema (tipo de problema, caracteristicas generales).
     -   [ ] Actualizar los ejemplos con el nuevo formato de archivos.
