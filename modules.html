@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="FEM package" href="FEM.html" /><link rel="prev" title="AFEM’s documentation" href="index.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Examples package" href="Examples.html" /><link rel="prev" title="AFEM’s documentation" href="index.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.02.14.1"/>
         <title>FEM - FEM 1.0.29 documentation</title>
@@ -153,6 +153,7 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">FEM</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html">Examples package</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="FEM.html">FEM package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3 has-children"><a class="reference internal" href="FEM.Elements.html">FEM.Elements package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E1D.html">FEM.Elements.E1D package</a></li>
@@ -166,7 +167,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Test.html">Test package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 </ul>
@@ -199,6 +199,61 @@
 <h1>FEM<a class="headerlink" href="#fem" title="Permalink to this headline">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">Examples package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.Punto3">Examples.Punto3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.Punto6">Examples.Punto6 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.VigaVoladizoLocalSparse">Examples.VigaVoladizoLocalSparse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.a">Examples.a module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.b">Examples.b module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example1">Examples.example1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example10">Examples.example10 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example11">Examples.example11 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example13">Examples.example13 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example14">Examples.example14 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example15">Examples.example15 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example16">Examples.example16 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example17">Examples.example17 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example18">Examples.example18 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example19">Examples.example19 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example2">Examples.example2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example20">Examples.example20 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example21">Examples.example21 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example22">Examples.example22 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example23">Examples.example23 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example24">Examples.example24 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example25">Examples.example25 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example26">Examples.example26 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example27">Examples.example27 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example28">Examples.example28 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example29">Examples.example29 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example3">Examples.example3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example30">Examples.example30 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example31">Examples.example31 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example32">Examples.example32 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example33">Examples.example33 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example34">Examples.example34 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example35">Examples.example35 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example36">Examples.example36 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example37">Examples.example37 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example39">Examples.example39 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example40">Examples.example40 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example41">Examples.example41 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example42">Examples.example42 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example43">Examples.example43 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example44">Examples.example44 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example45">Examples.example45 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example5">Examples.example5 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example6">Examples.example6 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example8">Examples.example8 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.example9">Examples.example9 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.exampleA">Examples.exampleA module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.exampleB">Examples.exampleB module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.exampleC">Examples.exampleC module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.nolocalsparsetest">Examples.nolocalsparsetest module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Examples.html#module-Examples.profile_validation">Examples.profile_validation module</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="FEM.html">FEM package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="FEM.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="FEM.Elements.html">FEM.Elements package</a><ul>
@@ -272,7 +327,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </div>
 </section>
@@ -282,12 +336,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="FEM.html">
+          <a class="next-page" href="Examples.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">FEM package</div>
+                <div class="title">Examples package</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>

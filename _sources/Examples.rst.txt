@@ -1,0 +1,418 @@
+Examples package
+================
+
+.. automodule:: Examples
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+Examples.Punto3 module
+----------------------
+
+.. automodule:: Examples.Punto3
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.Punto6 module
+----------------------
+
+.. automodule:: Examples.Punto6
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.VigaVoladizoLocalSparse module
+---------------------------------------
+
+.. automodule:: Examples.VigaVoladizoLocalSparse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.a module
+-----------------
+
+.. automodule:: Examples.a
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.b module
+-----------------
+
+.. automodule:: Examples.b
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example1 module
+------------------------
+
+.. automodule:: Examples.example1
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example10 module
+-------------------------
+
+.. automodule:: Examples.example10
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example11 module
+-------------------------
+
+.. automodule:: Examples.example11
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example13 module
+-------------------------
+
+.. automodule:: Examples.example13
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example14 module
+-------------------------
+
+.. automodule:: Examples.example14
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example15 module
+-------------------------
+
+.. automodule:: Examples.example15
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example16 module
+-------------------------
+
+.. automodule:: Examples.example16
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example17 module
+-------------------------
+
+.. automodule:: Examples.example17
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example18 module
+-------------------------
+
+.. automodule:: Examples.example18
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example19 module
+-------------------------
+
+.. automodule:: Examples.example19
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example2 module
+------------------------
+
+.. automodule:: Examples.example2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example20 module
+-------------------------
+
+.. automodule:: Examples.example20
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example21 module
+-------------------------
+
+.. automodule:: Examples.example21
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example22 module
+-------------------------
+
+.. automodule:: Examples.example22
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example23 module
+-------------------------
+
+.. automodule:: Examples.example23
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example24 module
+-------------------------
+
+.. automodule:: Examples.example24
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example25 module
+-------------------------
+
+.. automodule:: Examples.example25
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example26 module
+-------------------------
+
+.. automodule:: Examples.example26
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example27 module
+-------------------------
+
+.. automodule:: Examples.example27
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example28 module
+-------------------------
+
+.. automodule:: Examples.example28
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example29 module
+-------------------------
+
+.. automodule:: Examples.example29
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example3 module
+------------------------
+
+.. automodule:: Examples.example3
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example30 module
+-------------------------
+
+.. automodule:: Examples.example30
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example31 module
+-------------------------
+
+.. automodule:: Examples.example31
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example32 module
+-------------------------
+
+.. automodule:: Examples.example32
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example33 module
+-------------------------
+
+.. automodule:: Examples.example33
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example34 module
+-------------------------
+
+.. automodule:: Examples.example34
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example35 module
+-------------------------
+
+.. automodule:: Examples.example35
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example36 module
+-------------------------
+
+.. automodule:: Examples.example36
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example37 module
+-------------------------
+
+.. automodule:: Examples.example37
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example39 module
+-------------------------
+
+.. automodule:: Examples.example39
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example40 module
+-------------------------
+
+.. automodule:: Examples.example40
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example41 module
+-------------------------
+
+.. automodule:: Examples.example41
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example42 module
+-------------------------
+
+.. automodule:: Examples.example42
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example43 module
+-------------------------
+
+.. automodule:: Examples.example43
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example44 module
+-------------------------
+
+.. automodule:: Examples.example44
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example45 module
+-------------------------
+
+.. automodule:: Examples.example45
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example5 module
+------------------------
+
+.. automodule:: Examples.example5
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example6 module
+------------------------
+
+.. automodule:: Examples.example6
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example8 module
+------------------------
+
+.. automodule:: Examples.example8
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example9 module
+------------------------
+
+.. automodule:: Examples.example9
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.exampleA module
+------------------------
+
+.. automodule:: Examples.exampleA
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.exampleB module
+------------------------
+
+.. automodule:: Examples.exampleB
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.exampleC module
+------------------------
+
+.. automodule:: Examples.exampleC
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.nolocalsparsetest module
+---------------------------------
+
+.. automodule:: Examples.nolocalsparsetest
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.profile\_validation module
+-----------------------------------
+
+.. automodule:: Examples.profile_validation
+   :members:
+   :undoc-members:
+   :show-inheritance:
