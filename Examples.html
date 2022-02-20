@@ -218,9 +218,6 @@
 <span id="examples-example1-module"></span><h2>Examples.example1 module<a class="headerlink" href="#module-Examples.example1" title="Permalink to this headline">#</a></h2>
 <section id="creation-of-2d-elements">
 <h3>Creation of 2D elements<a class="headerlink" href="#creation-of-2d-elements" title="Permalink to this headline">#</a></h3>
-<section id="tests">
-<h4>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">#</a></h4>
-<p>Creation of basic 2D elements.</p>
 <p>Coords and gdls (degrees of freedom) are given by a Numpy ndarray matrix.</p>
 <p>In the coordinate matrix, each row represents a node of the element and each column a dimension.
 For example, a 2D triangular element of 3 nodes must have a 3x2 matrix.</p>
@@ -233,79 +230,78 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 <li><p>The inverseMapping method allows to give a set of global coordinates and convert them to natural coordinates.</p></li>
 <li><p>The jacobian graph allows to verigfy the numerical estability of the element</p></li>
 </ul>
-</section>
 <section id="coordinate-trasformation-and-shape-functions">
 <h4>Coordinate trasformation and shape functions<a class="headerlink" href="#coordinate-trasformation-and-shape-functions" title="Permalink to this headline">#</a></h4>
-<figure class="align-center" id="id1">
+<figure class="align-center" id="id2">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_1.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_1.png"/>
 <figcaption>
-<p><span class="caption-text">Serendipity (8 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-center" id="id2">
-<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_2.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_2.png"/>
-<figcaption>
-<p><span class="caption-text">Quadrilateral (4 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Serendipity (8 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id3">
-<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_3.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_3.png"/>
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_2.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_2.png"/>
 <figcaption>
-<p><span class="caption-text">Triangular (3 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Quadrilateral (4 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id4">
-<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_4.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_4.png"/>
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_3.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_3.png"/>
 <figcaption>
 <p><span class="caption-text">Triangular (6 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id5">
-<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_5.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_5.png"/>
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_4.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_4.png"/>
 <figcaption>
-<p><span class="caption-text">Line (3 nodes 1D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Triangular (3 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id6">
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_5.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_5.png"/>
+<figcaption>
+<p><span class="caption-text">Line (3 nodes 1D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id7">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_6.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_6.png"/>
 <figcaption>
-<p><span class="caption-text">Line (2 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Line (2 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="point-inside-element-works-in-all-dimensions">
 <h4>Point inside element (works in all dimensions)<a class="headerlink" href="#point-inside-element-works-in-all-dimensions" title="Permalink to this headline">#</a></h4>
-<figure class="align-center" id="id7">
+<figure class="align-center" id="id8">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_7.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_7.png"/>
 <figcaption>
-<p><span class="caption-text">Test if given points are inside the element.</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Test if given points are inside the element.</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="jacobian-graphs">
 <h4>Jacobian graphs<a class="headerlink" href="#jacobian-graphs" title="Permalink to this headline">#</a></h4>
-<figure class="align-center" id="id8">
+<figure class="align-center" id="id9">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_8.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_8.png"/>
 <figcaption>
-<p><span class="caption-text">Serendipity (8 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-center" id="id9">
-<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_9.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_9.png"/>
-<figcaption>
-<p><span class="caption-text">Quadrilateral (4 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Serendipity (8 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id10">
-<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_10.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_10.png"/>
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_9.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_9.png"/>
 <figcaption>
-<p><span class="caption-text">Triangular (3 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Quadrilateral (4 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id11">
-<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_11.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_11.png"/>
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_10.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_10.png"/>
 <figcaption>
 <p><span class="caption-text">Triangular (6 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id11" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id12">
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_11.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_11.png"/>
+<figcaption>
+<p><span class="caption-text">Triangular (3 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id12" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -362,7 +358,6 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 <span class="c1"># Coordinate transformation</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
     <span class="n">e</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Examples/examples_results/example1_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.png'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># Point inside element</span>
@@ -421,6 +416,32 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 <section id="module-Examples.example2">
 <span id="examples-example2-module"></span><h2>Examples.example2 module<a class="headerlink" href="#module-Examples.example2" title="Permalink to this headline">#</a></h2>
+<section id="geometry-creation-using-triangles-torsion2d">
+<h3>Geometry creation using triangles. Torsion2D<a class="headerlink" href="#geometry-creation-using-triangles-torsion2d" title="Permalink to this headline">#</a></h3>
+<p>An I shape section when a unitary rotation is applied.</p>
+<p>The input mesh is created using the Delaunay class using second order elements.</p>
+<section id="geomery">
+<h4>Geomery<a class="headerlink" href="#geomery" title="Permalink to this headline">#</a></h4>
+<figure class="align-center" id="id13">
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2_geometry.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2_geometry.png"/>
+<figcaption>
+<p><span class="caption-text">Input geometry created using Delaunay triangulations.</span><a class="headerlink" href="#id13" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="result">
+<h4>Result<a class="headerlink" href="#result" title="Permalink to this headline">#</a></h4>
+<figure class="align-center" id="id14">
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2.png"/>
+<figcaption>
+<p><span class="caption-text">Analysis results.</span><a class="headerlink" href="#id14" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id1">
+<h4>Code<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+</section>
+</section>
 </section>
 <section id="module-Examples.example20">
 <span id="examples-example20-module"></span><h2>Examples.example20 module<a class="headerlink" href="#module-Examples.example20" title="Permalink to this headline">#</a></h2>
@@ -594,7 +615,6 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 <li><a class="reference internal" href="#module-Examples.b">Examples.b module</a></li>
 <li><a class="reference internal" href="#module-Examples.example1">Examples.example1 module</a><ul>
 <li><a class="reference internal" href="#creation-of-2d-elements">Creation of 2D elements</a><ul>
-<li><a class="reference internal" href="#tests">Tests</a></li>
 <li><a class="reference internal" href="#coordinate-trasformation-and-shape-functions">Coordinate trasformation and shape functions</a></li>
 <li><a class="reference internal" href="#point-inside-element-works-in-all-dimensions">Point inside element (works in all dimensions)</a></li>
 <li><a class="reference internal" href="#jacobian-graphs">Jacobian graphs</a></li>
@@ -612,7 +632,15 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 <li><a class="reference internal" href="#module-Examples.example17">Examples.example17 module</a></li>
 <li><a class="reference internal" href="#module-Examples.example18">Examples.example18 module</a></li>
 <li><a class="reference internal" href="#module-Examples.example19">Examples.example19 module</a></li>
-<li><a class="reference internal" href="#module-Examples.example2">Examples.example2 module</a></li>
+<li><a class="reference internal" href="#module-Examples.example2">Examples.example2 module</a><ul>
+<li><a class="reference internal" href="#geometry-creation-using-triangles-torsion2d">Geometry creation using triangles. Torsion2D</a><ul>
+<li><a class="reference internal" href="#geomery">Geomery</a></li>
+<li><a class="reference internal" href="#result">Result</a></li>
+<li><a class="reference internal" href="#id1">Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-Examples.example20">Examples.example20 module</a></li>
 <li><a class="reference internal" href="#module-Examples.example21">Examples.example21 module</a></li>
 <li><a class="reference internal" href="#module-Examples.example22">Examples.example22 module</a></li>
