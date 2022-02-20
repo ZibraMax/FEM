@@ -86,9 +86,9 @@ if __name__ == '__main__':
     geometria = Geometry2D.importJSON(
         'Examples/Mesh_tests/Square_torsion.json')
     geometria.show()
-    plt.savefig('Examples/examples_results/example3_geometry.jpg')
+    plt.savefig('Examples/examples_results/example3_geometry.png')
     plt.show()
     O = Torsion2D(geometria, G, phi, verbose=True)
     O.solve()
-    plt.savefig('Examples/examples_results/example3.jpg')
+    plt.savefig('Examples/examples_results/example3.png')
     plt.show()

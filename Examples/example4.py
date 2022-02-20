@@ -11,12 +11,24 @@ Geomery
 .. math::
 
     a(x)\\frac{d^2u}{dx^2}+c(x)u=f(x)
+.. math::
+
     a(x)=x^2-2
+.. math::
+
     c(x)=x-3
+.. math::
+
     f(x)=6(x^2-2)+(x-3)(3x^2)
 
+.. math::
+
     U|_0=0
+.. math::
+
     U|_L=3
+.. math::
+
     L=1
 
 Result
@@ -85,5 +97,5 @@ if __name__ == '__main__':
     O = EDO1D(geometria, a, c, f)
     O.cbe = cbe
     O.solve()
-    plt.savefig('Examples/examples_results/example4.jpg')
+    plt.savefig('Examples/examples_results/example4.png')
     plt.show()
