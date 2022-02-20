@@ -17,9 +17,7 @@ from ..Elements.E2D.LTriangular import LTriangular
 from ..Elements.E3D.Brick import Brick
 from .Region import Region, Region1D, Region2D
 from typing import Callable
-from ast import literal_eval, parse
 from tqdm import tqdm
-import re
 
 
 class Geometry:
@@ -566,31 +564,27 @@ class Geometry2D(Geometry):
                         bolita, color='yellow')
                 ax.annotate(format(i), [
                             cx, cy], size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
-        try:
-            if draw_segs:
-                verts = self.gdls
-                segs = self.regions
-                for i, seg in enumerate(segs):
-                    x0, y0 = seg.coords[0]
-                    x1, y1 = seg.coords[1]
+        if draw_segs:
+            segs = self.regions
+            for i, seg in enumerate(segs):
+                x0, y0 = seg.coords[0]
+                x1, y1 = seg.coords[1]
 
-                    ax.fill(
-                        [x0, x1],
-                        [y0, y1],
-                        facecolor='none',
-                        edgecolor='b',
-                        linewidth=3,
-                        zorder=0,
-                        alpha=1-0.6*draw_bc
-                    )
-                    cx = (x0+x1)*0.5
-                    cy = (y0+y1)*0.5
-                    ax.plot(cx, cy, 'o', markersize=texto +
-                            bolita, color='pink', alpha=1-0.6*draw_bc)
-                    ax.annotate(format(i), [
-                                cx, cy], alpha=1-0.6*draw_bc, size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
-        except:
-            pass
+                ax.fill(
+                    [x0, x1],
+                    [y0, y1],
+                    facecolor='none',
+                    edgecolor='b',
+                    linewidth=3,
+                    zorder=0,
+                    alpha=1-0.6*draw_bc
+                )
+                cx = (x0+x1)*0.5
+                cy = (y0+y1)*0.5
+                ax.plot(cx, cy, 'o', markersize=texto +
+                        bolita, color='pink', alpha=1-0.6*draw_bc)
+                ax.annotate(format(i), [
+                            cx, cy], alpha=1-0.6*draw_bc, size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
         for j, e in enumerate(self.elements):
             if e.intBorders:
                 for i in range(-1, len(e.borders)-1):
