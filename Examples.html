@@ -440,6 +440,54 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 <section id="id1">
 <h4>Code<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span>
+<span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Delaunay</span><span class="p">,</span> <span class="n">Geometry2D</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">tw</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mi">200000</span>
+<span class="n">v</span> <span class="o">=</span> <span class="mf">0.27</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">v</span><span class="p">))</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># Geometry perimeter</span>
+<span class="n">vertices</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">tf</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">tw</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tf</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">tw</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">tw</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">b</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">a</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">tw</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tf</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">tf</span><span class="p">],</span>
+<span class="p">]</span>
+<span class="c1"># Input string to the delaunay triangulation.</span>
+<span class="c1"># o=2 second order elements.</span>
+<span class="c1"># a=0.00003 Maximum element area.</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">Delaunay</span><span class="o">.</span><span class="n">_strdelaunay</span><span class="p">(</span><span class="n">constrained</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delaunay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                               <span class="n">a</span><span class="o">=</span><span class="mf">0.00003</span><span class="p">,</span> <span class="n">o</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Mesh reation.</span>
+<span class="n">geometria</span> <span class="o">=</span> <span class="n">Delaunay</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># geometria.exportJSON('Examples/Mesh_tests/I_test.json') # Save the mesh to a file.</span>
+<span class="c1"># geometria = Geometry2D.importJSON('Examples/Mesh_tests/I_test.json') # Load mesh from file.</span>
+
+<span class="c1"># Show the geometry.</span>
+<span class="n">geometria</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Create the Torsion2D analysis.</span>
+<span class="n">O</span> <span class="o">=</span> <span class="n">Torsion2D</span><span class="p">(</span><span class="n">geometria</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
+<span class="n">O</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span> <span class="c1"># All finite element steps.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
