@@ -49,7 +49,6 @@ where:
 For calculate the displacements in any point of the element lenght, the load :math:`\\hat{p}` have to be applied in a distance :math:`z`.
 
 .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png
-   :scale: 80 %
    :align: center
    :alt: Virtual work statement
 
@@ -106,7 +105,6 @@ class TestPlaneStress(unittest.TestCase):
             U = \\frac{Wx^2}{24EI}\\left(x^2+6L^2-4Lx\\right)+\\frac{W}{kAG}\\left(Lx-\\frac{x^2}{2}\\right)
 
         .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_1.png
-            :scale: 50 %
             :alt: Virtual work statement
 
             Test result: FEM solution compared whit analytical solution
@@ -170,7 +168,6 @@ class TestPlaneStress(unittest.TestCase):
             U = \\frac{Wx^2}{24EI}\\left(x^2+6L^2-4Lx\\right)+\\frac{W}{kAG}\\left(Lx-\\frac{x^2}{2}\\right)
 
         .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_2.png
-            :scale: 50 %
             :alt: Virtual work statement
 
             FEM solution compared whit analytical solution
@@ -235,7 +232,6 @@ class TestPlaneStress(unittest.TestCase):
             U = \\frac{P^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
 
         .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_1.png
-            :scale: 50 %
             :alt: Virtual work statement
 
             FEM solution compared whit analytical solution
@@ -305,7 +301,6 @@ class TestPlaneStress(unittest.TestCase):
             U = \\frac{P^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
 
         .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_2.png
-            :scale: 50 %
             :alt: Virtual work statement
 
             FEM solution compared whit analytical solution
@@ -376,7 +371,6 @@ class TestPlaneStress(unittest.TestCase):
             U = \\frac{Wx^2}{120LEI}\\left(10L^3-10L^2x+5Lx^2-x^3\\right)+\\frac{Wx}{6kAGL}\\left(x^2-3Lx+3L^2\\right)
 
         .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_triangular_3.png
-            :scale: 50 %
             :alt: Virtual work statement
 
             FEM solution compared whit analytical solution

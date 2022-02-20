@@ -50,8 +50,8 @@ class Element2D(Element):
         l.append('Nodes')
         for i in range(self.n):
             surf = ax.plot_trisurf(*_x.T, _p[:, i], alpha=0.3)
-            surf._facecolors2d = surf._facecolors3d
-            surf._edgecolors2d = surf._edgecolors3d
+            surf._facecolors2d = surf._facecolor3d
+            surf._edgecolors2d = surf._edgecolor3d
             l.append(r'$\psi_{'+format(i)+r'}$')
         __coords = np.array(self._coords.tolist()+[self._coords[0].tolist()]).T
         ax.plot(*__coords, [0]*len(__coords.T), '-', color='black')
@@ -70,8 +70,8 @@ class Element2D(Element):
         ax = fig.add_subplot(projection='3d')
         l = []
         surf = ax.plot_trisurf(*_x.T, __j, cmap='magma')
-        surf._facecolors2d = surf._facecolors3d
-        surf._edgecolors2d = surf._edgecolors3d
+        surf._facecolors2d = surf._facecolor3d
+        surf._edgecolors2d = surf._edgecolor3d
         l.append('Element')
         l.append('Nodes')
         l.append(r'$|J|$')

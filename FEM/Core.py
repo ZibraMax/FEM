@@ -26,7 +26,7 @@ class Core():
                 verbose (bool, optional): To print console messages and progress bars. Defaults to False.
 
         """
-        self.logger = FEMLogger(__name__)
+        self.logger = FEMLogger()
         if verbose:
             self.logger.setup_logging(console_log_level="info")
         else:

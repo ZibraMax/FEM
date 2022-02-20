@@ -11,7 +11,6 @@ from .Torsion2D import *
 from .EDO1D import *
 from .EulerBernoulliBeam import *
 from .Elasticity2D import *
-from .ODE2D import *
 from .NonLinealExample import *
 from .Heat1D import *
 from .Heat2D import *
