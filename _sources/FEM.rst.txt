@@ -92,14 +92,6 @@ FEM.NonLinealExample module
    :undoc-members:
    :show-inheritance:
 
-FEM.ODE2D module
-----------------
-
-.. automodule:: FEM.ODE2D
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 FEM.Poisson2D module
 --------------------
 

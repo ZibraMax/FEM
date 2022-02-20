@@ -25,14 +25,6 @@ Examples.Punto6 module
    :undoc-members:
    :show-inheritance:
 
-Examples.VigaVoladizoLocalSparse module
----------------------------------------
-
-.. automodule:: Examples.VigaVoladizoLocalSparse
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Examples.a module
 -----------------
 
