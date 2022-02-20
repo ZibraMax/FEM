@@ -289,6 +289,14 @@ Examples.example39 module
    :undoc-members:
    :show-inheritance:
 
+Examples.example4 module
+------------------------
+
+.. automodule:: Examples.example4
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.example40 module
 -------------------------
 
@@ -333,22 +341,6 @@ Examples.example45 module
 -------------------------
 
 .. automodule:: Examples.example45
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.example5 module
-------------------------
-
-.. automodule:: Examples.example5
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.example6 module
-------------------------
-
-.. automodule:: Examples.example6
    :members:
    :undoc-members:
    :show-inheritance:
