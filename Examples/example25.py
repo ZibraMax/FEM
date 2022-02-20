@@ -1,6 +1,6 @@
 if __name__ == '__main__':
     from FEM.Geometry import Delaunay
-    from FEM.Elasticity2D import PlaneStrain
+    from FEM.Elasticity2D import PlaneStrainSparse
     from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
     import matplotlib.pyplot as plt
     import numpy as np
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     plt.show()
     geometria.loadOnRegion(-1, fy=lambda s: -p0)
     geometria.mask = None
-    O = PlaneStrain(geometria, E, v, verbose=True)
+    O = PlaneStrainSparse(geometria, E, v, verbose=True)
     O.elementMatrices()
     O.ensembling()
     O.borderConditions()

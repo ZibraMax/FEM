@@ -22,7 +22,7 @@ class QTriangular(Element2D, TriangularScheme):
         Args:
             coords (np.ndarray): Element coordinates matrix
             gdl (np.ndarray): Element gdl matrix
-            n (int, optional): Number of Gauss Points. Defaults to 2.
+            n (int, optional): Number of Gauss Points. Defaults to 3.
         """
 
         coords = np.array(coords)
@@ -45,44 +45,6 @@ class QTriangular(Element2D, TriangularScheme):
         _coords = np.array([coords[i] for i in range(3)])
         Element2D.__init__(self, coords, _coords, gdl, **kargs)
         TriangularScheme.__init__(self, n, **kargs)
-
-    @classmethod
-    def description(self):
-        self = TriangularScheme(3)
-
-        def bmatrix(a, header=[], caption='', table=False):
-            rv = []
-            if len(a.shape) > 2:
-                raise ValueError('bmatrix can at most display two dimensions')
-            if table:
-                rv += [r"""\begin{table}
-        \centering
-        \caption{"""+caption+"""}"""]
-                rv += [r'\begin{tabular}{' + '|c'*len(a[0]) + '|}\hline']
-                rv += ['  ' +
-                       ' & '.join([r'\textbf{'+i+'}' for i in header])+r'\\\hline']
-                lines = str(a).replace('[', '').replace(
-                    ']', '').splitlines()
-                rv += ['  ' + ' & '.join(l.split()) +
-                       r'\\ \hline' for l in lines]
-                rv += [r'\end{tabular}']
-                rv += [r"""\end{table}"""]
-            else:
-                lines = str(a).replace('[', '').replace(
-                    ']', '').splitlines()
-                rv += [r'\begin{bmatrix}']
-                rv += ['  ' + ' & '.join(l.split()) + r'\\' for l in lines]
-                rv += [r'\end{bmatrix}']
-            return '\n'.join(rv)
-        return r"""Elemento de 6 nodos. El primer nodo se encuentra centrado en el origen y los otros dos nodos principales se encuentran a una unidad en ambas direcciones. Se crean nodos secundarios en los regiones que forma cada pareja de nodos primaros. Los nodos se enumeran en el orden contrario a las manecillas del reloj empezando por los nodos primarios y posteriormente los nodos secundarios.
-        Para calcular las integrales de este elemento se usan """+format(len(self.Z))+r""" puntos de Gauss:\\$$\zeta="""+bmatrix(self.Z)+"""$$$$W="""+bmatrix(self.W)+r"""$$\\\\ Para este elemento se usaron las siguientes funciones de forma:
-        $$\Psi_0=2(\zeta+\eta-1)(\zeta+\eta-0.5)$$
-        $$\Psi_1=2\zeta(\zeta-0.5)$$
-        $$\Psi_2=2\eta(\eta-0.5)$$
-        $$\Psi_3=-4(\zeta+\eta-1)(\zeta)$$
-        $$\Psi_4=4\zeta\eta$$
-        $$\Psi_5=-4\eta(\zeta+\eta-1)$$
-        """
 
     def psis(self, z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates

@@ -27,34 +27,11 @@ class Element3D(Element):
         Element.__init__(self, coords, _coords, gdl, **kargs)
         self._coordsg = np.array(
             self._coords.tolist()+[self._coords[0].tolist()])
-        # for i, e in enumerate(self.borders):
-        #     delta = self._coordsg[i+1]-self._coordsg[i]
-        #     delta[0] *= -1
-        #     delta = delta[::-1]
-        #     delta = delta/np.linalg.norm(delta)
-        #     e.nx = delta[0]
-        #     e.ny = delta[1]
 
     def draw(self) -> None:
         """Create a graph of element
         """
-
-        # _z = self.domain
-        # _x, _p = self.T(_z.T)
-        # fig = plt.figure()
-        # ax = fig.add_subplot(projection='3d')
-        # l = []
-        # l.append('Element')
-        # l.append('Nodes')
-        # for i in range(self.n):
-        #     surf = ax.plot_trisurf(*_x.T, _p[:, i], alpha=0.3)
-        #     surf._facecolors2d = surf._facecolors3d
-        #     surf._edgecolors2d = surf._edgecolors3d
-        #     l.append(r'$\psi_{'+format(i)+r'}$')
-        # __coords = np.array(self._coords.tolist()+[self._coords[0].tolist()]).T
-        # ax.plot(*__coords, [0]*len(__coords.T), '-', color='black')
-        # ax.plot(*self.coords.T, [0]*len(self.coords), 'o', color='blue')
-        # ax.legend(l)
+        pass
 
     def jacobianGraph(self) -> None:
         """Create the determinant jacobian graph
@@ -68,7 +45,7 @@ class Element3D(Element):
             x (np.ndarray): Point to be tested
 
         Returns:
-            np.ndarray: Bolean array of test result
+            np.ndarray: Boolean array of test result
         """
         rest = [True]*len(x)
         i = -1

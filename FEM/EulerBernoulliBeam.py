@@ -17,6 +17,7 @@ class EulerBernoulliBeam(Core):
         geometry (Geometry): 1D 2 variables per node problem geometry. Geometry must have Euler Bernoulli elements.
         EI (float): Young's moduli multiplied by second moment of area (inertia).
         cf (float, optional): Soil coeficient. Defaults to 0.
+        f (float or int or function, optional): Force function applied to the beam. Defaults to 0.0
     """
 
     def __init__(self, geometry: Geometry, EI: float, cf: float = 0.0, f: float = 0.0) -> None:
@@ -26,6 +27,7 @@ class EulerBernoulliBeam(Core):
             geometry (Geometry): 1D 2 variables per node problem geometry. Geometry must have Lineal elements.
             EI (float): Young's moduli multiplied by second moment of area (inertia).
             cf (float, optional): Soil coeficient. Defaults to 0.
+            f (float or int or function, optional): Force function applied to the beam. Defaults to 0.0
         """
         self.a = EI
         self.f = f
@@ -108,7 +110,10 @@ class EulerBernoulliBeamNonLineal(Core):
     Args:
         geometry (Geometry): 1D 2 variables per node problem geometry. Geometry must have Euler Bernoulli elements.
         EI (float): Young's moduli multiplied by second moment of area (inertia).
+        EA (float): Young's moduli multiplied by area.
         cf (float, optional): Soil coeficient. Defaults to 0.
+        fx (float or int or function, optional): Force function applied in the x direction to the beam. Defaults to 0.0
+        fy (float or int or function, optional): Force function applied in the y direction to the beam. Defaults to 0.0
     """
 
     def __init__(self, geometry: Geometry, EI: float, EA: float, fx: float = 0.0, fy: float = 0.0) -> None:
@@ -117,7 +122,10 @@ class EulerBernoulliBeamNonLineal(Core):
         Args:
             geometry (Geometry): 1D 2 variables per node problem geometry. Geometry must have Lineal elements.
             EI (float): Young's moduli multiplied by second moment of area (inertia).
+            EA (float): Young's moduli multiplied by area.
             cf (float, optional): Soil coeficient. Defaults to 0.
+            fx (float or int or function, optional): Force function applied in the x direction to the beam. Defaults to 0.0
+            fy (float or int or function, optional): Force function applied in the y direction to the beam. Defaults to 0.0
         """
         self.Axx = EI
         self.Dxx = EA

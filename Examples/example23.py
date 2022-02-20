@@ -1,6 +1,6 @@
 if __name__ == '__main__':
     from FEM.Geometry import Geometry2D
-    from FEM.Elasticity2D import PlaneStrain
+    from FEM.Elasticity2D import PlaneStrainSparse
     from FEM.Geometry.Region import Region1D
     import matplotlib.pyplot as plt
     import numpy as np
@@ -107,7 +107,7 @@ if __name__ == '__main__':
     geometria.cbe += geometria.cbFromRegion(0, 0, 2)
     geometria.cbn = [[50, ppx], [51, ppy]]
     geometria.loadOnRegion(1, fy=lambda s: -p0)
-    O = PlaneStrain(geometria, E, v, verbose=True)
+    O = PlaneStrainSparse(geometria, E, v, verbose=True)
     O.elementMatrices()
     O.ensembling()
     O.borderConditions()

@@ -1,4 +1,4 @@
-"""General geometry class.
+"""Geometry definitions.
 """
 
 import triangle as tr
@@ -23,7 +23,7 @@ import re
 
 
 class Geometry:
-    """Define geometry structure
+    """Define a general geometry structure
 
     Args:
         dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
@@ -31,6 +31,7 @@ class Geometry:
         types (list): Types of each element
         nvn (int, optional): Nunmber of variables per node. Defaults to 1.
         regions (list, optional): List of domain regions. Defaults to [].
+        fast (bool): If True, the created elements will have have the fast propertie (see Element class docs)
     """
 
     def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, regions: list[Region] = None, fast=False) -> None:
@@ -41,7 +42,8 @@ class Geometry:
             gdls (list): List of domain coordinates
             types (list): Types of each element
             nvn (int, optional): Nunmber of variables per node. Defaults to 1.
-            regions (list, optional): List of domain regions. Defaults to [].
+            regions (list, optional): List of domain regions. Defaults to None.
+            fast (bool): If True, the created elements will have have the fast propertie (see Element class docs)
         """
 
         self.mask = None
@@ -60,14 +62,17 @@ class Geometry:
         self.initialize()
         self.calculateCentroids()
 
-    def calculateRegions(self):
+    def calculateRegions(self) -> None:
+        """Calculates the nodes of the geometry regions
+        """
+
         for region in tqdm(self.regions, unit="Region"):
             region.setNodesOfRegion(self)
 
     def maskFromRegions(self) -> None:
         """Create the display mask from geometry regions
         """
-        pass  # FIXME
+        pass  # TODO this have to be moved to the Geometry2D class
         # self.mask = []
         # for s in self.regions:
         #     self.mask += np.array(self.gdls)[np.ix_(s)].tolist()
@@ -132,19 +137,10 @@ class Geometry:
                 element = CubicElement(coords, gdl, fast=self.fast)
             elif self.types[i] == 'B1V':
                 element = Brick(coords, gdl, fast=self.fast)
-
-            # if i > 1 and isinstance(element, self.elements[-1].__class__):
-            #     _p = self.elements[-1]._p
-            #     dpz = self.elements[-1].dpz
-            # else:
-            #     _p = element.psis(element.Z.T)
-            #     dpz = element.dpsis(element.Z.T).T
-            # element.fastInit(_p, dpz)
-
             self.elements[i] = element
         print('Done!')
 
-    def show(self):
+    def show(self) -> None:
         """Creates a geometry graph"""
         pass
 
@@ -167,67 +163,63 @@ class Geometry:
                 res.append(i)
         self.cbe = res
 
-    def giveNodesOfRegion(self, region: int, tol) -> np.ndarray:
+    def giveNodesOfRegion(self, region: int) -> np.ndarray:
         """Give nodes over a region
 
         Args:
             region (int): region number. Start with 0
-            tol (float): Tolerance for finding nearest nodes
 
         Returns:
             np.ndarray: List of nodes in the specified region
         """
         return self.regions[region].nodes
 
-    def giveElementsOfRegion(self, region: int, tol: float) -> list:
+    def giveElementsOfRegion(self, region: int) -> list:
         """Give elements over a region
 
         Args:
             region (int): region number. Start with 0
-            tol (float): Tolerance for finding nearest nodes
 
         Returns:
             list: List of elements in the specified region
         """
         a = []
-        nodes = self.giveNodesOfRegion(region, tol)
+        nodes = self.giveNodesOfRegion(region)
         for e in self.elements:
             if np.sum(np.isin(e.gdl[0], nodes*self.nvn)) > 0:
                 a.append(e)
         return a
 
-    def cbFromRegion(self, region: int, value: float, nv: int = 1, tol: float = 1*10**(-5)) -> list:
+    def cbFromRegion(self, region: int, value: float, nv: int = 1) -> list:
         """Generate a list of border conditions from specified border.
 
         Args:
             region (int): region number
             value (float): Value of the bc
             nv (int, optional): Variable number, starts with 1. Defaults to 1.
-            tol (float, optional): Tolerance for finding nodes in the region. Defaults to 1*10**(-5).
 
         Returns:
             list: List of border conditions that can be concatenated or assigned to the geometry
         """
 
         cb = []
-        nodes = self.giveNodesOfRegion(region, tol)
+        nodes = self.giveNodesOfRegion(region)
         cbe = np.zeros([len(nodes), 2])
         cbe[:, 0] = nodes*self.nvn+(nv-1)
         cbe[:, 1] = value
         cb += cbe.tolist()
         return cb
 
-    def cbeAllRegions(self, value: float, tol: float = 1*10**(-5)) -> None:
-        """Set all regions border conditions to the specified value
+    def cbeAllRegions(self, value: float) -> None:
+        """Set all regions border conditions to the specified value to all the variables.
 
         Args:
             value (float): Value of the border condition
-            tol (float, optional): Tolerance for finding near nodes in regions. Defaults to 1*10**(-5).
         """
         self.cbe = []
         for s in range(len(self.regions)):
             for i in range(self.nvn):
-                self.cbe += self.cbFromRegion(s, value, (i+1), tol)
+                self.cbe += self.cbFromRegion(s, value, (i+1))
 
     def exportJSON(self, filename: str = None) -> str:
         """Export geometry definition as JSON file or JSON string
@@ -256,15 +248,27 @@ class Geometry:
                 f.write(y)
         return y
 
-    def giveRegions(self):
+    def giveRegions(self) -> list:
+        """Returns a list of regions coordinates matrix
+
+        Returns:
+            list: List of regions coordinates matrix
+        """
         coords = []
         for reg in self.regions:
             coords += [reg.coords.tolist()]
         return coords
 
-    def addRegions(self, regions):
+    def addRegions(self, regions: list[Region]) -> None:
+        """Adds regions to an already created geometry
+
+        Args:
+            regions (list[Region]): Regions to be created
+        """
+        for r in tqdm(regions, unit='Regions'):
+            r.setNodesOfRegion(self)
         self.regions += regions
-        self.calculateRegions()
+        # self.calculateRegions()
 
     @classmethod
     def importJSON(self, filename: str, **kargs) -> 'Geometry':
@@ -274,7 +278,7 @@ class Geometry:
             filename (str): Path to the JSON file
 
         Returns:
-            Geometry: Generated JSON file
+            Geometry: Geometry generated using the JSON file
         """
         with open(filename) as f:
             parsed = json.loads(f.read())
@@ -298,23 +302,25 @@ class Geometry:
 
 
 class Geometry1D(Geometry):
-    """Define geometry structure
+    """Define an 1D geometry structure
 
     Args:
         dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
         gdls (list): List of domain coordinates
         types (list): Types of each element
         nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+        fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
     """
 
     def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, fast=False) -> None:
-        """Define geometry structure
+        """Define an 1D geometry structure
 
         Args:
             dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
             gdls (list): List of domain coordinates
             types (list): Types of each element
             nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+            fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
         """
 
         Geometry.__init__(self, dictionary, gdls, types, nvn, [], fast)
@@ -334,25 +340,39 @@ class Geometry1D(Geometry):
                 element = QuadraticElement(coords, gdl)
             self.elements.append(element)
 
-    def show(self, texto: int = 10, bolita: int = 0, figsize: list = [17, 10]) -> None:
+    def show(self) -> None:
         """Create a geometry graph
-
-        Args:
-            texto (int, optional): Text size. Defaults to 10.
-            bolita (int, optional): Node size. Defaults to 0.
-            figsize (list, optional): Size of figure. Defaults to [17, 10].
         """
         pass
 
 
 class Geometry2D(Geometry):
-    """Creates a 2D geometry"""
+    """Creates a 2D geometry
 
-    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, regions: list = [], fast=False):
+        Args:
+            dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
+            gdls (list): List of domain coordinates
+            types (list): Types of each element
+            nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+            regions (list[Region], optional): List of regions to apply in the geometry. Defaults to None.
+            fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
+        """
+
+    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, regions: list[Region] = None, fast=False) -> None:
+        """Creates a 2D geometry
+
+        Args:
+            dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
+            gdls (list): List of domain coordinates
+            types (list): Types of each element
+            nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+            regions (list[Region], optional): List of regions to apply in the geometry. Defaults to None.
+            fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
+        """
         Geometry.__init__(self, dictionary, gdls, types, nvn, regions, fast)
 
     def generateRegionFromCoords(self, p0: list, p1: list) -> None:
-        """Generates a geometry region by specified coordinates
+        """Generates a geometry Region1D by specified coordinates
 
         Args:
             p0 (list): region start point
@@ -397,7 +417,7 @@ class Geometry2D(Geometry):
                 masCercano1 = i
         return [[masCercano1*self.nvn+(nv-1), value]]
 
-    def loadOnRegionVF(self, region: int, f: Callable = None, tol: float = 1*10**(-5), add=None) -> None:
+    def loadOnRegionVF(self, region: int, f: Callable = None, add=None) -> None:
         """Assign a load over a geometry region.
 
         The start point of region is the 0 point of load
@@ -408,7 +428,6 @@ class Geometry2D(Geometry):
         Args:
             region (int): region in wich load will be applied
             f (Callable, optional): Load Function. Defaults to None.
-            tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
         """
         c0, cf = self.regions[region].coords
         dy = cf[1]-c0[1]
@@ -417,9 +436,9 @@ class Geometry2D(Geometry):
         def fx(s): return f(c0[0]+s*np.cos(theta))[0]
         def fy(s): return f(c0[1]+s*np.sin(theta))[1]
         self.loadOnRegion(region=region, fx=fx,
-                          fy=fy, tol=tol, add=add)
+                          fy=fy, add=add)
 
-    def loadOnRegion(self, region: int, fx: Callable = None, fy: Callable = None, tol: float = 1*10**(-5), add=None) -> None:
+    def loadOnRegion(self, region: int, fx: Callable = None, fy: Callable = None, add=None) -> None:
         """Assign a load over a geometry region.
 
         The start point of region is the 0 point of load
@@ -431,18 +450,17 @@ class Geometry2D(Geometry):
             region (int): region in wich load will be applied
             fx (Callable, optional): Load Function x component. Defaults to None.
             fy (Callable, optional): Load Function y component. Defaults to None.
-            tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
         """
-        a = self.giveElementsOfRegion(region, tol)
+        a = self.giveElementsOfRegion(region)
         coordenadas = self.regions[region].coords
         vect_seg = coordenadas[1]-coordenadas[0]
         for e in a:
             e.intBorders = True
             for i in range(-1, len(e.borders)-1):
                 pertenece1 = isBetween(
-                    coordenadas[0], coordenadas[1], e._coords[i], tol)
+                    coordenadas[0], coordenadas[1], e._coords[i])
                 pertenece2 = isBetween(
-                    coordenadas[0], coordenadas[1], e._coords[i+1], tol)
+                    coordenadas[0], coordenadas[1], e._coords[i+1])
                 if pertenece1 and pertenece2:
                     vect_lad = e._coords[i+1]-e._coords[i]
                     sign = np.sign(vect_seg@vect_lad)
@@ -458,7 +476,7 @@ class Geometry2D(Geometry):
                 else:
                     e.borders[i].dir = 0.0
 
-    def loadOnHole(self, hole: int, sa: float = 0, ea: float = 2*np.pi, fx: Callable = None, fy: Callable = None, tol: float = 1*10**(-5)) -> None:
+    def loadOnHole(self, hole: int, sa: float = 0, ea: float = 2*np.pi, fx: Callable = None, fy: Callable = None) -> None:
         """Assign loads over a hole.
 
         Args:
@@ -467,7 +485,6 @@ class Geometry2D(Geometry):
             ea (float, optional): Finish face angle. Defaults to :math:`2\\pi`.
             fx (Callable, optional): Load Function x component. Defaults to None.
             fy (Callable, optional): Load Function y component. Defaults to None.
-            tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
         """
         holee = self.holes[hole]
         regions_apply = []
@@ -483,10 +500,10 @@ class Geometry2D(Geometry):
         for region in regions_apply:
             for i, seg in enumerate(self.regions):
                 if (seg.coords == self.gdls[np.ix_(region)]).all():
-                    self.loadOnRegion(i, fx, fy, tol)
+                    self.loadOnRegion(i, fx, fy)
                     break
 
-    def cbOnHole(self, hole: int, value: float, nv: int = 1, sa: float = 0, ea: float = 2*np.pi, tol: float = 1*10**(-5)) -> list:
+    def cbOnHole(self, hole: int, value: float, nv: int = 1, sa: float = 0, ea: float = 2*np.pi) -> list:
         """Generate a list of border conditions from specified hole.
 
         Args:
@@ -495,7 +512,6 @@ class Geometry2D(Geometry):
             nv (int, optional): Variable number, starts with 1. Defaults to 1.
             sa (float, optional): Start face angle. Defaults to 0.
             ea (float, optional): Finish face angle. Defaults to :math:`2\\pi`.
-            tol (float, optional): Tolerancy for finding nodes. Defaults to 1*10**(-5).
 
         Returns:
             list: List of border conditions that can be concatenated or assigned to the geometry
@@ -515,7 +531,7 @@ class Geometry2D(Geometry):
         for region in regions_apply:
             for i, seg in enumerate(self.regions):
                 if (seg.coords == self.gdls[np.ix_(region)]).all():
-                    bc += self.cbFromRegion(i, value, nv, tol)
+                    bc += self.cbFromRegion(i, value, nv)
                     break
         return bc
 
@@ -653,12 +669,33 @@ class Geometry2D(Geometry):
 
 
 class Geometry3D(Geometry):
-    """Creates a 3D geometry"""
+    """Creates a 2D geometry
 
-    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, regions: list = [], fast=False):
+    Args:
+        dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
+        gdls (list): List of domain coordinates
+        types (list): Types of each element
+        nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+        regions (list[Region], optional): List of regions to apply in the geometry. Defaults to None.
+        fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
+    """
+
+    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, regions: list[Region] = None, fast=False):
+        """Creates a 2D geometry
+
+        Args:
+            dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
+            gdls (list): List of domain coordinates
+            types (list): Types of each element
+            nvn (int, optional): Nunmber of variables per node. Defaults to 1.
+            regions (list[Region], optional): List of regions to apply in the geometry. Defaults to None.
+            fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
+        """
         Geometry.__init__(self, dictionary, gdls, types, nvn, regions, fast)
 
-    def show(self, texto: int = 10, bolita: int = 0, draw_segs: bool = True, draw_labels: bool = False, draw_bc: bool = False, label_bc: bool = False) -> None:
+    def show(self) -> None:
+        """Creates a geometry graph
+        """
         pass
 
 
@@ -719,8 +756,9 @@ class Delaunay(Geometry2D):
             vertices (list): matrix containing the domain vertices coordinates
             params (str): Triangulation parameters, use the aux function _strdelaunay
             nvn (int, optional): Number of variables per node. Defaults to 1.
-            holes (list, optional): A list of holes. Defaults to None.
+            holes_dict (list, optional): A list of holes dicts. Defaults to None.
             fillets (list, optional): A list of fillets. Defaults to None.
+            fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
     """
 
     def __init__(self, vertices: list, params: str, nvn: int = 1, holes_dict=None, fillets=None, fast=False) -> None:
@@ -730,8 +768,9 @@ class Delaunay(Geometry2D):
                 vertices (list): matrix containing the domain vertices coordinates
                 params (str): Triangulation parameters, use the aux function _strdelaunay
                 nvn (int, optional): Number of variables per node. Defaults to 1.
-                holes (list, optional): A list of holes. Defaults to None.
+                holes_dict (list, optional): A list of holes dicts. Defaults to None.
                 fillets (list, optional): A list of fillets. Defaults to None.
+                fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
         """
         mask = copy.deepcopy(vertices)
         # try:

@@ -24,6 +24,11 @@ from datetime import date, datetime
 
 
 class LogFormatter(logging.Formatter):
+    """Creates a Logging Formatter
+
+    Args:
+        color (color): Color
+    """
 
     COLOR_CODES = {
         logging.CRITICAL: "\033[1;35m",  # bright/bold magenta
@@ -36,10 +41,21 @@ class LogFormatter(logging.Formatter):
     RESET_CODE = "\033[0m"
 
     def __init__(self, color, *args, **kwargs):
+        """Creates a Logging Formatter
+
+        Args:
+            color (color): Color
+        """
         super(LogFormatter, self).__init__(*args, **kwargs)
         self.color = color
 
     def format(self, record, *args, **kwargs):
+        """Formats arecord
+
+        Args:
+            record (record): Record to be formatted
+
+        """
         if (self.color == True and record.levelno in self.COLOR_CODES):
             record.color_on = self.COLOR_CODES[record.levelno]
             record.color_off = self.RESET_CODE
@@ -53,10 +69,19 @@ class FEMLogger():
     """Creation of a Logger for FEM purposes. Based on Python Logger by Fonic <https://github.com/fonic>   
     """
 
-    def __init__(self, strr) -> None:
-        self.name = strr
-
     def setup_logging(self, console_log_output="stdout", console_log_level="warning", console_log_color=True, logfile_file=None, logfile_log_level="debug", logfile_log_color=False, log_line_template="%(color_on)s[%(levelname)-8s] %(message)s%(color_off)s"):
+        """Set the logger
+
+        Args:
+            console_log_output (str, optional): . Defaults to "stdout".
+            console_log_level (str, optional): . Defaults to "warning".
+            console_log_color (bool, optional): . Defaults to True.
+            logfile_file (optional): . Defaults to None.
+            logfile_log_level (str, optional): . Defaults to "debug".
+            logfile_log_color (bool, optional): . Defaults to False.
+            log_line_template (str, optional): . Defaults to "%(color_on)s[%(levelname)-8s] %(message)s%(color_off)s".
+
+        """
         script_name = os.path.splitext(os.path.basename(sys.argv[0]))[0]
         if not logfile_file:
             logfile_file = script_name + ".log"
@@ -127,6 +152,8 @@ class FEMLogger():
         return True
 
     def end_timer(self):
+        """Ends the sesion time
+        """
         self.end_time = datetime.now()
         logging.debug(
             f'Session ended @ {self.end_time.strftime("%d/%m/%Y - %H:%M:%S")}')

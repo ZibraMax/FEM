@@ -101,17 +101,16 @@ class Heat2D(Core):
             e.Fe += F+P
             e.Ke += K+H
 
-    def defineConvectiveBoderConditions(self, region: int, beta: float = 0, Ta: float = 0, tol: float = 1*10**(-5)) -> None:
+    def defineConvectiveBoderConditions(self, region: int, beta: float = 0, Ta: float = 0) -> None:
         """Define convective borders
 
         Args:
             region (int): region in wich load will be applied
             beta (float, optional): Convective coeficient :math:`\\beta` . Defaults to 0.
             Ta (float, optional): Ambient temperature in convective border. Defaults to 0.
-            tol (float, optional): Tolerancy to find adjacent nodes. Defaults to 1*10**(-5).
         """
         self.geometry.loadOnRegion(
-            region, fx=lambda s: beta, tol=tol, add={'Ta': Ta})
+            region, fx=lambda s: beta, add={'Ta': Ta})
 
     def postProcess(self, levels=1000) -> None:
         """Generate the temperature surface for the geometry

@@ -1,6 +1,6 @@
 if __name__ == '__main__':
     from FEM.Geometry import Delaunay
-    from FEM.Elasticity2D import PlaneStrain
+    from FEM.Elasticity2D import PlaneStrainSparse
     import matplotlib.pyplot as plt
     import numpy as np
 
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     cbn += geometria.generateBCFromCoords(parabola(h/2), h/2, ppx, nv=2)
     geometria.cbn = cbn
     geometria.loadOnRegion(-1, fy=lambda s: -p0)
-    O = PlaneStrain(geometria, E, v, verbose=True)
+    O = PlaneStrainSparse(geometria, E, v, verbose=True)
     O.elementMatrices()
     O.ensembling()
     O.borderConditions()

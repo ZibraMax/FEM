@@ -10,11 +10,11 @@ from typing import Tuple, Callable
 
 
 class ODE2D(Core):
-    """
+    """NOT IMPLEMENTED
     """
 
     def __init__(self, geometry: Geometry, a11=lambda x, y: 0, a12=lambda x, y: 0, a21=lambda x, y: 0, a22=lambda x, y: 0, a00=lambda x, y: 0) -> None:
-        """
+        """NOT IMPLEMENTED
         """
         self.a11 = a11
         self.a12 = a12
@@ -75,7 +75,7 @@ class ODE2D(Core):
                                         detjac*border.W[k]
 
     def postProcess(self, mult: float = 1000, gs=None, levels=1000, **kargs) -> None:
-        """Generate the stress surfaces and displacement fields for the geometry
+        """Generate the post process graphs
 
         Args:
                 mult (int, optional): Factor for displacements. Defaults to 1000.

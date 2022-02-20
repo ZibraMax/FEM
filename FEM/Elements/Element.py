@@ -24,6 +24,7 @@ class Element():
             _coords (np.ndarray): Vertical coordinates matrix for graphical interfaces
             gdl (np.ndarray): Degree of freedom matrix. Each row is a variable.
             border (bool): True if the element is part of the border domain of another element.
+            fast (bool): If True, the element does not record Ke, Me, Fe, Qe. Defaults to False.
         """
 
         self.coords = coords
@@ -50,24 +51,7 @@ class Element():
         self.dpx = None
         self.dpz = None
 
-    def fastInit(self, _p, dpz):
-        self._p = _p
-        self.dpz = dpz
-        self._x, _ = self.T(self.Z.T)
-        jac, _ = self.J(self.Z.T)
-        self.detjac = np.linalg.det(jac)
-        self.dpx = np.linalg.solve(jac, self.dpz)
-
-    @classmethod
-    def description(self):
-        """Creates the elemetn description
-
-        Returns:
-            str: Description of the element
-        """
-        return ''
-
-    def restartMatrix(self):
+    def restartMatrix(self) -> None:
         """Sets all element matrices and vectors to 0 state
         """
         if not self.border:
@@ -80,10 +64,10 @@ class Element():
         """Give the global coordinates of given natural coordiantes over element
 
         Args:
-            z (np.ndarray): Natural coordinates matrix
+            z (np.ndarray): Natural coordinates matrix. Each row is a dimension, each column is a point.
 
         Returns:
-            np.ndarray: Global coordinates matrix
+            np.ndarray: Global coordinates matrix and shape functions
         """
         p = self._p
         if self._p is None:
@@ -94,7 +78,7 @@ class Element():
         """Returns the transformation of a given set of points in the element. This method is used for border elements
 
         Args:
-            z (np.ndarray): Natural coordinates matrix
+            z (np.ndarray): Natural coordinates matrix. Each row is a dimension, each column is a point.
 
         Returns:
             np.ndarray: Global coordinates matrix
@@ -129,10 +113,10 @@ class Element():
         """Calculate the jacobian matrix over a set of natural coordinates
 
         Args:
-            z(np.ndarray): Natural coordinates matrix
+            z(np.ndarray): Natural coordinates matrix. Each row is a dimension, each column is a point.
 
         Returns:
-            np.ndarray: Jacobian's matrices
+            np.ndarray: Jacobian's matrices and shape function derivatives
         """
         dpsis = self.dpz
         if self.dpz is None:
@@ -144,6 +128,7 @@ class Element():
 
         Args:
             SVSolution(bool, optional): To calculate second variable solutions. Defaults to False.
+            domain(str, optional): Where to give the solution ['domain' or 'gauss-points']. Defaults to 'domain'.
 
         Returns:
             np.ndarray: Arrays of coordinates, solutions and second variables solutions.

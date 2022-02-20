@@ -309,8 +309,34 @@ class PlaneStressOrthotropic(Core):
 
 
 class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
+    """Creates a plane stress problem with orthotropic formulation and sparce matrices
+
+    Args:
+        geometry (Geometry): Input geometry
+        E1 (Tuple[float, list]): Young moduli in direction 1 (x)
+        E2 (Tuple[float, list]): Young moduli in direction 2 (y)
+        G12 (Tuple[float, list]): Shear moduli
+        v12 (Tuple[float, list]): Poisson moduli
+        t (Tuple[float, list]): Thickness
+        rho (Tuple[float, list], optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
+        fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+        fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+    """
 
     def __init__(self, geometry: Geometry, E1: Tuple[float, list], E2: Tuple[float, list], G12: Tuple[float, list], v12: Tuple[float, list], t: Tuple[float, list], rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
+        """Creates a plane stress problem with orthotropic formulation and sparce matrices
+
+        Args:
+            geometry (Geometry): Input geometry
+            E1 (Tuple[float, list]): Young moduli in direction 1 (x)
+            E2 (Tuple[float, list]): Young moduli in direction 2 (y)
+            G12 (Tuple[float, list]): Shear moduli
+            v12 (Tuple[float, list]): Poisson moduli
+            t (Tuple[float, list]): Thickness
+            rho (Tuple[float, list], optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
+            fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+            fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+        """
         if not geometry.nvn == 2:
             logging.warning(
                 'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)\nRegenerating Geoemtry...')
@@ -415,6 +441,9 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
         logging.info('Done!')
 
     def solveES(self, **kargs) -> None:
+        """Solves the equation system
+        """
+        # TODO create a solver for this
         logging.info('Converting to csr format')
         self.K = self.K.tocsr()
         logging.info('Solving...')
@@ -433,6 +462,7 @@ class PlaneStress(PlaneStressOrthotropic):
             E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
             v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
             t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+            rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
             fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
             fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
     """
@@ -445,6 +475,7 @@ class PlaneStress(PlaneStressOrthotropic):
                 E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
                 v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
                 t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+                rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
                 fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
                 fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
         """
@@ -455,25 +486,27 @@ class PlaneStress(PlaneStressOrthotropic):
 
 class PlaneStressSparse(PlaneStressOrthotropicSparse):
 
-    """Create a Plain Stress problem
+    """Create a Plain Stress problem using sparse matrices
 
     Args:
             geometry (Geometry): 2D 2 variables per node geometry
             E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
             v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
             t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+            rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
             fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
             fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
     """
 
     def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
-        """Create a Plain Stress problem
+        """Create a Plain Stress problem using sparse matrices
 
         Args:
                 geometry (Geometry): 2D 2 variables per node geometry
                 E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
                 v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
                 t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+                rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
                 fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
                 fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
         """
@@ -482,13 +515,14 @@ class PlaneStressSparse(PlaneStressOrthotropicSparse):
             self, geometry, E, E, G, v, t, rho, fx, fy, **kargs)
 
 
-class PlaneStrain(PlaneStressSparse):
+class PlaneStrainSparse(PlaneStress):
     """Create a Plain Strain problem
 
     Args:
             geometry (Geometry): 2D 2 variables per node geometry
             E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
             v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+            rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
             fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
             fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
     """
@@ -500,6 +534,7 @@ class PlaneStrain(PlaneStressSparse):
                 geometry (Geometry): 2D 2 variables per node geometry
                 E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
                 v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+                rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
                 fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
                 fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
         """
@@ -527,6 +562,7 @@ class PlaneStrainSparse(PlaneStressSparse):
             geometry (Geometry): 2D 2 variables per node geometry with fast elements
             E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
             v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+            rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
             fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
             fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
     """
@@ -538,6 +574,7 @@ class PlaneStrainSparse(PlaneStressSparse):
                 geometry (Geometry): 2D 2 variables per node geometry with fast elements
                 E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
                 v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+                rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
                 fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
                 fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
         """
@@ -559,8 +596,39 @@ class PlaneStrainSparse(PlaneStressSparse):
 
 
 class PlaneStressNonLocalSparse(PlaneStressSparse):
+    """Create a Plain Stress nonlocal problem using sparse matrices and the Pisano 2006 formulation.
+
+        Args:
+                geometry (Geometry): 2D 2 variables per node geometry
+                E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
+                v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+                t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+                l (float): Internal lenght
+                z1 (float): z1 factor
+                Lr (float): Influence distance Lr
+                af (Callable): Atenuation function
+                rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
+                fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
+                fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
+        """
 
     def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
+        """Create a Plain Stress nonlocal problem using sparse matrices and the Pisano 2006 formulation.
+
+        Args:
+                geometry (Geometry): 2D 2 variables per node geometry
+                E (int or float or list): Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)
+                v (int or float or list): Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)
+                t (int or float or list): Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)
+                l (float): Internal lenght
+                z1 (float): z1 factor
+                Lr (float): Influence distance Lr
+                af (Callable): Atenuation function
+                rho (int or float or list, optional): Density. If not given, mass matrix will not be calculated. Defaults to None.
+                fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
+                fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
+        """
+
         self.l = l
         self.Lr = Lr
         self.af = af
@@ -575,10 +643,17 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
             e.enl = dno
 
     def elementMatrices(self) -> None:
+        """Calculate the elements matrices
+        """
         for ee in tqdm(range(len(self.elements)), unit='Local'):
             self.elementMatrix(ee)
 
-    def elementMatrix(self, ee) -> None:
+    def elementMatrix(self, ee: 'Element') -> None:
+        """Calculates a single element local and nonlocal matrices
+
+        Args:
+            ee (Element): Element to be calculated
+        """
         e = self.elements[ee]
         m = len(e.gdl.T)
 

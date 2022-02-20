@@ -1,7 +1,7 @@
 if __name__ == '__main__':
     import numpy as np
     import matplotlib.pyplot as plt
-    from FEM.Elasticity2D import PlaneStrain
+    from FEM.Elasticity2D import PlaneStrainSparse
     from FEM.Geometry import Delaunay
     from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
 
@@ -40,6 +40,6 @@ if __name__ == '__main__':
     geometria.exportJSON('Examples/Mesh_tests/Talud_hueco_redondos.json')
     geometria.show()
     plt.show()
-    O = PlaneStrain(geometria, E, v, fy=lambda x: -gamma)
+    O = PlaneStrainSparse(geometria, E, v, fy=lambda x: -gamma)
     O.solve()
     plt.show()

@@ -10,8 +10,30 @@ from .Core import Core, Geometry, logging
 
 
 class Elasticity(Core):
+    """Creates a 3D Elasticity problem
+
+    Args:
+        geometry (Geometry): Input 3D geometry
+        E (Tuple[float, list]): Young Moduli
+        v (Tuple[float, list]): Poisson coeficient
+        rho (Tuple[float, list]): Density.
+        fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+        fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+        fz (Callable, optional): Force in z direction. Defaults to lambdax:0.
+    """
 
     def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], rho: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
+        """Creates a 3D Elasticity problem
+
+        Args:
+            geometry (Geometry): Input 3D geometry
+            E (Tuple[float, list]): Young Moduli
+            v (Tuple[float, list]): Poisson coeficient
+            rho (Tuple[float, list]): Density.
+            fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+            fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+            fz (Callable, optional): Force in z direction. Defaults to lambdax:0.
+        """
         if type(E) == float or type(E) == int:
             E = [E]*len(geometry.elements)
         if type(v) == float or type(v) == int:
@@ -111,6 +133,8 @@ class Elasticity(Core):
         logging.info('Done!')
 
     def solveES(self, **kargs) -> None:
+        """Solve the sparse system
+        """
         logging.info('Converting to csr format')
         self.K = self.K.tocsr()
         logging.info('Solving...')
@@ -128,6 +152,15 @@ class Elasticity(Core):
         """
 
     def profile(self, region: list[float], n: float = 10) -> None:
+        """Creates a profile in a given region coordinates
+
+        Args:
+            region (list[float]): List of region coordinates (square region 2D)
+            n (float, optional): Number of points. Defaults to 10.
+
+        Returns:
+            np.ndarray: Coordinates, displacements and second variable solution
+        """
         coords = np.array(region)
         gdl = np.array([[-1]*len(coords)])
         e = Quadrilateral(coords, gdl, n)
@@ -147,8 +180,38 @@ class Elasticity(Core):
 
 
 class NonLocalElasticity(Elasticity):
+    """Creates a 3D Elasticity problem
+
+    Args:
+        geometry (Geometry): Input 3D geometry
+        E (Tuple[float, list]): Young Moduli
+        v (Tuple[float, list]): Poisson coeficient
+        rho (Tuple[float, list]): Density.
+        l (float): Internal lenght
+        z1 (float): Z1 factor
+        Lr (float): Influence distance
+        af (Callable): Atenuation function
+        fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+        fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+        fz (Callable, optional): Force in z direction. Defaults to lambdax:0.
+    """
 
     def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], rho: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
+        """Creates a 3D Elasticity problem
+
+        Args:
+            geometry (Geometry): Input 3D geometry
+            E (Tuple[float, list]): Young Moduli
+            v (Tuple[float, list]): Poisson coeficient
+            rho (Tuple[float, list]): Density.
+            l (float): Internal lenght
+            z1 (float): Z1 factor
+            Lr (float): Influence distance
+            af (Callable): Atenuation function
+            fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+            fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+            fz (Callable, optional): Force in z direction. Defaults to lambdax:0.
+        """
         Elasticity.__init__(self, geometry, E, v, rho, fx, fy, fz, **kargs)
         self.l = l
         self.z1 = z1

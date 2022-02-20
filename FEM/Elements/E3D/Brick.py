@@ -1,4 +1,4 @@
-"""Defines a Lagrangian 1 order rectangular element 
+"""Defines a Lagrangian order 1 brick element 
 """
 
 
@@ -10,6 +10,13 @@ from .BrickScheme import BrickScheme
 class Brick(Element3D, BrickScheme):
 
     def __init__(self, coords: np.ndarray, gdl: np.ndarray, n: int = 3, **kargs) -> None:
+        """Creates a 3D brick element
+
+        Args:
+            coords (np.ndarray): Node coordinates matrix
+            gdl (np.ndarray): Degrees of freedom matrix
+            n (int, optional): Number of gauss points used for integration. Defaults to 3.
+        """
 
         coords = np.array(coords)
         self.faces = [

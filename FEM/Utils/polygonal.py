@@ -8,7 +8,7 @@ import math
 from typing import Tuple
 
 
-def enmalladoFernando(lx: float, ly: float, nex: int, ney: int) -> None:
+def enmalladoFernando(lx: float, ly: float, nex: int, ney: int) -> np.ndarray:
     """Crea un enmallado 2D de un rectangulo
 
     Args:
@@ -16,7 +16,8 @@ def enmalladoFernando(lx: float, ly: float, nex: int, ney: int) -> None:
             ly (float): Altura del rectámgulo
             nex (int): Numero de elementos en el eje x
             ney (int): Numero de elementos en el eje y
-            filename (str): nombre del archivo donde se guardará
+    Returns:
+            np.ndarray: coordinates matrix (np.ndarray) and element dictionary (list)
     """
 
     lx = float(lx)
@@ -178,14 +179,14 @@ def dist(a: list, b: list) -> float:
     return np.linalg.norm(np.array(a)-np.array(b))
 
 
-def isBetween(a: list, b: list, c: list, tol: float) -> bool:
+def isBetween(a: list, b: list, c: list, tol: float = 1*10**-5) -> bool:
     """Test if a point is between a line in a given tolerance. Works in 2D and 3D.
 
     Args:
         a (list): Start point of line
         b (list): End point of line
         c (list): Point to be tested between line
-        tol (float): Tolerance
+        tol (float): Tolerance. Defaults to 1*10**-5
 
     Returns:
         bool: True if point is in line
