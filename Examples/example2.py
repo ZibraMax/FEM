@@ -27,6 +27,7 @@ Code
 ####
 
 .. code:: python
+
     import matplotlib.pyplot as plt
     from FEM.Torsion2D import Torsion2D
     from FEM.Geometry import Delaunay, Geometry2D
