@@ -1,7 +1,7 @@
 if __name__ == '__main__':
     from FEM.Torsion2D import Torsion2D
     from FEM.Geometry import Delaunay
-    from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
+    from FEM.Utils.polygonal import giveCoordsCircle
     from FEM.Geometry.Region import Region1D
     import numpy as np
     import matplotlib.pyplot as plt

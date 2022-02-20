@@ -164,7 +164,7 @@ class Elasticity(Core):
         coords = np.array(region)
         gdl = np.array([[-1]*len(coords)])
         e = Quadrilateral(coords, gdl, n)
-        _x, _p = e.T(e.domain.T)
+        _x, _ = e.T(e.domain.T)
         valuesU = []
         valuesDU = []
         for x in tqdm(_x, unit='point'):
@@ -172,7 +172,7 @@ class Elasticity(Core):
                 if e.isInside([x])[0]:
                     np.array([[1.3, 2.5, 3.5], [1.5, 2.6, 8.5]])
                     z = e.inverseMapping(x.reshape([3, 1]))
-                    xx, u, du = e.giveSolutionPoint(z, True)
+                    _, u, du = e.giveSolutionPoint(z, True)
                     valuesU += [u]
                     valuesDU += [du]
 

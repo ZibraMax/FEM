@@ -778,7 +778,7 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         _X = []
         def dist(X): return np.sqrt((p0[0]-X[0])**2+(p0[1]-X[1])**2)
         for i in range(n):
-            for ee, e in enumerate(self.elements):
+            for _, e in enumerate(self.elements):
                 if e.isInside(X.T[i]):
                     z = e.inverseMapping(np.array([X.T[i]]).T)
                     _, u, du = e.giveSolutionPoint(z, True)

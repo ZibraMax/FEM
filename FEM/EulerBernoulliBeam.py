@@ -50,9 +50,9 @@ class EulerBernoulliBeam(Core):
         """Calculate the element matrices usign Guass Legendre quadrature.
         """
         for e in tqdm(self.elements, unit='Element'):
-            _x, _p = e.T(e.Z.T)
+            _x, _ = e.T(e.Z.T)
             _h = e.hermit(e.Z.T)
-            jac, dpz = e.J(e.Z.T)
+            jac, _ = e.J(e.Z.T)
             detjac = np.linalg.det(jac)
             # _j = np.linalg.inv(jac)
             # dpx = _j @ dpz
@@ -151,7 +151,6 @@ class EulerBernoulliBeamNonLineal(Core):
         """Calculate the element matrices usign Guass Legendre quadrature.
         """
         for e in tqdm(self.elements, unit='Element'):
-            en2 = int(e.n/2)
             k11 = np.zeros([2, 2])
             k12 = np.zeros([2, 4])
             k22 = np.zeros([4, 4])
@@ -217,7 +216,7 @@ class EulerBernoulliBeamNonLineal(Core):
         U4 = []
         for e in self.elements:
             ueflex = e.Ue.flatten()[[1, 2, 4, 5]]
-            ueax = e.Ue.flatten()[[0, 3]]
+            # ueax = e.Ue.flatten()[[0, 3]]
             e.Ue = ueflex
             _x, _u, du = e.giveSolution(True)
             X += _x.T[0].tolist()

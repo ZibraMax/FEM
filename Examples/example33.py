@@ -3,7 +3,6 @@ if __name__ == '__main__':
     from FEM.Geometry import Delaunay
     from FEM.Utils.polygonal import giveCoordsCircle
     import matplotlib.pyplot as plt
-    import numpy as np
 
     coords = [[0, 0], [4, 0], [4, 0.5], [6, 0.5],
               [6, 2.5], [4, 2.5], [4, 3], [0, 3]]

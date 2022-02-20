@@ -1,9 +1,8 @@
 if __name__ == '__main__':
-    import numpy as np
     import matplotlib.pyplot as plt
     from FEM.Elasticity2D import PlaneStrainSparse
     from FEM.Geometry import Delaunay
-    from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
+    from FEM.Utils.polygonal import giveCoordsCircle
 
     E = 21000000.0  # MPa
     v = 0.2  # m

@@ -1,7 +1,6 @@
 if __name__ == '__main__':
     from FEM.Heat2D import Heat2D
     from FEM.Geometry import Delaunay
-    import numpy as np
     import matplotlib.pyplot as plt
     # https://github.com/Samson-Mano/2D_Heat_transfer
     beta1 = 2

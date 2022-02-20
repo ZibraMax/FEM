@@ -4,15 +4,11 @@ The individual children classes must implement the method for calculating the el
 """
 
 
-from asyncio.log import logger
 from typing import Union
 from tqdm import tqdm
 import numpy as np
-import matplotlib.pyplot as plt
 from .Geometry import Geometry
-import os
-from .Elements import *
-from .Solvers import *
+from .Solvers import Lineal, NonLinealSolver
 import logging
 from .FEMLogger import FEMLogger
 from functools import partialmethod

@@ -2,7 +2,6 @@ if __name__ == '__main__':
     import scipy
     import json
     import numpy as np
-    import matplotlib.pyplot as plt
     from FEM.Elasticity3D import Elasticity
     from FEM.Geometry.Geometry import Geometry3D
 

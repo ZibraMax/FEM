@@ -20,7 +20,7 @@
 import os
 import sys
 import logging
-from datetime import date, datetime
+from datetime import datetime
 
 
 class LogFormatter(logging.Formatter):
@@ -111,7 +111,7 @@ class FEMLogger():
         try:
             # only accepts uppercase level names
             console_handler.setLevel(console_log_level.upper())
-        except:
+        except Exception as e:
             print("Failed to set console log level: invalid level: '%s'" %
                   console_log_level)
             return False

@@ -65,27 +65,27 @@ class Newton(NonLinealSolver):
             logging.debug(
                 f'----------------- Newton iteration {i} -------------------')
             self.system.restartMatrix()
-            logging.debug(f'Matrix at 0')
+            logging.debug('Matrix at 0')
             self.system.elementMatrices()
-            logging.debug(f'Calculating element matrix')
+            logging.debug('Calculating element matrix')
             self.system.ensembling()
-            logging.debug(f'Matrices enssembling')
+            logging.debug('Matrices enssembling')
             self.system.borderConditions()
-            logging.debug(f'Border conditions')
+            logging.debug('Border conditions')
             R = self.system.K@self.system.U - self.system.S
-            logging.debug(f'Residual')
+            logging.debug('Residual')
             try:
                 du = -np.linalg.solve(self.system.T, R)
             except Exception as e:
                 logging.error(e)
                 raise e
 
-            logging.debug(f'delta u')
+            logging.debug('delta u')
             self.system.U += du
             for e in self.system.elements:
                 e.restartMatrix()
                 e.setUe(self.system.U)
-            logging.debug(f'Updated elements')
+            logging.debug('Updated elements')
             err = np.max(np.abs(du))
             logging.info(
                 f'----------------- Iteration error {err} -------------------')
@@ -131,28 +131,28 @@ class DirectIteration(NonLinealSolver):
             logging.debug(
                 f'----------------- Iteration {i+1} -------------------')
             self.system.restartMatrix()
-            logging.debug(f'Matrix at 0')
+            logging.debug('Matrix at 0')
             self.system.elementMatrices()
-            logging.debug(f'Calculating element matrix')
+            logging.debug('Calculating element matrix')
             self.system.ensembling()
-            logging.debug(f'Matrices enssembling')
+            logging.debug('Matrices enssembling')
             self.system.borderConditions()
-            logging.debug(f'Border conditions')
+            logging.debug('Border conditions')
             uim11 = self.system.U.copy()
             try:
                 self.system.U = np.linalg.solve(self.system.K, self.system.S)
             except Exception as e:
                 logging.error(e)
                 raise e
-            logging.debug(f'Equation system solved')
+            logging.debug('Equation system solved')
 
             R = (self.system.U - uim11)
-            logging.debug(f'Residual')
+            logging.debug('Residual')
 
             for e in self.system.elements:
                 e.restartMatrix()
                 e.setUe(self.system.U)
-            logging.debug(f'Updated elements')
+            logging.debug('Updated elements')
             err = np.max(np.abs(R))
             logging.info(
                 f'----------------- Iteration error {err} -------------------')

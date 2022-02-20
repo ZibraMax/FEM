@@ -3,7 +3,7 @@
 
 
 import numpy as np
-from typing import Tuple, Callable
+from typing import Callable
 
 
 class Element():

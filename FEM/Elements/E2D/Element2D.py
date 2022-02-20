@@ -75,7 +75,7 @@ class Element2D(Element):
         l.append('Element')
         l.append('Nodes')
         l.append(r'$|J|$')
-        cbar = fig.colorbar(surf)
+        fig.colorbar(surf)
         __coords = np.array(self._coords.tolist()+[self._coords[0].tolist()]).T
         ax.plot(*__coords, [0]*len(__coords.T), '-', color='black')
         ax.plot(*self.coords.T, [0]*len(self.coords), 'o', color='blue')

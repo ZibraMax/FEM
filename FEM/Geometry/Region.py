@@ -2,7 +2,6 @@
 
 import numpy as np
 
-from FEM import Utils
 from ..Elements import Quadrilateral
 from ..Utils import isBetween
 

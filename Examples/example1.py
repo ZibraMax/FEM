@@ -1,6 +1,5 @@
 if __name__ == '__main__':
     # Creación de elementos
-    import matplotlib.pyplot as plt
     import numpy as np
 
     from FEM.Elements.E2D.Serendipity import Serendipity

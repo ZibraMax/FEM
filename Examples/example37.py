@@ -1,8 +1,7 @@
 if __name__ == '__main__':
-    import triangle
     from FEM.Heat2D import Heat2D
     from FEM.Geometry import Delaunay
-    from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
+    from FEM.Utils.polygonal import giveCoordsCircle
     import numpy as np
     import matplotlib.pyplot as plt
     # https://github.com/Samson-Mano/2D_Heat_transfer

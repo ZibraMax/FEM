@@ -24,17 +24,13 @@ def enmalladoFernando(lx: float, ly: float, nex: int, ney: int) -> np.ndarray:
     ly = float(ly)
     nex = int(nex)
     ney = int(ney)
-    lr = 0
-    nne = 8
     hx = lx/nex
     hy = ly/ney
     nnd = (ney+1)*(2*nex+1)+(ney)*(nex+1)
     x = np.zeros([nnd])
     y = np.zeros([nnd])
     nel = nex*ney
-    nle = []
     elm = np.zeros([nel, 8])
-    ntel = 1
     # Coordinate Generation
     print('Generando Coordenadas')
     nd = -1
@@ -94,7 +90,6 @@ def enmalladoFernando(lx: float, ly: float, nex: int, ney: int) -> np.ndarray:
     coords = np.array([x, y]).T
     dicc = (elm-1).astype(int).tolist()
     return coords, dicc
-    print('Archivo ' + filename + ' Guardado')
 
 
 def generatePolygon(ctrX: float = 10, ctrY: float = 10, aveRadius: float = 5, irregularity: float = 0.5, spikeyness: float = 0.5, numVerts: float = 6) -> list:
@@ -119,14 +114,14 @@ def generatePolygon(ctrX: float = 10, ctrY: float = 10, aveRadius: float = 5, ir
     angleSteps = []
     lower = (2*math.pi / numVerts) - irregularity
     upper = (2*math.pi / numVerts) + irregularity
-    sum = 0
+    suma = 0
     for i in range(numVerts):
         tmp = random.uniform(lower, upper)
         angleSteps.append(tmp)
-        sum = sum + tmp
+        suma = suma + tmp
 
     # normalize the steps so that point 0 and point n+1 are the same
-    k = sum / (2*math.pi)
+    k = suma / (2*math.pi)
     for i in range(numVerts):
         angleSteps[i] = angleSteps[i] / k
 
@@ -144,24 +139,24 @@ def generatePolygon(ctrX: float = 10, ctrY: float = 10, aveRadius: float = 5, ir
     return points
 
 
-def clip(x: float, min: float, max: float) -> float:
+def clip(x: float, mi: float, ma: float) -> float:
     """Clip 1D
 
     Args:
         x (float): Point x
-        min (float): min
-        max (float): max
+        mi (float): min
+        ma (float): max
 
     Returns:
         float: idk
     """
 
-    if(min > max):
+    if(mi > ma):
         return x
-    elif(x < min):
-        return min
-    elif(x > max):
-        return max
+    elif(x < mi):
+        return mi
+    elif(x > ma):
+        return ma
     else:
         return x
 

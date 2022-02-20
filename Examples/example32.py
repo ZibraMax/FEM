@@ -1,7 +1,7 @@
 if __name__ == '__main__':
     from FEM.Geometry import Delaunay
     from FEM.Elasticity2D import PlaneStressSparse
-    from FEM.Utils.polygonal import roundCorner, giveCoordsCircle
+    from FEM.Utils.polygonal import giveCoordsCircle
     import matplotlib.pyplot as plt
     import numpy as np
 

@@ -146,7 +146,7 @@ class Geometry:
         """Calculate elements centroids
         """
         for e in self.elements:
-            x, p = e.T(e.center.T)
+            x, _ = e.T(e.center.T)
             self.centroids.append(x.tolist())
 
     def setCbe(self, cbe: list) -> None:
@@ -585,7 +585,7 @@ class Geometry2D(Geometry):
                         bolita, color='pink', alpha=1-0.6*draw_bc)
                 ax.annotate(format(i), [
                             cx, cy], alpha=1-0.6*draw_bc, size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
-        for j, e in enumerate(self.elements):
+        for e in self.elements:
             if e.intBorders:
                 for i in range(-1, len(e.borders)-1):
                     border = e.borders[i]
@@ -861,7 +861,7 @@ class Delaunay(Geometry2D):
                 constrained (bool, optional): Makes the triangulation constrained. Defaults to True.
                 delaunay (bool, optional): Makes all triangles delaunay. Defaults to True.
                 a (float, optional): Maximum area of triange. Defaults to None.
-                q (float, optional): Minimum triangle angle <=35. Defaults to None.
+                q (float, optional): Minimum triangle angle <35. Defaults to None.
                 o (int, optional): Order of element if 2, quadratic elements are generated. Defaults to 1.
 
         Returns:
@@ -884,7 +884,7 @@ class Delaunay(Geometry2D):
         if q == None:
             q = ''
         else:
-            if type(q) == int:
+            if isinstance(1, int):
                 if q > 35:
                     raise "No se puede crear una triangulacion con angulos menores a 35 grados"
             q = 'q'+format(q)

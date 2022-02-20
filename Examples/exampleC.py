@@ -1,7 +1,5 @@
 if __name__ == '__main__':
-    import json
     import numpy as np
-    import matplotlib.pyplot as plt
     from FEM.Elasticity3D import NonLocalElasticity
     from FEM.Geometry.Geometry import Geometry3D
 

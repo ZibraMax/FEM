@@ -1,7 +1,6 @@
 if __name__ == '__main__':
     from FEM.EulerBernoulliBeam import EulerBernoulliBeamNonLineal
     from FEM.Geometry import Lineal
-    import numpy as np
     import matplotlib.pyplot as plt
 
     L = 100

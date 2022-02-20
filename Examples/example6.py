@@ -1,5 +1,4 @@
 if __name__ == '__main__':
-    import numpy as np
     import matplotlib.pyplot as plt
     from FEM.EDO1D import EDO1D
     from FEM.Geometry import Lineal

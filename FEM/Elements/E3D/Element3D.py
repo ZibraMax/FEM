@@ -3,7 +3,6 @@
 
 from ..Element import Element
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 class Element3D(Element):

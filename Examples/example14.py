@@ -1,5 +1,4 @@
 if __name__ == '__main__':
-    import numpy as np
     import matplotlib.pyplot as plt
     from FEM.Elasticity2D import PlaneStressSparse
     from FEM.Geometry.Geometry import Geometry2D

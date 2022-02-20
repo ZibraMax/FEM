@@ -1,7 +1,6 @@
 if __name__ == '__main__':
     #!/usr/bin/python
     # -*- coding: utf-8 -*-
-    import numpy as np
     import matplotlib.pyplot as plt
     from FEM.Torsion2D import Torsion2D
     from FEM.Geometry import Geometry2D, Delaunay

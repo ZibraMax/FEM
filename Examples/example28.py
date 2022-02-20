@@ -2,7 +2,6 @@ if __name__ == '__main__':
     from FEM.Geometry import Geometry2D
     from FEM.Elasticity2D import PlaneStressSparse
     import matplotlib.pyplot as plt
-    import numpy as np
 
     geometria = Geometry2D.importJSON(
         'Examples/Mesh_tests/pieza_acero.json', fast=True)
