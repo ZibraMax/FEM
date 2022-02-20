@@ -265,7 +265,7 @@
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="FEM.Utils.polygonal.enmalladoFernando">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">enmalladoFernando</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ney</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.enmalladoFernando" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">enmalladoFernando</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ney</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.enmalladoFernando" title="Permalink to this definition">#</a></dt>
 <dd><p>Crea un enmallado 2D de un rectangulo</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -274,8 +274,13 @@
 <li><p><strong>ly</strong> (<em>float</em>) – Altura del rectámgulo</p></li>
 <li><p><strong>nex</strong> (<em>int</em>) – Numero de elementos en el eje x</p></li>
 <li><p><strong>ney</strong> (<em>int</em>) – Numero de elementos en el eje y</p></li>
-<li><p><strong>filename</strong> (<em>str</em>) – nombre del archivo donde se guardará</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>coordinates matrix (np.ndarray) and element dictionary (list)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -327,7 +332,7 @@
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="FEM.Utils.polygonal.isBetween">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">isBetween</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.isBetween" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">isBetween</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.isBetween" title="Permalink to this definition">#</a></dt>
 <dd><p>Test if a point is between a line in a given tolerance. Works in 2D and 3D.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -335,7 +340,7 @@
 <li><p><strong>a</strong> (<em>list</em>) – Start point of line</p></li>
 <li><p><strong>b</strong> (<em>list</em>) – End point of line</p></li>
 <li><p><strong>c</strong> (<em>list</em>) – Point to be tested between line</p></li>
-<li><p><strong>tol</strong> (<em>float</em>) – Tolerance</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Tolerance. Defaults to 1*10**-5</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

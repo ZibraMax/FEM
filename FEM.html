@@ -393,23 +393,6 @@ be a 2-D Numpy Array.</p>
 <span id="fem-elasticity2d-module"></span><h2>FEM.Elasticity2D module<a class="headerlink" href="#module-FEM.Elasticity2D" title="Permalink to this headline">#</a></h2>
 <p>2D Elasticity</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStrain">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elasticity2D.</span></span><span class="sig-name descname"><span class="pre">PlaneStrain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">FEM.Geometry.Geometry.Geometry,</span> <span class="pre">E:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">v:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">rho:</span> <span class="pre">typing.Optional[typing.Tuple[float,</span> <span class="pre">list]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">fx:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStrain.&lt;lambda&gt;&gt;,</span> <span class="pre">fy:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStrain.&lt;lambda&gt;&gt;,</span> <span class="pre">**kargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStrain" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Elasticity2D.PlaneStressSparse" title="FEM.Elasticity2D.PlaneStressSparse"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elasticity2D.PlaneStressSparse</span></code></a></p>
-<p>Create a Plain Strain problem</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – 2D 2 variables per node geometry</p></li>
-<li><p><strong>E</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)</p></li>
-<li><p><strong>v</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)</p></li>
-<li><p><strong>fx</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.</p></li>
-<li><p><strong>fy</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStrainSparse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elasticity2D.</span></span><span class="sig-name descname"><span class="pre">PlaneStrainSparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">FEM.Geometry.Geometry.Geometry,</span> <span class="pre">E:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">v:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">rho:</span> <span class="pre">typing.Optional[typing.Tuple[float,</span> <span class="pre">list]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">fx:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStrainSparse.&lt;lambda&gt;&gt;,</span> <span class="pre">fy:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStrainSparse.&lt;lambda&gt;&gt;,</span> <span class="pre">**kargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStrainSparse" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elasticity2D.PlaneStressSparse" title="FEM.Elasticity2D.PlaneStressSparse"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elasticity2D.PlaneStressSparse</span></code></a></p>
@@ -420,6 +403,7 @@ be a 2-D Numpy Array.</p>
 <li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – 2D 2 variables per node geometry with fast elements</p></li>
 <li><p><strong>E</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)</p></li>
 <li><p><strong>v</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)</p></li>
+<li><p><strong>rho</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Density. If not given, mass matrix will not be calculated. Defaults to None.</p></li>
 <li><p><strong>fx</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.</p></li>
 <li><p><strong>fy</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.</p></li>
 </ul>
@@ -438,6 +422,7 @@ be a 2-D Numpy Array.</p>
 <li><p><strong>E</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)</p></li>
 <li><p><strong>v</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)</p></li>
 <li><p><strong>t</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)</p></li>
+<li><p><strong>rho</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Density. If not given, mass matrix will not be calculated. Defaults to None.</p></li>
 <li><p><strong>fx</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.</p></li>
 <li><p><strong>fy</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.</p></li>
 </ul>
@@ -448,15 +433,39 @@ be a 2-D Numpy Array.</p>
 <dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStressNonLocalSparse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elasticity2D.</span></span><span class="sig-name descname"><span class="pre">PlaneStressNonLocalSparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">FEM.Geometry.Geometry.Geometry,</span> <span class="pre">E:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">v:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">t:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">l:</span> <span class="pre">float,</span> <span class="pre">z1:</span> <span class="pre">float,</span> <span class="pre">Lr:</span> <span class="pre">float,</span> <span class="pre">af:</span> <span class="pre">typing.Callable,</span> <span class="pre">rho:</span> <span class="pre">typing.Optional[typing.Tuple[float,</span> <span class="pre">list]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">fx:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStressNonLocalSparse.&lt;lambda&gt;&gt;,</span> <span class="pre">fy:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStressNonLocalSparse.&lt;lambda&gt;&gt;,</span> <span class="pre">**kargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStressNonLocalSparse" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elasticity2D.PlaneStressSparse" title="FEM.Elasticity2D.PlaneStressSparse"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elasticity2D.PlaneStressSparse</span></code></a></p>
+<p>Create a Plain Stress nonlocal problem using sparse matrices and the Pisano 2006 formulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – 2D 2 variables per node geometry</p></li>
+<li><p><strong>E</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)</p></li>
+<li><p><strong>v</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)</p></li>
+<li><p><strong>t</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)</p></li>
+<li><p><strong>l</strong> (<em>float</em>) – Internal lenght</p></li>
+<li><p><strong>z1</strong> (<em>float</em>) – z1 factor</p></li>
+<li><p><strong>Lr</strong> (<em>float</em>) – Influence distance Lr</p></li>
+<li><p><strong>af</strong> (<em>Callable</em>) – Atenuation function</p></li>
+<li><p><strong>rho</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Density. If not given, mass matrix will not be calculated. Defaults to None.</p></li>
+<li><p><strong>fx</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.</p></li>
+<li><p><strong>fy</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStressNonLocalSparse.elementMatrices">
 <span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStressNonLocalSparse.elementMatrices" title="Permalink to this definition">#</a></dt>
-<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+<dd><p>Calculate the elements matrices</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStressNonLocalSparse.elementMatrix">
-<span class="sig-name descname"><span class="pre">elementMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ee</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStressNonLocalSparse.elementMatrix" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">elementMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Elements.html#FEM.Elements.Element.Element" title="FEM.Elements.Element.Element"><span class="pre">Element</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStressNonLocalSparse.elementMatrix" title="Permalink to this definition">#</a></dt>
+<dd><p>Calculates a single element local and nonlocal matrices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ee</strong> (<a class="reference internal" href="FEM.Elements.html#FEM.Elements.Element.Element" title="FEM.Elements.Element.Element"><em>Element</em></a>) – Element to be calculated</p>
+</dd>
+</dl>
+</dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStressNonLocalSparse.profile">
 <span class="sig-name descname"><span class="pre">profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStressNonLocalSparse.profile" title="Permalink to this definition">#</a></dt>
@@ -545,6 +554,22 @@ be a 2-D Numpy Array.</p>
 <dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStressOrthotropicSparse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elasticity2D.</span></span><span class="sig-name descname"><span class="pre">PlaneStressOrthotropicSparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">FEM.Geometry.Geometry.Geometry,</span> <span class="pre">E1:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">E2:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">G12:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">v12:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">t:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">rho:</span> <span class="pre">typing.Optional[typing.Tuple[float,</span> <span class="pre">list]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">fx:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStressOrthotropicSparse.&lt;lambda&gt;&gt;,</span> <span class="pre">fy:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStressOrthotropicSparse.&lt;lambda&gt;&gt;,</span> <span class="pre">**kargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStressOrthotropicSparse" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elasticity2D.PlaneStressOrthotropic" title="FEM.Elasticity2D.PlaneStressOrthotropic"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elasticity2D.PlaneStressOrthotropic</span></code></a></p>
+<p>Creates a plane stress problem with orthotropic formulation and sparce matrices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – Input geometry</p></li>
+<li><p><strong>E1</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Young moduli in direction 1 (x)</p></li>
+<li><p><strong>E2</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Young moduli in direction 2 (y)</p></li>
+<li><p><strong>G12</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Shear moduli</p></li>
+<li><p><strong>v12</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Poisson moduli</p></li>
+<li><p><strong>t</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Thickness</p></li>
+<li><p><strong>rho</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em><em>, </em><em>optional</em>) – Density. If not given, mass matrix will not be calculated. Defaults to None.</p></li>
+<li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Force in x direction. Defaults to lambdax:0.</p></li>
+<li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Force in y direction. Defaults to lambdax:0.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStressOrthotropicSparse.elementMatrices">
 <span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStressOrthotropicSparse.elementMatrices" title="Permalink to this definition">#</a></dt>
@@ -558,14 +583,14 @@ be a 2-D Numpy Array.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStressOrthotropicSparse.solveES">
 <span class="sig-name descname"><span class="pre">solveES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStressOrthotropicSparse.solveES" title="Permalink to this definition">#</a></dt>
-<dd><p>Solve the finite element problem</p>
+<dd><p>Solves the equation system</p>
 </dd></dl>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elasticity2D.PlaneStressSparse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elasticity2D.</span></span><span class="sig-name descname"><span class="pre">PlaneStressSparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">FEM.Geometry.Geometry.Geometry,</span> <span class="pre">E:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">v:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">t:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">rho:</span> <span class="pre">typing.Optional[typing.Tuple[float,</span> <span class="pre">list]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">fx:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStressSparse.&lt;lambda&gt;&gt;,</span> <span class="pre">fy:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PlaneStressSparse.&lt;lambda&gt;&gt;,</span> <span class="pre">**kargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elasticity2D.PlaneStressSparse" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elasticity2D.PlaneStressOrthotropicSparse" title="FEM.Elasticity2D.PlaneStressOrthotropicSparse"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elasticity2D.PlaneStressOrthotropicSparse</span></code></a></p>
-<p>Create a Plain Stress problem</p>
+<p>Create a Plain Stress problem using sparse matrices</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -573,6 +598,7 @@ be a 2-D Numpy Array.</p>
 <li><p><strong>E</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Young Moduli. If number, all element will have the same young moduli. If list, each position will be the element young moduli, so len(E) == len(self.elements)</p></li>
 <li><p><strong>v</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Poisson ratio. If number, all element will have the same Poisson ratio. If list, each position will be the element Poisson ratio, so len(v) == len(self.elements)</p></li>
 <li><p><strong>t</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em>) – Element thickness. If number, all element will have the same thickness. If list, each position will be the element thickness, so len(t) == len(self.elements)</p></li>
+<li><p><strong>rho</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Density. If not given, mass matrix will not be calculated. Defaults to None.</p></li>
 <li><p><strong>fx</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.</p></li>
 <li><p><strong>fy</strong> (<em>function</em><em>, </em><em>optional</em>) – Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.</p></li>
 </ul>
@@ -587,6 +613,20 @@ be a 2-D Numpy Array.</p>
 <dt class="sig sig-object py" id="FEM.Elasticity3D.Elasticity">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elasticity3D.</span></span><span class="sig-name descname"><span class="pre">Elasticity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">FEM.Geometry.Geometry.Geometry,</span> <span class="pre">E:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">v:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">rho:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">fx:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">Elasticity.&lt;lambda&gt;&gt;,</span> <span class="pre">fy:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">Elasticity.&lt;lambda&gt;&gt;,</span> <span class="pre">fz:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">Elasticity.&lt;lambda&gt;&gt;,</span> <span class="pre">**kargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elasticity3D.Elasticity" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<p>Creates a 3D Elasticity problem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – Input 3D geometry</p></li>
+<li><p><strong>E</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Young Moduli</p></li>
+<li><p><strong>v</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Poisson coeficient</p></li>
+<li><p><strong>rho</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Density.</p></li>
+<li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Force in x direction. Defaults to lambdax:0.</p></li>
+<li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Force in y direction. Defaults to lambdax:0.</p></li>
+<li><p><strong>fz</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Force in z direction. Defaults to lambdax:0.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elasticity3D.Elasticity.elementMatrices">
 <span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity3D.Elasticity.elementMatrices" title="Permalink to this definition">#</a></dt>
@@ -613,18 +653,50 @@ be a 2-D Numpy Array.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elasticity3D.Elasticity.profile">
 <span class="sig-name descname"><span class="pre">profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity3D.Elasticity.profile" title="Permalink to this definition">#</a></dt>
-<dd><p>Create a profile for a 3D or 2D problem.</p>
+<dd><p>Creates a profile in a given region coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) – List of region coordinates (square region 2D)</p></li>
+<li><p><strong>n</strong> (<em>float</em><em>, </em><em>optional</em>) – Number of points. Defaults to 10.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Coordinates, displacements and second variable solution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elasticity3D.Elasticity.solveES">
 <span class="sig-name descname"><span class="pre">solveES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity3D.Elasticity.solveES" title="Permalink to this definition">#</a></dt>
-<dd><p>Solve the finite element problem</p>
+<dd><p>Solve the sparse system</p>
 </dd></dl>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elasticity3D.NonLocalElasticity">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elasticity3D.</span></span><span class="sig-name descname"><span class="pre">NonLocalElasticity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">FEM.Geometry.Geometry.Geometry,</span> <span class="pre">E:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">v:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">rho:</span> <span class="pre">typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">l:</span> <span class="pre">float,</span> <span class="pre">z1:</span> <span class="pre">float,</span> <span class="pre">Lr:</span> <span class="pre">float,</span> <span class="pre">af:</span> <span class="pre">typing.Callable,</span> <span class="pre">fx:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">NonLocalElasticity.&lt;lambda&gt;&gt;,</span> <span class="pre">fy:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">NonLocalElasticity.&lt;lambda&gt;&gt;,</span> <span class="pre">fz:</span> <span class="pre">typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">NonLocalElasticity.&lt;lambda&gt;&gt;,</span> <span class="pre">**kargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elasticity3D.NonLocalElasticity" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elasticity3D.Elasticity" title="FEM.Elasticity3D.Elasticity"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elasticity3D.Elasticity</span></code></a></p>
+<p>Creates a 3D Elasticity problem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – Input 3D geometry</p></li>
+<li><p><strong>E</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Young Moduli</p></li>
+<li><p><strong>v</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Poisson coeficient</p></li>
+<li><p><strong>rho</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>list</em><em>]</em>) – Density.</p></li>
+<li><p><strong>l</strong> (<em>float</em>) – Internal lenght</p></li>
+<li><p><strong>z1</strong> (<em>float</em>) – Z1 factor</p></li>
+<li><p><strong>Lr</strong> (<em>float</em>) – Influence distance</p></li>
+<li><p><strong>af</strong> (<em>Callable</em>) – Atenuation function</p></li>
+<li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Force in x direction. Defaults to lambdax:0.</p></li>
+<li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Force in y direction. Defaults to lambdax:0.</p></li>
+<li><p><strong>fz</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Force in z direction. Defaults to lambdax:0.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elasticity3D.NonLocalElasticity.elementMatrices">
 <span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity3D.NonLocalElasticity.elementMatrices" title="Permalink to this definition">#</a></dt>
@@ -651,6 +723,7 @@ be a 2-D Numpy Array.</p>
 <li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – 1D 2 variables per node problem geometry. Geometry must have Euler Bernoulli elements.</p></li>
 <li><p><strong>EI</strong> (<em>float</em>) – Young’s moduli multiplied by second moment of area (inertia).</p></li>
 <li><p><strong>cf</strong> (<em>float</em><em>, </em><em>optional</em>) – Soil coeficient. Defaults to 0.</p></li>
+<li><p><strong>f</strong> (<em>float</em><em> or </em><em>int</em><em> or </em><em>function</em><em>, </em><em>optional</em>) – Force function applied to the beam. Defaults to 0.0</p></li>
 </ul>
 </dd>
 </dl>
@@ -675,7 +748,10 @@ be a 2-D Numpy Array.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – 1D 2 variables per node problem geometry. Geometry must have Euler Bernoulli elements.</p></li>
 <li><p><strong>EI</strong> (<em>float</em>) – Young’s moduli multiplied by second moment of area (inertia).</p></li>
+<li><p><strong>EA</strong> (<em>float</em>) – Young’s moduli multiplied by area.</p></li>
 <li><p><strong>cf</strong> (<em>float</em><em>, </em><em>optional</em>) – Soil coeficient. Defaults to 0.</p></li>
+<li><p><strong>fx</strong> (<em>float</em><em> or </em><em>int</em><em> or </em><em>function</em><em>, </em><em>optional</em>) – Force function applied in the x direction to the beam. Defaults to 0.0</p></li>
+<li><p><strong>fy</strong> (<em>float</em><em> or </em><em>int</em><em> or </em><em>function</em><em>, </em><em>optional</em>) – Force function applied in the y direction to the beam. Defaults to 0.0</p></li>
 </ul>
 </dd>
 </dl>
@@ -695,22 +771,43 @@ be a 2-D Numpy Array.</p>
 <span id="fem-femlogger-module"></span><h2>FEM.FEMLogger module<a class="headerlink" href="#module-FEM.FEMLogger" title="Permalink to this headline">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.FEMLogger.FEMLogger">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.FEMLogger.</span></span><span class="sig-name descname"><span class="pre">FEMLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.FEMLogger.FEMLogger" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.FEMLogger.</span></span><span class="sig-name descname"><span class="pre">FEMLogger</span></span><a class="headerlink" href="#FEM.FEMLogger.FEMLogger" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Creation of a Logger for FEM purposes. Based on Python Logger by Fonic &lt;<a class="reference external" href="https://github.com/fonic">https://github.com/fonic</a>&gt;</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.FEMLogger.FEMLogger.end_timer">
 <span class="sig-name descname"><span class="pre">end_timer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.FEMLogger.FEMLogger.end_timer" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Ends the sesion time</p>
+</dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.FEMLogger.FEMLogger.setup_logging">
 <span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">console_log_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stdout'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">console_log_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'warning'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">console_log_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logfile_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logfile_log_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'debug'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logfile_log_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_line_template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%(color_on)s[%(levelname)-8s]</span> <span class="pre">%(message)s%(color_off)s'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.FEMLogger.FEMLogger.setup_logging" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Set the logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>console_log_output</strong> (<em>str</em><em>, </em><em>optional</em>) – . Defaults to “stdout”.</p></li>
+<li><p><strong>console_log_level</strong> (<em>str</em><em>, </em><em>optional</em>) – . Defaults to “warning”.</p></li>
+<li><p><strong>console_log_color</strong> (<em>bool</em><em>, </em><em>optional</em>) – . Defaults to True.</p></li>
+<li><p><strong>logfile_file</strong> (<em>optional</em>) – . Defaults to None.</p></li>
+<li><p><strong>logfile_log_level</strong> (<em>str</em><em>, </em><em>optional</em>) – . Defaults to “debug”.</p></li>
+<li><p><strong>logfile_log_color</strong> (<em>bool</em><em>, </em><em>optional</em>) – . Defaults to False.</p></li>
+<li><p><strong>log_line_template</strong> (<em>str</em><em>, </em><em>optional</em>) – . Defaults to “%(color_on)s[%(levelname)-8s] %(message)s%(color_off)s”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.FEMLogger.LogFormatter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.FEMLogger.</span></span><span class="sig-name descname"><span class="pre">LogFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.FEMLogger.LogFormatter" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Formatter</span></code></p>
+<p>Creates a Logging Formatter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>color</strong> (<em>color</em>) – Color</p>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="FEM.FEMLogger.LogFormatter.COLOR_CODES">
 <span class="sig-name descname"><span class="pre">COLOR_CODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{10:</span> <span class="pre">'\x1b[1;30m',</span> <span class="pre">20:</span> <span class="pre">'\x1b[0;37m',</span> <span class="pre">30:</span> <span class="pre">'\x1b[1;33m',</span> <span class="pre">40:</span> <span class="pre">'\x1b[1;31m',</span> <span class="pre">50:</span> <span class="pre">'\x1b[1;35m'}</span></em><a class="headerlink" href="#FEM.FEMLogger.LogFormatter.COLOR_CODES" title="Permalink to this definition">#</a></dt>
@@ -722,15 +819,12 @@ be a 2-D Numpy Array.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.FEMLogger.LogFormatter.format">
 <span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.FEMLogger.LogFormatter.format" title="Permalink to this definition">#</a></dt>
-<dd><p>Format the specified record as text.</p>
-<p>The record’s attribute dictionary is used as the operand to a
-string formatting operation which yields the returned string.
-Before formatting the dictionary, a couple of preparatory steps
-are carried out. The message attribute of the record is computed
-using LogRecord.getMessage(). If the formatting string uses the
-time (as determined by a call to usesTime(), formatTime() is
-called to format the event time. If there is exception information,
-it is formatted using formatException() and appended to the message.</p>
+<dd><p>Formats arecord</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>record</strong> (<em>record</em>) – Record to be formatted</p>
+</dd>
+</dl>
 </dd></dl>
 </dd></dl>
 </section>
@@ -809,7 +903,7 @@ it is formatted using formatException() and appended to the message.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Heat2D.Heat2D.defineConvectiveBoderConditions">
-<span class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat2D.Heat2D.defineConvectiveBoderConditions" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat2D.Heat2D.defineConvectiveBoderConditions" title="Permalink to this definition">#</a></dt>
 <dd><p>Define convective borders</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -817,7 +911,6 @@ it is formatted using formatException() and appended to the message.</p>
 <li><p><strong>region</strong> (<em>int</em>) – region in wich load will be applied</p></li>
 <li><p><strong>beta</strong> (<em>float</em><em>, </em><em>optional</em>) – Convective coeficient <span class="math notranslate nohighlight">\(\beta\)</span> . Defaults to 0.</p></li>
 <li><p><strong>Ta</strong> (<em>float</em><em>, </em><em>optional</em>) – Ambient temperature in convective border. Defaults to 0.</p></li>
-<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerancy to find adjacent nodes. Defaults to 1*10**(-5).</p></li>
 </ul>
 </dd>
 </dl>
@@ -871,6 +964,7 @@ it is formatted using formatException() and appended to the message.</p>
 <dt class="sig sig-object py" id="FEM.ODE2D.ODE2D">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.ODE2D.</span></span><span class="sig-name descname"><span class="pre">ODE2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry:</span> <span class="pre">FEM.Geometry.Geometry.Geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a11=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a12=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a21=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a22=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a00=&lt;function</span> <span class="pre">ODE2D.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.ODE2D.ODE2D" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Core.Core</span></code></a></p>
+<p>NOT IMPLEMENTED</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.ODE2D.ODE2D.elementMatrices">
 <span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.ODE2D.ODE2D.elementMatrices" title="Permalink to this definition">#</a></dt>
@@ -879,7 +973,7 @@ it is formatted using formatException() and appended to the message.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.ODE2D.ODE2D.postProcess">
 <span class="sig-name descname"><span class="pre">postProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.ODE2D.ODE2D.postProcess" title="Permalink to this definition">#</a></dt>
-<dd><p>Generate the stress surfaces and displacement fields for the geometry</p>
+<dd><p>Generate the post process graphs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

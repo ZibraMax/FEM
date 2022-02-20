@@ -260,10 +260,10 @@
 <dd><p>Calculate the jacobian matrix over a set of natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix. Each row is a dimension, each column is a point.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Jacobian’s matrices</p>
+<dd class="field-even"><p>Jacobian’s matrices and shape function derivatives</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>np.ndarray</p>
@@ -276,10 +276,10 @@
 <dd><p>Give the global coordinates of given natural coordiantes over element</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix. Each row is a dimension, each column is a point.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Global coordinates matrix</p>
+<dd class="field-even"><p>Global coordinates matrix and shape functions</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>np.ndarray</p>
@@ -292,7 +292,7 @@
 <dd><p>Returns the transformation of a given set of points in the element. This method is used for border elements</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix. Each row is a dimension, each column is a point.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Global coordinates matrix</p>
@@ -303,29 +303,15 @@
 </dl>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Elements.Element.Element.description">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.Element.Element.description" title="Permalink to this definition">#</a></dt>
-<dd><p>Creates the elemetn description</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Description of the element</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Elements.Element.Element.fastInit">
-<span class="sig-name descname"><span class="pre">fastInit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.Element.Element.fastInit" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.Element.Element.giveSolution">
 <span class="sig-name descname"><span class="pre">giveSolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">SVSolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'domain'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.Element.Element.giveSolution" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculate the interpolated solution over element domain</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>SVSolution</strong> (<em>bool</em><em>, </em><em>optional</em>) – To calculate second variable solutions. Defaults to False.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>SVSolution</strong> (<em>bool</em><em>, </em><em>optional</em>) – To calculate second variable solutions. Defaults to False.</p></li>
+<li><p><strong>domain</strong> (<em>str</em><em>, </em><em>optional</em>) – Where to give the solution [‘domain’ or ‘gauss-points’]. Defaults to ‘domain’.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Arrays of coordinates, solutions and second variables solutions.</p>
@@ -391,7 +377,7 @@
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.Element.Element.restartMatrix">
-<span class="sig-name descname"><span class="pre">restartMatrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.Element.Element.restartMatrix" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">restartMatrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.Element.Element.restartMatrix" title="Permalink to this definition">#</a></dt>
 <dd><p>Sets all element matrices and vectors to 0 state</p>
 </dd></dl>
 <dl class="py method">
