@@ -3,11 +3,6 @@
 Creation of 2D elements
 *********************************************
 
-Tests
-#####
-
-Creation of basic 2D elements.
-
 Coords and gdls (degrees of freedom) are given by a Numpy ndarray matrix.
 
 In the coordinate matrix, each row represents a node of the element and each column a dimension.
@@ -41,12 +36,12 @@ Coordinate trasformation and shape functions
 .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_3.png
    :align: center
 
-   Triangular (3 nodes 2D) element coordinate transformation and shape functions.
+   Triangular (6 nodes 2D) element coordinate transformation and shape functions.
 
 .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_4.png
    :align: center
 
-   Triangular (6 nodes 2D) element coordinate transformation and shape functions.
+   Triangular (3 nodes 2D) element coordinate transformation and shape functions.
 
 .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_5.png
    :align: center
@@ -82,12 +77,12 @@ Jacobian graphs
 .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_10.png
    :align: center
 
-   Triangular (3 nodes 2D) element jacobian graph.
+   Triangular (6 nodes 2D) element jacobian graph.
 
 .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_11.png
    :align: center
 
-   Triangular (6 nodes 2D) element jacobian graph.
+   Triangular (3 nodes 2D) element jacobian graph.
 
 Code
 ####
@@ -145,7 +140,6 @@ Code
     # Coordinate transformation
     for i, e in enumerate(elements):
         e.draw()
-        plt.savefig(f'Examples/examples_results/example1_{i+1}.png')
         plt.show()
 
     # Point inside element

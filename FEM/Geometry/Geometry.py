@@ -847,8 +847,7 @@ class Delaunay(Geometry2D):
         mask = []
         for region in mascarita:
             mask += [gdls[region[0]]]
-        if fillets:
-            self.mask = mask
+        self.mask = mask
 
         self.holes = holes_dict
         self.fillets = fillets
