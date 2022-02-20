@@ -89,8 +89,8 @@ Jacobian graphs
 
    Triangular (6 nodes 2D) element jacobian graph.
 
-.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_12.png
-   :align: center
+Code
+####
 
 .. code:: python
 
