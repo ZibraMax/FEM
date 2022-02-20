@@ -113,7 +113,7 @@ class FEMLogger():
             console_handler.setLevel(console_log_level.upper())
         except Exception as e:
             print("Failed to set console log level: invalid level: '%s'" %
-                  console_log_level)
+                  console_log_level, e)
             return False
 
         # Create and set formatter, add console handler to logger
