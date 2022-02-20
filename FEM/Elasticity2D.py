@@ -515,7 +515,7 @@ class PlaneStressSparse(PlaneStressOrthotropicSparse):
             self, geometry, E, E, G, v, t, rho, fx, fy, **kargs)
 
 
-class PlaneStrainSparse(PlaneStress):
+class PlaneStrain(PlaneStress):
     """Create a Plain Strain problem
 
     Args:
@@ -539,7 +539,7 @@ class PlaneStrainSparse(PlaneStress):
                 fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
         """
 
-        PlaneStressSparse.__init__(
+        PlaneStress.__init__(
             self, geometry, E, v, 1, rho, fx, fy, **kargs)
         self.C11 = []
         self.C22 = []
