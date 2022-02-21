@@ -34,11 +34,11 @@ class Elasticity(Core):
             fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
             fz (Callable, optional): Force in z direction. Defaults to lambdax:0.
         """
-        if type(E) == float or type(E) == int:
+        if isinstance(E, float) or isinstance(E, int):
             E = [E]*len(geometry.elements)
-        if type(v) == float or type(v) == int:
+        if isinstance(v, float) or isinstance(v, int):
             v = [v]*len(geometry.elements)
-        if type(rho) == float or type(rho) == int:
+        if isinstance(rho, float) or isinstance(rho, int):
             rho = [rho]*len(geometry.elements)
         self.E = E
         self.v = v

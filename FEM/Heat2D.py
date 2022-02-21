@@ -47,9 +47,9 @@ class Heat2D(Core):
             ky (Tuple[float, list]): Heat transfer coeficient in y direction. If number, all element will have the same coefficient. If list, each position will be the element coefficient, so len(kx) == len(self.elements)
             f (Callable, optional): Internal heat generation function. Defaults to None.
         """
-        if type(kx) == float or type(kx) == int:
+        if isinstance(kx, float) or isinstance(kx, int):
             kx = [kx]*len(geometry.elements)
-        if type(ky) == float or type(ky) == int:
+        if isinstance(ky, float) or isinstance(ky, int):
             ky = [ky]*len(geometry.elements)
 
         self.kx = kx

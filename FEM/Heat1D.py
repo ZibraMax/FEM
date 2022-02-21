@@ -24,7 +24,7 @@ class Heat1D(Core):
         q (float or list, optional): Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.
     """
 
-    def __init__(self, geometry: Geometry, A: float, P: float, k: float, beta: float, Ta: float, q: float = 0.0) -> None:
+    def __init__(self, geometry: Geometry, A: float, P: float, ku: float, beta: float, Ta: float, q: float = 0.0) -> None:
         """Creates a 1D Stady state heat problem. Convective border conditions can be applied
 
         The differential equation is:
@@ -36,20 +36,20 @@ class Heat1D(Core):
             geometry (Geometry): Input 1D Geometry. 1 variable per node
             A (float or list): Section area. If float, all elements will have the same area. If list, the i-element will have the i-area
             P (float or list): Section perimeter. If float, all elements will have the same perimeter. If list, the i-element will have the i-perimeter
-            k (float or list): Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity
+            ku (float or list): Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity
             beta (float or list): Transfer coeficient. If float, all elements will have the same transfer coeficient. If list, the i-element will have the i-transfer coeficient
             Ta (float): Ambient temperature
             q (float or list, optional): Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.
         """
-        if type(A) == float or type(A) == int:
+        if isinstance(A, float) or isinstance(A, int):
             A = [A]*len(geometry.elements)
-        if type(P) == float or type(P) == int:
+        if isinstance(P, float) or isinstance(P, int):
             P = [P]*len(geometry.elements)
-        if type(k) == float or type(k) == int:
-            ku = [k]*len(geometry.elements)
-        if type(beta) == float or type(beta) == int:
+        if isinstance(ku, float) or isinstance(ku, int):
+            ku = [ku]*len(geometry.elements)
+        if isinstance(beta, float) or isinstance(beta, int):
             beta = [beta]*len(geometry.elements)
-        if type(q) == float or type(q) == int:
+        if isinstance(q, float) or isinstance(q, int):
             q = [q]*len(geometry.elements)
         self.A = A
         self.P = P

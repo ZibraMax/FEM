@@ -38,7 +38,7 @@ class Torsion2D(Core):
                 G (float): Shear moduli of elements
                 phi (float): Rotation angle in radians
         """
-        if type(G) == float or type(G) == int:
+        if isinstance(G, float) or isinstance(G, int):
             G = [G]*len(geometry.elements)
         self.G = G
         self._phi = phi
