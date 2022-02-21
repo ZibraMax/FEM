@@ -139,7 +139,7 @@ class Core():
             plot (bool, optional): To post process the solution. Defaults to True.
             **kargs: Solver specific parameters.
         """
-        if self.solver.type == 'lineal':
+        if 'lineal' in self.solver.type:
             logging.info('Creating element matrices...')
             self.elementMatrices()
             logging.info('Done!')

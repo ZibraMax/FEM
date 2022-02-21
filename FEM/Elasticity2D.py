@@ -9,7 +9,8 @@ import numpy as np
 from matplotlib import gridspec
 from tqdm import tqdm
 from scipy import sparse
-from scipy.sparse.linalg import spsolve
+
+from .Solvers import LinealSparse
 
 
 from .Core import Core, Geometry, logging
@@ -199,7 +200,6 @@ class PlaneStressOrthotropic(Core):
         ax3.set_aspect('equal')
         ax2.set_aspect('equal')
         cmap = 'rainbow'
-        def fmt(x): return format(x, '.3f')
 
         surf = ax1.tricontourf(X, Y, U1, cmap=cmap, levels=levels, **kargs)
         plt.colorbar(surf, ax=ax1)
@@ -348,9 +348,8 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
             logging.warning("Use fast elements")
             geometry.fast = True
             geometry.initialize()
-
         PlaneStressOrthotropic.__init__(
-            self, geometry, E1, E2, G12, v12, t, rho, fx, fy, sparse=True, **kargs)
+            self, geometry, E1, E2, G12, v12, t, rho, fx, fy, sparse=True, solver=LinealSparse, **kargs)
         self.I = []
         self.J = []
         self.V = []
@@ -439,18 +438,6 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
             self.M = sparse.coo_matrix(
                 (self.Vm, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tocsr()
         logging.info('Done!')
-
-    def solveES(self, **kargs) -> None:
-        """Solves the equation system
-        """
-        # TODO create a solver for this
-        logging.info('Converting to csr format')
-        self.K = self.K.tocsr()
-        logging.info('Solving...')
-        self.U = spsolve(self.K, self.S)
-        for e in self.elements:
-            e.setUe(self.U)
-        logging.info('Solved!')
 
 
 class PlaneStress(PlaneStressOrthotropic):
