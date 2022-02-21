@@ -345,10 +345,10 @@ Examples.example45 module
    :undoc-members:
    :show-inheritance:
 
-Examples.example8 module
+Examples.example5 module
 ------------------------
 
-.. automodule:: Examples.example8
+.. automodule:: Examples.example5
    :members:
    :undoc-members:
    :show-inheritance:
