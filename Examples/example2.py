@@ -119,7 +119,7 @@ if __name__ == '__main__':
         [0, tf],
     ]
     params = Delaunay._strdelaunay(constrained=True, delaunay=True,
-                                   a='0.00003', o=2)
+                                   a='0.00009', o=2)
     geometria = Delaunay(vertices, params)
 
     # geometria.exportJSON('Examples/Mesh_tests/I_test.json')

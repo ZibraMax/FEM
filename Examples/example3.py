@@ -78,9 +78,9 @@ if __name__ == '__main__':
     v = 0.27
     G = E/(2*(1+v))*0+1
     phi = 1
-
+    # import numpy as np
     # coords = np.array([[0, 0], [1, 0], [1, 1], [0, 1.0]])
-    # params = Delaunay._strdelaunay(a=0.0001, o=2)
+    # params = Delaunay._strdelaunay(a=0.001, o=2)
     # geo = Delaunay(coords, params)
     # geo.exportJSON('Examples/Mesh_tests/Square_torsion.json')
     geometria = Geometry2D.importJSON(
