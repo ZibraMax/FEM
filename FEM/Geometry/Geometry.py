@@ -14,7 +14,8 @@ from ..Elements.E2D.Serendipity import Serendipity
 from ..Elements.E2D.Quadrilateral import Quadrilateral
 from ..Elements.E2D.QTriangular import QTriangular
 from ..Elements.E2D.LTriangular import LTriangular
-from ..Elements.E3D.Brick import Brick
+from ..Elements.E3D.Brick import Brick, BrickO2
+from ..Elements.E3D.Tetrahedral import Tetrahedral, TetrahedralO2
 from .Region import Region, Region1D, Region2D
 from typing import Callable
 from tqdm import tqdm
@@ -135,6 +136,12 @@ class Geometry:
                 element = CubicElement(coords, gdl, fast=self.fast)
             elif self.types[i] == 'B1V':
                 element = Brick(coords, gdl, fast=self.fast)
+            elif self.types[i] == 'B2V':
+                element = BrickO2(coords, gdl, fast=self.fast)
+            elif self.types[i] == 'TE1V':
+                element = Tetrahedral(coords, gdl, fast=self.fast)
+            elif self.types[i] == 'TE1V':
+                element = TetrahedralO2(coords, gdl, fast=self.fast)
             self.elements[i] = element
         print('Done!')
 
