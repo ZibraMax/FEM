@@ -1,6 +1,50 @@
-"""Defines a Lagrangian order 1 brick element 
 """
+*********************************************
+BRICK ELEMENTS
+*********************************************
 
+Defines the lagrangian first order adn second order brick elements
+
+.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Bricks.png
+   :align: center
+
+   Brick (8 nodes) and BrickO2 (20 nodes). (Reddy, 2005)
+
+Brick
+#####
+
+First order 8 node brick element
+
+Shape Functions
+---------------
+
+.. math::
+    \\Psi_i=\\left[\\begin{matrix}\\left(1 - x\\right) \\left(1 - y\\right) \\left(1 - z\\right)\\\\\\left(1 - y\\right) \\left(1 - z\\right) \\left(x + 1\\right)\\\\\\left(1 - z\\right) \\left(x + 1\\right) \\left(y + 1\\right)\\\\\\left(1 - x\\right) \\left(1 - z\\right) \\left(y + 1\\right)\\\\\\left(1 - x\\right) \\left(1 - y\\right) \\left(z + 1\\right)\\\\\\left(1 - y\\right) \\left(x + 1\\right) \\left(z + 1\\right)\\\\\\left(x + 1\\right) \\left(y + 1\\right) \\left(z + 1\\right)\\\\\\left(1 - x\\right) \\left(y + 1\\right) \\left(z + 1\\right)\\end{matrix}\\right]
+
+Shape Functions Derivatives
+---------------------------
+
+.. math::
+    \\frac{\\partial \\Psi_i}{\\partial x_j}=\\left[\\begin{matrix}\\left(1 - z\\right) \\left(y - 1\\right) & \\left(1 - z\\right) \\left(x - 1\\right) & - \\left(1 - x\\right) \\left(1 - y\\right)\\\\\\left(1 - y\\right) \\left(1 - z\\right) & \\left(1 - z\\right) \\left(- x - 1\\right) & - \\left(1 - y\\right) \\left(x + 1\\right)\\\\\\left(1 - z\\right) \\left(y + 1\\right) & \\left(1 - z\\right) \\left(x + 1\\right) & - \\left(x + 1\\right) \\left(y + 1\\right)\\\\\\left(1 - z\\right) \\left(- y - 1\\right) & \\left(1 - x\\right) \\left(1 - z\\right) & - \\left(1 - x\\right) \\left(y + 1\\right)\\\\\\left(1 - y\\right) \\left(- z - 1\\right) & - \\left(1 - x\\right) \\left(z + 1\\right) & \\left(1 - x\\right) \\left(1 - y\\right)\\\\\\left(1 - y\\right) \\left(z + 1\\right) & - \\left(x + 1\\right) \\left(z + 1\\right) & \\left(1 - y\\right) \\left(x + 1\\right)\\\\\\left(y + 1\\right) \\left(z + 1\\right) & \\left(x + 1\\right) \\left(z + 1\\right) & \\left(x + 1\\right) \\left(y + 1\\right)\\\\- \\left(y + 1\\right) \\left(z + 1\\right) & \\left(1 - x\\right) \\left(z + 1\\right) & \\left(1 - x\\right) \\left(y + 1\\right)\\end{matrix}\\right]
+
+BrickO2
+#######
+
+Second order 20 node brick element
+
+Shape Functions
+---------------
+
+.. math::
+    \\Psi_i = \\left[\\begin{matrix}\\left(1 - x\\right) \\left(1 - y\\right) \\left(1 - z\\right) \\left(- x - y - z - 2\\right)\\\\\\left(1 - y\\right) \\left(1 - z\\right) \\left(x + 1\\right) \\left(x - y - z - 2\\right)\\\\\\left(1 - z\\right) \\left(x + 1\\right) \\left(y + 1\\right) \\left(x + y - z - 2\\right)\\\\\\left(1 - x\\right) \\left(1 - z\\right) \\left(y + 1\\right) \\left(- x + y - z - 2\\right)\\\\\\left(1 - x\\right) \\left(1 - y\\right) \\left(z + 1\\right) \\left(- x - y + z - 2\\right)\\\\\\left(1 - y\\right) \\left(x + 1\\right) \\left(z + 1\\right) \\left(x - y + z - 2\\right)\\\\\\left(x + 1\\right) \\left(y + 1\\right) \\left(z + 1\\right) \\left(x + y + z - 2\\right)\\\\\\left(1 - x\\right) \\left(y + 1\\right) \\left(z + 1\\right) \\left(- x + y + z - 2\\right)\\\\\\left(1 - y\\right) \\left(1 - z\\right) \\left(2 - 2 x^{2}\\right)\\\\\\left(1 - y^{2}\\right) \\left(1 - z\\right) \\left(2 x + 2\\right)\\\\\\left(1 - z\\right) \\left(2 - 2 x^{2}\\right) \\left(y + 1\\right)\\\\\\left(1 - y^{2}\\right) \\left(1 - z\\right) \\left(2 - 2 x\\right)\\\\\\left(1 - y\\right) \\left(1 - z^{2}\\right) \\left(2 - 2 x\\right)\\\\\\left(1 - y\\right) \\left(1 - z^{2}\\right) \\left(2 x + 2\\right)\\\\\\left(1 - z^{2}\\right) \\left(2 x + 2\\right) \\left(y + 1\\right)\\\\\\left(1 - z^{2}\\right) \\left(2 - 2 x\\right) \\left(y + 1\\right)\\\\\\left(1 - y\\right) \\left(2 - 2 x^{2}\\right) \\left(z + 1\\right)\\\\\\left(1 - y^{2}\\right) \\left(2 x + 2\\right) \\left(z + 1\\right)\\\\\\left(2 - 2 x^{2}\\right) \\left(y + 1\\right) \\left(z + 1\\right)\\\\\\left(1 - y^{2}\\right) \\left(2 - 2 x\\right) \\left(z + 1\\right)\\end{matrix}\\right]
+
+Shape Functions Derivatives
+---------------------------
+
+.. math::
+    \\frac{\\partial \\Psi_i}{\\partial x_j} = \\left[\\begin{matrix}- \\left(1 - x\\right) \\left(1 - y\\right) \\left(1 - z\\right) + \\left(1 - z\\right) \\left(y - 1\\right) \\left(- x - y - z - 2\\right) & - \\left(1 - x\\right) \\left(1 - y\\right) \\left(1 - z\\right) + \\left(1 - z\\right) \\left(x - 1\\right) \\left(- x - y - z - 2\\right) & - \\left(1 - x\\right) \\left(1 - y\\right) \\left(1 - z\\right) - \\left(1 - x\\right) \\left(1 - y\\right) \\left(- x - y - z - 2\\right)\\\\\\left(1 - y\\right) \\left(1 - z\\right) \\left(x + 1\\right) + \\left(1 - y\\right) \\left(1 - z\\right) \\left(x - y - z - 2\\right) & - \\left(1 - y\\right) \\left(1 - z\\right) \\left(x + 1\\right) + \\left(1 - z\\right) \\left(- x - 1\\right) \\left(x - y - z - 2\\right) & - \\left(1 - y\\right) \\left(1 - z\\right) \\left(x + 1\\right) - \\left(1 - y\\right) \\left(x + 1\\right) \\left(x - y - z - 2\\right)\\\\\\left(1 - z\\right) \\left(x + 1\\right) \\left(y + 1\\right) + \\left(1 - z\\right) \\left(y + 1\\right) \\left(x + y - z - 2\\right) & \\left(1 - z\\right) \\left(x + 1\\right) \\left(y + 1\\right) + \\left(1 - z\\right) \\left(x + 1\\right) \\left(x + y - z - 2\\right) & - \\left(1 - z\\right) \\left(x + 1\\right) \\left(y + 1\\right) - \\left(x + 1\\right) \\left(y + 1\\right) \\left(x + y - z - 2\\right)\\\\- \\left(1 - x\\right) \\left(1 - z\\right) \\left(y + 1\\right) + \\left(1 - z\\right) \\left(- y - 1\\right) \\left(- x + y - z - 2\\right) & \\left(1 - x\\right) \\left(1 - z\\right) \\left(y + 1\\right) + \\left(1 - x\\right) \\left(1 - z\\right) \\left(- x + y - z - 2\\right) & - \\left(1 - x\\right) \\left(1 - z\\right) \\left(y + 1\\right) - \\left(1 - x\\right) \\left(y + 1\\right) \\left(- x + y - z - 2\\right)\\\\- \\left(1 - x\\right) \\left(1 - y\\right) \\left(z + 1\\right) + \\left(1 - y\\right) \\left(- z - 1\\right) \\left(- x - y + z - 2\\right) & - \\left(1 - x\\right) \\left(1 - y\\right) \\left(z + 1\\right) - \\left(1 - x\\right) \\left(z + 1\\right) \\left(- x - y + z - 2\\right) & \\left(1 - x\\right) \\left(1 - y\\right) \\left(z + 1\\right) + \\left(1 - x\\right) \\left(1 - y\\right) \\left(- x - y + z - 2\\right)\\\\\\left(1 - y\\right) \\left(x + 1\\right) \\left(z + 1\\right) + \\left(1 - y\\right) \\left(z + 1\\right) \\left(x - y + z - 2\\right) & - \\left(1 - y\\right) \\left(x + 1\\right) \\left(z + 1\\right) - \\left(x + 1\\right) \\left(z + 1\\right) \\left(x - y + z - 2\\right) & \\left(1 - y\\right) \\left(x + 1\\right) \\left(z + 1\\right) + \\left(1 - y\\right) \\left(x + 1\\right) \\left(x - y + z - 2\\right)\\\\\\left(x + 1\\right) \\left(y + 1\\right) \\left(z + 1\\right) + \\left(y + 1\\right) \\left(z + 1\\right) \\left(x + y + z - 2\\right) & \\left(x + 1\\right) \\left(y + 1\\right) \\left(z + 1\\right) + \\left(x + 1\\right) \\left(z + 1\\right) \\left(x + y + z - 2\\right) & \\left(x + 1\\right) \\left(y + 1\\right) \\left(z + 1\\right) + \\left(x + 1\\right) \\left(y + 1\\right) \\left(x + y + z - 2\\right)\\\\- \\left(1 - x\\right) \\left(y + 1\\right) \\left(z + 1\\right) - \\left(y + 1\\right) \\left(z + 1\\right) \\left(- x + y + z - 2\\right) & \\left(1 - x\\right) \\left(y + 1\\right) \\left(z + 1\\right) + \\left(1 - x\\right) \\left(z + 1\\right) \\left(- x + y + z - 2\\right) & \\left(1 - x\\right) \\left(y + 1\\right) \\left(z + 1\\right) + \\left(1 - x\\right) \\left(y + 1\\right) \\left(- x + y + z - 2\\right)\\\\- 4 x \\left(1 - y\\right) \\left(1 - z\\right) & \\left(2 - 2 x^{2}\\right) \\left(z - 1\\right) & \\left(2 - 2 x^{2}\\right) \\left(y - 1\\right)\\\\2 \\left(1 - y^{2}\\right) \\left(1 - z\\right) & - 2 y \\left(1 - z\\right) \\left(2 x + 2\\right) & \\left(2 x + 2\\right) \\left(y^{2} - 1\\right)\\\\- 4 x \\left(1 - z\\right) \\left(y + 1\\right) & \\left(1 - z\\right) \\left(2 - 2 x^{2}\\right) & \\left(2 - 2 x^{2}\\right) \\left(- y - 1\\right)\\\\- 2 \\left(1 - y^{2}\\right) \\left(1 - z\\right) & - 2 y \\left(1 - z\\right) \\left(2 - 2 x\\right) & \\left(2 - 2 x\\right) \\left(y^{2} - 1\\right)\\\\- 2 \\left(1 - y\\right) \\left(1 - z^{2}\\right) & \\left(2 - 2 x\\right) \\left(z^{2} - 1\\right) & - 2 z \\left(1 - y\\right) \\left(2 - 2 x\\right)\\\\2 \\left(1 - y\\right) \\left(1 - z^{2}\\right) & \\left(2 x + 2\\right) \\left(z^{2} - 1\\right) & - 2 z \\left(1 - y\\right) \\left(2 x + 2\\right)\\\\2 \\left(1 - z^{2}\\right) \\left(y + 1\\right) & \\left(1 - z^{2}\\right) \\left(2 x + 2\\right) & - 2 z \\left(2 x + 2\\right) \\left(y + 1\\right)\\\\- 2 \\left(1 - z^{2}\\right) \\left(y + 1\\right) & \\left(1 - z^{2}\\right) \\left(2 - 2 x\\right) & - 2 z \\left(2 - 2 x\\right) \\left(y + 1\\right)\\\\- 4 x \\left(1 - y\\right) \\left(z + 1\\right) & \\left(2 - 2 x^{2}\\right) \\left(- z - 1\\right) & \\left(1 - y\\right) \\left(2 - 2 x^{2}\\right)\\\\2 \\left(1 - y^{2}\\right) \\left(z + 1\\right) & - 2 y \\left(2 x + 2\\right) \\left(z + 1\\right) & \\left(1 - y^{2}\\right) \\left(2 x + 2\\right)\\\\- 4 x \\left(y + 1\\right) \\left(z + 1\\right) & \\left(2 - 2 x^{2}\\right) \\left(z + 1\\right) & \\left(2 - 2 x^{2}\\right) \\left(y + 1\\right)\\\\- 2 \\left(1 - y^{2}\\right) \\left(z + 1\\right) & - 2 y \\left(2 - 2 x\\right) \\left(z + 1\\right) & \\left(1 - y^{2}\\right) \\left(2 - 2 x\\right)\\end{matrix}\\right]
+
+"""
 
 from ..E2D.Quadrilateral import Quadrilateral
 from ..E2D.Serendipity import Serendipity

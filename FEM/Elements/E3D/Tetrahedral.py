@@ -1,6 +1,50 @@
-"""Defines a Lagrangian order 1 tetrahedral element 
 """
+*********************************************
+TETRAHEDRAL ELEMENTS
+*********************************************
 
+Defines the lagrangian first order and second order tetrahedral elements
+
+.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Bricks.png
+   :align: center
+
+   Tetrahedral (4 nodes) and TetrahedralO2 (10 nodes). (Reddy, 2005)
+
+Tetrahedral
+###########
+
+First order 4 node tetrahedral element
+
+Shape Functions
+---------------
+
+.. math::
+    \\Psi_i=\\left[\\begin{matrix}- x - y - z + 1\\\\x\\\\y\\\\z\\end{matrix}\\right]
+
+Shape Functions Derivatives
+---------------------------
+
+.. math::
+    \\frac{\\partial \\Psi_i}{\\partial x_j}=\\left[\\begin{matrix}-1 & -1 & -1\\\\1 & 0 & 0\\\\0 & 1 & 0\\\\0 & 0 & 1\\end{matrix}\\right]
+
+TetrahedralO2
+#############
+
+Second order 10 node tetrahedral element
+
+Shape Functions
+---------------
+
+.. math::
+    \\Psi_i=\\left[\\begin{matrix}\\left(- 2 x - 2 y - 2 z + 1\\right) \\left(- x - y - z + 1\\right)\\\\x \\left(2 x - 1\\right)\\\\y \\left(2 y - 1\\right)\\\\z \\left(2 z - 1\\right)\\\\x \\left(- 4 x - 4 y - 4 z + 4\\right)\\\\4 x y\\\\4 y \\left(- x - y - z + 1\\right)\\\\z \\left(- 4 x - 4 y - 4 z + 4\\right)\\\\4 x z\\\\4 y z\\end{matrix}\\right]
+
+Shape Functions Derivatives
+---------------------------
+
+.. math::
+    \\frac{\\partial \\Psi_i}{\\partial x_j}=\\left[\\begin{matrix}4 x + 4 y + 4 z - 3 & 4 x + 4 y + 4 z - 3 & 4 x + 4 y + 4 z - 3\\\\4 x - 1 & 0 & 0\\\\0 & 4 y - 1 & 0\\\\0 & 0 & 4 z - 1\\\\- 8 x - 4 y - 4 z + 4 & - 4 x & - 4 x\\\\4 y & 4 x & 0\\\\- 4 y & - 4 x - 8 y - 4 z + 4 & - 4 y\\\\- 4 z & - 4 z & - 4 x - 4 y - 8 z + 4\\\\4 z & 0 & 4 x\\\\0 & 4 z & 4 y\\end{matrix}\\right]
+
+"""
 
 from ..E2D.LTriangular import LTriangular
 from ..E2D.QTriangular import QTriangular
