@@ -3,7 +3,7 @@
 BRICK ELEMENTS
 *********************************************
 
-Defines the lagrangian first order adn second order brick elements
+Defines the lagrangian first order and second order brick elements
 
 .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Bricks.png
    :align: center
