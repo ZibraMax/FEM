@@ -208,6 +208,16 @@
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">Brick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.Element3D.Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.BrickScheme.BrickScheme" title="FEM.Elements.E3D.BrickScheme.BrickScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.BrickScheme.BrickScheme</span></code></a></p>
+<p>Creates a 3D brick element</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<em>np.ndarray</em>) – Node coordinates matrix</p></li>
+<li><p><strong>gdl</strong> (<em>np.ndarray</em>) – Degrees of freedom matrix</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of gauss points used for integration. Defaults to 3.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick.dpsis">
 <span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick.dpsis" title="Permalink to this definition">#</a></dt>
@@ -227,6 +237,53 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick.psis">
 <span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick.psis" title="Permalink to this definition">#</a></dt>
+<dd><p>Calculates the shape functions of a given natural coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Shape function evaluated in Z points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.BrickO2">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">BrickO2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.BrickO2" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.Element3D.Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.BrickScheme.BrickScheme" title="FEM.Elements.E3D.BrickScheme.BrickScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.BrickScheme.BrickScheme</span></code></a></p>
+<p>Creates a 3D second order brick element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<em>np.ndarray</em>) – Node coordinates matrix</p></li>
+<li><p><strong>gdl</strong> (<em>np.ndarray</em>) – Degrees of freedom matrix</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of gauss points used for integration. Defaults to 3.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.BrickO2.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.BrickO2.dpsis" title="Permalink to this definition">#</a></dt>
+<dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Shape function derivatives evaluated in Z points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.BrickO2.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.BrickO2.psis" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -302,6 +359,119 @@
 </dd></dl>
 </dd></dl>
 </section>
+<section id="module-FEM.Elements.E3D.Tetrahedral">
+<span id="fem-elements-e3d-tetrahedral-module"></span><h2>FEM.Elements.E3D.Tetrahedral module<a class="headerlink" href="#module-FEM.Elements.E3D.Tetrahedral" title="Permalink to this headline">#</a></h2>
+<p>Defines a Lagrangian order 1 tetrahedral element</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Tetrahedral.</span></span><span class="sig-name descname"><span class="pre">Tetrahedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.Element3D.Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme" title="FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme</span></code></a></p>
+<p>Creates a 3D tetrahedral element</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<em>np.ndarray</em>) – Node coordinates matrix</p></li>
+<li><p><strong>gdl</strong> (<em>np.ndarray</em>) – Degrees of freedom matrix</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of gauss points used for integration. Defaults to 3.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.dpsis" title="Permalink to this definition">#</a></dt>
+<dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Shape function derivatives evaluated in Z points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.psis" title="Permalink to this definition">#</a></dt>
+<dd><p>Calculates the shape functions of a given natural coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Shape function evaluated in Z points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.TetrahedralO2">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Tetrahedral.</span></span><span class="sig-name descname"><span class="pre">TetrahedralO2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.Element3D.Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme" title="FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme</span></code></a></p>
+<p>Creates a 3D second order tetrahedral element</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<em>np.ndarray</em>) – Node coordinates matrix</p></li>
+<li><p><strong>gdl</strong> (<em>np.ndarray</em>) – Degrees of freedom matrix</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of gauss points used for integration. Defaults to 3.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.TetrahedralO2.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.dpsis" title="Permalink to this definition">#</a></dt>
+<dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Shape function derivatives evaluated in Z points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.TetrahedralO2.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.psis" title="Permalink to this definition">#</a></dt>
+<dd><p>Calculates the shape functions of a given natural coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.ndarray</em>) – Natural coordinates matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Shape function evaluated in Z points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-FEM.Elements.E3D.TetrahedralScheme">
+<span id="fem-elements-e3d-tetrahedralscheme-module"></span><h2>FEM.Elements.E3D.TetrahedralScheme module<a class="headerlink" href="#module-FEM.Elements.E3D.TetrahedralScheme" title="Permalink to this headline">#</a></h2>
+<p>Define the tetrahedral scheme used by tetrahedral elements</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.TetrahedralScheme.</span></span><span class="sig-name descname"><span class="pre">TetrahedralScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generate a tetrahedral integration scheme</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – Number of gauss points</p>
+</dd>
+</dl>
+</dd></dl>
+</section>
 </section>
 
         </article>
@@ -366,6 +536,8 @@
 <li><a class="reference internal" href="#module-FEM.Elements.E3D.Brick">FEM.Elements.E3D.Brick module</a></li>
 <li><a class="reference internal" href="#module-FEM.Elements.E3D.BrickScheme">FEM.Elements.E3D.BrickScheme module</a></li>
 <li><a class="reference internal" href="#module-FEM.Elements.E3D.Element3D">FEM.Elements.E3D.Element3D module</a></li>
+<li><a class="reference internal" href="#module-FEM.Elements.E3D.Tetrahedral">FEM.Elements.E3D.Tetrahedral module</a></li>
+<li><a class="reference internal" href="#module-FEM.Elements.E3D.TetrahedralScheme">FEM.Elements.E3D.TetrahedralScheme module</a></li>
 </ul>
 </li>
 </ul>

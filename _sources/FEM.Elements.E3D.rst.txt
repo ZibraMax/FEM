@@ -32,3 +32,19 @@ FEM.Elements.E3D.Element3D module
    :members:
    :undoc-members:
    :show-inheritance:
+
+FEM.Elements.E3D.Tetrahedral module
+-----------------------------------
+
+.. automodule:: FEM.Elements.E3D.Tetrahedral
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FEM.Elements.E3D.TetrahedralScheme module
+-----------------------------------------
+
+.. automodule:: FEM.Elements.E3D.TetrahedralScheme
+   :members:
+   :undoc-members:
+   :show-inheritance:
