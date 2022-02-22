@@ -5,7 +5,7 @@ TETRAHEDRAL ELEMENTS
 
 Defines the lagrangian first order and second order tetrahedral elements
 
-.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Bricks.png
+.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Tetrahedrals.png
    :align: center
 
    Tetrahedral (4 nodes) and TetrahedralO2 (10 nodes). (Reddy, 2005)
