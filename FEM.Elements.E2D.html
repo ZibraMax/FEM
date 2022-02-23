@@ -248,7 +248,24 @@
 </section>
 <section id="module-FEM.Elements.E2D.LTriangular">
 <span id="fem-elements-e2d-ltriangular-module"></span><h2>FEM.Elements.E2D.LTriangular module<a class="headerlink" href="#module-FEM.Elements.E2D.LTriangular" title="Permalink to this headline">#</a></h2>
-<p>Defines a Lagrangian 1 order triangular element</p>
+<section id="triangular-element">
+<h3>TRIANGULAR ELEMENT<a class="headerlink" href="#triangular-element" title="Permalink to this headline">#</a></h3>
+<p>Defines the lagrange first order triangular element</p>
+<figure class="align-center" id="id7">
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/LTriangular.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/LTriangular.png"/>
+<figcaption>
+<p><span class="caption-text">3 nodes triangular element. (Reddy, 2005)</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="shape-functions">
+<h4>Shape Functions<a class="headerlink" href="#shape-functions" title="Permalink to this headline">#</a></h4>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\begin{split}\Psi_i=\left[\begin{matrix}- x - y + 1.0\\x\\y\end{matrix}\right]\end{split}\]</div></div>
+</section>
+<section id="shape-functions-derivatives">
+<h4>Shape Functions Derivatives<a class="headerlink" href="#shape-functions-derivatives" title="Permalink to this headline">#</a></h4>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial \Psi_i}{\partial x_j}=\left[\begin{matrix}-1 &amp; -1\\1 &amp; 0\\0 &amp; 1\end{matrix}\right]\end{split}\]</div></div>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E2D.LTriangular.LTriangular">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.LTriangular.</span></span><span class="sig-name descname"><span class="pre">LTriangular</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.LTriangular.LTriangular" title="Permalink to this definition">#</a></dt>
@@ -297,9 +314,28 @@
 </dd></dl>
 </dd></dl>
 </section>
+</section>
+</section>
 <section id="module-FEM.Elements.E2D.QTriangular">
 <span id="fem-elements-e2d-qtriangular-module"></span><h2>FEM.Elements.E2D.QTriangular module<a class="headerlink" href="#module-FEM.Elements.E2D.QTriangular" title="Permalink to this headline">#</a></h2>
-<p>Defines a Lagrangian 2 order triangular element</p>
+<section id="triangular-second-order-element">
+<h3>TRIANGULAR SECOND ORDER ELEMENT<a class="headerlink" href="#triangular-second-order-element" title="Permalink to this headline">#</a></h3>
+<p>Defines the lagrange second order triangular element</p>
+<figure class="align-center" id="id8">
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/QTriangular.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/QTriangular.png"/>
+<figcaption>
+<p><span class="caption-text">6 nodes triangular element. (Reddy, 2005)</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="id1">
+<h4>Shape Functions<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\begin{split}\Psi_i=\left[\begin{matrix}\left(x + y - 0.5\right) \left(2.0 x + 2.0 y - 2.0\right)\\2.0 x \left(x - 0.5\right)\\2.0 y \left(y - 0.5\right)\\x \left(- 4.0 x - 4.0 y + 4.0\right)\\4.0 x y\\- 4.0 y \left(x + y - 1.0\right)\end{matrix}\right]\end{split}\]</div></div>
+</section>
+<section id="id2">
+<h4>Shape Functions Derivatives<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial \Psi_i}{\partial x_j}=\left[\begin{matrix}4.0 x + 4.0 y - 3.0 &amp; 4.0 x + 4.0 y - 3.0\\4.0 x - 1.0 &amp; 0\\0 &amp; 4.0 y - 1.0\\- 8.0 x - 4.0 y + 4.0 &amp; - 4.0 x\\4.0 y &amp; 4.0 x\\- 4.0 y &amp; - 4.0 x - 8.0 y + 4.0\end{matrix}\right]\end{split}\]</div></div>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E2D.QTriangular.QTriangular">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.QTriangular.</span></span><span class="sig-name descname"><span class="pre">QTriangular</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.QTriangular.QTriangular" title="Permalink to this definition">#</a></dt>
@@ -348,9 +384,28 @@
 </dd></dl>
 </dd></dl>
 </section>
+</section>
+</section>
 <section id="module-FEM.Elements.E2D.Quadrilateral">
 <span id="fem-elements-e2d-quadrilateral-module"></span><h2>FEM.Elements.E2D.Quadrilateral module<a class="headerlink" href="#module-FEM.Elements.E2D.Quadrilateral" title="Permalink to this headline">#</a></h2>
-<p>Defines a Lagrangian 1 order rectangular element</p>
+<section id="quadrilateral-element">
+<h3>QUADRILATERAL ELEMENT<a class="headerlink" href="#quadrilateral-element" title="Permalink to this headline">#</a></h3>
+<p>Defines the lagrange first order quadrilateral element</p>
+<figure class="align-center" id="id9">
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Quadrilateral.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Quadrilateral.png"/>
+<figcaption>
+<p><span class="caption-text">4 nodes quadrilateral element. (Reddy, 2005)</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="id3">
+<h4>Shape Functions<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\begin{split}\Psi_i=\left[\begin{matrix}\left(0.25 - 0.25 x\right) \left(1.0 - y\right)\\\left(1.0 - y\right) \left(0.25 x + 0.25\right)\\\left(0.25 x + 0.25\right) \left(y + 1.0\right)\\\left(0.25 - 0.25 x\right) \left(y + 1.0\right)\end{matrix}\right]\end{split}\]</div></div>
+</section>
+<section id="id4">
+<h4>Shape Functions Derivatives<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial \Psi_i}{\partial x_j}=\left[\begin{matrix}0.25 y - 0.25 &amp; 0.25 x - 0.25\\0.25 - 0.25 y &amp; - 0.25 x - 0.25\\0.25 y + 0.25 &amp; 0.25 x + 0.25\\- 0.25 y - 0.25 &amp; 0.25 - 0.25 x\end{matrix}\right]\end{split}\]</div></div>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E2D.Quadrilateral.Quadrilateral">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Quadrilateral.</span></span><span class="sig-name descname"><span class="pre">Quadrilateral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral" title="Permalink to this definition">#</a></dt>
@@ -399,6 +454,8 @@
 </dd></dl>
 </dd></dl>
 </section>
+</section>
+</section>
 <section id="module-FEM.Elements.E2D.RectangularScheme">
 <span id="fem-elements-e2d-rectangularscheme-module"></span><h2>FEM.Elements.E2D.RectangularScheme module<a class="headerlink" href="#module-FEM.Elements.E2D.RectangularScheme" title="Permalink to this headline">#</a></h2>
 <p>Define the rectangular scheme used by rectangular elements</p>
@@ -416,7 +473,24 @@
 </section>
 <section id="module-FEM.Elements.E2D.Serendipity">
 <span id="fem-elements-e2d-serendipity-module"></span><h2>FEM.Elements.E2D.Serendipity module<a class="headerlink" href="#module-FEM.Elements.E2D.Serendipity" title="Permalink to this headline">#</a></h2>
-<p>Define a o2 serendipity element</p>
+<section id="quadrilateral-serendipity-element">
+<h3>QUADRILATERAL SERENDIPITY ELEMENT<a class="headerlink" href="#quadrilateral-serendipity-element" title="Permalink to this headline">#</a></h3>
+<p>Defines the serendipity second order quadrilateral element</p>
+<figure class="align-center" id="id10">
+<img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Serendipity.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Serendipity.png"/>
+<figcaption>
+<p><span class="caption-text">8 nodes quadrilateral element. (Reddy, 2005)</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="id5">
+<h4>Shape Functions<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\begin{split}\Psi_i=\left[\begin{matrix}\left(0.25 - 0.25 x\right) \left(1.0 - y\right) \left(- x - y - 1.0\right)\\\left(1.0 - y\right) \left(0.25 x + 0.25\right) \left(x - y - 1.0\right)\\\left(0.25 x + 0.25\right) \left(y + 1.0\right) \left(x + y - 1.0\right)\\\left(0.25 - 0.25 x\right) \left(y + 1.0\right) \left(- x + y - 1.0\right)\\\left(0.5 - 0.5 x^{2.0}\right) \left(1.0 - y\right)\\\left(1.0 - y^{2.0}\right) \left(0.5 x + 0.5\right)\\\left(0.5 - 0.5 x^{2.0}\right) \left(y + 1.0\right)\\\left(0.5 - 0.5 x\right) \left(1.0 - y^{2.0}\right)\end{matrix}\right]\end{split}\]</div></div>
+</section>
+<section id="id6">
+<h4>Shape Functions Derivatives<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial \Psi_i}{\partial x_j}=\left[\begin{matrix}- \left(0.25 - 0.25 x\right) \left(1.0 - y\right) + \left(0.25 y - 0.25\right) \left(- x - y - 1.0\right) &amp; - \left(0.25 - 0.25 x\right) \left(1.0 - y\right) + \left(0.25 x - 0.25\right) \left(- x - y - 1.0\right)\\\left(0.25 - 0.25 y\right) \left(x - y - 1.0\right) + \left(1.0 - y\right) \left(0.25 x + 0.25\right) &amp; - \left(1.0 - y\right) \left(0.25 x + 0.25\right) + \left(- 0.25 x - 0.25\right) \left(x - y - 1.0\right)\\\left(0.25 x + 0.25\right) \left(y + 1.0\right) + \left(0.25 y + 0.25\right) \left(x + y - 1.0\right) &amp; \left(0.25 x + 0.25\right) \left(y + 1.0\right) + \left(0.25 x + 0.25\right) \left(x + y - 1.0\right)\\- \left(0.25 - 0.25 x\right) \left(y + 1.0\right) + \left(- 0.25 y - 0.25\right) \left(- x + y - 1.0\right) &amp; \left(0.25 - 0.25 x\right) \left(y + 1.0\right) + \left(0.25 - 0.25 x\right) \left(- x + y - 1.0\right)\\- 1.0 x^{1.0} \left(1.0 - y\right) &amp; 0.5 x^{2.0} - 0.5\\0.5 - 0.5 y^{2.0} &amp; - 2.0 y^{1.0} \left(0.5 x + 0.5\right)\\- 1.0 x^{1.0} \left(y + 1.0\right) &amp; 0.5 - 0.5 x^{2.0}\\0.5 y^{2.0} - 0.5 &amp; - 2.0 y^{1.0} \left(0.5 - 0.5 x\right)\end{matrix}\right]\end{split}\]</div></div>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E2D.Serendipity.Serendipity">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Serendipity.</span></span><span class="sig-name descname"><span class="pre">Serendipity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Serendipity.Serendipity" title="Permalink to this definition">#</a></dt>
@@ -464,6 +538,8 @@
 </dl>
 </dd></dl>
 </dd></dl>
+</section>
+</section>
 </section>
 <section id="module-FEM.Elements.E2D.TriangularScheme">
 <span id="fem-elements-e2d-triangularscheme-module"></span><h2>FEM.Elements.E2D.TriangularScheme module<a class="headerlink" href="#module-FEM.Elements.E2D.TriangularScheme" title="Permalink to this headline">#</a></h2>
@@ -542,11 +618,39 @@
 <li><a class="reference internal" href="#">FEM.Elements.E2D package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-FEM.Elements.E2D.Element2D">FEM.Elements.E2D.Element2D module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E2D.LTriangular">FEM.Elements.E2D.LTriangular module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E2D.QTriangular">FEM.Elements.E2D.QTriangular module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E2D.Quadrilateral">FEM.Elements.E2D.Quadrilateral module</a></li>
+<li><a class="reference internal" href="#module-FEM.Elements.E2D.LTriangular">FEM.Elements.E2D.LTriangular module</a><ul>
+<li><a class="reference internal" href="#triangular-element">TRIANGULAR ELEMENT</a><ul>
+<li><a class="reference internal" href="#shape-functions">Shape Functions</a></li>
+<li><a class="reference internal" href="#shape-functions-derivatives">Shape Functions Derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E2D.QTriangular">FEM.Elements.E2D.QTriangular module</a><ul>
+<li><a class="reference internal" href="#triangular-second-order-element">TRIANGULAR SECOND ORDER ELEMENT</a><ul>
+<li><a class="reference internal" href="#id1">Shape Functions</a></li>
+<li><a class="reference internal" href="#id2">Shape Functions Derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E2D.Quadrilateral">FEM.Elements.E2D.Quadrilateral module</a><ul>
+<li><a class="reference internal" href="#quadrilateral-element">QUADRILATERAL ELEMENT</a><ul>
+<li><a class="reference internal" href="#id3">Shape Functions</a></li>
+<li><a class="reference internal" href="#id4">Shape Functions Derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-FEM.Elements.E2D.RectangularScheme">FEM.Elements.E2D.RectangularScheme module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E2D.Serendipity">FEM.Elements.E2D.Serendipity module</a></li>
+<li><a class="reference internal" href="#module-FEM.Elements.E2D.Serendipity">FEM.Elements.E2D.Serendipity module</a><ul>
+<li><a class="reference internal" href="#quadrilateral-serendipity-element">QUADRILATERAL SERENDIPITY ELEMENT</a><ul>
+<li><a class="reference internal" href="#id5">Shape Functions</a></li>
+<li><a class="reference internal" href="#id6">Shape Functions Derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-FEM.Elements.E2D.TriangularScheme">FEM.Elements.E2D.TriangularScheme module</a></li>
 </ul>
 </li>
@@ -564,5 +668,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/scripts/furo.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
