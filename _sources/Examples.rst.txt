@@ -9,6 +9,14 @@ Examples package
 Submodules
 ----------
 
+Examples.ExampleD module
+------------------------
+
+.. automodule:: Examples.ExampleD
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.Punto3 module
 ----------------------
 
@@ -381,6 +389,14 @@ Examples.exampleC module
 ------------------------
 
 .. automodule:: Examples.exampleC
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.meh module
+-------------------
+
+.. automodule:: Examples.meh
    :members:
    :undoc-members:
    :show-inheritance:
