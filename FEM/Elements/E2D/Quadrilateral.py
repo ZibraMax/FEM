@@ -1,6 +1,30 @@
-"""Defines a Lagrangian 1 order rectangular element 
 """
+*********************************************
+QUADRILATERAL ELEMENT
+*********************************************
 
+Defines the lagrange first order quadrilateral element
+
+.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Quadrilateral.png
+   :align: center
+
+   4 nodes quadrilateral element. (Reddy, 2005)
+
+
+Shape Functions
+---------------
+
+.. math::
+    \\Psi_i=\\left[\\begin{matrix}\\left(0.25 - 0.25 x\\right) \\left(1.0 - y\\right)\\\\\\left(1.0 - y\\right) \\left(0.25 x + 0.25\\right)\\\\\\left(0.25 x + 0.25\\right) \\left(y + 1.0\\right)\\\\\\left(0.25 - 0.25 x\\right) \\left(y + 1.0\\right)\\end{matrix}\\right]
+
+Shape Functions Derivatives
+---------------------------
+
+.. math::
+    \\frac{\\partial \\Psi_i}{\\partial x_j}=\\left[\\begin{matrix}0.25 y - 0.25 & 0.25 x - 0.25\\\\0.25 - 0.25 y & - 0.25 x - 0.25\\\\0.25 y + 0.25 & 0.25 x + 0.25\\\\- 0.25 y - 0.25 & 0.25 - 0.25 x\\end{matrix}\\right]
+
+
+"""
 
 from .Element2D import Element2D, np
 from .RectangularScheme import RectangularScheme

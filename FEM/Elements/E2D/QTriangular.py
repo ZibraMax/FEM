@@ -1,4 +1,29 @@
-"""Defines a Lagrangian 2 order triangular element 
+"""
+*********************************************
+TRIANGULAR SECOND ORDER ELEMENT
+*********************************************
+
+Defines the lagrange second order triangular element
+
+.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/QTriangular.png
+   :align: center
+
+   6 nodes triangular element. (Reddy, 2005)
+
+
+Shape Functions
+---------------
+
+.. math::
+    \\Psi_i=\\left[\\begin{matrix}\\left(x + y - 0.5\\right) \\left(2.0 x + 2.0 y - 2.0\\right)\\\\2.0 x \\left(x - 0.5\\right)\\\\2.0 y \\left(y - 0.5\\right)\\\\x \\left(- 4.0 x - 4.0 y + 4.0\\right)\\\\4.0 x y\\\\- 4.0 y \\left(x + y - 1.0\\right)\\end{matrix}\\right]
+
+Shape Functions Derivatives
+---------------------------
+
+.. math::
+    \\frac{\\partial \\Psi_i}{\\partial x_j}=\\left[\\begin{matrix}4.0 x + 4.0 y - 3.0 & 4.0 x + 4.0 y - 3.0\\\\4.0 x - 1.0 & 0\\\\0 & 4.0 y - 1.0\\\\- 8.0 x - 4.0 y + 4.0 & - 4.0 x\\\\4.0 y & 4.0 x\\\\- 4.0 y & - 4.0 x - 8.0 y + 4.0\\end{matrix}\\right]
+
+
 """
 
 

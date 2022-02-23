@@ -1,6 +1,30 @@
-"""Defines a Lagrangian 1 order triangular element 
 """
+*********************************************
+TRIANGULAR ELEMENT
+*********************************************
 
+Defines the lagrange first order triangular element
+
+.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/LTriangular.png
+   :align: center
+
+   3 nodes triangular element. (Reddy, 2005)
+
+
+Shape Functions
+---------------
+
+.. math::
+    \\Psi_i=\\left[\\begin{matrix}- x - y + 1.0\\\\x\\\\y\\end{matrix}\\right]
+
+Shape Functions Derivatives
+---------------------------
+
+.. math::
+    \\frac{\\partial \\Psi_i}{\\partial x_j}=\left[\\begin{matrix}-1 & -1\\\\1 & 0\\\\0 & 1\\end{matrix}\\right]
+
+
+"""
 
 from .Element2D import Element2D, np
 from ..E1D.LinealElement import LinealElement
