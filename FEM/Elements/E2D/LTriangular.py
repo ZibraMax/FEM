@@ -5,7 +5,7 @@ TRIANGULAR ELEMENT
 
 Defines the lagrange first order triangular element
 
-.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/LTriangular.png
+.. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Ltriangular.png
    :align: center
 
    3 nodes triangular element. (Reddy, 2005)
