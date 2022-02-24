@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from ..Elements import Quadrilateral
+from ..Elements import Quadrilateral,Serendipity,QTriangular,LTriangular
 from ..Utils import isBetween
 
 
@@ -74,15 +74,24 @@ class Region2D(Region):
     """
 
     def __init__(self, coords: np.ndarray) -> None:
-        """Creates a square region (2D element)
+        """Creates a 2D region using a 2D Element. The number of coordinates definesthe type of element.
 
         Args:
             coords (np.ndarray): Coordinate matrix. Must be of four rows and 3 columns.
         """
-        self.e = Quadrilateral(coords, np.array([[-1, -1, -1, -1]]), n=1)
+        lc = len(coords)
+        if lc==3:
+            ELE = LTriangular
+        elif lc==4:
+            ELE = Quadrilateral
+        elif lc==6:
+            ELE = QTriangular
+        elif lc==8:
+            ELE = Serendipity
+        self.e = ELE(coords, np.array([[-1]*lc]), n=1,fast=True)
         self.center, _ = self.e.T(self.e.center.T)
         _j, _ = self.e.J(self.e.center.T)
-        self.n = np.cross(_j[:, 0, :].T, _j[:, 1, :].T, axis=0)  # <A,B,C>
+        self.n = np.cross(_j[:, 0].T, _j[:, 1].T, axis=0)  # <A,B,C>
         self.nnorm = np.linalg.norm(self.n)
         # Ax + By + Cz + D = 0
         self.D = -np.dot(self.n.flatten(), self.center.flatten())
