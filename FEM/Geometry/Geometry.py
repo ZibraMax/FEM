@@ -140,7 +140,7 @@ class Geometry:
                 element = BrickO2(coords, gdl, fast=self.fast)
             elif self.types[i] == 'TE1V':
                 element = Tetrahedral(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'TE1V':
+            elif self.types[i] == 'TE2V':
                 element = TetrahedralO2(coords, gdl, fast=self.fast)
             self.elements[i] = element
         print('Done!')
@@ -895,3 +895,29 @@ class Delaunay(Geometry2D):
                     raise "No se puede crear una triangulacion con angulos menores a 35 grados"
             q = 'q'+format(q)
         return p+a+D+q+'i'+o
+
+    def extrude(self, h: float = 1.0, m: int = 5, **kargs) -> Geometry3D:
+        nodes = self.gdls
+        n = len(nodes)
+        triangles = self.dictionary
+        piramides = []
+
+        dz = h/(m-1)
+
+        dddnodes = np.zeros([m*n, 3])
+        for i in range(m):
+            dddnodes[n*(i):n*(i+1), :2] = nodes
+            dddnodes[n*(i):n*(i+1), -1] = i*dz
+
+        for i in range(m-1):
+            for t in triangles:
+                t = np.array(t)
+                nodossup = n*(i) + t
+                nodosinf = n*(i+1) + t
+                p = nodossup.tolist()+nodosinf.tolist()
+
+                piramides += [[p[2], p[5], p[0], p[1]]]
+                piramides += [[p[0], p[5], p[3], p[4]]]
+                piramides += [[p[0], p[5], p[4], p[1]]]
+        # TODO Extrude regions
+        return Geometry3D(piramides, dddnodes, ['TE1V']*len(piramides), 3, **kargs)

@@ -10,7 +10,7 @@
     -   [ ] Los archivos deben guardar información sobre las propiedades del problema (tipo de problema, caracteristicas generales).
     -   [x] Actualizar los ejemplos con el nuevo formato de archivos.
 -   [ ] Agrupar las vigas en un solo archivo con herencia.
--   [ ] La clase ODE2D no esta finalizada. Poisson 2D y Torson 2D deben heredan de ODE2D.
--   [ ] Crear un solver para problemas sparse.
+<!-- -   [ ] La clase ODE2D no esta finalizada. Poisson 2D y Torson 2D deben heredan de ODE2D. -->
+-   [x] Crear un solver para problemas sparse.
 -   [ ] Los elementos deben tener un diccionario de propiedades, donde se encuentren las cargas aplicadas y propiedades materiales.\
 -   [ ] En algún punto tendremos que hacer un core para ecuaciones parabólicas. Deberá existir un solver para eso tambien.
