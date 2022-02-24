@@ -17,6 +17,14 @@ Examples.ExampleD module
    :undoc-members:
    :show-inheritance:
 
+Examples.ExampleE module
+------------------------
+
+.. automodule:: Examples.ExampleE
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.Punto3 module
 ----------------------
 
