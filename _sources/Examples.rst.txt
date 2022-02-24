@@ -9,6 +9,14 @@ Examples package
 Submodules
 ----------
 
+Examples.EnmalladosTesis module
+-------------------------------
+
+.. automodule:: Examples.EnmalladosTesis
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.ExampleD module
 ------------------------
 
