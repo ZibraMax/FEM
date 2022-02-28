@@ -49,6 +49,14 @@ Examples.Punto6 module
    :undoc-members:
    :show-inheritance:
 
+Examples.TestsEigenvalues module
+--------------------------------
+
+.. automodule:: Examples.TestsEigenvalues
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.a module
 -----------------
 
@@ -413,6 +421,14 @@ Examples.meh module
 -------------------
 
 .. automodule:: Examples.meh
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.muro module
+--------------------
+
+.. automodule:: Examples.muro
    :members:
    :undoc-members:
    :show-inheritance:
