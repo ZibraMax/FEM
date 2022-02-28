@@ -57,6 +57,7 @@ class Heat2D(Core):
         self.f = f
         self.geometry = geometry
         Core.__init__(self, geometry)
+        self.name = '2D Heat transfer'
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices using Gauss Legendre quadrature.

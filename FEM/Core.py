@@ -15,6 +15,17 @@ from functools import partialmethod
 
 
 class Core():
+    """Create the Finite Element problem.
+
+        Args:
+            geometry (Geometry): Input geometry. The geometry must contain the elements, and the border conditions.
+            You can create the geometry of the problem using the Geometry class.
+            solver (Union[Lineal, NonLinealSolver], optional): Finite Element solver. If not provided, Lineal solver is used.
+            sparse (bool, optional): To use sparse matrix formulation. Defaults to False
+            verbose (bool, optional): To print console messages and progress bars. Defaults to False.
+
+    """
+
     def __init__(self, geometry: Geometry, solver: Union[Lineal, NonLinealSolver] = None, sparse: bool = False, verbose: bool = False) -> None:
         """Create the Finite Element problem.
 
@@ -44,13 +55,21 @@ class Core():
         self.elements = self.geometry.elements
         self.verbose = verbose
         tqdm.__init__ = partialmethod(tqdm.__init__, disable=not verbose)
+        self.name = 'Generic FEM '
 
         if not solver:
             self.solver = Lineal(self)
+            if sparse:
+                self.solver = Lineal.LinealSparse(self)
         else:
             self.solver = solver(self)
         if self.solver.type == 'non-lineal-newton':
             self.T = np.zeros([self.ngdl, self.ngdl])
+
+    def description(self):
+        """Generates the problem description for loggin porpuses
+        """
+        return f'FEM problem using the {self.name} formulation.,DOF: {self.ngdl},Elements: {len(self.elements)},Solver: {self.solver.type},EBC: {len(self.cbe)},NBC: {len(self.cbn)}'
 
     def ensembling(self) -> None:
         """Ensembling of equation system. This method use the element gdl
@@ -139,6 +158,9 @@ class Core():
             plot (bool, optional): To post process the solution. Defaults to True.
             **kargs: Solver specific parameters.
         """
+        desc = self.description().split(',')
+        for d in desc:
+            logging.debug(d)
         if 'lineal' in self.solver.type:
             logging.info('Creating element matrices...')
             self.elementMatrices()

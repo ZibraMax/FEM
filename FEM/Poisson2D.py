@@ -35,6 +35,7 @@ class Poisson2D(Core):
         """
         self._phi = phi
         Core.__init__(self, geometry)
+        self.name = '2D Poisson equation'
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model

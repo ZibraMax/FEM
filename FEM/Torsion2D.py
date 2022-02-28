@@ -44,6 +44,7 @@ class Torsion2D(Core):
         self._phi = phi
         geometry.cbeAllRegions(0)
         Core.__init__(self, geometry, **kargs)
+        self.name = '2D Torsion'
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model

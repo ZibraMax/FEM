@@ -23,6 +23,24 @@ import logging
 from datetime import datetime
 
 
+class TimeFilter(logging.Filter):
+
+    def filter(self, record):
+        try:
+            last = self.last
+        except AttributeError:
+            last = record.relativeCreated
+
+        delta = datetime.fromtimestamp(
+            record.relativeCreated/1000.0) - datetime.fromtimestamp(last/1000.0)
+
+        record.relative = '{0:.4f}'.format(
+            delta.seconds + delta.microseconds/1000000.0)
+
+        self.last = record.relativeCreated
+        return True
+
+
 class LogFormatter(logging.Formatter):
     """Creates a Logging Formatter
 
@@ -140,15 +158,17 @@ class FEMLogger():
 
         # Create and set formatter, add log file handler to logger
         logfile_formatter = LogFormatter(
-            fmt='[%(asctime)s] '+log_line_template, color=logfile_log_color)
+            fmt='[%(asctime)s] (Delta duration: %(relative)ss) ' + log_line_template, color=logfile_log_color)
         logfile_handler.setFormatter(logfile_formatter)
         logger.addHandler(logfile_handler)
+        [hndl.addFilter(TimeFilter()) for hndl in logger.handlers]
         self.start_time = datetime.now()
         logging.debug(
             f'============================{__name__}============================')
         logging.debug(
             f'Session started @ {self.start_time.strftime("%d/%m/%Y - %H:%M:%S")}')
         # Success
+
         return True
 
     def end_timer(self):

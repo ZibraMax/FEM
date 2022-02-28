@@ -45,6 +45,7 @@ class EulerBernoulliBeam(Core):
         for i in range(len(self.elements)):
             self.elements[i] = EulerBernoulliElement(
                 self.elements[i].coords, self.elements[i].gdl)
+        self.name = 'Euler Bernoulli'
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Guass Legendre quadrature.
@@ -146,6 +147,7 @@ class EulerBernoulliBeamNonLineal(Core):
         for i in range(len(self.elements)):
             self.elements[i] = EulerBernoulliElement(
                 self.elements[i].coords, self.elements[i].gdl, nvn=3)
+        self.name = 'Euler Bernoulli non linear'
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Guass Legendre quadrature.

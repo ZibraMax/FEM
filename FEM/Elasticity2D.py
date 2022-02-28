@@ -92,6 +92,7 @@ class PlaneStressOrthotropic(Core):
             geometry.cbn = []
             geometry.initialize()
         Core.__init__(self, geometry, **kargs)
+        self.name = 'Plane Stress Orthotropic'
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
@@ -355,6 +356,7 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
         self.V = []
         if self.calculateMass:
             self.Vm = []
+        self.name = 'Plane Stress Orthotropic sparse'
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
@@ -469,6 +471,7 @@ class PlaneStress(PlaneStressOrthotropic):
         G = E/2.0/(1.0+v)
         PlaneStressOrthotropic.__init__(
             self, geometry, E, E, G, v, t, rho, fx, fy, **kargs)
+        self.name = 'Plane Stress Isotropic'
 
 
 class PlaneStressSparse(PlaneStressOrthotropicSparse):
@@ -500,6 +503,7 @@ class PlaneStressSparse(PlaneStressOrthotropicSparse):
         G = E/2.0/(1.0+v)
         PlaneStressOrthotropicSparse.__init__(
             self, geometry, E, E, G, v, t, rho, fx, fy, **kargs)
+        self.name = 'Plane Stress Isotropic sparse'
 
 
 class PlaneStrain(PlaneStress):
@@ -540,6 +544,7 @@ class PlaneStrain(PlaneStress):
             self.C22.append(C11)
             self.C12.append(C12)
             self.C66.append(C66)
+        self.name = 'Plane Strain Isotropic'
 
 
 class PlaneStrainSparse(PlaneStressSparse):
@@ -580,6 +585,7 @@ class PlaneStrainSparse(PlaneStressSparse):
             self.C22.append(C11)
             self.C12.append(C12)
             self.C66.append(C66)
+        self.name = 'Plane Strain Isotropic sparse'
 
 
 class PlaneStressNonLocalSparse(PlaneStressSparse):
@@ -628,6 +634,7 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         nonlocals = self.geometry.detectNonLocal(Lr)
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
+        self.name = 'Plane Stress Isotropic non local sparse'
 
     def elementMatrices(self) -> None:
         """Calculate the elements matrices

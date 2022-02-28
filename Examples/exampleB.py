@@ -1,17 +1,38 @@
+
+
 if __name__ == '__main__':
     import scipy
     import json
     import numpy as np
-    from FEM.Elasticity3D import Elasticity
+    from FEM.Elasticity3D import Elasticity, NonLocalElasticityFromTensor
     from FEM.Geometry.Geometry import Geometry3D
+    from FEM.Solvers.Lineal import LinealEigen
 
-    E = 21000000.0
-    v = 0.2
-    h = 1
-    b = 1
-    L = 1
+    # E = 21000000.0
+    # v = 0.2
+    c11 = 166.0  # MPa
+    c12 = 63.9  # MPa
+    c44 = 79.6  # MPa
+    C = np.array([
+        [c11, c12, c12, 0, 0, 0],
+        [c12, c11, c12, 0, 0, 0],
+        [c12, c12, c11, 0, 0, 0],
+        [0, 0, 0, c44, 0, 0],
+        [0, 0, 0, 0, c44, 0],
+        [0, 0, 0, 0, 0, c44]])*10**9  # Pa-3
 
-    gamma = 23.54
+    h = 20.4356  # Armstrong
+    b = 20.4356  # Armstrong
+    L = 20.4356  # Armstrong
+
+    rho = 2.329  # g/cm³
+
+    l = 0.535
+    z1 = 0.5
+    Lr = 9*l
+
+    def af(rho):
+        return (1/(8*np.pi*l**3))*np.exp(-rho)  # No referencia, sacada a mano
 
     _a = L
     _b = h
@@ -57,16 +78,12 @@ if __name__ == '__main__':
 
     geometria = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
 
-    O = Elasticity(geometria, E, v, gamma, verbose=True)
-    O.solve()
-    omh = scipy.sparse.linalg.spsolve(O.M, O.K)
-    eiv, eigvec = scipy.sparse.linalg.eigs(omh, k=30, which='SR')
-    print('Open c++')
+    O = NonLocalElasticityFromTensor(
+        geometria, C, rho, l, z1, Lr, af, verbose=True, solver=LinealEigen)
+    O.solve(path='SmolCube.csv')
     y = O.geometry.exportJSON()
     pjson = json.loads(y)
-    pjson["disp_field"] = eigvec.real.T.tolist()
+    pjson["disp_field"] = O.eigvec.real.T.tolist()
     y = json.dumps(pjson)
-    with open("../FEM C++/docs/resources/exported.json", "w") as f:
+    with open("../FEM C++/docs/resources/CUBEKM101010.json", "w") as f:
         f.write(y)
-    np.savetxt('a.csv', O.U, delimiter=',', fmt='%s')
-    a = 0
