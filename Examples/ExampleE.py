@@ -1,6 +1,3 @@
-
-
-from operator import ge
 from FEM.Geometry.Region import Region2D
 
 
