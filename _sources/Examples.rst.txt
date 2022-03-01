@@ -33,6 +33,14 @@ Examples.ExampleE module
    :undoc-members:
    :show-inheritance:
 
+Examples.ExampleF module
+------------------------
+
+.. automodule:: Examples.ExampleF
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.Punto3 module
 ----------------------
 
@@ -413,6 +421,14 @@ Examples.exampleC module
 ------------------------
 
 .. automodule:: Examples.exampleC
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.import\_mesh\_fernando module
+--------------------------------------
+
+.. automodule:: Examples.import_mesh_fernando
    :members:
    :undoc-members:
    :show-inheritance:
