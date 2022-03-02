@@ -12,6 +12,7 @@ from .Solvers import Lineal, NonLinealSolver
 import logging
 from .FEMLogger import FEMLogger
 from functools import partialmethod
+import json
 
 
 class Core():
@@ -65,6 +66,9 @@ class Core():
             self.solver = solver(self)
         if self.solver.type == 'non-lineal-newton':
             self.T = np.zeros([self.ngdl, self.ngdl])
+        elif self.solver.type == "Base":
+            logging.error("Base solver should not be used.")
+            raise Exception("Base solver should not be used.")
 
     def description(self):
         """Generates the problem description for loggin porpuses
@@ -93,7 +97,7 @@ class Core():
                     raise e
         logging.info('Done!')
 
-    def restartMatrix(self):
+    def restartMatrix(self) -> None:
         """Sets all model matrices and vectors to 0 state
         """
         self.K[:, :] = 0.0
@@ -161,12 +165,6 @@ class Core():
         desc = self.description().split(',')
         for d in desc:
             logging.debug(d)
-        if 'lineal' in self.solver.type:
-            logging.info('Creating element matrices...')
-            self.elementMatrices()
-            logging.info('Done!')
-            self.ensembling()
-            self.borderConditions()
         self.solveES(**kargs)
         if plot:
             logging.info('Post processing solution...')
@@ -223,3 +221,13 @@ class Core():
         """Post process the solution
         """
         pass
+
+    def exportJSON(self, filename: str = None):
+        if not filename:
+            filename = __name__
+        y = self.geometry.exportJSON()
+        pjson = json.loads(y)
+        pjson["disp_field"] = np.array(self.solver.solutions).tolist()
+        y = json.dumps(pjson)
+        with open(filename, "w") as f:
+            f.write(y)

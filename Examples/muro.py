@@ -8,7 +8,7 @@ b = 5.65
 h = 5.7
 u0 = -0.03
 vertices = [[0.0, 0.0], [b, 0.0], [b, h], [0.0, h]]
-params = Delaunay._strdelaunay(True, True, 0.001, 30, 2)
+params = Delaunay._strdelaunay(True, True, 0.01, 30, 2)
 
 b_p = 5.24-4.03
 h_p = 2.53
@@ -50,10 +50,11 @@ geo.setCbe(cb)
 # geo.show()
 # plt.show()
 
-E = 21000000.0
-v = 0.21
+E = 97000.0
+v = 0.3
 t = 0.65
 
 O = PlaneStressSparse(geo, E, v, t, verbose=True)
 O.solve(mult=100/3)
+O.exportJSON("muro.json")
 plt.show()
