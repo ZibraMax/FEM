@@ -24,3 +24,11 @@ FEM.Solvers.NoLineal module
    :members:
    :undoc-members:
    :show-inheritance:
+
+FEM.Solvers.Solver module
+-------------------------
+
+.. automodule:: FEM.Solvers.Solver
+   :members:
+   :undoc-members:
+   :show-inheritance:
