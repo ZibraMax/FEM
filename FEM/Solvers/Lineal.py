@@ -1,7 +1,7 @@
 """Define the structure of a lineal finite element solver
 """
 
-from scipy.sparse.linalg.eigen.arpack import eigsh as largest_eigsh
+# from scipy.sparse.linalg.eigen.arpack import eigsh as largest_eigsh
 from scipy.linalg import eigh
 import numpy as np
 import logging

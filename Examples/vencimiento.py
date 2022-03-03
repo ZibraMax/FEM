@@ -35,6 +35,8 @@ t = 0.65
 
 O = PlaneStress(geo, E, v, t)
 O.solveFromArray(U, mult=20)
+O.solver.solutions = [U]
+O.exportJSON('Poaso.json')
 # geo.show()
 # plt.plot(*coords.T, 'o')
 plt.show()

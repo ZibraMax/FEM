@@ -2,6 +2,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     from FEM.Geometry import Geometry2D
     from FEM.Elasticity2D import PlaneStressSparse
+    from FEM.Utils import enmalladoFernando
 
     E = 21000000.0  # MPa
     v = 0.2  # m
@@ -11,13 +12,13 @@ if __name__ == '__main__':
     a = h**2/100
     gamma = 23.54
 
-    # coords, dicc = enmalladoFernando(L, h, 260, 60)
-    # geo = Geometry2D(dicc, coords, ['C2V']*len(dicc), nvn=2, fast=True)
-    # geo.generateRegionFromCoords([0.0, 0.0], [L, 0.0])
-    # geo.generateRegionFromCoords([L, 0.0], [L, h])
-    # geo.generateRegionFromCoords([L, h], [0.0, h])
-    # geo.generateRegionFromCoords([0.0, h], [0.0, 0.0])
-    # geo.exportJSON('Examples/Mesh_tests/Beam_serendipity.json')
+    coords, dicc = enmalladoFernando(L, h, 130, 30)
+    geo = Geometry2D(dicc, coords, ['C2V']*len(dicc), nvn=2, fast=True)
+    geo.generateRegionFromCoords([0.0, 0.0], [L, 0.0])
+    geo.generateRegionFromCoords([L, 0.0], [L, h])
+    geo.generateRegionFromCoords([L, h], [0.0, h])
+    geo.generateRegionFromCoords([0.0, h], [0.0, 0.0])
+    geo.exportJSON('Examples/Mesh_tests/Beam_serendipity.json')
 
     geometria = Geometry2D.importJSON(
         'Examples/Mesh_tests/Beam_serendipity.json', fast=True)
@@ -29,4 +30,5 @@ if __name__ == '__main__':
     O = PlaneStressSparse(geometria, E, v, b,
                           fy=lambda x: -gamma, verbose=True)
     O.solve()
+    O.exportJSON('BS.json')
     plt.show()
