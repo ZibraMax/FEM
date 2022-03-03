@@ -85,7 +85,6 @@ class Newton(NonLinealSolver):
 
             logging.debug('delta u')
             self.system.U += du
-            self.solutions.append(self.system.U)
             for e in self.system.elements:
                 e.restartMatrix()
                 e.setUe(self.system.U)
@@ -95,6 +94,7 @@ class Newton(NonLinealSolver):
                 f'----------------- Iteration error {err} -------------------')
             if err < self.tol:
                 break
+        self.solutions = [self.system.U]
         logging.info('Done!')
 
 
@@ -156,13 +156,13 @@ class DirectIteration(NonLinealSolver):
             for e in self.system.elements:
                 e.restartMatrix()
                 e.setUe(self.system.U)
-            self.solutions.append(self.system.U)
             logging.debug('Updated elements')
             err = np.max(np.abs(R))
             logging.info(
                 f'----------------- Iteration error {err} -------------------')
             if err < self.tol:
                 break
+        self.solutions = [self.system.U]
         logging.info('Done!')
 
 
