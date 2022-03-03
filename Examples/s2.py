@@ -31,9 +31,9 @@ if __name__ == '__main__':
     _b = h
     _c = b
 
-    nx = 20
-    ny = 20
-    nz = 20
+    nx = 15
+    ny = 15
+    nz = 15
 
     dx = _a/nx
     dy = _b/ny
@@ -73,5 +73,5 @@ if __name__ == '__main__':
 
     O = ElasticityFromTensor(
         geometria, C, rho, verbose=True, solver=LinealEigen)
-    O.solve(path='SmolCube2.csv')
-    O.exportJSON("../FEM C++/docs/resources/CUBE202020.json")
+    O.solve(path='SmolCube3.csv')
+    O.exportJSON("../FEM C++/docs/resources/CUBE151515.json")

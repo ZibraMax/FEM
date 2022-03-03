@@ -447,3 +447,63 @@ class NonLocalElasticityFromTensor(Elasticity):
         self.M = sparse.coo_matrix(
             (self.Vm, (self.Im, self.Jm)), shape=(self.ngdl, self.ngdl)).tocsr()
         logging.info('Done!')
+
+
+class ElasticityFromTensor(Elasticity):
+
+    def __init__(self, geometry: Geometry, C: np.ndarray, rho: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
+        Elasticity.__init__(self, geometry, None, None,
+                            rho, fx, fy, fz, **kargs)
+        self.C = C
+        self.name = 'Non Local Elasticity sparse'
+
+    def elementMatrices(self) -> None:
+        """Calculate the element matrices usign Reddy's (2005) finite element model
+        """
+
+        for ee, e in enumerate(tqdm(self.elements, unit='Element')):
+            m = len(e.gdl.T)
+
+            _x, _p = e.T(e.Z.T)
+            jac, dpz = e.J(e.Z.T)
+            detjac = np.linalg.det(jac)
+            _j = np.linalg.inv(jac)
+            dpx = _j @ dpz
+
+            C = self.C
+
+            o = [0.0]*m
+            Ke = np.zeros([3*m, 3*m])
+            Me = np.zeros([3*m, 3*m])
+            Fe = np.zeros([3*m, 1])
+
+            for k in range(len(e.Z)):  # Iterate over gauss points on domain
+                B = np.array([
+                    [*dpx[k, 0, :], *o, *o],
+                    [*o, *dpx[k, 1, :], *o],
+                    [*o, *o, *dpx[k, 2, :]],
+                    [*dpx[k, 2, :], *o, *dpx[k, 0, :]],
+                    [*o, *dpx[k, 2, :], *dpx[k, 1, :]],
+                    [*dpx[k, 1, :], *dpx[k, 0, :], *o]])
+                P = np.array([
+                    [*_p[k], *o, *o],
+                    [*o, *_p[k], *o],
+                    [*o, *o, *_p[k]]])
+
+                Ke += (B.T@C@B)*detjac[k]*e.W[k]
+                Me += self.rho[ee]*(P.T@P)*detjac[k]*e.W[k]
+
+                _fx = self.fx(_x[k])
+                _fy = self.fy(_x[k])
+                _fz = self.fz(_x[k])
+
+                F = np.array([[_fx], [_fy], [_fz]])
+                Fe += (P.T @ F)*detjac[k]*e.W[k]
+
+            self.F[np.ix_(e.gdlm)] += Fe
+
+            for gdl in e.gdlm:
+                self.I += [gdl]*(3*m)
+                self.J += e.gdlm
+            self.V += Ke.flatten().tolist()
+            self.Vm += Me.flatten().tolist()

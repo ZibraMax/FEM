@@ -4,7 +4,7 @@ from FEM.Geometry import Geometry3D
 
 gdls = []
 els = []
-with open('mesh_sphere.txt') as f:
+with open('input.txt') as f:
     ngdl, nele = [int(i) for i in f.readline().split('\t')][:2]
     for i in range(ngdl):
         x, y, z = [float(i) for i in f.readline().split('\t')]

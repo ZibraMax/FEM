@@ -1,8 +1,8 @@
 """Define the structure of a lineal finite element solver
 """
 
-from scipy.sparse.linalg.eigen.arpack import eigsh as largest_eigsh
 from scipy.linalg import eigh
+from scipy.sparse.linalg import eigsh
 import numpy as np
 import logging
 from scipy.sparse.linalg import spsolve
@@ -112,9 +112,12 @@ class LinealEigen(Lineal):
         logging.info('Solving...')
         # eigv, eigvec = largest_eigsh(
         #     self.system.K, k, self.system.M, which='SM')
-        eigv, eigvec = eigh(
-            self.system.K.todense(), self.system.M.todense(), eigvals=(N-k, N-1))
-        idx = eigv.argsort()[::-1]
+        # N = self.system.K.shape[0]
+        # eigv, eigvec = eigh(
+        #     self.system.K.todense(), self.system.M.todense(), eigvals=(N-k, N-1))
+        eigv, eigvec = eigsh(
+            self.system.K, k, self.system.M, which='SM')
+        idx = eigv.argsort()
         eigv = eigv[idx]
         eigvec = eigvec[:, idx]
         self.system.eigv = eigv
