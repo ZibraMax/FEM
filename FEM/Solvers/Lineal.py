@@ -2,6 +2,7 @@
 """
 
 from scipy.sparse.linalg.eigen.arpack import eigsh as largest_eigsh
+from scipy.linalg import eigh
 import numpy as np
 import logging
 from scipy.sparse.linalg import spsolve
@@ -89,8 +90,10 @@ class LinealEigen():
         logging.info('Converting to csr format')
         self.system.K = self.system.K.tocsr()
         logging.info('Solving...')
-        eigv, eigvec = largest_eigsh(
-            self.system.K, k, self.system.M, which='SM')
+        # eigv, eigvec = largest_eigsh(
+        #     self.system.K, k, self.system.M, which='SM')
+        eigv, eigvec = eigh(
+            self.system.K.todense(), self.system.M.todense(), eigvals=(N-k, N-1))
         idx = eigv.argsort()[::-1]
         eigv = eigv[idx]
         eigvec = eigvec[:, idx]
