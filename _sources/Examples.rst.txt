@@ -41,6 +41,14 @@ Examples.ExampleF module
    :undoc-members:
    :show-inheritance:
 
+Examples.ExampleGValidacion module
+----------------------------------
+
+.. automodule:: Examples.ExampleGValidacion
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.Punto3 module
 ----------------------
 
@@ -461,6 +469,14 @@ Examples.profile\_validation module
 -----------------------------------
 
 .. automodule:: Examples.profile_validation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.s2 module
+------------------
+
+.. automodule:: Examples.s2
    :members:
    :undoc-members:
    :show-inheritance:
