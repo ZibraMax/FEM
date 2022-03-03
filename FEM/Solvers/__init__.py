@@ -3,3 +3,4 @@
 
 from .Lineal import *
 from .NoLineal import *
+from .Solver import *
