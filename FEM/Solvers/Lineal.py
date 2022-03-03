@@ -2,12 +2,14 @@
 """
 
 from scipy.sparse.linalg.eigen.arpack import eigsh as largest_eigsh
+from scipy.linalg import eigh
 import numpy as np
 import logging
 from scipy.sparse.linalg import spsolve
+from .Solver import Solver
 
 
-class Lineal():
+class Lineal(Solver):
     """Lineal Finite Element Solver.
     """
 
@@ -15,10 +17,11 @@ class Lineal():
         """Lineal Finite Element Solver
 
         Args:
-            FEMObject (Core): [Finite Element Problem
+            FEMObject (Core): Finite Element Problem
         """
-        self.system = FEMObject
+        Solver.__init__(self, FEMObject)
         self.type = 'lineal'
+        self.solutions = []
 
     def run(self, path: str = '', **kargs):
         """Solves the equation system using numpy's solve function
@@ -26,8 +29,15 @@ class Lineal():
         Args:
             path (str, optional): Path where the solution is stored. Defaults to ''.
         """
+        # TODO This should delete all matrices becaus the add feature
+        logging.info('Creating element matrices...')
+        self.system.elementMatrices()
+        logging.info('Done!')
+        self.system.ensembling()
+        self.system.borderConditions()
         logging.info('Solving equation system...')
-        self.system.U = np.linalg.solve(self.system.K, self.system.S)
+        self.solutions = [np.linalg.solve(self.system.K, self.system.S)]
+        self.setSolution()
         if not path == '':
             np.savetxt(path, self.system.U, delimiter=',')
         for e in self.system.elements:
@@ -35,7 +45,7 @@ class Lineal():
         logging.info('Done!')
 
 
-class LinealSparse():
+class LinealSparse(Lineal):
     """Lineal Finite Element Solver using sparse matrix
     """
 
@@ -45,7 +55,7 @@ class LinealSparse():
         Args:
             FEMObject (Core): Finite Element Problem
         """
-        self.system = FEMObject
+        Lineal.__init__(self, FEMObject)
         self.type = 'lineal-sparse'
 
     def run(self, path: str = '', **kargs):
@@ -54,16 +64,22 @@ class LinealSparse():
         Args:
             path (str, optional): Path where the solution is stored. Defaults to ''.
         """
+        logging.info('Creating element matrices...')
+        self.system.elementMatrices()
+        logging.info('Done!')
+        self.system.ensembling()
+        self.system.borderConditions()
         logging.info('Converting to csr format')
         self.system.K = self.system.K.tocsr()
         logging.info('Solving...')
-        self.system.U = spsolve(self.system.K, self.system.S)
+        self.solutions = [spsolve(self.system.K, self.system.S)]
+        self.setSolution()
         for e in self.system.elements:
             e.setUe(self.system.U)
         logging.info('Solved!')
 
 
-class LinealEigen():
+class LinealEigen(Lineal):
     """Eigen value solver
 
     Args:
@@ -76,7 +92,7 @@ class LinealEigen():
         Args:
             FEMObject (Core): FEM problem
         """
-        self.system = FEMObject
+        Lineal.__init__(self, FEMObject)
         self.type = 'lineal-sparse-eigen'
 
     def run(self, path: str = '', k=20, **kargs):
@@ -86,11 +102,18 @@ class LinealEigen():
             path (str, optional): Path where the solution is stored. Defaults to ''.
             k (int, optional): Number of eigenvalues to calculate. Defaults to 20.
         """
+        logging.info('Creating element matrices...')
+        self.system.elementMatrices()
+        logging.info('Done!')
+        self.system.ensembling()
+        self.system.borderConditions()
         logging.info('Converting to csr format')
         self.system.K = self.system.K.tocsr()
         logging.info('Solving...')
-        eigv, eigvec = largest_eigsh(
-            self.system.K, k, self.system.M, which='SM')
+        # eigv, eigvec = largest_eigsh(
+        #     self.system.K, k, self.system.M, which='SM')
+        eigv, eigvec = eigh(
+            self.system.K.todense(), self.system.M.todense(), eigvals=(N-k, N-1))
         idx = eigv.argsort()[::-1]
         eigv = eigv[idx]
         eigvec = eigvec[:, idx]
@@ -101,4 +124,6 @@ class LinealEigen():
                        self.system.eigv, delimiter=',', fmt='%s')
             np.savetxt(path.replace('.', '_eigvec.'),
                        self.system.eigvec, delimiter=',', fmt='%s')
+        self.solutions = eigvec.T
+        self.setSolution(0)
         logging.info('Solved!')

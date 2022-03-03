@@ -25,9 +25,14 @@ if __name__ == '__main__':
     def af(rho):
         return (1/(8*np.pi*l**3))*np.exp(-rho)  # No referencia, sacada a mano
 
-    geometria = Geometry3D.importJSON(
-        'Examples/Mesh_tests/PIRAMID_FERNANDO.json', fast=True)
+    geometria = Geometry3D.importJSON('SPHERE_FERNANDO.json', fast=True)
 
     O = NonLocalElasticityFromTensor(
         geometria, C, rho, l, z1, Lr, af, verbose=True, solver=LinealEigen)
-    O.solve(path='tetra.csv')
+    O.solve(path='sphere_si.csv')
+    y = O.geometry.exportJSON()
+    pjson = json.loads(y)
+    pjson["disp_field"] = O.eigvec.real.T.tolist()
+    y = json.dumps(pjson)
+    with open("../FEM C++/docs/resources/SPHERE_FERNANDO.json", "w") as f:
+        f.write(y)

@@ -217,6 +217,7 @@ class EulerBernoulliBeamNonLineal(Core):
         U3 = []
         U4 = []
         for e in self.elements:
+            original = e.Ue.copy()
             ueflex = e.Ue.flatten()[[1, 2, 4, 5]]
             # ueax = e.Ue.flatten()[[0, 3]]
             e.Ue = ueflex
@@ -226,6 +227,7 @@ class EulerBernoulliBeamNonLineal(Core):
             U2 += (du[:, 0]).tolist()
             U3 += (du[:, 1]).tolist()
             U4 += (du[:, 2]).tolist()
+            e.Ue = original
         if plot:
             fig = plt.figure()
             ax1 = fig.add_subplot(2, 2, 1)

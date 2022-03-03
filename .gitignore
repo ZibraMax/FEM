@@ -16,4 +16,5 @@ AFEM.egg-info/
 *.log
 # *.json
 *.svg
+*.txt
 *.sublime*

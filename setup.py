@@ -28,7 +28,7 @@ VERSION = ""
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    'numpy', 'matplotlib', 'triangle', 'tqdm',
+    'numpy', 'matplotlib', 'triangle', 'tqdm','scipy' 
 ]
 
 # What packages are optional?

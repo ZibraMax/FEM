@@ -41,4 +41,5 @@ if __name__ == '__main__':
     plt.show()
     O = PlaneStrainSparse(geometria, E, v, fy=lambda x: -gamma)
     O.solve()
+    O.exportJSON('Soil2.json')
     plt.show()

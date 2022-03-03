@@ -3,21 +3,24 @@
 import numpy as np
 import logging
 from tqdm import tqdm
+from .Solver import Solver
 
 
-class NonLinealSolver():
+class NonLinealSolver(Solver):
     """General class for non lineal solvers
     Args:
         tol (float): Tolerance for the maximum absolute value for the delta vector
         n (int): Maximum number of iterations per step
     """
 
-    def __init__(self, tol: float, n: int) -> None:
+    def __init__(self, FEMObject: "Core", tol: float, n: int) -> None:
         """General class for non lineal solvers
         Args:
+            FEMObject (Core): FEM Object
             tol (float): Tolerance for the maximum absolute value for the delta vector
             n (int): Maximum number of iterations per step
         """
+        Solver.__init__(self, FEMObject)
         self.maxiter = n
         self.tol = tol
         self.type = 'non-lineal'
@@ -43,8 +46,7 @@ class Newton(NonLinealSolver):
             tol (float, optional): Tolerance for the maximum absolute value for the delta vector. Defaults to 10**(-10).
             n (int, optional): Maximum number of iterations per step. Defaults to 50.
         """
-        self.system = FEMObject
-        NonLinealSolver.__init__(self, tol, n)
+        NonLinealSolver.__init__(self, FEMObject, tol, n)
         self.type = 'non-lineal-newton'
 
     def solve(self, path: str = '', **kargs) -> None:
@@ -54,6 +56,7 @@ class Newton(NonLinealSolver):
         logging.info('Starting newton iterations.')
         logging.info(f'tol: {self.tol}, maxiter: {self.maxiter}')
         self.system.U = np.zeros(self.system.U.shape)+1.0
+        # self.setSolution(0)
         for i in self.system.cbe:
             self.system.U[int(i[0])] = i[1]
 
@@ -61,7 +64,7 @@ class Newton(NonLinealSolver):
             e.restartMatrix()
             e.setUe(self.system.U)
 
-        for i in tqdm(range(self.maxiter), disable=False):
+        for i in tqdm(range(self.maxiter), unit="Newton iteration", disable=False):
             logging.debug(
                 f'----------------- Newton iteration {i} -------------------')
             self.system.restartMatrix()
@@ -91,6 +94,7 @@ class Newton(NonLinealSolver):
                 f'----------------- Iteration error {err} -------------------')
             if err < self.tol:
                 break
+        self.solutions = [self.system.U]
         logging.info('Done!')
 
 
@@ -106,8 +110,7 @@ class DirectIteration(NonLinealSolver):
             tol (float, optional): Tolerance for the maximum absolute value for the delta vector. Defaults to 10**(-10).
             n (int, optional): Maximum number of iterations per step. Defaults to 50.
         """
-        self.system = FEMObject
-        NonLinealSolver.__init__(self, tol, n)
+        NonLinealSolver.__init__(self, FEMObject, tol, n)
         self.type = 'non-lineal-direct'
 
     def solve(self, path: str = '', guess=None, _guess=False, **kargs) -> None:
@@ -120,6 +123,7 @@ class DirectIteration(NonLinealSolver):
             self.system.U = guess
         else:
             self.system.U = np.zeros(self.system.U.shape)
+
         for i in self.system.cbe:
             self.system.U[int(i[0])] = i[1]
 
@@ -127,7 +131,7 @@ class DirectIteration(NonLinealSolver):
             e.restartMatrix()
             e.setUe(self.system.U)
 
-        for i in tqdm(range(self.maxiter), disable=False):
+        for i in tqdm(range(self.maxiter), unit="Iteration", disable=False):
             logging.debug(
                 f'----------------- Iteration {i+1} -------------------')
             self.system.restartMatrix()
@@ -158,6 +162,7 @@ class DirectIteration(NonLinealSolver):
                 f'----------------- Iteration error {err} -------------------')
             if err < self.tol:
                 break
+        self.solutions = [self.system.U]
         logging.info('Done!')
 
 
@@ -168,23 +173,28 @@ class LoadControl(DirectIteration):
         n (int): Maximum number of iterations per step
     """
 
-    def __init__(self, FEMObject, tol: float = 10**(-10), n: int = 500, N=10) -> None:
+    def __init__(self, FEMObject, tol: float = 10**(-10), n: int = 500, nls=10) -> None:
         """General class for non lineal solvers
         Args:
             tol (float): Tolerance for the maximum absolute value for the delta vector
             n (int): Maximum number of iterations per step
+            nls (int): Number of load steps
         """
-        self.NLS = N
         DirectIteration.__init__(self, FEMObject, tol=tol, n=n)
+        self.nls = nls
 
     def run(self, **kargs) -> None:
         """Solves the equation system using newtons method
         """
         guess = None
-        for i in range(self.NLS):
+        solutioms = []
+        for i in tqdm(range(self.nls), unit="Load Step", disable=False):
             logging.info(f'================LOAD STEP {i+1}===================')
-
-            self.system.fx = lambda x: self.system.fx0(x)/self.NLS*(i+1)
-            self.system.fy = lambda x: self.system.fy0(x)/self.NLS*(i+1)
+            # FIXME WTF IS THIS. Esto solamente funciona para la clase de EB no lineal
+            self.system.fx = lambda x: self.system.fx0(x)/self.nls*(i+1)
+            self.system.fy = lambda x: self.system.fy0(x)/self.nls*(i+1)
             guess = self.system.U
             self.solve(guess=guess, _guess=(i >= 1), **kargs)
+            solutioms.append(self.system.U)
+        self.solutions = solutioms
+        self.setSolution()

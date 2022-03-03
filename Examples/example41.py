@@ -4,7 +4,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
 
     L = 100
-    geometria = Lineal(L, 80, 1, 3)
+    geometria = Lineal(L, 100, 1, 3)
     geometria.cbe = [[0, 0.0], [1, 0.0], [
         2, 0.0], [-1, 0.0], [-2, 0.0], [-3, 0.0]]
 
@@ -18,8 +18,10 @@ if __name__ == '__main__':
 
     O = EulerBernoulliBeamNonLineal(geometria, EI, EA, Fx, W)
     O.solve()
-
-    # analitica = W*L**4/EI/8
-    print(O.U[-2][0])
+    O.exportJSON("A.json")
+    plt.close("all")
+    for i in range(len(O.solver.solutions)):
+        O.solver.setSolution(i, True)
+        O.postProcess()
     plt.show()
     a = 0
