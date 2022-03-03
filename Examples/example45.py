@@ -23,4 +23,5 @@ if __name__ == '__main__':
     cb += O.geometry.cbFromRegion(7, 0, 1)
     O.cbe = cb
     O.solve()
+    O.exportJSON('Soil1.json')
     plt.show()
