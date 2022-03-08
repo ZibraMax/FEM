@@ -9,6 +9,14 @@ Examples package
 Submodules
 ----------
 
+Examples.EigenvaluesTest module
+-------------------------------
+
+.. automodule:: Examples.EigenvaluesTest
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.EnmalladosTesis module
 -------------------------------
 

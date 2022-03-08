@@ -5,10 +5,10 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="FEM package" href="FEM.html" /><link rel="prev" title="FEM" href="modules.html" />
 
-    <meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
         <title>Examples package - FEM 1.0.30 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -20,16 +20,18 @@
   --color-code-foreground: black;
   
   }
-  body[data-theme="dark"] {
-    --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
-  }
-  @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) {
+  @media not print {
+    body[data-theme="dark"] {
       --color-code-background: #202020;
   --color-code-foreground: #d0d0d0;
   
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
     }
   }
 </style></head>
@@ -206,6 +208,13 @@
 <p>Examples index</p>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="module-Examples.EigenvaluesTest">
+<span id="examples-eigenvaluestest-module"></span><h2>Examples.EigenvaluesTest module<a class="headerlink" href="#module-Examples.EigenvaluesTest" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.EigenvaluesTest.node">
+<span class="sig-prename descclassname"><span class="pre">Examples.EigenvaluesTest.</span></span><span class="sig-name descname"><span class="pre">node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Examples.EigenvaluesTest.node" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
 </section>
 <section id="examples-enmalladostesis-module">
 <h2>Examples.EnmalladosTesis module<a class="headerlink" href="#examples-enmalladostesis-module" title="Permalink to this headline">#</a></h2>
@@ -855,6 +864,7 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
             <ul>
 <li><a class="reference internal" href="#">Examples package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-Examples.EigenvaluesTest">Examples.EigenvaluesTest module</a></li>
 <li><a class="reference internal" href="#examples-enmalladostesis-module">Examples.EnmalladosTesis module</a></li>
 <li><a class="reference internal" href="#module-Examples.ExampleD">Examples.ExampleD module</a></li>
 <li><a class="reference internal" href="#module-Examples.ExampleE">Examples.ExampleE module</a></li>
