@@ -8,7 +8,7 @@ from typing import Union
 from tqdm import tqdm
 import numpy as np
 from .Geometry import Geometry
-from .Solvers import Lineal, NonLinealSolver
+from .Solvers import Lineal, NonLinealSolver, LinealSparse
 import logging
 from .FEMLogger import FEMLogger
 from functools import partialmethod
@@ -61,7 +61,7 @@ class Core():
         if not solver:
             self.solver = Lineal(self)
             if sparse:
-                self.solver = Lineal.LinealSparse(self)
+                self.solver = LinealSparse(self)
         else:
             self.solver = solver(self)
         if self.solver.type == 'non-lineal-newton':
