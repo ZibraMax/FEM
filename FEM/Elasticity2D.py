@@ -222,7 +222,7 @@ class PlaneStressOrthotropic(Core):
                 ax1.fill(Xs, Ys, color='white', zorder=30)
                 ax2.fill(Xs, Ys, color='white', zorder=30)
                 ax3.fill(Xs, Ys, color='white', zorder=30)
-        if not mask == None:
+        if mask:
             mask = np.array(mask)
             cornersnt = np.array(mask[::-1])
 

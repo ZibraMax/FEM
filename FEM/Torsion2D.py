@@ -118,7 +118,7 @@ class Torsion2D(Core):
                     ax2.fill(Xs, Ys, color='white', zorder=30)
                     ax3.fill(Xs, Ys, color='white', zorder=30)
                     ax4.fill(Xs, Ys, color='white', zorder=30)
-            if not mask == None:
+            if mask:
                 mask = np.array(mask)
                 cornersnt = np.array(mask[::-1])
 
@@ -155,7 +155,7 @@ class Torsion2D(Core):
                     Xs = np.array(hole['vertices'])[:, 0]
                     Ys = np.array(hole['vertices'])[:, 1]
                     ax1.fill(Xs, Ys, color='white', zorder=30)
-            if not mask == None:
+            if mask:
                 mask = np.array(mask)
                 cornersnt = np.array(mask[::-1])
 

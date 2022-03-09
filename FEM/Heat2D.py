@@ -158,7 +158,7 @@ class Heat2D(Core):
                 Ys = np.array(hole['vertices'])[:, 1]
                 ax.fill(Xs, Ys, color='white', zorder=30)
                 ax2.fill(Xs, Ys, color='white', zorder=30)
-        if not mask == None:
+        if mask:
             mask = np.array(mask)
             cornersnt = np.array(mask[::-1])
             xmin = np.min(cornersnt[:, 0])

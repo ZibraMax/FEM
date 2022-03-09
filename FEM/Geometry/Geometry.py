@@ -20,6 +20,9 @@ from .Region import Region, Region1D, Region2D
 from typing import Callable
 from tqdm import tqdm
 
+types = {'T1V': LTriangular, 'T2V': QTriangular, 'C1V': Quadrilateral, 'C2V': Serendipity, "L1V": LinealElement,
+         "L2V": QuadraticElement, "L3V": CubicElement, "B1V": Brick, "B2V": BrickO2, "TE1V": Tetrahedral, "TE2V": TetrahedralO2}
+
 
 class Geometry:
     """Define a general geometry structure
@@ -120,29 +123,7 @@ class Geometry:
             for j in range(self.nvn):
                 gdl[j, :] = (np.array(d)*self.nvn+j)
             gdl = gdl.astype(int)
-            if self.types[i] == 'T1V':
-                element = LTriangular(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'T2V':
-                element = QTriangular(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'C1V':
-                element = Quadrilateral(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'C2V':
-                element = Serendipity(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'L1V':
-                element = LinealElement(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'L2V':
-                element = QuadraticElement(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'L3V':
-                element = CubicElement(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'B1V':
-                element = Brick(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'B2V':
-                element = BrickO2(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'TE1V':
-                element = Tetrahedral(coords, gdl, fast=self.fast)
-            elif self.types[i] == 'TE2V':
-                element = TetrahedralO2(coords, gdl, fast=self.fast)
-            self.elements[i] = element
+            self.elements[i] = types[self.types[i]](coords, gdl, fast=self.fast)
         print('Done!')
 
     def show(self) -> None:
