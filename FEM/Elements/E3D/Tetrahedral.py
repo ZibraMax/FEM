@@ -78,8 +78,8 @@ class Tetrahedral(Element3D, TetrahedralScheme):
             [0, 2, 1]]
         self.face_element = LTriangular
 
-        Element3D.__init__(self, coords, coords, gdl, **kargs)
         TetrahedralScheme.__init__(self, n, **kargs)
+        Element3D.__init__(self, coords, coords, gdl, **kargs)
 
     def psis(self, _z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates
@@ -146,8 +146,8 @@ class TetrahedralO2(Element3D, TetrahedralScheme):
             [0, 2, 1, 6, 5, 4]]
         self.face_element = QTriangular
 
-        Element3D.__init__(self, coords, coords, gdl, **kargs)
         TetrahedralScheme.__init__(self, n, **kargs)
+        Element3D.__init__(self, coords, coords, gdl, **kargs)
 
     def psis(self, _z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates

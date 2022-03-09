@@ -80,8 +80,8 @@ class Brick(Element3D, BrickScheme):
             [4, 7, 3, 0]]
         self.face_element = Quadrilateral
 
-        Element3D.__init__(self, coords, coords, gdl, **kargs)
         BrickScheme.__init__(self, n, **kargs)
+        Element3D.__init__(self, coords, coords, gdl, **kargs)
 
     def psis(self, _z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates
@@ -157,8 +157,8 @@ class BrickO2(Element3D, BrickScheme):
             [4, 7, 3, 0, 19, 15, 11, 12]]
         self.face_element = Serendipity
 
-        Element3D.__init__(self, coords, coords, gdl, **kargs)
         BrickScheme.__init__(self, n, **kargs)
+        Element3D.__init__(self, coords, coords, gdl, **kargs)
 
     def psis(self, _z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates

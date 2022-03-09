@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     O = PlaneStressNonLocalSparse(
         geometria, E, v, t, l, z1, Lr=6*l, af=af, verbose=True)
-    O.solve()
+    O.solve(path="fast.csv")
     plt.show()
 
     _X, U1, U2, U3, U = O.profile([0, 0.019], [a, 0.019])

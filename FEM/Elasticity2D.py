@@ -654,11 +654,9 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         Fux = np.zeros([m, 1])
         Fvx = np.zeros([m, 1])
 
-        _x, _p = e.T(e.Z.T)
-        jac, dpz = e.J(e.Z.T)
-        detjac = np.linalg.det(jac)
-        _j = np.linalg.inv(jac)  # Jacobian inverse
-        dpx = _j @ dpz  # Shape function derivatives in global coordinates
+        _x, _p = e._x, e._p
+        detjac = e.detjac
+        dpx = e.dpx
 
         c11 = self.C11[ee]
         c12 = self.C12[ee]
@@ -724,11 +722,9 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
             mnl = len(enl.gdl.T)
             onl = [0.0]*mnl
             Knl = np.zeros([2*m, 2*mnl])
-            _xnl, _ = enl.T(enl.Z.T)
-            jacnl, dpznl = enl.J(enl.Z.T)
-            detjacnl = np.linalg.det(jacnl)
-            _jnl = np.linalg.inv(jacnl)
-            dpxnl = _jnl @ dpznl
+            _xnl = enl._x
+            detjacnl = enl.detjac
+            dpxnl = enl.dpx
 
             for k in range(len(e.Z)):
                 B = np.array([

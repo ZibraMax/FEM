@@ -68,8 +68,8 @@ class QTriangular(Element2D, TriangularScheme):
         self.borders = [e1, e2, e3]
 
         _coords = np.array([coords[i] for i in range(3)])
-        Element2D.__init__(self, coords, _coords, gdl, **kargs)
         TriangularScheme.__init__(self, n, **kargs)
+        Element2D.__init__(self, coords, _coords, gdl, **kargs)
 
     def psis(self, z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates

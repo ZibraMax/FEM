@@ -28,8 +28,8 @@ class Element1D(Element, LinearScheme):
 
         coords = np.array(coords).reshape([len(coords), 1])
         _coords = np.array([coords[0][0], coords[-1][0]])
-        Element.__init__(self, coords, _coords, gdl, **kargs)
         LinearScheme.__init__(self, n)
+        Element.__init__(self, coords, _coords, gdl, **kargs)
 
     def draw(self) -> None:
         """Create a element graph over domain

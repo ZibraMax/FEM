@@ -45,11 +45,11 @@ class Element():
             self.Qe = np.zeros([self.n, 1])
         self.Ue = np.zeros(self.gdl.shape)
 
-        self._x = None
-        self._p = None
-        self.detjac = None
-        self.dpx = None
-        self.dpz = None
+        self._x, self._p = self.T(self.Z.T)
+        self.jacs, self.dpz = self.J(self.Z.T)
+        self.detjac = np.linalg.det(self.jacs)
+        _j = np.linalg.inv(self.jacs)
+        self.dpx = _j @ self.dpz
 
     def restartMatrix(self) -> None:
         """Sets all element matrices and vectors to 0 state
@@ -69,9 +69,7 @@ class Element():
         Returns:
             np.ndarray: Global coordinates matrix and shape functions
         """
-        p = self._p
-        if self._p is None:
-            p = self.psis(z)
+        p = self.psis(z)
         return p@self.coords, p
 
     def TS(self, z):
@@ -118,9 +116,7 @@ class Element():
         Returns:
             np.ndarray: Jacobian's matrices and shape function derivatives
         """
-        dpsis = self.dpz
-        if self.dpz is None:
-            dpsis = self.dpsis(z).T
+        dpsis = self.dpsis(z).T
         return dpsis @ self.coords, dpsis
 
     def giveSolution(self, SVSolution: bool = False, domain: str = 'domain') -> np.ndarray:

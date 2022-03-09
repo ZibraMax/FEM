@@ -74,6 +74,8 @@ class LinealSparse(Lineal):
         logging.info('Solving...')
         self.solutions = [spsolve(self.system.K, self.system.S)]
         self.setSolution()
+        if path:
+            np.savetxt(path, self.system.U, delimiter=',')
         for e in self.system.elements:
             e.setUe(self.system.U)
         logging.info('Solved!')

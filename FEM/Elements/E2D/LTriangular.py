@@ -63,8 +63,8 @@ class LTriangular(Element2D, TriangularScheme):
                            np.array([[-1, -1]]), border=True)
 
         self.borders = [e1, e2, e3]
-        Element2D.__init__(self, coords, coords, gdl, **kargs)
         TriangularScheme.__init__(self, n, **kargs)
+        Element2D.__init__(self, coords, coords, gdl, **kargs)
 
     def psis(self, z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates
