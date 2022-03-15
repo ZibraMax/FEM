@@ -123,7 +123,8 @@ class Geometry:
             for j in range(self.nvn):
                 gdl[j, :] = (np.array(d)*self.nvn+j)
             gdl = gdl.astype(int)
-            self.elements[i] = types[self.types[i]](coords, gdl, fast=self.fast)
+            self.elements[i] = types[self.types[i]](
+                coords, gdl, fast=self.fast)
         print('Done!')
 
     def show(self) -> None:
