@@ -15,7 +15,7 @@ with open('input.txt') as f:
 
 types = ['B1V']*len(els)
 geo = Geometry3D(els, gdls, types, nvn=3, fast=True)
-geo.exportJSON('SPHERE_FERNANDO_202020.json')
+geo.exportJSON('SPHERE_FERNANDO_161616.json')
 
 # # PIRAMID MESH
 
