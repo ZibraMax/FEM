@@ -221,6 +221,7 @@ class NonLocalElasticity(Elasticity):
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
         self.name = 'Non Local Elasticity sparse'
+        self.zs = []
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
@@ -273,8 +274,9 @@ class NonLocalElasticity(Elasticity):
                 self.J += e.gdlm
                 self.Im += [gdl]*(3*m)
                 self.Jm += e.gdlm
-
-            self.V += (Ke*self.z1).flatten().tolist()
+            Ke_flat = (Ke).flatten().tolist()
+            self.zs += [1]*len(Ke_flat)
+            self.V += Ke_flat
             self.Vm += Me.flatten().tolist()
 
             e.knls = []
@@ -313,12 +315,20 @@ class NonLocalElasticity(Elasticity):
                 for gdl in e.gdlm:
                     self.I += [gdl]*(3*m)
                     self.J += enl.gdlm
-                self.V += (Knl*self.z2).flatten().tolist()
+                Knl_flat = (Knl).flatten().tolist()
+                self.V += (Knl).flatten().tolist()
+                self.zs += [0]*len(Knl_flat)
+        self.V_0 = np.array(self.V)
+        self.zs = np.array(self.zs)
 
     def ensembling(self) -> None:
         """Creation of the system sparse matrix. Force vector is ensembled in integration method
         """
         logging.info('Ensembling equation system...')
+        self.V = np.zeros(self.V_0.shape)
+        self.V[self.zs == 1] = self.V_0[self.zs == 1]*self.z1
+        self.V[self.zs == 0] = self.V_0[self.zs == 0]*self.z2
+
         self.K = sparse.coo_matrix(
             (self.V, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tolil()
         self.M = sparse.coo_matrix(
