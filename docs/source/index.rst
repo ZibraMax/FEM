@@ -9,7 +9,7 @@ AFEM's documentation
 Created by Arturo Rodriguez: da.rodriguezh@uniandes.edu.co
    
 .. toctree::
-   :maxdepth: 6
+   :maxdepth: 1
    :caption: Contents:
 
    modules
