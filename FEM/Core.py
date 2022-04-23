@@ -27,7 +27,7 @@ class Core():
 
     """
 
-    def __init__(self, geometry: Geometry, solver: Union[Lineal, NonLinealSolver] = None, sparse: bool = False, verbose: bool = False) -> None:
+    def __init__(self, geometry: Geometry, solver: Union[Lineal, NonLinealSolver] = None, sparse: bool = False, verbose: bool = False, name='') -> None:
         """Create the Finite Element problem.
 
             Args:
@@ -36,9 +36,10 @@ class Core():
                 solver (Union[Lineal, NonLinealSolver], optional): Finite Element solver. If not provided, Lineal solver is used.
                 sparse (bool, optional): To use sparse matrix formulation. Defaults to False
                 verbose (bool, optional): To print console messages and progress bars. Defaults to False.
+                name (str, optional): To print custom name on logging file. Defaults to ''.
 
         """
-        self.logger = FEMLogger()
+        self.logger = FEMLogger(name)
         if verbose:
             self.logger.setup_logging(console_log_level="info")
         else:

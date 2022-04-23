@@ -87,6 +87,14 @@ class FEMLogger():
     """Creation of a Logger for FEM purposes. Based on Python Logger by Fonic <https://github.com/fonic>   
     """
 
+    def __init__(self, ad: str = '') -> None:
+        """Creates a FEMLogger object
+
+        Args:
+            ad (str, optional): Aditional name. Defaults to ''.
+        """
+        self.additional_name = ad
+
     def setup_logging(self, console_log_output="stdout", console_log_level="warning", console_log_color=True, logfile_file=None, logfile_log_level="debug", logfile_log_color=False, log_line_template="%(color_on)s[%(levelname)-8s] %(message)s%(color_off)s"):
         """Set the logger
 
@@ -101,8 +109,11 @@ class FEMLogger():
 
         """
         script_name = os.path.splitext(os.path.basename(sys.argv[0]))[0]
+        additional_name = ''
+        if self.additional_name:
+            additional_name = '_' + self.additional_name
         if not logfile_file:
-            logfile_file = script_name + ".log"
+            logfile_file = script_name + additional_name + ".log"
         # Create logger
         # For simplicity, we use the root logger, i.e. call 'logging.getLogger()'
         # without name argument. This way we can simply use module methods for
@@ -164,7 +175,7 @@ class FEMLogger():
         [hndl.addFilter(TimeFilter()) for hndl in logger.handlers]
         self.start_time = datetime.now()
         logging.debug(
-            f'============================{__name__}============================')
+            f'============================{script_name}============================')
         logging.debug(
             f'Session started @ {self.start_time.strftime("%d/%m/%Y - %H:%M:%S")}')
         # Success

@@ -220,6 +220,171 @@ class NonLocalElasticity(Elasticity):
         nonlocals = self.geometry.detectNonLocal(Lr)
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
+        self.name = 'Non Local Elasticity sparse-lil'
+        self.KL = sparse.lil_matrix((self.ngdl, self.ngdl))
+        self.KNL = sparse.lil_matrix((self.ngdl, self.ngdl))
+        self.M = sparse.lil_matrix((self.ngdl, self.ngdl))
+
+    def elementMatrices(self) -> None:
+        """Calculate the element matrices usign Reddy's (2005) finite element model
+        """
+
+        for ee, e in enumerate(tqdm(self.elements, unit='Element')):
+            m = len(e.gdl.T)
+
+            # Gauss points in global coordinates and Shape functions evaluated in gauss points
+            _x, _p = e.T(e.Z.T)
+            # Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
+            jac, dpz = e.J(e.Z.T)
+            detjac = np.linalg.det(jac)
+            _j = np.linalg.inv(jac)  # Jacobian inverse
+            dpx = _j @ dpz  # Shape function derivatives in global coordinates
+
+            C = self.C[ee]
+            o = [0.0]*m
+            Ke = np.zeros([3*m, 3*m])
+            Me = np.zeros([3*m, 3*m])
+            Fe = np.zeros([3*m, 1])
+
+            for k in range(len(e.Z)):  # Iterate over gauss points on domain
+                B = np.array([
+                    [*dpx[k, 0, :], *o, *o],
+                    [*o, *dpx[k, 1, :], *o],
+                    [*o, *o, *dpx[k, 2, :]],
+                    [*dpx[k, 2, :], *o, *dpx[k, 0, :]],
+                    [*o, *dpx[k, 2, :], *dpx[k, 1, :]],
+                    [*dpx[k, 1, :], *dpx[k, 0, :], *o]])
+                P = np.array([
+                    [*_p[k], *o, *o],
+                    [*o, *_p[k], *o],
+                    [*o, *o, *_p[k]]])
+
+                Ke += (B.T@C@B)*detjac[k]*e.W[k]
+                Me += self.rho[ee]*(P.T@P)*detjac[k]*e.W[k]
+
+                _fx = self.fx(_x[k])
+                _fy = self.fy(_x[k])
+                _fz = self.fz(_x[k])
+
+                F = np.array([[_fx], [_fy], [_fz]])
+                Fe += (P.T @ F)*detjac[k]*e.W[k]
+
+            self.F[np.ix_(e.gdlm)] += Fe
+            self.KL[np.ix_(e.gdlm, e.gdlm)] += Ke
+            self.M[np.ix_(e.gdlm, e.gdlm)] += Me
+            # print('Ensembling equation system...')
+            # for e in tqdm(self.elements, unit='Element'):
+            #     self.K[np.ix_(e.gdlm, e.gdlm)] += e.Ke*self.z1
+            #     for i, eee in enumerate(e.enl):
+            #         enl = self.elements[eee]
+            #         self.K[np.ix_(e.gdlm, enl.gdlm)] += e.knls[i]*self.z2
+            #     self.F[np.ix_(e.gdlm)] += e.Fe
+            #     self.Q[np.ix_(e.gdlm)] += e.Qe
+            # print('Done!')
+
+            e.knls = []
+            for inl in tqdm(e.enl, unit=' Nolocal'):
+                enl = self.elements[inl]
+                mnl = len(enl.gdl.T)
+                Knl = np.zeros([3*m, 3*mnl])
+                _xnl, _ = enl.T(enl.Z.T)
+                jacnl, dpznl = enl.J(enl.Z.T)
+                detjacnl = np.linalg.det(jacnl)
+                _jnl = np.linalg.inv(jacnl)
+                dpxnl = _jnl @ dpznl
+
+                for k in range(len(e.Z)):
+                    B = np.array([
+                        [*dpx[k, 0, :], *o, *o],
+                        [*o, *dpx[k, 1, :], *o],
+                        [*o, *o, *dpx[k, 2, :]],
+                        [*dpx[k, 2, :], *o, *dpx[k, 0, :]],
+                        [*o, *dpx[k, 2, :], *dpx[k, 1, :]],
+                        [*dpx[k, 1, :], *dpx[k, 0, :], *o]])
+
+                    for knl in range(len(enl.Z)):
+                        ro = np.linalg.norm(_x[k]-_xnl[knl])/self.l
+                        azn = self.af(ro)
+                        Bnl = np.array([
+                            [*dpxnl[knl, 0, :], *o, *o],
+                            [*o, *dpxnl[knl, 1, :], *o],
+                            [*o, *o, *dpxnl[knl, 2, :]],
+                            [*dpxnl[knl, 2, :], *o, *dpxnl[knl, 0, :]],
+                            [*o, *dpxnl[knl, 2, :], *dpxnl[knl, 1, :]],
+                            [*dpxnl[knl, 1, :], *dpxnl[knl, 0, :], *o]])
+
+                        Knl += azn*(Bnl.T@C@B)*detjac[k] * \
+                            e.W[k]*detjacnl[knl]*enl.W[knl]
+                self.KNL[np.ix_(e.gdlm, enl.gdlm)] += Knl
+
+    def ensembling(self) -> None:
+        """Creation of the system sparse matrix. Force vector is ensembled in integration method
+        """
+        logging.info('Ensembling equation system...')
+        self.K = self.KL*self.z1 + self.KNL*self.z2
+        self.M = self.M.tocsr()
+        logging.info('Done!')
+
+
+class NonLocalElasticityFromTensor(NonLocalElasticity):
+
+    def __init__(self, geometry: Geometry, C: np.ndarray, rho: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
+        NonLocalElasticity.__init__(
+            self, geometry, 0.0, 0.0, rho, l, z1, Lr, af, fx, fy, fz, **kargs)
+        self.C = [C]*len(geometry.elements)
+
+
+class ElasticityFromTensor(Elasticity):
+
+    def __init__(self, geometry: Geometry, C: np.ndarray, rho: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
+        Elasticity.__init__(self, geometry, 0.0, 0.0,
+                            rho, fx, fy, fz, **kargs)
+        self.C = [C]*len(geometry.elements)
+
+
+class NonLocalElasticityLegacy(Elasticity):
+    """Creates a 3D Elasticity problem
+
+    Args:
+        geometry (Geometry): Input 3D geometry
+        E (Tuple[float, list]): Young Moduli
+        v (Tuple[float, list]): Poisson coeficient
+        rho (Tuple[float, list]): Density.
+        l (float): Internal lenght
+        z1 (float): Z1 factor
+        Lr (float): Influence distance
+        af (Callable): Atenuation function
+        fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+        fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+        fz (Callable, optional): Force in z direction. Defaults to lambdax:0.
+    """
+
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], rho: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
+        """Creates a 3D Elasticity problem
+
+        Args:
+            geometry (Geometry): Input 3D geometry
+            E (Tuple[float, list]): Young Moduli
+            v (Tuple[float, list]): Poisson coeficient
+            rho (Tuple[float, list]): Density.
+            l (float): Internal lenght
+            z1 (float): Z1 factor
+            Lr (float): Influence distance
+            af (Callable): Atenuation function
+            fx (Callable, optional): Force in x direction. Defaults to lambdax:0.
+            fy (Callable, optional): Force in y direction. Defaults to lambdax:0.
+            fz (Callable, optional): Force in z direction. Defaults to lambdax:0.
+        """
+        Elasticity.__init__(self, geometry, E, v, rho, fx, fy, fz, **kargs)
+        self.l = l
+        self.z1 = z1
+        self.z2 = 1.0-z1
+
+        self.af = af
+        self.Lr = Lr
+        nonlocals = self.geometry.detectNonLocal(Lr)
+        for e, dno in zip(self.elements, nonlocals):
+            e.enl = dno
         self.name = 'Non Local Elasticity sparse'
         self.zs = []
 
@@ -334,19 +499,3 @@ class NonLocalElasticity(Elasticity):
         self.M = sparse.coo_matrix(
             (self.Vm, (self.Im, self.Jm)), shape=(self.ngdl, self.ngdl)).tocsr()
         logging.info('Done!')
-
-
-class NonLocalElasticityFromTensor(NonLocalElasticity):
-
-    def __init__(self, geometry: Geometry, C: np.ndarray, rho: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
-        NonLocalElasticity.__init__(
-            self, geometry, 0.0, 0.0, rho, l, z1, Lr, af, fx, fy, fz, **kargs)
-        self.C = [C]*len(geometry.elements)
-
-
-class ElasticityFromTensor(Elasticity):
-
-    def __init__(self, geometry: Geometry, C: np.ndarray, rho: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
-        Elasticity.__init__(self, geometry, 0.0, 0.0,
-                            rho, fx, fy, fz, **kargs)
-        self.C = [C]*len(geometry.elements)
