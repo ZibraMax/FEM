@@ -13,7 +13,7 @@ F_BUILD/
 AFEM.egg-info/
 *.pyc
 secrets.txt
-sendEmail.py
+# sendEmail.py
 *.cpython-37.pyc
 *.csv
 *.log
