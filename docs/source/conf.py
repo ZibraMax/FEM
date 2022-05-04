@@ -10,26 +10,19 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+import importlib.metadata
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../..'))
-
+sys.path.insert(0, os.path.abspath('../../src/'))
+sys.path.insert(0, os.path.abspath('../../'))
+__version__ = importlib.metadata.version('FEM')
 # -- Project information -----------------------------------------------------
 
 project = 'FEM'
-copyright = '2021, Arturo Rodriguez'
+copyright = '2022, Arturo Rodriguez'
 author = 'Arturo Rodriguez'
 about = {}
-try:
-    with open('../../'+project+'/__version__.py') as f:
-        exec(f.read(), about)
-        release = about['__version__']
-        print('Building FEM ' + release + '...')
-except:
-    raise Exception("ERROR PARSING MODULE VERSION FILE")
-
-if not release:
-    raise Exception("ERROR PARSING MODULE VERSION FILE")
+release = __version__
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -38,7 +31,7 @@ if not release:
 
 
 extensions = ['sphinx.ext.autodoc',
-              'sphinx.ext.napoleon', 'm2r2']
+              'sphinx.ext.napoleon', 'm2r2', 'sphinx.ext.coverage']
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -58,6 +51,6 @@ html_theme = 'furo'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = []
 # source_suffix = '.rst'
 source_suffix = ['.rst', '.md']

@@ -1,6 +1,7 @@
 # Specify filepatterns you want git to ignore.
 
 __pycache__/
+.venv/
 ipynb_checkpoints/
 References/
 Matrices/
