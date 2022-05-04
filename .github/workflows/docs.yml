@@ -22,7 +22,7 @@ jobs:
                   cd docs
                   make clean
                   cd ..
-                  sphinx-apidoc -f --module-first -o ./docs/source/FEM ./src/PSHA
+                  sphinx-apidoc -f --module-first -o ./docs/source/FEM ./src/FEM
                   sphinx-apidoc -f --module-first -o ./docs/source/Test ./Test;
                   sphinx-apidoc -f --module-first -o ./docs/source/Examples ./Examples;
                   cd docs
