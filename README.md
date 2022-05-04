@@ -20,6 +20,17 @@ Use the package manager [pip](https://pypi.org/project/AFEM/) to install AFEM.
 pip install AFEM
 ```
 
+From source:
+
+```bash
+git clone https://github.com/ZibraMax/FEM
+cd FEM
+python -m venv .venv
+python -m pip install build
+python -m build
+python -m pip install -e .[docs] # Basic instalation with docs
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
