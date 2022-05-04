@@ -12,7 +12,9 @@ Created by Arturo Rodriguez: da.rodriguezh@uniandes.edu.co
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+   FEM/modules
+   Test/modules
+   Examples/modules
    
    
    

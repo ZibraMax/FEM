@@ -1,0 +1,583 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Examples" href="../Examples/modules.html" /><link rel="prev" title="Test" href="modules.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Test package - FEM 1.0.31 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">FEM 1.0.31 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">FEM 1.0.31 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../FEM/modules.html">FEM</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../FEM/FEM.html">FEM package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../FEM/FEM.Elements.html">FEM.Elements package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../FEM/FEM.Elements.E1D.html">FEM.Elements.E1D package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../FEM/FEM.Elements.E2D.html">FEM.Elements.E2D package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../FEM/FEM.Elements.E3D.html">FEM.Elements.E3D package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../FEM/FEM.Geometry.html">FEM.Geometry package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FEM/FEM.Solvers.html">FEM.Solvers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FEM/FEM.Utils.html">FEM.Utils package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">Test</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Test package</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Examples/modules.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/Examples.html">Examples package</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-Test">
+<span id="test-package"></span><h1>Test package<a class="headerlink" href="#module-Test" title="Permalink to this headline">#</a></h1>
+<p>Unite testing and numerical validation</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="module-Test.test_Geometry">
+<span id="test-test-geometry-module"></span><h2>Test.test_Geometry module<a class="headerlink" href="#module-Test.test_Geometry" title="Permalink to this headline">#</a></h2>
+<p>Geometry tests</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Test.test_Geometry.TestGeometry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Geometry.</span></span><span class="sig-name descname"><span class="pre">TestGeometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Test the geometry class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_Geometry.TestGeometry.test_meshRect">
+<span class="sig-name descname"><span class="pre">test_meshRect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry.test_meshRect" title="Permalink to this definition">#</a></dt>
+<dd><p>Creation a rectangular geometry file</p>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-Test.test_Geometry2D">
+<span id="test-test-geometry2d-module"></span><h2>Test.test_Geometry2D module<a class="headerlink" href="#module-Test.test_Geometry2D" title="Permalink to this headline">#</a></h2>
+<p>Geometry tests</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Test.test_Geometry2D.TestGeometry2D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Geometry2D.</span></span><span class="sig-name descname"><span class="pre">TestGeometry2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry2D.TestGeometry2D" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Test the geometry class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_Geometry2D.TestGeometry2D.test_addRegions">
+<span class="sig-name descname"><span class="pre">test_addRegions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry2D.TestGeometry2D.test_addRegions" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if the generated geometry can be modified with regions from coordinates. Then saves the new geometry to a file</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_Geometry2D.TestGeometry2D.test_importJSON">
+<span class="sig-name descname"><span class="pre">test_importJSON</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry2D.TestGeometry2D.test_importJSON" title="Permalink to this definition">#</a></dt>
+<dd><p>Import of geometry using file</p>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-Test.test_PlaneStress">
+<span id="test-test-planestress-module"></span><h2>Test.test_PlaneStress module<a class="headerlink" href="#module-Test.test_PlaneStress" title="Permalink to this headline">#</a></h2>
+<section id="numerical-validation-of-the-planestress-class">
+<h3>Numerical validation of the PlaneStress Class<a class="headerlink" href="#numerical-validation-of-the-planestress-class" title="Permalink to this headline">#</a></h3>
+<section id="tests">
+<h4>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">#</a></h4>
+<p>5 tests where made for validating the PlaneStress class.</p>
+<p>All of these 5 test are based in the same procedure. The objective is to compare the solution of the displacements profile in a cantilever beam.</p>
+</section>
+<section id="geometry">
+<h4>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">#</a></h4>
+<p>The input geometry has 400 elements, 10 in y direction, 40 in x directions. The input geometry file can be generated using TestGeometry class.</p>
+<p>The beam geometrical properties are:</p>
+<ul class="simple">
+<li><p>b = 0.3 m</p></li>
+<li><p>h = 0.5 m</p></li>
+<li><p>L = 2 m</p></li>
+<li><p>E = 20000 KPa</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma=23.54\frac{kN}{m^3}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v=0.2\)</span></p></li>
+</ul>
+<p>All tests are compared whit the analitycal solution of the beam deflections.</p>
+<p>The results are obtained using the profile option of the package. The location of all profiles are in the centroid of the beam alog the y axis.</p>
+<p>The Plane Stress formulation include shear effects. So, It is needed to obtain analytical solutions that includes such effects. The easyest way is to obtain the analytical solution using the virtual work statement.</p>
+</section>
+<section id="virtual-work-procedure-for-a-cantilever-beam">
+<h4>Virtual work procedure for a cantilever beam<a class="headerlink" href="#virtual-work-procedure-for-a-cantilever-beam" title="Permalink to this headline">#</a></h4>
+<p>The virtual work statement is useful for calculate the dispacements in a given point. The displacements with felxion and shear effects can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\hat{p}U=\int_{0}^{L} \frac{\hat{M}M}{EI} dx + \int_{0}^{L} \frac{\hat{V}V}{kAG} dx\]</div></div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{p}\)</span> is point load applied in the place where the displacement want to be calculated. The load magnitude is 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{M}\)</span> is the moment diagram produced by the load <span class="math notranslate nohighlight">\(\hat{p}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{V}\)</span> is the shear diagram produced by the load <span class="math notranslate nohighlight">\(\hat{p}\)</span>.</p></li>
+</ul>
+<p>For calculate the displacements in any point of the element lenght, the load <span class="math notranslate nohighlight">\(\hat{p}\)</span> have to be applied in a distance <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<figure class="align-center" id="id2">
+<img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png"/>
+<figcaption>
+<p><span class="caption-text">Moment and shear diagram for virtual load.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Since the diagrams are only different from 0 in length z, the virtual work statement can be rewritten as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\hat{p}U=\int_{0}^{z} \frac{\hat{M}M}{EI} dx + \int_{0}^{z} \frac{\hat{V}V}{kAG} dx\]</div></div>
+<p><span class="math notranslate nohighlight">\(M\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are case dependent an these expresions will be developed for each test case.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_PlaneStress.</span></span><span class="sig-name descname"><span class="pre">TestPlaneStress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Plane Stress tests
+1. Uniform load applied as an uniform load in all elements.
+2. Uniform load applied as a external load in the superior elements of the beam.
+3. Point load applied in the beam lenght. The load is applied as a shear stress load.
+4. Point load applied in the beam lenght. The load is applied as point load in the corner node.
+5. Triangular load applied in the superior elements of the beam.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_1" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=PL\left(1-\frac{x}{L}\right)\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=P\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{P^2}{6EI}\left(3L-x\right)+\frac{Px}{kAG}\]</div></div>
+<figure class="align-default" id="id3">
+<img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_1.png"/>
+<figcaption>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_point_2" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=PL\left(1-\frac{x}{L}\right)\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=P\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{P^2}{6EI}\left(3L-x\right)+\frac{Px}{kAG}\]</div></div>
+<figure class="align-default" id="id4">
+<img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_2.png"/>
+<figcaption>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_triangular_3">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_triangular_3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_triangular_3" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=\frac{-WL^2}{6}+\frac{LW}{2}x-\frac{x}{2}\left(Wx\left(1-\frac{x}{L}\right)\right)-\frac{2}{3}x\left(\frac{Wx^2}{2L}\right)\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=\frac{Wx^2}{2L}+Wx\left(1-\frac{x}{L}\right)-\frac{LW}{2}\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{Wx^2}{120LEI}\left(10L^3-10L^2x+5Lx^2-x^3\right)+\frac{Wx}{6kAGL}\left(x^2-3Lx+3L^2\right)\]</div></div>
+<figure class="align-default" id="id5">
+<img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_triangular_3.png"/>
+<figcaption>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_1">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_1" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=WLx-\frac{WL^2}{2}-\frac{Wx^2}{2}\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=W(L-x)\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{Wx^2}{24EI}\left(x^2+6L^2-4Lx\right)+\frac{W}{kAG}\left(Lx-\frac{x^2}{2}\right)\]</div></div>
+<figure class="align-default" id="id6">
+<img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_1.png"/>
+<figcaption>
+<p><span class="caption-text">Test result: FEM solution compared whit analytical solution</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_2">
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_PlaneStress.TestPlaneStress.test_cantilever_beam_uniform_2" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if the FEM solution matches the next analytical solution:</p>
+<p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[M=WLx-\frac{WL^2}{2}-\frac{Wx^2}{2}\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[V=W(L-x)\]</div></div>
+<p>Solving the virtual work statement, the analitycal displacement can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[U = \frac{Wx^2}{24EI}\left(x^2+6L^2-4Lx\right)+\frac{W}{kAG}\left(Lx-\frac{x^2}{2}\right)\]</div></div>
+<figure class="align-default" id="id7">
+<img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_2.png"/>
+<figcaption>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</dd></dl>
+</dd></dl>
+</section>
+</section>
+</section>
+<section id="module-Test.test_Torsion2D">
+<span id="test-test-torsion2d-module"></span><h2>Test.test_Torsion2D module<a class="headerlink" href="#module-Test.test_Torsion2D" title="Permalink to this headline">#</a></h2>
+<section id="numerical-validation-of-the-trosion2d-class">
+<h3>Numerical validation of the Trosion2D Class<a class="headerlink" href="#numerical-validation-of-the-trosion2d-class" title="Permalink to this headline">#</a></h3>
+<section id="id1">
+<h4>Tests<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<p>2 tests where made for validating the Torsion2D class. The objective of the test is to calculate the calculating polar moment of inertia (J) of a section.</p>
+<figure class="align-center">
+<img alt="Problem statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/CS.png"/>
+</figure>
+</section>
+<section id="calculating-polar-moment-of-inertia-j">
+<h4>Calculating polar moment of inertia (J)<a class="headerlink" href="#calculating-polar-moment-of-inertia-j" title="Permalink to this headline">#</a></h4>
+<p>Using the formulation of the Torsion2D class, the polar moment of inertia can be calculated as:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[J = \frac{2}{G}\int_{A}{\Psi}dA\]</div></div>
+<p>Where <span class="math notranslate nohighlight">\(\Psi\)</span> is the main variable solution of the Torsion2D class.</p>
+<p>The integral can be computed by element using the following expresion:”</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[\int_{A}{\Psi}dA = \sum_{j=1}^{n}I(e_j)\]</div></div>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[I(e)= \sum_{i=1}^{N}(U(\zeta_i)|Jac_i(\zeta_i)|)W_i\]</div></div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(e\)</span> is a single area element.</p></li>
+<li><p><span class="math notranslate nohighlight">\(|Jac(\zeta_i)|\)</span> is the determinant of the jacobian matrix.</p></li>
+<li><p><span class="math notranslate nohighlight">\(U(\zeta_i)\)</span> is the interpolated solution of the main variable.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\zeta_i\)</span> is the Gauss-Legendre quadrature point.</p></li>
+<li><p><span class="math notranslate nohighlight">\(W_i\)</span> is the weight of the i-Gauss point.</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> is the number of Gauss points.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> is the number of elements.</p></li>
+</ul>
+</section>
+<section id="hollow-shapes">
+<h4>Hollow shapes<a class="headerlink" href="#hollow-shapes" title="Permalink to this headline">#</a></h4>
+<p>Due to the boundary conditions of the equation, it is not possible to introduce holes in the geometry.
+The holes can be modeled using elements affecting the shear modulus. The hole elements will have relatively close to zero shear modulus, while the material elements will have a higher shear modulus.
+In this case, a shear modulus of 80000 is used for material elements and a shear modulus of 1*10^-6 is used for hole elements.</p>
+<p>A rotation angle of 1 is selected for all test cases.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Test.test_Torsion2D.TestTorsion2D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Torsion2D.</span></span><span class="sig-name descname"><span class="pre">TestTorsion2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Torsion2D Tests
+1. Hollow circle.
+2. Circle.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_Torsion2D.TestTorsion2D.test_inertia_circle">
+<span class="sig-name descname"><span class="pre">test_inertia_circle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D.test_inertia_circle" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if the polar moment of inertia (J) matches the analytical solution for circle. In this case, the analytical solutions is given by:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[J = \frac{\pi}{2}\left(r^4\right)\]</div></div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r\)</span> is the radius.</p></li>
+</ul>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Test.test_Torsion2D.TestTorsion2D.test_inertia_hollow_circle">
+<span class="sig-name descname"><span class="pre">test_inertia_hollow_circle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D.test_inertia_hollow_circle" title="Permalink to this definition">#</a></dt>
+<dd><p>Test if the polar moment of inertia (J) matches the analytical solution for a hollow circle. In this case, the analytical solutions is given by:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[J = \frac{\pi}{2}\left(r_1^4-r_2^4\right)\]</div></div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r_1\)</span> is the external radius.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_2\)</span> is the inner radius.</p></li>
+</ul>
+</dd></dl>
+</dd></dl>
+</section>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../Examples/modules.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Examples</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="modules.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Test</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Arturo Rodriguez
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Test package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-Test.test_Geometry">Test.test_Geometry module</a></li>
+<li><a class="reference internal" href="#module-Test.test_Geometry2D">Test.test_Geometry2D module</a></li>
+<li><a class="reference internal" href="#module-Test.test_PlaneStress">Test.test_PlaneStress module</a><ul>
+<li><a class="reference internal" href="#numerical-validation-of-the-planestress-class">Numerical validation of the PlaneStress Class</a><ul>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+<li><a class="reference internal" href="#geometry">Geometry</a></li>
+<li><a class="reference internal" href="#virtual-work-procedure-for-a-cantilever-beam">Virtual work procedure for a cantilever beam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Test.test_Torsion2D">Test.test_Torsion2D module</a><ul>
+<li><a class="reference internal" href="#numerical-validation-of-the-trosion2d-class">Numerical validation of the Trosion2D Class</a><ul>
+<li><a class="reference internal" href="#id1">Tests</a></li>
+<li><a class="reference internal" href="#calculating-polar-moment-of-inertia-j">Calculating polar moment of inertia (J)</a></li>
+<li><a class="reference internal" href="#hollow-shapes">Hollow shapes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
