@@ -14,12 +14,8 @@ if __name__ == '__main__':
     P = 1
     a = 5
 
-    geometria = Geometry.loadmsh(
-        'Examples/Mesh_tests/EnmalladoTesis.msh', fast=True)
-    geometria.generateRegionFromCoords([0, 0], [a, 0])
-    geometria.generateRegionFromCoords([a, 0], [a, a])
-    geometria.generateRegionFromCoords([a, a], [0, a])
-    geometria.generateRegionFromCoords([0, a], [0, 0])
+    geometria = Geometry.importJSON(
+        'Examples/Mesh_tests/rect2.json', fast=True)
     cb = geometria.cbFromRegion(3, 0, 1)
     cb += geometria.cbFromRegion(3, 0, 2)
     cb += geometria.cbFromRegion(1, u, 1)

@@ -132,6 +132,7 @@ class Core():
             ncb = len(cb)
             border_conditions[np.ix_(cb[:, 0].astype(int))
                               ] = cb[:, 1].reshape([ncb, 1])
+            # FIXME esto puede resultar en pasar la matriz dwe lil a densa!!
             self.S = self.S - (border_conditions.T@self.K).T
             for i in tqdm(self.cbe, unit=' Essential'):
                 self.K[int(i[0]), :] = 0

@@ -350,12 +350,10 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
             geometry.fast = True
             geometry.initialize()
         PlaneStressOrthotropic.__init__(
-            self, geometry, E1, E2, G12, v12, t, rho, fx, fy, sparse=True, solver=LinealSparse, **kargs)
-        self.I = []
-        self.J = []
-        self.V = []
+            self, geometry, E1, E2, G12, v12, t, rho, fx, fy, sparse=True, **kargs)
+        self.K = sparse.lil_matrix((self.ngdl, self.ngdl))
         if self.calculateMass:
-            self.Vm = []
+            self.M = sparse.lil_matrix((self.ngdl, self.ngdl))
         self.name = 'Plane Stress Orthotropic sparse'
 
     def elementMatrices(self) -> None:
@@ -424,21 +422,16 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
             Fe[np.ix_(subm[1])] += Fvx
             self.F[np.ix_(e.gdlm)] += Fe
 
-            for gdl in e.gdlm:
-                self.I += [gdl]*(2*m)
-                self.J += e.gdlm
-            self.V += Ke.flatten().tolist()
+            self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
+
             if self.calculateMass:
-                self.Vm += Me.flatten().tolist()
+                self.M[np.ix_(e.gdlm, e.gdlm)] += Me
 
     def ensembling(self) -> None:
         """Creation of the system sparse matrix. Force vector is ensembled in integration method"""
         logging.info('Ensembling equation system...')
-        self.K = sparse.coo_matrix(
-            (self.V, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tolil()
         if self.calculateMass:
-            self.M = sparse.coo_matrix(
-                (self.Vm, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tocsr()
+            self.M = self.M.tocsr()
         logging.info('Done!')
 
 
@@ -636,6 +629,11 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
             e.enl = dno
         self.name = 'Plane Stress Isotropic non local sparse'
 
+        self.KL = sparse.lil_matrix((self.ngdl, self.ngdl))
+        self.KNL = sparse.lil_matrix((self.ngdl, self.ngdl))
+        if self.calculateMass:
+            self.M = sparse.lil_matrix((self.ngdl, self.ngdl))
+
     def elementMatrices(self) -> None:
         """Calculate the elements matrices
         """
@@ -709,12 +707,10 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         Fe[np.ix_(subm[1])] += Fvx
         self.F[np.ix_(e.gdlm)] += Fe
 
-        for gdl in e.gdlm:
-            self.I += [gdl]*(2*m)
-            self.J += e.gdlm
-        self.V += (Ke*self.z1).flatten().tolist()
+        self.KL[np.ix_(e.gdlm, e.gdlm)] += Ke
+
         if self.calculateMass:
-            self.Vm += Me.flatten().tolist()
+            self.M[np.ix_(e.gdlm, e.gdlm)] += Me
 
         # e.knls = []
         for inl in tqdm(e.enl, unit=' Nolocal'):
@@ -743,10 +739,7 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
                     Knl += self.t[ee]*self.t[inl]*azn*(Bnl.T@C@B)*detjac[k] * \
                         e.W[k]*detjacnl[knl]*enl.W[knl]
             # e.knls.append(Knl)
-            for gdl in e.gdlm:
-                self.I += [gdl]*(m+mnl)
-                self.J += enl.gdlm
-            self.V += (Knl*self.z2).flatten().tolist()
+            self.KNL[np.ix_(e.gdlm, enl.gdlm)] += Knl
 
     def profile(self, p0: list, p1: list, n: float = 100) -> None:
         """Generate a profile between selected points
@@ -795,3 +788,12 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         ax.set_xlabel('d')
         ax.set_ylabel(r'$\varepsilon_{xy}$')
         return _X, U1, U2, U3, U
+
+    def ensembling(self) -> None:
+        """Creation of the system sparse matrix. Force vector is ensembled in integration method
+        """
+        logging.info('Ensembling equation system...')
+        self.K = self.KL*self.z1 + self.KNL*self.z2
+        if self.calculateMass:
+            self.M = self.M.tocsr()
+        logging.info('Done!')
