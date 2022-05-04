@@ -67,10 +67,7 @@ from FEM.Geometry.Geometry import Geometry2D
 from FEM.Elasticity2D import PlaneStressSparse
 import matplotlib.pyplot as plt
 import unittest
-import os
 import numpy as np
-import sys
-import inspect
 
 FILENAME = 'Test/resources/beam_ws.json'
 TOL = 0.1
@@ -420,10 +417,4 @@ class TestPlaneStress(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    currentdir = os.path.dirname(os.path.abspath(
-        inspect.getfile(inspect.currentframe())))
-    parentdir = os.path.dirname(currentdir)
-    sys.path.insert(0, parentdir)
-    from FEM.Geometry.Geometry import Geometry2D
-    from FEM.Elasticity2D import PlaneStress
     unittest.main()

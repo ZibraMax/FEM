@@ -172,29 +172,13 @@ if __name__ == '__main__':
     # Creación de elementos
     import numpy as np
     import matplotlib.pyplot as plt
-    try:
-        from FEM.Elements.E2D.Serendipity import Serendipity
-        from FEM.Elements.E2D.Quadrilateral import Quadrilateral
-        from FEM.Elements.E2D.LTriangular import LTriangular
-        from FEM.Elements.E2D.QTriangular import QTriangular
+    from FEM.Elements.E2D.Serendipity import Serendipity
+    from FEM.Elements.E2D.Quadrilateral import Quadrilateral
+    from FEM.Elements.E2D.LTriangular import LTriangular
+    from FEM.Elements.E2D.QTriangular import QTriangular
 
-        from FEM.Elements.E1D.LinealElement import LinealElement
-        from FEM.Elements.E1D.QuadraticElement import QuadraticElement
-    except Exception as e:
-        import os
-        import inspect
-        import sys
-        currentdir = os.path.dirname(os.path.abspath(
-            inspect.getfile(inspect.currentframe())))
-        parentdir = os.path.dirname(currentdir)
-        sys.path.insert(0, parentdir)
-        from FEM.Elements.E2D.Serendipity import Serendipity
-        from FEM.Elements.E2D.Quadrilateral import Quadrilateral
-        from FEM.Elements.E2D.LTriangular import LTriangular
-        from FEM.Elements.E2D.QTriangular import QTriangular
-
-        from FEM.Elements.E1D.LinealElement import LinealElement
-        from FEM.Elements.E1D.QuadraticElement import QuadraticElement
+    from FEM.Elements.E1D.LinealElement import LinealElement
+    from FEM.Elements.E1D.QuadraticElement import QuadraticElement
 
     elements = []
 

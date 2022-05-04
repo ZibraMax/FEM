@@ -56,21 +56,9 @@ Code
 """
 
 if __name__ == '__main__':
-    try:
-        import matplotlib.pyplot as plt
-        from FEM.Torsion2D import Torsion2D
-        from FEM.Geometry import Geometry2D, Delaunay
-    except Exception as e:
-        import os
-        import inspect
-        import sys
-        currentdir = os.path.dirname(os.path.abspath(
-            inspect.getfile(inspect.currentframe())))
-        parentdir = os.path.dirname(currentdir)
-        sys.path.insert(0, parentdir)
-        import matplotlib.pyplot as plt
-        from FEM.Torsion2D import Torsion2D
-        from FEM.Geometry import Geometry2D, Delaunay
+    import matplotlib.pyplot as plt
+    from FEM.Torsion2D import Torsion2D
+    from FEM.Geometry import Geometry2D, Delaunay
 
     a = 1
     b = 1

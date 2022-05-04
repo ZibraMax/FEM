@@ -68,21 +68,9 @@ Code
 
 
 if __name__ == '__main__':
-    try:
-        import matplotlib.pyplot as plt
-        from FEM.EDO1D import EDO1D
-        from FEM.Geometry import Lineal
-    except Exception as e:
-        import os
-        import inspect
-        import sys
-        currentdir = os.path.dirname(os.path.abspath(
-            inspect.getfile(inspect.currentframe())))
-        parentdir = os.path.dirname(currentdir)
-        sys.path.insert(0, parentdir)
-        import matplotlib.pyplot as plt
-        from FEM.EDO1D import EDO1D
-        from FEM.Geometry import Lineal
+    import matplotlib.pyplot as plt
+    from FEM.EDO1D import EDO1D
+    from FEM.Geometry import Lineal
 
     def a(x): return (x[0]**2-2)
     def c(x): return (x[0]-3)

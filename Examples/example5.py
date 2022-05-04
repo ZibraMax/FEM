@@ -68,23 +68,10 @@ Code
 
 if __name__ == '__main__':
 
-    try:
-        import matplotlib.pyplot as plt
-        from FEM.Elasticity2D import PlaneStressSparse
-        from FEM.Geometry import Geometry2D
-        from FEM.Utils import enmalladoFernando
-    except Exception as e:
-        import os
-        import inspect
-        import sys
-        currentdir = os.path.dirname(os.path.abspath(
-            inspect.getfile(inspect.currentframe())))
-        parentdir = os.path.dirname(currentdir)
-        sys.path.insert(0, parentdir)
-        import matplotlib.pyplot as plt
-        from FEM.Elasticity2D import PlaneStressSparse
-        from FEM.Geometry import Geometry2D
-        from FEM.Utils import enmalladoFernando
+    import matplotlib.pyplot as plt
+    from FEM.Elasticity2D import PlaneStressSparse
+    from FEM.Geometry import Geometry2D
+    from FEM.Utils import enmalladoFernando
 
     a = 5
     u0 = 0.001

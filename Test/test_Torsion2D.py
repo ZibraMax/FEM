@@ -61,10 +61,7 @@ from FEM.Torsion2D import Torsion2D
 import matplotlib.pyplot as plt
 import matplotlib.path as mpltPath
 import unittest
-import os
 import numpy as np
-import sys
-import inspect
 
 from FEM.Geometry.Region import Region1D
 
@@ -162,11 +159,4 @@ class TestTorsion2D(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    currentdir = os.path.dirname(os.path.abspath(
-        inspect.getfile(inspect.currentframe())))
-    parentdir = os.path.dirname(currentdir)
-    sys.path.insert(0, parentdir)
-    from FEM.Geometry import Delaunay
-    from FEM.Torsion2D import Torsion2D
-    from FEM.Utils.polygonal import giveCoordsCircle
     unittest.main()

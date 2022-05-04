@@ -3,9 +3,6 @@
 from FEM.Utils import polygonal
 from FEM.Geometry.Geometry import Geometry
 import unittest
-import os
-import sys
-import inspect
 FILENAME = 'Test/resources/beam.json'
 
 
@@ -27,10 +24,4 @@ class TestGeometry(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    currentdir = os.path.dirname(os.path.abspath(
-        inspect.getfile(inspect.currentframe())))
-    parentdir = os.path.dirname(currentdir)
-    sys.path.insert(0, parentdir)
-    from FEM.Geometry.Geometry import Geometry
-    from FEM.Utils import polygonal
     unittest.main()
