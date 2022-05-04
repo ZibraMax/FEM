@@ -16,8 +16,8 @@ Created by Arturo Rodriguez: da.rodriguezh@uniandes.edu.co
    
    
    
-   Indices and tables
-   ==================
+Indices and tables
+==================
    
    * :ref:`genindex`
    * :ref:`modindex`
