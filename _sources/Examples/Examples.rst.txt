@@ -9,22 +9,6 @@ Examples package
 Submodules
 ----------
 
-Examples.EigenvaluesTest module
--------------------------------
-
-.. automodule:: Examples.EigenvaluesTest
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.EnmalladosTesis module
--------------------------------
-
-.. automodule:: Examples.EnmalladosTesis
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Examples.ExampleD module
 ------------------------
 
@@ -77,22 +61,6 @@ Examples.TestsEigenvalues module
 --------------------------------
 
 .. automodule:: Examples.TestsEigenvalues
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.a module
------------------
-
-.. automodule:: Examples.a
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.b module
------------------
-
-.. automodule:: Examples.b
    :members:
    :undoc-members:
    :show-inheritance:
@@ -405,6 +373,22 @@ Examples.example5 module
 ------------------------
 
 .. automodule:: Examples.example5
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example6 module
+------------------------
+
+.. automodule:: Examples.example6
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example7 module
+------------------------
+
+.. automodule:: Examples.example7
    :members:
    :undoc-members:
    :show-inheritance:
