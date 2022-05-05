@@ -149,6 +149,7 @@ class Elasticity(Core):
             e.sigmas = (C @ epsilons).T
             e.epsilons = epsilons.T
 
+    # TODO Region 2D is a more robust class for this job
     def profile(self, region: list[float], n: float = 10) -> None:
         """Creates a profile in a given region coordinates
 
@@ -161,7 +162,7 @@ class Elasticity(Core):
         """
         coords = np.array(region)
         gdl = np.array([[-1]*len(coords)])
-        e = Quadrilateral(coords, gdl, n)
+        e = Quadrilateral(coords, gdl, n, fast=True)
         _x, _ = e.T(e.domain.T)
         valuesU = []
         valuesDU = []

@@ -2,8 +2,11 @@
 """
 
 
+import logging
 import numpy as np
 from typing import Callable
+
+# TODO make list of avaliable Element atributes.
 
 
 class Element():
@@ -37,19 +40,21 @@ class Element():
             for j in range(len(self.gdl[i])):
                 self.gdlm.append(self.gdl[i, j])
         self.n = int(len(self.gdl)*len(self.gdl[0]))
+        # TODO this was only intended for 2D plane stress/strain elements
         self.properties = {'load_x': [], 'load_y': []}
         self.intBorders = False
+        self._x, self._p = self.T(self.Z.T)
+        self.jacs, self.dpz = self.J(self.Z.T)
         if not self.border and not self.fast:
             self.Ke = np.zeros([self.n, self.n])
             self.Fe = np.zeros([self.n, 1])
             self.Qe = np.zeros([self.n, 1])
-        self.Ue = np.zeros(self.gdl.shape)
 
-        self._x, self._p = self.T(self.Z.T)
-        self.jacs, self.dpz = self.J(self.Z.T)
-        self.detjac = np.linalg.det(self.jacs)
-        _j = np.linalg.inv(self.jacs)
-        self.dpx = _j @ self.dpz
+            # Specific transformations
+            self.detjac = np.linalg.det(self.jacs)
+            _j = np.linalg.inv(self.jacs)
+            self.dpx = _j @ self.dpz
+        self.Ue = np.zeros(self.gdl.shape)
 
     def restartMatrix(self) -> None:
         """Sets all element matrices and vectors to 0 state

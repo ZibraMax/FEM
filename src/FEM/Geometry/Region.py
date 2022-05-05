@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from ..Elements import Quadrilateral,Serendipity,QTriangular,LTriangular
+from ..Elements import Quadrilateral, Serendipity, QTriangular, LTriangular
 from ..Utils import isBetween
 
 
@@ -80,15 +80,15 @@ class Region2D(Region):
             coords (np.ndarray): Coordinate matrix. Must be of four rows and 3 columns.
         """
         lc = len(coords)
-        if lc==3:
+        if lc == 3:
             ELE = LTriangular
-        elif lc==4:
+        elif lc == 4:
             ELE = Quadrilateral
-        elif lc==6:
+        elif lc == 6:
             ELE = QTriangular
-        elif lc==8:
+        elif lc == 8:
             ELE = Serendipity
-        self.e = ELE(coords, np.array([[-1]*lc]), n=1,fast=True)
+        self.e = ELE(coords, np.array([[-1]*lc]), n=1, fast=True)
         self.center, _ = self.e.T(self.e.center.T)
         _j, _ = self.e.J(self.e.center.T)
         self.n = np.cross(_j[:, 0].T, _j[:, 1].T, axis=0)  # <A,B,C>
