@@ -45,7 +45,7 @@ geo.setCbe(cb)
 
 
 def carga(s):
-    return A*np.sin(np.pi*s/L)
+    return -A*np.sin(np.pi*s/L)
 
 
 geo.loadOnRegion(0, fy=carga)
