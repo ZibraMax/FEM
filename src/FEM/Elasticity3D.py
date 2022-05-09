@@ -288,7 +288,7 @@ class NonLocalElasticity(Elasticity):
                 enl = self.elements[inl]
                 mnl = len(enl.gdl.T)
                 Knl = np.zeros([3*m, 3*mnl])
-                _xnl, _ = enl.T(enl.Z.T)
+                _xnl, _ = enl.T(enl.Z.T)  # TODO Esto puede hacerse mas rápido?
                 jacnl, dpznl = enl.J(enl.Z.T)
                 detjacnl = np.linalg.det(jacnl)
                 _jnl = np.linalg.inv(jacnl)
