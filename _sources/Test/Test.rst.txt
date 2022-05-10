@@ -9,6 +9,22 @@ Test package
 Submodules
 ----------
 
+Test.test\_Elasticity2D module
+------------------------------
+
+.. automodule:: Test.test_Elasticity2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Test.test\_Elasticity3D module
+------------------------------
+
+.. automodule:: Test.test_Elasticity3D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Test.test\_Geometry module
 --------------------------
 
@@ -21,14 +37,6 @@ Test.test\_Geometry2D module
 ----------------------------
 
 .. automodule:: Test.test_Geometry2D
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Test.test\_PlaneStress module
------------------------------
-
-.. automodule:: Test.test_PlaneStress
    :members:
    :undoc-members:
    :show-inheritance:
