@@ -90,6 +90,6 @@ class Element2D(Element):
         Returns:
             np.ndarray: Bolean array of test result
         """
-        path = mpltPath.Path(self._coords)
+        path = mpltPath.Path(self._coords[:, :2])
         inside2 = path.contains_points([x])
         return inside2[0]

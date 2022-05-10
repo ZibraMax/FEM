@@ -538,7 +538,7 @@ class Geometry2D(Geometry):
         ax = fig.add_subplot()
 
         ax.axes.set_aspect('equal')
-
+        legend_items = []
         for i, e in enumerate(self.elements):
             coords = e._coords
             coords = np.array(coords.tolist() + [coords[0].tolist()])
@@ -556,26 +556,29 @@ class Geometry2D(Geometry):
         if draw_segs:
             segs = self.regions
             for i, seg in enumerate(segs):
-                x0, y0 = seg.coords[0]
-                x1, y1 = seg.coords[1]
-
-                ax.fill(
-                    [x0, x1],
-                    [y0, y1],
-                    facecolor='none',
-                    edgecolor='b',
+                ec = None
+                if isinstance(seg, Region1D):
+                    ec = 'b'
+                x, y = seg.coords.T[:2]
+                segment_ = ax.fill(
+                    x,
+                    y,
                     linewidth=3,
                     zorder=0,
-                    alpha=1-0.6*draw_bc
-                )
-                cx = (x0+x1)*0.5
-                cy = (y0+y1)*0.5
+                    edgecolor=ec,
+                    alpha=0.4-0.2*draw_bc,
+                    label=seg.description or format(i)
+                    # hatch="/"
+                )[0]
+                legend_items += [segment_]
+                cx = np.average(x)
+                cy = np.average(y)
                 ax.plot(cx, cy, 'o', markersize=texto +
                         bolita, color='pink', alpha=1-0.6*draw_bc)
                 ax.annotate(format(i), [
                             cx, cy], alpha=1-0.6*draw_bc, size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
-        for e in self.elements:
-            if e.intBorders:
+        for i, e in enumerate(self.elements):
+            if e.intBorders and draw_bc:
                 for i in range(-1, len(e.borders)-1):
                     border = e.borders[i]
                     if (len(border.properties['load_x']) + len(border.properties['load_y'])):
@@ -592,6 +595,7 @@ class Geometry2D(Geometry):
         ax.set_xlabel('x')
         ax.set_ylabel('y')
         ax.set_title('Domain')
+        ax.legend(handles=legend_items)
 
         gdls = np.array(self.gdls)
 
