@@ -65,12 +65,8 @@ class Elasticity(Core):
             geometry.initialize()
         Core.__init__(self, geometry, sparse=True, **kargs)
 
-        self.I = []
-        self.Im = []
-        self.J = []
-        self.Jm = []
-        self.V = []
-        self.Vm = []
+        self.K = sparse.lil_matrix((self.ngdl, self.ngdl))
+        self.M = sparse.lil_matrix((self.ngdl, self.ngdl))
         self.name = 'Isotropic Elasticity sparse'
 
     def elementMatrices(self) -> None:
@@ -80,11 +76,11 @@ class Elasticity(Core):
         for ee, e in enumerate(tqdm(self.elements, unit='Element')):
             m = len(e.gdl.T)
 
-            _x, _p = e.T(e.Z.T)
-            jac, dpz = e.J(e.Z.T)
-            detjac = np.linalg.det(jac)
-            _j = np.linalg.inv(jac)
-            dpx = _j @ dpz
+            _x, _p = e._x, e._p
+            # jac, dpz = e.jacs, e.dpz
+            detjac = e.detjac
+            # _j = np.linalg.inv(jac)
+            dpx = e.dpx
 
             C = self.C[ee]
             o = [0.0]*m
@@ -116,21 +112,14 @@ class Elasticity(Core):
                 Fe += (P.T @ F)*detjac[k]*e.W[k]
 
             self.F[np.ix_(e.gdlm)] += Fe
-
-            for gdl in e.gdlm:
-                self.I += [gdl]*(3*m)
-                self.J += e.gdlm
-            self.V += Ke.flatten().tolist()
-            self.Vm += Me.flatten().tolist()
+            self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
+            self.M[np.ix_(e.gdlm, e.gdlm)] += Me
 
     def ensembling(self) -> None:
         """Creation of the system sparse matrix. Force vector is ensembled in integration method
         """
         logging.info('Ensembling equation system...')
-        self.K = sparse.coo_matrix(
-            (self.V, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tolil()
-        self.M = sparse.coo_matrix(
-            (self.Vm, (self.I, self.J)), shape=(self.ngdl, self.ngdl)).tocsr()
+        self.M = self.M.tocsr()
         logging.info('Done!')
 
     def postProcess(self, **kargs) -> None:
@@ -234,12 +223,12 @@ class NonLocalElasticity(Elasticity):
             m = len(e.gdl.T)
 
             # Gauss points in global coordinates and Shape functions evaluated in gauss points
-            _x, _p = e.T(e.Z.T)
+            _x, _p = e._x, e._p
             # Jacobian evaluated in gauss points and shape functions derivatives in natural coordinates
-            jac, dpz = e.J(e.Z.T)
-            detjac = np.linalg.det(jac)
-            _j = np.linalg.inv(jac)  # Jacobian inverse
-            dpx = _j @ dpz  # Shape function derivatives in global coordinates
+            # jac, dpz = e.J(e.Z.T)
+            detjac = e.detjac
+            # _j = np.linalg.inv(jac)  # Jacobian inverse
+            dpx = e.dpx  # Shape function derivatives in global coordinates
 
             C = self.C[ee]
             o = [0.0]*m
@@ -288,11 +277,9 @@ class NonLocalElasticity(Elasticity):
                 enl = self.elements[inl]
                 mnl = len(enl.gdl.T)
                 Knl = np.zeros([3*m, 3*mnl])
-                _xnl, _ = enl.T(enl.Z.T)  # TODO Esto puede hacerse mas rápido?
-                jacnl, dpznl = enl.J(enl.Z.T)
-                detjacnl = np.linalg.det(jacnl)
-                _jnl = np.linalg.inv(jacnl)
-                dpxnl = _jnl @ dpznl
+                _xnl = enl._x
+                detjacnl = enl.detjac
+                dpxnl = enl.dpx
 
                 for k in range(len(e.Z)):
                     B = np.array([

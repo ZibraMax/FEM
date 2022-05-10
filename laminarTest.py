@@ -32,6 +32,8 @@ for i in range(ncapas):
     capa = Region2D(np.array(
         [[0.0, h_capa*i], [L, h_capa*i], [L, h_capa*(i+1)], [0.0, h_capa*(i+1)]]), desc=f'{Es[i]/10e9:.1f},{vs[i]}')
     bordes += [capa]
+bordes += [Region1D(np.array([[0.0, .0], [0.0, h]]))]
+bordes += [Region1D(np.array([[L, 0.0], [L, h]]))]
 
 geo = Geometry2D(
     dictionary=dicts,
@@ -44,6 +46,9 @@ cb = []
 cb += geo.generateBCFromCoords(0.0, h/2, 0.0, 1)
 cb += geo.generateBCFromCoords(0.0, h/2, 0.0, 2)
 cb += geo.generateBCFromCoords(L, h/2, 0.0, 2)
+
+cb += geo.cbFromRegion(-1, 0.0, 2)
+cb += geo.cbFromRegion(-2, 0.0, 2)
 geo.setCbe(cb)
 for i in range(ncapas):
     ele = geo.giveElementsOfRegion(i+1)
@@ -71,6 +76,7 @@ geo.show(draw_segs=True, draw_bc=False, label_bc=False)
 plt.show()
 
 O = PlaneStressSparse(geo, E, v, b, verbose=True)
-O.solve()
+O.solve(plot=False)
+O.postProcess(levels=30)
 O.exportJSON('viga.json')
 plt.show()

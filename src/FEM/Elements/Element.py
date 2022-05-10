@@ -45,10 +45,11 @@ class Element():
         self.intBorders = False
         self._x, self._p = self.T(self.Z.T)
         self.jacs, self.dpz = self.J(self.Z.T)
-        if not self.border and not self.fast:
-            self.Ke = np.zeros([self.n, self.n])
-            self.Fe = np.zeros([self.n, 1])
-            self.Qe = np.zeros([self.n, 1])
+        if not self.border:
+            if not self.fast:
+                self.Ke = np.zeros([self.n, self.n])
+                self.Fe = np.zeros([self.n, 1])
+                self.Qe = np.zeros([self.n, 1])
 
             # Specific transformations
             self.detjac = np.linalg.det(self.jacs)

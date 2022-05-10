@@ -99,14 +99,15 @@ class Geometry:
         print('Detecting non local elements')
         # FIXME hacerlo mas eficiente.
         diccionariosnl = []
+        centroids = np.array(self.centroids)
         for i in tqdm(range(len(self.dictionary)), unit='Elements'):
-            ci = self.centroids[i]
+            ci = centroids[i]
             linea = []
             linea.append(i)
             for j in range(len(self.dictionary)):
                 if not j == i:
-                    cnl = self.centroids[j]
-                    d = np.linalg.norm(np.array(cnl)-np.array(ci))
+                    cnl = centroids[j]
+                    d = np.linalg.norm(cnl-ci)
                     if d <= lr:
                         linea.append(j)
             diccionariosnl.append(linea)

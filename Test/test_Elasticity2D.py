@@ -1,12 +1,12 @@
 """
 *********************************************
-Numerical validation of the PlaneStress Class
+Numerical validation of the Elasticity2D Class
 *********************************************
 
 Tests
 #####
 
-5 tests where made for validating the PlaneStress class.
+5 tests where made for validating the Elasticity2D class.
 
 All of these 5 test are based in the same procedure. The objective is to compare the solution of the displacements profile in a cantilever beam.
 
@@ -73,7 +73,7 @@ FILENAME = 'Test/resources/beam_ws.json'
 TOL = 0.1
 
 
-class TestPlaneStress(unittest.TestCase):
+class TestElasticity2D(unittest.TestCase):
     """Plane Stress tests
     1. Uniform load applied as an uniform load in all elements.
     2. Uniform load applied as a external load in the superior elements of the beam.
