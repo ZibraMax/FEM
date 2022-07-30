@@ -29,6 +29,3 @@ class TestGeometry2D(unittest.TestCase):
         self.assertEqual(len(geometry.regions), 4)
         geometry.exportJSON('Test/resources/beam_ws.json')
 
-
-if __name__ == '__main__':
-    unittest.main()

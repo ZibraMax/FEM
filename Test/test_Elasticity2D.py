@@ -419,7 +419,3 @@ class TestElasticity2D(unittest.TestCase):
             'Test/resources/results/test_cantilever_beam_triangular_3.png')
         plt.close()
         self.assertTrue(errores < TOL)
-
-
-if __name__ == '__main__':
-    unittest.main()
