@@ -2,7 +2,7 @@
 
 """
 __author__ = "Arturo Rodriguez - da.rodriguezh@uniandes.edu.co"
-__version__ = "1.0.32"
+__version__ = "1.0.33"
 from .Elements import *
 from .Geometry import *
 from .Core import *
