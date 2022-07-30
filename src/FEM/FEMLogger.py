@@ -121,6 +121,7 @@ class FEMLogger():
         # the logger, i.e. 'global logger; logger = logging.getLogger("<name>")'
         logger = logging.getLogger()
         logging.getLogger('matplotlib').setLevel(logging.WARNING)
+        logging.getLogger('PIL').setLevel(logging.WARNING)
         # Set global log level to 'debug' (required for handler levels to work)
         logger.setLevel(logging.DEBUG)
 

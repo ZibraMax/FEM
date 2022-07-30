@@ -163,7 +163,8 @@ class TestElasticity3D(unittest.TestCase):
                 cbe += [[i*3+2, 0.0]]
         geometria.cbe = cbe
 
-        O = Elasticity(geometria, E, v, gamma, fy=fy, verbose=True)
+        O = Elasticity(geometria, E, v, gamma, fy=fy,
+                       verbose=True, name='3D test_cantilever_beam_uniform')
         O.solve()
 
         A = b*h

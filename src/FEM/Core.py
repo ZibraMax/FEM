@@ -229,7 +229,10 @@ class Core():
             filename = __name__
         y = self.geometry.exportJSON()
         pjson = json.loads(y)
-        pjson["disp_field"] = np.array(self.solver.solutions).tolist()
+        # TODO se deberían llamar solutions y deben ser objetos donde hay info de la solucion
+        pjson["solutions"] = []
+        for info, sol in zip(self.solver.solutions_info, np.array(self.solver.solutions).tolist()):
+            pjson["solutions"].append({'info': info, "U": sol})
         y = json.dumps(pjson)
         with open(filename, "w") as f:
             f.write(y)

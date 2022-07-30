@@ -114,7 +114,7 @@ class TestTorsion2D(unittest.TestCase):
             regions.append(Region1D(geometria.gdls[np.ix_(s)]))
         geometria.regions = []
         geometria.addRegions(regions)
-        O = Torsion2D(geometria, GG, phi)
+        O = Torsion2D(geometria, GG, phi, verbose=True, name='Torsion 2D')
         O.solve()
         integral = 0
         for e in O.elements:
@@ -145,7 +145,8 @@ class TestTorsion2D(unittest.TestCase):
         params = Delaunay._strdelaunay(
             constrained=True, delaunay=True, a='0.003', o=2)
         geometria = Delaunay(vert, params, nvn=1)
-        O = Torsion2D(geometria, G, phi)
+        O = Torsion2D(geometria, G, phi, verbose=True,
+                      name='testt_inertia_circle')
         O.solve()
         integral = 0
         for e in O.elements:

@@ -37,6 +37,7 @@ class Lineal(Solver):
         self.system.borderConditions()
         logging.info('Solving equation system...')
         self.solutions = [np.linalg.solve(self.system.K, self.system.S)]
+        self.solutions_info = [{'solver-type': self.type}]
         self.setSolution()
         if not path == '':
             np.savetxt(path, self.system.U, delimiter=',')
@@ -73,6 +74,7 @@ class LinealSparse(Lineal):
         self.system.K = self.system.K.tocsr()
         logging.info('Solving...')
         self.solutions = [spsolve(self.system.K, self.system.S)]
+        self.solutions_info = [{'solver-type': self.type}]
         self.setSolution()
         if path:
             np.savetxt(path, self.system.U, delimiter=',')
@@ -130,5 +132,8 @@ class LinealEigen(Lineal):
             np.savetxt(path.replace('.', '_eigvec.'),
                        self.system.eigvec, delimiter=',', fmt='%s')
         self.solutions = eigvec.T
+        self.solutions_info = [
+            {'solver-type': self.type, 'eigv': ei} for ei in self.system.eigv]
+
         self.setSolution(0)
         logging.info('Solved!')

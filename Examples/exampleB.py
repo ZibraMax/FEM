@@ -74,4 +74,4 @@ if __name__ == '__main__':
     O = ElasticityFromTensor(
         geometria, C, rho, verbose=True, solver=LinealEigen)
     O.solve(path='SmolCube2.csv')
-    O.exportJSON("../FEM C++/docs/resources/CUBE202020.json")
+    O.exportJSON("CUBE202020.json")

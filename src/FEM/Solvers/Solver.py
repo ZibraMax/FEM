@@ -11,6 +11,7 @@ class Solver():
         self.system = FEMObject
         self.type = 'Base'
         self.solutions = []
+        self.solutions_info = []
 
     def run(self, **kargs):
         """Solves the equation system
@@ -23,6 +24,8 @@ class Solver():
             step (int, optional): Number of solution. Defaults to the last solution found.
             elements (bool, optional): To pass the general solution to the domain elements. Defaults to false.
         """
+        self.system.solution_info = self.solutions_info[step]
+
         self.system.U = self.solutions[step]
         if elements:
             for e in self.system.elements:

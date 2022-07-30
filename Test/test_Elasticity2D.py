@@ -107,7 +107,7 @@ class TestElasticity2D(unittest.TestCase):
             Test result: FEM solution compared whit analytical solution
 
         """
-        geometry = Geometry2D.importJSON(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME, fast=True)
         cb = geometry.cbFromRegion(3, 0.0, 1)
         cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
@@ -124,7 +124,8 @@ class TestElasticity2D(unittest.TestCase):
         G = E/(2*(1+v))
         gamma = 23.54
         W = A*gamma
-        O = PlaneStressSparse(geometry, E, v, b, fy=lambda x: -gamma)
+        O = PlaneStressSparse(
+            geometry, E, v, b, fy=lambda x: -gamma, verbose=True, name='test_cantilever_beam_uniform_1')
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
         U = np.array(U)[:, 1].flatten()
@@ -170,7 +171,7 @@ class TestElasticity2D(unittest.TestCase):
             FEM solution compared whit analytical solution
         """
 
-        geometry = Geometry2D.importJSON(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME, fast=True)
         cb = geometry.cbFromRegion(3, 0.0, 1)
         cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
@@ -187,7 +188,8 @@ class TestElasticity2D(unittest.TestCase):
         k = 5/6
         G = E/(2*(1+v))
         W = A*gamma
-        O = PlaneStressSparse(geometry, E, v, b)
+        O = PlaneStressSparse(
+            geometry, E, v, b, verbose=True, name='test_cantilever_beam_uniform_2')
         O.geometry.loadOnRegion(2, fy=lambda x: -W)
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
@@ -248,7 +250,7 @@ class TestElasticity2D(unittest.TestCase):
 
         P = 1
 
-        geometry = Geometry2D.importJSON(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME, fast=True)
         cb = geometry.cbFromRegion(3, 0.0, 1)
         cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
@@ -256,7 +258,8 @@ class TestElasticity2D(unittest.TestCase):
         geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
 
-        O = PlaneStressSparse(geometry, E, v, b)
+        O = PlaneStressSparse(
+            geometry, E, v, b, verbose=True, name='test_cantilever_beam_point_1')
         O.geometry.loadOnRegion(1, fy=lambda x: -P/A*b)
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
@@ -317,7 +320,7 @@ class TestElasticity2D(unittest.TestCase):
 
         P = 1
 
-        geometry = Geometry2D.importJSON(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME, fast=True)
         cb = geometry.cbFromRegion(3, 0.0, 1)
         cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
@@ -327,7 +330,8 @@ class TestElasticity2D(unittest.TestCase):
         geometry.maskFromRegions()
         self.assertTrue(len(geometry.cbe) > 0)
 
-        O = PlaneStressSparse(geometry, E, v, b)
+        O = PlaneStressSparse(
+            geometry, E, v, b, verbose=True, name='test_cantilever_beam_point_2')
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
         U = np.array(U)[:, 1].flatten()
@@ -373,7 +377,7 @@ class TestElasticity2D(unittest.TestCase):
             FEM solution compared whit analytical solution
 
         """
-        geometry = Geometry2D.importJSON(FILENAME)
+        geometry = Geometry2D.importJSON(FILENAME, fast=True)
         cb = geometry.cbFromRegion(3, 0.0, 1)
         cb += geometry.cbFromRegion(3, 0.0, 2)
         geometry.setCbe(cb)
@@ -390,7 +394,8 @@ class TestElasticity2D(unittest.TestCase):
         W = A*gamma
         G = E/(2*(1+v))
         k = 5/6
-        O = PlaneStressSparse(geometry, E, v, b)
+        O = PlaneStressSparse(
+            geometry, E, v, b, verbose=True, name='test_cantilever_beam_triangular_3')
         O.geometry.loadOnRegion(2, fy=lambda x: -W*(x/L))
         O.solve(plot=False)
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)

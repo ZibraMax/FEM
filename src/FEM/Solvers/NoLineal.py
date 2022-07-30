@@ -1,6 +1,7 @@
 """Define the structure of a non lineal finite element solver"""
 
 import numpy as np
+import copy
 import logging
 from tqdm import tqdm
 from .Solver import Solver
@@ -63,7 +64,7 @@ class Newton(NonLinealSolver):
         for e in self.system.elements:
             e.restartMatrix()
             e.setUe(self.system.U)
-
+        warn = 'Max number of iterations. Not convergence achived!'
         for i in tqdm(range(self.maxiter), unit="Newton iteration", disable=False):
             logging.debug(
                 f'----------------- Newton iteration {i} -------------------')
@@ -93,8 +94,11 @@ class Newton(NonLinealSolver):
             logging.info(
                 f'----------------- Iteration error {err} -------------------')
             if err < self.tol:
+                warn = 'No warnings'
                 break
         self.solutions = [self.system.U]
+        self.solutions_info = [
+            {'solver-type': self.type, 'last-it-error': err, 'n-it': i, 'warnings': warn}]
         logging.info('Done!')
 
 
@@ -130,7 +134,7 @@ class DirectIteration(NonLinealSolver):
         for e in self.system.elements:
             e.restartMatrix()
             e.setUe(self.system.U)
-
+        warn = 'Max number of iterations. Not convergence achived!'
         for i in tqdm(range(self.maxiter), unit="Iteration", disable=False):
             logging.debug(
                 f'----------------- Iteration {i+1} -------------------')
@@ -161,7 +165,10 @@ class DirectIteration(NonLinealSolver):
             logging.info(
                 f'----------------- Iteration error {err} -------------------')
             if err < self.tol:
+                warn = 'No warnings'
                 break
+        self.solutions_info = [
+            {'solver-type': self.type, 'last-it-error': err, 'n-it': i, 'warnings': warn}]
         self.solutions = [self.system.U]
         logging.info('Done!')
 
@@ -182,12 +189,15 @@ class LoadControl(DirectIteration):
         """
         DirectIteration.__init__(self, FEMObject, tol=tol, n=n)
         self.nls = nls
+        self.type += '-load-control'
 
     def run(self, **kargs) -> None:
         """Solves the equation system using newtons method
         """
         guess = None
+
         solutioms = []
+        solutioms_info = []
         for i in tqdm(range(self.nls), unit="Load Step", disable=False):
             logging.info(f'================LOAD STEP {i+1}===================')
             # FIXME WTF IS THIS. Esto solamente funciona para la clase de EB no lineal
@@ -196,5 +206,7 @@ class LoadControl(DirectIteration):
             guess = self.system.U
             self.solve(guess=guess, _guess=(i >= 1), **kargs)
             solutioms.append(self.system.U)
+            solutioms_info.append(copy.deepcopy(self.solutions_info[-1]))
+        self.solutions_info = solutioms_info
         self.solutions = solutioms
         self.setSolution()
