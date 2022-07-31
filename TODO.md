@@ -7,7 +7,7 @@
     -   [x] La clase gemoetría 2D debe tener los métodos que se tienen en la clase geometría actualmente.
     -   [x] Se deben agregar métodos equivalentes en la clase geometría 1D y 3D.
 -   [x] Actualizar el formato de guardado de los archivos.
-    -   [ ] Los archivos deben guardar información sobre las propiedades del problema (tipo de problema, caracteristicas generales).
+    -   [x] Los archivos deben guardar información sobre las propiedades del problema (tipo de problema, caracteristicas generales).
     -   [x] Actualizar los ejemplos con el nuevo formato de archivos.
 -   [ ] Agrupar las vigas en un solo archivo con herencia.
 <!-- -   [ ] La clase ODE2D no esta finalizada. Poisson 2D y Torson 2D deben heredan de ODE2D. -->
