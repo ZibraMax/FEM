@@ -11,7 +11,7 @@ from sendEmail import sendMailOutlook
 L = 14.999
 l = 2
 Z = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-nex = 10
+nex = 2
 omega = 6
 Lr = omega*l
 C11 = 223.1e6

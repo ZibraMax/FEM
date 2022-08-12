@@ -332,7 +332,7 @@ class NonLocalElasticityFromTensor(NonLocalElasticity):
     def __init__(self, geometry: Geometry, C: np.ndarray, rho: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
         NonLocalElasticity.__init__(
             self, geometry, 0.0, 0.0, rho, l, z1, Lr, af, fx, fy, fz, **kargs)
-        self.properties['C'] = C
+        self.properties['C'] = C.tolist()
         self.C = [C]*len(geometry.elements)
 
 
@@ -341,7 +341,7 @@ class ElasticityFromTensor(Elasticity):
     def __init__(self, geometry: Geometry, C: np.ndarray, rho: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
         Elasticity.__init__(self, geometry, 0.0, 0.0,
                             rho, fx, fy, fz, **kargs)
-        self.properties['C'] = C
+        self.properties['C'] = C.tolist()
         self.C = [C]*len(geometry.elements)
 
 
