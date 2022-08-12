@@ -68,6 +68,12 @@ class Elasticity(Core):
         self.K = sparse.lil_matrix((self.ngdl, self.ngdl))
         self.M = sparse.lil_matrix((self.ngdl, self.ngdl))
         self.name = 'Isotropic Elasticity sparse'
+        self.properties['E'] = self.E
+        self.properties['v'] = self.v
+        self.properties['fx'] = None
+        self.properties['fy'] = None
+        self.properties['fz'] = None
+        self.properties['rho'] = self.rho
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
@@ -207,6 +213,13 @@ class NonLocalElasticity(Elasticity):
 
         self.af = af
         self.Lr = Lr
+
+        self.properties['l'] = self.l
+        self.properties['z1'] = self.z1
+        self.properties['z2'] = self.z2
+        self.properties['Lr'] = self.Lr
+        self.properties['af'] = None
+
         nonlocals = self.geometry.detectNonLocal(Lr)
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
@@ -319,6 +332,7 @@ class NonLocalElasticityFromTensor(NonLocalElasticity):
     def __init__(self, geometry: Geometry, C: np.ndarray, rho: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
         NonLocalElasticity.__init__(
             self, geometry, 0.0, 0.0, rho, l, z1, Lr, af, fx, fy, fz, **kargs)
+        self.properties['C'] = C
         self.C = [C]*len(geometry.elements)
 
 
@@ -327,6 +341,7 @@ class ElasticityFromTensor(Elasticity):
     def __init__(self, geometry: Geometry, C: np.ndarray, rho: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
         Elasticity.__init__(self, geometry, 0.0, 0.0,
                             rho, fx, fy, fz, **kargs)
+        self.properties['C'] = C
         self.C = [C]*len(geometry.elements)
 
 

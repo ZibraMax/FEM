@@ -57,10 +57,11 @@ class PlaneStressOrthotropic(Core):
         if isinstance(v12, float) or isinstance(v12, int):
             v12 = [v12]*len(geometry.elements)
         self.calculateMass = False
+        self.rho = None
         if rho:
             if isinstance(rho, int) or isinstance(rho, float):
                 self.rho = [rho]*len(geometry.elements)
-                self.calculateMass = True
+            self.calculateMass = True
         self.t = t
         self.E1 = E1
         self.E2 = E2
@@ -93,6 +94,15 @@ class PlaneStressOrthotropic(Core):
             geometry.initialize()
         Core.__init__(self, geometry, **kargs)
         self.name = 'Plane Stress Orthotropic'
+        self.properties['E1'] = self.E1
+        self.properties['E2'] = self.E2
+        self.properties['G12'] = self.G12
+        self.properties['v12'] = self.v12
+        self.properties['fx'] = None
+        self.properties['fy'] = None
+        self.properties['t'] = self.t
+        self.properties['rho'] = self.rho
+        self.properties['calculateMass'] = self.calculateMass
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
@@ -621,6 +631,12 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         self.z1 = z1
         self.l0 = 0.5/np.pi/l/l/t
         self.z2 = 1.0-self.z1
+        self.properties['l'] = self.l
+        self.properties['Lr'] = self.Lr
+        self.properties['af'] = None
+        self.properties['z1'] = self.z1
+        self.properties['z2'] = self.z2
+        self.properties['l0'] = self.l0
 
         PlaneStressSparse.__init__(
             self, geometry, E, v, t, rho, fx, fy, **kargs)

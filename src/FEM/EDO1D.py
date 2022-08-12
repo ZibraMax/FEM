@@ -44,6 +44,10 @@ class EDO1D(Core):
         self.f = f
         Core.__init__(self, geometry)
         self.name = 'Generic 1D second order diferential equation'
+        self.properties['a'] = None
+        self.properties['b'] = None
+        self.properties['c'] = None
+        self.properties['WARNING'] = "It's not possible lo save callables"
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model. Element matrices and forces are calculated with Gauss-Legendre quadrature. Point number depends of element discretization.

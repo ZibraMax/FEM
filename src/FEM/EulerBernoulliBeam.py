@@ -32,6 +32,7 @@ class EulerBernoulliBeam(Core):
         self.a = EI
         self.f = f
         self.cf = cf
+
         if isinstance(EI, float) or isinstance(EI, int):
             self.a = lambda x: EI
         if isinstance(f, float) or isinstance(f, int):
@@ -46,6 +47,9 @@ class EulerBernoulliBeam(Core):
             self.elements[i] = EulerBernoulliElement(
                 self.elements[i].coords, self.elements[i].gdl)
         self.name = 'Euler Bernoulli'
+        self.properties['EI'] = EI
+        self.properties['f'] = f
+        self.properties['cf'] = cf
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Guass Legendre quadrature.
@@ -144,6 +148,10 @@ class EulerBernoulliBeamNonLineal(Core):
             logging.warning(
                 'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
         Core.__init__(self, geometry, solver=NoLineal.LoadControl)
+        self.properties['EI'] = EI
+        self.properties['EA'] = EA
+        self.properties['fx'] = fx
+        self.properties['fy'] = fy
         for i in range(len(self.elements)):
             self.elements[i] = EulerBernoulliElement(
                 self.elements[i].coords, self.elements[i].gdl, nvn=3)

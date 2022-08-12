@@ -59,6 +59,12 @@ class Heat1D(Core):
         self.q = q
         Core.__init__(self, geometry)
         self.name = '1D Heat transfer'
+        self.properties['A'] = self.A
+        self.properties['P'] = self.P
+        self.properties['ku'] = self.ku
+        self.properties['beta'] = self.beta
+        self.properties['Ta'] = self.Ta
+        self.properties['q'] = self.q
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices using Gauss Legendre quadrature.

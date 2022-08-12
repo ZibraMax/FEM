@@ -191,3 +191,4 @@ class FEMLogger():
             f'Session ended @ {self.end_time.strftime("%d/%m/%Y - %H:%M:%S")}')
         logging.debug(
             f'Duration: {(self.end_time-self.start_time)}')
+        return self.end_time-self.start_time

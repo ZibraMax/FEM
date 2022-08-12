@@ -70,6 +70,8 @@ class Core():
         elif self.solver.type == "Base":
             logging.error("Base solver should not be used.")
             raise Exception("Base solver should not be used.")
+        self.properties = {'verbose': self.verbose,
+                           'name': name, 'problem': self.__class__.__name__}
 
     def description(self):
         """Generates the problem description for loggin porpuses
@@ -172,7 +174,8 @@ class Core():
             logging.info('Post processing solution...')
             self.postProcess(**kargs)
             logging.info('Done!')
-        self.logger.end_timer()
+        duration = self.logger.end_timer().total_seconds()
+        self.properties['duration'] = duration
         logging.info("End!")
 
     def solveFromFile(self, file: str, plot: bool = True, **kargs) -> None:
@@ -225,13 +228,16 @@ class Core():
         pass
 
     def exportJSON(self, filename: str = None):
+        self.properties['description'] = self.description()
         if not filename:
             filename = __name__
         y = self.geometry.exportJSON()
         pjson = json.loads(y)
         pjson["solutions"] = []
-        for info, sol in zip(self.solver.solutions_info, np.array(self.solver.solutions).tolist()): # Avoid Numpy array conversion 
+        # Avoid Numpy array conversion
+        for info, sol in zip(self.solver.solutions_info, np.array(self.solver.solutions).tolist()):
             pjson["solutions"].append({'info': info, "U": sol})
+        pjson['properties'] = self.properties
         y = json.dumps(pjson)
         with open(filename, "w") as f:
             f.write(y)
