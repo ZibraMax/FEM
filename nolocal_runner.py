@@ -8,10 +8,10 @@ from sendEmail import sendMailOutlook
 
 
 # .__class__.__name__
-L = 14.999
+L = 50
 l = 2
 Z = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-nex = 2
+nex = 16
 omega = 6
 Lr = omega*l
 C11 = 223.1e6
@@ -98,7 +98,7 @@ for z in Z:
     O.K = O.K.tocsr()
     logging.info('Solving...')
     eigv, eigvec = eigsh(
-        O.K, k, O.M, which='SM')
+        O.K, 20, O.M, which='SM')
     idx = eigv.argsort()
     eigv = eigv[idx]
     eigvec = eigvec[:, idx]
@@ -114,6 +114,6 @@ for z in Z:
 
     try:
         sendMailOutlook(mss=f"{filename} ha terminado!",
-                        secrests_path='secrets.txt', files=[f'{__name__}_{log_filename}.log'])
+                        secrests_path='secrets.txt', files=[f'nonlocal_runner_{log_filename}.log'])
     except Exception as e:
         logging.error(e)
