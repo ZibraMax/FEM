@@ -84,14 +84,14 @@ O = NonLocalElasticityFromTensor(
 
 logging.info('Creating element matrices...')
 O.elementMatrices()
-
+logging.info('Done!')
+duration = O.logger.end_timer().total_seconds()
 for z in Z:
-
+    logging.info(f'Solving for z={z}')
     filename = f'SiCube_{L}_{l}_{z}.json'
 
     O.z1 = z
     O.z2 = 1-z
-    logging.info('Done!')
     O.ensembling()
     O.borderConditions()
     logging.info('Converting to csr format')
@@ -117,3 +117,4 @@ for z in Z:
                         secrests_path='secrets.txt', files=[f'nonlocal_runner_{log_filename}.log'])
     except Exception as e:
         logging.error(e)
+O.properties['duration'] = duration
