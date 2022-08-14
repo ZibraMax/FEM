@@ -116,6 +116,6 @@ for z in Z:
 
     try:
         sendMailOutlook(mss=f"{filename} ha terminado!",
-                        secrests_path='secrets.txt', files=[f'nonlocal_runner_{log_filename}.log'])
+                        secrests_path='secrets.txt', files=[f'nolocal_runner_{log_filename}.log'])
     except Exception as e:
         logging.error(e)
