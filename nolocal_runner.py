@@ -34,11 +34,11 @@ def af(rho):
 
 _a = L
 _b = L
-_c = L
+_c = L/100
 
 nx = nex
 ny = nex
-nz = nex
+nz = max(int(nex/6), 4)
 
 dx = _a/nx
 dy = _b/ny
@@ -78,7 +78,7 @@ for i in range(nx):
 
 geo = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
 
-log_filename = f'SiCube_{L}_{l}'
+log_filename = f'SiPlate_{L}_{l}'
 
 O = NonLocalElasticityFromTensor(
     geo, C, rho, l, 0.0, Lr, af, solver=LinealEigen, name=log_filename, verbose=True)
@@ -88,9 +88,9 @@ O.elementMatrices()
 logging.info('Done!')
 duration = O.logger.end_timer().total_seconds()
 O.properties['duration'] = duration
-for z in Z:
+for z in Z[::-1]:
     logging.info(f'Solving for z={z}')
-    filename = f'SiCube_{L}_{l}_{z}.json'
+    filename = f'SiPlate_{L}_{l}_{z}.json'
 
     O.z1 = z
     O.z2 = 1-z
