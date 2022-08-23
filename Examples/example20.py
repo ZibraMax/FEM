@@ -34,6 +34,6 @@ if __name__ == '__main__':
     O.borderConditions()
     O.solveES()
     O.postProcess()
-    # plt.show()
+    plt.show()
 
     print(O.giveStressPoint(np.array([[60], [80]])))

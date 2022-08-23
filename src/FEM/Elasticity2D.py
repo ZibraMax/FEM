@@ -631,15 +631,15 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         self.z1 = z1
         self.l0 = 0.5/np.pi/l/l/t
         self.z2 = 1.0-self.z1
+
+        PlaneStressSparse.__init__(
+            self, geometry, E, v, t, rho, fx, fy, **kargs)
         self.properties['l'] = self.l
         self.properties['Lr'] = self.Lr
         self.properties['af'] = None
         self.properties['z1'] = self.z1
         self.properties['z2'] = self.z2
         self.properties['l0'] = self.l0
-
-        PlaneStressSparse.__init__(
-            self, geometry, E, v, t, rho, fx, fy, **kargs)
         nonlocals = self.geometry.detectNonLocal(Lr)
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
