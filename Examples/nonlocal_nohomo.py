@@ -11,7 +11,9 @@ if __name__ == '__main__':
     t = 0.5
     l = 0.1
     z1 = 0.5
-    LR = 6*l
+    # Para que las integrales de Gamma sean mas exactas es necesario un mayor Lr.
+    # Ponerle mucho puede ser problemático porque hace que los gamma sean mayores a 1
+    Lr = 6*l
     P = 1
     a = 5
 
@@ -38,7 +40,7 @@ if __name__ == '__main__':
         return (0.5/np.pi/l/l/t)*np.exp(-rho)
 
     O = PlaneStressNonLocalSparseNonHomogeneous(
-        geometria, E, v, t, l, z1, Lr=6*l, af=af, verbose=True)
+        geometria, E, v, t, l, z1, Lr, af, verbose=True)
     O.solve()
     O.exportJSON('NonLocalNonHomogeneous.json')
     plt.show()

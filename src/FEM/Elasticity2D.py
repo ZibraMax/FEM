@@ -816,8 +816,24 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
 
 
 class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
-
     def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
+        """Creates a plane stress non local non homogeneous finite element problem.
+        This class implements the model proposed by Pisano et al (2009).
+        It is not possible to use different tickness
+
+        Args:
+            geometry (Geometry): Input 2D Geometry
+            E (Tuple[float, list]): List of Young moduli for each element
+            v (Tuple[float, list]): List of Poisson coefficient for each element
+            t (Tuple[float, list]): Thickness
+            l (float): Internal lenght
+            z1 (float): To be changed..
+            Lr (float): Influence distance (6l)
+            af (Callable): Atenuation function
+            rho (Tuple[float, list], optional): Density. Defaults to None.
+            fx (_type_, optional): Force in X direction. Defaults to lambdax:0.
+            fy (_type_, optional): Force in Y direction. Defaults to lambdax:0.
+        """
 
         self.l = l
         self.Lr = Lr
@@ -846,19 +862,37 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
         """Calculate the elements matrices
         """
         logging.info('Calculating gamma functions for all elements')
-        i = 0
-        for e in tqdm(self.elements, unit='Local'):
-            i+=1
+        for i, e in enumerate(tqdm(self.elements, unit='Local')):
+            m = len(e.gdl.T)
+            c11 = self.C11[i]
+            c12 = self.C12[i]
+            c22 = self.C22[i]
+            c66 = self.C66[i]
+            C = np.array([
+                [c11, c12, 0.0],
+                [c12, c22, 0.0],
+                [0.0, 0.0, c66]])
+            o = [0.0]*m
+            dpx = e.dpx
             e.gammas = []
-            for _xloc in e._x:
+            knonlocn = 0.0
+            k = -1
+            for _xloc, _wloc, _detjacloc in zip(e._x, e.W, e.detjac):
+                k += 1
+                B = np.array([
+                    [*dpx[k, 0, :], *o],
+                    [*o, *dpx[k, 1, :]],
+                    [*dpx[k, 1, :], *dpx[k, 0, :]]])
                 gamma = 0.0
                 for inl in e.enl:
                     enl = self.elements[inl]
                     for _xnloc, _wnloc, _detjacnloc in zip(enl._x, enl.W, enl.detjac):
                         ro = np.linalg.norm(_xloc-_xnloc)/self.l
-                        gamma += self.properties['t'][0] * \
+                        gamma += self.properties['t'][i] * \
                             self.af(ro) * _wnloc*_detjacnloc
                 e.gammas.append(gamma)
+                knonlocn += self.properties['t'][i]*B.T@((gamma**2) * C)@B
+            e.knonlocn =knonlocn 
             e.gammas = np.array(e.gammas)
         for e in tqdm(range(len(self.elements)), unit='Local'):
             self.elementMatrix(e)
