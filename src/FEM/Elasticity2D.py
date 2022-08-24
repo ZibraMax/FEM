@@ -878,7 +878,10 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
             knonlocn = 0.0
             k = -1
             for _xloc, _wloc, _detjacloc in zip(e._x, e.W, e.detjac):
-                k += 1
+                # TODO Hay que hacer que este ciclo recorra los dpx tambien porque son los 
+                # mismos que los puntos de Gauss
+                k += 1 
+                # El B debería calcularse una sola vez, se vuelve a calcular abajo
                 B = np.array([
                     [*dpx[k, 0, :], *o],
                     [*o, *dpx[k, 1, :]],
@@ -887,13 +890,15 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                 for inl in e.enl:
                     enl = self.elements[inl]
                     for _xnloc, _wnloc, _detjacnloc in zip(enl._x, enl.W, enl.detjac):
+                        # TODO Esta integral solo debe hacerse si el elemento esta en la skin region
                         ro = np.linalg.norm(_xloc-_xnloc)/self.l
                         gamma += self.properties['t'][i] * \
                             self.af(ro) * _wnloc*_detjacnloc
                 e.gammas.append(gamma)
                 knonlocn += self.properties['t'][i]*B.T@((gamma**2) * C)@B
+            # TODO El elemento no debería guardar esta matríz, debería ensamblarse directamente
             e.knonlocn = knonlocn
-            e.gammas = np.array(e.gammas)
+            e.gammas = np.array(e.gammas) # Esto si es estrictamente necesario
         for e in tqdm(range(len(self.elements)), unit='Local'):
             self.elementMatrix(e)
 
