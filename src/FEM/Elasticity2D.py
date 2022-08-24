@@ -892,7 +892,7 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                             self.af(ro) * _wnloc*_detjacnloc
                 e.gammas.append(gamma)
                 knonlocn += self.properties['t'][i]*B.T@((gamma**2) * C)@B
-            e.knonlocn =knonlocn 
+            e.knonlocn = knonlocn
             e.gammas = np.array(e.gammas)
         for e in tqdm(range(len(self.elements)), unit='Local'):
             self.elementMatrix(e)
