@@ -15,8 +15,8 @@ if __name__ == '__main__':
     P = 1
     a = 5
 
-    nx = 100
-    ny = 100
+    nx = 30
+    ny = 30
 
     coords, dicc = enmalladoFernando(a, a, nx, ny)
 

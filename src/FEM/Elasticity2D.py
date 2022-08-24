@@ -846,7 +846,9 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
         """Calculate the elements matrices
         """
         logging.info('Calculating gamma functions for all elements')
+        i = 0
         for e in tqdm(self.elements, unit='Local'):
+            i+=1
             e.gammas = []
             for _xloc in e._x:
                 gamma = 0.0
@@ -854,7 +856,8 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                     enl = self.elements[inl]
                     for _xnloc, _wnloc, _detjacnloc in zip(enl._x, enl.W, enl.detjac):
                         ro = np.linalg.norm(_xloc-_xnloc)/self.l
-                        gamma += _wnloc*_detjacnloc
+                        gamma += self.properties['t'][0] * \
+                            self.af(ro) * _wnloc*_detjacnloc
                 e.gammas.append(gamma)
             e.gammas = np.array(e.gammas)
         for e in tqdm(range(len(self.elements)), unit='Local'):
