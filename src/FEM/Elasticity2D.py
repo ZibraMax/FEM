@@ -1018,7 +1018,7 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                             q += az1*az2*self.t[inl2] * \
                                 enl2.detjac[kk]*enl2.W[kk]
                     J = (e.gammas[k]*C+enl.gammas[knl]*Cnl)*azn - q
-                    Knl += self.t[ee]*self.t[inl]*azn*(Bnl.T@J@B)*detjac[k] * \
+                    Knl += self.t[ee]*self.t[inl]*(Bnl.T@J@B)*detjac[k] * \
                         e.W[k]*detjacnl[knl]*enl.W[knl]
             # e.knls.append(Knl)
             self.KNL[np.ix_(e.gdlm, enl.gdlm)] -= Knl
