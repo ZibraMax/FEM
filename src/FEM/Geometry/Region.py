@@ -98,7 +98,7 @@ class Region2D(Region):
         self.e = ELE(coords, np.array([[-1]*lc]), n=1, fast=True, border=True)
         self.center, _ = self.e.T(self.e.center.T)
         _j, _ = self.e.J(self.e.center.T)
-        self.n = np.cross(_j[:, 0].T, _j[:, 1].T, axis=0)  # <A,B,C>
+        self.n = np.cross(_j[:, 0].T, _j[:, 1].T, axis=0)
         self.nnorm = np.linalg.norm(self.n)
         # Ax + By + Cz + D = 0
         self.D = -np.dot(self.n.flatten(), self.center.flatten())

@@ -503,9 +503,10 @@ class PlaneStressSparse(PlaneStressOrthotropicSparse):
                 fx (function, optional): Function fx, if fx is constant you can use fx = lambda x: [value]. Defaults to lambda x:0.
                 fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
         """
-        G = E/2.0/(1.0+v)
+        G = np.array(E)/2.0/(1.0+np.array(v))
+
         PlaneStressOrthotropicSparse.__init__(
-            self, geometry, E, E, G, v, t, rho, fx, fy, **kargs)
+            self, geometry, E, E, G.tolist(), v, t, rho, fx, fy, **kargs)
         self.name = 'Plane Stress Isotropic sparse'
 
 
@@ -816,7 +817,7 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
 
 
 class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
-    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, alpha: float, Lr: float, af: Callable, rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
         """Creates a plane stress non local non homogeneous finite element problem.
         This class implements the model proposed by Pisano et al (2009).
         It is not possible to use different tickness
@@ -827,7 +828,7 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
             v (Tuple[float, list]): List of Poisson coefficient for each element
             t (Tuple[float, list]): Thickness
             l (float): Internal lenght
-            z1 (float): To be changed..
+            alpha (float): Non local weight factor
             Lr (float): Influence distance (6l)
             af (Callable): Atenuation function
             rho (Tuple[float, list], optional): Density. Defaults to None.
@@ -838,16 +839,14 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
         self.l = l
         self.Lr = Lr
         self.af = af
-        self.z1 = z1
-        self.z2 = 1.0-self.z1
+        self.alpha = alpha
 
         PlaneStressSparse.__init__(
             self, geometry, E, v, t, rho, fx, fy, **kargs)
         self.properties['l'] = self.l
         self.properties['Lr'] = self.Lr
         self.properties['af'] = None
-        self.properties['z1'] = self.z1
-        self.properties['z2'] = self.z2
+        self.properties['alpha'] = self.alpha
         nonlocals = self.geometry.detectNonLocal(Lr)
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
@@ -898,6 +897,7 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                 knonlocn += self.properties['t'][i]*B.T@((gamma**2) * C)@B
             # TODO El elemento no debería guardar esta matríz, debería ensamblarse directamente
             e.knonlocn = knonlocn
+            self.KNL[np.ix_(e.gdlm, e.gdlm)] += knonlocn
             e.gammas = np.array(e.gammas)  # Esto si es estrictamente necesario
         for e in tqdm(range(len(self.elements)), unit='Local'):
             self.elementMatrix(e)
@@ -1017,11 +1017,11 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                             az2 = self.af(rho2)
                             q += az1*az2*self.t[inl2] * \
                                 enl2.detjac[kk]*enl2.W[kk]
-                    J = (e.gamma[k]*C+enl.gamma[knl])*azn - q
+                    J = (e.gammas[k]*C+enl.gammas[knl]*Cnl)*azn - q
                     Knl += self.t[ee]*self.t[inl]*azn*(Bnl.T@J@B)*detjac[k] * \
                         e.W[k]*detjacnl[knl]*enl.W[knl]
             # e.knls.append(Knl)
-            self.KNL[np.ix_(e.gdlm, enl.gdlm)] += Knl
+            self.KNL[np.ix_(e.gdlm, enl.gdlm)] -= Knl
 
     def profile(self, p0: list, p1: list, n: float = 100) -> None:
         """Generate a profile between selected points
@@ -1075,7 +1075,7 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
         """Creation of the system sparse matrix. Force vector is ensembled in integration method
         """
         logging.info('Ensembling equation system...')
-        self.K = self.KL*self.z1 + self.KNL*self.z2
+        self.K = self.KL + self.KNL*self.alpha
         if self.calculateMass:
             self.M = self.M.tocsr()
         logging.info('Done!')
