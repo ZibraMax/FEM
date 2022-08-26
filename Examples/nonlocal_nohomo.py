@@ -32,7 +32,7 @@ if __name__ == '__main__':
     geometria.generateRegionFromCoords([a, a], [0, a])
     geometria.generateRegionFromCoords([0, a], [0, 0])
     cb = geometria.cbFromRegion(3, 0, 1)
-    cb += geometria.cbFromRegion(3, 0, 2)
+    cb += geometria.generateBCFromCoords(0.0, h/2, 0.0, 2)
     cb += geometria.cbFromRegion(1, u, 1)
     geometria.setCbe(cb)
 
@@ -56,6 +56,7 @@ if __name__ == '__main__':
 
     O = PlaneStressNonLocalSparseNonHomogeneous(
         geometria, E, v, t, l, alpha, Lr, af, verbose=True)
-    O.solve()
+    O.solve(plot=False)
+    O.postProcess(mult=10)
     O.exportJSON('NonLocalNonHomogeneous.json')
     plt.show()
