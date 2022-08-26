@@ -878,9 +878,9 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
             knonlocn = 0.0
             k = -1
             for _xloc, _wloc, _detjacloc in zip(e._x, e.W, e.detjac):
-                # TODO Hay que hacer que este ciclo recorra los dpx tambien porque son los 
+                # TODO Hay que hacer que este ciclo recorra los dpx tambien porque son los
                 # mismos que los puntos de Gauss
-                k += 1 
+                k += 1
                 # El B debería calcularse una sola vez, se vuelve a calcular abajo
                 B = np.array([
                     [*dpx[k, 0, :], *o],
@@ -898,7 +898,7 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                 knonlocn += self.properties['t'][i]*B.T@((gamma**2) * C)@B
             # TODO El elemento no debería guardar esta matríz, debería ensamblarse directamente
             e.knonlocn = knonlocn
-            e.gammas = np.array(e.gammas) # Esto si es estrictamente necesario
+            e.gammas = np.array(e.gammas)  # Esto si es estrictamente necesario
         for e in tqdm(range(len(self.elements)), unit='Local'):
             self.elementMatrix(e)
 
@@ -976,6 +976,15 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
 
         # e.knls = []
         for inl in tqdm(e.enl, unit=' Nolocal'):
+            c11nl = self.C11[inl]
+            c12nl = self.C12[inl]
+            c22nl = self.C22[inl]
+            c66nl = self.C66[inl]
+            Cnl = np.array([
+                [c11nl, c12nl, 0.0],
+                [c12nl, c22nl, 0.0],
+                [0.0, 0.0, c66nl]])
+
             enl = self.elements[inl]
             mnl = len(enl.gdl.T)
             onl = [0.0]*mnl
@@ -998,7 +1007,18 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                         [*onl, *dpxnl[knl, 1, :]],
                         [*dpxnl[knl, 1, :], *dpxnl[knl, 0, :]]])
 
-                    Knl += self.t[ee]*self.t[inl]*azn*(Bnl.T@C@B)*detjac[k] * \
+                    q = 0.0
+                    for inl2 in e.enl:
+                        enl2 = self.elements[inl2]
+                        for kk in range(len(enl2.Z)):
+                            rho1 = np.linalg.norm(_x[k]-enl2._x[kk])/self.l
+                            rho2 = np.linalg.norm(_xnl[knl]-enl2._x[kk])/self.l
+                            az1 = self.af(rho1)
+                            az2 = self.af(rho2)
+                            q += az1*az2*self.t[inl2] * \
+                                enl2.detjac[kk]*enl2.W[kk]
+                    J = (e.gamma[k]*C+enl.gamma[knl])*azn - q
+                    Knl += self.t[ee]*self.t[inl]*azn*(Bnl.T@J@B)*detjac[k] * \
                         e.W[k]*detjacnl[knl]*enl.W[knl]
             # e.knls.append(Knl)
             self.KNL[np.ix_(e.gdlm, enl.gdlm)] += Knl
