@@ -9,19 +9,18 @@ if __name__ == '__main__':
     E1 = 0.4*E0
     E2 = E0
     v = 0.2
-    u = 0.1
-    t = 0.1
+    u = 0.001
+    t = 0.5
     l = 0.1
     alpha = 50
     # Para que las integrales de Gamma sean mas exactas es necesario un mayor Lr.
     # Ponerle mucho puede ser problemático porque hace que los gamma sean mayores a 1
     Lr = 6*l
-    P = 1
-    a = 50
-    h = 1
+    a = 5
+    h = 5
 
-    nx = 200
-    ny = 4
+    nx = 30
+    ny = 30
 
     coords, dicc = enmalladoFernando(a, h, nx, ny)
 
@@ -32,12 +31,12 @@ if __name__ == '__main__':
     geometria.generateRegionFromCoords([a, a], [0, a])
     geometria.generateRegionFromCoords([0, a], [0, 0])
     cb = geometria.cbFromRegion(3, 0, 1)
-    cb += geometria.generateBCFromCoords(0.0, h/2, 0.0, 2)
+    cb += geometria.cbFromRegion(3, 0, 2)
     cb += geometria.cbFromRegion(1, u, 1)
     geometria.setCbe(cb)
 
-    re1 = Region2D(np.array([[0.0, 0.0], [a/2, 0.0], [a/2, h], [0.0, h]]))
-    re2 = Region2D(np.array([[a/2, 0.0], [a, 0.0], [a, h], [a/2, h]]))
+    re1 = Region2D(np.array([[2.0, 2.0], [3.0, 2.0], [3.0, 3.0], [2.0, 3.0]]))
+    re2 = Region2D(np.array([[0.0, 0.0], [a, 0.0], [a, h], [0.0, h]]))
 
     geometria.addRegions([re1, re2])
 
@@ -58,5 +57,5 @@ if __name__ == '__main__':
         geometria, E, v, t, l, alpha, Lr, af, verbose=True)
     O.solve(plot=False)
     O.postProcess(mult=10)
-    O.exportJSON('NonLocalNonHomogeneous.json')
+    O.exportJSON('NonLocalNonHomogeneousPlate.json')
     plt.show()

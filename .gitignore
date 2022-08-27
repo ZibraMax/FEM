@@ -17,7 +17,7 @@ secrets.txt
 *.cpython-37.pyc
 *.csv
 *.log
-# *.json
+*.json
 *.svg
 *.txt
 *.sublime*
