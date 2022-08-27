@@ -41,6 +41,14 @@ Examples.ExampleGValidacion module
    :undoc-members:
    :show-inheritance:
 
+Examples.ImportJsonExample module
+---------------------------------
+
+.. automodule:: Examples.ImportJsonExample
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.Punto3 module
 ----------------------
 
