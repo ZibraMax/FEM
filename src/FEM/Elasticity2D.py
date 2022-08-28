@@ -1010,12 +1010,20 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                     q = 0.0
                     for inl2 in e.enl:
                         enl2 = self.elements[inl2]
+                        c11nl2 = self.C11[inl2]
+                        c12nl2 = self.C12[inl2]
+                        c22nl2 = self.C22[inl2]
+                        c66nl2 = self.C66[inl2]
+                        Cnl2 = np.array([
+                            [c11nl2, c12nl2, 0.0],
+                            [c12nl2, c22nl2, 0.0],
+                            [0.0, 0.0, c66nl2]])
                         for kk in range(len(enl2.Z)):
                             rho1 = np.linalg.norm(_x[k]-enl2._x[kk])/self.l
                             rho2 = np.linalg.norm(_xnl[knl]-enl2._x[kk])/self.l
                             az1 = self.af(rho1)
                             az2 = self.af(rho2)
-                            q += az1*az2*self.t[inl2] * \
+                            q += az1*az2*Cnl2*self.t[inl2] * \
                                 enl2.detjac[kk]*enl2.W[kk]
                     J = (e.gammas[k]*C+enl.gammas[knl]*Cnl)*azn - q
                     Knl += self.t[ee]*self.t[inl]*(Bnl.T@J@B)*detjac[k] * \
