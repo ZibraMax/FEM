@@ -441,6 +441,14 @@ Examples.import\_mesh\_fernando module
    :undoc-members:
    :show-inheritance:
 
+Examples.laminarTest module
+---------------------------
+
+.. automodule:: Examples.laminarTest
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.meh module
 -------------------
 
