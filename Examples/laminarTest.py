@@ -72,10 +72,10 @@ geo.loadOnRegion(0, fy=carga)
 # geo = Delaunay(vertices=vertices, params=params, nvn=2, fast=True)
 
 
-geo.show(draw_segs=True, draw_bc=False, label_bc=False)
-plt.show()
+# geo.show(draw_segs=True, draw_bc=False, label_bc=False)
+# plt.show()
 
-O = PlaneStressSparse(geo, E, v, b, verbose=True)
+O = PlaneStressSparse(geo, E.tolist(), v.tolist(), b, verbose=True)
 O.solve(plot=False)
 O.postProcess(levels=30)
 O.exportJSON('viga.json')

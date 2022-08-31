@@ -49,4 +49,5 @@ if __name__ == '__main__':
     O.geometry.show(draw_bc=True, draw_segs=False)
     plt.show()
     O.solve()
+    O.exportJSON('pieza_acero.json')
     plt.show()
