@@ -110,9 +110,9 @@ class LinealEigen(Lineal):
         self.system.elementMatrices()
         logging.info('Done!')
         self.system.ensembling()
-        self.system.borderConditions()
+        self.system.condensedSystem()
         logging.info('Converting to csr format')
-        self.system.K = self.system.K.tocsr()
+        K = self.system.K.tocsr()
         logging.info('Solving...')
         # eigv, eigvec = largest_eigsh(
         #     self.system.K, k, self.system.M, which='SM')
@@ -120,7 +120,7 @@ class LinealEigen(Lineal):
         # eigv, eigvec = eigh(
         #     self.system.K.todense(), self.system.M.todense(), eigvals=(N-k, N-1))
         eigv, eigvec = eigsh(
-            self.system.K, k, self.system.M, which='SM')
+            K, k, self.system.M, which='SM')
         idx = eigv.argsort()
         eigv = eigv[idx]
         eigvec = eigvec[:, idx]
@@ -131,7 +131,11 @@ class LinealEigen(Lineal):
                        self.system.eigv, delimiter=',', fmt='%s')
             np.savetxt(path.replace('.', '_eigvec.'),
                        self.system.eigvec, delimiter=',', fmt='%s')
-        self.solutions = eigvec.T
+        eeevalues = []
+        for eigenvalue in eigvec.T:
+            eeevalues.append(eigenvalue)
+
+        self.solutions = np.array(eeevalues)
         self.solutions_info = [
             {'solver-type': self.type, 'eigv': ei} for ei in self.system.eigv]
 

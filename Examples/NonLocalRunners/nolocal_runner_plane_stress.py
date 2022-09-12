@@ -20,7 +20,7 @@ Lr = omega*l
 
 E = 2.1*10**6
 v = 0.2
-t = 0.5
+t = l/10
 
 dens = 2.329
 
@@ -71,6 +71,7 @@ for z in Z[::-1]:
         {'solver-type': O.solver.type, 'eigv': ei} for ei in O.eigv]
     O.solver.setSolution(0)
     logging.info('Solved!')
+    O.properties['z1'] = O.z1
 
     O.exportJSON(filename)
 

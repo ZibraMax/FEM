@@ -154,6 +154,52 @@ class Core():
             self.S[int(i[0])] = i[1]
         logging.info('Done!')
 
+    def condensedSystem(self) -> None:
+        """Assign border conditions to the system and modifies the matrices to condensed mode 
+        The border conditios are assigned in this order:
+
+        1. Natural border conditions
+        2. Essential border conditions
+
+        This ensures that in a node with 2 border conditions
+        the essential border conditions will be applied.
+        """
+        # FIXME tiene que funcionar para todos los casos
+        # self.borderConditions()
+        logging.info('Border conditions...')
+        for i in tqdm(self.cbn, unit=' Natural'):
+            self.Q[int(i[0])] = i[1]
+
+        if self.cbe:
+            border_conditions = np.zeros([self.ngdl, 1])
+            cb = np.array(self.cbe)
+            ncb = len(cb)
+            border_conditions[np.ix_(cb[:, 0].astype(int))
+                              ] = cb[:, 1].reshape([ncb, 1])
+            # FIXME esto puede resultar en pasar la matriz dwe lil a densa!!
+            self.S = self.S - (border_conditions.T@self.K).T
+            for i in tqdm(self.cbe, unit=' Essential'):
+                self.K[int(i[0]), :] = 0
+                self.K[:, int(i[0])] = 0
+                self.K[int(i[0]), int(i[0])] = 1
+                if self.calculateMass:
+                    self.M[int(i[0]), :] = 0
+                    self.M[:, int(i[0])] = 0
+                    self.M[int(i[0]), int(i[0])] = 1
+                if 'newton' in self.solver.type:
+                    try:
+                        self.T[int(i[0]), :] = 0
+                        self.T[:, int(i[0])] = 0
+                        self.T[int(i[0]), int(i[0])] = 1
+                    except Exception as e:
+                        logging.error("Impossible to access tangent matrix.")
+                        raise e
+
+        self.S = self.S + self.F + self.Q
+        for i in self.cbe:
+            self.S[int(i[0])] = i[1]
+        logging.info('Done!')
+
     def solveES(self, **kargs) -> None:
         """Solve the finite element problem
         """
