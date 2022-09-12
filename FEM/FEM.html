@@ -320,6 +320,19 @@ the essential border conditions will be applied.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Core.Core.condensedSystem">
+<span class="sig-name descname"><span class="pre">condensedSystem</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Core.Core.condensedSystem" title="Permalink to this definition">#</a></dt>
+<dd><p>Assign border conditions to the system and modifies the matrices to condensed mode
+The border conditios are assigned in this order:</p>
+<ol class="arabic simple">
+<li><p>Natural border conditions</p></li>
+<li><p>Essential border conditions</p></li>
+</ol>
+<p>This ensures that in a node with 2 border conditions
+the essential border conditions will be applied.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Core.Core.description">
 <span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.Core.description" title="Permalink to this definition">#</a></dt>
 <dd><p>Generates the problem description for loggin porpuses</p>
