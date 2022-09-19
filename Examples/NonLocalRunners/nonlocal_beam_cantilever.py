@@ -10,46 +10,52 @@ import matplotlib.pyplot as plt
 from scipy.sparse.linalg import spsolve
 from scipy.sparse.linalg import eigsh
 # .__class__.__name__
-L = float(sys.argv[1])
-l = float(sys.argv[2])
+L = 10
+b = 1
+h = 1
+
+
+l = 0.1
 Z = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-nex = int(sys.argv[3])
-omega = 6
+omega = 9
 Lr = omega*l
 
 
-E = 2.0*10**6
-v = 0.2
-t = L/10
+E = 2.1*10**4
+v = 0.3
+t = b
 
-dens = 2.329
+dens = 8
 
 # u0 = 1
+mu = 1
+tao = (mu**0.5)/l
+l0 = 1/np.pi/l/l/tao
 
 
-def af(l0, rho):
-    return l0*np.exp(-rho)
+def af(rho):
+    return l0*np.exp(-rho/(l)*tao)
 
 
 _a = L
-_b = L
+_b = h
 
-nx = nex
-ny = nex
+nx = 50
+ny = 5
 coords, dicc = enmalladoFernando(_a, _b, nx, ny)
 
 geo = Geometry2D(dicc, coords, ["C2V"]*len(dicc), nvn=2, fast=True)
 regions = [Region1D([[0.0, 0.0], [0.0, L]]), Region1D([[L, 0.0], [L, L]])]
 geo.addRegions(regions)
-# cb = geo.cbFromRegion(0, 0.0, 1)
-# cb += geo.cbFromRegion(0, 0.0, 2)
+cb = geo.cbFromRegion(0, 0.0, 1)
+cb += geo.cbFromRegion(0, 0.0, 2)
 # cb += geo.cbFromRegion(1, u0, 1)
 
-# geo.setCbe(cb)
+geo.setCbe(cb)
 # geo.show(draw_bc=True, label_bc=True)
 # plt.show()
 
-log_filename = f'SiPlate_disp_{L}_{l}'
+log_filename = f'SiBeam_disp_reddy_{L}_{l}'
 
 O = PlaneStressNonLocalSparse(geo, E, v, t, l, 0.0, Lr=Lr,
                               af=af, rho=dens, verbose=True, name=log_filename)
@@ -61,7 +67,7 @@ duration = O.logger.end_timer().total_seconds()
 O.properties['duration'] = duration
 for z in Z[::-1]:
     logging.info(f'Solving for z={z}')
-    filename = f'SiPlate_disp_{L}_{l}_{z}.json'
+    filename = f'SiBeam_disp_reddy_{L}_{l}_{z}.json'
 
     O.z1 = z
     O.z2 = 1-z
@@ -69,7 +75,7 @@ for z in Z[::-1]:
     O.Q[:, :] = 0.0
     O.S[:, :] = 0.0
     O.ensembling()
-    O.borderConditions()
+    O.condensedSystem()
     logging.info('Solving...')
     O.K = O.K.tocsr()
     logging.info('Solving...')
@@ -84,6 +90,7 @@ for z in Z[::-1]:
     O.solver.solutions_info = [
         {'solver-type': O.solver.type, 'eigv': ei} for ei in O.eigv]
     O.solver.setSolution(0)
+    print(f'{z},{(eigv[0]**0.5)/(2*np.pi)}')
     logging.info('Solved!')
     O.properties['z1'] = O.z1
 

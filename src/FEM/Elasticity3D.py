@@ -316,7 +316,7 @@ class NonLocalElasticity(Elasticity):
 
                         Knl += azn*(Bnl.T@C@B)*detjac[k] * \
                             e.W[k]*detjacnl[knl]*enl.W[knl]
-                self.KNL[np.ix_(e.gdlm, enl.gdlm)] += Knl
+                self.KNL[np.ix_(e.gdlm, enl.gdlm)] += Knl.T
 
     def ensembling(self) -> None:
         """Creation of the system sparse matrix. Force vector is ensembled in integration method

@@ -630,7 +630,6 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         self.Lr = Lr
         self.af = af
         self.z1 = z1
-        self.l0 = 0.5/np.pi/l/l/t
         self.z2 = 1.0-self.z1
 
         PlaneStressSparse.__init__(
@@ -640,7 +639,6 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         self.properties['af'] = None
         self.properties['z1'] = self.z1
         self.properties['z2'] = self.z2
-        self.properties['l0'] = self.l0
         nonlocals = self.geometry.detectNonLocal(Lr)
         for e, dno in zip(self.elements, nonlocals):
             e.enl = dno
@@ -747,7 +745,7 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
 
                 for knl in range(len(enl.Z)):
                     ro = np.linalg.norm(_x[k]-_xnl[knl])/self.l
-                    azn = self.af(self.l0, ro)
+                    azn = self.af(ro)
                     Bnl = np.array([
                         [*dpxnl[knl, 0, :], *onl],
                         [*onl, *dpxnl[knl, 1, :]],
@@ -756,7 +754,7 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
                     Knl += self.t[ee]*self.t[inl]*azn*(Bnl.T@C@B)*detjac[k] * \
                         e.W[k]*detjacnl[knl]*enl.W[knl]
             # e.knls.append(Knl)
-            self.KNL[np.ix_(e.gdlm, enl.gdlm)] += Knl
+            self.KNL[np.ix_(e.gdlm, enl.gdlm)] += Knl.T
 
     def profile(self, p0: list, p1: list, n: float = 100) -> None:
         """Generate a profile between selected points
@@ -1029,7 +1027,8 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
                     Knl += self.t[ee]*self.t[inl]*(Bnl.T@J@B)*detjac[k] * \
                         e.W[k]*detjacnl[knl]*enl.W[knl]
             # e.knls.append(Knl)
-            self.KNL[np.ix_(e.gdlm, enl.gdlm)] -= Knl
+            # ESTA DEBE SER TRANSPUESTA!!!!!!!!!!!!!!!
+            self.KNL[np.ix_(e.gdlm, enl.gdlm)] -= Knl.T
 
     def profile(self, p0: list, p1: list, n: float = 100) -> None:
         """Generate a profile between selected points
