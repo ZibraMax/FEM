@@ -473,14 +473,6 @@ Examples.nolocalsparsetest module
    :undoc-members:
    :show-inheritance:
 
-Examples.nonlocal\_nohomo module
---------------------------------
-
-.. automodule:: Examples.nonlocal_nohomo
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Examples.profile\_validation module
 -----------------------------------
 
