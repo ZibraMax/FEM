@@ -26,8 +26,10 @@ dens = 2.329
 
 # u0 = 1
 
+l0 = 0.5/np.pi/l/l/t
 
-def af(l0, rho):
+
+def af(rho):
     return l0*np.exp(-rho)
 
 

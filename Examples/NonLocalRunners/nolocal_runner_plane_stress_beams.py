@@ -20,17 +20,19 @@ Lr = omega*l
 
 E = 2.1*10**6
 v = 0.2
-
 dens = 2.329
-
-
-def af(l0, rho):
-    return l0*np.exp(-rho)
 
 
 _a = L
 _b = L/10
 t = L/10
+
+l0 = 0.5/np.pi/l/l/t
+
+
+def af(rho):
+    return np.exp(-rho)
+
 
 nx = nex
 ny = min(nex//10, 4)
