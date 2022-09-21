@@ -813,6 +813,55 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
             self.M = self.M.tocsr()
         logging.info('Done!')
 
+    def postProcess(self, mult: float = 1000, gs=None, levels=1000, **kargs) -> None:
+        """Generate the stress surfaces and displacement fields for the geometry
+
+        Args:
+                mult (int, optional): Factor for displacements. Defaults to 1000.
+                gs (list, optional): List of 4 gridSpec matplotlib objects. Defaults to None.
+        """
+        X = []
+        Y = []
+        U1 = []
+        U2 = []
+        U3 = []
+        fig = plt.figure()
+        if not gs:
+            gss = gridspec.GridSpec(3, 3)
+            gs = [gss[0, 0], gss[0, 1], gss[0, 2], gss[1:, :]]
+        ax1 = fig.add_subplot(gs[0], projection='3d')
+        ax2 = fig.add_subplot(gs[1], projection='3d')
+        ax3 = fig.add_subplot(gs[2])
+        ax5 = fig.add_subplot(gs[3])
+        ee = -1
+        for e in tqdm(self.elements, unit='Element'):
+            ee += 1
+            _x, _u, du = e.giveSolution(True)
+            X += _x.T[0].tolist()
+            Y += _x.T[1].tolist()
+            U1 += (du[:, 0, 0]).tolist()
+            U2 += (du[:, 1, 1]).tolist()
+            U3 += ((du[:, 0, 1]+du[:, 1, 0])).tolist()
+            coordsNuevas = e._coordsg + e._Ueg * mult
+            ax5.plot(*e._coordsg.T, '--', color='gray', alpha=0.7)
+            ax5.plot(*coordsNuevas.T, '-', color='black')
+        ax5.legend(['Original Shape', 'Deformed Shape (x'+format(mult)+')'])
+        ax5.set_aspect('equal')
+        ax3.set_aspect('equal')
+        cmap = 'rainbow'
+
+        surf = ax1.plot_trisurf(X, Y, U1, cmap=cmap, **kargs)
+        plt.colorbar(surf, ax=ax1)
+        ax1.set_title(r'$\varepsilon_{xx}$')
+
+        surf = ax2.plot_trisurf(X, Y, U2, cmap=cmap, **kargs)
+        plt.colorbar(surf, ax=ax2)
+        ax2.set_title(r'$\varepsilon_{yy}$')
+
+        surf = ax3.tricontourf(X, Y, U3, cmap=cmap, levels=levels, **kargs)
+        plt.colorbar(surf, ax=ax3)
+        ax3.set_title(r'$\varepsilon_{xy}$')
+
 
 class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
     def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, alpha: float, Lr: float, af: Callable, rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
