@@ -8,6 +8,81 @@ import math
 from typing import Tuple
 
 
+def enmalladoEsferaFernando(L: float, n: float) -> Tuple[np.ndarray, list]:
+    """Crea el enmallado de una esfera de diámetro L con n numero de elementos
+        por lado. Para crear el enmallado se deforma un cubo a la forma de una
+        esfera.
+
+        Autor: Fernando Ramirez Rodriguez
+        Traducido de Matlab.
+
+    Args:
+        L (float): Diametro de la esfera
+        n (float): Número de elementos por lado. El numero deelemtnos final es n^3
+
+    Returns:
+        Tuple[np.ndarray,list]: Matriz de coordenadas y conectividad
+    """
+    # TODO Necesita revisión
+
+    sidel = L
+    nsdel = n
+    delta = sidel/nsdel
+
+    re = sidel/2
+    deltar = 2*re/nsdel
+    nd = 0
+    coor = np.zeros([(nsdel+1)**3, 3])
+    for i in range(0, nsdel+1):
+        z = (i)*delta
+        for j in range(0, nsdel+1):
+            y = (j)*delta
+            for k in range(0, nsdel+1):
+                x = (k)*delta
+                coor[nd, 0] = x-sidel/2
+                coor[nd, 1] = y-sidel/2
+                coor[nd, 2] = z-sidel/2
+                nd = nd+1
+    ntnd = nd
+    tol = 1e-6
+    for i in range(0, int(nsdel/2)):
+        crl = sidel/2-(i)*delta
+        rec = re-(i)*deltar
+        for nd in range(0, ntnd):
+            if abs(abs(coor[nd, 0]) - crl) < tol or abs(abs(coor[nd, 1]) - crl) < tol or abs(abs(coor[nd, 2]) - crl) < tol:
+                d = np.sqrt((coor[nd, 0]) ** 2+(coor[nd, 1])
+                            ** 2+(coor[nd, 2]) ** 2)
+                dd = rec-d
+                xu = coor[nd, 0]/d
+                yu = coor[nd, 1]/d
+                zu = coor[nd, 2]/d
+                coor[nd, 0] = coor[nd, 0]+xu*dd
+                coor[nd, 1] = coor[nd, 1]+yu*dd
+                coor[nd, 2] = coor[nd, 2]+zu*dd
+    for nd in range(0, ntnd):
+        coor[nd, 1-1] = coor[nd, 1-1]+sidel/2
+        coor[nd, 2-1] = coor[nd, 2-1]+sidel/2
+        coor[nd, 3-1] = coor[nd, 3-1]+sidel/2
+    # return coor
+    con = []
+    el = 0
+    for i in range(nsdel):
+        for j in range(nsdel):
+            for k in range(nsdel):
+                ni = (i)*(nsdel+1)*(nsdel+1)+(j)*(nsdel+1)+k
+                con.append([0]*8)
+                con[el][1-1] = ni
+                con[el][2-1] = ni+1
+                con[el][3-1] = con[el][2-1]+nsdel+1
+                con[el][4-1] = con[el][1-1]+nsdel+1
+                con[el][5-1] = con[el][1-1]+(nsdel+1)*(nsdel+1)
+                con[el][6-1] = con[el][5-1]+1
+                con[el][7-1] = con[el][6-1]+nsdel+1
+                con[el][8-1] = con[el][5-1]+nsdel+1
+                el = el + 1
+    return coor, con
+
+
 def enmalladoFernando(lx: float, ly: float, nex: int, ney: int) -> np.ndarray:
     """Crea un enmallado 2D de un rectangulo
 
