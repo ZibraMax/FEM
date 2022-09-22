@@ -20,7 +20,7 @@ import sys
 import inspect
 
 
-def importJSON(json_file):
+def importJSON(json_file, aditional, **kargs):
     logging = FEMLogger()
     y = json.load(open(json_file))
     problemClass = y['properties']['problem']
@@ -43,11 +43,11 @@ def importJSON(json_file):
     properties = y['properties']
     ndim = len(coords[0])
     if ndim == 1:
-        geo = Geometry1D(dcc, coords, types, nvn)
+        geo = Geometry1D(dcc, coords, types, nvn, **kargs)
     elif ndim == 2:
-        geo = Geometry2D(dcc, coords, types, nvn)
+        geo = Geometry2D(dcc, coords, types, nvn, **kargs)
     elif ndim == 3:
-        geo = Geometry3D(dcc, coords, types, nvn)
+        geo = Geometry3D(dcc, coords, types, nvn, **kargs)
     else:
         raise Exception('Not valid geometry')
     params = inspect.signature(baseClass).parameters.keys()
@@ -55,6 +55,8 @@ def importJSON(json_file):
     for p in params:
         if not p in properties and not p == 'kargs':
             properties[p] = 0.5
+            if p in aditional:
+                properties[p] = aditional[p]
     for_Deletion = []
     for k in properties:
         if not k in params:

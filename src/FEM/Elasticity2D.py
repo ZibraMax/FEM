@@ -609,7 +609,7 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
                 fy (function, optional): Function fy, if fy is constant you can use fy = lambda x: [value]. Defaults to lambda x:0.
         """
 
-    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, **kargs) -> None:
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], l: float, z1: float, Lr: float, af: Callable, rho: Tuple[float, list] = None, fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, notCalculateNonLocal=True, **kargs) -> None:
         """Create a Plain Stress nonlocal problem using sparse matrices and the Pisano 2006 formulation.
 
         Args:
@@ -639,9 +639,10 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
         self.properties['af'] = None
         self.properties['z1'] = self.z1
         self.properties['z2'] = self.z2
-        nonlocals = self.geometry.detectNonLocal(Lr)
-        for e, dno in zip(self.elements, nonlocals):
-            e.enl = dno
+        if notCalculateNonLocal:
+            nonlocals = self.geometry.detectNonLocal(Lr)
+            for e, dno in zip(self.elements, nonlocals):
+                e.enl = dno
         self.name = 'Plane Stress Isotropic non local sparse'
 
         self.KL = sparse.lil_matrix((self.ngdl, self.ngdl))
@@ -756,7 +757,7 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
             # e.knls.append(Knl)
             self.KNL[np.ix_(e.gdlm, enl.gdlm)] += Knl.T
 
-    def profile(self, p0: list, p1: list, n: float = 100) -> None:
+    def profile(self, p0: list, p1: list, n: float = 100, plot=True) -> None:
         """Generate a profile between selected points
 
         Args:
@@ -786,22 +787,23 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
                     U3 += (1/2*(du[:, 0, 1]+du[:, 1, 0])).tolist()
                     _X.append(dist(X.T[i]))
                     break
-        fig = plt.figure()
-        ax = fig.add_subplot(1, 3, 1)
-        ax.plot(_X, U1, color='black')
-        ax.grid()
-        ax.set_xlabel('d')
-        ax.set_ylabel(r'$\varepsilon_{xx}$')
-        ax = fig.add_subplot(1, 3, 2)
-        ax.plot(_X, U2, color='black')
-        ax.grid()
-        ax.set_xlabel('d')
-        ax.set_ylabel(r'$\varepsilon_{yy}$')
-        ax = fig.add_subplot(1, 3, 3)
-        ax.plot(_X, U3, color='black')
-        ax.grid()
-        ax.set_xlabel('d')
-        ax.set_ylabel(r'$\varepsilon_{xy}$')
+        if plot:
+            fig = plt.figure()
+            ax = fig.add_subplot(1, 3, 1)
+            ax.plot(_X, U1, color='black')
+            ax.grid()
+            ax.set_xlabel('d')
+            ax.set_ylabel(r'$\varepsilon_{xx}$')
+            ax = fig.add_subplot(1, 3, 2)
+            ax.plot(_X, U2, color='black')
+            ax.grid()
+            ax.set_xlabel('d')
+            ax.set_ylabel(r'$\varepsilon_{yy}$')
+            ax = fig.add_subplot(1, 3, 3)
+            ax.plot(_X, U3, color='black')
+            ax.grid()
+            ax.set_xlabel('d')
+            ax.set_ylabel(r'$\varepsilon_{xy}$')
         return _X, U1, U2, U3, U
 
     def ensembling(self) -> None:

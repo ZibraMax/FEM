@@ -37,7 +37,7 @@ _a = L
 _b = L/50
 
 nx = nex
-ny = min(nex//10, 4)
+ny = max(nex//10, 4)
 coords, dicc = enmalladoFernando(_a, _b, nx, ny)
 
 geo = Geometry2D(dicc, coords, ["C2V"]*len(dicc), nvn=2, fast=True)
