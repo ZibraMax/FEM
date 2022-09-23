@@ -41,10 +41,18 @@ Examples.ExampleGValidacion module
    :undoc-members:
    :show-inheritance:
 
-Examples.ImportJsonExample module
----------------------------------
+Examples.ImportJsonBars module
+------------------------------
 
-.. automodule:: Examples.ImportJsonExample
+.. automodule:: Examples.ImportJsonBars
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.ImportJsonPlates module
+--------------------------------
+
+.. automodule:: Examples.ImportJsonPlates
    :members:
    :undoc-members:
    :show-inheritance:
