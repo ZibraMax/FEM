@@ -25,7 +25,7 @@ for L in tqdm(LS):
         L = np.max(O.geometry.gdls)
         print(L, l)
         _X, U1, U2, U3, U = O.profile(
-            [0, 0.019], [L, 0.019], n=1000, plot=False)
+            [0, 0.019/5*L], [L, 0.019/5*L], n=1000, plot=False)
         plt.plot(np.array(_X)/L, U1, '-', c=colors[i], label=f'FEM , l={l}')
     plt.legend()
     plt.grid()

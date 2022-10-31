@@ -17,7 +17,7 @@ h = L/10
 
 l = float(sys.argv[2])
 Z = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-omega = 9
+omega = 6
 Lr = omega*l
 
 
@@ -45,10 +45,12 @@ ny = max(nx//10, 4)
 coords, dicc = enmalladoFernando(_a, _b, nx, ny)
 
 geo = Geometry2D(dicc, coords, ["C2V"]*len(dicc), nvn=2, fast=True)
-regions = [Region1D([[0.0, 0.0], [0.0, L]]), Region1D([[L, 0.0], [L, L]])]
+regions = [Region1D([[0.0, 0.0], [0.0, h]]), Region1D([[L, 0.0], [L, h]])]
 geo.addRegions(regions)
 cb = geo.cbFromRegion(0, 0.0, 1)
 cb += geo.cbFromRegion(0, 0.0, 2)
+cb += geo.cbFromRegion(1, 0.0, 1)
+cb += geo.cbFromRegion(1, 0.0, 2)
 # cb += geo.cbFromRegion(1, u0, 1)
 
 geo.setCbe(cb)
@@ -67,7 +69,7 @@ duration = O.logger.end_timer().total_seconds()
 O.properties['duration'] = duration
 for z in Z[::-1]:
     logging.info(f'Solving for z={z}')
-    filename = f'./VIGA_VOLADIZO/SiBeam_disp_reddy_{L}_{l}_{z}.json'
+    filename = f'./VIGA_FIXED/SiBeam_disp_reddy_{L}_{l}_{z}.json'
 
     O.z1 = z
     O.z2 = 1-z

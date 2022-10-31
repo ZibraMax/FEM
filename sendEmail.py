@@ -7,7 +7,7 @@ from os.path import basename
 from email.mime.multipart import MIMEMultipart
 
 
-def sendMailOutlook(mss="Tu script ha finalizado de correr", secrests_path='secrets.txt', files=None):
+def sendMailOutlook(mss="Tu script ha finalizado de correr", secrests_path='secrets.txt', files=None, fail=False):
     """Envia un correo electrónico a travez de Outlook/Hotmial/Live. Se debe crear un archivos secrets.txt que contenga:
 
     Primera linea: correo electronico del que envia el mensaje. Ejemplo: espaiderman@hotmail.com
@@ -33,9 +33,10 @@ def sendMailOutlook(mss="Tu script ha finalizado de correr", secrests_path='secr
         y = {"sender_email": e, "password": p, "recipient_email": r}
 
     msg = MIMEMultipart()
-    msg['From'] = formataddr(('Python', y["sender_email"]))
+    msg['From'] = formataddr(('Python' + fail*'FAIL!!!', y["sender_email"]))
     msg['To'] = y['recipient_email']
-    msg['Subject'] = "Tu script ha finalizado!"
+    msg['Subject'] = "Tu script ha" + fail * \
+        ' fallado!!!' + (1-fail)*' finalizado!'
     msg.attach(MIMEText(mss))
     # 1/0
     for f in files or []:
