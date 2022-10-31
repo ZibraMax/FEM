@@ -49,6 +49,14 @@ Examples.ImportJsonBars module
    :undoc-members:
    :show-inheritance:
 
+Examples.ImportJsonBarsUnique module
+------------------------------------
+
+.. automodule:: Examples.ImportJsonBarsUnique
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.ImportJsonPlates module
 --------------------------------
 

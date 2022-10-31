@@ -5,10 +5,10 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="FEM.Elements.E2D package" href="FEM.Elements.E2D.html" /><link rel="prev" title="FEM.Elements package" href="FEM.Elements.html" />
 
-    <meta name="generator" content="sphinx-5.1.1, furo 2022.09.15"/>
+    <meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
         <title>FEM.Elements.E1D package - FEM 1.0.33 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -198,7 +198,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -588,12 +589,53 @@
             <ul>
 <li><a class="reference internal" href="#">FEM.Elements.E1D package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E1D.CubicElement">FEM.Elements.E1D.CubicElement module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E1D.Element1D">FEM.Elements.E1D.Element1D module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E1D.EulerBernoulliElement">FEM.Elements.E1D.EulerBernoulliElement module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E1D.LinealElement">FEM.Elements.E1D.LinealElement module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E1D.LinearScheme">FEM.Elements.E1D.LinearScheme module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E1D.QuadraticElement">FEM.Elements.E1D.QuadraticElement module</a></li>
+<li><a class="reference internal" href="#module-FEM.Elements.E1D.CubicElement">FEM.Elements.E1D.CubicElement module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.CubicElement.CubicElement"><code class="docutils literal notranslate"><span class="pre">CubicElement</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.CubicElement.CubicElement.dpsis"><code class="docutils literal notranslate"><span class="pre">CubicElement.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.CubicElement.CubicElement.psis"><code class="docutils literal notranslate"><span class="pre">CubicElement.psis()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E1D.Element1D">FEM.Elements.E1D.Element1D module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.Element1D.Element1D"><code class="docutils literal notranslate"><span class="pre">Element1D</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.Element1D.Element1D.draw"><code class="docutils literal notranslate"><span class="pre">Element1D.draw()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.Element1D.Element1D.isInside"><code class="docutils literal notranslate"><span class="pre">Element1D.isInside()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.Element1D.Element1D.jacobianGraph"><code class="docutils literal notranslate"><span class="pre">Element1D.jacobianGraph()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E1D.EulerBernoulliElement">FEM.Elements.E1D.EulerBernoulliElement module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliElement</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.dhermit"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliElement.dhermit()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.giveSolution"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliElement.giveSolution()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.giveSolutionPoint"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliElement.giveSolutionPoint()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.EulerBernoulliElement.EulerBernoulliElement.hermit"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliElement.hermit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E1D.LinealElement">FEM.Elements.E1D.LinealElement module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.LinealElement.LinealElement"><code class="docutils literal notranslate"><span class="pre">LinealElement</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.LinealElement.LinealElement.dpsis"><code class="docutils literal notranslate"><span class="pre">LinealElement.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.LinealElement.LinealElement.psis"><code class="docutils literal notranslate"><span class="pre">LinealElement.psis()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E1D.LinearScheme">FEM.Elements.E1D.LinearScheme module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.LinearScheme.LinearScheme"><code class="docutils literal notranslate"><span class="pre">LinearScheme</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E1D.QuadraticElement">FEM.Elements.E1D.QuadraticElement module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement"><code class="docutils literal notranslate"><span class="pre">QuadraticElement</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement.dpsis"><code class="docutils literal notranslate"><span class="pre">QuadraticElement.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.QuadraticElement.QuadraticElement.psis"><code class="docutils literal notranslate"><span class="pre">QuadraticElement.psis()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -610,6 +652,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     </body>
 </html>

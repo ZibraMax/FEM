@@ -5,10 +5,10 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="FEM.Geometry package" href="FEM.Geometry.html" /><link rel="prev" title="FEM.Elements.E2D package" href="FEM.Elements.E2D.html" />
 
-    <meta name="generator" content="sphinx-5.1.1, furo 2022.09.15"/>
+    <meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
         <title>FEM.Elements.E3D package - FEM 1.0.33 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -198,7 +198,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -263,6 +264,9 @@
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial \Psi_i}{\partial x_j} = \frac{1}{8}\left[\begin{matrix}- \left(1 - x\right) \left(1 - y\right) \left(1 - z\right) + \left(1 - z\right) \left(y - 1\right) \left(- x - y - z - 2\right) &amp; - \left(1 - x\right) \left(1 - y\right) \left(1 - z\right) + \left(1 - z\right) \left(x - 1\right) \left(- x - y - z - 2\right) &amp; - \left(1 - x\right) \left(1 - y\right) \left(1 - z\right) - \left(1 - x\right) \left(1 - y\right) \left(- x - y - z - 2\right)\\\left(1 - y\right) \left(1 - z\right) \left(x + 1\right) + \left(1 - y\right) \left(1 - z\right) \left(x - y - z - 2\right) &amp; - \left(1 - y\right) \left(1 - z\right) \left(x + 1\right) + \left(1 - z\right) \left(- x - 1\right) \left(x - y - z - 2\right) &amp; - \left(1 - y\right) \left(1 - z\right) \left(x + 1\right) - \left(1 - y\right) \left(x + 1\right) \left(x - y - z - 2\right)\\\left(1 - z\right) \left(x + 1\right) \left(y + 1\right) + \left(1 - z\right) \left(y + 1\right) \left(x + y - z - 2\right) &amp; \left(1 - z\right) \left(x + 1\right) \left(y + 1\right) + \left(1 - z\right) \left(x + 1\right) \left(x + y - z - 2\right) &amp; - \left(1 - z\right) \left(x + 1\right) \left(y + 1\right) - \left(x + 1\right) \left(y + 1\right) \left(x + y - z - 2\right)\\- \left(1 - x\right) \left(1 - z\right) \left(y + 1\right) + \left(1 - z\right) \left(- y - 1\right) \left(- x + y - z - 2\right) &amp; \left(1 - x\right) \left(1 - z\right) \left(y + 1\right) + \left(1 - x\right) \left(1 - z\right) \left(- x + y - z - 2\right) &amp; - \left(1 - x\right) \left(1 - z\right) \left(y + 1\right) - \left(1 - x\right) \left(y + 1\right) \left(- x + y - z - 2\right)\\- \left(1 - x\right) \left(1 - y\right) \left(z + 1\right) + \left(1 - y\right) \left(- z - 1\right) \left(- x - y + z - 2\right) &amp; - \left(1 - x\right) \left(1 - y\right) \left(z + 1\right) - \left(1 - x\right) \left(z + 1\right) \left(- x - y + z - 2\right) &amp; \left(1 - x\right) \left(1 - y\right) \left(z + 1\right) + \left(1 - x\right) \left(1 - y\right) \left(- x - y + z - 2\right)\\\left(1 - y\right) \left(x + 1\right) \left(z + 1\right) + \left(1 - y\right) \left(z + 1\right) \left(x - y + z - 2\right) &amp; - \left(1 - y\right) \left(x + 1\right) \left(z + 1\right) - \left(x + 1\right) \left(z + 1\right) \left(x - y + z - 2\right) &amp; \left(1 - y\right) \left(x + 1\right) \left(z + 1\right) + \left(1 - y\right) \left(x + 1\right) \left(x - y + z - 2\right)\\\left(x + 1\right) \left(y + 1\right) \left(z + 1\right) + \left(y + 1\right) \left(z + 1\right) \left(x + y + z - 2\right) &amp; \left(x + 1\right) \left(y + 1\right) \left(z + 1\right) + \left(x + 1\right) \left(z + 1\right) \left(x + y + z - 2\right) &amp; \left(x + 1\right) \left(y + 1\right) \left(z + 1\right) + \left(x + 1\right) \left(y + 1\right) \left(x + y + z - 2\right)\\- \left(1 - x\right) \left(y + 1\right) \left(z + 1\right) - \left(y + 1\right) \left(z + 1\right) \left(- x + y + z - 2\right) &amp; \left(1 - x\right) \left(y + 1\right) \left(z + 1\right) + \left(1 - x\right) \left(z + 1\right) \left(- x + y + z - 2\right) &amp; \left(1 - x\right) \left(y + 1\right) \left(z + 1\right) + \left(1 - x\right) \left(y + 1\right) \left(- x + y + z - 2\right)\\- 4 x \left(1 - y\right) \left(1 - z\right) &amp; \left(2 - 2 x^{2}\right) \left(z - 1\right) &amp; \left(2 - 2 x^{2}\right) \left(y - 1\right)\\2 \left(1 - y^{2}\right) \left(1 - z\right) &amp; - 2 y \left(1 - z\right) \left(2 x + 2\right) &amp; \left(2 x + 2\right) \left(y^{2} - 1\right)\\- 4 x \left(1 - z\right) \left(y + 1\right) &amp; \left(1 - z\right) \left(2 - 2 x^{2}\right) &amp; \left(2 - 2 x^{2}\right) \left(- y - 1\right)\\- 2 \left(1 - y^{2}\right) \left(1 - z\right) &amp; - 2 y \left(1 - z\right) \left(2 - 2 x\right) &amp; \left(2 - 2 x\right) \left(y^{2} - 1\right)\\- 2 \left(1 - y\right) \left(1 - z^{2}\right) &amp; \left(2 - 2 x\right) \left(z^{2} - 1\right) &amp; - 2 z \left(1 - y\right) \left(2 - 2 x\right)\\2 \left(1 - y\right) \left(1 - z^{2}\right) &amp; \left(2 x + 2\right) \left(z^{2} - 1\right) &amp; - 2 z \left(1 - y\right) \left(2 x + 2\right)\\2 \left(1 - z^{2}\right) \left(y + 1\right) &amp; \left(1 - z^{2}\right) \left(2 x + 2\right) &amp; - 2 z \left(2 x + 2\right) \left(y + 1\right)\\- 2 \left(1 - z^{2}\right) \left(y + 1\right) &amp; \left(1 - z^{2}\right) \left(2 - 2 x\right) &amp; - 2 z \left(2 - 2 x\right) \left(y + 1\right)\\- 4 x \left(1 - y\right) \left(z + 1\right) &amp; \left(2 - 2 x^{2}\right) \left(- z - 1\right) &amp; \left(1 - y\right) \left(2 - 2 x^{2}\right)\\2 \left(1 - y^{2}\right) \left(z + 1\right) &amp; - 2 y \left(2 x + 2\right) \left(z + 1\right) &amp; \left(1 - y^{2}\right) \left(2 x + 2\right)\\- 4 x \left(y + 1\right) \left(z + 1\right) &amp; \left(2 - 2 x^{2}\right) \left(z + 1\right) &amp; \left(2 - 2 x^{2}\right) \left(y + 1\right)\\- 2 \left(1 - y^{2}\right) \left(z + 1\right) &amp; - 2 y \left(2 - 2 x\right) \left(z + 1\right) &amp; \left(1 - y^{2}\right) \left(2 - 2 x\right)\end{matrix}\right]\end{split}\]</div>
 </div>
+</section>
+</section>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">Brick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick" title="Permalink to this definition">#</a></dt>
@@ -363,9 +367,6 @@
 
 </dd></dl>
 
-</section>
-</section>
-</section>
 </section>
 <section id="module-FEM.Elements.E3D.BrickScheme">
 <span id="fem-elements-e3d-brickscheme-module"></span><h2>FEM.Elements.E3D.BrickScheme module<a class="headerlink" href="#module-FEM.Elements.E3D.BrickScheme" title="Permalink to this heading">#</a></h2>
@@ -477,6 +478,9 @@
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial \Psi_i}{\partial x_j}=\left[\begin{matrix}4 x + 4 y + 4 z - 3 &amp; 4 x + 4 y + 4 z - 3 &amp; 4 x + 4 y + 4 z - 3\\4 x - 1 &amp; 0 &amp; 0\\0 &amp; 4 y - 1 &amp; 0\\0 &amp; 0 &amp; 4 z - 1\\- 8 x - 4 y - 4 z + 4 &amp; - 4 x &amp; - 4 x\\4 y &amp; 4 x &amp; 0\\- 4 y &amp; - 4 x - 8 y - 4 z + 4 &amp; - 4 y\\- 4 z &amp; - 4 z &amp; - 4 x - 4 y - 8 z + 4\\4 z &amp; 0 &amp; 4 x\\0 &amp; 4 z &amp; 4 y\end{matrix}\right]\end{split}\]</div>
 </div>
+</section>
+</section>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Tetrahedral.</span></span><span class="sig-name descname"><span class="pre">Tetrahedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral" title="Permalink to this definition">#</a></dt>
@@ -578,9 +582,6 @@
 </dd></dl>
 
 </section>
-</section>
-</section>
-</section>
 <section id="module-FEM.Elements.E3D.TetrahedralScheme">
 <span id="fem-elements-e3d-tetrahedralscheme-module"></span><h2>FEM.Elements.E3D.TetrahedralScheme module<a class="headerlink" href="#module-FEM.Elements.E3D.TetrahedralScheme" title="Permalink to this heading">#</a></h2>
 <p>Define the tetrahedral scheme used by tetrahedral elements</p>
@@ -672,10 +673,31 @@
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Brick.Brick"><code class="docutils literal notranslate"><span class="pre">Brick</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Brick.Brick.dpsis"><code class="docutils literal notranslate"><span class="pre">Brick.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Brick.Brick.psis"><code class="docutils literal notranslate"><span class="pre">Brick.psis()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-FEM.Elements.E3D.BrickScheme">FEM.Elements.E3D.BrickScheme module</a></li>
-<li><a class="reference internal" href="#module-FEM.Elements.E3D.Element3D">FEM.Elements.E3D.Element3D module</a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Brick.BrickO2"><code class="docutils literal notranslate"><span class="pre">BrickO2</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Brick.BrickO2.dpsis"><code class="docutils literal notranslate"><span class="pre">BrickO2.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Brick.BrickO2.psis"><code class="docutils literal notranslate"><span class="pre">BrickO2.psis()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E3D.BrickScheme">FEM.Elements.E3D.BrickScheme module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E3D.BrickScheme.BrickScheme"><code class="docutils literal notranslate"><span class="pre">BrickScheme</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E3D.Element3D">FEM.Elements.E3D.Element3D module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D"><code class="docutils literal notranslate"><span class="pre">Element3D</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D.draw"><code class="docutils literal notranslate"><span class="pre">Element3D.draw()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D.isInside"><code class="docutils literal notranslate"><span class="pre">Element3D.isInside()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D.jacobianGraph"><code class="docutils literal notranslate"><span class="pre">Element3D.jacobianGraph()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-FEM.Elements.E3D.Tetrahedral">FEM.Elements.E3D.Tetrahedral module</a><ul>
 <li><a class="reference internal" href="#tetrahedral-elements">TETRAHEDRAL ELEMENTS</a><ul>
 <li><a class="reference internal" href="#tetrahedral">Tetrahedral</a><ul>
@@ -690,9 +712,22 @@
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral"><code class="docutils literal notranslate"><span class="pre">Tetrahedral</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.dpsis"><code class="docutils literal notranslate"><span class="pre">Tetrahedral.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.psis"><code class="docutils literal notranslate"><span class="pre">Tetrahedral.psis()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-FEM.Elements.E3D.TetrahedralScheme">FEM.Elements.E3D.TetrahedralScheme module</a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2"><code class="docutils literal notranslate"><span class="pre">TetrahedralO2</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.dpsis"><code class="docutils literal notranslate"><span class="pre">TetrahedralO2.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.psis"><code class="docutils literal notranslate"><span class="pre">TetrahedralO2.psis()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E3D.TetrahedralScheme">FEM.Elements.E3D.TetrahedralScheme module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme"><code class="docutils literal notranslate"><span class="pre">TetrahedralScheme</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -709,6 +744,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
