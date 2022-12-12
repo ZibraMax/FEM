@@ -505,6 +505,14 @@ Examples.s2 module
    :undoc-members:
    :show-inheritance:
 
+Examples.test\_man module
+-------------------------
+
+.. automodule:: Examples.test_man
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.vencimiento module
 ---------------------------
 
