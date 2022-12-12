@@ -28,7 +28,7 @@ class Heat2D(Core):
         f (Callable, optional): Internal heat generation function. Defaults to None.
         """
 
-    def __init__(self, geometry: Geometry, kx: Tuple[float, list], ky: Tuple[float, list], f: Callable = None) -> None:
+    def __init__(self, geometry: Geometry, kx: Tuple[float, list], ky: Tuple[float, list], f: Callable = None, **kargs) -> None:
         """Creates a Heat2D problem with convective borders
 
         The differential equation is:
@@ -56,7 +56,7 @@ class Heat2D(Core):
         self.ky = ky
         self.f = f
         self.geometry = geometry
-        Core.__init__(self, geometry)
+        Core.__init__(self, geometry, **kargs)
         self.name = '2D Heat transfer'
         self.properties['kx'] = self.kx
         self.properties['ky'] = self.ky
