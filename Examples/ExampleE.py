@@ -1,7 +1,5 @@
-from FEM.Geometry.Region import Region2D
-
-
 if __name__ == '__main__':
+    from FEM.Geometry.Region import Region2D
     import scipy
     import json
     import numpy as np

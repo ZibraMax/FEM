@@ -1,5 +1,5 @@
 {
-	"python.testing.pytestArgs": ["./Test --emoji"],
+	"python.testing.pytestArgs": ["Test", "--emoji"],
 	"python.testing.unittestEnabled": false,
 	"python.testing.pytestEnabled": true
 }
