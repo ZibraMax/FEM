@@ -41,6 +41,14 @@ Examples.ExampleGValidacion module
    :undoc-members:
    :show-inheritance:
 
+Examples.ExampleH module
+------------------------
+
+.. automodule:: Examples.ExampleH
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.ImportJsonBars module
 ------------------------------
 

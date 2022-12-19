@@ -9,6 +9,14 @@ FEM.Geometry package
 Submodules
 ----------
 
+FEM.Geometry.Geometree module
+-----------------------------
+
+.. automodule:: FEM.Geometry.Geometree
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Geometry.Geometry module
 ----------------------------
 
