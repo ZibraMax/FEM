@@ -4,7 +4,7 @@ from FEM.Solvers import LinealEigen
 import numpy as np
 import logging
 from scipy.sparse.linalg import eigsh
-from sendEmail import sendMailOutlook
+#from sendEmail import sendMailOutlook
 import sys
 
 

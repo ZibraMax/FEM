@@ -5,6 +5,7 @@ import triangle as tr
 import copy
 import numpy as np
 import json
+from .Geometree import *
 from ..Utils import isBetween, roundCorner, giveCoordsCircle, angleBetweenAngles
 import matplotlib.pyplot as plt
 from ..Elements.E1D.LinealElement import LinealElement
@@ -657,7 +658,7 @@ class Geometry2D(Geometry):
 
 
 class Geometry3D(Geometry):
-    """Creates a 2D geometry
+    """Creates a 3D geometry
 
     Args:
         dictionary (list): Matrix with element definitions. Each row is an element. The gdl are defined in columns
@@ -681,10 +682,47 @@ class Geometry3D(Geometry):
         """
         Geometry.__init__(self, dictionary, gdls, types, nvn, regions, fast)
 
+        coords = np.array(gdls)
+        maximos = np.max(coords, axis=0)
+        minimos = np.min(coords, axis=0)
+        centro = (maximos+minimos)/2
+        tamano = (maximos-minimos)/2
+        q = Quadrant3D(centro, tamano)
+        self.OctTree = Geometree(q, 6)
+        print("Creating Oct Tree")
+        for i, e in enumerate(tqdm(self.elements)):
+            e.index = i
+            self.OctTree.add_point(e)
+
     def show(self) -> None:
         """Creates a geometry graph
         """
-        pass
+        fig = plt.figure()
+        ax = fig.add_subplot(projection="3d")
+        self.OctTree.boundary.draw_(ax)
+        self.OctTree.draw(ax)
+        plt.show()
+
+    def detectNonLocal(self, lr: float) -> list:
+        """Detect adjacent elements between a distance Lr
+
+        Args:
+            lr (float): Distance to detect adjacent elements
+
+        Returns:
+            list: Non local element dictionary
+        """
+        print('Detecting non local elements')
+        diccionariosnl = []
+        for i in tqdm(range(len(self.dictionary)), unit='Elements'):
+            e = self.elements[i]
+            result = self.OctTree.query_range_point_radius(
+                e.T(e.center.T)[0].flatten(), lr)
+            linea = []
+            for enl in result:
+                linea.append(enl.index)
+            diccionariosnl.append(linea)
+        return diccionariosnl
 
 
 class Lineal(Geometry1D):
