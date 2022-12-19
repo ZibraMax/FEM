@@ -62,14 +62,14 @@ class Quadrant3D(Brick):
         nd = self.d/2
         x, y, z = self.x, self.y, self.z
 
-        divs.append(Quadrant3D((x+nw, y+nw, z+nd), (nw, nh, nd)))
-        divs.append(Quadrant3D((x+nw, y+nw, z-nd), (nw, nh, nd)))
-        divs.append(Quadrant3D((x+nw, y-nw, z+nd), (nw, nh, nd)))
-        divs.append(Quadrant3D((x+nw, y-nw, z-nd), (nw, nh, nd)))
-        divs.append(Quadrant3D((x-nw, y+nw, z+nd), (nw, nh, nd)))
-        divs.append(Quadrant3D((x-nw, y+nw, z-nd), (nw, nh, nd)))
-        divs.append(Quadrant3D((x-nw, y-nw, z+nd), (nw, nh, nd)))
-        divs.append(Quadrant3D((x-nw, y-nw, z-nd), (nw, nh, nd)))
+        divs.append(Quadrant3D((x+nw, y+nh, z+nd), (nw, nh, nd)))
+        divs.append(Quadrant3D((x+nw, y+nh, z-nd), (nw, nh, nd)))
+        divs.append(Quadrant3D((x+nw, y-nh, z+nd), (nw, nh, nd)))
+        divs.append(Quadrant3D((x+nw, y-nh, z-nd), (nw, nh, nd)))
+        divs.append(Quadrant3D((x-nw, y+nh, z+nd), (nw, nh, nd)))
+        divs.append(Quadrant3D((x-nw, y+nh, z-nd), (nw, nh, nd)))
+        divs.append(Quadrant3D((x-nw, y-nh, z+nd), (nw, nh, nd)))
+        divs.append(Quadrant3D((x-nw, y-nh, z-nd), (nw, nh, nd)))
         return divs
 
     def draw(self, ax):
