@@ -6,7 +6,7 @@ import copy
 import numpy as np
 import json
 from .Geometree import *
-from ..Utils import isBetween, roundCorner, giveCoordsCircle, angleBetweenAngles
+from ..Utils import isBetween, roundCorner, giveCoordsCircle, angleBetweenAngles, testNeighborg
 import matplotlib.pyplot as plt
 from ..Elements.E1D.LinealElement import LinealElement
 from ..Elements.E1D.CubicElement import CubicElement
@@ -62,6 +62,7 @@ class Geometry:
         self.cbn = []
         self.centroids = []
         self.fast = fast
+        self.additionalProperties = {}
         self.initialize()
         self.calculateCentroids()
 
@@ -230,6 +231,7 @@ class Geometry:
             "ngdl": self.ngdl,
             "holes": self.holes,
             "fillets": self.fillets,
+            **self.additionalProperties
         }
         y = json.dumps(x)
         if filename:
@@ -723,6 +725,23 @@ class Geometry3D(Geometry):
                 linea.append(enl.index)
             diccionariosnl.append(linea)
         return diccionariosnl
+
+    def detectBorderElements(self):
+        border_elements = []
+        for e in tqdm(self.elements, unit=" Element"):
+            neighborghs = 0
+            potential = self.OctTree.query_range_point_radius(e._xcenter)
+            for e2 in potential:
+                if not e.index == e2.index:
+                    if testNeighborg(e, e2):
+                        neighborghs += 1
+                        if neighborghs == len(e.faces):
+                            break
+            if neighborghs < len(e.faces):
+                border_elements.append(e.index)
+        self.additionalProperties = {
+            **self.additionalProperties, "border_elements": border_elements}
+        return border_elements
 
 
 class Lineal(Geometry1D):

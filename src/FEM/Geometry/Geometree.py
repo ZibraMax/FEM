@@ -88,6 +88,7 @@ class Quadrant3DSpherical(Quadrant3D):
 
 
 class Geometree():
+    min_search_size = -1
 
     def __init__(self, boundary, n: int = 1, depth: int = 1) -> None:
         self.boundary = boundary
@@ -124,6 +125,9 @@ class Geometree():
             self.children.append(Geometree(d, self.n, self.depth+1))
 
     def add_point(self, p: tuple) -> bool:
+        dist = p.coords-p._xcenter
+        min_search_size = max(np.sum(dist**2, axis=1))
+        self.min_search_size = max(min_search_size, self.min_search_size)
         if not self.contains(p):
             return False
         if len(self.points) < self.n and not self.divided:
@@ -157,7 +161,18 @@ class Geometree():
             result += sq.query_range(quadrant, plot=plot, ax=ax)
         return result
 
-    def query_range_point_radius(self, p, r):
+    def query_range_point_radius(self, p, r=None, plot=False, ax=None):
+        if r == None:
+            r = 2*self.min_search_size
         q = Quadrant3DSpherical(p, r)
-        selected = self.query_range(q)
+        selected = self.query_range(q, plot, ax)
         return selected
+
+    def graph_query_range(self, p, r):
+        fig = plt.figure()
+        ax = fig.add_subplot(projection="3d")
+        self.draw_points(ax)
+        result = self.query_range_point_radius(p, r, True, ax)
+        for p in result:
+            ax.plot(*p._xcenter, "o", c="yellow", alpha=1)
+        plt.show()

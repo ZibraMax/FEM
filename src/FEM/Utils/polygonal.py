@@ -226,11 +226,11 @@ def clip(x: float, mi: float, ma: float) -> float:
         float: idk
     """
 
-    if(mi > ma):
+    if (mi > ma):
         return x
-    elif(x < mi):
+    elif (x < mi):
         return mi
-    elif(x > ma):
+    elif (x > ma):
         return ma
     else:
         return x
@@ -380,3 +380,16 @@ def angleBetweenAngles(start: float, end: float, mid: float) -> bool:
     end = end - start + 2*np.pi if (end - start) < 0.0 else end - start
     mid = mid - start + 2*np.pi if (mid - start) < 0.0 else mid - start
     return (mid < end)
+
+
+def testNeighborg(e1, e2):
+    # Este es el número de vertices mínimos para que un elemento sea vecino de otro
+    MIN_VERTICES = 3
+    en_comun = 0
+    for c in e2.coords:
+        test = any(np.equal(e1.coords, c).all(1))
+        if test:
+            en_comun += 1
+            if en_comun >= MIN_VERTICES:
+                return True
+    return False
