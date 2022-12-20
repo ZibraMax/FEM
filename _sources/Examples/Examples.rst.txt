@@ -49,6 +49,14 @@ Examples.ExampleH module
    :undoc-members:
    :show-inheritance:
 
+Examples.ExampleI module
+------------------------
+
+.. automodule:: Examples.ExampleI
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.ImportJsonBars module
 ------------------------------
 
