@@ -13,6 +13,6 @@ if __name__ == '__main__':
     gamma = 23.54
 
     geometria = Geometry3D.importJSON(FILENAME, fast=True)
-    e = geometria.elements[455]
+    e = geometria.elements[549]
     geometria.OctTree.query_range_point_radius(
-        e.T(e.center.T)[0].flatten(), 6, plot=True)
+        e.T(e.center.T)[0].flatten(), 11, plot=True)

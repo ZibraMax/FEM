@@ -152,26 +152,31 @@ class Geometree():
                 return True
         raise Exception("This should never happen")
 
-    def query_range(self, quadrant) -> bool:
+    def query_range(self, quadrant, plot=False, ax=None) -> bool:
         result = []
         if not self.boundary.intesects_quadrant(quadrant):
             return result
+
         for p in self.points:
+            if plot:
+                center = p.T(p.center.T)[0].flatten()
+                ax.plot(*center, "o", c="green", alpha=1)
             if quadrant.contains(p):
                 result.append(p)
         if not self.divided:
             return result
         for sq in self.children:
-            result += sq.query_range(quadrant)
+            result += sq.query_range(quadrant, plot=plot, ax=ax)
         return result
 
     def query_range_point_radius(self, p, r, plot=False):
         q = Quadrant3DSpherical(p, r)
-        selected = self.query_range(q)
+        fig = plt.figure()
+        ax = fig.add_subplot(projection="3d")
         if plot:
-            fig = plt.figure()
-            ax = fig.add_subplot(projection="3d")
             self.draw_points(ax)
+        selected = self.query_range(q, plot, ax)
+        if plot:
             q.draw_(ax)
             for e in selected:
                 center = e.T(e.center.T)[0].flatten()

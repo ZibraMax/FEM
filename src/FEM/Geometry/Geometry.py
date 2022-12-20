@@ -688,7 +688,7 @@ class Geometry3D(Geometry):
         centro = (maximos+minimos)/2
         tamano = (maximos-minimos)/2
         q = Quadrant3D(centro, tamano)
-        self.OctTree = Geometree(q, 6)
+        self.OctTree = Geometree(q, 1)
         print("Creating Oct Tree")
         for i, e in enumerate(tqdm(self.elements)):
             e.index = i
