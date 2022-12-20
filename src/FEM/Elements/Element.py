@@ -45,6 +45,7 @@ class Element():
         self.intBorders = False
         self._x, self._p = self.T(self.Z.T)
         self.jacs, self.dpz = self.J(self.Z.T)
+        self._xcenter = self.T(self.center.T)[0].flatten()
         if not self.border:
             if not self.fast:
                 self.Ke = np.zeros([self.n, self.n])

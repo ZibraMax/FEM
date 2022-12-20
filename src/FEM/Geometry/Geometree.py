@@ -21,32 +21,24 @@ class Quadrant3D(Brick):
             [x-w, y+h, z+d]])
         Brick.__init__(self, coords, np.array(
             [[-1]*8]), border=True, fast=True)
+        self.maximos_self = np.max(self.coords, axis=0)
+        self.minimos_self = np.min(self.coords, axis=0)
 
     def contains(self, e: Brick) -> bool:
-        x, _ = e.T(e.center.T)
-        x = x.flatten()
+        x = e._xcenter
 
-        maximos_self = np.max(self.coords, axis=0)
-        minimos_self = np.min(self.coords, axis=0)
-
-        superior = (maximos_self-x) >= 0
-        inferior = (x-minimos_self) >= 0
+        superior = (self.maximos_self-x) >= 0
+        inferior = (x-self.minimos_self) >= 0
 
         return superior.all() and inferior.all()
 
     def boxes_disjoint(self, e):
 
-        maximos_self = np.max(self.coords, axis=0)
-        minimos_self = np.min(self.coords, axis=0)
+        maxx1, maxy1, maxz1 = self.maximos_self
+        minx1, miny1, minz1 = self.minimos_self
 
-        maximos_e = np.max(e.coords, axis=0)
-        minimos_e = np.min(e.coords, axis=0)
-
-        maxx1, maxy1, maxz1 = maximos_self
-        minx1, miny1, minz1 = minimos_self
-
-        maxx2, maxy2, maxz2 = maximos_e
-        minx2, miny2, minz2 = minimos_e
+        maxx2, maxy2, maxz2 = e.maximos_self
+        minx2, miny2, minz2 = e.minimos_self
 
         return (maxx2 <= minx1 or maxx1 <= minx2
                 or maxy2 <= miny1 or maxy1 <= miny2
@@ -91,10 +83,8 @@ class Quadrant3DSpherical(Quadrant3D):
         Quadrant3D.__init__(self, p, dim)
 
     def contains(self, e: Brick) -> bool:
-        xself = self.T(self.center.T)[0].flatten()
-        x = e.T(e.center.T)[0].flatten()
 
-        return (sum((xself-x)**2) <= self.r**2)
+        return (sum((self._xcenter-e._xcenter)**2) <= self.r**2)
 
 
 class Geometree():
@@ -111,8 +101,7 @@ class Geometree():
 
         if not self.divided:
             for e in self.points:
-                center = e.T(e.center.T)[0].flatten()
-                plt.plot(*center, "o", c="black", alpha=0.5)
+                plt.plot(*e._xcenter, "o", c="black", alpha=0.5)
         for c in self.children:
             c.draw_points(ax)
 
@@ -159,8 +148,7 @@ class Geometree():
 
         for p in self.points:
             if plot:
-                center = p.T(p.center.T)[0].flatten()
-                ax.plot(*center, "o", c="green", alpha=1)
+                ax.plot(*p._xcenter, "o", c="green", alpha=1)
             if quadrant.contains(p):
                 result.append(p)
         if not self.divided:
@@ -169,17 +157,7 @@ class Geometree():
             result += sq.query_range(quadrant, plot=plot, ax=ax)
         return result
 
-    def query_range_point_radius(self, p, r, plot=False):
+    def query_range_point_radius(self, p, r):
         q = Quadrant3DSpherical(p, r)
-        fig = plt.figure()
-        ax = fig.add_subplot(projection="3d")
-        if plot:
-            self.draw_points(ax)
-        selected = self.query_range(q, plot, ax)
-        if plot:
-            q.draw_(ax)
-            for e in selected:
-                center = e.T(e.center.T)[0].flatten()
-                plt.plot(*center, "o", c="yellow")
-            plt.show()
+        selected = self.query_range(q)
         return selected
