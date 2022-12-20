@@ -126,7 +126,7 @@ class Geometree():
 
     def add_point(self, p: tuple) -> bool:
         dist = p.coords-p._xcenter
-        min_search_size = max(np.sum(dist**2, axis=1))
+        min_search_size = max(np.sum(dist**2, axis=1)**0.5)
         self.min_search_size = max(min_search_size, self.min_search_size)
         if not self.contains(p):
             return False

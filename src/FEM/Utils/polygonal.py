@@ -3,6 +3,7 @@
 
 
 import numpy as np
+import matplotlib.pyplot as plt
 import random
 import math
 from typing import Tuple
@@ -393,3 +394,13 @@ def testNeighborg(e1, e2):
             if en_comun >= MIN_VERTICES:
                 return True
     return False
+
+
+def plot_list_elements(l, c="k", acum=False):
+    if not acum:
+        fig = plt.figure()
+        ax = fig.add_subplot(projection="3d")
+    else:
+        ax = plt.gca()
+    for e in l:
+        ax.plot(*e._xcenter, "o", c=c)

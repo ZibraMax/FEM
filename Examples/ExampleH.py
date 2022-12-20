@@ -1,12 +1,3 @@
-def plot_list_elements(l, c="k", acum=False):
-    if not acum:
-        fig = plt.figure()
-        ax = fig.add_subplot(projection="3d")
-    else:
-        ax = plt.gca()
-    for e in l:
-        ax.plot(*e._xcenter, "o", c=c)
-
 
 if __name__ == '__main__':
     import json
@@ -14,7 +5,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     from FEM.Elasticity3D import Elasticity
     from FEM.Geometry.Geometry import Geometry3D
-    from FEM.Utils import testNeighborg
+    from FEM.Utils import testNeighborg, plot_list_elements
     FILENAME = "Examples\Mesh_tests\SPHERE_FERNANDO.json"
     E = 21000000.0
     v = 0.2

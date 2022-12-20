@@ -162,7 +162,6 @@ class TestElasticity3D(unittest.TestCase):
                 cbe += [[i*3+1, 0.0]]
                 cbe += [[i*3+2, 0.0]]
         geometria.cbe = cbe
-        geometria.detectBorderElements()
 
         O = Elasticity(geometria, E, v, gamma, fy=fy,
                        verbose=True, name='3D test_cantilever_beam_uniform')
@@ -173,6 +172,7 @@ class TestElasticity3D(unittest.TestCase):
         G = E/(2*(1+v))
         W = gamma*A
         I = b*h**3/12
+        print(len(O.geometry.detectBorderElements()), len(O.elements))
 
         O.exportJSON("3D_BEAM.json")
 

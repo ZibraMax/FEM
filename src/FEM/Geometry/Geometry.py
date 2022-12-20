@@ -727,6 +727,7 @@ class Geometry3D(Geometry):
         return diccionariosnl
 
     def detectBorderElements(self):
+        print("Detecting border elements...")
         border_elements = []
         for e in tqdm(self.elements, unit=" Element"):
             neighborghs = 0
