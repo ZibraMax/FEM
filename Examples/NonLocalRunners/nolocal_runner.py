@@ -77,7 +77,7 @@ for i in range(nx):
                       node5, node6, node7, node8]]
 
 geo = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
-
+geo.detectBorderElements()
 log_filename = f'SiCube_{L}_{l}'
 
 O = NonLocalElasticityFromTensor(
