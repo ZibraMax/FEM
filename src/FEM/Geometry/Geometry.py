@@ -6,7 +6,6 @@ import triangle as tr
 import copy
 import numpy as np
 import json
-from .Geometree import *
 from ..Utils import isBetween, roundCorner, giveCoordsCircle, angleBetweenAngles, testNeighborg
 import matplotlib.pyplot as plt
 from ..Elements.E1D.LinealElement import LinealElement
@@ -21,6 +20,8 @@ from ..Elements.E3D.Tetrahedral import Tetrahedral, TetrahedralO2
 from .Region import Region, Region1D, Region2D
 from typing import Callable
 from tqdm import tqdm
+
+from scipy.spatial import KDTree
 
 types = {'T1V': LTriangular, 'T2V': QTriangular, 'C1V': Quadrilateral, 'C2V': Serendipity, "L1V": LinealElement,
          "L2V": QuadraticElement, "L3V": CubicElement, "B1V": Brick, "B2V": BrickO2, "TE1V": Tetrahedral, "TE2V": TetrahedralO2}
@@ -65,7 +66,12 @@ class Geometry:
         self.fast = fast
         self.additionalProperties = {}
         self.initialize()
+        self.min_search_radius = -1
         self.calculateCentroids()
+        centroides = np.array(self.centroids)[:, 0, :]
+        self.KDTree = KDTree(centroides)
+        self.boundingBoxMin = np.min(centroides, axis=0)
+        self.boundingBoxMax = np.max(centroides, axis=0)
 
     def calculateRegions(self) -> None:
         """Calculates the nodes of the geometry regions
@@ -91,7 +97,7 @@ class Geometry:
         self.calculateRegions()
 
     def detectNonLocal(self, lr: float) -> list:
-        """Detect adjacent elements between a distance Lr
+        """Detect adjacent elements between a distance Lr. Uses KDTrees
 
         Args:
             lr (float): Distance to detect adjacent elements
@@ -100,7 +106,20 @@ class Geometry:
             list: Non local element dictionary
         """
         print('Detecting non local elements')
-        # FIXME hacerlo mas eficiente.
+        diccionariosnl = []
+        for e in tqdm(self.elements, unit='Elements'):
+            linea = self.KDTree.query_ball_point(e._xcenter, lr)
+            diccionariosnl.append(linea)
+        return diccionariosnl
+
+    def detectNonLocalLegacy(self, lr: float) -> list:
+        """Detect adjacent elements between a distance Lr. Uses iterative approach
+        Args:
+            lr (float): Distance to detect adjacent elements
+        Returns:
+            list: Non local element dictionary
+        """
+        print('Detecting non local elements')
         diccionariosnl = []
         centroids = np.array(self.centroids)
         for i in tqdm(range(len(self.dictionary)), unit='Elements'):
@@ -129,6 +148,7 @@ class Geometry:
             gdl = gdl.astype(int)
             self.elements[i] = types[self.types[i]](
                 coords, gdl, fast=self.fast)
+            self.elements[i].index = i
         print('Done!')
 
     def show(self) -> None:
@@ -139,6 +159,10 @@ class Geometry:
         """Calculate elements centroids
         """
         for e in self.elements:
+            dist = e.coords-e._xcenter
+            min_search_radius = max(np.sum(dist**2, axis=1)**0.5)
+            self.min_search_radius = max(
+                min_search_radius, self.min_search_radius)
             x, _ = e.T(e.center.T)
             self.centroids.append(x.tolist())
 
@@ -685,54 +709,17 @@ class Geometry3D(Geometry):
         """
         Geometry.__init__(self, dictionary, gdls, types, nvn, regions, fast)
 
-        coords = np.array(gdls)
-        maximos = np.max(coords, axis=0)
-        minimos = np.min(coords, axis=0)
-        centro = (maximos+minimos)/2
-        tamano = (maximos-minimos)/2
-        q = Quadrant3D(centro, tamano)
-        self.OctTree = Geometree(q, max_depth)
-        print("Creating Oct Tree")
-        self.visited = [False] * len(self.elements)
-        for i, e in enumerate(tqdm(self.elements)):
-            e.index = i
-            self.OctTree.add_point(e)
-
     def show(self) -> None:
         """Creates a geometry graph
         """
-        fig = plt.figure()
-        ax = fig.add_subplot(projection="3d")
-        self.OctTree.boundary.draw_(ax)
-        self.OctTree.draw(ax)
-        plt.show()
-
-    def detectNonLocal(self, lr: float) -> list:
-        """Detect adjacent elements between a distance Lr
-
-        Args:
-            lr (float): Distance to detect adjacent elements
-
-        Returns:
-            list: Non local element dictionary
-        """
-        print('Detecting non local elements')
-        diccionariosnl = []
-        for i in tqdm(range(len(self.dictionary)), unit='Elements'):
-            e = self.elements[i]
-            result = self.OctTree.query_range_point_radius(
-                e.T(e.center.T)[0].flatten(), lr)
-            linea = []
-            for enl in result:
-                linea.append(enl.index)
-            diccionariosnl.append(linea)
-        return diccionariosnl
 
     def isBorder(self, e):
         neighbors = 0
-        potential = self.OctTree.query_range_point_radius(e._xcenter)
+        potential = self.KDTree.query_ball_point(
+            e._xcenter, self.min_search_radius*2)
         nb = []
-        for e2 in potential:
+        for ie2 in potential:
+            e2 = self.elements[ie2]
             if not e.index == e2.index:
                 if testNeighborg(e, e2):
                     neighbors += 1
@@ -773,12 +760,7 @@ class Geometry3D(Geometry):
         self.visited = [False]*len(self.elements)
         print("Detecting border elements...")
         self.pb = tqdm(unit=" Border elements found")
-        potential_elements = self.OctTree.query_first_point_set()
-        e = potential_elements[0]
-        for i in potential_elements:
-            if self.isBorder(i)[0]:
-                e = i
-                break
+        e = self.elements[self.KDTree.query(self.boundingBoxMin)[1]]
         res = self._detectBorderElementsRecursive(e)
         self._detectBorderElementsRecursive(e)
         del self.pb

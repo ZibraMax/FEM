@@ -1,3 +1,9 @@
+"""
+DEPRECATED
+
+This class was my introduction to OctTrees. I implemented all geometry with this class. Then, I realized SciPy has a KDTree implementation, faster and better. IDK what to tink about it
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 
