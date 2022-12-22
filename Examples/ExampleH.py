@@ -1,11 +1,9 @@
 
 if __name__ == '__main__':
-    import json
-    import numpy as np
+    import time
     import matplotlib.pyplot as plt
-    from FEM.Elasticity3D import Elasticity
     from FEM.Geometry.Geometry import Geometry3D
-    from FEM.Utils import testNeighborg, plot_list_elements
+    from FEM.Utils import plot_list_elements
     FILENAME = "Examples\Mesh_tests\SPHERE_FERNANDO.json"
     E = 21000000.0
     v = 0.2
@@ -20,10 +18,12 @@ if __name__ == '__main__':
     #ax = fig.add_subplot(projection="3d")
     # geometria.OctTree.graph_query_range(
     #    e.T(e.center.T)[0].flatten(), 2*d)
-
+    st = time.time()
     be = geometria.detectBorderElementsLegacy()
+    et1 = time.time()
     be2 = geometria.detectBorderElements()
-    print(len(be), len(be2))
+    et2 = time.time()
+    print(len(be), et1-st, len(be2), et2-et1)
     geometria.exportJSON("ESFERA_CON_BORDES.json")
     be = [geometria.elements[i] for i in be]
     be2 = [geometria.elements[i] for i in be2]

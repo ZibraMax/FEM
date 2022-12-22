@@ -1,7 +1,6 @@
 """Geometry definitions.
 """
-import sys
-
+import time
 import triangle as tr
 import copy
 import numpy as np
@@ -754,17 +753,58 @@ class Geometry3D(Geometry):
             r += self._detectBorderElementsRecursive(bn)
         return r
 
-    def detectBorderElements(self):
-        ORL = sys.getrecursionlimit()
-        sys.setrecursionlimit(len(self.elements)+1)
+    def _detectBorderElementsIterative(self, e, plot=False):
+        with plt.ion():
+            i = 0
+            le = [e.index]
+            vecinos = []
+            self.visited[e.index] = True
+            isBorder, neighbors = self.isBorder(e)
+            vecinos.append(neighbors)
+            centroides = []
+            for v in neighbors:
+                centroides.append(v._xcenter.flatten())
+
+            if plot:
+                fig = plt.figure()
+                ax = fig.add_subplot(projection="3d")
+                ax.axes.set_xlim3d(
+                    left=self.boundingBoxMin[0], right=self.boundingBoxMax[0])
+                ax.axes.set_ylim3d(
+                    bottom=self.boundingBoxMin[1], top=self.boundingBoxMax[1])
+                ax.axes.set_zlim3d(
+                    bottom=self.boundingBoxMin[2], top=self.boundingBoxMax[2])
+                encontrados = ax.plot(*np.array(centroides).T, "o", c="r")
+            while i < len(le):
+                e = self.elements[le[i]]
+                neighbors = vecinos[i]
+                for nb in neighbors:
+                    if not self.visited[nb.index]:
+                        self.visited[nb.index] = True
+                        ib, nbn = self.isBorder(nb)
+                        if ib:
+                            le.append(nb.index)
+                            vecinos.append(nbn)
+                            centroides.append(nb._xcenter.flatten())
+                if plot:
+                    cn = np.array(centroides).T
+                    encontrados[0].set_xdata(cn[0])
+                    encontrados[0].set_ydata(cn[1])
+                    encontrados[0].set_3d_properties(cn[2])
+                    fig.canvas.draw()
+                    fig.canvas.flush_events()
+                i += 1
+                self.pb.update(1)
+            return le, vecinos
+
+    def detectBorderElements(self, plot=False):
         self.visited = [False]*len(self.elements)
         print("Detecting border elements...")
         self.pb = tqdm(unit=" Border elements found")
         e = self.elements[self.KDTree.query(self.boundingBoxMin)[1]]
-        res = self._detectBorderElementsRecursive(e)
-        self._detectBorderElementsRecursive(e)
+        res, vecinos = self._detectBorderElementsIterative(e, plot)
+        self.visited = [False]*len(self.elements)
         del self.pb
-        sys.setrecursionlimit(ORL)
         self.additionalProperties = {
             **self.additionalProperties, "border_elements": res}
         return res
