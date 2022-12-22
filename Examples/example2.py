@@ -110,7 +110,6 @@ if __name__ == '__main__':
                                    a='0.00009', o=2)
     geometria = Delaunay(vertices, params)
 
-    # geometria.exportJSON('Examples/Mesh_tests/I_test.json')
     # geometria = Geometry2D.importJSON('Examples/Mesh_tests/I_test.json')
     geometria.show()
     plt.savefig(f'Examples/examples_results/example2_geometry.png')
@@ -118,5 +117,6 @@ if __name__ == '__main__':
     print(len(geometria.elements))
     O = Torsion2D(geometria, G, phi)
     O.solve()
+    O.exportJSON('I.json')
     plt.savefig(f'Examples/examples_results/example2.png')
     plt.show()

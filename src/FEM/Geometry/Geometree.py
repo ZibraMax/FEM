@@ -176,3 +176,9 @@ class Geometree():
         for p in result:
             ax.plot(*p._xcenter, "o", c="yellow", alpha=1)
         plt.show()
+
+    def query_first_point_set(self):
+        if self.divided:
+            return self.children[0].query_first_point_set()
+        else:
+            return self.points

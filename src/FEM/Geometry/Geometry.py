@@ -692,6 +692,7 @@ class Geometry3D(Geometry):
         q = Quadrant3D(centro, tamano)
         self.OctTree = Geometree(q, 1)
         print("Creating Oct Tree")
+        self.visited = [False] * len(self.elements)
         for i, e in enumerate(tqdm(self.elements)):
             e.index = i
             self.OctTree.add_point(e)
@@ -726,19 +727,65 @@ class Geometry3D(Geometry):
             diccionariosnl.append(linea)
         return diccionariosnl
 
+    def isBorder(self, e):
+        neighbors = 0
+        potential = self.OctTree.query_range_point_radius(e._xcenter)
+        nb = []
+        for e2 in potential:
+            if not e.index == e2.index:
+                if testNeighborg(e, e2):
+                    neighbors += 1
+                    nb.append(e2)
+                    if neighbors == len(e.faces):
+                        break
+        if neighbors < len(e.faces):
+            return True, nb
+        return False, []
+
+    def _detectBorderElementsRecursive(self, e):
+        """Return the indices of the elements list which are border
+        The mehtods finds border elemets recursively so the first
+        border element must be provided
+
+        Args:
+            e (Element): A border element
+
+        Returns:
+            List: Listo of indices
+        """
+        r = []
+        if self.visited[e.index]:
+            return r
+        self.visited[e.index] = True
+        isBorder, neighbors = self.isBorder(e)
+        if not isBorder:
+            return r
+        r.append(e.index)
+        self.pb.update(1)
+        for bn in neighbors:
+            r += self._detectBorderElementsRecursive(bn)
+        return r
+
     def detectBorderElements(self):
+        self.visited = [False]*len(self.elements)
+        print("Detecting border elements...")
+        self.pb = tqdm(unit="Border elements found")
+        potential_elements = self.OctTree.query_first_point_set()
+        e = potential_elements[0]
+        for i in potential_elements:
+            if self.isBorder(i)[0]:
+                e = i
+                break
+        res = self._detectBorderElementsRecursive(e)
+        self._detectBorderElementsRecursive(e)
+        del self.pb
+        return res
+
+    def detectBorderElementsLegacy(self):
         print("Detecting border elements...")
         border_elements = []
         for e in tqdm(self.elements, unit=" Element"):
-            neighborghs = 0
-            potential = self.OctTree.query_range_point_radius(e._xcenter)
-            for e2 in potential:
-                if not e.index == e2.index:
-                    if testNeighborg(e, e2):
-                        neighborghs += 1
-                        if neighborghs == len(e.faces):
-                            break
-            if neighborghs < len(e.faces):
+            if self.isBorder(e)[0]:
                 border_elements.append(e.index)
         self.additionalProperties = {
             **self.additionalProperties, "border_elements": border_elements}
