@@ -1,16 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from ..Elements.E3D.Brick import Brick
 
 
-class Quadrant3D(Brick):
+class Quadrant3D():
 
     def __init__(self, p: tuple, dim: tuple) -> None:
         x, y, z = p
         w, h, d = dim
         self.x, self.y, self.z = x, y, z
         self.w, self.h, self.d = w, h, d
-        coords = np.array([
+        self.coords = np.array([
             [x-w, y-h, z-d],
             [x+w, y-h, z-d],
             [x+w, y+h, z-d],
@@ -19,12 +18,11 @@ class Quadrant3D(Brick):
             [x+w, y-h, z+d],
             [x+w, y+h, z+d],
             [x-w, y+h, z+d]])
-        Brick.__init__(self, coords, np.array(
-            [[-1]*8]), border=True, fast=True)
         self.maximos_self = np.max(self.coords, axis=0)
         self.minimos_self = np.min(self.coords, axis=0)
+        self._xcenter = np.array([x, y, z])
 
-    def contains(self, e: Brick) -> bool:
+    def contains(self, e) -> bool:
         x = e._xcenter
 
         superior = (self.maximos_self-x) >= 0
@@ -44,7 +42,7 @@ class Quadrant3D(Brick):
                 or maxy2 <= miny1 or maxy1 <= miny2
                 or maxz2 <= minz1 or maxz1 <= minz2)
 
-    def intesects_quadrant(self, e: Brick) -> bool:
+    def intesects_quadrant(self, e) -> bool:
         return not self.boxes_disjoint(e)
 
     def subdivide(self) -> list:
@@ -73,7 +71,7 @@ class Quadrant3D(Brick):
                 self.y+self.h], [self.z, self.z], c="k", alpha=0.4)
 
     def draw_(self, ax):
-        ax.plot(*self._coordsg.T, c="red")
+        ax.plot(*self.coords.T, c="red")
 
 
 class Quadrant3DSpherical(Quadrant3D):
@@ -82,7 +80,7 @@ class Quadrant3DSpherical(Quadrant3D):
         self.r = r
         Quadrant3D.__init__(self, p, dim)
 
-    def contains(self, e: Brick) -> bool:
+    def contains(self, e) -> bool:
 
         return (sum((self._xcenter-e._xcenter)**2) <= self.r**2)
 
@@ -179,6 +177,9 @@ class Geometree():
 
     def query_first_point_set(self):
         if self.divided:
-            return self.children[0].query_first_point_set()
+            for ch in self.children:
+                if ch.children or ch.points:
+                    return ch.query_first_point_set()
         else:
             return self.points
+        raise Exception("This should not happen")
