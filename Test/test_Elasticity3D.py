@@ -172,7 +172,7 @@ class TestElasticity3D(unittest.TestCase):
         G = E/(2*(1+v))
         W = gamma*A
         I = b*h**3/12
-        print(len(O.geometry.detectBorderElements()), len(O.elements))
+        print(len(O.geometry.detectBorderElementsLegacy()), len(O.elements))
 
         O.exportJSON("3D_BEAM.json")
 
