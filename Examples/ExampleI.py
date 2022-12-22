@@ -7,7 +7,7 @@ if __name__ == '__main__':
     from FEM.Geometry.Geometry import Geometry3D
     from FEM.Utils import testNeighborg, plot_list_elements
     FILENAME = "big_esfera.json"
-    geometria = Geometry3D.importJSON(FILENAME, fast=True, max_depth=10)
+    geometria = Geometry3D.importJSON(FILENAME, fast=True)
     p = geometria.elements[0]
     be = geometria.detectBorderElements()
     geometria.exportJSON("BIG_ESFERA_CON_BORDES.json")

@@ -696,7 +696,7 @@ class Geometry3D(Geometry):
         fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
     """
 
-    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, regions: list[Region] = None, fast=False, max_depth=1):
+    def __init__(self, dictionary: list, gdls: list, types: list, nvn: int = 1, regions: list[Region] = None, fast=False):
         """Creates a 2D geometry
 
         Args:
