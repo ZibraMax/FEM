@@ -765,6 +765,8 @@ class Geometry3D(Geometry):
         self._detectBorderElementsRecursive(e)
         del self.pb
         sys.setrecursionlimit(ORL)
+        self.additionalProperties = {
+            **self.additionalProperties, "border_elements": res}
         return res
 
     def detectBorderElementsLegacy(self):
