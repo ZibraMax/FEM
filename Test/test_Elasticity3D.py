@@ -113,7 +113,7 @@ class TestElasticity3D(unittest.TestCase):
         _b = h
         _c = b
 
-        nx = 1000
+        nx = 100
         ny = 10
         nz = 10
 
@@ -162,7 +162,7 @@ class TestElasticity3D(unittest.TestCase):
                 cbe += [[i*3+1, 0.0]]
                 cbe += [[i*3+2, 0.0]]
         geometria.cbe = cbe
-        print(len(geometria.detectBorderElementsLegacy()),
+        print(len(geometria.detectBorderElements()),
               len(geometria.elements))
 
         O = Elasticity(geometria, E, v, gamma, fy=fy,
