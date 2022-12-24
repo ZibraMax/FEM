@@ -4,7 +4,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
 
     geometria = Geometry2D.importJSON(
-        'Examples/Mesh_tests/pieza_acero.json', fast=True)
+        'Examples/Mesh_tests/Example27.json', fast=True)
     geometria.show()
     plt.show()
     E = 29000000
@@ -15,4 +15,5 @@ if __name__ == '__main__':
     geometria.loadOnRegion(3, lambda s: p)
     O = PlaneStressSparse(geometria, E, v, t)
     O.solve()
+    O.exportJSON("Examples/Mesh_tests/Example28.json")
     plt.show()

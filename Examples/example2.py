@@ -117,6 +117,6 @@ if __name__ == '__main__':
     print(len(geometria.elements))
     O = Torsion2D(geometria, G, phi)
     O.solve()
-    O.exportJSON('I.json')
+    O.exportJSON('Examples/Mesh_tests/Example2.json')
     plt.savefig(f'Examples/examples_results/example2.png')
     plt.show()

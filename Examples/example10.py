@@ -18,14 +18,8 @@ if __name__ == '__main__':
     cb = geo.cbFromRegion(3, 0.0, 1)
     cb += geo.cbFromRegion(3, 0.0, 2)
     geo.setCbe(cb)
-    geo.exportJSON('Examples/Mesh_tests/triang_beam.json')
-    geo.show()
-    plt.show()
-
-    geometria = Geometry2D.importJSON(
-        'Examples/Mesh_tests/triang_beam.json', fast=True)
-    O = PlaneStressSparse(geometria, E, v, b,
+    O = PlaneStressSparse(geo, E, v, b,
                           fy=lambda x: -gamma, verbose=True)
     O.solve()
-    O.exportJSON('TRIANG_BEAM.json')
+    O.exportJSON("Examples/Mesh_tests/Example10.json")
     plt.show()

@@ -85,5 +85,6 @@ if __name__ == '__main__':
     O = EDO1D(geometria, a, c, f)
     O.cbe = cbe
     O.solve()
+    O.exportJSON("Examples/Mesh_tests/Example4.json")
     plt.savefig('Examples/examples_results/example4.png')
     plt.show()

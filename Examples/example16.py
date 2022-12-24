@@ -12,22 +12,24 @@ if __name__ == '__main__':
     l = 0.1
     z1 = 0.5
     geometria = Geometry2D.importJSON(
-        'Examples/Mesh_tests/rect2.json', fast=True)
-    cb = geometria.cbFromRegion(3, 0, 1)
-    cb += geometria.cbFromRegion(3, 0, 2)
-    cb += geometria.cbFromRegion(1, u, 1)
-    geometria.setCbe(cb)
-    geometria.show(draw_bc=True, label_bc=True)
-    plt.show()
+        'Examples/Mesh_tests/Example3.json', fast=True)
+    l0 = 1/2/np.pi/t/l/l
 
-    def af(l0, rho):
+    def af(rho):
         return l0*np.exp(-rho)
 
     O = PlaneStressNonLocalSparse(
         geometria, E, v, t, l, z1, Lr=6*l, af=af, verbose=True)
+    cb = O.geometry.cbFromRegion(3, 0, 1)
+    cb += O.geometry.cbFromRegion(3, 0, 2)
+    cb += O.geometry.cbFromRegion(1, u, 1)
+    O.geometry.setCbe(cb)
+    O.geometry.show(draw_bc=True, label_bc=True)
+    plt.show()
     O.solve(path="fast.csv")
     plt.show()
 
     _X, U1, U2, U3, U = O.profile([0, 0.019], [a, 0.019])
     # np.savetxt('a2gt.csv', [_X, U1], delimiter=',')
+    O.exportJSON("Examples/Mesh_tests/Example16.json")
     plt.show()

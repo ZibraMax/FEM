@@ -12,6 +12,10 @@ A [Python](https://www.python.org/) FEM implementation.
 
 N dimensional FEM implementation for M variables per node problems.
 
+## Viewer
+
+[FEMViewer](https://zibramax.github.io/FEMViewer/)
+
 ## Installation
 
 Use the package manager [pip](https://pypi.org/project/AFEM/) to install AFEM.

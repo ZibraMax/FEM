@@ -24,4 +24,5 @@ if __name__ == '__main__':
     cb += O.geometry.cbFromRegion(7, 0, 1)
     O.cbe = cb
     O.solve()
+    O.exportJSON("Examples/Mesh_tests/Example13.json")
     plt.show()

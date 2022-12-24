@@ -25,12 +25,11 @@ if __name__ == '__main__':
     geometria.cbe = cbe
     geometria.loadOnRegion(1, fx=lambda s: 10, fy=lambda s: 0)
 
-    O = PlaneStressSparse(geometria, E, v, t)
+    O = PlaneStressSparse(geometria, E, v, t, verbose=True)
     O.elementMatrices()
     O.ensembling()
     O.borderConditions()
     O.solveES()
     O.postProcess()
-    O.exportJSON('test.json')
-
+    O.exportJSON("Examples/Mesh_tests/Example21.json")
     print(O.giveStressPoint(np.array([[60], [80]])))

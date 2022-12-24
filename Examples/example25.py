@@ -71,7 +71,6 @@ if __name__ == '__main__':
         [2*b-parabola(4*he), 4*he], [parabola(4*he), 4*he])
     geometria.cbe = geometria.cbFromRegion(-2, 0, 1)
     geometria.cbe += geometria.cbFromRegion(-2, 0, 2)
-    geometria.exportJSON('Examples/Mesh_tests/tunel.json')
     geometria.show()
     plt.show()
     geometria.loadOnRegion(-1, fy=lambda s: -p0)
@@ -82,5 +81,6 @@ if __name__ == '__main__':
     O.borderConditions()
     O.solveES()
     O.postProcess()
+    O.exportJSON("Examples/Mesh_tests/Example25.json")
 
     plt.show()

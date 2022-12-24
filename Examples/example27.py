@@ -23,7 +23,6 @@ if __name__ == '__main__':
     geometria.cbe += geometria.cbFromRegion(7, 0, 2)
 
     geometria.show()
-    geometria.exportJSON('Examples/Mesh_tests/pieza_acero.json')
     plt.show()
 
     E = 29000000
@@ -34,4 +33,5 @@ if __name__ == '__main__':
     geometria.loadOnRegion(3, lambda s: p)
     O = PlaneStressSparse(geometria, E, v, t, verbose=True)
     O.solve()
+    O.exportJSON("Examples/Mesh_tests/Example27.json")
     plt.show()

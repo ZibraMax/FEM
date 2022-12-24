@@ -13,4 +13,5 @@ if __name__ == '__main__':
     O = Torsion2D(geometria, 1, 1)
     O.geometry.mask = None
     O.solve()
+    O.exportJSON("Examples/Mesh_tests/Example26.json")
     plt.show()

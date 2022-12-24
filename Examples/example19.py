@@ -12,7 +12,7 @@ if __name__ == '__main__':
     a = h**2/100
     gamma = 23.54
     geometria = Geometry2D.importJSON(
-        'Examples/Mesh_tests/Beam_serendipity.json', fast=True)
+        'Examples/Mesh_tests/Example9.json', fast=True)
     cbe = geometria.cbFromRegion(1, 0, 1)
     cbe += geometria.cbFromRegion(1, 0, 2)
     cbe += geometria.cbFromRegion(3, 0, 1)
@@ -28,4 +28,5 @@ if __name__ == '__main__':
     pares = np.linspace(0, n-1, n)
     print(np.max(np.abs(O.U[pares % 2 == 0])),
           np.max(np.abs(O.U[pares % 2 == 1])))
+    O.exportJSON("Examples/Mesh_tests/Example19.json")
     plt.show()

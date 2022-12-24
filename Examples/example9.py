@@ -18,17 +18,13 @@ if __name__ == '__main__':
     geo.generateRegionFromCoords([L, 0.0], [L, h])
     geo.generateRegionFromCoords([L, h], [0.0, h])
     geo.generateRegionFromCoords([0.0, h], [0.0, 0.0])
-    geo.exportJSON('Examples/Mesh_tests/Beam_serendipity.json')
-
-    geometria = Geometry2D.importJSON(
-        'Examples/Mesh_tests/Beam_serendipity.json', fast=True)
-    cbe = geometria.generateBCFromCoords(0, h/2, 0, 1)
-    cbe += geometria.generateBCFromCoords(0, h/2, 0, 2)
-    cbe += geometria.generateBCFromCoords(L, h/2, 0, 1)
-    cbe += geometria.generateBCFromCoords(L, h/2, 0, 2)
-    geometria.setCbe(cbe)
-    O = PlaneStressSparse(geometria, E, v, b,
+    cbe = geo.generateBCFromCoords(0, h/2, 0, 1)
+    cbe += geo.generateBCFromCoords(0, h/2, 0, 2)
+    cbe += geo.generateBCFromCoords(L, h/2, 0, 1)
+    cbe += geo.generateBCFromCoords(L, h/2, 0, 2)
+    geo.setCbe(cbe)
+    O = PlaneStressSparse(geo, E, v, b,
                           fy=lambda x: -gamma, verbose=True)
     O.solve()
-    O.exportJSON('BS.json')
+    O.exportJSON("Examples/Mesh_tests/Example9.json")
     plt.show()

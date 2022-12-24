@@ -25,5 +25,6 @@ if __name__ == '__main__':
     O.solveES()
     O.postProcess()
     plt.show()
+    O.exportJSON("Examples/Mesh_tests/Example22.json")
 
     print(O.giveStressPoint(np.array([[60], [80]])))

@@ -68,7 +68,10 @@ class Geometry:
         self.min_search_radius = -1
         self.calculateCentroids()
         centroides = np.array(self.centroids)[:, 0, :]
-        self.KDTree = KDTree(centroides)
+        try:
+            self.KDTree = KDTree(centroides)
+        except Exception as e:
+            print("1D Geometry ")
         self.boundingBoxMin = np.min(centroides, axis=0)
         self.boundingBoxMax = np.max(centroides, axis=0)
 

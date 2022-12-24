@@ -57,6 +57,7 @@ Code
 
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
+    import numpy as np
     from FEM.Torsion2D import Torsion2D
     from FEM.Geometry import Geometry2D, Delaunay
 
@@ -66,17 +67,14 @@ if __name__ == '__main__':
     v = 0.27
     G = E/(2*(1+v))*0+1
     phi = 1
-    # import numpy as np
-    # coords = np.array([[0, 0], [1, 0], [1, 1], [0, 1.0]])
-    # params = Delaunay._strdelaunay(a=0.001, o=2)
-    # geo = Delaunay(coords, params)
-    # geo.exportJSON('Examples/Mesh_tests/Square_torsion.json')
-    geometria = Geometry2D.importJSON(
-        'Examples/Mesh_tests/Square_torsion.json')
+    coords = np.array([[0, 0], [1, 0], [1, 1], [0, 1.0]])
+    params = Delaunay._strdelaunay(a=0.001, o=2)
+    geometria = Delaunay(coords, params)
     geometria.show()
     plt.savefig('Examples/examples_results/example3_geometry.png')
     plt.show()
     O = Torsion2D(geometria, G, phi, verbose=True)
     O.solve()
+    O.exportJSON('Examples/Mesh_tests/Example3.json')
     plt.savefig('Examples/examples_results/example3.png')
     plt.show()

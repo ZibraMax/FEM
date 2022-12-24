@@ -73,5 +73,6 @@ if __name__ == '__main__':
     O.borderConditions()
     O.solveES()
     O.postProcess()
+    O.exportJSON("Examples/Mesh_tests/Example24.json")
 
     plt.show()

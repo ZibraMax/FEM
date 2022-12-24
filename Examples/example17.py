@@ -15,4 +15,5 @@ if __name__ == '__main__':
     O = Heat1D(geometria, A, P, k, beta, Ta)
     O.cbe = [[0, T0]]
     O.defineConvectiveBoderConditions(-1)
+    O.exportJSON("Examples/Mesh_tests/Example17.json")
     O.solve()

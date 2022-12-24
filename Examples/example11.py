@@ -11,14 +11,15 @@ if __name__ == '__main__':
     a = h**2/100
     gamma = 23.54
     geometria = Geometry2D.importJSON(
-        'Examples/Mesh_tests/Beam_serendipity.json', fast=True)
+        'Examples/Mesh_tests/Example10.json', fast=True)
     cbe = geometria.cbFromRegion(1, 0, 1)
     cbe += geometria.cbFromRegion(1, 0, 2)
     cbe += geometria.cbFromRegion(3, 0, 1)
     cbe += geometria.cbFromRegion(3, 0, 2)
-    geometria.cbe = cbe
+    geometria.setCbe(cbe)
     O = PlaneStressSparse(geometria, E, v, b,
                           fy=lambda x: -gamma*b, verbose=True)
     O.geometry.mask = None
     O.solve()
+    O.exportJSON("Examples/Mesh_tests/Example11.json")
     plt.show()

@@ -1,6 +1,6 @@
 """
 *********************************************
-Creation of 2D elements
+Creation of 3D elements
 *********************************************
 
 3D Elasticity beam problem using 8 node brick elements.
@@ -85,7 +85,7 @@ if __name__ == '__main__':
     import numpy as np
     import matplotlib.pyplot as plt
     from FEM.Elasticity3D import Elasticity
-    from FEM.Geometry.Geometry import Geometry
+    from FEM.Geometry.Geometry import Geometry3D
 
     E = 21000000.0
     v = 0.2
@@ -138,7 +138,7 @@ if __name__ == '__main__':
 
     def fy(x): return -gamma
 
-    geometria = Geometry(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
+    geometria = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
     cbe = []
     for i in range(len(coords)):
         if 0.0 == coords[i][0]:
@@ -149,7 +149,8 @@ if __name__ == '__main__':
 
     O = Elasticity(geometria, E, v, gamma, fy=fy, verbose=True)
     O.solve()
-    O.exportJSON('Examples/Mesh_tests/weird_beam.json')
+    O.geometry.detectBorderElements()
+    O.exportJSON("Examples/Mesh_tests/Example7.json")
     # coords = [[0.0, 0.0, b/2], [L, 0.0, b/2], [L, h, b/2], [0, h, b/2]]
     # x, resultU, resultDU = O.profile(coords, 20)
     # es = []
