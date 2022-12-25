@@ -37,4 +37,5 @@ if __name__ == '__main__':
     # plt.show()
     OFEM = pso(geometry, E1, E2, G12, v12, t)
     OFEM.solve()
+    OFEM.exportJSON("Examples/Mesh_tests/Example43.json")
     plt.show()

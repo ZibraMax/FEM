@@ -58,3 +58,4 @@ if __name__ == '__main__':
         detjac = np.linalg.det(jac)
         integral += np.sum(_u*e.W*detjac)
     print(integral*2/G*4)
+    O.exportJSON("Examples/Mesh_tests/Example9.json")

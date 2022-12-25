@@ -28,4 +28,5 @@ if __name__ == '__main__':
     x = np.linspace(0, 1, 100)
     plt.gcf().get_axes()[0].plot(x, (1+x**2)**0.5)
     plt.gcf().get_axes()[1].plot(x, 1/2*(1+x**2)**(-0.5)*2*x)
+    O.exportJSON("Examples/Mesh_tests/Example42.json")
     plt.show()

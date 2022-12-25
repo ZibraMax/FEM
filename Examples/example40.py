@@ -22,4 +22,5 @@ if __name__ == '__main__':
     # analitica = W*L**4/EI/8
     print(O.U[-2][0], W*L**4/EI/8)
     plt.show()
+    O.exportJSON("Examples/Mesh_tests/Example40.json")
     a = 0

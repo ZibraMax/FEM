@@ -1,0 +1,17 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Sphinx",
+			"type": "shell",
+			"command": "cd docs ; make clean ; cd ..; sphinx-apidoc -f --module-first -o ./docs/source/FEM ./src/FEM; sphinx-apidoc -f --module-first -o ./docs/source/Test ./Test; sphinx-apidoc -f --module-first -o ./docs/source/Examples ./Examples; cd docs ; make html",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": []
+		}
+	]
+}

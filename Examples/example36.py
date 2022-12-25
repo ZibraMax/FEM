@@ -40,4 +40,5 @@ if __name__ == '__main__':
     O.defineConvectiveBoderConditions(6, beta1, ta2)
     O.defineConvectiveBoderConditions(7, beta1, ta2)
     O.solve()
+    O.exportJSON("Examples/Mesh_tests/Example36.json")
     plt.show()

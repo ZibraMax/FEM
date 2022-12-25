@@ -53,4 +53,5 @@ if __name__ == '__main__':
     O.geometry.show()
     plt.show()
     O.solve()
+    O.exportJSON("Examples/Mesh_tests/Example37.json")
     plt.show()

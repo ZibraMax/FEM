@@ -18,10 +18,10 @@ if __name__ == '__main__':
 
     O = EulerBernoulliBeamNonLineal(geometria, EI, EA, Fx, W)
     O.solve()
-    O.exportJSON("A.json")
     plt.close("all")
     for i in range(len(O.solver.solutions)):
         O.solver.setSolution(i, True)
         O.postProcess()
+    O.exportJSON("Examples/Mesh_tests/Example41.json")
     plt.show()
     a = 0

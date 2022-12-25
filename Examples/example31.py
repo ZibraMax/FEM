@@ -39,4 +39,5 @@ if __name__ == '__main__':
     O.geometry.show(draw_segs=True, draw_bc=True)
     plt.show()
     O.solve()
+    O.exportJSON("Examples/Mesh_tests/Example31.json")
     plt.show()

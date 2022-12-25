@@ -49,5 +49,5 @@ if __name__ == '__main__':
     plt.show()
     O = PlaneStressSparse(geometria, E, v, t, verbose=True)
     O.solve()
-    O.exportJSON('pieza_acero.json')
+    O.exportJSON("Examples/Mesh_tests/Example30.json")
     plt.show()
