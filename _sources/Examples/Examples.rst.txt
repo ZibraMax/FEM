@@ -9,74 +9,26 @@ Examples package
 Submodules
 ----------
 
-Examples.ExampleD module
-------------------------
+Examples.Example48 module
+-------------------------
 
-.. automodule:: Examples.ExampleD
+.. automodule:: Examples.Example48
    :members:
    :undoc-members:
    :show-inheritance:
 
-Examples.ExampleE module
-------------------------
+Examples.Example49 module
+-------------------------
 
-.. automodule:: Examples.ExampleE
+.. automodule:: Examples.Example49
    :members:
    :undoc-members:
    :show-inheritance:
 
-Examples.ExampleF module
-------------------------
+Examples.Example50 module
+-------------------------
 
-.. automodule:: Examples.ExampleF
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.ExampleGValidacion module
-----------------------------------
-
-.. automodule:: Examples.ExampleGValidacion
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.ExampleH module
-------------------------
-
-.. automodule:: Examples.ExampleH
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.ExampleI module
-------------------------
-
-.. automodule:: Examples.ExampleI
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.ImportJsonBars module
-------------------------------
-
-.. automodule:: Examples.ImportJsonBars
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.ImportJsonBarsUnique module
-------------------------------------
-
-.. automodule:: Examples.ImportJsonBarsUnique
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.ImportJsonPlates module
---------------------------------
-
-.. automodule:: Examples.ImportJsonPlates
+.. automodule:: Examples.Example50
    :members:
    :undoc-members:
    :show-inheritance:
@@ -93,14 +45,6 @@ Examples.Punto6 module
 ----------------------
 
 .. automodule:: Examples.Punto6
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.TestsEigenvalues module
---------------------------------
-
-.. automodule:: Examples.TestsEigenvalues
    :members:
    :undoc-members:
    :show-inheritance:
@@ -409,6 +353,22 @@ Examples.example45 module
    :undoc-members:
    :show-inheritance:
 
+Examples.example46 module
+-------------------------
+
+.. automodule:: Examples.example46
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.example47 module
+-------------------------
+
+.. automodule:: Examples.example47
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.example5 module
 ------------------------
 
@@ -437,102 +397,6 @@ Examples.example9 module
 ------------------------
 
 .. automodule:: Examples.example9
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.exampleA module
-------------------------
-
-.. automodule:: Examples.exampleA
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.exampleB module
-------------------------
-
-.. automodule:: Examples.exampleB
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.exampleC module
-------------------------
-
-.. automodule:: Examples.exampleC
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.import\_mesh\_fernando module
---------------------------------------
-
-.. automodule:: Examples.import_mesh_fernando
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.laminarTest module
----------------------------
-
-.. automodule:: Examples.laminarTest
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.meh module
--------------------
-
-.. automodule:: Examples.meh
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.muro module
---------------------
-
-.. automodule:: Examples.muro
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.nolocalsparsetest module
----------------------------------
-
-.. automodule:: Examples.nolocalsparsetest
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.profile\_validation module
------------------------------------
-
-.. automodule:: Examples.profile_validation
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.s2 module
-------------------
-
-.. automodule:: Examples.s2
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.test\_man module
--------------------------
-
-.. automodule:: Examples.test_man
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.vencimiento module
----------------------------
-
-.. automodule:: Examples.vencimiento
    :members:
    :undoc-members:
    :show-inheritance:
