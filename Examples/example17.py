@@ -10,7 +10,7 @@ if __name__ == '__main__':
     Ta = 20
     T0 = 100
 
-    n = 4
+    n = 40
     geometria = Lineal(L, n, 1)
     O = Heat1D(geometria, A, P, k, beta, Ta)
     O.cbe = [[0, T0]]
