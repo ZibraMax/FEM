@@ -400,3 +400,11 @@ Examples.example9 module
    :members:
    :undoc-members:
    :show-inheritance:
+
+Examples.example\_ojo module
+----------------------------
+
+.. automodule:: Examples.example_ojo
+   :members:
+   :undoc-members:
+   :show-inheritance:
