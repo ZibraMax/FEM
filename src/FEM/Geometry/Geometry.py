@@ -191,20 +191,26 @@ class Geometry:
         """
         return self.regions[region].nodes
 
-    def giveElementsOfRegion(self, region: int) -> list:
+    def giveElementsOfRegion(self, region: int, centroid=False) -> list:
         """Give elements over a region
 
         Args:
             region (int): region number. Start with 0
+            centroid (bool): To use the centroid as find method. Defaults to false. Use the nodes
 
         Returns:
             list: List of elements in the specified region
         """
         a = []
-        nodes = self.giveNodesOfRegion(region)
-        for e in self.elements:
-            if np.sum(np.isin(e.gdl[0], nodes*self.nvn)) > 0:
-                a.append(e)
+        if centroid:
+            for e in self.elements:
+                if self.regions[region].isBetween(e._xcenter):
+                    a.append(e)
+        else:
+            nodes = self.giveNodesOfRegion(region)
+            for e in self.elements:
+                if np.sum(np.isin(e.gdl[0], nodes*self.nvn)) > 0:
+                    a.append(e)
         return a
 
     def cbFromRegion(self, region: int, value: float, nv: int = 1) -> list:
@@ -626,7 +632,7 @@ class Geometry2D(Geometry):
         ax.set_xlabel('x')
         ax.set_ylabel('y')
         ax.set_title('Domain')
-        ax.legend(handles=legend_items)
+        # ax.legend(handles=legend_items)
 
         gdls = np.array(self.gdls)
 
@@ -684,6 +690,7 @@ class Geometry2D(Geometry):
                         coords_cb[0]-tFlecha, coords_cb[1]), horizontalalignment='center', verticalalignment='center', arrowprops=dict(arrowstyle="->", facecolor=color))
         figManager = plt.get_current_fig_manager()
         figManager.full_screen_toggle()
+        return ax
 
 
 class Geometry3D(Geometry):
@@ -885,7 +892,7 @@ class Delaunay(Geometry2D):
             fast (bool, optional): If True, the created elements will have have the fast propertie (see Element class docs)
     """
 
-    def __init__(self, vertices: list, params: str, nvn: int = 1, holes_dict=None, fillets=None, fast=False) -> None:
+    def __init__(self, vertices: list, params: str, nvn: int = 1, holes_dict=None, fillets=None, fast=False, extra_segs=None) -> None:
         """Generate Delaunay triangulation
 
         Args:
@@ -901,6 +908,7 @@ class Delaunay(Geometry2D):
         # mask = mask.tolist()
         # except:
         # pass
+        extra_segs = extra_segs or []
         seg = []
         for i in range(len(vertices)-1):
             seg.append([i, i+1])
@@ -940,6 +948,8 @@ class Delaunay(Geometry2D):
                 vertices += np.array(f_vertices)[1: -1].tolist()
                 seg[fillet['end_region']][0] = len(vertices)-1
                 # vertices += [O]
+
+        seg += extra_segs
 
         original = dict(vertices=np.array(vertices), segments=np.array(seg))
         self.original = original
