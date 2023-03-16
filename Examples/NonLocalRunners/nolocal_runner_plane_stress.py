@@ -12,7 +12,7 @@ from scipy.sparse.linalg import eigsh
 # .__class__.__name__
 L = float(sys.argv[1])
 l = float(sys.argv[2])
-Z = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+Z = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 nex = int(sys.argv[3])
 omega = 6
 Lr = omega*l

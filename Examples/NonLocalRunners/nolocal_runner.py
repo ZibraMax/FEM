@@ -4,7 +4,7 @@ from FEM.Solvers import LinealEigen
 import numpy as np
 import logging
 from scipy.sparse.linalg import eigsh
-#from sendEmail import sendMailOutlook
+from sendEmail import sendMailOutlook
 import sys
 
 
@@ -77,11 +77,12 @@ for i in range(nx):
                       node5, node6, node7, node8]]
 
 geo = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
-geo.detectBorderElements()
+
 log_filename = f'SiCube_{L}_{l}'
 
 O = NonLocalElasticityFromTensor(
     geo, C, rho, l, 0.0, Lr, af, solver=LinealEigen, name=log_filename, verbose=True)
+logging.info(format(sys.argv))
 
 logging.info('Creating element matrices...')
 O.elementMatrices()
@@ -90,7 +91,7 @@ duration = O.logger.end_timer().total_seconds()
 O.properties['duration'] = duration
 for z in Z[::-1]:
     logging.info(f'Solving for z={z}')
-    filename = f'SiPlate_{L}_{l}_{z}.json'
+    filename = f'SiCube_{L}_{l}_{z}.json'
 
     O.z1 = z
     O.z2 = 1-z

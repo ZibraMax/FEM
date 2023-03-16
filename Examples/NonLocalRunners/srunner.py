@@ -12,10 +12,11 @@ process = True
 
 def runSim(R, l):
     global process, i
-    L = R*l
-    ne = max(40, min(int(L//(1.0*l)), 200))
+    L = R
+    ne = max(20, min(int(L//(1.5*l)), 200))
+    print(L, l, ne)
     proc = Popen(
-        f'c:/Users/david/Desktop/FEM/.venv/Scripts/python.exe nonlocal_beam_fixed_bessel.py {L} {l} {ne}', creationflags=CREATE_NEW_CONSOLE)
+        f'c:/Users/david/Desktop/FEM/.venv/Scripts/python.exe nonlocal_beam_cantilever.py {L} {l} {ne}', creationflags=CREATE_NEW_CONSOLE)
     Popen.communicate(proc)
     i = i + 1
     process = False
