@@ -462,6 +462,27 @@ class Geometry2D(Geometry):
         self.loadOnRegion(region=region, fx=fx,
                           fy=fy, add=add)
 
+    def normalLoadOnRegionVF(self, region: int, f: Callable = None, add=None) -> None:
+        """Assign a load over a geometry region.
+
+        The start point of region is the 0 point of load
+        The end point of region is the end point of load
+
+        Load must be defined as a function (normal or lambda)
+
+        Args:
+            region (int): region in wich load will be applied
+            f (Callable, optional): Load Function. Defaults to None.
+        """
+        c0, cf = self.regions[region].coords
+        dy = cf[1]-c0[1]
+        dx = cf[0]-c0[0]
+        theta = -np.arctan2(dy, dx)
+        def fx(s): return f(s)*np.cos(theta)
+        def fy(s): return f(s)*np.sin(theta)
+        self.loadOnRegion(region=region, fx=fx,
+                          fy=fy, add=add)
+
     def loadOnRegion(self, region: int, fx: Callable = None, fy: Callable = None, add=None) -> None:
         """Assign a load over a geometry region.
 

@@ -98,7 +98,7 @@ if __name__ == '__main__':
     cb += geo.generateBCFromCoords(pata+th, 0, 0, 2)
     geo.setCbe(cb)
     for i in range(essential1+1, essential2):
-        geo.loadOnRegion(i, lambda s: -pressure)
+        geo.normalLoadOnRegionVF(i, lambda s: -pressure)
     # geo.show()
     # plt.show()
     for e in geo.giveElementsOfRegion(-1, True):
