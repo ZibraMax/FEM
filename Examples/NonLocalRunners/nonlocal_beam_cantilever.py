@@ -16,8 +16,8 @@ h = L/10
 
 
 l = float(sys.argv[2])
-Z = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-omega = 9
+Z = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+omega = 6
 Lr = omega*l
 
 
@@ -55,7 +55,7 @@ geo.setCbe(cb)
 # geo.show(draw_bc=True, label_bc=True)
 # plt.show()
 
-log_filename = f'SiBeam_disp_reddy_{L}_{l}'
+log_filename = f'SiBeam_disp_{L}_{l}'
 
 O = PlaneStressNonLocalSparse(geo, E, v, t, l, 0.0, Lr=Lr,
                               af=af, rho=dens, verbose=True, name=log_filename)
@@ -67,7 +67,7 @@ duration = O.logger.end_timer().total_seconds()
 O.properties['duration'] = duration
 for z in Z[::-1]:
     logging.info(f'Solving for z={z}')
-    filename = f'./VIGA_VOLADIZO/SiBeam_disp_reddy_{L}_{l}_{z}.json'
+    filename = f'./SiBeam_disp_{L}_{l}_{z}.json'
 
     O.z1 = z
     O.z2 = 1-z
@@ -97,6 +97,6 @@ for z in Z[::-1]:
 
     try:
         sendMailOutlook(mss=f"{filename} ha terminado!",
-                        secrests_path='secrets.txt', files=[f'nolocal_runner_plane_stress_{log_filename}.log'])
+                        secrests_path='secrets.txt', files=[f'nonlocal_beam_cantilever_{log_filename}.log'])
     except Exception as e:
         logging.error(e)
