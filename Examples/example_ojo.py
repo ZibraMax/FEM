@@ -98,7 +98,7 @@ if __name__ == '__main__':
     cb += geo.generateBCFromCoords(pata+th, 0, 0, 2)
     geo.setCbe(cb)
     for i in range(essential1+1, essential2):
-        geo.normalLoadOnRegionVF(i, lambda s: -pressure)
+        geo.normalLoadOnRegion(i, lambda s: -pressure)
     # geo.show()
     # plt.show()
     for e in geo.giveElementsOfRegion(-1, True):
@@ -111,6 +111,7 @@ if __name__ == '__main__':
         VS.append(e.properties.get("v", v))
 
     o = PlaneStrainSparse(geo, ES, VS, verbose=True)
+    o.geometry.mask = None
     o.solve()
     o.exportJSON("EYE_1.json")
     plt.show()

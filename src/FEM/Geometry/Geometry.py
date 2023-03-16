@@ -462,7 +462,7 @@ class Geometry2D(Geometry):
         self.loadOnRegion(region=region, fx=fx,
                           fy=fy, add=add)
 
-    def normalLoadOnRegionVF(self, region: int, f: Callable = None, add=None) -> None:
+    def normalLoadOnRegion(self, region: int, f: Callable = None, add=None) -> None:
         """Assign a load over a geometry region.
 
         The start point of region is the 0 point of load
@@ -477,9 +477,9 @@ class Geometry2D(Geometry):
         c0, cf = self.regions[region].coords
         dy = cf[1]-c0[1]
         dx = cf[0]-c0[0]
-        theta = -np.arctan2(dy, dx)
-        def fx(s): return f(s)*np.cos(theta)
-        def fy(s): return f(s)*np.sin(theta)
+        theta = np.arctan2(dy, dx)
+        def fx(s): return -f(s)*np.sin(theta)
+        def fy(s): return f(s)*np.cos(theta)
         self.loadOnRegion(region=region, fx=fx,
                           fy=fy, add=add)
 
