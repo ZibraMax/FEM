@@ -3,19 +3,20 @@ if __name__ == '__main__':
     from FEM.Elasticity2D import PlaneStrainSparse
     import numpy as np
     import matplotlib.pyplot as plt
-    W = 4
-    pata = 3
+    W = 3.5*2
+    pata = 8
     r = 12
     th = 1
     r_int = r - th
     n = 50
     A = 0.1
     pressure = 100
-    E = 21000000
+    E = 1000
     v = 0.3
+    ancho_nervio = 2.5
 
     essential1 = 49
-    essential2 = 124
+    essential2 = 106
 
     def circulo(x):
         centro = pata+r
@@ -34,13 +35,13 @@ if __name__ == '__main__':
     def contour_ext(x):
         return circulo(x)
 
-    x_des = -(r_int**2-(W/4)**2)**0.5 + pata + r
+    x_des = -(r_int**2-(ancho_nervio)**2)**0.5 + pata + r
 
     def contour_int(x):
         return circulo_int(x)
 
     def different_region(x):
-        return W/4
+        return ancho_nervio
 
     X = np.linspace(0, pata+r, n)
     _X = []
@@ -70,8 +71,8 @@ if __name__ == '__main__':
     for x, y in zip(_X[::-1][1:], _Y[::-1][1:]):
         vertices.append([x, -y])
 
-    vertices.append([0, -W/4])
-    vertices.append([0, W/4])
+    vertices.append([0, -ancho_nervio])
+    vertices.append([0, ancho_nervio])
     n = len(vertices)
     for i, p in enumerate(vertices):
         if p[0] == x_des and p[1] == contour_int(x_des):
@@ -85,16 +86,19 @@ if __name__ == '__main__':
     es = [s1, s2]
 
     reg = Region2D(np.array([
-        [0.0, W/4],
-        [pata+th, W/4],
-        [pata+th, -W/4],
-        [0.0, -W/4]]))
+        [0.0, ancho_nervio],
+        [pata+2*th, ancho_nervio],
+        [pata+2*th, -ancho_nervio],
+        [0.0, -ancho_nervio]]))
 
     params = Delaunay._strdelaunay(True, True, A, o=2)
     geo = Delaunay(vertices, params, 2, extra_segs=es, fast=True)
     geo.addRegions([reg])
+    # geo.show()
+    # plt.show()
     cb = geo.cbFromRegion(essential1, 0.0, 1)
     cb += geo.cbFromRegion(essential2, 0.0, 1)
+    #cb += geo.cbFromRegion(157, 0.0, 1)
     cb += geo.generateBCFromCoords(pata+th, 0, 0, 2)
     geo.setCbe(cb)
     for i in range(essential1+1, essential2):
@@ -112,6 +116,6 @@ if __name__ == '__main__':
 
     o = PlaneStrainSparse(geo, ES, VS, verbose=True)
     o.geometry.mask = None
-    o.solve()
+    o.solve(plot=True, mult=1)
     o.exportJSON("EYE_1.json")
     plt.show()
