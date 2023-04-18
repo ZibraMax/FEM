@@ -408,3 +408,11 @@ Examples.example\_ojo module
    :members:
    :undoc-members:
    :show-inheritance:
+
+Examples.example\_ojo\_mitad module
+-----------------------------------
+
+.. automodule:: Examples.example_ojo_mitad
+   :members:
+   :undoc-members:
+   :show-inheritance:
