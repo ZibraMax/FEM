@@ -1,10 +1,11 @@
+import numpy as np
 import os
 import tqdm
 import FEM
 STR_NODE = "*Node"
 STR_ELEMENT = "*Element"
 
-FILENAME = "Job.txt"
+FILENAME = "NO_TAPON.txt"
 nodes = []
 elements = []
 
@@ -27,4 +28,9 @@ with open(FILENAME, encoding="utf-8") as f:
         pb.update()
 nel = len(elements)
 geo = FEM.Geometry3D(elements, nodes, ["TE2V"]*nel, 3, fast=True)
-geo.exportJSON("AYO.json")
+O = FEM.Elasticity(geo, 1, 0.3, 0.1)
+U = np.loadtxt(f"U_{FILENAME.split('.')[0]}_PARSED.txt")
+O.solver.solutions = [U]
+O.solver.solutions_info = [{'solver-type': "ABAQUS!"}]
+O.solver.setSolution()
+O.exportJSON(f"AYO_{FILENAME.split('.')[0]}.json")
