@@ -53,9 +53,9 @@ class Element():
                 self.Qe = np.zeros([self.n, 1])
 
             # Specific transformations
-            self.detjac = np.linalg.det(self.jacs)
-            _j = np.linalg.inv(self.jacs)
-            self.dpx = _j @ self.dpz
+                self.detjac = np.linalg.det(self.jacs)
+                _j = np.linalg.inv(self.jacs)
+                self.dpx = _j @ self.dpz
         self.Ue = np.zeros(self.gdl.shape)
 
     def restartMatrix(self) -> None:

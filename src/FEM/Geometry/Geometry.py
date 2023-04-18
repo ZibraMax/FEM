@@ -713,6 +713,99 @@ class Geometry2D(Geometry):
         figManager.full_screen_toggle()
         return ax
 
+    def revolve(self, m=10, theta=2 * np.pi, **kargs):
+        coords = self.gdls
+        n = len(coords)
+        ncoords = np.zeros([n, 3])
+        ncoords[:, :-1] = coords
+        ncoords = ncoords.tolist()
+        dt = theta/(m)
+        t = dt
+        meta_dict = {}
+        mm2 = m + (not theta == (2*np.pi))
+        for i, coord in enumerate(coords):
+            coord = tuple(coord)
+            if not coord in meta_dict:
+                meta_dict[coord] = {}
+            meta_dict[coord][0] = i
+            meta_dict[coord][mm2] = i
+
+        for i in range(1, mm2):
+            c = np.cos(t)
+            s = np.sin(t)
+            M = np.array([[c, -s], [s, c]])
+            for j, coord in enumerate(coords):
+                x, y = coord
+                coord = (x, y)
+                z = 0
+                if y != 0:
+                    ny, nz = M @ np.array([[y], [z]]).flatten()
+                    ncoords.append([x, ny, nz])
+                    meta_dict[coord][i] = len(ncoords)-1
+                else:
+                    meta_dict[coord][i] = j
+
+            t += dt
+
+        diccs = []
+        tipos = []
+        for i in range(m):
+            for e in self.elements:
+                if 0 in e.coords[:, 1]:
+                    if isinstance(e, LTriangular):
+                        cor0 = meta_dict[tuple(e.coords[0])][i]
+                        cor1 = meta_dict[tuple(e.coords[1])][i]
+                        cor2 = meta_dict[tuple(e.coords[2])][i]
+                        for co in e.coords:
+                            if co[1] != 0:
+                                cor3 = meta_dict[tuple(co)][i+1]
+                        diccs.append(
+                            [cor0, cor1, cor2, cor3])
+                        tipos.append("TE1V")
+
+                    elif isinstance(e, Quadrilateral):
+                        pass
+                else:
+                    if isinstance(e, LTriangular):
+                        cor0 = meta_dict[tuple(e.coords[0])][i]
+                        cor1 = meta_dict[tuple(e.coords[1])][i]
+                        cor2 = meta_dict[tuple(e.coords[2])][i]
+
+                        cor3 = meta_dict[tuple(e.coords[0])][i+1]
+                        cor4 = meta_dict[tuple(e.coords[1])][i+1]
+                        cor5 = meta_dict[tuple(e.coords[2])][i+1]
+                        diccs.append(
+                            [cor3, cor4, cor5, cor1])
+                        tipos.append("TE1V")
+
+                        diccs.append(
+                            [cor0, cor1, cor2, cor3])
+                        tipos.append("TE1V")
+
+                        diccs.append(
+                            [cor3, cor5, cor1, cor2])
+                        tipos.append("TE1V")
+
+                    elif isinstance(e, Quadrilateral):
+                        cor1 = meta_dict[tuple(e.coords[0])][i]
+                        cor2 = meta_dict[tuple(e.coords[1])][i]
+                        cor3 = meta_dict[tuple(e.coords[2])][i]
+                        cor4 = meta_dict[tuple(e.coords[3])][i]
+
+                        cor5 = meta_dict[tuple(e.coords[0])][i + 1]
+                        cor6 = meta_dict[tuple(e.coords[1])][i + 1]
+                        cor7 = meta_dict[tuple(e.coords[2])][i + 1]
+                        cor8 = meta_dict[tuple(e.coords[3])][i + 1]
+
+                        diccs.append(
+                            [cor1, cor2, cor3, cor4, cor5, cor6, cor7, cor8])
+                        tipos.append("C1V")
+
+        ncoords = np.array(ncoords)
+
+        ngeo = Geometry3D(diccs, ncoords, tipos, **kargs)
+        return ngeo
+
 
 class Geometry3D(Geometry):
     """Creates a 3D geometry
