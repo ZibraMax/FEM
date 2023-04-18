@@ -190,15 +190,16 @@ class TetrahedralO2(Element3D, TetrahedralScheme):
         x = _z[0]
         y = _z[1]
         z = _z[2]
+        kernell = x-x
 
         return np.array([
             [4*x + 4*y + 4*z - 3, 4*x + 4*y + 4*z - 3, 4*x + 4*y + 4*z - 3],
-            [4*x - 1, 0, 0],
-            [0, 4*y - 1, 0],
-            [0, 0, 4*z - 1],
+            [4*x - 1, kernell, kernell],
+            [kernell, 4*y - 1, kernell],
+            [kernell, kernell, 4*z - 1],
             [-8*x - 4*y - 4*z + 4, -4*x, -4*x],
-            [4*y, 4*x, 0],
+            [4*y, 4*x, kernell],
             [-4*y, -4*x - 8*y - 4*z + 4, -4*y],
             [-4*z, -4*z, -4*x - 4*y - 8*z + 4],
-            [4*z, 0, 4*x],
-            [0, 4*z, 4*y]])
+            [4*z, kernell, 4*x],
+            [kernell, 4*z, 4*y]])
