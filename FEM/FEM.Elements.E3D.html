@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="FEM.Geometry package" href="FEM.Geometry.html" /><link rel="prev" title="FEM.Elements.E2D package" href="FEM.Elements.E2D.html" />
 
-    <!-- Generated with Sphinx 6.1.3 and Furo 2023.03.27 -->
+    <!-- Generated with Sphinx 6.2.1 and Furo 2023.03.27 -->
         <title>FEM.Elements.E3D package - FEM 1.0.34 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
@@ -513,6 +513,26 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral.inverseMapping">
+<span class="sig-name descname"><span class="pre">inverseMapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.inverseMapping" title="Permalink to this definition">#</a></dt>
+<dd><p>Give the natural coordinates of given global coordinates over elements using Newton’s method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x0</strong> (<em>np.ndarray</em>) – Global coordinates matrix</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Máximun number of iterations. Defaults to 100.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Natural coordinates matrix</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral.psis">
 <span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.psis" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
@@ -555,6 +575,26 @@
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Shape function derivatives evaluated in Z points</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.TetrahedralO2.inverseMapping">
+<span class="sig-name descname"><span class="pre">inverseMapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.inverseMapping" title="Permalink to this definition">#</a></dt>
+<dd><p>Give the natural coordinates of given global coordinates over elements using Newton’s method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x0</strong> (<em>np.ndarray</em>) – Global coordinates matrix</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Máximun number of iterations. Defaults to 100.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Natural coordinates matrix</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>np.ndarray</p>
@@ -712,11 +752,13 @@
 </li>
 <li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral"><code class="docutils literal notranslate"><span class="pre">Tetrahedral</span></code></a><ul>
 <li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.dpsis"><code class="docutils literal notranslate"><span class="pre">Tetrahedral.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.inverseMapping"><code class="docutils literal notranslate"><span class="pre">Tetrahedral.inverseMapping()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.psis"><code class="docutils literal notranslate"><span class="pre">Tetrahedral.psis()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2"><code class="docutils literal notranslate"><span class="pre">TetrahedralO2</span></code></a><ul>
 <li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.dpsis"><code class="docutils literal notranslate"><span class="pre">TetrahedralO2.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.inverseMapping"><code class="docutils literal notranslate"><span class="pre">TetrahedralO2.inverseMapping()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.psis"><code class="docutils literal notranslate"><span class="pre">TetrahedralO2.psis()</span></code></a></li>
 </ul>
 </li>
