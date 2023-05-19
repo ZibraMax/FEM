@@ -81,6 +81,16 @@ class Tetrahedral(Element3D, TetrahedralScheme):
         TetrahedralScheme.__init__(self, n, **kargs)
         Element3D.__init__(self, coords, coords, gdl, **kargs)
 
+    def inverseMapping(self, x0: np.ndarray, n: int = 100) -> np.ndarray:
+        if not isinstance(x0, np.ndarray):
+            x0 = np.array(x0)
+        x0 = x0.reshape([3, 1])
+        X0 = self.coords[0].reshape([3, 1])
+        X = self.coords[1:].T
+        K = X-X0
+        F = x0.reshape([3, 1])-X0
+        return np.linalg.solve(K, F)
+
     def psis(self, _z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates
 
@@ -148,6 +158,10 @@ class TetrahedralO2(Element3D, TetrahedralScheme):
 
         TetrahedralScheme.__init__(self, n, **kargs)
         Element3D.__init__(self, coords, coords, gdl, **kargs)
+
+    def inverseMapping(self, x0: np.ndarray, n: int = 100) -> np.ndarray:
+        e_aux = Tetrahedral(self.coords[:4], np.array([[-1, -1, -1, -1]]))
+        return e_aux.inverseMapping(x0, n)
 
     def psis(self, _z: np.ndarray) -> np.ndarray:
         """Calculates the shape functions of a given natural coordinates

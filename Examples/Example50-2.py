@@ -5,7 +5,7 @@ if __name__ == '__main__':
     b = 30
     h = 30
     k = 311
-    kx = k
+    kx = 2*k
     ky = k
 
     params = FEM.Delaunay._strdelaunay(True, True, 2, 30, 2)
@@ -26,4 +26,4 @@ if __name__ == '__main__':
     o.solve()
     geo.show()
     plt.show()
-    o.exportJSON("Examples/Mesh_tests/Example50.json")
+    o.exportJSON("Examples/Mesh_tests/Example50-2.json")
