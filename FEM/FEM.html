@@ -638,7 +638,7 @@ be a 2-D Numpy Array.</p>
 <p>docstring for CoreTransient</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Core.CoreTransient.apply_initial_condition">
-<span class="sig-name descname"><span class="pre">apply_initial_condition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.CoreTransient.apply_initial_condition" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">apply_initial_condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Core.CoreTransient.apply_initial_condition" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1375,7 +1375,7 @@ If deemed appropriate, the record may be modified in-place.</p>
 <p>The differential equation is:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[\frac{\partial T}{\partial t}-\frac{\partial}{\partialx}\left(Ak\frac{\partialT}{\partialx}\right)+\beta P(T-T_{\infty})=q\]</div>
+\[\frac{\partial T}{\partial t}-\frac{\partial}{\partial x}\left(Ak\frac{\partial T}{\partial x}\right)+\beta P(T-T_{\infty})=q\]</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1412,7 +1412,7 @@ If deemed appropriate, the record may be modified in-place.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient.postProcess">
-<span class="sig-name descname"><span class="pre">postProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient.postProcess" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">postProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient.postProcess" title="Permalink to this definition">#</a></dt>
 <dd><p>Post process the solution and steps</p>
 </dd></dl>
 
