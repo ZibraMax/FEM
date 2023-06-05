@@ -134,7 +134,7 @@ class Heat1DTransient(CoreParabolic):
     The differential equation is:
 
     .. math::
-        \\frac{\\partial T}{\\partial t}-\\frac{\\partial}{\\partialx}\\left(Ak\\frac{\\partialT}{\\partialx}\\right)+\\beta P(T-T_{\\infty})=q
+        \\frac{\\partial T}{\\partial t}-\\frac{\\partial}{\\partial x}\\left(Ak\\frac{\\partial T}{\\partial x}\\right)+\\beta P(T-T_{\\infty})=q
 
     Args:
         geometry (Geometry): Input 1D Geometry. 1 variable per node
@@ -152,7 +152,7 @@ class Heat1DTransient(CoreParabolic):
         The differential equation is:
 
         .. math::
-            \\frac{\\partial T}{\\partial t}-\\frac{\\partial}{\\partialx}\\left(Ak\\frac{\\partialT}{\\partialx}\\right)+\\beta P(T-T_{\\infty})=q
+            \\frac{\\partial T}{\\partial t}-\\frac{\\partial}{\\partial x}\\left(Ak\\frac{\\partial T}{\\partial x}\\right)+\\beta P(T-T_{\\infty})=q
 
         Args:
             geometry (Geometry): Input 1D Geometry. 1 variable per node
@@ -248,27 +248,39 @@ class Heat1DTransient(CoreParabolic):
         self.K[node, node] += self.beta[k]*self.A[k]
         # FIXME esto tiene que cambiar para transient
 
-    def postProcess(self, t0, tf, steps) -> None:
+    def postProcess(self, node=None, t0=None, tf=None, steps=None, dt=None, ax=None) -> None:
         """Post process the solution and steps
         """
+        if not ax:
+            fig = plt.figure()
+            ax = fig.add_subplot(1, 1, 1)
+        steps = len(self.solver.solutions)
+        if not node:
+            for i in range(steps):
+                self.solver.setSolution(i, True)
+                X = self.geometry.gdls.flatten().tolist()
+                U1 = self.U.flatten().tolist()
+                color = "gray"
+                if i == 0:
+                    color = "black"
+                elif i == steps:
+                    color = "red"
 
-        fig = plt.figure()
-        ax1 = fig.add_subplot(1, 1, 1)
-        for i in range(steps+1):
-            self.solver.setSolution(i, True)
+                ax.plot(X, U1, color=color)
+            ax.set_xlabel("X")
+            ax.set_ylabel(f"T all nodes")
+        else:
+            color = "k"
             X = []
             U1 = []
-            for e in self.elements:
-                _x, _u = e.giveSolution(False)
-                X += _x.T[0].tolist()
-                U1 += _u[0].tolist()
-            color = "gray"
-            if i == 0:
-                color = "black"
-            elif i == steps:
-                color = "red"
+            for i in range(steps):
+                self.solver.setSolution(i, True)
+                U1.append(self.U[node])
+                X.append(self.solver.solutions_info[i]["time"])
 
-            ax1.plot(X, U1, color=color)
-        ax1.grid()
-        ax1.set_title(r'$T(x)$')
-        plt.show()
+            ax.plot(X, U1, color=color)
+            ax.set_xlabel("t")
+            ax.set_ylabel(f"T node {node}")
+            return X, U1
+        ax.grid()
+        ax.set_title(r'$T(x)$')

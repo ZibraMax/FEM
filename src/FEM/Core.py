@@ -303,8 +303,6 @@ class CoreTransient(Core):
         # Initial condition for all gdls in domain
         self.u0: list[float] = [0.0]*self.ngdl
 
-        self.apply_initial_condition()
-
     def set_initial_condition(self, ic: Union[list[float], Callable[[], float], float]) -> None:
         if isinstance(ic, float):
             self.u0 = [ic]*self.ngdl
@@ -312,15 +310,14 @@ class CoreTransient(Core):
             self.u0 = ic(self.geometry.gdls)
         elif isinstance(ic, list):
             self.u0 = ic
-        self.apply_initial_condition()
 
-    def apply_initial_condition(self):
+    def apply_initial_condition(self, t0, dt):
         self.U[:, 0] = self.u0
         for i in self.cbe:
             self.U[int(i[0]), 0] = i[1]
         self.solver.solutions.append(self.U.copy())
         self.solver.solutions_info.append(
-            {'solver-type': self.solver.type, "time": "Initial time", "dt": "Not defined"})
+            {'solver-type': self.solver.type, "time": t0, "dt": dt})
         self.solver.setSolution(-1, True)
 
     def ensembling(self) -> None:
@@ -391,8 +388,6 @@ class CoreHiperbolic(CoreTransient):
             self.ddu0 = ddu0(self.geometry.gdls)
         elif isinstance(ddu0, list):
             self.ddu0 = ddu0
-
-        self.apply_initial_condition()
 
     def apply_initial_condition(self):
         self.U[:, 0] = self.u0
