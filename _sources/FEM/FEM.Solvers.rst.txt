@@ -32,3 +32,11 @@ FEM.Solvers.Solver module
    :members:
    :undoc-members:
    :show-inheritance:
+
+FEM.Solvers.Transient module
+----------------------------
+
+.. automodule:: FEM.Solvers.Transient
+   :members:
+   :undoc-members:
+   :show-inheritance:
