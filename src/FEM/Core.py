@@ -4,14 +4,15 @@ The individual children classes must implement the method for calculating the el
 """
 
 
-from typing import Union
+from typing import Union, Callable
 from tqdm import tqdm
 import numpy as np
 from .Geometry import Geometry
-from .Solvers import Lineal, NonLinealSolver, LinealSparse
+from .Solvers import Lineal, NonLinealSolver, LinealSparse, Solver, Parabolic
 import logging
 from .FEMLogger import FEMLogger
 from functools import partialmethod
+from .Elements import Element
 import json
 
 
@@ -39,39 +40,39 @@ class Core():
                 name (str, optional): To print custom name on logging file. Defaults to ''.
 
         """
-        self.logger = FEMLogger(name)
+        self.logger: FEMLogger = FEMLogger(name)
         if verbose:
             self.logger.setup_logging(console_log_level="info")
         else:
             self.logger.setup_logging()
-        self.geometry = geometry
-        self.ngdl = self.geometry.ngdl
+        self.geometry: Geometry = geometry
+        self.ngdl: int = self.geometry.ngdl
         if not sparse:
-            self.K = np.zeros([self.ngdl, self.ngdl])
-        self.F = np.zeros([self.ngdl, 1])
-        self.Q = np.zeros([self.ngdl, 1])
-        self.U = np.zeros([self.ngdl, 1])
-        self.S = np.zeros([self.ngdl, 1])
-        self.cbe = self.geometry.cbe
-        self.cbn = self.geometry.cbn
-        self.elements = self.geometry.elements
-        self.verbose = verbose
+            self.K: np.ndarray = np.zeros([self.ngdl, self.ngdl])
+        self.F: np.ndarray = np.zeros([self.ngdl, 1])
+        self.Q: np.ndarray = np.zeros([self.ngdl, 1])
+        self.U: np.ndarray = np.zeros([self.ngdl, 1])
+        self.S: np.ndarray = np.zeros([self.ngdl, 1])
+        self.cbe: list = self.geometry.cbe
+        self.cbn: list = self.geometry.cbn
+        self.elements: list[Element] = self.geometry.elements
+        self.verbose: bool = verbose
         tqdm.__init__ = partialmethod(tqdm.__init__, disable=not verbose)
-        self.name = 'Generic FEM '
+        self.name: str = 'Generic FEM '
 
         if not solver:
-            self.solver = Lineal(self)
+            self.solver: Solver = Lineal(self)
             if sparse:
-                self.solver = LinealSparse(self)
+                self.solver: Solver = LinealSparse(self)
         else:
-            self.solver = solver(self)
+            self.solver: Solver = solver(self)
         if self.solver.type == 'non-lineal-newton':
-            self.T = np.zeros([self.ngdl, self.ngdl])
+            self.T: np.ndarray = np.zeros([self.ngdl, self.ngdl])
         elif self.solver.type == "Base":
             logging.error("Base solver should not be used.")
             raise Exception("Base solver should not be used.")
-        self.properties = {'verbose': self.verbose,
-                           'name': name, 'problem': self.__class__.__name__}
+        self.properties: dict = {'verbose': self.verbose,
+                                 'name': name, 'problem': self.__class__.__name__}
 
     def description(self):
         """Generates the problem description for loggin porpuses
@@ -287,3 +288,114 @@ class Core():
         y = json.dumps(pjson)
         with open(filename, "w") as f:
             f.write(y)
+
+
+class CoreTransient(Core):
+    """docstring for CoreTransient
+    """
+
+    def __init__(self, geometry: Geometry, solver: Solver = None, verbose: bool = False, name='') -> None:
+        Core.__init__(self, geometry=geometry, solver=solver,
+                      verbose=verbose, name=name, sparse=False)
+        self.dt: float = 0.1
+        self.t: float = 0.0
+
+        # Initial condition for all gdls in domain
+        self.u0: list[float] = [0.0]*self.ngdl
+
+        self.apply_initial_condition()
+
+    def set_initial_condition(self, ic: Union[list[float], Callable[[], float], float]) -> None:
+        if isinstance(ic, float):
+            self.u0 = [ic]*self.ngdl
+        elif isinstance(ic, Callable):
+            self.u0 = ic(self.geometry.gdls)
+        elif isinstance(ic, list):
+            self.u0 = ic
+        self.apply_initial_condition()
+
+    def apply_initial_condition(self):
+        self.U[:, 0] = self.u0
+        for i in self.cbe:
+            self.U[int(i[0]), 0] = i[1]
+        self.solver.solutions.append(self.U.copy())
+        self.solver.solutions_info.append(
+            {'solver-type': self.solver.type, "time": "Initial time", "dt": "Not defined"})
+        self.solver.setSolution(-1, True)
+
+    def ensembling(self) -> None:
+        logging.info('Ensembling equation system...')
+        for e in self.elements:
+            self.K[np.ix_(e.gdlm, e.gdlm)] += e.Ke
+            self.F[np.ix_(e.gdlm)] += e.Fe
+        logging.info('Done!')
+
+
+class CoreParabolic(CoreTransient):
+    """docstring for CoreParabolic
+    """
+
+    def __init__(self, geometry: Geometry, solver: Solver = None, verbose: bool = False, name=''):
+        if not solver:
+            solver = Parabolic
+        CoreTransient.__init__(self, geometry=geometry, solver=solver,
+                               verbose=verbose, name=name)
+
+        self.alpha: float = 0.5  # Crack nocholson. Subclases maybe???
+
+    def set_alpha(self, alpha):
+        self.alpha = alpha
+        # TODO select solver acording to alpha value
+
+    def postProcess(self, t0, tf, steps) -> None:
+        """Post process the solution
+        """
+        pass
+
+
+class CoreHiperbolic(CoreTransient):
+    """docstring for CoreParabolic
+    """
+
+    def __init__(self, geometry: Geometry, solver: Solver = None, verbose: bool = False, name=''):
+        CoreTransient.__init__(self, geometry=geometry, solver=solver,
+                               verbose=verbose, name=name)
+        self.U_dot: np.ndarray = np.zeros([self.ngdl, 1])
+        self.U_dot_dot: np.ndarray = np.zeros([self.ngdl, 1])
+        self.du0: list[float] = [0.0]*self.ngdl
+        self.ddu0: list[float] = [0.0]*self.ngdl
+        self.dU: np.ndarray = np.zeros([self.ngdl, 1])
+        self.ddU: np.ndarray = np.zeros([self.ngdl, 1])
+        self.alpha: float = 0.5
+        self.gamma: float = 0.5
+        self.apply_initial_condition()
+
+    def set_initial_condition(self, u0: Union[list[float], Callable[[], float], float], du0: Union[list[float], Callable[[], float], float], ddu0: Union[list[float], Callable[[], float], float]) -> None:
+        if isinstance(u0, float):
+            self.u0 = [u0]*self.ngdl
+        elif isinstance(u0, Callable):
+            self.u0 = u0(self.geometry.gdls)
+        elif isinstance(u0, list):
+            self.u0 = u0
+
+        if isinstance(du0, float):
+            self.du0 = [du0]*self.ngdl
+        elif isinstance(du0, Callable):
+            self.du0 = du0(self.geometry.gdls)
+        elif isinstance(du0, list):
+            self.du0 = du0
+
+        if isinstance(ddu0, float):
+            self.ddu0 = [ddu0]*self.ngdl
+        elif isinstance(ddu0, Callable):
+            self.ddu0 = ddu0(self.geometry.gdls)
+        elif isinstance(ddu0, list):
+            self.ddu0 = ddu0
+
+        self.apply_initial_condition()
+
+    def apply_initial_condition(self):
+        self.U[:, 0] = self.u0
+        self.dU[:, 0] = self.du0
+        self.ddU[:, 0] = self.ddu0
+        self.solver.setSolution(-1, True)

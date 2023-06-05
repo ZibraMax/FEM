@@ -2,7 +2,7 @@
 """
 
 
-from .Core import Core, tqdm, np, Geometry
+from .Core import Core, tqdm, np, Geometry, CoreParabolic
 import matplotlib.pyplot as plt
 
 
@@ -123,6 +123,122 @@ class Heat1D(Core):
             X += _x.T[0].tolist()
             U1 += _u[0].tolist()
         ax1.plot(X, U1)
+        ax1.grid()
+        ax1.set_title(r'$T(x)$')
+        plt.show()
+
+
+class Heat1DTransient(CoreParabolic):
+    """docstring for Heat1DTransient
+    """
+
+    def __init__(self, geometry: Geometry, A: float, P: float, ku: float, beta: float, Ta: float, q: float = 0.0, **kargs):
+        CoreParabolic.__init__(
+            self, geometry=geometry, **kargs)
+
+        if isinstance(A, float) or isinstance(A, int):
+            A = [A]*len(geometry.elements)
+        if isinstance(P, float) or isinstance(P, int):
+            P = [P]*len(geometry.elements)
+        if isinstance(ku, float) or isinstance(ku, int):
+            ku = [ku]*len(geometry.elements)
+        if isinstance(beta, float) or isinstance(beta, int):
+            beta = [beta]*len(geometry.elements)
+        if isinstance(q, float) or isinstance(q, int):
+            q = [q]*len(geometry.elements)
+        self.A = A
+        self.P = P
+        self.ku = ku
+        self.beta = beta
+        self.Ta = Ta
+        self.q = q
+        self.name = '1D Heat transfer'
+        self.properties['A'] = self.A
+        self.properties['P'] = self.P
+        self.properties['ku'] = self.ku
+        self.properties['beta'] = self.beta
+        self.properties['Ta'] = self.Ta
+        self.properties['q'] = self.q
+
+    def elementMatrices(self) -> None:
+        """Calculate the element matrices using Gauss Legendre quadrature.
+        """
+        a1 = self.alpha*self.dt
+        a2 = (1-self.alpha)*self.dt
+
+        for ee, e in enumerate(tqdm(self.elements, unit='Element')):
+            m = len(e.gdl.T)
+            M1 = np.zeros([m, m])
+            Kt = np.zeros([m, m])
+            Ft = np.zeros([m, 1])
+            Ktp1 = np.zeros([m, m])
+            Ftp1 = np.zeros([m, 1])
+            _x, _p = e.T(e.Z.T)
+            jac, dpz = e.J(e.Z.T)
+            detjac = np.linalg.det(jac)
+            _j = np.linalg.inv(jac)
+            dpx = _j @ dpz
+            for i in range(m):
+                for j in range(m):
+                    for k in range(len(e.Z)):
+                        Kt[i, j] += (self.ku[ee]*self.A[ee]*dpx[k][0][i]*dpx[k][0]
+                                     [j]+self.beta[ee]*self.P[ee]*_p[k][i]*_p[k][j])*detjac[k]*e.W[k]
+
+                        Ktp1[i, j] += (self.ku[ee]*self.A[ee]*dpx[k][0][i]*dpx[k][0]
+                                       [j]+self.beta[ee]*self.P[ee]*_p[k][i]*_p[k][j])*detjac[k]*e.W[k]
+
+                        M1[i, j] += (_p[k][i]*_p[k][j])*detjac[k]*e.W[k]
+                for k in range(len(e.Z)):
+                    Ft[i][0] += (_p[k][i]*(self.A[ee]*self.q[ee] +
+                                           self.P[ee]*self.beta[ee]*self.Ta))*detjac[k]*e.W[k]
+                    Ftp1[i][0] += (_p[k][i]*(self.A[ee]*self.q[ee] +
+                                             self.P[ee]*self.beta[ee]*self.Ta))*detjac[k]*e.W[k]
+            Fttp1 = self.dt*(self.alpha*Ft + (1-self.alpha)*Ftp1)
+            e.Fe = (M1 - a2*Kt)@e.Ue.T + Fttp1
+            e.Ke = M1 + a1*Ktp1
+
+    def defineConvectiveBoderConditions(self, node: int, value: float = 0) -> None:
+        """Add a convective border condition. The value is: :math:`kA\\frac{dT}{dx}+\\beta A(T-T_{\infty})=value`
+
+        Args:
+            node (int): Node where the above border condition is applied
+            value (float, optional): Defined below. Defaults to 0.
+        """
+
+        near = np.infty
+        for i, e in enumerate(self.elements):
+            act = min(abs(self.geometry.gdls[node][0] - e._coords[0]),
+                      abs(self.geometry.gdls[node][0] - e._coords[0]))
+            if act < near:
+                near = act
+                k = i
+            if act == 0:
+                break
+        self.cbn += [[node, value+self.Ta*self.beta[k]*self.A[k]]]
+        self.K[node, node] += self.beta[k]*self.A[k]
+        # TODO esto tiene que cambiar para transient
+
+    def postProcess(self, t0, tf, steps) -> None:
+        """Post process the solution
+        """
+
+        fig = plt.figure()
+        ax1 = fig.add_subplot(1, 1, 1)
+        for i in range(steps+1):
+            self.solver.setSolution(i, True)
+            X = []
+            U1 = []
+            for e in self.elements:
+                _x, _u = e.giveSolution(False)
+                X += _x.T[0].tolist()
+                U1 += _u[0].tolist()
+            color = "gray"
+            if i == 0:
+                color = "black"
+            elif i == steps:
+                color = "red"
+
+            ax1.plot(X, U1, color=color)
         ax1.grid()
         ax1.set_title(r'$T(x)$')
         plt.show()
