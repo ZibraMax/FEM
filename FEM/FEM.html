@@ -1324,7 +1324,7 @@ If deemed appropriate, the record may be modified in-place.</p>
 <p>The differential equation is:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[-\frac{d}{dx}\left(Ak\frac{dT}{dx}\right)+\beta P(T-T_{\infty})=0\]</div>
+\[-\frac{d}{dx}\left(Ak\frac{dT}{dx}\right)+\beta P(T-T_{\infty})=q\]</div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1332,9 +1332,9 @@ If deemed appropriate, the record may be modified in-place.</p>
 <li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – Input 1D Geometry. 1 variable per node</p></li>
 <li><p><strong>A</strong> (<em>float</em><em> or </em><em>list</em>) – Section area. If float, all elements will have the same area. If list, the i-element will have the i-area</p></li>
 <li><p><strong>P</strong> (<em>float</em><em> or </em><em>list</em>) – Section perimeter. If float, all elements will have the same perimeter. If list, the i-element will have the i-perimeter</p></li>
-<li><p><strong>k</strong> (<em>float</em><em> or </em><em>list</em>) – Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity</p></li>
+<li><p><strong>ku</strong> (<em>float</em><em> or </em><em>list</em>) – Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity</p></li>
 <li><p><strong>beta</strong> (<em>float</em><em> or </em><em>list</em>) – Transfer coeficient. If float, all elements will have the same transfer coeficient. If list, the i-element will have the i-transfer coeficient</p></li>
-<li><p><strong>Ta</strong> (<em>float</em>) – Ambient temperature (also called T∞)</p></li>
+<li><p><strong>Ta</strong> (<em>float</em>) – Ambient temperature</p></li>
 <li><p><strong>q</strong> (<em>float</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.</p></li>
 </ul>
 </dd>
@@ -1371,7 +1371,25 @@ If deemed appropriate, the record may be modified in-place.</p>
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Heat1D.</span></span><span class="sig-name descname"><span class="pre">Heat1DTransient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ku</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.CoreParabolic" title="FEM.Core.CoreParabolic"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoreParabolic</span></code></a></p>
-<p>docstring for Heat1DTransient</p>
+<p>Creates a 1D Stady state heat problem. Convective border conditions can be applied</p>
+<p>The differential equation is:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{\partial T}{\partial t}-\frac{\partial}{\partialx}\left(Ak\frac{\partialT}{\partialx}\right)+\beta P(T-T_{\infty})=q\]</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – Input 1D Geometry. 1 variable per node</p></li>
+<li><p><strong>A</strong> (<em>float</em><em> or </em><em>list</em>) – Section area. If float, all elements will have the same area. If list, the i-element will have the i-area</p></li>
+<li><p><strong>P</strong> (<em>float</em><em> or </em><em>list</em>) – Section perimeter. If float, all elements will have the same perimeter. If list, the i-element will have the i-perimeter</p></li>
+<li><p><strong>k</strong> (<em>float</em><em> or </em><em>list</em>) – Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity</p></li>
+<li><p><strong>beta</strong> (<em>float</em><em> or </em><em>list</em>) – Transfer coeficient. If float, all elements will have the same transfer coeficient. If list, the i-element will have the i-transfer coeficient</p></li>
+<li><p><strong>Ta</strong> (<em>float</em>) – Ambient temperature (also called T∞)</p></li>
+<li><p><strong>q</strong> (<em>float</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient.defineConvectiveBoderConditions">
 <span class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient.defineConvectiveBoderConditions" title="Permalink to this definition">#</a></dt>
@@ -1395,7 +1413,7 @@ If deemed appropriate, the record may be modified in-place.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient.postProcess">
 <span class="sig-name descname"><span class="pre">postProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient.postProcess" title="Permalink to this definition">#</a></dt>
-<dd><p>Post process the solution</p>
+<dd><p>Post process the solution and steps</p>
 </dd></dl>
 
 </dd></dl>
