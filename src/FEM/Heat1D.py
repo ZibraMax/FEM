@@ -9,20 +9,20 @@ import matplotlib.pyplot as plt
 class Heat1D(Core):
     """Creates a 1D Stady state heat problem. Convective border conditions can be applied
 
-    The differential equation is:
+        The differential equation is:
 
-    .. math::
-        -\\frac{d}{dx}\\left(Ak\\frac{dT}{dx}\\right)+\\beta P(T-T_{\\infty})=0
+        .. math::
+            -\\frac{d}{dx}\\left(Ak\\frac{dT}{dx}\\right)+\\beta P(T-T_{\\infty})=q
 
-    Args:
-        geometry (Geometry): Input 1D Geometry. 1 variable per node
-        A (float or list): Section area. If float, all elements will have the same area. If list, the i-element will have the i-area
-        P (float or list): Section perimeter. If float, all elements will have the same perimeter. If list, the i-element will have the i-perimeter
-        k (float or list): Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity
-        beta (float or list): Transfer coeficient. If float, all elements will have the same transfer coeficient. If list, the i-element will have the i-transfer coeficient
-        Ta (float): Ambient temperature (also called T∞)
-        q (float or list, optional): Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.
-    """
+        Args:
+            geometry (Geometry): Input 1D Geometry. 1 variable per node
+            A (float or list): Section area. If float, all elements will have the same area. If list, the i-element will have the i-area
+            P (float or list): Section perimeter. If float, all elements will have the same perimeter. If list, the i-element will have the i-perimeter
+            ku (float or list): Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity
+            beta (float or list): Transfer coeficient. If float, all elements will have the same transfer coeficient. If list, the i-element will have the i-transfer coeficient
+            Ta (float): Ambient temperature
+            q (float or list, optional): Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.
+        """
 
     def __init__(self, geometry: Geometry, A: float, P: float, ku: float, beta: float, Ta: float, q: float = 0.0) -> None:
         """Creates a 1D Stady state heat problem. Convective border conditions can be applied
@@ -30,7 +30,7 @@ class Heat1D(Core):
         The differential equation is:
 
         .. math::
-            -\\frac{d}{dx}\\left(Ak\\frac{dT}{dx}\\right)+\\beta P(T-T_{\\infty})
+            -\\frac{d}{dx}\\left(Ak\\frac{dT}{dx}\\right)+\\beta P(T-T_{\\infty})=q
 
         Args:
             geometry (Geometry): Input 1D Geometry. 1 variable per node
@@ -129,10 +129,40 @@ class Heat1D(Core):
 
 
 class Heat1DTransient(CoreParabolic):
-    """docstring for Heat1DTransient
+    """Creates a 1D Stady state heat problem. Convective border conditions can be applied
+
+    The differential equation is:
+
+    .. math::
+        \\frac{\\partial T}{\\partial t}-\\frac{\\partial}{\\partialx}\\left(Ak\\frac{\\partialT}{\\partialx}\\right)+\\beta P(T-T_{\\infty})=q
+
+    Args:
+        geometry (Geometry): Input 1D Geometry. 1 variable per node
+        A (float or list): Section area. If float, all elements will have the same area. If list, the i-element will have the i-area
+        P (float or list): Section perimeter. If float, all elements will have the same perimeter. If list, the i-element will have the i-perimeter
+        k (float or list): Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity
+        beta (float or list): Transfer coeficient. If float, all elements will have the same transfer coeficient. If list, the i-element will have the i-transfer coeficient
+        Ta (float): Ambient temperature (also called T∞)
+        q (float or list, optional): Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.
     """
 
     def __init__(self, geometry: Geometry, A: float, P: float, ku: float, beta: float, Ta: float, q: float = 0.0, **kargs):
+        """Creates a 1D Stady state heat problem. Convective border conditions can be applied
+
+        The differential equation is:
+
+        .. math::
+            \\frac{\\partial T}{\\partial t}-\\frac{\\partial}{\\partialx}\\left(Ak\\frac{\\partialT}{\\partialx}\\right)+\\beta P(T-T_{\\infty})=q
+
+        Args:
+            geometry (Geometry): Input 1D Geometry. 1 variable per node
+            A (float or list): Section area. If float, all elements will have the same area. If list, the i-element will have the i-area
+            P (float or list): Section perimeter. If float, all elements will have the same perimeter. If list, the i-element will have the i-perimeter
+            k (float or list): Conductivity. If float, all elements will have the same conductivity. If list, the i-element will have the i-conductivity
+            beta (float or list): Transfer coeficient. If float, all elements will have the same transfer coeficient. If list, the i-element will have the i-transfer coeficient
+            Ta (float): Ambient temperature (also called T∞)
+            q (float or list, optional): Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.
+        """
         CoreParabolic.__init__(
             self, geometry=geometry, **kargs)
 
@@ -216,10 +246,10 @@ class Heat1DTransient(CoreParabolic):
                 break
         self.cbn += [[node, value+self.Ta*self.beta[k]*self.A[k]]]
         self.K[node, node] += self.beta[k]*self.A[k]
-        # TODO esto tiene que cambiar para transient
+        # FIXME esto tiene que cambiar para transient
 
     def postProcess(self, t0, tf, steps) -> None:
-        """Post process the solution
+        """Post process the solution and steps
         """
 
         fig = plt.figure()
