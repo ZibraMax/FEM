@@ -189,6 +189,7 @@ class Heat1DTransient(CoreParabolic):
         self.properties['beta'] = self.beta
         self.properties['Ta'] = self.Ta
         self.properties['q'] = self.q
+        self.convective_conditions = []
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices using Gauss Legendre quadrature.
@@ -245,8 +246,16 @@ class Heat1DTransient(CoreParabolic):
             if act == 0:
                 break
         self.cbn += [[node, value+self.Ta*self.beta[k]*self.A[k]]]
-        self.K[node, node] += self.beta[k]*self.A[k]
-        # FIXME esto tiene que cambiar para transient
+        self.convective_conditions.append([node, self.beta[k]*self.A[k]])
+
+    def set_convective_conditions(self):
+        for idx, value in self.convective_conditions:
+            self.K[idx, idx] += value
+
+    def borderConditions(self) -> None:
+        a = super().borderConditions()
+        self.set_convective_conditions()
+        return a
 
     def postProcess(self, node=None, t0=None, tf=None, steps=None, dt=None, ax=None) -> None:
         """Post process the solution and steps

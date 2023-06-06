@@ -13,10 +13,12 @@ if __name__ == '__main__':
 
     n = 30
     geometria = Lineal(L, n, 2)
-    geometria.cbe = [[0, T0]]
     O = Heat1DTransient(geometria, A, P, k, beta, Ta, verbose=False)
     O.set_initial_condition(0.0)
     O.set_alpha(0.5)
+    O.cbe = [[0, T0]]
+    O.defineConvectiveBoderConditions(-1)
     O.solve(t0=0, tf=10, steps=400, plot=False)
     O.postProcess()
     plt.show()
+    O.exportJSON("Examples/Mesh_tests/Example53.json")
