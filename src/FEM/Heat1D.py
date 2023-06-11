@@ -24,7 +24,7 @@ class Heat1D(Core):
             q (float or list, optional): Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.
         """
 
-    def __init__(self, geometry: Geometry, A: float, P: float, ku: float, beta: float, Ta: float, q: float = 0.0) -> None:
+    def __init__(self, geometry: Geometry, A: float, P: float, ku: float, beta: float, Ta: float, q: float = 0.0, **kargs) -> None:
         """Creates a 1D Stady state heat problem. Convective border conditions can be applied
 
         The differential equation is:
@@ -57,7 +57,7 @@ class Heat1D(Core):
         self.beta = beta
         self.Ta = Ta
         self.q = q
-        Core.__init__(self, geometry)
+        Core.__init__(self, geometry, **kargs)
         self.name = '1D Heat transfer'
         self.properties['A'] = self.A
         self.properties['P'] = self.P
@@ -65,6 +65,7 @@ class Heat1D(Core):
         self.properties['beta'] = self.beta
         self.properties['Ta'] = self.Ta
         self.properties['q'] = self.q
+        self.convective_conditions = []
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices using Gauss Legendre quadrature.
@@ -108,7 +109,7 @@ class Heat1D(Core):
             if act == 0:
                 break
         self.cbn += [[node, value+self.Ta*self.beta[k]*self.A[k]]]
-        self.K[node, node] += self.beta[k]*self.A[k]
+        self.convective_conditions.append([node, self.beta[k]*self.A[k]])
 
     def postProcess(self) -> None:
         """Generate graph of solution and solution derivative
@@ -127,8 +128,16 @@ class Heat1D(Core):
         ax1.set_title(r'$T(x)$')
         plt.show()
 
+    def set_convective_conditions(self):
+        for idx, value in self.convective_conditions:
+            self.K[idx, idx] += value
 
-class Heat1DTransient(CoreParabolic):
+    def borderConditions(self) -> None:
+        super().borderConditions()
+        self.set_convective_conditions()
+
+
+class Heat1DTransient(Heat1D, CoreParabolic):
     """Creates a 1D Stady state heat problem. Convective border conditions can be applied
 
     The differential equation is:
@@ -163,33 +172,12 @@ class Heat1DTransient(CoreParabolic):
             Ta (float): Ambient temperature (also called T∞)
             q (float or list, optional): Internal heat generation rate. If float, all elements will have the same internal heat generation rate coeficient. If list, the i-element will have the i-internal heat generation rate. Defaults to 0.0.
         """
+        Heat1D.__init__(self, geometry=geometry, A=A, P=P, ku=ku,
+                        beta=beta, Ta=Ta, q=q, **kargs)
         CoreParabolic.__init__(
             self, geometry=geometry, **kargs)
 
-        if isinstance(A, float) or isinstance(A, int):
-            A = [A]*len(geometry.elements)
-        if isinstance(P, float) or isinstance(P, int):
-            P = [P]*len(geometry.elements)
-        if isinstance(ku, float) or isinstance(ku, int):
-            ku = [ku]*len(geometry.elements)
-        if isinstance(beta, float) or isinstance(beta, int):
-            beta = [beta]*len(geometry.elements)
-        if isinstance(q, float) or isinstance(q, int):
-            q = [q]*len(geometry.elements)
-        self.A = A
-        self.P = P
-        self.ku = ku
-        self.beta = beta
-        self.Ta = Ta
-        self.q = q
-        self.name = '1D Heat transfer'
-        self.properties['A'] = self.A
-        self.properties['P'] = self.P
-        self.properties['ku'] = self.ku
-        self.properties['beta'] = self.beta
-        self.properties['Ta'] = self.Ta
-        self.properties['q'] = self.q
-        self.convective_conditions = []
+        self.name = '1D transient heat transfer'
 
     def elementMatrices(self) -> None:
         """Calculate the element matrices using Gauss Legendre quadrature.
@@ -227,35 +215,6 @@ class Heat1DTransient(CoreParabolic):
             Fttp1 = self.dt*(self.alpha*Ft + (1-self.alpha)*Ftp1)
             e.Fe = (M1 - a2*Kt)@e.Ue.T + Fttp1
             e.Ke = M1 + a1*Ktp1
-
-    def defineConvectiveBoderConditions(self, node: int, value: float = 0) -> None:
-        """Add a convective border condition. The value is: :math:`kA\\frac{dT}{dx}+\\beta A(T-T_{\infty})=value`
-
-        Args:
-            node (int): Node where the above border condition is applied
-            value (float, optional): Defined below. Defaults to 0.
-        """
-
-        near = np.infty
-        for i, e in enumerate(self.elements):
-            act = min(abs(self.geometry.gdls[node][0] - e._coords[0]),
-                      abs(self.geometry.gdls[node][0] - e._coords[0]))
-            if act < near:
-                near = act
-                k = i
-            if act == 0:
-                break
-        self.cbn += [[node, value+self.Ta*self.beta[k]*self.A[k]]]
-        self.convective_conditions.append([node, self.beta[k]*self.A[k]])
-
-    def set_convective_conditions(self):
-        for idx, value in self.convective_conditions:
-            self.K[idx, idx] += value
-
-    def borderConditions(self) -> None:
-        a = super().borderConditions()
-        self.set_convective_conditions()
-        return a
 
     def postProcess(self, node=None, t0=None, tf=None, steps=None, dt=None, ax=None) -> None:
         """Post process the solution and steps
