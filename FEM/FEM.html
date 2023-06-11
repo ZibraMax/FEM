@@ -1318,7 +1318,7 @@ If deemed appropriate, the record may be modified in-place.</p>
 <p>1D Stady state heat with convective border conditions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1D">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Heat1D.</span></span><span class="sig-name descname"><span class="pre">Heat1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ku</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D.Heat1D" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Heat1D.</span></span><span class="sig-name descname"><span class="pre">Heat1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ku</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D.Heat1D" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a></p>
 <p>Creates a 1D Stady state heat problem. Convective border conditions can be applied</p>
 <p>The differential equation is:</p>
@@ -1339,6 +1339,19 @@ If deemed appropriate, the record may be modified in-place.</p>
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Heat1D.Heat1D.borderConditions">
+<span class="sig-name descname"><span class="pre">borderConditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1D.borderConditions" title="Permalink to this definition">#</a></dt>
+<dd><p>Assign border conditions to the system.
+The border conditios are assigned in this order:</p>
+<ol class="arabic simple">
+<li><p>Natural border conditions</p></li>
+<li><p>Essential border conditions</p></li>
+</ol>
+<p>This ensures that in a node with 2 border conditions
+the essential border conditions will be applied.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1D.defineConvectiveBoderConditions">
 <span class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1D.defineConvectiveBoderConditions" title="Permalink to this definition">#</a></dt>
@@ -1365,12 +1378,17 @@ If deemed appropriate, the record may be modified in-place.</p>
 <dd><p>Generate graph of solution and solution derivative</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Heat1D.Heat1D.set_convective_conditions">
+<span class="sig-name descname"><span class="pre">set_convective_conditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D.Heat1D.set_convective_conditions" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Heat1D.</span></span><span class="sig-name descname"><span class="pre">Heat1DTransient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ku</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Core.CoreParabolic" title="FEM.Core.CoreParabolic"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoreParabolic</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Heat1D.Heat1D" title="FEM.Heat1D.Heat1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Heat1D</span></code></a>, <a class="reference internal" href="#FEM.Core.CoreParabolic" title="FEM.Core.CoreParabolic"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoreParabolic</span></code></a></p>
 <p>Creates a 1D Stady state heat problem. Convective border conditions can be applied</p>
 <p>The differential equation is:</p>
 <div class="math-wrapper docutils container">
@@ -1391,33 +1409,6 @@ If deemed appropriate, the record may be modified in-place.</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient.borderConditions">
-<span class="sig-name descname"><span class="pre">borderConditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient.borderConditions" title="Permalink to this definition">#</a></dt>
-<dd><p>Assign border conditions to the system.
-The border conditios are assigned in this order:</p>
-<ol class="arabic simple">
-<li><p>Natural border conditions</p></li>
-<li><p>Essential border conditions</p></li>
-</ol>
-<p>This ensures that in a node with 2 border conditions
-the essential border conditions will be applied.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient.defineConvectiveBoderConditions">
-<span class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient.defineConvectiveBoderConditions" title="Permalink to this definition">#</a></dt>
-<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA\frac{dT}{dx}+\beta A(T-T_{\infty})=value\)</span></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>node</strong> (<em>int</em>) – Node where the above border condition is applied</p></li>
-<li><p><strong>value</strong> (<em>float</em><em>, </em><em>optional</em>) – Defined below. Defaults to 0.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient.elementMatrices">
 <span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient.elementMatrices" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculate the element matrices using Gauss Legendre quadrature.</p>
@@ -1428,11 +1419,6 @@ the essential border conditions will be applied.</p>
 <span class="sig-name descname"><span class="pre">postProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient.postProcess" title="Permalink to this definition">#</a></dt>
 <dd><p>Post process the solution and steps</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient.set_convective_conditions">
-<span class="sig-name descname"><span class="pre">set_convective_conditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient.set_convective_conditions" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -1805,17 +1791,16 @@ the essential border conditions will be applied.</p>
 </li>
 <li><a class="reference internal" href="#module-FEM.Heat1D">FEM.Heat1D module</a><ul>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1D"><code class="docutils literal notranslate"><span class="pre">Heat1D</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Heat1D.Heat1D.borderConditions"><code class="docutils literal notranslate"><span class="pre">Heat1D.borderConditions()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1D.defineConvectiveBoderConditions"><code class="docutils literal notranslate"><span class="pre">Heat1D.defineConvectiveBoderConditions()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1D.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Heat1D.elementMatrices()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1D.postProcess"><code class="docutils literal notranslate"><span class="pre">Heat1D.postProcess()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Heat1D.Heat1D.set_convective_conditions"><code class="docutils literal notranslate"><span class="pre">Heat1D.set_convective_conditions()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1DTransient"><code class="docutils literal notranslate"><span class="pre">Heat1DTransient</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Heat1D.Heat1DTransient.borderConditions"><code class="docutils literal notranslate"><span class="pre">Heat1DTransient.borderConditions()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Heat1D.Heat1DTransient.defineConvectiveBoderConditions"><code class="docutils literal notranslate"><span class="pre">Heat1DTransient.defineConvectiveBoderConditions()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1DTransient.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Heat1DTransient.elementMatrices()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1DTransient.postProcess"><code class="docutils literal notranslate"><span class="pre">Heat1DTransient.postProcess()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Heat1D.Heat1DTransient.set_convective_conditions"><code class="docutils literal notranslate"><span class="pre">Heat1DTransient.set_convective_conditions()</span></code></a></li>
 </ul>
 </li>
 </ul>
