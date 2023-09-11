@@ -1,11 +1,11 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" data-content_root="../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Examples" href="../Examples/modules.html" /><link rel="prev" title="Test" href="modules.html" />
 
-    <!-- Generated with Sphinx 7.1.2 and Furo 2023.07.26 -->
+    <!-- Generated with Sphinx 7.2.5 and Furo 2023.09.10 -->
         <title>Test package - FEM 1.0.34 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
@@ -214,22 +214,22 @@
         </div>
         <article role="main">
           <section id="module-Test">
-<span id="test-package"></span><h1>Test package<a class="headerlink" href="#module-Test" title="Permalink to this heading">#</a></h1>
+<span id="test-package"></span><h1>Test package<a class="headerlink" href="#module-Test" title="Link to this heading">#</a></h1>
 <p>Unite testing and numerical validation</p>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 </section>
 <section id="module-Test.test_Elasticity2D">
-<span id="test-test-elasticity2d-module"></span><h2>Test.test_Elasticity2D module<a class="headerlink" href="#module-Test.test_Elasticity2D" title="Permalink to this heading">#</a></h2>
+<span id="test-test-elasticity2d-module"></span><h2>Test.test_Elasticity2D module<a class="headerlink" href="#module-Test.test_Elasticity2D" title="Link to this heading">#</a></h2>
 <section id="numerical-validation-of-the-elasticity2d-class">
-<h3>Numerical validation of the Elasticity2D Class<a class="headerlink" href="#numerical-validation-of-the-elasticity2d-class" title="Permalink to this heading">#</a></h3>
+<h3>Numerical validation of the Elasticity2D Class<a class="headerlink" href="#numerical-validation-of-the-elasticity2d-class" title="Link to this heading">#</a></h3>
 <section id="tests">
-<h4>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">#</a></h4>
+<h4>Tests<a class="headerlink" href="#tests" title="Link to this heading">#</a></h4>
 <p>5 tests where made for validating the Elasticity2D class.</p>
 <p>All of these 5 test are based in the same procedure. The objective is to compare the solution of the displacements profile in a cantilever beam.</p>
 </section>
 <section id="geometry">
-<h4>Geometry<a class="headerlink" href="#geometry" title="Permalink to this heading">#</a></h4>
+<h4>Geometry<a class="headerlink" href="#geometry" title="Link to this heading">#</a></h4>
 <p>The input geometry has 400 elements, 10 in y direction, 40 in x directions. The input geometry file can be generated using TestGeometry class.</p>
 <p>The beam geometrical properties are:</p>
 <ul class="simple">
@@ -245,7 +245,7 @@
 <p>The Plane Stress formulation include shear effects. So, It is needed to obtain analytical solutions that includes such effects. The easyest way is to obtain the analytical solution using the virtual work statement.</p>
 </section>
 <section id="virtual-work-procedure-for-a-cantilever-beam">
-<h4>Virtual work procedure for a cantilever beam<a class="headerlink" href="#virtual-work-procedure-for-a-cantilever-beam" title="Permalink to this heading">#</a></h4>
+<h4>Virtual work procedure for a cantilever beam<a class="headerlink" href="#virtual-work-procedure-for-a-cantilever-beam" title="Link to this heading">#</a></h4>
 <p>The virtual work statement is useful for calculate the dispacements in a given point. The displacements with felxion and shear effects can be calculated as:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
@@ -261,7 +261,7 @@
 <figure class="align-center" id="id5">
 <img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png" />
 <figcaption>
-<p><span class="caption-text">Moment and shear diagram for virtual load.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Moment and shear diagram for virtual load.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Since the diagrams are only different from 0 in length z, the virtual work statement can be rewritten as:</p>
@@ -274,7 +274,7 @@
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="Test.test_Elasticity2D.TestElasticity2D">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Elasticity2D.</span></span><span class="sig-name descname"><span class="pre">TestElasticity2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Elasticity2D.</span></span><span class="sig-name descname"><span class="pre">TestElasticity2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <p>Plane Stress tests
 1. Uniform load applied as an uniform load in all elements.
@@ -284,7 +284,7 @@
 5. Triangular load applied in the superior elements of the beam.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_point_1">
-<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_point_1" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_point_1" title="Link to this definition">#</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math-wrapper docutils container">
@@ -303,14 +303,14 @@
 <figure class="align-default" id="id6">
 <img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_1.png" />
 <figcaption>
-<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_point_2">
-<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_point_2" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_point_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_point_2" title="Link to this definition">#</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math-wrapper docutils container">
@@ -329,14 +329,14 @@
 <figure class="align-default" id="id7">
 <img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_2.png" />
 <figcaption>
-<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_triangular_3">
-<span class="sig-name descname"><span class="pre">test_cantilever_beam_triangular_3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_triangular_3" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_triangular_3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_triangular_3" title="Link to this definition">#</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math-wrapper docutils container">
@@ -355,14 +355,14 @@
 <figure class="align-default" id="id8">
 <img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_triangular_3.png" />
 <figcaption>
-<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_uniform_1">
-<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_uniform_1" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_uniform_1" title="Link to this definition">#</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math-wrapper docutils container">
@@ -381,14 +381,14 @@
 <figure class="align-default" id="id9">
 <img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_1.png" />
 <figcaption>
-<p><span class="caption-text">Test result: FEM solution compared whit analytical solution</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Test result: FEM solution compared whit analytical solution</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_uniform_2">
-<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_uniform_2" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity2D.TestElasticity2D.test_cantilever_beam_uniform_2" title="Link to this definition">#</a></dt>
 <dd><p>Test if the FEM solution matches the next analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math-wrapper docutils container">
@@ -407,7 +407,7 @@
 <figure class="align-default" id="id10">
 <img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_2.png" />
 <figcaption>
-<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">FEM solution compared whit analytical solution</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </dd></dl>
@@ -416,16 +416,16 @@
 
 </section>
 <section id="module-Test.test_Elasticity3D">
-<span id="test-test-elasticity3d-module"></span><h2>Test.test_Elasticity3D module<a class="headerlink" href="#module-Test.test_Elasticity3D" title="Permalink to this heading">#</a></h2>
+<span id="test-test-elasticity3d-module"></span><h2>Test.test_Elasticity3D module<a class="headerlink" href="#module-Test.test_Elasticity3D" title="Link to this heading">#</a></h2>
 <section id="numerical-validation-of-the-elasticity3d-class">
-<h3>Numerical validation of the Elasticity3D Class<a class="headerlink" href="#numerical-validation-of-the-elasticity3d-class" title="Permalink to this heading">#</a></h3>
+<h3>Numerical validation of the Elasticity3D Class<a class="headerlink" href="#numerical-validation-of-the-elasticity3d-class" title="Link to this heading">#</a></h3>
 <section id="id1">
-<h4>Tests<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<h4>Tests<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>1 tests where made for validating the Elasticity2D class.</p>
 <p>All of these 1 test are based in the same procedure. The objective is to compare the solution of the displacements profile in a cantilever beam.</p>
 </section>
 <section id="id2">
-<h4>Geometry<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<h4>Geometry<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <p>The input geometry has 10000 elements.</p>
 <p>The beam geometrical properties are:</p>
 <ul class="simple">
@@ -441,7 +441,7 @@
 <p>The Plane Stress formulation include shear effects. So, It is needed to obtain analytical solutions that includes such effects. The easyest way is to obtain the analytical solution using the virtual work statement.</p>
 </section>
 <section id="id3">
-<h4>Virtual work procedure for a cantilever beam<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<h4>Virtual work procedure for a cantilever beam<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <p>The virtual work statement is useful for calculate the dispacements in a given point. The displacements with felxion and shear effects can be calculated as:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
@@ -457,7 +457,7 @@
 <figure class="align-center" id="id11">
 <img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/VW.png" />
 <figcaption>
-<p><span class="caption-text">Moment and shear diagram for virtual load.</span><a class="headerlink" href="#id11" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Moment and shear diagram for virtual load.</span><a class="headerlink" href="#id11" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Since the diagrams are only different from 0 in length z, the virtual work statement can be rewritten as:</p>
@@ -470,13 +470,13 @@
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="Test.test_Elasticity3D.TestElasticity3D">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Elasticity3D.</span></span><span class="sig-name descname"><span class="pre">TestElasticity3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity3D.TestElasticity3D" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Elasticity3D.</span></span><span class="sig-name descname"><span class="pre">TestElasticity3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity3D.TestElasticity3D" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <p>Plane Stress tests
 1. Uniform load applied as an uniform load in all elements.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Elasticity3D.TestElasticity3D.test_cantilever_beam_uniform">
-<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity3D.TestElasticity3D.test_cantilever_beam_uniform" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_cantilever_beam_uniform</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Elasticity3D.TestElasticity3D.test_cantilever_beam_uniform" title="Link to this definition">#</a></dt>
 <dd><p>Test if the FEM solution matches the analytical solution:</p>
 <p>For the load condition, the moment an shear diagram can be described by the following equations:</p>
 <div class="math-wrapper docutils container">
@@ -495,7 +495,7 @@
 <figure class="align-default" id="id12">
 <img alt="Virtual work statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_uniform_1.png" />
 <figcaption>
-<p><span class="caption-text">Test result: FEM solution compared whit analytical solution</span><a class="headerlink" href="#id12" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Test result: FEM solution compared whit analytical solution</span><a class="headerlink" href="#id12" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </dd></dl>
@@ -504,16 +504,16 @@
 
 </section>
 <section id="module-Test.test_Geometry">
-<span id="test-test-geometry-module"></span><h2>Test.test_Geometry module<a class="headerlink" href="#module-Test.test_Geometry" title="Permalink to this heading">#</a></h2>
+<span id="test-test-geometry-module"></span><h2>Test.test_Geometry module<a class="headerlink" href="#module-Test.test_Geometry" title="Link to this heading">#</a></h2>
 <p>Geometry tests</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="Test.test_Geometry.TestGeometry">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Geometry.</span></span><span class="sig-name descname"><span class="pre">TestGeometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Geometry.</span></span><span class="sig-name descname"><span class="pre">TestGeometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <p>Test the geometry class</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Geometry.TestGeometry.test_meshRect">
-<span class="sig-name descname"><span class="pre">test_meshRect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry.test_meshRect" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_meshRect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry.TestGeometry.test_meshRect" title="Link to this definition">#</a></dt>
 <dd><p>Creation a rectangular geometry file</p>
 </dd></dl>
 
@@ -521,22 +521,22 @@
 
 </section>
 <section id="module-Test.test_Geometry2D">
-<span id="test-test-geometry2d-module"></span><h2>Test.test_Geometry2D module<a class="headerlink" href="#module-Test.test_Geometry2D" title="Permalink to this heading">#</a></h2>
+<span id="test-test-geometry2d-module"></span><h2>Test.test_Geometry2D module<a class="headerlink" href="#module-Test.test_Geometry2D" title="Link to this heading">#</a></h2>
 <p>Geometry tests</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="Test.test_Geometry2D.TestGeometry2D">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Geometry2D.</span></span><span class="sig-name descname"><span class="pre">TestGeometry2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry2D.TestGeometry2D" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Geometry2D.</span></span><span class="sig-name descname"><span class="pre">TestGeometry2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry2D.TestGeometry2D" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <p>Test the geometry class</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Geometry2D.TestGeometry2D.test_addRegions">
-<span class="sig-name descname"><span class="pre">test_addRegions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry2D.TestGeometry2D.test_addRegions" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_addRegions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry2D.TestGeometry2D.test_addRegions" title="Link to this definition">#</a></dt>
 <dd><p>Test if the generated geometry can be modified with regions from coordinates. Then saves the new geometry to a file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Geometry2D.TestGeometry2D.test_importJSON">
-<span class="sig-name descname"><span class="pre">test_importJSON</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry2D.TestGeometry2D.test_importJSON" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_importJSON</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Geometry2D.TestGeometry2D.test_importJSON" title="Link to this definition">#</a></dt>
 <dd><p>Import of geometry using file</p>
 </dd></dl>
 
@@ -544,18 +544,18 @@
 
 </section>
 <section id="module-Test.test_Torsion2D">
-<span id="test-test-torsion2d-module"></span><h2>Test.test_Torsion2D module<a class="headerlink" href="#module-Test.test_Torsion2D" title="Permalink to this heading">#</a></h2>
+<span id="test-test-torsion2d-module"></span><h2>Test.test_Torsion2D module<a class="headerlink" href="#module-Test.test_Torsion2D" title="Link to this heading">#</a></h2>
 <section id="numerical-validation-of-the-trosion2d-class">
-<h3>Numerical validation of the Trosion2D Class<a class="headerlink" href="#numerical-validation-of-the-trosion2d-class" title="Permalink to this heading">#</a></h3>
+<h3>Numerical validation of the Trosion2D Class<a class="headerlink" href="#numerical-validation-of-the-trosion2d-class" title="Link to this heading">#</a></h3>
 <section id="id4">
-<h4>Tests<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<h4>Tests<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <p>2 tests where made for validating the Torsion2D class. The objective of the test is to calculate the calculating polar moment of inertia (J) of a section.</p>
 <figure class="align-center">
 <img alt="Problem statement" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/CS.png" />
 </figure>
 </section>
 <section id="calculating-polar-moment-of-inertia-j">
-<h4>Calculating polar moment of inertia (J)<a class="headerlink" href="#calculating-polar-moment-of-inertia-j" title="Permalink to this heading">#</a></h4>
+<h4>Calculating polar moment of inertia (J)<a class="headerlink" href="#calculating-polar-moment-of-inertia-j" title="Link to this heading">#</a></h4>
 <p>Using the formulation of the Torsion2D class, the polar moment of inertia can be calculated as:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
@@ -583,7 +583,7 @@
 </ul>
 </section>
 <section id="hollow-shapes">
-<h4>Hollow shapes<a class="headerlink" href="#hollow-shapes" title="Permalink to this heading">#</a></h4>
+<h4>Hollow shapes<a class="headerlink" href="#hollow-shapes" title="Link to this heading">#</a></h4>
 <p>Due to the boundary conditions of the equation, it is not possible to introduce holes in the geometry.
 The holes can be modeled using elements affecting the shear modulus. The hole elements will have relatively close to zero shear modulus, while the material elements will have a higher shear modulus.
 In this case, a shear modulus of 80000 is used for material elements and a shear modulus of 1*10^-6 is used for hole elements.</p>
@@ -592,14 +592,14 @@ In this case, a shear modulus of 80000 is used for material elements and a shear
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="Test.test_Torsion2D.TestTorsion2D">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Torsion2D.</span></span><span class="sig-name descname"><span class="pre">TestTorsion2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Test.test_Torsion2D.</span></span><span class="sig-name descname"><span class="pre">TestTorsion2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <p>Torsion2D Tests
 1. Hollow circle.
 2. Circle.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Torsion2D.TestTorsion2D.test_inertia_circle">
-<span class="sig-name descname"><span class="pre">test_inertia_circle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D.test_inertia_circle" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_inertia_circle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D.test_inertia_circle" title="Link to this definition">#</a></dt>
 <dd><p>Test if the polar moment of inertia (J) matches the analytical solution for circle. In this case, the analytical solutions is given by:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
@@ -613,7 +613,7 @@ In this case, a shear modulus of 80000 is used for material elements and a shear
 
 <dl class="py method">
 <dt class="sig sig-object py" id="Test.test_Torsion2D.TestTorsion2D.test_inertia_hollow_circle">
-<span class="sig-name descname"><span class="pre">test_inertia_hollow_circle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D.test_inertia_hollow_circle" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">test_inertia_hollow_circle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Test.test_Torsion2D.TestTorsion2D.test_inertia_hollow_circle" title="Link to this definition">#</a></dt>
 <dd><p>Test if the polar moment of inertia (J) matches the analytical solution for a hollow circle. In this case, the analytical solutions is given by:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
@@ -758,9 +758,9 @@ In this case, a shear modulus of 80000 is used for material elements and a shear
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=7ab57feb"></script>
+</div><script src="../_static/documentation_options.js?v=0290cc9f"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>

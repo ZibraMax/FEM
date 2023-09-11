@@ -1,11 +1,11 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" data-content_root="../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="FEM.Geometry package" href="FEM.Geometry.html" /><link rel="prev" title="FEM.Elements.E2D package" href="FEM.Elements.E2D.html" />
 
-    <!-- Generated with Sphinx 7.1.2 and Furo 2023.07.26 -->
+    <!-- Generated with Sphinx 7.2.5 and Furo 2023.09.10 -->
         <title>FEM.Elements.E3D package - FEM 1.0.34 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
@@ -214,34 +214,34 @@
         </div>
         <article role="main">
           <section id="module-FEM.Elements.E3D">
-<span id="fem-elements-e3d-package"></span><h1>FEM.Elements.E3D package<a class="headerlink" href="#module-FEM.Elements.E3D" title="Permalink to this heading">#</a></h1>
+<span id="fem-elements-e3d-package"></span><h1>FEM.Elements.E3D package<a class="headerlink" href="#module-FEM.Elements.E3D" title="Link to this heading">#</a></h1>
 <p>Collection of 3D Elements</p>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 </section>
 <section id="module-FEM.Elements.E3D.Brick">
-<span id="fem-elements-e3d-brick-module"></span><h2>FEM.Elements.E3D.Brick module<a class="headerlink" href="#module-FEM.Elements.E3D.Brick" title="Permalink to this heading">#</a></h2>
+<span id="fem-elements-e3d-brick-module"></span><h2>FEM.Elements.E3D.Brick module<a class="headerlink" href="#module-FEM.Elements.E3D.Brick" title="Link to this heading">#</a></h2>
 <section id="brick-elements">
-<h3>BRICK ELEMENTS<a class="headerlink" href="#brick-elements" title="Permalink to this heading">#</a></h3>
+<h3>BRICK ELEMENTS<a class="headerlink" href="#brick-elements" title="Link to this heading">#</a></h3>
 <p>Defines the lagrangian first order and second order brick elements</p>
 <figure class="align-center" id="id7">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Bricks.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Bricks.png" />
 <figcaption>
-<p><span class="caption-text">Brick (8 nodes) and BrickO2 (20 nodes). (Reddy, 2005)</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Brick (8 nodes) and BrickO2 (20 nodes). (Reddy, 2005)</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="brick">
-<h4>Brick<a class="headerlink" href="#brick" title="Permalink to this heading">#</a></h4>
+<h4>Brick<a class="headerlink" href="#brick" title="Link to this heading">#</a></h4>
 <p>First order 8 node brick element</p>
 <section id="shape-functions">
-<h5>Shape Functions<a class="headerlink" href="#shape-functions" title="Permalink to this heading">#</a></h5>
+<h5>Shape Functions<a class="headerlink" href="#shape-functions" title="Link to this heading">#</a></h5>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\begin{split}\Psi_i=\frac{1}{8}\left[\begin{matrix}\left(1 - x\right) \left(1 - y\right) \left(1 - z\right)\\\left(1 - y\right) \left(1 - z\right) \left(x + 1\right)\\\left(1 - z\right) \left(x + 1\right) \left(y + 1\right)\\\left(1 - x\right) \left(1 - z\right) \left(y + 1\right)\\\left(1 - x\right) \left(1 - y\right) \left(z + 1\right)\\\left(1 - y\right) \left(x + 1\right) \left(z + 1\right)\\\left(x + 1\right) \left(y + 1\right) \left(z + 1\right)\\\left(1 - x\right) \left(y + 1\right) \left(z + 1\right)\end{matrix}\right]\end{split}\]</div>
 </div>
 </section>
 <section id="shape-functions-derivatives">
-<h5>Shape Functions Derivatives<a class="headerlink" href="#shape-functions-derivatives" title="Permalink to this heading">#</a></h5>
+<h5>Shape Functions Derivatives<a class="headerlink" href="#shape-functions-derivatives" title="Link to this heading">#</a></h5>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial \Psi_i}{\partial x_j}=\frac{1}{8}\left[\begin{matrix}\left(1 - z\right) \left(y - 1\right) &amp; \left(1 - z\right) \left(x - 1\right) &amp; - \left(1 - x\right) \left(1 - y\right)\\\left(1 - y\right) \left(1 - z\right) &amp; \left(1 - z\right) \left(- x - 1\right) &amp; - \left(1 - y\right) \left(x + 1\right)\\\left(1 - z\right) \left(y + 1\right) &amp; \left(1 - z\right) \left(x + 1\right) &amp; - \left(x + 1\right) \left(y + 1\right)\\\left(1 - z\right) \left(- y - 1\right) &amp; \left(1 - x\right) \left(1 - z\right) &amp; - \left(1 - x\right) \left(y + 1\right)\\\left(1 - y\right) \left(- z - 1\right) &amp; - \left(1 - x\right) \left(z + 1\right) &amp; \left(1 - x\right) \left(1 - y\right)\\\left(1 - y\right) \left(z + 1\right) &amp; - \left(x + 1\right) \left(z + 1\right) &amp; \left(1 - y\right) \left(x + 1\right)\\\left(y + 1\right) \left(z + 1\right) &amp; \left(x + 1\right) \left(z + 1\right) &amp; \left(x + 1\right) \left(y + 1\right)\\- \left(y + 1\right) \left(z + 1\right) &amp; \left(1 - x\right) \left(z + 1\right) &amp; \left(1 - x\right) \left(y + 1\right)\end{matrix}\right]\end{split}\]</div>
@@ -249,17 +249,17 @@
 </section>
 </section>
 <section id="bricko2">
-<h4>BrickO2<a class="headerlink" href="#bricko2" title="Permalink to this heading">#</a></h4>
+<h4>BrickO2<a class="headerlink" href="#bricko2" title="Link to this heading">#</a></h4>
 <p>Second order 20 node brick element</p>
 <section id="id1">
-<h5>Shape Functions<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h5>
+<h5>Shape Functions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h5>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\begin{split}\Psi_i = \frac{1}{8}\left[\begin{matrix}\left(1 - x\right) \left(1 - y\right) \left(1 - z\right) \left(- x - y - z - 2\right)\\\left(1 - y\right) \left(1 - z\right) \left(x + 1\right) \left(x - y - z - 2\right)\\\left(1 - z\right) \left(x + 1\right) \left(y + 1\right) \left(x + y - z - 2\right)\\\left(1 - x\right) \left(1 - z\right) \left(y + 1\right) \left(- x + y - z - 2\right)\\\left(1 - x\right) \left(1 - y\right) \left(z + 1\right) \left(- x - y + z - 2\right)\\\left(1 - y\right) \left(x + 1\right) \left(z + 1\right) \left(x - y + z - 2\right)\\\left(x + 1\right) \left(y + 1\right) \left(z + 1\right) \left(x + y + z - 2\right)\\\left(1 - x\right) \left(y + 1\right) \left(z + 1\right) \left(- x + y + z - 2\right)\\\left(1 - y\right) \left(1 - z\right) \left(2 - 2 x^{2}\right)\\\left(1 - y^{2}\right) \left(1 - z\right) \left(2 x + 2\right)\\\left(1 - z\right) \left(2 - 2 x^{2}\right) \left(y + 1\right)\\\left(1 - y^{2}\right) \left(1 - z\right) \left(2 - 2 x\right)\\\left(1 - y\right) \left(1 - z^{2}\right) \left(2 - 2 x\right)\\\left(1 - y\right) \left(1 - z^{2}\right) \left(2 x + 2\right)\\\left(1 - z^{2}\right) \left(2 x + 2\right) \left(y + 1\right)\\\left(1 - z^{2}\right) \left(2 - 2 x\right) \left(y + 1\right)\\\left(1 - y\right) \left(2 - 2 x^{2}\right) \left(z + 1\right)\\\left(1 - y^{2}\right) \left(2 x + 2\right) \left(z + 1\right)\\\left(2 - 2 x^{2}\right) \left(y + 1\right) \left(z + 1\right)\\\left(1 - y^{2}\right) \left(2 - 2 x\right) \left(z + 1\right)\end{matrix}\right]\end{split}\]</div>
 </div>
 </section>
 <section id="id2">
-<h5>Shape Functions Derivatives<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h5>
+<h5>Shape Functions Derivatives<a class="headerlink" href="#id2" title="Link to this heading">#</a></h5>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial \Psi_i}{\partial x_j} = \frac{1}{8}\left[\begin{matrix}- \left(1 - x\right) \left(1 - y\right) \left(1 - z\right) + \left(1 - z\right) \left(y - 1\right) \left(- x - y - z - 2\right) &amp; - \left(1 - x\right) \left(1 - y\right) \left(1 - z\right) + \left(1 - z\right) \left(x - 1\right) \left(- x - y - z - 2\right) &amp; - \left(1 - x\right) \left(1 - y\right) \left(1 - z\right) - \left(1 - x\right) \left(1 - y\right) \left(- x - y - z - 2\right)\\\left(1 - y\right) \left(1 - z\right) \left(x + 1\right) + \left(1 - y\right) \left(1 - z\right) \left(x - y - z - 2\right) &amp; - \left(1 - y\right) \left(1 - z\right) \left(x + 1\right) + \left(1 - z\right) \left(- x - 1\right) \left(x - y - z - 2\right) &amp; - \left(1 - y\right) \left(1 - z\right) \left(x + 1\right) - \left(1 - y\right) \left(x + 1\right) \left(x - y - z - 2\right)\\\left(1 - z\right) \left(x + 1\right) \left(y + 1\right) + \left(1 - z\right) \left(y + 1\right) \left(x + y - z - 2\right) &amp; \left(1 - z\right) \left(x + 1\right) \left(y + 1\right) + \left(1 - z\right) \left(x + 1\right) \left(x + y - z - 2\right) &amp; - \left(1 - z\right) \left(x + 1\right) \left(y + 1\right) - \left(x + 1\right) \left(y + 1\right) \left(x + y - z - 2\right)\\- \left(1 - x\right) \left(1 - z\right) \left(y + 1\right) + \left(1 - z\right) \left(- y - 1\right) \left(- x + y - z - 2\right) &amp; \left(1 - x\right) \left(1 - z\right) \left(y + 1\right) + \left(1 - x\right) \left(1 - z\right) \left(- x + y - z - 2\right) &amp; - \left(1 - x\right) \left(1 - z\right) \left(y + 1\right) - \left(1 - x\right) \left(y + 1\right) \left(- x + y - z - 2\right)\\- \left(1 - x\right) \left(1 - y\right) \left(z + 1\right) + \left(1 - y\right) \left(- z - 1\right) \left(- x - y + z - 2\right) &amp; - \left(1 - x\right) \left(1 - y\right) \left(z + 1\right) - \left(1 - x\right) \left(z + 1\right) \left(- x - y + z - 2\right) &amp; \left(1 - x\right) \left(1 - y\right) \left(z + 1\right) + \left(1 - x\right) \left(1 - y\right) \left(- x - y + z - 2\right)\\\left(1 - y\right) \left(x + 1\right) \left(z + 1\right) + \left(1 - y\right) \left(z + 1\right) \left(x - y + z - 2\right) &amp; - \left(1 - y\right) \left(x + 1\right) \left(z + 1\right) - \left(x + 1\right) \left(z + 1\right) \left(x - y + z - 2\right) &amp; \left(1 - y\right) \left(x + 1\right) \left(z + 1\right) + \left(1 - y\right) \left(x + 1\right) \left(x - y + z - 2\right)\\\left(x + 1\right) \left(y + 1\right) \left(z + 1\right) + \left(y + 1\right) \left(z + 1\right) \left(x + y + z - 2\right) &amp; \left(x + 1\right) \left(y + 1\right) \left(z + 1\right) + \left(x + 1\right) \left(z + 1\right) \left(x + y + z - 2\right) &amp; \left(x + 1\right) \left(y + 1\right) \left(z + 1\right) + \left(x + 1\right) \left(y + 1\right) \left(x + y + z - 2\right)\\- \left(1 - x\right) \left(y + 1\right) \left(z + 1\right) - \left(y + 1\right) \left(z + 1\right) \left(- x + y + z - 2\right) &amp; \left(1 - x\right) \left(y + 1\right) \left(z + 1\right) + \left(1 - x\right) \left(z + 1\right) \left(- x + y + z - 2\right) &amp; \left(1 - x\right) \left(y + 1\right) \left(z + 1\right) + \left(1 - x\right) \left(y + 1\right) \left(- x + y + z - 2\right)\\- 4 x \left(1 - y\right) \left(1 - z\right) &amp; \left(2 - 2 x^{2}\right) \left(z - 1\right) &amp; \left(2 - 2 x^{2}\right) \left(y - 1\right)\\2 \left(1 - y^{2}\right) \left(1 - z\right) &amp; - 2 y \left(1 - z\right) \left(2 x + 2\right) &amp; \left(2 x + 2\right) \left(y^{2} - 1\right)\\- 4 x \left(1 - z\right) \left(y + 1\right) &amp; \left(1 - z\right) \left(2 - 2 x^{2}\right) &amp; \left(2 - 2 x^{2}\right) \left(- y - 1\right)\\- 2 \left(1 - y^{2}\right) \left(1 - z\right) &amp; - 2 y \left(1 - z\right) \left(2 - 2 x\right) &amp; \left(2 - 2 x\right) \left(y^{2} - 1\right)\\- 2 \left(1 - y\right) \left(1 - z^{2}\right) &amp; \left(2 - 2 x\right) \left(z^{2} - 1\right) &amp; - 2 z \left(1 - y\right) \left(2 - 2 x\right)\\2 \left(1 - y\right) \left(1 - z^{2}\right) &amp; \left(2 x + 2\right) \left(z^{2} - 1\right) &amp; - 2 z \left(1 - y\right) \left(2 x + 2\right)\\2 \left(1 - z^{2}\right) \left(y + 1\right) &amp; \left(1 - z^{2}\right) \left(2 x + 2\right) &amp; - 2 z \left(2 x + 2\right) \left(y + 1\right)\\- 2 \left(1 - z^{2}\right) \left(y + 1\right) &amp; \left(1 - z^{2}\right) \left(2 - 2 x\right) &amp; - 2 z \left(2 - 2 x\right) \left(y + 1\right)\\- 4 x \left(1 - y\right) \left(z + 1\right) &amp; \left(2 - 2 x^{2}\right) \left(- z - 1\right) &amp; \left(1 - y\right) \left(2 - 2 x^{2}\right)\\2 \left(1 - y^{2}\right) \left(z + 1\right) &amp; - 2 y \left(2 x + 2\right) \left(z + 1\right) &amp; \left(1 - y^{2}\right) \left(2 x + 2\right)\\- 4 x \left(y + 1\right) \left(z + 1\right) &amp; \left(2 - 2 x^{2}\right) \left(z + 1\right) &amp; \left(2 - 2 x^{2}\right) \left(y + 1\right)\\- 2 \left(1 - y^{2}\right) \left(z + 1\right) &amp; - 2 y \left(2 - 2 x\right) \left(z + 1\right) &amp; \left(1 - y^{2}\right) \left(2 - 2 x\right)\end{matrix}\right]\end{split}\]</div>
@@ -269,7 +269,7 @@
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">Brick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">Brick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.BrickScheme.BrickScheme" title="FEM.Elements.E3D.BrickScheme.BrickScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrickScheme</span></code></a></p>
 <p>Creates a 3D brick element</p>
 <dl class="field-list simple">
@@ -283,7 +283,7 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick.dpsis">
-<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick.dpsis" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick.dpsis" title="Link to this definition">#</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -300,7 +300,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.Brick.psis">
-<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick.psis" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.Brick.psis" title="Link to this definition">#</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -319,7 +319,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.BrickO2">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">BrickO2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.BrickO2" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Brick.</span></span><span class="sig-name descname"><span class="pre">BrickO2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Brick.BrickO2" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.BrickScheme.BrickScheme" title="FEM.Elements.E3D.BrickScheme.BrickScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrickScheme</span></code></a></p>
 <p>Creates a 3D second order brick element.</p>
 <dl class="field-list simple">
@@ -333,7 +333,7 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.BrickO2.dpsis">
-<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.BrickO2.dpsis" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.BrickO2.dpsis" title="Link to this definition">#</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -350,7 +350,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Brick.BrickO2.psis">
-<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.BrickO2.psis" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Brick.BrickO2.psis" title="Link to this definition">#</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -369,11 +369,11 @@
 
 </section>
 <section id="module-FEM.Elements.E3D.BrickScheme">
-<span id="fem-elements-e3d-brickscheme-module"></span><h2>FEM.Elements.E3D.BrickScheme module<a class="headerlink" href="#module-FEM.Elements.E3D.BrickScheme" title="Permalink to this heading">#</a></h2>
+<span id="fem-elements-e3d-brickscheme-module"></span><h2>FEM.Elements.E3D.BrickScheme module<a class="headerlink" href="#module-FEM.Elements.E3D.BrickScheme" title="Link to this heading">#</a></h2>
 <p>Define the brick scheme used by brick elements</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.BrickScheme.BrickScheme">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.BrickScheme.</span></span><span class="sig-name descname"><span class="pre">BrickScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.BrickScheme.BrickScheme" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.BrickScheme.</span></span><span class="sig-name descname"><span class="pre">BrickScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.BrickScheme.BrickScheme" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generate a brick integration scheme</p>
 <dl class="field-list simple">
@@ -385,11 +385,11 @@
 
 </section>
 <section id="module-FEM.Elements.E3D.Element3D">
-<span id="fem-elements-e3d-element3d-module"></span><h2>FEM.Elements.E3D.Element3D module<a class="headerlink" href="#module-FEM.Elements.E3D.Element3D" title="Permalink to this heading">#</a></h2>
+<span id="fem-elements-e3d-element3d-module"></span><h2>FEM.Elements.E3D.Element3D module<a class="headerlink" href="#module-FEM.Elements.E3D.Element3D" title="Link to this heading">#</a></h2>
 <p>Defines a general 2D element</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Element3D.Element3D">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Element3D.</span></span><span class="sig-name descname"><span class="pre">Element3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Element3D.</span></span><span class="sig-name descname"><span class="pre">Element3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="FEM.Elements.html#FEM.Elements.Element.Element" title="FEM.Elements.Element.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a></p>
 <p>Create a 3D element</p>
 <dl class="field-list simple">
@@ -403,13 +403,13 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Element3D.Element3D.draw">
-<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D.draw" title="Link to this definition">#</a></dt>
 <dd><p>Create a graph of element</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Element3D.Element3D.isInside">
-<span class="sig-name descname"><span class="pre">isInside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D.isInside" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">isInside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D.isInside" title="Link to this definition">#</a></dt>
 <dd><p>Test if a given points is inside element domain</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -426,7 +426,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Element3D.Element3D.jacobianGraph">
-<span class="sig-name descname"><span class="pre">jacobianGraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D.jacobianGraph" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">jacobianGraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Element3D.Element3D.jacobianGraph" title="Link to this definition">#</a></dt>
 <dd><p>Create the determinant jacobian graph</p>
 </dd></dl>
 
@@ -434,28 +434,28 @@
 
 </section>
 <section id="module-FEM.Elements.E3D.Tetrahedral">
-<span id="fem-elements-e3d-tetrahedral-module"></span><h2>FEM.Elements.E3D.Tetrahedral module<a class="headerlink" href="#module-FEM.Elements.E3D.Tetrahedral" title="Permalink to this heading">#</a></h2>
+<span id="fem-elements-e3d-tetrahedral-module"></span><h2>FEM.Elements.E3D.Tetrahedral module<a class="headerlink" href="#module-FEM.Elements.E3D.Tetrahedral" title="Link to this heading">#</a></h2>
 <section id="tetrahedral-elements">
-<h3>TETRAHEDRAL ELEMENTS<a class="headerlink" href="#tetrahedral-elements" title="Permalink to this heading">#</a></h3>
+<h3>TETRAHEDRAL ELEMENTS<a class="headerlink" href="#tetrahedral-elements" title="Link to this heading">#</a></h3>
 <p>Defines the lagrangian first order and second order tetrahedral elements</p>
 <figure class="align-center" id="id8">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Tetrahedrals.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/docs/source/Tetrahedrals.png" />
 <figcaption>
-<p><span class="caption-text">Tetrahedral (4 nodes) and TetrahedralO2 (10 nodes). (Reddy, 2005)</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Tetrahedral (4 nodes) and TetrahedralO2 (10 nodes). (Reddy, 2005)</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="tetrahedral">
-<h4>Tetrahedral<a class="headerlink" href="#tetrahedral" title="Permalink to this heading">#</a></h4>
+<h4>Tetrahedral<a class="headerlink" href="#tetrahedral" title="Link to this heading">#</a></h4>
 <p>First order 4 node tetrahedral element</p>
 <section id="id3">
-<h5>Shape Functions<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h5>
+<h5>Shape Functions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h5>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\begin{split}\Psi_i=\left[\begin{matrix}- x - y - z + 1\\x\\y\\z\end{matrix}\right]\end{split}\]</div>
 </div>
 </section>
 <section id="id4">
-<h5>Shape Functions Derivatives<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h5>
+<h5>Shape Functions Derivatives<a class="headerlink" href="#id4" title="Link to this heading">#</a></h5>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial \Psi_i}{\partial x_j}=\left[\begin{matrix}-1 &amp; -1 &amp; -1\\1 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 1\end{matrix}\right]\end{split}\]</div>
@@ -463,17 +463,17 @@
 </section>
 </section>
 <section id="tetrahedralo2">
-<h4>TetrahedralO2<a class="headerlink" href="#tetrahedralo2" title="Permalink to this heading">#</a></h4>
+<h4>TetrahedralO2<a class="headerlink" href="#tetrahedralo2" title="Link to this heading">#</a></h4>
 <p>Second order 10 node tetrahedral element</p>
 <section id="id5">
-<h5>Shape Functions<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h5>
+<h5>Shape Functions<a class="headerlink" href="#id5" title="Link to this heading">#</a></h5>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\begin{split}\Psi_i=\left[\begin{matrix}\left(- 2 x - 2 y - 2 z + 1\right) \left(- x - y - z + 1\right)\\x \left(2 x - 1\right)\\y \left(2 y - 1\right)\\z \left(2 z - 1\right)\\x \left(- 4 x - 4 y - 4 z + 4\right)\\4 x y\\4 y \left(- x - y - z + 1\right)\\z \left(- 4 x - 4 y - 4 z + 4\right)\\4 x z\\4 y z\end{matrix}\right]\end{split}\]</div>
 </div>
 </section>
 <section id="id6">
-<h5>Shape Functions Derivatives<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h5>
+<h5>Shape Functions Derivatives<a class="headerlink" href="#id6" title="Link to this heading">#</a></h5>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial \Psi_i}{\partial x_j}=\left[\begin{matrix}4 x + 4 y + 4 z - 3 &amp; 4 x + 4 y + 4 z - 3 &amp; 4 x + 4 y + 4 z - 3\\4 x - 1 &amp; 0 &amp; 0\\0 &amp; 4 y - 1 &amp; 0\\0 &amp; 0 &amp; 4 z - 1\\- 8 x - 4 y - 4 z + 4 &amp; - 4 x &amp; - 4 x\\4 y &amp; 4 x &amp; 0\\- 4 y &amp; - 4 x - 8 y - 4 z + 4 &amp; - 4 y\\- 4 z &amp; - 4 z &amp; - 4 x - 4 y - 8 z + 4\\4 z &amp; 0 &amp; 4 x\\0 &amp; 4 z &amp; 4 y\end{matrix}\right]\end{split}\]</div>
@@ -483,7 +483,7 @@
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Tetrahedral.</span></span><span class="sig-name descname"><span class="pre">Tetrahedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Tetrahedral.</span></span><span class="sig-name descname"><span class="pre">Tetrahedral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme" title="FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">TetrahedralScheme</span></code></a></p>
 <p>Creates a 3D tetrahedral element</p>
 <dl class="field-list simple">
@@ -497,7 +497,7 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral.dpsis">
-<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.dpsis" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.dpsis" title="Link to this definition">#</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -514,7 +514,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral.inverseMapping">
-<span class="sig-name descname"><span class="pre">inverseMapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.inverseMapping" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">inverseMapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.inverseMapping" title="Link to this definition">#</a></dt>
 <dd><p>Give the natural coordinates of given global coordinates over elements using Newton’s method</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -534,7 +534,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.Tetrahedral.psis">
-<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.psis" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.Tetrahedral.psis" title="Link to this definition">#</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -553,7 +553,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.TetrahedralO2">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Tetrahedral.</span></span><span class="sig-name descname"><span class="pre">TetrahedralO2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.Tetrahedral.</span></span><span class="sig-name descname"><span class="pre">TetrahedralO2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E3D.Element3D.Element3D" title="FEM.Elements.E3D.Element3D.Element3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element3D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme" title="FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">TetrahedralScheme</span></code></a></p>
 <p>Creates a 3D second order tetrahedral element</p>
 <dl class="field-list simple">
@@ -567,7 +567,7 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.TetrahedralO2.dpsis">
-<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.dpsis" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.dpsis" title="Link to this definition">#</a></dt>
 <dd><p>Calculates the shape functions derivatives of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -584,7 +584,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.TetrahedralO2.inverseMapping">
-<span class="sig-name descname"><span class="pre">inverseMapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.inverseMapping" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">inverseMapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.inverseMapping" title="Link to this definition">#</a></dt>
 <dd><p>Give the natural coordinates of given global coordinates over elements using Newton’s method</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -604,7 +604,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.Tetrahedral.TetrahedralO2.psis">
-<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.psis" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E3D.Tetrahedral.TetrahedralO2.psis" title="Link to this definition">#</a></dt>
 <dd><p>Calculates the shape functions of a given natural coordinates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -623,11 +623,11 @@
 
 </section>
 <section id="module-FEM.Elements.E3D.TetrahedralScheme">
-<span id="fem-elements-e3d-tetrahedralscheme-module"></span><h2>FEM.Elements.E3D.TetrahedralScheme module<a class="headerlink" href="#module-FEM.Elements.E3D.TetrahedralScheme" title="Permalink to this heading">#</a></h2>
+<span id="fem-elements-e3d-tetrahedralscheme-module"></span><h2>FEM.Elements.E3D.TetrahedralScheme module<a class="headerlink" href="#module-FEM.Elements.E3D.TetrahedralScheme" title="Link to this heading">#</a></h2>
 <p>Define the tetrahedral scheme used by tetrahedral elements</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.TetrahedralScheme.</span></span><span class="sig-name descname"><span class="pre">TetrahedralScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E3D.TetrahedralScheme.</span></span><span class="sig-name descname"><span class="pre">TetrahedralScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E3D.TetrahedralScheme.TetrahedralScheme" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Generate a tetrahedral integration scheme</p>
 <dl class="field-list simple">
@@ -779,9 +779,9 @@
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=7ab57feb"></script>
+</div><script src="../_static/documentation_options.js?v=0290cc9f"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
