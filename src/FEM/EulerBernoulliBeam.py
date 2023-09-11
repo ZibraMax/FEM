@@ -20,7 +20,7 @@ class EulerBernoulliBeam(Core):
         f (float or int or function, optional): Force function applied to the beam. Defaults to 0.0
     """
 
-    def __init__(self, geometry: Geometry, EI: float, cf: float = 0.0, f: float = 0.0) -> None:
+    def __init__(self, geometry: Geometry, EI: float, cf: float = 0.0, f: float = 0.0, **kargs) -> None:
         """Creates a Euler Bernoulli beam problem
 
         Args:
@@ -42,7 +42,7 @@ class EulerBernoulliBeam(Core):
         if geometry.nvn == 1:
             logging.warning(
                 'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
-        Core.__init__(self, geometry)
+        Core.__init__(self, geometry, **kargs)
         for i in range(len(self.elements)):
             self.elements[i] = EulerBernoulliElement(
                 self.elements[i].coords, self.elements[i].gdl)

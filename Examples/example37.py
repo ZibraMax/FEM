@@ -47,7 +47,7 @@ if __name__ == '__main__':
             piramides += [[p[0], p[5], p[3], p[4]]]
             piramides += [[p[0], p[5], p[4], p[1]]]
 
-    O = Heat2D(geometria, k, k)
+    O = Heat2D(geometria, k, k, verbose=True)
     for i in range(len(seg_orig)):
         O.defineConvectiveBoderConditions(i, beta, Ta)
     O.geometry.show()

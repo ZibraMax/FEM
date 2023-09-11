@@ -24,7 +24,7 @@ class EDO1D(Core):
         f (function): Function f, if f is constant you can use f = lambda x: [value]
     """
 
-    def __init__(self, geometry: Geometry, a: Callable, c: Callable, f: Callable) -> None:
+    def __init__(self, geometry: Geometry, a: Callable, c: Callable, f: Callable, **kargs) -> None:
         """Create a 1D 1 variable per node Finite Element problem
 
         The differential equation is:
@@ -42,7 +42,7 @@ class EDO1D(Core):
         self.a = a
         self.c = c
         self.f = f
-        Core.__init__(self, geometry)
+        Core.__init__(self, geometry, **kargs)
         self.name = 'Generic 1D second order diferential equation'
         self.properties['a'] = None
         self.properties['b'] = None
