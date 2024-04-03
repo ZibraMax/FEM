@@ -441,6 +441,14 @@ Examples.example9 module
    :undoc-members:
    :show-inheritance:
 
+Examples.example\_axial module
+------------------------------
+
+.. automodule:: Examples.example_axial
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.example\_cat module
 ----------------------------
 
