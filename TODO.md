@@ -2,7 +2,6 @@
     -   [x] Brick orden 2.
     -   [x] Pirámide orden 1.
     -   [x] Pirámide orden 2.
--   [ ] Los elementos deben agruparse en un solo paquete.
 -   [x] Modificar geometría para que sea una clase mas general.
     -   [x] La clase gemoetría 2D debe tener los métodos que se tienen en la clase geometría actualmente.
     -   [x] Se deben agregar métodos equivalentes en la clase geometría 1D y 3D.

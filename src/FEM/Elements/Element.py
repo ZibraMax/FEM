@@ -46,8 +46,8 @@ class Element():
         self._x, self._p = self.T(self.Z.T)
         self.jacs, self.dpz = self.J(self.Z.T)
         self._xcenter = self.T(self.center.T)[0].flatten()
-        if not self.border:
-            if not self.fast:
+        if not self.border:  # Border elements do not satisfy coordinate transformation requirements
+            if not self.fast:  # Fast elements are for sparse matrix assembly
                 self.Ke = np.zeros([self.n, self.n])
                 self.Fe = np.zeros([self.n, 1])
                 self.Qe = np.zeros([self.n, 1])
@@ -59,7 +59,7 @@ class Element():
         self.Ue = np.zeros(self.gdl.shape)
 
     def restartMatrix(self) -> None:
-        """Sets all element matrices and vectors to 0 state
+        """Sets all element matrices and vectors to 0
         """
         if not self.border:
             self.Ke[:, :] = 0.0

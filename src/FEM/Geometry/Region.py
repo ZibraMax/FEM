@@ -76,7 +76,7 @@ class Region2D(Region):
     """
 
     def __init__(self, coords: np.ndarray, **kargs) -> None:
-        """Creates a 2D region using a 2D Element. The number of coordinates definesthe type of element.
+        """Creates a 2D region using a 2D Element. The number of coordinates defines the type of element.
 
         Args:
             coords (np.ndarray): Coordinate matrix. Must be of four rows and 3 columns.
