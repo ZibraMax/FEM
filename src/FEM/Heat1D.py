@@ -99,7 +99,7 @@ class Heat1D(Core):
             value (float, optional): Defined below. Defaults to 0.
         """
 
-        near = np.infty
+        near = np.inf
         for i, e in enumerate(self.elements):
             act = min(abs(self.geometry.gdls[node][0] - e._coords[0]),
                       abs(self.geometry.gdls[node][0] - e._coords[0]))

@@ -403,9 +403,9 @@ class Geometry2D(Geometry):
             p1 (list): region end point
         """
         masCercano1 = None
-        d1 = np.Inf
+        d1 = np.inf
         masCercano2 = None
-        d2 = np.Inf
+        d2 = np.inf
         for i, gdl in enumerate(self.gdls):
             r1 = np.sqrt((p0[0]-gdl[0])**2+(p0[1]-gdl[1])**2)
             r2 = np.sqrt((p1[0]-gdl[0])**2+(p1[1]-gdl[1])**2)
@@ -433,7 +433,7 @@ class Geometry2D(Geometry):
         """
 
         masCercano1 = None
-        d1 = np.Inf
+        d1 = np.inf
         for i, gdl in enumerate(self.gdls):
             r1 = np.sqrt((x-gdl[0])**2+(y-gdl[1])**2)
             if r1 < d1:
