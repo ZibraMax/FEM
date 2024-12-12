@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="Examples" href="modules.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
         <title>Examples package - FEM 1.0.34 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
 
@@ -68,7 +68,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -83,22 +83,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -111,6 +152,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -129,7 +172,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -198,11 +242,17 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/Examples/Examples.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
 <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -212,35 +262,35 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <section id="module-Examples">
-<span id="examples-package"></span><h1>Examples package<a class="headerlink" href="#module-Examples" title="Link to this heading">#</a></h1>
+<span id="examples-package"></span><h1>Examples package<a class="headerlink" href="#module-Examples" title="Link to this heading">¶</a></h1>
 <p>Examples index</p>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.Example48">
-<span id="examples-example48-module"></span><h2>Examples.Example48 module<a class="headerlink" href="#module-Examples.Example48" title="Link to this heading">#</a></h2>
+<span id="examples-example48-module"></span><h2>Examples.Example48 module<a class="headerlink" href="#module-Examples.Example48" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.Example49">
-<span id="examples-example49-module"></span><h2>Examples.Example49 module<a class="headerlink" href="#module-Examples.Example49" title="Link to this heading">#</a></h2>
+<span id="examples-example49-module"></span><h2>Examples.Example49 module<a class="headerlink" href="#module-Examples.Example49" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.Example50">
-<span id="examples-example50-module"></span><h2>Examples.Example50 module<a class="headerlink" href="#module-Examples.Example50" title="Link to this heading">#</a></h2>
+<span id="examples-example50-module"></span><h2>Examples.Example50 module<a class="headerlink" href="#module-Examples.Example50" title="Link to this heading">¶</a></h2>
 </section>
 <section id="examples-example50-2-module">
-<h2>Examples.Example50-2 module<a class="headerlink" href="#examples-example50-2-module" title="Link to this heading">#</a></h2>
+<h2>Examples.Example50-2 module<a class="headerlink" href="#examples-example50-2-module" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.Punto3">
-<span id="examples-punto3-module"></span><h2>Examples.Punto3 module<a class="headerlink" href="#module-Examples.Punto3" title="Link to this heading">#</a></h2>
+<span id="examples-punto3-module"></span><h2>Examples.Punto3 module<a class="headerlink" href="#module-Examples.Punto3" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.Punto6">
-<span id="examples-punto6-module"></span><h2>Examples.Punto6 module<a class="headerlink" href="#module-Examples.Punto6" title="Link to this heading">#</a></h2>
+<span id="examples-punto6-module"></span><h2>Examples.Punto6 module<a class="headerlink" href="#module-Examples.Punto6" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example1">
-<span id="examples-example1-module"></span><h2>Examples.example1 module<a class="headerlink" href="#module-Examples.example1" title="Link to this heading">#</a></h2>
+<span id="examples-example1-module"></span><h2>Examples.example1 module<a class="headerlink" href="#module-Examples.example1" title="Link to this heading">¶</a></h2>
 <section id="creation-of-2d-elements">
-<h3>Creation of 2D elements<a class="headerlink" href="#creation-of-2d-elements" title="Link to this heading">#</a></h3>
+<h3>Creation of 2D elements<a class="headerlink" href="#creation-of-2d-elements" title="Link to this heading">¶</a></h3>
 <p>Coords and gdls (degrees of freedom) are given by a Numpy ndarray matrix.</p>
 <p>In the coordinate matrix, each row represents a node of the element and each column a dimension.
 For example, a 2D triangular element of 3 nodes must have a 3x2 matrix.</p>
@@ -254,82 +304,82 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 <li><p>The jacobian graph allows to verigfy the numerical estability of the element</p></li>
 </ul>
 <section id="coordinate-trasformation-and-shape-functions">
-<h4>Coordinate trasformation and shape functions<a class="headerlink" href="#coordinate-trasformation-and-shape-functions" title="Link to this heading">#</a></h4>
+<h4>Coordinate trasformation and shape functions<a class="headerlink" href="#coordinate-trasformation-and-shape-functions" title="Link to this heading">¶</a></h4>
 <figure class="align-center" id="id11">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_1.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_1.png" />
 <figcaption>
-<p><span class="caption-text">Serendipity (8 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id11" title="Link to this image">#</a></p>
+<p><span class="caption-text">Serendipity (8 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id12">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_2.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_2.png" />
 <figcaption>
-<p><span class="caption-text">Quadrilateral (4 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id12" title="Link to this image">#</a></p>
+<p><span class="caption-text">Quadrilateral (4 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id12" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id13">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_3.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_3.png" />
 <figcaption>
-<p><span class="caption-text">Triangular (6 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id13" title="Link to this image">#</a></p>
+<p><span class="caption-text">Triangular (6 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id13" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id14">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_4.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_4.png" />
 <figcaption>
-<p><span class="caption-text">Triangular (3 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id14" title="Link to this image">#</a></p>
+<p><span class="caption-text">Triangular (3 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id14" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id15">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_5.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_5.png" />
 <figcaption>
-<p><span class="caption-text">Line (3 nodes 1D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id15" title="Link to this image">#</a></p>
+<p><span class="caption-text">Line (3 nodes 1D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id15" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id16">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_6.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_6.png" />
 <figcaption>
-<p><span class="caption-text">Line (2 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id16" title="Link to this image">#</a></p>
+<p><span class="caption-text">Line (2 nodes 2D) element coordinate transformation and shape functions.</span><a class="headerlink" href="#id16" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="point-inside-element-works-in-all-dimensions">
-<h4>Point inside element (works in all dimensions)<a class="headerlink" href="#point-inside-element-works-in-all-dimensions" title="Link to this heading">#</a></h4>
+<h4>Point inside element (works in all dimensions)<a class="headerlink" href="#point-inside-element-works-in-all-dimensions" title="Link to this heading">¶</a></h4>
 <figure class="align-center" id="id17">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_7.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_7.png" />
 <figcaption>
-<p><span class="caption-text">Test if given points are inside the element.</span><a class="headerlink" href="#id17" title="Link to this image">#</a></p>
+<p><span class="caption-text">Test if given points are inside the element.</span><a class="headerlink" href="#id17" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="jacobian-graphs">
-<h4>Jacobian graphs<a class="headerlink" href="#jacobian-graphs" title="Link to this heading">#</a></h4>
+<h4>Jacobian graphs<a class="headerlink" href="#jacobian-graphs" title="Link to this heading">¶</a></h4>
 <figure class="align-center" id="id18">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_8.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_8.png" />
 <figcaption>
-<p><span class="caption-text">Serendipity (8 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id18" title="Link to this image">#</a></p>
+<p><span class="caption-text">Serendipity (8 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id18" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id19">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_9.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_9.png" />
 <figcaption>
-<p><span class="caption-text">Quadrilateral (4 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id19" title="Link to this image">#</a></p>
+<p><span class="caption-text">Quadrilateral (4 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id19" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id20">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_10.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_10.png" />
 <figcaption>
-<p><span class="caption-text">Triangular (6 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id20" title="Link to this image">#</a></p>
+<p><span class="caption-text">Triangular (6 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id20" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id21">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_11.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example1_11.png" />
 <figcaption>
-<p><span class="caption-text">Triangular (3 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id21" title="Link to this image">#</a></p>
+<p><span class="caption-text">Triangular (3 nodes 2D) element jacobian graph.</span><a class="headerlink" href="#id21" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="code">
-<h4>Code<a class="headerlink" href="#code" title="Link to this heading">#</a></h4>
+<h4>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">FEM.Elements.E2D.Serendipity</span> <span class="kn">import</span> <span class="n">Serendipity</span>
 <span class="kn">from</span> <span class="nn">FEM.Elements.E2D.Quadrilateral</span> <span class="kn">import</span> <span class="n">Quadrilateral</span>
 <span class="kn">from</span> <span class="nn">FEM.Elements.E2D.LTriangular</span> <span class="kn">import</span> <span class="n">LTriangular</span>
@@ -411,58 +461,58 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 </section>
 <section id="module-Examples.example10">
-<span id="examples-example10-module"></span><h2>Examples.example10 module<a class="headerlink" href="#module-Examples.example10" title="Link to this heading">#</a></h2>
+<span id="examples-example10-module"></span><h2>Examples.example10 module<a class="headerlink" href="#module-Examples.example10" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example11">
-<span id="examples-example11-module"></span><h2>Examples.example11 module<a class="headerlink" href="#module-Examples.example11" title="Link to this heading">#</a></h2>
+<span id="examples-example11-module"></span><h2>Examples.example11 module<a class="headerlink" href="#module-Examples.example11" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example13">
-<span id="examples-example13-module"></span><h2>Examples.example13 module<a class="headerlink" href="#module-Examples.example13" title="Link to this heading">#</a></h2>
+<span id="examples-example13-module"></span><h2>Examples.example13 module<a class="headerlink" href="#module-Examples.example13" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example14">
-<span id="examples-example14-module"></span><h2>Examples.example14 module<a class="headerlink" href="#module-Examples.example14" title="Link to this heading">#</a></h2>
+<span id="examples-example14-module"></span><h2>Examples.example14 module<a class="headerlink" href="#module-Examples.example14" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example15">
-<span id="examples-example15-module"></span><h2>Examples.example15 module<a class="headerlink" href="#module-Examples.example15" title="Link to this heading">#</a></h2>
+<span id="examples-example15-module"></span><h2>Examples.example15 module<a class="headerlink" href="#module-Examples.example15" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example16">
-<span id="examples-example16-module"></span><h2>Examples.example16 module<a class="headerlink" href="#module-Examples.example16" title="Link to this heading">#</a></h2>
+<span id="examples-example16-module"></span><h2>Examples.example16 module<a class="headerlink" href="#module-Examples.example16" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example17">
-<span id="examples-example17-module"></span><h2>Examples.example17 module<a class="headerlink" href="#module-Examples.example17" title="Link to this heading">#</a></h2>
+<span id="examples-example17-module"></span><h2>Examples.example17 module<a class="headerlink" href="#module-Examples.example17" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example18">
-<span id="examples-example18-module"></span><h2>Examples.example18 module<a class="headerlink" href="#module-Examples.example18" title="Link to this heading">#</a></h2>
+<span id="examples-example18-module"></span><h2>Examples.example18 module<a class="headerlink" href="#module-Examples.example18" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example19">
-<span id="examples-example19-module"></span><h2>Examples.example19 module<a class="headerlink" href="#module-Examples.example19" title="Link to this heading">#</a></h2>
+<span id="examples-example19-module"></span><h2>Examples.example19 module<a class="headerlink" href="#module-Examples.example19" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example2">
-<span id="examples-example2-module"></span><h2>Examples.example2 module<a class="headerlink" href="#module-Examples.example2" title="Link to this heading">#</a></h2>
+<span id="examples-example2-module"></span><h2>Examples.example2 module<a class="headerlink" href="#module-Examples.example2" title="Link to this heading">¶</a></h2>
 <section id="geometry-creation-using-triangles-torsion2d">
-<h3>Geometry creation using triangles. Torsion2D<a class="headerlink" href="#geometry-creation-using-triangles-torsion2d" title="Link to this heading">#</a></h3>
+<h3>Geometry creation using triangles. Torsion2D<a class="headerlink" href="#geometry-creation-using-triangles-torsion2d" title="Link to this heading">¶</a></h3>
 <p>An I shape section when a unitary rotation is applied.</p>
 <p>The input mesh is created using the Delaunay class using second order elements.</p>
 <section id="geomery">
-<h4>Geomery<a class="headerlink" href="#geomery" title="Link to this heading">#</a></h4>
+<h4>Geomery<a class="headerlink" href="#geomery" title="Link to this heading">¶</a></h4>
 <figure class="align-center" id="id22">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2_geometry.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2_geometry.png" />
 <figcaption>
-<p><span class="caption-text">Input geometry created using Delaunay triangulations.</span><a class="headerlink" href="#id22" title="Link to this image">#</a></p>
+<p><span class="caption-text">Input geometry created using Delaunay triangulations.</span><a class="headerlink" href="#id22" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="result">
-<h4>Result<a class="headerlink" href="#result" title="Link to this heading">#</a></h4>
+<h4>Result<a class="headerlink" href="#result" title="Link to this heading">¶</a></h4>
 <figure class="align-center" id="id23">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example2.png" />
 <figcaption>
-<p><span class="caption-text">Analysis results.</span><a class="headerlink" href="#id23" title="Link to this image">#</a></p>
+<p><span class="caption-text">Analysis results.</span><a class="headerlink" href="#id23" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="id1">
-<h4>Code<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h4>Code<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span>
 <span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Delaunay</span><span class="p">,</span> <span class="n">Geometry2D</span>
@@ -515,61 +565,61 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 </section>
 <section id="module-Examples.example20">
-<span id="examples-example20-module"></span><h2>Examples.example20 module<a class="headerlink" href="#module-Examples.example20" title="Link to this heading">#</a></h2>
+<span id="examples-example20-module"></span><h2>Examples.example20 module<a class="headerlink" href="#module-Examples.example20" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example21">
-<span id="examples-example21-module"></span><h2>Examples.example21 module<a class="headerlink" href="#module-Examples.example21" title="Link to this heading">#</a></h2>
+<span id="examples-example21-module"></span><h2>Examples.example21 module<a class="headerlink" href="#module-Examples.example21" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example22">
-<span id="examples-example22-module"></span><h2>Examples.example22 module<a class="headerlink" href="#module-Examples.example22" title="Link to this heading">#</a></h2>
+<span id="examples-example22-module"></span><h2>Examples.example22 module<a class="headerlink" href="#module-Examples.example22" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example23">
-<span id="examples-example23-module"></span><h2>Examples.example23 module<a class="headerlink" href="#module-Examples.example23" title="Link to this heading">#</a></h2>
+<span id="examples-example23-module"></span><h2>Examples.example23 module<a class="headerlink" href="#module-Examples.example23" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example24">
-<span id="examples-example24-module"></span><h2>Examples.example24 module<a class="headerlink" href="#module-Examples.example24" title="Link to this heading">#</a></h2>
+<span id="examples-example24-module"></span><h2>Examples.example24 module<a class="headerlink" href="#module-Examples.example24" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example25">
-<span id="examples-example25-module"></span><h2>Examples.example25 module<a class="headerlink" href="#module-Examples.example25" title="Link to this heading">#</a></h2>
+<span id="examples-example25-module"></span><h2>Examples.example25 module<a class="headerlink" href="#module-Examples.example25" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example26">
-<span id="examples-example26-module"></span><h2>Examples.example26 module<a class="headerlink" href="#module-Examples.example26" title="Link to this heading">#</a></h2>
+<span id="examples-example26-module"></span><h2>Examples.example26 module<a class="headerlink" href="#module-Examples.example26" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example27">
-<span id="examples-example27-module"></span><h2>Examples.example27 module<a class="headerlink" href="#module-Examples.example27" title="Link to this heading">#</a></h2>
+<span id="examples-example27-module"></span><h2>Examples.example27 module<a class="headerlink" href="#module-Examples.example27" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example28">
-<span id="examples-example28-module"></span><h2>Examples.example28 module<a class="headerlink" href="#module-Examples.example28" title="Link to this heading">#</a></h2>
+<span id="examples-example28-module"></span><h2>Examples.example28 module<a class="headerlink" href="#module-Examples.example28" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example29">
-<span id="examples-example29-module"></span><h2>Examples.example29 module<a class="headerlink" href="#module-Examples.example29" title="Link to this heading">#</a></h2>
+<span id="examples-example29-module"></span><h2>Examples.example29 module<a class="headerlink" href="#module-Examples.example29" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example3">
-<span id="examples-example3-module"></span><h2>Examples.example3 module<a class="headerlink" href="#module-Examples.example3" title="Link to this heading">#</a></h2>
+<span id="examples-example3-module"></span><h2>Examples.example3 module<a class="headerlink" href="#module-Examples.example3" title="Link to this heading">¶</a></h2>
 <section id="id2">
-<h3>Geometry creation using triangles. Torsion2D<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h3>Geometry creation using triangles. Torsion2D<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <p>An square shape section when a unitary rotation is applied.</p>
 <p>The input mesh is created using the Delaunay class using second order elements.</p>
 <section id="id3">
-<h4>Geomery<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<h4>Geomery<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <figure class="align-center" id="id24">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example3_geometry.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example3_geometry.png" />
 <figcaption>
-<p><span class="caption-text">Input geometry created using Delaunay triangulations.</span><a class="headerlink" href="#id24" title="Link to this image">#</a></p>
+<p><span class="caption-text">Input geometry created using Delaunay triangulations.</span><a class="headerlink" href="#id24" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="id4">
-<h4>Result<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<h4>Result<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <figure class="align-center" id="id25">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example3.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example3.png" />
 <figcaption>
-<p><span class="caption-text">Analysis results.</span><a class="headerlink" href="#id25" title="Link to this image">#</a></p>
+<p><span class="caption-text">Analysis results.</span><a class="headerlink" href="#id25" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="id5">
-<h4>Code<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<h4>Code<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span>
 <span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Geometry2D</span><span class="p">,</span> <span class="n">Delaunay</span>
@@ -600,39 +650,39 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 </section>
 <section id="module-Examples.example30">
-<span id="examples-example30-module"></span><h2>Examples.example30 module<a class="headerlink" href="#module-Examples.example30" title="Link to this heading">#</a></h2>
+<span id="examples-example30-module"></span><h2>Examples.example30 module<a class="headerlink" href="#module-Examples.example30" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example31">
-<span id="examples-example31-module"></span><h2>Examples.example31 module<a class="headerlink" href="#module-Examples.example31" title="Link to this heading">#</a></h2>
+<span id="examples-example31-module"></span><h2>Examples.example31 module<a class="headerlink" href="#module-Examples.example31" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example32">
-<span id="examples-example32-module"></span><h2>Examples.example32 module<a class="headerlink" href="#module-Examples.example32" title="Link to this heading">#</a></h2>
+<span id="examples-example32-module"></span><h2>Examples.example32 module<a class="headerlink" href="#module-Examples.example32" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example33">
-<span id="examples-example33-module"></span><h2>Examples.example33 module<a class="headerlink" href="#module-Examples.example33" title="Link to this heading">#</a></h2>
+<span id="examples-example33-module"></span><h2>Examples.example33 module<a class="headerlink" href="#module-Examples.example33" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example34">
-<span id="examples-example34-module"></span><h2>Examples.example34 module<a class="headerlink" href="#module-Examples.example34" title="Link to this heading">#</a></h2>
+<span id="examples-example34-module"></span><h2>Examples.example34 module<a class="headerlink" href="#module-Examples.example34" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example35">
-<span id="examples-example35-module"></span><h2>Examples.example35 module<a class="headerlink" href="#module-Examples.example35" title="Link to this heading">#</a></h2>
+<span id="examples-example35-module"></span><h2>Examples.example35 module<a class="headerlink" href="#module-Examples.example35" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example36">
-<span id="examples-example36-module"></span><h2>Examples.example36 module<a class="headerlink" href="#module-Examples.example36" title="Link to this heading">#</a></h2>
+<span id="examples-example36-module"></span><h2>Examples.example36 module<a class="headerlink" href="#module-Examples.example36" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example37">
-<span id="examples-example37-module"></span><h2>Examples.example37 module<a class="headerlink" href="#module-Examples.example37" title="Link to this heading">#</a></h2>
+<span id="examples-example37-module"></span><h2>Examples.example37 module<a class="headerlink" href="#module-Examples.example37" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example39">
-<span id="examples-example39-module"></span><h2>Examples.example39 module<a class="headerlink" href="#module-Examples.example39" title="Link to this heading">#</a></h2>
+<span id="examples-example39-module"></span><h2>Examples.example39 module<a class="headerlink" href="#module-Examples.example39" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example4">
-<span id="examples-example4-module"></span><h2>Examples.example4 module<a class="headerlink" href="#module-Examples.example4" title="Link to this heading">#</a></h2>
+<span id="examples-example4-module"></span><h2>Examples.example4 module<a class="headerlink" href="#module-Examples.example4" title="Link to this heading">¶</a></h2>
 <section id="ordinary-diferential-equation-1d">
-<h3>Ordinary diferential equation 1D<a class="headerlink" href="#ordinary-diferential-equation-1d" title="Link to this heading">#</a></h3>
+<h3>Ordinary diferential equation 1D<a class="headerlink" href="#ordinary-diferential-equation-1d" title="Link to this heading">¶</a></h3>
 <p>The current file ust the general formulation of the EDO1D Class using custom function coeficients.</p>
 <section id="id6">
-<h4>Geomery<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<h4>Geomery<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[a(x)\frac{d^2u}{dx^2}+c(x)u=f(x)\]</div>
@@ -663,16 +713,16 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </div>
 </section>
 <section id="id7">
-<h4>Result<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<h4>Result<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
 <figure class="align-center" id="id26">
 <img alt="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example4.png" src="https://raw.githubusercontent.com/ZibraMax/FEM/master/Examples/examples_results/example4.png" />
 <figcaption>
-<p><span class="caption-text">Analysis results.</span><a class="headerlink" href="#id26" title="Link to this image">#</a></p>
+<p><span class="caption-text">Analysis results.</span><a class="headerlink" href="#id26" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="id8">
-<h4>Code<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<h4>Code<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">FEM.EDO1D</span> <span class="kn">import</span> <span class="n">EDO1D</span>
 <span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Lineal</span>
@@ -699,48 +749,48 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 </section>
 <section id="module-Examples.example40">
-<span id="examples-example40-module"></span><h2>Examples.example40 module<a class="headerlink" href="#module-Examples.example40" title="Link to this heading">#</a></h2>
+<span id="examples-example40-module"></span><h2>Examples.example40 module<a class="headerlink" href="#module-Examples.example40" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example41">
-<span id="examples-example41-module"></span><h2>Examples.example41 module<a class="headerlink" href="#module-Examples.example41" title="Link to this heading">#</a></h2>
+<span id="examples-example41-module"></span><h2>Examples.example41 module<a class="headerlink" href="#module-Examples.example41" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example42">
-<span id="examples-example42-module"></span><h2>Examples.example42 module<a class="headerlink" href="#module-Examples.example42" title="Link to this heading">#</a></h2>
+<span id="examples-example42-module"></span><h2>Examples.example42 module<a class="headerlink" href="#module-Examples.example42" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example43">
-<span id="examples-example43-module"></span><h2>Examples.example43 module<a class="headerlink" href="#module-Examples.example43" title="Link to this heading">#</a></h2>
+<span id="examples-example43-module"></span><h2>Examples.example43 module<a class="headerlink" href="#module-Examples.example43" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example44">
-<span id="examples-example44-module"></span><h2>Examples.example44 module<a class="headerlink" href="#module-Examples.example44" title="Link to this heading">#</a></h2>
+<span id="examples-example44-module"></span><h2>Examples.example44 module<a class="headerlink" href="#module-Examples.example44" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example45">
-<span id="examples-example45-module"></span><h2>Examples.example45 module<a class="headerlink" href="#module-Examples.example45" title="Link to this heading">#</a></h2>
+<span id="examples-example45-module"></span><h2>Examples.example45 module<a class="headerlink" href="#module-Examples.example45" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example46">
-<span id="examples-example46-module"></span><h2>Examples.example46 module<a class="headerlink" href="#module-Examples.example46" title="Link to this heading">#</a></h2>
+<span id="examples-example46-module"></span><h2>Examples.example46 module<a class="headerlink" href="#module-Examples.example46" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example47">
-<span id="examples-example47-module"></span><h2>Examples.example47 module<a class="headerlink" href="#module-Examples.example47" title="Link to this heading">#</a></h2>
+<span id="examples-example47-module"></span><h2>Examples.example47 module<a class="headerlink" href="#module-Examples.example47" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example5">
-<span id="examples-example5-module"></span><h2>Examples.example5 module<a class="headerlink" href="#module-Examples.example5" title="Link to this heading">#</a></h2>
+<span id="examples-example5-module"></span><h2>Examples.example5 module<a class="headerlink" href="#module-Examples.example5" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example51">
-<span id="examples-example51-module"></span><h2>Examples.example51 module<a class="headerlink" href="#module-Examples.example51" title="Link to this heading">#</a></h2>
+<span id="examples-example51-module"></span><h2>Examples.example51 module<a class="headerlink" href="#module-Examples.example51" title="Link to this heading">¶</a></h2>
 </section>
 <section id="examples-example52-module">
-<h2>Examples.example52 module<a class="headerlink" href="#examples-example52-module" title="Link to this heading">#</a></h2>
+<h2>Examples.example52 module<a class="headerlink" href="#examples-example52-module" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example53">
-<span id="examples-example53-module"></span><h2>Examples.example53 module<a class="headerlink" href="#module-Examples.example53" title="Link to this heading">#</a></h2>
+<span id="examples-example53-module"></span><h2>Examples.example53 module<a class="headerlink" href="#module-Examples.example53" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example54">
-<span id="examples-example54-module"></span><h2>Examples.example54 module<a class="headerlink" href="#module-Examples.example54" title="Link to this heading">#</a></h2>
+<span id="examples-example54-module"></span><h2>Examples.example54 module<a class="headerlink" href="#module-Examples.example54" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example6">
-<span id="examples-example6-module"></span><h2>Examples.example6 module<a class="headerlink" href="#module-Examples.example6" title="Link to this heading">#</a></h2>
+<span id="examples-example6-module"></span><h2>Examples.example6 module<a class="headerlink" href="#module-Examples.example6" title="Link to this heading">¶</a></h2>
 <section id="test-of-point-inside-volumen-3d-elements">
-<h3>Test of point inside volumen (3D elements)<a class="headerlink" href="#test-of-point-inside-volumen-3d-elements" title="Link to this heading">#</a></h3>
+<h3>Test of point inside volumen (3D elements)<a class="headerlink" href="#test-of-point-inside-volumen-3d-elements" title="Link to this heading">¶</a></h3>
 <p>This example creates a 3D Brick element and test if a given set of points are inside the element.</p>
 <p>Coords and gdls (degrees of freedom) are given by a Numpy ndarray matrix.</p>
 <p>In the coordinate matrix, each row represents a node of the element and each column a dimension.
@@ -748,7 +798,7 @@ For example, a 2D triangular element of 3 nodes must have a 3x2 matrix.</p>
 <p>In the gdls matrix, each row represents a variable of the node and each column a node.
 For example, a 2D triangular element of 3 nodes and 2 variables per node (plane stress) must have a 2x3 gdls matrix.</p>
 <section id="id9">
-<h4>Code<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<h4>Code<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">FEM.Elements.E3D.Brick</span> <span class="kn">import</span> <span class="n">Brick</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -778,12 +828,12 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 </section>
 <section id="module-Examples.example7">
-<span id="examples-example7-module"></span><h2>Examples.example7 module<a class="headerlink" href="#module-Examples.example7" title="Link to this heading">#</a></h2>
+<span id="examples-example7-module"></span><h2>Examples.example7 module<a class="headerlink" href="#module-Examples.example7" title="Link to this heading">¶</a></h2>
 <section id="creation-of-3d-elements">
-<h3>Creation of 3D elements<a class="headerlink" href="#creation-of-3d-elements" title="Link to this heading">#</a></h3>
+<h3>Creation of 3D elements<a class="headerlink" href="#creation-of-3d-elements" title="Link to this heading">¶</a></h3>
 <p>3D Elasticity beam problem using 8 node brick elements.</p>
 <section id="id10">
-<h4>Code<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<h4>Code<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">FEM.Elasticity3D</span> <span class="kn">import</span> <span class="n">Elasticity</span>
@@ -858,19 +908,19 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 </section>
 <section id="module-Examples.example9">
-<span id="examples-example9-module"></span><h2>Examples.example9 module<a class="headerlink" href="#module-Examples.example9" title="Link to this heading">#</a></h2>
+<span id="examples-example9-module"></span><h2>Examples.example9 module<a class="headerlink" href="#module-Examples.example9" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example_axial">
-<span id="examples-example-axial-module"></span><h2>Examples.example_axial module<a class="headerlink" href="#module-Examples.example_axial" title="Link to this heading">#</a></h2>
+<span id="examples-example-axial-module"></span><h2>Examples.example_axial module<a class="headerlink" href="#module-Examples.example_axial" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example_cat">
-<span id="examples-example-cat-module"></span><h2>Examples.example_cat module<a class="headerlink" href="#module-Examples.example_cat" title="Link to this heading">#</a></h2>
+<span id="examples-example-cat-module"></span><h2>Examples.example_cat module<a class="headerlink" href="#module-Examples.example_cat" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example_ojo">
-<span id="examples-example-ojo-module"></span><h2>Examples.example_ojo module<a class="headerlink" href="#module-Examples.example_ojo" title="Link to this heading">#</a></h2>
+<span id="examples-example-ojo-module"></span><h2>Examples.example_ojo module<a class="headerlink" href="#module-Examples.example_ojo" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example_ojo_mitad">
-<span id="examples-example-ojo-mitad-module"></span><h2>Examples.example_ojo_mitad module<a class="headerlink" href="#module-Examples.example_ojo_mitad" title="Link to this heading">#</a></h2>
+<span id="examples-example-ojo-mitad-module"></span><h2>Examples.example_ojo_mitad module<a class="headerlink" href="#module-Examples.example_ojo_mitad" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -1038,9 +1088,9 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
     </aside>
   </div>
 </div><script src="../_static/documentation_options.js?v=0290cc9f"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
