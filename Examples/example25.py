@@ -78,7 +78,7 @@ if __name__ == '__main__':
     O = PlaneStrainSparse(geometria, E, v, verbose=True)
     O.elementMatrices()
     O.ensembling()
-    O.borderConditions()
+    O.boundaryConditions()
     O.solveES()
     O.postProcess()
     O.exportJSON("Examples/Mesh_tests/Example25.json")

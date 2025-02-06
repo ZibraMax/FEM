@@ -87,7 +87,7 @@ class PlaneStressOrthotropic(Core):
             self.C66.append(C66)
         if not geometry.nvn == 2:
             logging.warning(
-                'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)\nRegenerating Geoemtry...')
+                'Boundary conditions lost, please usea a geometry with 2 variables per node (nvn=2)\nRegenerating Geoemtry...')
             geometry.nvn = 2
             geometry.cbe = []
             geometry.cbn = []
@@ -149,22 +149,22 @@ class PlaneStressOrthotropic(Core):
                 Fe += self.t[ee]*(P.T@np.array([[self.fx(_x[k])],
                                                 [self.fy(_x[k])]]))*detjac[k]*e.W[k]
 
-            if e.intBorders:  # Cambiar esto a la notación matricial
-                for j in range(len(e.borders)):
-                    border = e.borders[j]
-                    if (len(border.properties['load_x']) + len(border.properties['load_y'])):
-                        _x, _p = e.T(e.Tj[j](border.Z.T))
-                        _s = border.TS(border.Z.T)
-                        detjac = border.coords[-1, 0]*0.5
+            if e.intBoundary:  # Cambiar esto a la notación matricial
+                for j in range(len(e.boundaries)):
+                    boundary = e.boundaries[j]
+                    if (len(boundary.properties['load_x']) + len(boundary.properties['load_y'])):
+                        _x, _p = e.T(e.Tj[j](boundary.Z.T))
+                        _s = boundary.TS(boundary.Z.T)
+                        detjac = boundary.coords[-1, 0]*0.5
                         for i in range(m):
-                            for fx in border.properties['load_x']:
-                                for k in range(len(border.Z)):
+                            for fx in boundary.properties['load_x']:
+                                for k in range(len(boundary.Z)):
                                     Fux[i, 0] += fx(_s[k, 0])*_p[k, i] * \
-                                        detjac*border.W[k]
-                            for fy in border.properties['load_y']:
-                                for k in range(len(border.Z)):
+                                        detjac*boundary.W[k]
+                            for fy in boundary.properties['load_y']:
+                                for k in range(len(boundary.Z)):
                                     Fvx[i, 0] += fy(_s[k, 0])*_p[k, i] * \
-                                        detjac*border.W[k]
+                                        detjac*boundary.W[k]
             subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
             e.Fe = Fe
             e.Ke = Ke
@@ -350,7 +350,7 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
         """
         if not geometry.nvn == 2:
             logging.warning(
-                'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)\nRegenerating Geoemtry...')
+                'Boundary conditions lost, please usea a geometry with 2 variables per node (nvn=2)\nRegenerating Geoemtry...')
             geometry.nvn = 2
             geometry.cbe = []
             geometry.cbn = []
@@ -411,22 +411,22 @@ class PlaneStressOrthotropicSparse(PlaneStressOrthotropic):
                 Fe += self.t[ee]*(P.T@np.array([[self.fx(_x[k])],
                                                 [self.fy(_x[k])]]))*detjac[k]*e.W[k]
 
-            if e.intBorders:  # Cambiar esto a la notación matricial
-                for j in range(len(e.borders)):
-                    border = e.borders[j]
-                    if (len(border.properties['load_x']) + len(border.properties['load_y'])):
-                        _x, _p = e.T(e.Tj[j](border.Z.T))
-                        _s = border.TS(border.Z.T)
-                        detjac = border.coords[-1, 0]*0.5
+            if e.intBoundary:  # Cambiar esto a la notación matricial
+                for j in range(len(e.boundaries)):
+                    boundary = e.boundaries[j]
+                    if (len(boundary.properties['load_x']) + len(boundary.properties['load_y'])):
+                        _x, _p = e.T(e.Tj[j](boundary.Z.T))
+                        _s = boundary.TS(boundary.Z.T)
+                        detjac = boundary.coords[-1, 0]*0.5
                         for i in range(m):
-                            for fx in border.properties['load_x']:
-                                for k in range(len(border.Z)):
+                            for fx in boundary.properties['load_x']:
+                                for k in range(len(boundary.Z)):
                                     Fux[i, 0] += fx(_s[k, 0])*_p[k, i] * \
-                                        detjac*border.W[k]
-                            for fy in border.properties['load_y']:
-                                for k in range(len(border.Z)):
+                                        detjac*boundary.W[k]
+                            for fy in boundary.properties['load_y']:
+                                for k in range(len(boundary.Z)):
                                     Fvx[i, 0] += fy(_s[k, 0])*_p[k, i] * \
-                                        detjac*border.W[k]
+                                        detjac*boundary.W[k]
             subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
             Fe[np.ix_(subm[0])] += Fux
             Fe[np.ix_(subm[1])] += Fvx
@@ -702,22 +702,22 @@ class PlaneStressNonLocalSparse(PlaneStressSparse):
             Fe += self.t[ee]*(P.T@np.array([[self.fx(_x[k])],
                                             [self.fy(_x[k])]]))*detjac[k]*e.W[k]
 
-        if e.intBorders:  # Cambiar esto a la notación matricial
-            for j in range(len(e.borders)):
-                border = e.borders[j]
-                if (len(border.properties['load_x']) + len(border.properties['load_y'])):
-                    _x, _p = e.T(e.Tj[j](border.Z.T))
-                    _s = border.TS(border.Z.T)
-                    detjac = border.coords[-1, 0]*0.5
+        if e.intBoundary:  # Cambiar esto a la notación matricial
+            for j in range(len(e.boundaries)):
+                boundary = e.boundaries[j]
+                if (len(boundary.properties['load_x']) + len(boundary.properties['load_y'])):
+                    _x, _p = e.T(e.Tj[j](boundary.Z.T))
+                    _s = boundary.TS(boundary.Z.T)
+                    detjac = boundary.coords[-1, 0]*0.5
                     for i in range(m):
-                        for fx in border.properties['load_x']:
-                            for k in range(len(border.Z)):
+                        for fx in boundary.properties['load_x']:
+                            for k in range(len(boundary.Z)):
                                 Fux[i, 0] += fx(_s[k, 0])*_p[k, i] * \
-                                    detjac*border.W[k]
-                        for fy in border.properties['load_y']:
-                            for k in range(len(border.Z)):
+                                    detjac*boundary.W[k]
+                        for fy in boundary.properties['load_y']:
+                            for k in range(len(boundary.Z)):
                                 Fvx[i, 0] += fy(_s[k, 0])*_p[k, i] * \
-                                    detjac*border.W[k]
+                                    detjac*boundary.W[k]
         subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
         Fe[np.ix_(subm[0])] += Fux
         Fe[np.ix_(subm[1])] += Fvx
@@ -997,22 +997,22 @@ class PlaneStressNonLocalSparseNonHomogeneous(PlaneStressSparse):
             Fe += self.t[ee]*(P.T@np.array([[self.fx(_x[k])],
                                             [self.fy(_x[k])]]))*detjac[k]*e.W[k]
 
-        if e.intBorders:  # Cambiar esto a la notación matricial
-            for j in range(len(e.borders)):
-                border = e.borders[j]
-                if (len(border.properties['load_x']) + len(border.properties['load_y'])):
-                    _x, _p = e.T(e.Tj[j](border.Z.T))
-                    _s = border.TS(border.Z.T)
-                    detjac = border.coords[-1, 0]*0.5
+        if e.intBoundary:  # Cambiar esto a la notación matricial
+            for j in range(len(e.boundaries)):
+                boundary = e.boundaries[j]
+                if (len(boundary.properties['load_x']) + len(boundary.properties['load_y'])):
+                    _x, _p = e.T(e.Tj[j](boundary.Z.T))
+                    _s = boundary.TS(boundary.Z.T)
+                    detjac = boundary.coords[-1, 0]*0.5
                     for i in range(m):
-                        for fx in border.properties['load_x']:
-                            for k in range(len(border.Z)):
+                        for fx in boundary.properties['load_x']:
+                            for k in range(len(boundary.Z)):
                                 Fux[i, 0] += fx(_s[k, 0])*_p[k, i] * \
-                                    detjac*border.W[k]
-                        for fy in border.properties['load_y']:
-                            for k in range(len(border.Z)):
+                                    detjac*boundary.W[k]
+                        for fy in boundary.properties['load_y']:
+                            for k in range(len(boundary.Z)):
                                 Fvx[i, 0] += fy(_s[k, 0])*_p[k, i] * \
-                                    detjac*border.W[k]
+                                    detjac*boundary.W[k]
         subm = np.linspace(0, 2*m-1, 2*m).reshape([2, m]).astype(int)
         Fe[np.ix_(subm[0])] += Fux
         Fe[np.ix_(subm[1])] += Fvx

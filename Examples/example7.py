@@ -149,7 +149,7 @@ if __name__ == '__main__':
 
     O = Elasticity(geometria, E, v, gamma, fy=fy, verbose=True)
     O.solve()
-    O.geometry.detectBorderElements()
+    O.geometry.detectBoundaryElements()
     O.exportJSON("Examples/Mesh_tests/Example7.json")
     # coords = [[0.0, 0.0, b/2], [L, 0.0, b/2], [L, h, b/2], [0, h, b/2]]
     # x, resultU, resultDU = O.profile(coords, 20)

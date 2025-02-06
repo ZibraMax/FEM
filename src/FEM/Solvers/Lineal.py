@@ -34,7 +34,7 @@ class Lineal(Solver):
         self.system.elementMatrices()
         logging.info('Done!')
         self.system.ensembling()
-        self.system.borderConditions()
+        self.system.boundaryConditions()
         logging.info('Solving equation system...')
         self.solutions = [np.linalg.solve(self.system.K, self.system.S)]
         self.solutions_info = [{'solver-type': self.type}]
@@ -69,7 +69,7 @@ class LinealSparse(Lineal):
         self.system.elementMatrices()
         logging.info('Done!')
         self.system.ensembling()
-        self.system.borderConditions()
+        self.system.boundaryConditions()
         logging.info('Converting to csr format')
         self.system.K = self.system.K.tocsr()
         logging.info('Solving...')

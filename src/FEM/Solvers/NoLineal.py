@@ -74,8 +74,8 @@ class Newton(NonLinealSolver):
             logging.debug('Calculating element matrix')
             self.system.ensembling()
             logging.debug('Matrices enssembling')
-            self.system.borderConditions()
-            logging.debug('Border conditions')
+            self.system.boundaryConditions()
+            logging.debug('Boundary conditions')
             R = self.system.K@self.system.U - self.system.S
             logging.debug('Residual')
             try:
@@ -144,8 +144,8 @@ class DirectIteration(NonLinealSolver):
             logging.debug('Calculating element matrix')
             self.system.ensembling()
             logging.debug('Matrices enssembling')
-            self.system.borderConditions()
-            logging.debug('Border conditions')
+            self.system.boundaryConditions()
+            logging.debug('Boundary conditions')
             uim11 = self.system.U.copy()
             try:
                 self.system.U = np.linalg.solve(self.system.K, self.system.S)

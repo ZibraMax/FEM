@@ -19,8 +19,8 @@ if __name__ == '__main__':
             vert (int, optional): Number of vertices of polygon. Defaults to 8.
             areaLDUM (float, optional): Maximun trinagle area for the LDUM. Defaults to 0.5.
             areaHDUM (float, optional): Maximun trinagle area for the HDUM. Defaults to 0.0425.
-            bc (list or None, optional): List of borders in which border conditions will be applied. If none, the border conditions is applied in all borders. Defaults to None.
-            valuebc (float, optional): Border condition value. Defaults to 0.0.
+            bc (list or None, optional): List of boundaries in which boundary conditions will be applied. If none, the boundary conditions is applied in all boundaries. Defaults to None.
+            valuebc (float, optional): Boundary condition value. Defaults to 0.0.
 
         Returns:
             Tuple[Torsion2D]: LDUM and HDUM as Torsion2D objects.

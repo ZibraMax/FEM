@@ -29,5 +29,5 @@ if __name__ == '__main__':
     gdl = np.array([[1, 2, 3, 4]])
     e4 = Quadrilateral(coords, gdl)
 
-    e.borders[0].draw()
+    e.boundaries[0].draw()
     plt.show()

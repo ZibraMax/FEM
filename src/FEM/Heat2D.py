@@ -1,4 +1,4 @@
-"""2D Stady state heat with convective border conditions
+"""2D Stady state heat with convective boundary conditions
 """
 
 
@@ -9,14 +9,14 @@ from typing import Callable, Tuple
 
 
 class Heat2D(Core):
-    """Creates a Heat2D problem with convective borders
+    """Creates a Heat2D problem with convective boundaries
 
     The differential equation is:
 
     .. math::
         -\\frac{\\partial}{\\partial x}\\left(k_x\\frac{\\partial T}{\\partial x}\\right) - \\frac{\\partial}{\\partial y}\\left(k_y\\frac{\\partial T}{\\partial y}\\right)=f(x,y)
 
-    With convective border conditions:
+    With convective boundary conditions:
 
     .. math::
         k_x\\frac{\\partial T}{\\partial x}n_x+k_y\\frac{\\partial T}{\\partial y}n_y+\\beta (T-T_\\infty)=\\hat{q_n}
@@ -29,14 +29,14 @@ class Heat2D(Core):
         """
 
     def __init__(self, geometry: Geometry, kx: Tuple[float, list], ky: Tuple[float, list], f: Callable = None, **kargs) -> None:
-        """Creates a Heat2D problem with convective borders
+        """Creates a Heat2D problem with convective boundaries
 
         The differential equation is:
 
         .. math::
             -\\frac{\\partial}{\\partial x}\\left(k_x\\frac{\\partial T}{\\partial x}\\right) - \\frac{\\partial}{\\partial y}\\left(k_y\\frac{\\partial T}{\\partial y}\\right)=f(x,y)
 
-        With convective border conditions:
+        With convective boundary conditions:
 
         .. math::
             k_x\\frac{\\partial T}{\\partial x}n_x+k_y\\frac{\\partial T}{\\partial y}n_y+\\beta (T-T_\\infty)=\\hat{q_n}
@@ -86,32 +86,32 @@ class Heat2D(Core):
                     for k in range(len(e.Z)):
                         F[i][0] += _p[k, i] * self.f(_x[k])*detjac[k]*e.W[k]
 
-            if e.intBorders:
-                for j in range(len(e.borders)):
-                    border = e.borders[j]
-                    if len(border.properties['load_x']):
-                        _x, _p = e.T(e.Tj[j](border.Z.T))
-                        _s = border.TS(border.Z.T)
-                        detjac = border.coords[-1, 0]*0.5
+            if e.intBoundary:
+                for j in range(len(e.boundaries)):
+                    boundary = e.boundaries[j]
+                    if len(boundary.properties['load_x']):
+                        _x, _p = e.T(e.Tj[j](boundary.Z.T))
+                        _s = boundary.TS(boundary.Z.T)
+                        detjac = boundary.coords[-1, 0]*0.5
                         for i in range(m):
-                            for fx in border.properties['load_x']:
-                                for k in range(len(border.Z)):
-                                    P[i, 0] += border.properties['Ta']*fx(_s[k, 0])*_p[k, i] * \
-                                        detjac*border.W[k]
+                            for fx in boundary.properties['load_x']:
+                                for k in range(len(boundary.Z)):
+                                    P[i, 0] += boundary.properties['Ta']*fx(_s[k, 0])*_p[k, i] * \
+                                        detjac*boundary.W[k]
                                 for j in range(m):
-                                    for k in range(len(border.Z)):
+                                    for k in range(len(boundary.Z)):
                                         H[i, j] += fx(_s[k, 0])*_p[k, i] * _p[k, j] * \
-                                            detjac*border.W[k]
+                                            detjac*boundary.W[k]
             e.Fe += F+P
             e.Ke += K+H
 
     def defineConvectiveBoderConditions(self, region: int, beta: float = 0, Ta: float = 0) -> None:
-        """Define convective borders
+        """Define convective boundaries
 
         Args:
             region (int): region in wich load will be applied
             beta (float, optional): Convective coeficient :math:`\\beta` . Defaults to 0.
-            Ta (float, optional): Ambient temperature in convective border. Defaults to 0.
+            Ta (float, optional): Ambient temperature in convective boundary. Defaults to 0.
         """
         self.geometry.loadOnRegion(
             region, fx=lambda s: beta, add={'Ta': Ta})

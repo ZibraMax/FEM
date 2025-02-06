@@ -16,23 +16,23 @@ class Element():
         coords (np.ndarray): Vertical coordinates matrix
         _coords (np.ndarray): Vertical coordinates matrix for graphical interfaces
         gdl (np.ndarray): Degree of freedom matrix. Each row is a variable.
-        border (bool): True if the element is part of the border domain of another element.
+        boundary (bool): True if the element is part of the boundary domain of another element.
     """
 
-    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, border: bool = False, fast: bool = False) -> None:
+    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, boundary: bool = False, fast: bool = False) -> None:
         """Generates a generic element.
 
         Args:
             coords (np.ndarray): Vertical coordinates matrix
             _coords (np.ndarray): Vertical coordinates matrix for graphical interfaces
             gdl (np.ndarray): Degree of freedom matrix. Each row is a variable.
-            border (bool): True if the element is part of the border domain of another element.
+            boundary (bool): True if the element is part of the boundary domain of another element.
             fast (bool): If True, the element does not record Ke, Me, Fe, Qe. Defaults to False.
         """
 
         self.coords = coords
         self._coords = _coords
-        self.border = border
+        self.boundary = boundary
         self.gdl = gdl
         self.fast = fast
         self.gdlm = []
@@ -42,11 +42,11 @@ class Element():
         self.n = int(len(self.gdl)*len(self.gdl[0]))
         # TODO this was only intended for 2D plane stress/strain elements
         self.properties = {'load_x': [], 'load_y': []}
-        self.intBorders = False
+        self.intBoundary = False
         self._x, self._p = self.T(self.Z.T)
         self.jacs, self.dpz = self.J(self.Z.T)
         self._xcenter = self.T(self.center.T)[0].flatten()
-        if not self.border:  # Border elements do not satisfy coordinate transformation requirements
+        if not self.boundary:  # Boundary elements do not satisfy coordinate transformation requirements
             if not self.fast:  # Fast elements are for sparse matrix assembly
                 self.Ke = np.zeros([self.n, self.n])
                 self.Fe = np.zeros([self.n, 1])
@@ -61,7 +61,7 @@ class Element():
     def restartMatrix(self) -> None:
         """Sets all element matrices and vectors to 0
         """
-        if not self.border:
+        if not self.boundary:
             self.Ke[:, :] = 0.0
             self.Fe[:, :] = 0.0
             self.Ue[:, :] = 0.0
@@ -80,7 +80,7 @@ class Element():
         return p@self.coords, p
 
     def TS(self, z):
-        """Returns the transformation of a given set of points in the element. This method is used for border elements
+        """Returns the transformation of a given set of points in the element. This method is used for boundary elements
 
         Args:
             z (np.ndarray): Natural coordinates matrix. Each row is a dimension, each column is a point.

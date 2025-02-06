@@ -50,13 +50,13 @@ Please make sure to update tests as appropriate.
 Avaliable equations:
 
 -   1D 1 Variable ordinary diferential equation
--   1D 1 Variable 1D Heat with convective border
+-   1D 1 Variable 1D Heat with convective boundary
 -   1D 2 Variable Euler Bernoulli Beams
 -   1D 3 Variable Non-linear Euler Bernoulli Beams
 -   2D 1 Variable Torsion
 -   2D 1 Variable Poisson equation
 -   2D 1 Variable second order PDE
--   2D 1 Variable 2D Heat with convective borders
+-   2D 1 Variable 2D Heat with convective boundaries
 -   2D 2 Variable Plane Strees
 -   2D 2 Variable Plane Strees Orthotropic
 -   2D 2 Variable Plane Strain
@@ -65,18 +65,18 @@ Avaliable equations:
 Numerical Validation:
 
 -   [x] 1D 1 Variable ordinary diferential equation
--   [ ] 1D 1 Variable 1D Heat with convective border
+-   [ ] 1D 1 Variable 1D Heat with convective boundary
 -   [ ] 1D 2 Variable Euler Bernoulli Beams
 -   [ ] 1D 3 Variable Non-linear Euler Bernoulli Beams
 -   [x] 2D 1 Variable Torsion
--   [ ] 2D 1 Variable 2D Heat with convective borders
+-   [ ] 2D 1 Variable 2D Heat with convective boundaries
 -   [x] 2D 2 Variable Plane Strees
 -   [x] 2D 2 Variable Plane Strain
 
 #### Steps:
 
 -   Create geometry
--   Create Border Conditions (Point and regions supported)
+-   Create Boundary Conditions (Point and regions supported)
 -   Solve!
 -   For example: Example 2, Example 5, Example 11-14
 

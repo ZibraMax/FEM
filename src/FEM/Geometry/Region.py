@@ -1,4 +1,4 @@
-"""Defines geometry region. Regions are used to set border conditions and loads to 2D and 3D problems"""
+"""Defines geometry region. Regions are used to set boundary conditions and loads to 2D and 3D problems"""
 
 import numpy as np
 
@@ -95,7 +95,8 @@ class Region2D(Region):
             ELE = QTriangular
         elif lc == 8:
             ELE = Serendipity
-        self.e = ELE(coords, np.array([[-1]*lc]), n=1, fast=True, border=True)
+        self.e = ELE(coords, np.array([[-1]*lc]),
+                     n=1, fast=True, boundary=True)
         self.center, _ = self.e.T(self.e.center.T)
         _j, _ = self.e.J(self.e.center.T)
         self.n = np.cross(_j[:, 0].T, _j[:, 1].T, axis=0)

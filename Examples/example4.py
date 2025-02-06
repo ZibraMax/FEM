@@ -53,7 +53,7 @@ Code
     def c(x): return (x[0]-3)
     def f(x): return (x[0]**2-2)*6+(x[0]-3)*(3*x[0]**2)
 
-    # Define border conditions. List of border conditions. In the first node, value=0.0, in the last node, value = 3.0
+    # Define boundary conditions. List of boundary conditions. In the first node, value=0.0, in the last node, value = 3.0
     cbe = [[0, 0.0], [-1, 3.0]]
 
     lenght = 1

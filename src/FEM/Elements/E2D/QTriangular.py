@@ -54,18 +54,18 @@ class QTriangular(Element2D, TriangularScheme):
         delta = coords[0]-coords[1]
         he1 = np.linalg.norm(delta)
         e1 = QuadraticElement(np.array([[0], [he1*0.5], [he1]]),
-                              np.array([[-1, -1, -1]]), border=True)
+                              np.array([[-1, -1, -1]]), boundary=True)
 
         delta = coords[2]-coords[1]
         he2 = np.linalg.norm(delta)
         e2 = QuadraticElement(np.array([[0], [he2*0.5], [he2]]),
-                              np.array([[-1, -1, -1]]), border=True)
+                              np.array([[-1, -1, -1]]), boundary=True)
 
         delta = coords[0]-coords[2]
         he3 = np.linalg.norm(coords[0]-coords[2])
         e3 = QuadraticElement(np.array([[0], [he3*0.5], [he3]]),
-                              np.array([[-1, -1, -1]]), border=True)
-        self.borders = [e1, e2, e3]
+                              np.array([[-1, -1, -1]]), boundary=True)
+        self.boundaries = [e1, e2, e3]
 
         _coords = np.array([coords[i] for i in range(3)])
         TriangularScheme.__init__(self, n, **kargs)

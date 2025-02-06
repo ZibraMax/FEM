@@ -58,7 +58,7 @@ class Elasticity(Core):
         self.fz = fz
         if not geometry.nvn == 3:
             print(
-                'Border conditions lost, please usea a geometry with 3 variables per node (nvn=3)\nRegenerating Geoemtry...')
+                'Boundary conditions lost, please usea a geometry with 3 variables per node (nvn=3)\nRegenerating Geoemtry...')
             geometry.nvn = 3
             geometry.cbe = []
             geometry.cbn = []

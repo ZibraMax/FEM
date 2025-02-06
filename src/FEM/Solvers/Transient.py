@@ -37,7 +37,7 @@ class Parabolic(Solver):
             self.system.restartMatrix()
             self.system.elementMatrices()
             self.system.ensembling()
-            self.system.borderConditions()
+            self.system.boundaryConditions()
             logging.info('Solving equation system...')
             self.solutions.append(np.linalg.solve(
                 self.system.K, self.system.S))

@@ -53,7 +53,7 @@ for z in Z[::-1]:
     O.z1 = z
     O.z2 = 1-z
     O.ensembling()
-    O.borderConditions()
+    O.boundaryConditions()
     logging.info('Converting to csr format')
     O.K = O.K.tocsr()
     logging.info('Solving...')

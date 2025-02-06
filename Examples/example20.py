@@ -31,7 +31,7 @@ if __name__ == '__main__':
     O = PlaneStressSparse(geometria, E, v, t, verbose=True)
     O.elementMatrices()
     O.ensembling()
-    O.borderConditions()
+    O.boundaryConditions()
     O.solveES()
     O.postProcess()
     O.exportJSON("Examples/Mesh_tests/Example20.json")

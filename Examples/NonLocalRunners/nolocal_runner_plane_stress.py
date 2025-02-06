@@ -71,7 +71,7 @@ for z in Z[::-1]:
     O.Q[:, :] = 0.0
     O.S[:, :] = 0.0
     O.ensembling()
-    O.borderConditions()
+    O.boundaryConditions()
     logging.info('Solving...')
     O.K = O.K.tocsr()
     logging.info('Solving...')

@@ -41,7 +41,7 @@ class EulerBernoulliBeam(Core):
             self.cf = lambda x: cf
         if geometry.nvn == 1:
             logging.warning(
-                'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
+                'Boundary conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
         Core.__init__(self, geometry, **kargs)
         for i in range(len(self.elements)):
             self.elements[i] = EulerBernoulliElement(
@@ -146,7 +146,7 @@ class EulerBernoulliBeamNonLineal(Core):
             self.fy0 = lambda x: fy
         if geometry.nvn == 1:
             logging.warning(
-                'Border conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
+                'Boundary conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
         Core.__init__(self, geometry, solver=NoLineal.LoadControl)
         self.properties['EI'] = EI
         self.properties['EA'] = EA

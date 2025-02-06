@@ -53,7 +53,7 @@ class Element3D(Element):
             for f in self.faces:
                 coords = self.coords[np.ix_(f)]
                 gdl = np.array([[-1]*len(coords)])
-                e = self.face_element(coords, gdl, fast=True, border=True)
+                e = self.face_element(coords, gdl, fast=True, boundary=True)
                 _x, _p = e.T(e.center.T)
                 _j, _dp = e.J(e.center.T)
                 normal = np.cross(_j[:, 0, :].T, _j[:, 1, :].T, axis=0)

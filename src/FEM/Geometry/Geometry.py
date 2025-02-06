@@ -169,10 +169,10 @@ class Geometry:
             self.centroids.append(x.tolist())
 
     def setCbe(self, cbe: list) -> None:
-        """This method have to be used to assign essential boundary conditions. Thes method prevents to assign duplicated border conditions
+        """This method have to be used to assign essential boundary conditions. Thes method prevents to assign duplicated boundary conditions
 
         Args:
-            cbe (list): Border conditions to be applied
+            cbe (list): Boundary conditions to be applied
         """
         res = []
         for i in cbe:
@@ -214,7 +214,7 @@ class Geometry:
         return a
 
     def cbFromRegion(self, region: int, value: float, nv: int = 1) -> list:
-        """Generate a list of border conditions from specified border.
+        """Generate a list of boundary conditions from specified boundary.
 
         Args:
             region (int): region number
@@ -222,7 +222,7 @@ class Geometry:
             nv (int, optional): Variable number, starts with 1. Defaults to 1.
 
         Returns:
-            list: List of border conditions that can be concatenated or assigned to the geometry
+            list: List of boundary conditions that can be concatenated or assigned to the geometry
         """
 
         cb = []
@@ -234,10 +234,10 @@ class Geometry:
         return cb
 
     def cbeAllRegions(self, value: float) -> None:
-        """Set all regions border conditions to the specified value to all the variables.
+        """Set all regions boundary conditions to the specified value to all the variables.
 
         Args:
-            value (float): Value of the border condition
+            value (float): Value of the boundary condition
         """
         self.cbe = []
         for s in range(len(self.regions)):
@@ -420,16 +420,16 @@ class Geometry2D(Geometry):
         self.regions[-1].setNodesOfRegion(self)
 
     def generateBCFromCoords(self, x: float, y: float, value: float = 0, nv: int = 1) -> list:
-        """Generates border conditions by coordinates. The border condition is applied to the nearest node
+        """Generates boundary conditions by coordinates. The boundary condition is applied to the nearest node
 
         Args:
             x (float): X coordinate of point
             y (float): Y coordinate of point
-            value (float, optional): Value of the border condition. Defaults to 0.
+            value (float, optional): Value of the boundary condition. Defaults to 0.
             nv (int, optional): Variable number. The first variable is 1. Defaults to 1.
 
         Returns:
-            list: Matrix of border coordinates that can be concatenated
+            list: Matrix of boundary coordinates that can be concatenated
         """
 
         masCercano1 = None
@@ -500,8 +500,8 @@ class Geometry2D(Geometry):
         coordenadas = self.regions[region].coords
         vect_seg = coordenadas[1]-coordenadas[0]
         for e in a:
-            e.intBorders = True
-            for i in range(-1, len(e.borders)-1):
+            e.intBoundary = True
+            for i in range(-1, len(e.boundaries)-1):
                 pertenece1 = isBetween(
                     coordenadas[0], coordenadas[1], e._coords[i])
                 pertenece2 = isBetween(
@@ -509,17 +509,17 @@ class Geometry2D(Geometry):
                 if pertenece1 and pertenece2:
                     vect_lad = e._coords[i+1]-e._coords[i]
                     sign = np.sign(vect_seg@vect_lad)
-                    e.borders[i].dir = sign
-                    e.borders[i].s0 = np.linalg.norm(
+                    e.boundaries[i].dir = sign
+                    e.boundaries[i].s0 = np.linalg.norm(
                         e._coords[i]-coordenadas[0])
                     if fx:
-                        e.borders[i].properties['load_x'].append(fx)
+                        e.boundaries[i].properties['load_x'].append(fx)
                     if fy:
-                        e.borders[i].properties['load_y'].append(fy)
+                        e.boundaries[i].properties['load_y'].append(fy)
                     if add:
-                        e.borders[i].properties.update(add)
+                        e.boundaries[i].properties.update(add)
                 else:
-                    e.borders[i].dir = 0.0
+                    e.boundaries[i].dir = 0.0
 
     def loadOnHole(self, hole: int, sa: float = 0, ea: float = 2*np.pi, fx: Callable = None, fy: Callable = None) -> None:
         """Assign loads over a hole.
@@ -549,7 +549,7 @@ class Geometry2D(Geometry):
                     break
 
     def cbOnHole(self, hole: int, value: float, nv: int = 1, sa: float = 0, ea: float = 2*np.pi) -> list:
-        """Generate a list of border conditions from specified hole.
+        """Generate a list of boundary conditions from specified hole.
 
         Args:
             hole (int): Hole index in wich load will be applied
@@ -559,7 +559,7 @@ class Geometry2D(Geometry):
             ea (float, optional): Finish face angle. Defaults to :math:`2\\pi`.
 
         Returns:
-            list: List of border conditions that can be concatenated or assigned to the geometry
+            list: List of boundary conditions that can be concatenated or assigned to the geometry
         """
         holee = self.holes[hole]
         regions_apply = []
@@ -588,8 +588,8 @@ class Geometry2D(Geometry):
             bolita (int, optional): Node size. Defaults to 0.
             draw_segs (bool, optional): To draw or not draw the regions. Defaults to True.
             draw_labels (bool, optional): To draw or not draw element labels. Defaults to False.
-            draw_bc (bool, optional): To draw border conditions. Defaults to False.
-            label_bc (bool, optional): To draw labels on border conditions. Defaults to False.
+            draw_bc (bool, optional): To draw boundary conditions. Defaults to False.
+            label_bc (bool, optional): To draw labels on boundary conditions. Defaults to False.
         """
 
         fig = plt.figure()
@@ -636,19 +636,19 @@ class Geometry2D(Geometry):
                 ax.annotate(format(i), [
                             cx, cy], alpha=1-0.6*draw_bc, size=texto, textcoords="offset points", xytext=(-0, -2.5), ha='center')
         for i, e in enumerate(self.elements):
-            if e.intBorders and draw_bc:
-                for i in range(-1, len(e.borders)-1):
-                    border = e.borders[i]
-                    if (len(border.properties['load_x']) + len(border.properties['load_y'])):
-                        coords_border_0 = e._coords[i]
-                        coords_border_1 = e._coords[i+1]
-                        ax.plot([coords_border_0[0], coords_border_1[0]], [coords_border_0[1], coords_border_1[1]],
+            if e.intBoundary and draw_bc:
+                for i in range(-1, len(e.boundaries)-1):
+                    boundary = e.boundaries[i]
+                    if (len(boundary.properties['load_x']) + len(boundary.properties['load_y'])):
+                        coords_boundary_0 = e._coords[i]
+                        coords_boundary_1 = e._coords[i+1]
+                        ax.plot([coords_boundary_0[0], coords_boundary_1[0]], [coords_boundary_0[1], coords_boundary_1[1]],
                                 color='yellow',
                                 linewidth=5,
                                 zorder=50,
                                 )
-                        cx = (coords_border_0 + coords_border_1)/2
-                        ax.annotate(format(len(border.properties['load_x']) + len(border.properties['load_y'])), cx, size=texto,
+                        cx = (coords_boundary_0 + coords_boundary_1)/2
+                        ax.annotate(format(len(boundary.properties['load_x']) + len(boundary.properties['load_y'])), cx, size=texto,
                                     textcoords="offset points", xytext=(-0, -2.5), ha='center', zorder=55)
         ax.set_xlabel('x')
         ax.set_ylabel('y')
@@ -836,7 +836,7 @@ class Geometry3D(Geometry):
         """Creates a geometry graph
         """
 
-    def isBorder(self, e):
+    def isBoundary(self, e):
         neighbors = 0
         potential = self.KDTree.query_ball_point(
             e._xcenter, self.min_search_radius*2)
@@ -853,13 +853,13 @@ class Geometry3D(Geometry):
             return True, nb
         return False, []
 
-    def _detectBorderElementsRecursive(self, e):
-        """Return the indices of the elements list which are border
-        The mehtods finds border elemets recursively so the first
-        border element must be provided
+    def _detectBoundaryElementsRecursive(self, e):
+        """Return the indices of the elements list which are boundary
+        The mehtods finds boundary elemets recursively so the first
+        boundary element must be provided
 
         Args:
-            e (Element): A border element
+            e (Element): A boundary element
 
         Returns:
             List: Listo of indices
@@ -868,22 +868,22 @@ class Geometry3D(Geometry):
         if self.visited[e.index]:
             return r
         self.visited[e.index] = True
-        isBorder, neighbors = self.isBorder(e)
-        if not isBorder:
+        isBoundary, neighbors = self.isBoundary(e)
+        if not isBoundary:
             return r
         r.append(e.index)
         self.pb.update(1)
         for bn in neighbors:
-            r += self._detectBorderElementsRecursive(bn)
+            r += self._detectBoundaryElementsRecursive(bn)
         return r
 
-    def _detectBorderElementsIterative(self, e, plot=False):
+    def _detectBoundaryElementsIterative(self, e, plot=False):
         with plt.ion():
             i = 0
             le = [e.index]
             vecinos = []
             self.visited[e.index] = True
-            isBorder, neighbors = self.isBorder(e)
+            isBoundary, neighbors = self.isBoundary(e)
             vecinos.append(neighbors)
             centroides = []
             for v in neighbors:
@@ -905,7 +905,7 @@ class Geometry3D(Geometry):
                 for nb in neighbors:
                     if not self.visited[nb.index]:
                         self.visited[nb.index] = True
-                        ib, nbn = self.isBorder(nb)
+                        ib, nbn = self.isBoundary(nb)
                         if ib:
                             le.append(nb.index)
                             vecinos.append(nbn)
@@ -921,27 +921,27 @@ class Geometry3D(Geometry):
                 self.pb.update(1)
             return le, vecinos
 
-    def detectBorderElements(self, plot=False):
+    def detectBoundaryElements(self, plot=False):
         self.visited = [False]*len(self.elements)
-        print("Detecting border elements...")
-        self.pb = tqdm(unit=" Border elements found")
+        print("Detecting boundary elements...")
+        self.pb = tqdm(unit=" Boundary elements found")
         e = self.elements[self.KDTree.query(self.boundingBoxMin)[1]]
-        res, vecinos = self._detectBorderElementsIterative(e, plot)
+        res, vecinos = self._detectBoundaryElementsIterative(e, plot)
         self.visited = [False]*len(self.elements)
         del self.pb
         self.additionalProperties = {
-            **self.additionalProperties, "border_elements": res}
+            **self.additionalProperties, "boundary_elements": res}
         return res
 
-    def detectBorderElementsLegacy(self):
-        print("Detecting border elements...")
-        border_elements = []
+    def detectBoundaryElementsLegacy(self):
+        print("Detecting boundary elements...")
+        boundary_elements = []
         for e in tqdm(self.elements, unit=" Element"):
-            if self.isBorder(e)[0]:
-                border_elements.append(e.index)
+            if self.isBoundary(e)[0]:
+                boundary_elements.append(e.index)
         self.additionalProperties = {
-            **self.additionalProperties, "border_elements": border_elements}
-        return border_elements
+            **self.additionalProperties, "boundary_elements": boundary_elements}
+        return boundary_elements
 
 
 class Lineal(Geometry1D):
@@ -1106,7 +1106,7 @@ class Delaunay(Geometry2D):
         self.holes = holes_dict
         self.fillets = fillets
 
-    @ staticmethod
+    @staticmethod
     def _strdelaunay(constrained: bool = True, delaunay: bool = True, a: float = None, q: float = None, o: int = 1) -> str:
         """Create a string for the delaunay triangulation constructor
 

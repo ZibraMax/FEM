@@ -1,4 +1,4 @@
-"""1D Stady state heat with convective border conditions
+"""1D Stady state heat with convective boundary conditions
 """
 
 
@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 class Heat1D(Core):
-    """Creates a 1D Stady state heat problem. Convective border conditions can be applied
+    """Creates a 1D Stady state heat problem. Convective boundary conditions can be applied
 
         The differential equation is:
 
@@ -25,7 +25,7 @@ class Heat1D(Core):
         """
 
     def __init__(self, geometry: Geometry, A: float, P: float, ku: float, beta: float, Ta: float, q: float = 0.0, **kargs) -> None:
-        """Creates a 1D Stady state heat problem. Convective border conditions can be applied
+        """Creates a 1D Stady state heat problem. Convective boundary conditions can be applied
 
         The differential equation is:
 
@@ -92,10 +92,10 @@ class Heat1D(Core):
             e.Ke += K
 
     def defineConvectiveBoderConditions(self, node: int, value: float = 0) -> None:
-        """Add a convective border condition. The value is: :math:`kA\\frac{dT}{dx}+\\beta A(T-T_{\infty})=value`
+        """Add a convective boundary condition. The value is: :math:`kA\\frac{dT}{dx}+\\beta A(T-T_{\infty})=value`
 
         Args:
-            node (int): Node where the above border condition is applied
+            node (int): Node where the above boundary condition is applied
             value (float, optional): Defined below. Defaults to 0.
         """
 
@@ -132,13 +132,13 @@ class Heat1D(Core):
         for idx, value in self.convective_conditions:
             self.K[idx, idx] += value
 
-    def borderConditions(self) -> None:
-        super().borderConditions()
+    def boundaryConditions(self) -> None:
+        super().boundaryConditions()
         self.set_convective_conditions()
 
 
 class Heat1DTransient(Heat1D, CoreParabolic):
-    """Creates a 1D Stady state heat problem. Convective border conditions can be applied
+    """Creates a 1D Stady state heat problem. Convective boundary conditions can be applied
 
     The differential equation is:
 
@@ -156,7 +156,7 @@ class Heat1DTransient(Heat1D, CoreParabolic):
     """
 
     def __init__(self, geometry: Geometry, A: float, P: float, ku: float, beta: float, Ta: float, q: float = 0.0, **kargs):
-        """Creates a 1D Stady state heat problem. Convective border conditions can be applied
+        """Creates a 1D Stady state heat problem. Convective boundary conditions can be applied
 
         The differential equation is:
 

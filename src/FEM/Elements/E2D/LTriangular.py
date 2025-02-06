@@ -52,17 +52,17 @@ class LTriangular(Element2D, TriangularScheme):
         coords = np.array(coords)
         he1 = np.linalg.norm(coords[1]-coords[0])
         e1 = LinealElement(np.array([[0], [he1]]),
-                           np.array([[-1, -1]]), border=True)
+                           np.array([[-1, -1]]), boundary=True)
 
         he2 = np.linalg.norm(coords[2]-coords[1])
         e2 = LinealElement(np.array([[0], [he2]]),
-                           np.array([[-1, -1]]), border=True)
+                           np.array([[-1, -1]]), boundary=True)
 
         he3 = np.linalg.norm(coords[0]-coords[2])
         e3 = LinealElement(np.array([[0], [he3]]),
-                           np.array([[-1, -1]]), border=True)
+                           np.array([[-1, -1]]), boundary=True)
 
-        self.borders = [e1, e2, e3]
+        self.boundaries = [e1, e2, e3]
         TriangularScheme.__init__(self, n, **kargs)
         Element2D.__init__(self, coords, coords, gdl, **kargs)
 

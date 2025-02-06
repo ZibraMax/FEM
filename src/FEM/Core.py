@@ -20,7 +20,7 @@ class Core():
     """Create the Finite Element problem.
 
         Args:
-            geometry (Geometry): Input geometry. The geometry must contain the elements, and the border conditions.
+            geometry (Geometry): Input geometry. The geometry must contain the elements, and the boundary conditions.
             You can create the geometry of the problem using the Geometry class.
             solver (Union[Lineal, NonLinealSolver], optional): Finite Element solver. If not provided, Lineal solver is used.
             sparse (bool, optional): To use sparse matrix formulation. Defaults to False
@@ -32,7 +32,7 @@ class Core():
         """Create the Finite Element problem.
 
             Args:
-                geometry (Geometry): Input geometry. The geometry must contain the elements, and the border conditions.
+                geometry (Geometry): Input geometry. The geometry must contain the elements, and the boundary conditions.
                 You can create the geometry of the problem using the Geometry class.
                 solver (Union[Lineal, NonLinealSolver], optional): Finite Element solver. If not provided, Lineal solver is used.
                 sparse (bool, optional): To use sparse matrix formulation. Defaults to False
@@ -115,28 +115,28 @@ class Core():
                 logging.error("Impossible to clear tangent matrix.")
                 raise e
 
-    def borderConditions(self) -> None:
-        """Assign border conditions to the system. 
-        The border conditios are assigned in this order:
+    def boundaryConditions(self) -> None:
+        """Assign boundary conditions to the system. 
+        The boundary conditios are assigned in this order:
 
-        1. Natural border conditions
-        2. Essential border conditions
+        1. Natural boundary conditions
+        2. Essential boundary conditions
 
-        This ensures that in a node with 2 border conditions
-        the essential border conditions will be applied.
+        This ensures that in a node with 2 boundary conditions
+        the essential boundary conditions will be applied.
         """
-        logging.info('Border conditions...')
+        logging.info('Boundary conditions...')
         for i in tqdm(self.cbn, unit=' Natural'):
             self.Q[int(i[0])] = i[1]
 
         if self.cbe:
-            border_conditions = np.zeros([self.ngdl, 1])
+            boundary_conditions = np.zeros([self.ngdl, 1])
             cb = np.array(self.cbe)
             ncb = len(cb)
-            border_conditions[np.ix_(cb[:, 0].astype(int))
-                              ] = cb[:, 1].reshape([ncb, 1])
+            boundary_conditions[np.ix_(cb[:, 0].astype(int))
+                                ] = cb[:, 1].reshape([ncb, 1])
             # FIXME esto puede resultar en pasar la matriz dwe lil a densa!!
-            self.S = self.S - (border_conditions.T@self.K).T
+            self.S = self.S - (boundary_conditions.T@self.K).T
             for i in tqdm(self.cbe, unit=' Essential'):
                 self.K[int(i[0]), :] = 0
                 self.K[:, int(i[0])] = 0
@@ -156,29 +156,29 @@ class Core():
         logging.info('Done!')
 
     def condensedSystem(self) -> None:
-        """Assign border conditions to the system and modifies the matrices to condensed mode 
-        The border conditios are assigned in this order:
+        """Assign boundary conditions to the system and modifies the matrices to condensed mode 
+        The boundary conditios are assigned in this order:
 
-        1. Natural border conditions
-        2. Essential border conditions
+        1. Natural boundary conditions
+        2. Essential boundary conditions
 
-        This ensures that in a node with 2 border conditions
-        the essential border conditions will be applied.
+        This ensures that in a node with 2 boundary conditions
+        the essential boundary conditions will be applied.
         """
         # FIXME tiene que funcionar para todos los casos
-        # self.borderConditions()
-        logging.info('Border conditions...')
+        # self.boundaryConditions()
+        logging.info('Boundary conditions...')
         for i in tqdm(self.cbn, unit=' Natural'):
             self.Q[int(i[0])] = i[1]
 
         if self.cbe:
-            border_conditions = np.zeros([self.ngdl, 1])
+            boundary_conditions = np.zeros([self.ngdl, 1])
             cb = np.array(self.cbe)
             ncb = len(cb)
-            border_conditions[np.ix_(cb[:, 0].astype(int))
-                              ] = cb[:, 1].reshape([ncb, 1])
+            boundary_conditions[np.ix_(cb[:, 0].astype(int))
+                                ] = cb[:, 1].reshape([ncb, 1])
             # FIXME esto puede resultar en pasar la matriz dwe lil a densa!!
-            self.S = self.S - (border_conditions.T@self.K).T
+            self.S = self.S - (boundary_conditions.T@self.K).T
             for i in tqdm(self.cbe, unit=' Essential'):
                 self.K[int(i[0]), :] = 0
                 self.K[:, int(i[0])] = 0
