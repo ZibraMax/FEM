@@ -7,7 +7,7 @@
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
         <title>Examples package - FEM 1.0.34 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
@@ -380,13 +380,13 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 <section id="code">
 <h4>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">FEM.Elements.E2D.Serendipity</span> <span class="kn">import</span> <span class="n">Serendipity</span>
-<span class="kn">from</span> <span class="nn">FEM.Elements.E2D.Quadrilateral</span> <span class="kn">import</span> <span class="n">Quadrilateral</span>
-<span class="kn">from</span> <span class="nn">FEM.Elements.E2D.LTriangular</span> <span class="kn">import</span> <span class="n">LTriangular</span>
-<span class="kn">from</span> <span class="nn">FEM.Elements.E2D.QTriangular</span> <span class="kn">import</span> <span class="n">QTriangular</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Elements.E2D.Serendipity</span><span class="w"> </span><span class="kn">import</span> <span class="n">Serendipity</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Elements.E2D.Quadrilateral</span><span class="w"> </span><span class="kn">import</span> <span class="n">Quadrilateral</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Elements.E2D.LTriangular</span><span class="w"> </span><span class="kn">import</span> <span class="n">LTriangular</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Elements.E2D.QTriangular</span><span class="w"> </span><span class="kn">import</span> <span class="n">QTriangular</span>
 
-<span class="kn">from</span> <span class="nn">FEM.Elements.E1D.LinealElement</span> <span class="kn">import</span> <span class="n">LinealElement</span>
-<span class="kn">from</span> <span class="nn">FEM.Elements.E1D.QuadraticElement</span> <span class="kn">import</span> <span class="n">QuadraticElement</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Elements.E1D.LinealElement</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinealElement</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Elements.E1D.QuadraticElement</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuadraticElement</span>
 
 <span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -513,9 +513,9 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 <section id="id1">
 <h4>Code<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span>
-<span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Delaunay</span><span class="p">,</span> <span class="n">Geometry2D</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Torsion2D</span><span class="w"> </span><span class="kn">import</span> <span class="n">Torsion2D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Delaunay</span><span class="p">,</span> <span class="n">Geometry2D</span>
 
 <span class="n">a</span> <span class="o">=</span> <span class="mf">0.3</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mf">0.3</span>
@@ -620,9 +620,9 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 <section id="id5">
 <h4>Code<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span>
-<span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Geometry2D</span><span class="p">,</span> <span class="n">Delaunay</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Torsion2D</span><span class="w"> </span><span class="kn">import</span> <span class="n">Torsion2D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Geometry2D</span><span class="p">,</span> <span class="n">Delaunay</span>
 
 <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
@@ -723,16 +723,16 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 </section>
 <section id="id8">
 <h4>Code<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">FEM.EDO1D</span> <span class="kn">import</span> <span class="n">EDO1D</span>
-<span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Lineal</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.EDO1D</span><span class="w"> </span><span class="kn">import</span> <span class="n">EDO1D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lineal</span>
 
 <span class="c1"># Define functions of the diferential equation</span>
-<span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">6</span><span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">a</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">6</span><span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># Define border conditions. List of border conditions. In the first node, value=0.0, in the last node, value = 3.0</span>
+<span class="c1"># Define boundary conditions. List of boundary conditions. In the first node, value=0.0, in the last node, value = 3.0</span>
 <span class="n">cbe</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]]</span>
 
 <span class="n">lenght</span> <span class="o">=</span> <span class="mi">1</span>
@@ -799,8 +799,8 @@ For example, a 2D triangular element of 3 nodes must have a 3x2 matrix.</p>
 For example, a 2D triangular element of 3 nodes and 2 variables per node (plane stress) must have a 2x3 gdls matrix.</p>
 <section id="id9">
 <h4>Code<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">FEM.Elements.E3D.Brick</span> <span class="kn">import</span> <span class="n">Brick</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Elements.E3D.Brick</span><span class="w"> </span><span class="kn">import</span> <span class="n">Brick</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span>
     <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
@@ -834,10 +834,10 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 <p>3D Elasticity beam problem using 8 node brick elements.</p>
 <section id="id10">
 <h4>Code<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">FEM.Elasticity3D</span> <span class="kn">import</span> <span class="n">Elasticity</span>
-<span class="kn">from</span> <span class="nn">FEM.Geometry.Geometry</span> <span class="kn">import</span> <span class="n">Geometry</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Elasticity3D</span><span class="w"> </span><span class="kn">import</span> <span class="n">Elasticity</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Geometry.Geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Geometry</span>
 
 <span class="n">E</span> <span class="o">=</span> <span class="mf">21000000.0</span>
 <span class="n">v</span> <span class="o">=</span> <span class="mf">0.2</span>
@@ -870,7 +870,7 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 
 <span class="n">dicc</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">def</span> <span class="nf">node</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span> <span class="k">return</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">k</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">node</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span> <span class="k">return</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">k</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ny</span><span class="p">):</span>
@@ -888,7 +888,7 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
             <span class="n">dicc</span> <span class="o">+=</span> <span class="p">[[</span><span class="n">node1</span><span class="p">,</span> <span class="n">node2</span><span class="p">,</span> <span class="n">node3</span><span class="p">,</span> <span class="n">node4</span><span class="p">,</span>
                       <span class="n">node5</span><span class="p">,</span> <span class="n">node6</span><span class="p">,</span> <span class="n">node7</span><span class="p">,</span> <span class="n">node8</span><span class="p">]]</span>
 
-<span class="k">def</span> <span class="nf">fy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="o">-</span><span class="n">gamma</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="o">-</span><span class="n">gamma</span>
 
 <span class="n">geometria</span> <span class="o">=</span> <span class="n">Geometry</span><span class="p">(</span><span class="n">dicc</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;B1V&quot;</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">dicc</span><span class="p">),</span> <span class="n">nvn</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">cbe</span> <span class="o">=</span> <span class="p">[]</span>

@@ -107,3 +107,11 @@ FEM.Torsion2D module
    :members:
    :undoc-members:
    :show-inheritance:
+
+FEM.Unhinged module
+-------------------
+
+.. automodule:: FEM.Unhinged
+   :members:
+   :undoc-members:
+   :show-inheritance:

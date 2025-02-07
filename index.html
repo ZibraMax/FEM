@@ -7,7 +7,7 @@
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
         <title>FEM 1.0.34 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
     
@@ -337,13 +337,13 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 <p>Avaliable equations:</p>
 <ul class="simple">
 <li><p>1D 1 Variable ordinary diferential equation</p></li>
-<li><p>1D 1 Variable 1D Heat with convective border</p></li>
+<li><p>1D 1 Variable 1D Heat with convective boundary</p></li>
 <li><p>1D 2 Variable Euler Bernoulli Beams</p></li>
 <li><p>1D 3 Variable Non-linear Euler Bernoulli Beams</p></li>
 <li><p>2D 1 Variable Torsion</p></li>
 <li><p>2D 1 Variable Poisson equation</p></li>
 <li><p>2D 1 Variable second order PDE</p></li>
-<li><p>2D 1 Variable 2D Heat with convective borders</p></li>
+<li><p>2D 1 Variable 2D Heat with convective boundaries</p></li>
 <li><p>2D 2 Variable Plane Strees</p></li>
 <li><p>2D 2 Variable Plane Strees Orthotropic</p></li>
 <li><p>2D 2 Variable Plane Strain</p></li>
@@ -352,11 +352,11 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 <p>Numerical Validation:</p>
 <ul class="simple">
 <li><p>[x] 1D 1 Variable ordinary diferential equation</p></li>
-<li><p>[ ] 1D 1 Variable 1D Heat with convective border</p></li>
+<li><p>[ ] 1D 1 Variable 1D Heat with convective boundary</p></li>
 <li><p>[ ] 1D 2 Variable Euler Bernoulli Beams</p></li>
 <li><p>[ ] 1D 3 Variable Non-linear Euler Bernoulli Beams</p></li>
 <li><p>[x] 2D 1 Variable Torsion</p></li>
-<li><p>[ ] 2D 1 Variable 2D Heat with convective borders</p></li>
+<li><p>[ ] 2D 1 Variable 2D Heat with convective boundaries</p></li>
 <li><p>[x] 2D 2 Variable Plane Strees</p></li>
 <li><p>[x] 2D 2 Variable Plane Strain</p></li>
 </ul>
@@ -364,16 +364,16 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 <h4>Steps:<a class="headerlink" href="#steps" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Create geometry</p></li>
-<li><p>Create Border Conditions (Point and regions supported)</p></li>
+<li><p>Create Boundary Conditions (Point and regions supported)</p></li>
 <li><p>Solve!</p></li>
 <li><p>For example: Example 2, Example 5, Example 11-14</p></li>
 </ul>
 </section>
 <section id="example-without-geometry-file-test-2">
 <h4>Example without geometry file (Test 2):<a class="headerlink" href="#example-without-geometry-file-test-2" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#Import libraries</span>
-<span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM Torsion class</span>
-<span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Delaunay</span> <span class="c1">#Import Meshing tools</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> <span class="c1">#Import libraries</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Torsion2D</span><span class="w"> </span><span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM Torsion class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Delaunay</span> <span class="c1">#Import Meshing tools</span>
 
 <span class="c1">#Define some variables with geometric properties</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mf">0.3</span>
@@ -423,9 +423,9 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 </section>
 <section id="example-with-geometry-file-example-2">
 <h4>Example with geometry file (Example 2):<a class="headerlink" href="#example-with-geometry-file-example-2" title="Link to this heading">¶</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#Import libraries</span>
-<span class="kn">from</span> <span class="nn">FEM.Torsion2D</span> <span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM</span>
-<span class="kn">from</span> <span class="nn">FEM.Geometry</span> <span class="kn">import</span> <span class="n">Geometry</span> <span class="c1">#Import Geometry tools</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> <span class="c1">#Import libraries</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Torsion2D</span><span class="w"> </span><span class="kn">import</span> <span class="n">Torsion2D</span> <span class="c1">#import AFEM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">FEM.Geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Geometry</span> <span class="c1">#Import Geometry tools</span>
 
 <span class="c1">#Define material constants.</span>
 <span class="n">E</span> <span class="o">=</span> <span class="mi">200000</span>
@@ -453,10 +453,10 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 <h4>Steps<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <ol class="arabic">
 <li><p>Create a Python flie and import the libraries:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.Core</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">.Core</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -467,8 +467,8 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 </ul>
 </li>
 <li><p>Create a Python class with Core inheritance</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">class</span> <span class="nc">PlaneStress</span><span class="p">(</span><span class="n">Core</span><span class="p">):</span>
-       <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">geometry</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">class</span><span class="w"> </span><span class="nc">PlaneStress</span><span class="p">(</span><span class="n">Core</span><span class="p">):</span>
+       <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">geometry</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
        <span class="c1">#Do stuff</span>
        <span class="n">Core</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">geometry</span><span class="p">)</span>
 
@@ -477,8 +477,8 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 </div>
 </li>
 <li><p>Define the matrix calculation methods and post porcessing methods.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">elementMatrices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="k">def</span> <span class="nf">postProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">elementMatrices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">postProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </pre></div>
 </div>
 </li>

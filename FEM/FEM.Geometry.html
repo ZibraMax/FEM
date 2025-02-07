@@ -7,7 +7,7 @@
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
         <title>FEM.Geometry package - FEM 1.0.34 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
@@ -447,7 +447,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.cbFromRegion">
 <span class="sig-name descname"><span class="pre">cbFromRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.cbFromRegion" title="Link to this definition">¶</a></dt>
-<dd><p>Generate a list of border conditions from specified border.</p>
+<dd><p>Generate a list of boundary conditions from specified boundary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -457,7 +457,7 @@
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of border conditions that can be concatenated or assigned to the geometry</p>
+<dd class="field-even"><p>List of boundary conditions that can be concatenated or assigned to the geometry</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -468,10 +468,10 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.cbeAllRegions">
 <span class="sig-name descname"><span class="pre">cbeAllRegions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.cbeAllRegions" title="Link to this definition">¶</a></dt>
-<dd><p>Set all regions border conditions to the specified value to all the variables.</p>
+<dd><p>Set all regions boundary conditions to the specified value to all the variables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – Value of the border condition</p>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – Value of the boundary condition</p>
 </dd>
 </dl>
 </dd></dl>
@@ -615,10 +615,10 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.setCbe">
 <span class="sig-name descname"><span class="pre">setCbe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cbe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.setCbe" title="Link to this definition">¶</a></dt>
-<dd><p>This method have to be used to assign essential boundary conditions. Thes method prevents to assign duplicated border conditions</p>
+<dd><p>This method have to be used to assign essential boundary conditions. Thes method prevents to assign duplicated boundary conditions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>cbe</strong> (<em>list</em>) – Border conditions to be applied</p>
+<dd class="field-odd"><p><strong>cbe</strong> (<em>list</em>) – Boundary conditions to be applied</p>
 </dd>
 </dl>
 </dd></dl>
@@ -681,7 +681,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.cbOnHole">
 <span class="sig-name descname"><span class="pre">cbOnHole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ea</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.283185307179586</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.cbOnHole" title="Link to this definition">¶</a></dt>
-<dd><p>Generate a list of border conditions from specified hole.</p>
+<dd><p>Generate a list of boundary conditions from specified hole.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -693,7 +693,7 @@
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of border conditions that can be concatenated or assigned to the geometry</p>
+<dd class="field-even"><p>List of boundary conditions that can be concatenated or assigned to the geometry</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -704,18 +704,18 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.generateBCFromCoords">
 <span class="sig-name descname"><span class="pre">generateBCFromCoords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.generateBCFromCoords" title="Link to this definition">¶</a></dt>
-<dd><p>Generates border conditions by coordinates. The border condition is applied to the nearest node</p>
+<dd><p>Generates boundary conditions by coordinates. The boundary condition is applied to the nearest node</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>float</em>) – X coordinate of point</p></li>
 <li><p><strong>y</strong> (<em>float</em>) – Y coordinate of point</p></li>
-<li><p><strong>value</strong> (<em>float</em><em>, </em><em>optional</em>) – Value of the border condition. Defaults to 0.</p></li>
+<li><p><strong>value</strong> (<em>float</em><em>, </em><em>optional</em>) – Value of the boundary condition. Defaults to 0.</p></li>
 <li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number. The first variable is 1. Defaults to 1.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Matrix of border coordinates that can be concatenated</p>
+<dd class="field-even"><p>Matrix of boundary coordinates that can be concatenated</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -822,8 +822,8 @@ The end point of region is the end point of load</p>
 <li><p><strong>bolita</strong> (<em>int</em><em>, </em><em>optional</em>) – Node size. Defaults to 0.</p></li>
 <li><p><strong>draw_segs</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw or not draw the regions. Defaults to True.</p></li>
 <li><p><strong>draw_labels</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw or not draw element labels. Defaults to False.</p></li>
-<li><p><strong>draw_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw border conditions. Defaults to False.</p></li>
-<li><p><strong>label_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw labels on border conditions. Defaults to False.</p></li>
+<li><p><strong>draw_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw boundary conditions. Defaults to False.</p></li>
+<li><p><strong>label_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw labels on boundary conditions. Defaults to False.</p></li>
 </ul>
 </dd>
 </dl>
@@ -849,18 +849,18 @@ The end point of region is the end point of load</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.detectBorderElements">
-<span class="sig-name descname"><span class="pre">detectBorderElements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.detectBorderElements" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.detectBoundaryElements">
+<span class="sig-name descname"><span class="pre">detectBoundaryElements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElements" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.detectBorderElementsLegacy">
-<span class="sig-name descname"><span class="pre">detectBorderElementsLegacy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.detectBorderElementsLegacy" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.detectBoundaryElementsLegacy">
+<span class="sig-name descname"><span class="pre">detectBoundaryElementsLegacy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElementsLegacy" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.isBorder">
-<span class="sig-name descname"><span class="pre">isBorder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.isBorder" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.isBoundary">
+<span class="sig-name descname"><span class="pre">isBoundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.isBoundary" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -891,7 +891,7 @@ The end point of region is the end point of load</p>
 </section>
 <section id="module-FEM.Geometry.Region">
 <span id="fem-geometry-region-module"></span><h2>FEM.Geometry.Region module<a class="headerlink" href="#module-FEM.Geometry.Region" title="Link to this heading">¶</a></h2>
-<p>Defines geometry region. Regions are used to set border conditions and loads to 2D and 3D problems</p>
+<p>Defines geometry region. Regions are used to set boundary conditions and loads to 2D and 3D problems</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Geometry.Region.Region">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Region.</span></span><span class="sig-name descname"><span class="pre">Region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Region.Region" title="Link to this definition">¶</a></dt>
@@ -1131,9 +1131,9 @@ The end point of region is the end point of load</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D"><code class="docutils literal notranslate"><span class="pre">Geometry3D</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.detectBorderElements"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBorderElements()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.detectBorderElementsLegacy"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBorderElementsLegacy()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.isBorder"><code class="docutils literal notranslate"><span class="pre">Geometry3D.isBorder()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElements"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBoundaryElements()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElementsLegacy"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBoundaryElementsLegacy()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.isBoundary"><code class="docutils literal notranslate"><span class="pre">Geometry3D.isBoundary()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.show"><code class="docutils literal notranslate"><span class="pre">Geometry3D.show()</span></code></a></li>
 </ul>
 </li>

@@ -7,7 +7,7 @@
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
         <title>FEM package - FEM 1.0.34 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
@@ -401,9 +401,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D"><code class="docutils literal notranslate"><span class="pre">Geometry3D</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D.detectBorderElements"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBorderElements()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D.detectBorderElementsLegacy"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBorderElementsLegacy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D.isBorder"><code class="docutils literal notranslate"><span class="pre">Geometry3D.isBorder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElements"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBoundaryElements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElementsLegacy"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBoundaryElementsLegacy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D.isBoundary"><code class="docutils literal notranslate"><span class="pre">Geometry3D.isBoundary()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry3D.show"><code class="docutils literal notranslate"><span class="pre">Geometry3D.show()</span></code></a></li>
 </ul>
 </li>
@@ -517,7 +517,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – Input geometry. The geometry must contain the elements, and the border conditions.</p></li>
+<li><p><strong>geometry</strong> (<a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – Input geometry. The geometry must contain the elements, and the boundary conditions.</p></li>
 <li><p><strong>class.</strong> (<em>You can create the geometry</em><em> of </em><em>the problem using the Geometry</em>)</p></li>
 <li><p><strong>solver</strong> (<em>Union</em><em>[</em><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Lineal" title="FEM.Geometry.Geometry.Lineal"><em>Lineal</em></a><em>, </em><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLineal.NonLinealSolver" title="FEM.Solvers.NoLineal.NonLinealSolver"><em>NonLinealSolver</em></a><em>]</em><em>, </em><em>optional</em>) – Finite Element solver. If not provided, Lineal solver is used.</p></li>
 <li><p><strong>sparse</strong> (<em>bool</em><em>, </em><em>optional</em>) – To use sparse matrix formulation. Defaults to False</p></li>
@@ -526,29 +526,29 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Core.Core.borderConditions">
-<span class="sig-name descname"><span class="pre">borderConditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Core.Core.borderConditions" title="Link to this definition">¶</a></dt>
-<dd><p>Assign border conditions to the system.
-The border conditios are assigned in this order:</p>
+<dt class="sig sig-object py" id="FEM.Core.Core.boundaryConditions">
+<span class="sig-name descname"><span class="pre">boundaryConditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Core.Core.boundaryConditions" title="Link to this definition">¶</a></dt>
+<dd><p>Assign boundary conditions to the system.
+The boundary conditios are assigned in this order:</p>
 <ol class="arabic simple">
-<li><p>Natural border conditions</p></li>
-<li><p>Essential border conditions</p></li>
+<li><p>Natural boundary conditions</p></li>
+<li><p>Essential boundary conditions</p></li>
 </ol>
-<p>This ensures that in a node with 2 border conditions
-the essential border conditions will be applied.</p>
+<p>This ensures that in a node with 2 boundary conditions
+the essential boundary conditions will be applied.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Core.Core.condensedSystem">
 <span class="sig-name descname"><span class="pre">condensedSystem</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Core.Core.condensedSystem" title="Link to this definition">¶</a></dt>
-<dd><p>Assign border conditions to the system and modifies the matrices to condensed mode
-The border conditios are assigned in this order:</p>
+<dd><p>Assign boundary conditions to the system and modifies the matrices to condensed mode
+The boundary conditios are assigned in this order:</p>
 <ol class="arabic simple">
-<li><p>Natural border conditions</p></li>
-<li><p>Essential border conditions</p></li>
+<li><p>Natural boundary conditions</p></li>
+<li><p>Essential boundary conditions</p></li>
 </ol>
-<p>This ensures that in a node with 2 border conditions
-the essential border conditions will be applied.</p>
+<p>This ensures that in a node with 2 boundary conditions
+the essential boundary conditions will be applied.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1365,12 +1365,12 @@ If deemed appropriate, the record may be modified in-place.</p>
 </section>
 <section id="module-FEM.Heat1D">
 <span id="fem-heat1d-module"></span><h2>FEM.Heat1D module<a class="headerlink" href="#module-FEM.Heat1D" title="Link to this heading">¶</a></h2>
-<p>1D Stady state heat with convective border conditions</p>
+<p>1D Stady state heat with convective boundary conditions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1D">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Heat1D.</span></span><span class="sig-name descname"><span class="pre">Heat1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ku</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D.Heat1D" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a></p>
-<p>Creates a 1D Stady state heat problem. Convective border conditions can be applied</p>
+<p>Creates a 1D Stady state heat problem. Convective boundary conditions can be applied</p>
 <p>The differential equation is:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
@@ -1390,26 +1390,26 @@ If deemed appropriate, the record may be modified in-place.</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Heat1D.Heat1D.borderConditions">
-<span class="sig-name descname"><span class="pre">borderConditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1D.borderConditions" title="Link to this definition">¶</a></dt>
-<dd><p>Assign border conditions to the system.
-The border conditios are assigned in this order:</p>
+<dt class="sig sig-object py" id="FEM.Heat1D.Heat1D.boundaryConditions">
+<span class="sig-name descname"><span class="pre">boundaryConditions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1D.boundaryConditions" title="Link to this definition">¶</a></dt>
+<dd><p>Assign boundary conditions to the system.
+The boundary conditios are assigned in this order:</p>
 <ol class="arabic simple">
-<li><p>Natural border conditions</p></li>
-<li><p>Essential border conditions</p></li>
+<li><p>Natural boundary conditions</p></li>
+<li><p>Essential boundary conditions</p></li>
 </ol>
-<p>This ensures that in a node with 2 border conditions
-the essential border conditions will be applied.</p>
+<p>This ensures that in a node with 2 boundary conditions
+the essential boundary conditions will be applied.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1D.defineConvectiveBoderConditions">
 <span class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat1D.Heat1D.defineConvectiveBoderConditions" title="Link to this definition">¶</a></dt>
-<dd><p>Add a convective border condition. The value is: <span class="math notranslate nohighlight">\(kA\frac{dT}{dx}+\beta A(T-T_{\infty})=value\)</span></p>
+<dd><p>Add a convective boundary condition. The value is: <span class="math notranslate nohighlight">\(kA\frac{dT}{dx}+\beta A(T-T_{\infty})=value\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>node</strong> (<em>int</em>) – Node where the above border condition is applied</p></li>
+<li><p><strong>node</strong> (<em>int</em>) – Node where the above boundary condition is applied</p></li>
 <li><p><strong>value</strong> (<em>float</em><em>, </em><em>optional</em>) – Defined below. Defaults to 0.</p></li>
 </ul>
 </dd>
@@ -1439,7 +1439,7 @@ the essential border conditions will be applied.</p>
 <dt class="sig sig-object py" id="FEM.Heat1D.Heat1DTransient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Heat1D.</span></span><span class="sig-name descname"><span class="pre">Heat1DTransient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ku</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat1D.Heat1DTransient" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Heat1D.Heat1D" title="FEM.Heat1D.Heat1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Heat1D</span></code></a>, <a class="reference internal" href="#FEM.Core.CoreParabolic" title="FEM.Core.CoreParabolic"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoreParabolic</span></code></a></p>
-<p>Creates a 1D Stady state heat problem. Convective border conditions can be applied</p>
+<p>Creates a 1D Stady state heat problem. Convective boundary conditions can be applied</p>
 <p>The differential equation is:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
@@ -1475,18 +1475,18 @@ the essential border conditions will be applied.</p>
 </section>
 <section id="module-FEM.Heat2D">
 <span id="fem-heat2d-module"></span><h2>FEM.Heat2D module<a class="headerlink" href="#module-FEM.Heat2D" title="Link to this heading">¶</a></h2>
-<p>2D Stady state heat with convective border conditions</p>
+<p>2D Stady state heat with convective boundary conditions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Heat2D.Heat2D">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Heat2D.</span></span><span class="sig-name descname"><span class="pre">Heat2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ky</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Heat2D.Heat2D" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a></p>
-<p>Creates a Heat2D problem with convective borders</p>
+<p>Creates a Heat2D problem with convective boundaries</p>
 <p>The differential equation is:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[-\frac{\partial}{\partial x}\left(k_x\frac{\partial T}{\partial x}\right) - \frac{\partial}{\partial y}\left(k_y\frac{\partial T}{\partial y}\right)=f(x,y)\]</div>
 </div>
-<p>With convective border conditions:</p>
+<p>With convective boundary conditions:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[k_x\frac{\partial T}{\partial x}n_x+k_y\frac{\partial T}{\partial y}n_y+\beta (T-T_\infty)=\hat{q_n}\]</div>
@@ -1504,13 +1504,13 @@ the essential border conditions will be applied.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Heat2D.Heat2D.defineConvectiveBoderConditions">
 <span class="sig-name descname"><span class="pre">defineConvectiveBoderConditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Heat2D.Heat2D.defineConvectiveBoderConditions" title="Link to this definition">¶</a></dt>
-<dd><p>Define convective borders</p>
+<dd><p>Define convective boundaries</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>region</strong> (<em>int</em>) – region in wich load will be applied</p></li>
 <li><p><strong>beta</strong> (<em>float</em><em>, </em><em>optional</em>) – Convective coeficient <span class="math notranslate nohighlight">\(\beta\)</span> . Defaults to 0.</p></li>
-<li><p><strong>Ta</strong> (<em>float</em><em>, </em><em>optional</em>) – Ambient temperature in convective border. Defaults to 0.</p></li>
+<li><p><strong>Ta</strong> (<em>float</em><em>, </em><em>optional</em>) – Ambient temperature in convective boundary. Defaults to 0.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1647,6 +1647,9 @@ the essential border conditions will be applied.</p>
 </dd></dl>
 
 </section>
+<section id="fem-unhinged-module">
+<h2>FEM.Unhinged module<a class="headerlink" href="#fem-unhinged-module" title="Link to this heading">¶</a></h2>
+</section>
 </section>
 
         </article>
@@ -1710,7 +1713,7 @@ the essential border conditions will be applied.</p>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-FEM.Core">FEM.Core module</a><ul>
 <li><a class="reference internal" href="#FEM.Core.Core"><code class="docutils literal notranslate"><span class="pre">Core</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Core.Core.borderConditions"><code class="docutils literal notranslate"><span class="pre">Core.borderConditions()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Core.Core.boundaryConditions"><code class="docutils literal notranslate"><span class="pre">Core.boundaryConditions()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Core.Core.condensedSystem"><code class="docutils literal notranslate"><span class="pre">Core.condensedSystem()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Core.Core.description"><code class="docutils literal notranslate"><span class="pre">Core.description()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Core.Core.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Core.elementMatrices()</span></code></a></li>
@@ -1841,7 +1844,7 @@ the essential border conditions will be applied.</p>
 </li>
 <li><a class="reference internal" href="#module-FEM.Heat1D">FEM.Heat1D module</a><ul>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1D"><code class="docutils literal notranslate"><span class="pre">Heat1D</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Heat1D.Heat1D.borderConditions"><code class="docutils literal notranslate"><span class="pre">Heat1D.borderConditions()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Heat1D.Heat1D.boundaryConditions"><code class="docutils literal notranslate"><span class="pre">Heat1D.boundaryConditions()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1D.defineConvectiveBoderConditions"><code class="docutils literal notranslate"><span class="pre">Heat1D.defineConvectiveBoderConditions()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1D.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Heat1D.elementMatrices()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Heat1D.Heat1D.postProcess"><code class="docutils literal notranslate"><span class="pre">Heat1D.postProcess()</span></code></a></li>
@@ -1888,6 +1891,7 @@ the essential border conditions will be applied.</p>
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#fem-unhinged-module">FEM.Unhinged module</a></li>
 </ul>
 </li>
 </ul>
