@@ -39,18 +39,9 @@ class Truss(Core):
         """
         for i, e in enumerate(self.geometry.elements):
             # Element length and angle
-            x1, y1 = self.geometry.nodes[e[0]]
-            x2, y2 = self.geometry.nodes[e[1]]
-            L = np.sqrt((x2 - x1)**2 + (y2 - y1)**2)
-            c = (x2 - x1) / L
-            s = (y2 - y1) / L
-
-            # Element stiffness matrix
-            k = self.properties["E"][i] * self.properties["A"][i] / L
-            k_matrix = k * np.array([[c**2, c*s, -c**2, -c*s],
-                                     [c*s, s**2, -c*s, -s**2],
-                                     [-c**2, -c*s, c**2, c*s],
-                                     [-c*s, -s**2, c*s, s**2]])
-
-            # Assemble global stiffness matrix
-            self.A[i:i+4, i:i+4] += k_matrix
+            x1 = self.geometry.nodes[e[0]]  # 2D or 3D coordinates
+            x2 = self.geometry.nodes[e[1]]  # 2D or 3D coordinates
+            vector = x2 - x1
+            basis = np.array([1, 0, 0])
+            angle = np.atan2(np.linalg.norm(
+                np.cross(vector, basis)), np.dot(vector, basis))

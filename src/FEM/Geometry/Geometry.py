@@ -944,6 +944,42 @@ class Geometry3D(Geometry):
         return boundary_elements
 
 
+class Orimetry(Geometry3D):
+    """docstring for Orimetry
+    """
+
+    def __init__(self, dictionary: list, gdls: list, types: list, regions: list[Region] = None) -> None:
+
+        Geometry3D.__init__(self, dictionary, gdls, types,
+                            nvn=3, regions=regions, fast=True)
+
+    def initialize(self) -> None:
+        """Calculates the total number of GDL's and generates the elements structure
+        """
+
+        # TODO recalculate this value with modified version
+        self.ngdl = int(len(self.gdls)*self.nvn)
+
+        self.generateElements()
+        self.calculateRegions()
+
+    def generateElements(self) -> None:
+        """Generate elements structure
+        """
+        print('Generating element structure')
+        self.elements = [0.0]*len(self.dictionary)
+        for i, d in enumerate(tqdm(self.dictionary, unit='Element')):
+            coords = self.gdls[np.ix_(d)]
+            gdl = np.zeros([self.nvn, len(d)])
+            for j in range(self.nvn):
+                gdl[j, :] = (np.array(d)*self.nvn+j)
+            gdl = gdl.astype(int)
+            self.elements[i] = types[self.types[i]](
+                coords, gdl, fast=self.fast)
+            self.elements[i].index = i
+        print('Done!')
+
+
 class Lineal(Geometry1D):
 
     """Generate a evenly spaced elements domain
