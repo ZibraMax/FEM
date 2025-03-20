@@ -6,7 +6,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     from FEM.Elasticity3D import Elasticity
     from FEM.Geometry import Geometry3D, Delaunay
-    from FEM.Solvers.Lineal import LinealEigen
+    from FEM.Solvers.Linear import LinealEigen
     E = 21000000.0
     v = 0.2
     h = 20

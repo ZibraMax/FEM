@@ -7,7 +7,7 @@ from tqdm import tqdm
 from .Solver import Solver
 
 
-class NonLinealSolver(Solver):
+class NonLinearSolver(Solver):
     """General class for non lineal solvers
     Args:
         tol (float): Tolerance for the maximum absolute value for the delta vector
@@ -32,7 +32,7 @@ class NonLinealSolver(Solver):
         self.solve(**kargs)
 
 
-class Newton(NonLinealSolver):
+class Newton(NonLinearSolver):
     """Creates a Newton Raphson iterative solver
 
         Args:
@@ -47,7 +47,7 @@ class Newton(NonLinealSolver):
             tol (float, optional): Tolerance for the maximum absolute value for the delta vector. Defaults to 10**(-10).
             n (int, optional): Maximum number of iterations per step. Defaults to 50.
         """
-        NonLinealSolver.__init__(self, FEMObject, tol, n)
+        NonLinearSolver.__init__(self, FEMObject, tol, n)
         self.type = 'non-lineal-newton'
 
     def solve(self, path: str = '', **kargs) -> None:
@@ -102,7 +102,7 @@ class Newton(NonLinealSolver):
         logging.info('Done!')
 
 
-class DirectIteration(NonLinealSolver):
+class DirectIteration(NonLinearSolver):
     """docstring for DirectIteration
     """
 
@@ -114,7 +114,7 @@ class DirectIteration(NonLinealSolver):
             tol (float, optional): Tolerance for the maximum absolute value for the delta vector. Defaults to 10**(-10).
             n (int, optional): Maximum number of iterations per step. Defaults to 50.
         """
-        NonLinealSolver.__init__(self, FEMObject, tol, n)
+        NonLinearSolver.__init__(self, FEMObject, tol, n)
         self.type = 'non-lineal-direct'
 
     def solve(self, path: str = '', guess=None, _guess=False, **kargs) -> None:

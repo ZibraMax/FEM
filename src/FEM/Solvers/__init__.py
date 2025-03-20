@@ -1,7 +1,7 @@
 """Solvers for Finite Element Method
 """
 
-from .Lineal import *
-from .NoLineal import *
+from .Linear import *
+from .NoLinear import *
 from .Solver import *
 from .Transient import *

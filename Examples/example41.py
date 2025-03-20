@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    from FEM.EulerBernoulliBeam import EulerBernoulliBeamNonLineal
+    from FEM.EulerBernoulliBeam import EulerBernoulliBeamNonLinear
     from FEM.Geometry import Lineal
     import matplotlib.pyplot as plt
 
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     EI = E*I
     EA = E*A
 
-    O = EulerBernoulliBeamNonLineal(geometria, EI, EA, Fx, W)
+    O = EulerBernoulliBeamNonLinear(geometria, EI, EA, Fx, W)
     O.solve()
     plt.close("all")
     for i in range(len(O.solver.solutions)):

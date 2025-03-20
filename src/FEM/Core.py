@@ -8,7 +8,7 @@ from typing import Union, Callable
 from tqdm import tqdm
 import numpy as np
 from .Geometry import Geometry
-from .Solvers import Lineal, NonLinealSolver, LinealSparse, Solver, Parabolic
+from .Solvers import Linear, NonLinearSolver, LinearSparse, Solver, Parabolic
 import logging
 from .FEMLogger import FEMLogger
 from functools import partialmethod
@@ -28,7 +28,7 @@ class Core():
 
     """
 
-    def __init__(self, geometry: Geometry, solver: Union[Lineal, NonLinealSolver] = None, sparse: bool = False, verbose: bool = False, name='') -> None:
+    def __init__(self, geometry: Geometry, solver: Union[Linear, NonLinearSolver] = None, sparse: bool = False, verbose: bool = False, name='') -> None:
         """Create the Finite Element problem.
 
             Args:
@@ -61,9 +61,9 @@ class Core():
         self.name: str = 'Generic FEM '
 
         if not solver:
-            self.solver: Solver = Lineal(self)
+            self.solver: Solver = Linear(self)
             if sparse:
-                self.solver: Solver = LinealSparse(self)
+                self.solver: Solver = LinearSparse(self)
         else:
             self.solver: Solver = solver(self)
         if self.solver.type == 'non-lineal-newton':

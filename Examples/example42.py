@@ -1,7 +1,7 @@
 if __name__ == '__main__':
     import numpy as np
     import matplotlib.pyplot as plt
-    from FEM.NonLinealExample import NonLinealSimpleEquation
+    from FEM.NonLinear1D import NonLinearSimpleEquation
     from FEM.Geometry import Lineal
 
     f0 = -1
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     n = 2
     o = 1
     geometria = Lineal(lenght, n, o)
-    O = NonLinealSimpleEquation(geometria, a, f)
+    O = NonLinearSimpleEquation(geometria, a, f)
     O.cbe = cbe
     O.cbn = cbn
     O.solve()

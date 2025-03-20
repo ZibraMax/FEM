@@ -1,7 +1,7 @@
 """Euler Bernoulli Beam implementation"""
 
 
-from .Solvers import NoLineal
+from .Solvers import NoLinear
 from .Elements.E1D.EulerBernoulliElement import EulerBernoulliElement
 from .Core import Core, Geometry
 from tqdm import tqdm
@@ -109,7 +109,7 @@ class EulerBernoulliBeam(Core):
         return X, U1, U2, U3, U4
 
 
-class EulerBernoulliBeamNonLineal(Core):
+class EulerBernoulliBeamNonLinear(Core):
     """Creates a Euler Bernoulli beam problem
 
     Args:
@@ -147,7 +147,7 @@ class EulerBernoulliBeamNonLineal(Core):
         if geometry.nvn == 1:
             logging.warning(
                 'Boundary conditions lost, please usea a geometry with 2 variables per node (nvn=2)')
-        Core.__init__(self, geometry, solver=NoLineal.LoadControl)
+        Core.__init__(self, geometry, solver=NoLinear.LoadControl)
         self.properties['EI'] = EI
         self.properties['EA'] = EA
         self.properties['fx'] = fx

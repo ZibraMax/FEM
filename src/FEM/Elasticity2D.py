@@ -10,7 +10,7 @@ from matplotlib import gridspec
 from tqdm import tqdm
 from scipy import sparse
 
-from .Solvers import LinealSparse
+from .Solvers import LinearSparse
 
 
 from .Core import Core, Geometry, logging

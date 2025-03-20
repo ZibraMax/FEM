@@ -2,7 +2,7 @@
 """
 
 from .Core import Core, Geometry, logging
-from .Solvers import LinealSparse
+from .Solvers import LinearSparse
 from typing import Callable, Tuple
 import matplotlib.pyplot as plt
 import numpy as np
@@ -10,12 +10,12 @@ from tqdm import tqdm
 from scipy import sparse  # Creation of sparse matrices
 
 
-class Truss(Core):
+class TrussLinear(Core):
     """Truss analysis"""
 
     def __init__(self, geometry: Geometry, E: list, A: list, **kargs):
         """Truss analysis"""
-        solver = LinealSparse  # Solver for the truss analysis
+        solver = LinearSparse  # Solver for the truss analysis
         Core.__init__(self, geometry, solver, sparse=True, **kargs)
         if isinstance(E, float) or isinstance(E, int):
             E = [E]*len(geometry.elements)
@@ -55,10 +55,10 @@ class Truss(Core):
         logging.info('Done!')
 
 
-class BarAndHingeLineal(Core):
+class BarAndHingeLinear(Core):
     def __init__(self, geometry: Geometry, E: list, A: list, k: Callable, **kargs):
         """Truss analysis"""
-        solver = LinealSparse
+        solver = LinearSparse
         Core.__init__(self, geometry, solver, sparse=True, **kargs)
         if isinstance(E, float) or isinstance(E, int):
             E = [E]*len(geometry.elements)

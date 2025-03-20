@@ -4,14 +4,14 @@
 
 from re import M
 from .Core import Core, Geometry
-from .Solvers import NoLineal
+from .Solvers import NoLinear
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 from typing import Callable
 
 
-class NonLinealSimpleEquation(Core):
+class NonLinearSimpleEquation(Core):
     """Creates a nonlineal 1D equation with the form:
 
         .. math::
@@ -37,7 +37,7 @@ class NonLinealSimpleEquation(Core):
 
         self.a = a
         self.f = f
-        Core.__init__(self, geometry, solver=NoLineal.Newton, **kargs)
+        Core.__init__(self, geometry, solver=NoLinear.Newton, **kargs)
         self.name = '1D non lineal sample equation'
         self.properties['a'] = None
         self.properties['f'] = None

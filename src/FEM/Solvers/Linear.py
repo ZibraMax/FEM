@@ -9,7 +9,7 @@ from scipy.sparse.linalg import spsolve
 from .Solver import Solver
 
 
-class Lineal(Solver):
+class Linear(Solver):
     """Lineal Finite Element Solver.
     """
 
@@ -46,7 +46,7 @@ class Lineal(Solver):
         logging.info('Done!')
 
 
-class LinealSparse(Lineal):
+class LinearSparse(Linear):
     """Lineal Finite Element Solver using sparse matrix
     """
 
@@ -56,7 +56,7 @@ class LinealSparse(Lineal):
         Args:
             FEMObject (Core): Finite Element Problem
         """
-        Lineal.__init__(self, FEMObject)
+        Linear.__init__(self, FEMObject)
         self.type = 'lineal-sparse'
 
     def run(self, path: str = '', **kargs):
@@ -83,7 +83,7 @@ class LinealSparse(Lineal):
         logging.info('Solved!')
 
 
-class LinealEigen(Lineal):
+class LinealEigen(Linear):
     """Eigen value solver
 
     Args:
@@ -96,7 +96,7 @@ class LinealEigen(Lineal):
         Args:
             FEMObject (Core): FEM problem
         """
-        Lineal.__init__(self, FEMObject)
+        Linear.__init__(self, FEMObject)
         self.type = 'lineal-sparse-eigen'
 
     def run(self, path: str = '', k=20, **kargs):

@@ -4,7 +4,7 @@ from typing import Callable, Tuple
 import numpy as np
 from tqdm import tqdm
 from scipy import sparse
-from FEM.Solvers.Lineal import LinealSparse
+from FEM.Solvers.Linear import LinearSparse
 from .Elements.E2D import Quadrilateral
 from .Core import Core, Geometry, logging
 

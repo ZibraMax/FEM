@@ -10,7 +10,7 @@ from .Torsion2D import *
 from .EDO1D import *
 from .EulerBernoulliBeam import *
 from .Elasticity2D import *
-from .NonLinealExample import *
+from .NonLinear1D import *
 from .Heat1D import *
 from .Heat2D import *
 from .Unhinged import *

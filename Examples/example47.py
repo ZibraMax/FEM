@@ -6,7 +6,7 @@ if __name__ == '__main__':
     import numpy as np
     from FEM.Elasticity3D import Elasticity, ElasticityFromTensor
     from FEM.Geometry.Geometry import Geometry3D
-    from FEM.Solvers.Lineal import LinealEigen
+    from FEM.Solvers.Linear import LinealEigen
 
     # E = 21000000.0
     # v = 0.2
