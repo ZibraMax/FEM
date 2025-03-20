@@ -1652,8 +1652,34 @@ the essential boundary conditions will be applied.</p>
 </dd></dl>
 
 </section>
-<section id="fem-unhinged-module">
-<h2>FEM.Unhinged module<a class="headerlink" href="#fem-unhinged-module" title="Link to this heading">¶</a></h2>
+<section id="module-FEM.Unhinged">
+<span id="fem-unhinged-module"></span><h2>FEM.Unhinged module<a class="headerlink" href="#module-FEM.Unhinged" title="Link to this heading">¶</a></h2>
+<p>Origami Bar and Hinge Model</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Unhinged.Truss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Unhinged.</span></span><span class="sig-name descname"><span class="pre">Truss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.Truss" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a></p>
+<p>Truss analysis</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Unhinged.Truss.addLoadNode">
+<span class="sig-name descname"><span class="pre">addLoadNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.Truss.addLoadNode" title="Link to this definition">¶</a></dt>
+<dd><p>Add a node load to the truss analysis</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Unhinged.Truss.elementMatrices">
+<span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.Truss.elementMatrices" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Unhinged.Truss.ensembling">
+<span class="sig-name descname"><span class="pre">ensembling</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Unhinged.Truss.ensembling" title="Link to this definition">¶</a></dt>
+<dd><p>Creation of the system sparse matrix. Force vector is ensembled in integration method</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -1896,7 +1922,15 @@ the essential boundary conditions will be applied.</p>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fem-unhinged-module">FEM.Unhinged module</a></li>
+<li><a class="reference internal" href="#module-FEM.Unhinged">FEM.Unhinged module</a><ul>
+<li><a class="reference internal" href="#FEM.Unhinged.Truss"><code class="docutils literal notranslate"><span class="pre">Truss</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Unhinged.Truss.addLoadNode"><code class="docutils literal notranslate"><span class="pre">Truss.addLoadNode()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Unhinged.Truss.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Truss.elementMatrices()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Unhinged.Truss.ensembling"><code class="docutils literal notranslate"><span class="pre">Truss.ensembling()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
