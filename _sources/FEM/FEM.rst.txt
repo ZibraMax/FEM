@@ -84,10 +84,10 @@ FEM.Heat2D module
    :undoc-members:
    :show-inheritance:
 
-FEM.NonLinealExample module
----------------------------
+FEM.NonLinear1D module
+----------------------
 
-.. automodule:: FEM.NonLinealExample
+.. automodule:: FEM.NonLinear1D
    :members:
    :undoc-members:
    :show-inheritance:

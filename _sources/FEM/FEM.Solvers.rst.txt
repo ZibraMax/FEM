@@ -9,18 +9,18 @@ FEM.Solvers package
 Submodules
 ----------
 
-FEM.Solvers.Lineal module
+FEM.Solvers.Linear module
 -------------------------
 
-.. automodule:: FEM.Solvers.Lineal
+.. automodule:: FEM.Solvers.Linear
    :members:
    :undoc-members:
    :show-inheritance:
 
-FEM.Solvers.NoLineal module
+FEM.Solvers.NoLinear module
 ---------------------------
 
-.. automodule:: FEM.Solvers.NoLineal
+.. automodule:: FEM.Solvers.NoLinear
    :members:
    :undoc-members:
    :show-inheritance:
