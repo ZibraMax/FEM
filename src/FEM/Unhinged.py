@@ -30,20 +30,24 @@ class Truss(Core):
 
     def addLoadNode(self, node: int, load: list):
         """Add a node load to the truss analysis"""
-        self.cbn += [[node*3, -load[0]],
-                     [node*3+1, -load[1]], [node*3+2, -load[2]]]
+        self.cbn += [[node*3, load[0]],
+                     [node*3+1, load[1]], [node*3+2, load[2]]]
 
     def elementMatrices(self):
         for ee, e in enumerate(tqdm(self.elements, unit='Element')):
+            e.gdlm = e.gdl.T.flatten()
             Ke = np.zeros([6, 6])
             # Bar element matrix
             L = np.linalg.norm(e.coords[1] - e.coords[0])
             r = 2*e.jacs[0][0]/L
 
-            K = np.array([[1, -1], [-1, 1]]) * self.E[ee] * self.A[ee] / L
-            o = [0, 0, 0]
+            K = np.array([[1, -1],
+                          [-1, 1]]) * self.E[ee] * self.A[ee] / L
+            o = [0.0, 0.0, 0.0]
             T = np.array([[*r, *o], [*o, *r]])
             Ke = T.T @ K @ T
+            # actual_gdls = [0, 2, 4, 1, 3, 5]
+            # Ke = Ke[np.ix_(actual_gdls, actual_gdls)]
             self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
 
     def ensembling(self) -> None:
