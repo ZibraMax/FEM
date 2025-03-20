@@ -524,6 +524,35 @@
 </dd></dl>
 
 </section>
+<section id="module-FEM.Elements.E1D.OriHinge">
+<span id="fem-elements-e1d-orihinge-module"></span><h2>FEM.Elements.E1D.OriHinge module<a class="headerlink" href="#module-FEM.Elements.E1D.OriHinge" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E1D.OriHinge.OriHinge">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E1D.OriHinge.</span></span><span class="sig-name descname"><span class="pre">OriHinge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.OriHinge.OriHinge" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E1D.LinealElement.LinealElement" title="FEM.Elements.E1D.LinealElement.LinealElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinealElement</span></code></a>, <a class="reference internal" href="#FEM.Elements.E1D.LinearScheme.LinearScheme" title="FEM.Elements.E1D.LinearScheme.LinearScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearScheme</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E1D.OriHinge.OriHinge.elementMatrix">
+<span class="sig-name descname"><span class="pre">elementMatrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.OriHinge.OriHinge.elementMatrix" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E1D.OriHinge.OriHinge.get_kf">
+<span class="sig-name descname"><span class="pre">get_kf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.OriHinge.OriHinge.get_kf" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E1D.OriHinge.OriHinge.jacobian">
+<span class="sig-name descname"><span class="pre">jacobian</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.OriHinge.OriHinge.jacobian" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E1D.OriHinge.OriHinge.set_kf">
+<span class="sig-name descname"><span class="pre">set_kf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E1D.OriHinge.OriHinge.set_kf" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-FEM.Elements.E1D.QuadraticElement">
 <span id="fem-elements-e1d-quadraticelement-module"></span><h2>FEM.Elements.E1D.QuadraticElement module<a class="headerlink" href="#module-FEM.Elements.E1D.QuadraticElement" title="Link to this heading">¶</a></h2>
 <p>Lineal element definition</p>
@@ -674,6 +703,16 @@
 </li>
 <li><a class="reference internal" href="#module-FEM.Elements.E1D.LinearScheme">FEM.Elements.E1D.LinearScheme module</a><ul>
 <li><a class="reference internal" href="#FEM.Elements.E1D.LinearScheme.LinearScheme"><code class="docutils literal notranslate"><span class="pre">LinearScheme</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E1D.OriHinge">FEM.Elements.E1D.OriHinge module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.OriHinge.OriHinge"><code class="docutils literal notranslate"><span class="pre">OriHinge</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E1D.OriHinge.OriHinge.elementMatrix"><code class="docutils literal notranslate"><span class="pre">OriHinge.elementMatrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.OriHinge.OriHinge.get_kf"><code class="docutils literal notranslate"><span class="pre">OriHinge.get_kf()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.OriHinge.OriHinge.jacobian"><code class="docutils literal notranslate"><span class="pre">OriHinge.jacobian()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E1D.OriHinge.OriHinge.set_kf"><code class="docutils literal notranslate"><span class="pre">OriHinge.set_kf()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-FEM.Elements.E1D.QuadraticElement">FEM.Elements.E1D.QuadraticElement module</a><ul>

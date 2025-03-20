@@ -49,6 +49,14 @@ FEM.Elements.E1D.LinearScheme module
    :undoc-members:
    :show-inheritance:
 
+FEM.Elements.E1D.OriHinge module
+--------------------------------
+
+.. automodule:: FEM.Elements.E1D.OriHinge
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Elements.E1D.QuadraticElement module
 ----------------------------------------
 
