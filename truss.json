@@ -1,0 +1,56 @@
+{
+	"nodes": [
+		[0.0, -0.5, 0.0],
+		[0.0, 0.5, 0.0],
+		[1.0, 0.0, 0.0],
+		[-0.5, 0.0, 0.5]
+	],
+	"dictionary": [
+		[0, 1],
+		[1, 2],
+		[2, 0],
+		[0, 3],
+		[1, 3],
+		[3, 2]
+	],
+	"types": ["L1V", "L1V", "L1V", "L1V", "L1V", "L1V"],
+	"regions": [],
+	"ebc": [
+		[0, 0],
+		[1, 0],
+		[2, 0],
+		[3, 0],
+		[4, 0],
+		[5, 0],
+		[6, 0],
+		[7, 0],
+		[8, 0]
+	],
+	"nbc": [
+		[9, -1.0],
+		[10, 0],
+		[11, 0]
+	],
+	"nvn": 3,
+	"ngdl": 12,
+	"holes": [],
+	"fillets": [],
+	"solutions": [
+		{
+			"info": { "solver-type": "lineal-sparse" },
+			"U": [
+				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				-1.2990381056766576, -3.8971143170299722, -3.8971143170299722
+			]
+		}
+	],
+	"properties": {
+		"verbose": false,
+		"name": "",
+		"problem": "Truss",
+		"E": [1, 1, 1, 1, 1, 1],
+		"A": [1, 1, 1, 1, 1, 1],
+		"duration": 0.006713,
+		"description": "FEM problem using the Truss analysis formulation.,DOF: 12,Elements: 6,Solver: lineal-sparse,EBC: 9,NBC: 3"
+	}
+}

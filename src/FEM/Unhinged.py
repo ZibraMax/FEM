@@ -11,37 +11,43 @@ from scipy import sparse  # Creation of sparse matrices
 
 
 class Truss(Core):
-    """Base truss analysis using the Linear force method. 
-    """
+    """Truss analysis"""
 
-    def __init__(self, geometry: Geometry, E: float, A: float, solver: LinealSparse = LinealSparse(), **kwargs):
-        """Initialize the truss model.
-
-        Args:
-            geometry (Geometry): Geometry object containing nodes and elements.
-            solver (LinealSparse): Solver object for linear analysis.
-        """
-        super().__init__(geometry, solver, **kwargs)
-        self.name = 'Truss analysis (2D and 3D)'
+    def __init__(self, geometry: Geometry, E: list, A: list, **kargs):
+        """Truss analysis"""
+        solver = LinealSparse  # Solver for the truss analysis
+        Core.__init__(self, geometry, solver, sparse=True, **kargs)
         if isinstance(E, float) or isinstance(E, int):
-            E = np.array([E]*len(geometry.elements))
+            E = [E]*len(geometry.elements)
         if isinstance(A, float) or isinstance(A, int):
-            A = np.array([A]*len(geometry.elements))
-
+            A = [A]*len(geometry.elements)
+        self.E = E
+        self.A = A
         self.properties["E"] = E
         self.properties["A"] = A
-        self.ngdl = len(self.geometry.elements)
-        self.A = sparse.lil_matrix((self.ngdl, self.ngdl))
-        self.G = np.zeros(self.ngdl)
+        self.name = 'Truss analysis'
+        self.K = sparse.lil_matrix((self.ngdl, self.ngdl))
+
+    def addLoadNode(self, node: int, load: list):
+        """Add a node load to the truss analysis"""
+        self.cbn += [[node*3, -load[0]],
+                     [node*3+1, -load[1]], [node*3+2, -load[2]]]
 
     def elementMatrices(self):
-        """Calculate element stiffness matrices and assemble global stiffness matrix.
+        for ee, e in enumerate(tqdm(self.elements, unit='Element')):
+            Ke = np.zeros([6, 6])
+            # Bar element matrix
+            L = np.linalg.norm(e.coords[1] - e.coords[0])
+            r = 2*e.jacs[0][0]/L
+
+            K = np.array([[1, -1], [-1, 1]]) * self.E[ee] * self.A[ee] / L
+            o = [0, 0, 0]
+            T = np.array([[*r, *o], [*o, *r]])
+            Ke = T.T @ K @ T
+            self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
+
+    def ensembling(self) -> None:
+        """Creation of the system sparse matrix. Force vector is ensembled in integration method
         """
-        for i, e in enumerate(self.geometry.elements):
-            # Element length and angle
-            x1 = self.geometry.nodes[e[0]]  # 2D or 3D coordinates
-            x2 = self.geometry.nodes[e[1]]  # 2D or 3D coordinates
-            vector = x2 - x1
-            basis = np.array([1, 0, 0])
-            angle = np.atan2(np.linalg.norm(
-                np.cross(vector, basis)), np.dot(vector, basis))
+        logging.info('Ensembling equation system...')
+        logging.info('Done!')

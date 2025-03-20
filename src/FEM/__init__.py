@@ -13,6 +13,7 @@ from .Elasticity2D import *
 from .NonLinealExample import *
 from .Heat1D import *
 from .Heat2D import *
+from .Unhinged import *
 
 from .Elasticity3D import *
 

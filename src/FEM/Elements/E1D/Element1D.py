@@ -26,8 +26,8 @@ class Element1D(Element, LinearScheme):
             n (int): Number of Gauss Points used in integration
         """
 
-        coords = np.array(coords).reshape([len(coords), 1])
-        _coords = np.array([coords[0][0], coords[-1][0]])
+        # coords = np.array(coords).reshape([len(coords), 1])
+        _coords = np.array([coords[0], coords[-1]])
         LinearScheme.__init__(self, n)
         Element.__init__(self, coords, _coords, gdl, **kargs)
 

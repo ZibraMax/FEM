@@ -53,9 +53,13 @@ class Element():
                 self.Qe = np.zeros([self.n, 1])
 
             # Specific transformations
-            self.detjac = np.linalg.det(self.jacs)
-            _j = np.linalg.inv(self.jacs)
-            self.dpx = _j @ self.dpz
+            try:
+                self.detjac = np.linalg.det(self.jacs)
+                _j = np.linalg.inv(self.jacs)
+                self.dpx = _j @ self.dpz
+            except Exception as e:
+                logging.warning(
+                    f'Element jacobian determinant was not calculated!! ')
         self.Ue = np.zeros(self.gdl.shape)
 
     def restartMatrix(self) -> None:

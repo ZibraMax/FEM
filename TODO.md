@@ -13,3 +13,7 @@
 -   [x] Crear un solver para problemas sparse.
 -   [ ] Los elementos deben tener un diccionario de propiedades, donde se encuentren las cargas aplicadas y propiedades materiales.\
 -   [ ] En algún punto tendremos que hacer un core para ecuaciones parabólicas. Deberá existir un solver para eso tambien.
+-   [ ] Debería hacer un refactor para pasar el tipo de elemento por parámetro, no pasar un string con el tipo de elemento
+-   [ ] Cada tipo de elemento debe llevar un string interno que sea el tipo. El paquete de geometrías debería ser capaz de crear el diccinario de string a tipo de elemento de manera automatica. Con eso no hay errores en tipeo y sigue siendo compatible y guardable
+-   [ ] La forma de guardar los archivos merece un repensamiento con el tema de todos los elementos con el mismo tipo/propiedades etc
+-   [ ] Valdría la pena hacer grupos de elementos? No lo se...
