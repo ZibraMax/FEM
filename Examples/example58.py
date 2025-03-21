@@ -15,7 +15,7 @@ if __name__ == '__main__':
         return 1
 
     L = 1
-    EA = 1
+    EA = 9999999
 
     x_coord = np.sin(np.pi/3)*L
     theta_0 = R(210)
@@ -40,9 +40,9 @@ if __name__ == '__main__':
     geo = Geometry3D(elements, coords, types, 3, fast=True)
     for node in [0, 1, 2]:
         geo.cbe += [[node*3, 0], [node*3+1, 0], [node*3+2, 0]]
-    O = BarAndHingeNonLinear(geo, EA, 1)
-    O.solver.set_increments(100)
-    O.solver.set_delta_lambda_bar(0.01)
+    O = BarAndHingeNonLinear(geo, EA, 1, verbose=False)
+    O.solver.set_increments(200)
+    O.solver.set_delta_lambda_bar(0.1)
     for e in O.elements:
         if e.__class__.__name__ == 'OriHinge':
             e.set_kf(kf)
@@ -54,7 +54,10 @@ if __name__ == '__main__':
     load_factors = []
     for i in range(len(O.solver.solutions)):
         O.solver.setSolution(i, elements=True)
-        displacements.append(-O.U[-1][0])
+        O.elements[-1].calculate_vectors()
+        tt = D(O.elements[-1].calculate_theta())
+        print(O.solution_info['ld'])
+        displacements.append(tt)
         load_factors.append(O.solution_info['ld'])
 
     # Plot the results
@@ -66,7 +69,7 @@ if __name__ == '__main__':
     ax2.set_xlabel('Displacement')
     ax2.set_title('Displacement vs Load factor')
     ax2.grid()
-    ax2.set_xlim(1.1*min(displacements), 1.1*max(displacements))
+    ax2.set_xlim(min(displacements), 1.1*max(displacements))
     ax2.set_ylim(1.1*min(load_factors), 1.1*max(load_factors))
     ax.set(xlim3d=(-L*0.6, L*0.6), xlabel='X')
     ax.set(ylim3d=(-L*0.6, L*0.6), ylabel='Y')

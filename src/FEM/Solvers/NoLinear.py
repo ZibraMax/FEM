@@ -233,7 +233,7 @@ class MGDCM(NonLinearSolver):
     """docstring for DirectIteration
     """
 
-    def __init__(self, FEMObject: 'Core', tol: float = 10**(-4), n: int = 50) -> None:
+    def __init__(self, FEMObject: 'Core', tol: float = 10**(-3), n: int = 200) -> None:
         """Creates a MODIFIED GENERALIZED DISPLACEMENT CONTROL METHOD iterative solver
 
         Args:
@@ -338,6 +338,9 @@ class MGDCM(NonLinearSolver):
                 if err < self.tol:
                     warn = 'No warnings'
                     break
+            if err > self.tol:
+                logging.error(
+                    f'No convergence achived! Error: {err}, ld: {ld}')
             solutioms.append(self.system.U.copy())
             solutioms_info.append(
                 {'solver-type': self.type, 'last-it-error': err, 'n-it': i, 'warnings': warn, 'ld': ld})
