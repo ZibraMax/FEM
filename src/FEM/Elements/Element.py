@@ -58,14 +58,15 @@ class Element():
                 _j = np.linalg.inv(self.jacs)
                 self.dpx = _j @ self.dpz
             except Exception as e:
-                logging.warning(
-                    f'Element jacobian determinant was not calculated!! ')
+                # logging.warning(
+                #     f'Element jacobian determinant was not calculated!! ')
+                pass
         self.Ue = np.zeros(self.gdl.shape)
 
     def restartMatrix(self) -> None:
         """Sets all element matrices and vectors to 0
         """
-        if not self.boundary:
+        if not self.boundary and not self.fast:
             self.Ke[:, :] = 0.0
             self.Fe[:, :] = 0.0
             self.Ue[:, :] = 0.0

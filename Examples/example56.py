@@ -42,5 +42,5 @@ if __name__ == '__main__':
     O = BarAndHingeLinear(geo, EA, 1, kf)
     O.addLoadNode(3, [0.0, 0, 1.0])
     O.solve()
-    O.exportJSON('Bar_and_hinge.json')
+    O.exportJSON('./Examples/Mesh_tests/Bar_and_hinge.json')
     a = 0

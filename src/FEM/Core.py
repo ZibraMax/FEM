@@ -47,6 +47,7 @@ class Core():
             self.logger.setup_logging()
         self.geometry: Geometry = geometry
         self.ngdl: int = self.geometry.ngdl
+        self.sparse = sparse
         if not sparse:
             self.K: np.ndarray = np.zeros([self.ngdl, self.ngdl])
         self.F: np.ndarray = np.zeros([self.ngdl, 1])
@@ -104,7 +105,10 @@ class Core():
     def restartMatrix(self) -> None:
         """Sets all model matrices and vectors to 0 state
         """
-        self.K[:, :] = 0.0
+        if not self.sparse:
+            self.K[:, :] = 0.0
+        else:
+            self.K = self.K.__class__((self.ngdl, self.ngdl))
         self.F[:, :] = 0.0
         self.Q[:, :] = 0.0
         self.S[:, :] = 0.0
@@ -128,7 +132,8 @@ class Core():
         logging.info('Boundary conditions...')
         for i in tqdm(self.cbn, unit=' Natural'):
             self.Q[int(i[0])] = i[1]
-
+        free_dofs = np.setdiff1d(np.arange(self.ngdl),
+                                 np.array(self.cbe)[:, 0].astype(int))
         if self.cbe:
             boundary_conditions = np.zeros([self.ngdl, 1])
             cb = np.array(self.cbe)
@@ -154,6 +159,7 @@ class Core():
         for i in self.cbe:
             self.S[int(i[0])] = i[1]
         logging.info('Done!')
+        return free_dofs
 
     def condensedSystem(self) -> None:
         """Assign boundary conditions to the system and modifies the matrices to condensed mode 
