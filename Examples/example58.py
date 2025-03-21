@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    from FEM import TrussNonLinear, TrussLinear
+    from FEM import BarAndHingeNonLinear
     from FEM.Geometry import Geometry3D
     import matplotlib.pyplot as plt
     import numpy as np
@@ -11,39 +11,50 @@ if __name__ == '__main__':
     def D(theta):
         return theta*180/np.pi
 
-    L = 10.5
-    EA = 20000000*0.05*0.05
-    delta_x = np.sin(R(60))*np.cos(R(45))*L
-    delta_y = -np.cos(R(60))*np.cos(R(45))*L
+    def kf(theta):
+        return 1
 
-    delta_z = np.sin(R(45))*L
+    L = 1
+    EA = 1
 
-    coords = [[0, 0, delta_z],
-              [0, np.cos(R(45))*L, 0],
-              [-delta_x, delta_y, 0],
-              [delta_x, delta_y, 0]]
+    x_coord = np.sin(np.pi/3)*L
+    theta_0 = R(210)
+    phi = 2*np.pi-theta_0
+    z_coord = np.sin(phi)*x_coord
+    x_coord2 = np.cos(phi)*x_coord
+
+    coords = ([[0, -0.5*L, 0],
+               [0, 0.5*L, 0],
+               [x_coord, 0, 0],
+               [x_coord2, 0, z_coord]])
 
     elements = [[0, 1],
-                [0, 2],
-                [0, 3]]
+                [1, 2],
+                [2, 0],
+                [0, 3],
+                [1, 3],
+                [3, 0, 1, 2]]
 
-    types = ['L1V']*(len(elements))
+    types = ['L1V']*(len(elements)-1) + ['OH']*1
 
     geo = Geometry3D(elements, coords, types, 3, fast=True)
-    for node in [1, 2, 3]:
+    for node in [0, 1, 2]:
         geo.cbe += [[node*3, 0], [node*3+1, 0], [node*3+2, 0]]
-    O = TrussNonLinear(geo, EA, 1)
-    # O.solver.set_delta_lambda_bar(0.5)
+    O = BarAndHingeNonLinear(geo, EA, 1)
     O.solver.set_increments(100)
-    O.addLoadNode(0, [0.0, 0, -0.1*EA])
+    O.solver.set_delta_lambda_bar(0.01)
+    for e in O.elements:
+        if e.__class__.__name__ == 'OriHinge':
+            e.set_kf(kf)
+    O.addLoadNode(3, [0.0, 0, 1.0])
     O.solve()
-    O.exportJSON('./Examples/Mesh_tests/Truss_non_lineal.json')
+    O.exportJSON('./Examples/Mesh_tests/Bar_and_hinge_non_linear.json')
 
     displacements = []
     load_factors = []
     for i in range(len(O.solver.solutions)):
         O.solver.setSolution(i, elements=True)
-        displacements.append(-O.U[2][0])
+        displacements.append(-O.U[-1][0])
         load_factors.append(O.solution_info['ld'])
 
     # Plot the results
@@ -62,22 +73,24 @@ if __name__ == '__main__':
     ax.set(zlim3d=(-L*0.6, L*0.6), zlabel='Z')
     plt.tight_layout()
     for e in O.elements:
-        ax.plot(e.coords[:, 0], e.coords[:, 1],
-                e.coords[:, 2], 'k-')
-        L = np.linalg.norm(e.coords[1] - e.coords[0])
-        print(L)
+        if e.__class__.__name__ != 'OriHinge':
+            ax.plot(e.coords[:, 0], e.coords[:, 1],
+                    e.coords[:, 2], 'k-')
+            L = np.linalg.norm(e.coords[1] - e.coords[0])
     # Deformed shape
     lines = []
     for e in O.elements:
-        coords = e.coords + e.Ue.T
-        lines.append(
-            ax.plot(coords[:, 0], coords[:, 1], coords[:, 2], 'r-')[0])
+        if e.__class__.__name__ != 'OriHinge':
+            coords = e.coords + e.Ue.T
+            lines.append(
+                ax.plot(coords[:, 0], coords[:, 1], coords[:, 2], 'r-')[0])
 
     def animate(i, lines):
         O.solver.setSolution(i, elements=True)
         for j, e in enumerate(O.elements):
-            coords = e.coords + e.Ue.T
-            lines[j].set_data_3d(coords.T)
+            if e.__class__.__name__ != 'OriHinge':
+                coords = e.coords + e.Ue.T
+                lines[j].set_data_3d(coords.T)
 
         cosa.set_data(displacements[:i], load_factors[:i])
         return lines+[cosa]

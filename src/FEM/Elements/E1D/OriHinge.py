@@ -13,10 +13,15 @@ class OriHinge(LinealElement, LinearScheme):
         LinearScheme.__init__(self, 3)
 
         self.hinge_coords = coords
-        self.i = self.hinge_coords[0]
-        self.j = self.hinge_coords[1]
-        self.k = self.hinge_coords[2]
-        self.l = self.hinge_coords[3]
+        self.calculate_vectors()
+        self.theta_0 = self.calculate_theta()
+        self.theta = self.calculate_theta()
+
+    def calculate_vectors(self):
+        self.i = self.hinge_coords[0] + self.Ue.T[0]
+        self.j = self.hinge_coords[1] + self.Ue.T[1]
+        self.k = self.hinge_coords[2] + self.Ue.T[2]
+        self.l = self.hinge_coords[3] + self.Ue.T[3]
 
         self.rij = -(self.i-self.j)
         self.rkj = -(self.k-self.j)
@@ -31,14 +36,15 @@ class OriHinge(LinealElement, LinearScheme):
         self.m_n2 = np.sum(self.m**2)
         self.n_n2 = np.sum(self.n**2)
 
+    def calculate_theta(self):
         eta = 1
         if np.dot(self.m, self.rkl) != 0:
             eta = np.sign(np.dot(self.m, self.rkl))
 
-        self.theta_0 = eta*np.arccos(np.dot(self.m, self.n) /
+        theta_ = eta*np.arccos(np.dot(self.m, self.n) /
                                      (np.linalg.norm(self.m)*np.linalg.norm(self.n)))
-        self.theta_0 = self.theta_0 % (2*np.pi)
-        self.theta = self.theta_0
+        theta_ = theta_ % (2*np.pi)
+        return theta_
 
     def set_kf(self, kf: Callable):
         self.kf = kf
@@ -58,7 +64,15 @@ class OriHinge(LinealElement, LinearScheme):
         return J
 
     def elementMatrix(self):
+        self.calculate_vectors()
+        self.theta = self.calculate_theta()
         J = self.jacobian().flatten().reshape([12, 1])
         k = self.get_kf()
-
         return k*J@J.T
+
+    def elementMatrixNonLineal(self):
+        J = self.jacobian().flatten().reshape([12, 1])
+        k = self.get_kf()
+        Ke = k*J@J.T
+        Te = 0.0
+        return Ke, Te
