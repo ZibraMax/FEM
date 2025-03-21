@@ -458,6 +458,14 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLinear.LoadControl"><code class="docutils literal notranslate"><span class="pre">LoadControl</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLinear.LoadControl.run"><code class="docutils literal notranslate"><span class="pre">LoadControl.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLinear.LoadControl.set_increments"><code class="docutils literal notranslate"><span class="pre">LoadControl.set_increments()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLinear.MGDCM"><code class="docutils literal notranslate"><span class="pre">MGDCM</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLinear.MGDCM.get_dld"><code class="docutils literal notranslate"><span class="pre">MGDCM.get_dld()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLinear.MGDCM.set_delta_lambda_bar"><code class="docutils literal notranslate"><span class="pre">MGDCM.set_delta_lambda_bar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLinear.MGDCM.set_increments"><code class="docutils literal notranslate"><span class="pre">MGDCM.set_increments()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLinear.MGDCM.solve"><code class="docutils literal notranslate"><span class="pre">MGDCM.solve()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.Solvers.html#FEM.Solvers.NoLinear.Newton"><code class="docutils literal notranslate"><span class="pre">Newton</span></code></a><ul>
@@ -1710,6 +1718,33 @@ the essential boundary conditions will be applied.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Unhinged.TrussNonLinear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Unhinged.</span></span><span class="sig-name descname"><span class="pre">TrussNonLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.TrussNonLinear" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Unhinged.TrussNonLinear.addLoadNode">
+<span class="sig-name descname"><span class="pre">addLoadNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.TrussNonLinear.addLoadNode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Unhinged.TrussNonLinear.elementMatrices">
+<span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.TrussNonLinear.elementMatrices" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Unhinged.TrussNonLinear.ensembling">
+<span class="sig-name descname"><span class="pre">ensembling</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Unhinged.TrussNonLinear.ensembling" title="Link to this definition">¶</a></dt>
+<dd><p>Ensembling of equation system. This method use the element gdl
+and the element matrices. The element matrices degrees of fredom must
+match the dimension of the element gdl. For m&gt;1 variables per node,
+the gdl will be flattened. This ensure that the element matrices will always
+be a 2-D Numpy Array.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -1964,6 +1999,12 @@ the essential boundary conditions will be applied.</p>
 <li><a class="reference internal" href="#FEM.Unhinged.TrussLinear.addLoadNode"><code class="docutils literal notranslate"><span class="pre">TrussLinear.addLoadNode()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Unhinged.TrussLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">TrussLinear.elementMatrices()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Unhinged.TrussLinear.ensembling"><code class="docutils literal notranslate"><span class="pre">TrussLinear.ensembling()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Unhinged.TrussNonLinear"><code class="docutils literal notranslate"><span class="pre">TrussNonLinear</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Unhinged.TrussNonLinear.addLoadNode"><code class="docutils literal notranslate"><span class="pre">TrussNonLinear.addLoadNode()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Unhinged.TrussNonLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">TrussNonLinear.elementMatrices()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Unhinged.TrussNonLinear.ensembling"><code class="docutils literal notranslate"><span class="pre">TrussNonLinear.ensembling()</span></code></a></li>
 </ul>
 </li>
 </ul>

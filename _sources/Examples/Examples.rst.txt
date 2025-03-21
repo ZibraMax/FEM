@@ -433,6 +433,14 @@ Examples.example56 module
    :undoc-members:
    :show-inheritance:
 
+Examples.example57 module
+-------------------------
+
+.. automodule:: Examples.example57
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.example6 module
 ------------------------
 
