@@ -17,10 +17,10 @@ FEM.Solvers.Linear module
    :undoc-members:
    :show-inheritance:
 
-FEM.Solvers.NoLinear module
----------------------------
+FEM.Solvers.NonLinear module
+----------------------------
 
-.. automodule:: FEM.Solvers.NoLinear
+.. automodule:: FEM.Solvers.NonLinear
    :members:
    :undoc-members:
    :show-inheritance:
