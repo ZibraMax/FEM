@@ -2,6 +2,6 @@
 """
 
 from .Linear import *
-from .NoLinear import *
+from .NonLinear import *
 from .Solver import *
 from .Transient import *

@@ -33,8 +33,8 @@ if __name__ == '__main__':
     for node in [1, 2, 3]:
         geo.cbe += [[node*3, 0], [node*3+1, 0], [node*3+2, 0]]
     O = TrussNonLinear(geo, EA, 1)
-    # O.solver.set_delta_lambda_bar(0.5)
-    O.solver.set_increments(100)
+    O.solver.set_delta_lambda_bar(0.1)
+    O.solver.set_increments(250)
     O.addLoadNode(0, [0.0, 0, -0.1*EA])
     O.solve()
     O.exportJSON('./Examples/Mesh_tests/Truss_non_lineal.json')

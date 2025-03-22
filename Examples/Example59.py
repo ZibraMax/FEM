@@ -16,16 +16,19 @@ if __name__ == '__main__':
         return theta*180/np.pi
 
     def k_hinges(theta):
-        return 0.06
+        return 1
 
     def k_panels(theta):
         return stifness_f*k_hinges(theta)
 
-    E = 1e4
+    E = 10e4
     A = 0.2
 
     # Miura ori coordinates
     miura_coords = np.loadtxt('./miura_cell_coords.txt')
+    idx = [0, 3, 6, 1, 4, 7, 2, 5, 8]
+    miura_coords = miura_coords[idx]
+
     elements = [[0, 1],  # Bar
                 [1, 2],  # Bar
                 [3, 4],  # Bar
@@ -42,7 +45,7 @@ if __name__ == '__main__':
                 [1, 5],  # Extra bars
                 [6, 4],  # Extra bars
                 [4, 8],  # Extra bars
-                [6, 4, 3, 1],  # Hinges
+                [6, 3, 4, 1],  # Hinges
                 [8, 4, 5, 1],  # Hinges
                 [3, 1, 4, 5],  # Hinges
                 [6, 4, 7, 8],  # Hinges
@@ -68,8 +71,9 @@ if __name__ == '__main__':
     O.addLoadNode(2, [-1.0, 0.0, 0.0])
     O.addLoadNode(5, [-1.0, 0.0, 0.0])
     O.addLoadNode(8, [-1.0, 0.0, 0.0])
-    O.solver.set_increments(1000)
-    O.solver.maxiter = 20
+    O.solver.set_increments(20)
+    O.solver.maxiter = 50
+    O.solver.tol = 1e-3
     O.solver.set_delta_lambda_bar(0.1)
     hinges = [16, 17, 18, 19]
     panels = [20, 21, 22, 23]

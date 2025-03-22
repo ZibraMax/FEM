@@ -233,7 +233,7 @@ class MGDCM(NonLinearSolver):
     """docstring for DirectIteration
     """
 
-    def __init__(self, FEMObject: 'Core', tol: float = 10**(-3), n: int = 200) -> None:
+    def __init__(self, FEMObject: 'Core', tol: float = 10**(-6), n: int = 200) -> None:
         """Creates a MODIFIED GENERALIZED DISPLACEMENT CONTROL METHOD iterative solver
 
         Args:
@@ -245,6 +245,8 @@ class MGDCM(NonLinearSolver):
         self.type = 'non-lineal-mgdcm'
         self.delta_lambda_bar = 0.5
         self.increments = 10
+        self.max_iter_momentum = 15
+        self.min_iter_momentum = 3
 
     def set_increments(self, increments):
         self.increments = increments
@@ -252,24 +254,25 @@ class MGDCM(NonLinearSolver):
     def set_delta_lambda_bar(self, delta_lambda_bar):
         self.delta_lambda_bar = delta_lambda_bar
 
-    def get_dld(self, delta_u_hat, delta_v_hat, i, k, sign):
+    def get_dld(self, dup, dur, i, k):
         """Calculates the load factor for the next iteration"""
         delta_lambda_bar = self.delta_lambda_bar
-        if i == 1 and k == 1:
-            return delta_lambda_bar
-        elif i == 1 and k > 1:
-            return -(np.dot(delta_u_hat, delta_v_hat) /
-                     np.dot(delta_u_hat, delta_u_hat))
-        elif i > 1 and k == 1:
-            return sign * delta_lambda_bar * np.sqrt(
-                abs(np.dot(delta_u_hat, delta_u_hat) /
-                    np.dot(delta_u_hat, delta_u_hat))
-            )
-        elif i > 1 and k > 1:
-            return -(np.dot(delta_u_hat, delta_v_hat) /
-                     np.dot(delta_u_hat, delta_u_hat))
+        if k == 1:
+            if i == 1:
+                self.numgsp = np.dot(dup, dup)
+                self.increment_sign = np.sign(self.numgsp)
+
+                dl = delta_lambda_bar
+            else:
+                self.increment_sign *= np.sign(np.dot(self.dupp1, dup))
+                gsp = self.numgsp/np.dot(dup, dup)
+                dl = self.increment_sign*delta_lambda_bar*np.sqrt(gsp)
+            self.dupp1 = dup.copy()
+            self.dupc1 = dup.copy()
+            return dl
         else:
-            raise ValueError("Invalid values for i and k")
+            return -(np.dot(self.dupc1, dur) /
+                     np.dot(self.dupc1, dup))
 
     def solve(self, path: str = '', guess=None, _guess=False, **kargs) -> None:
         """Solves the equation system using mgdcm method
@@ -310,19 +313,17 @@ class MGDCM(NonLinearSolver):
                 Fint = self.system.F_int[free_dofs]
                 Fext = self.system.S.copy()[free_dofs]
                 R = ld*Fext - Fint
-                try:
-                    duhat = spsolve(Kij, Fext)
-                    duguino = spsolve(Kij, R)
-                except Exception as e:
-                    logging.error(e)
-                    raise e
+                RHS = np.zeros([len(free_dofs), 2]).T
+                RHS[0] = Fext.flatten()
+                RHS[1] = R.flatten()
+                RHS = RHS.T
+                ans = spsolve(Kij, RHS)
+                duhat = ans[:, 0]
+                duguino = ans[:, 1]
                 logging.debug('Equation system solved')
-                sign = 1
-                if i > 1 and k == 1:
-                    sign = np.sign(np.dot(duhat, duhatm1))
-                duhatm1 = duhat.copy()
-                dldp1 = self.get_dld(duhat, duguino, i, k, sign)
-                logging.debug(f'Load factor calculated {dldp1}, sign {sign}')
+                dldp1 = self.get_dld(duhat, duguino, i, k)
+                logging.debug(f'i {i}, k {k}, ld {dldp1}')
+                logging.debug(f'Load factor calculated {dldp1}')
                 du = duhat * dldp1 + duguino
                 self.system.U[free_dofs] += du.reshape([len(free_dofs), 1])
                 ld += dldp1
@@ -333,17 +334,39 @@ class MGDCM(NonLinearSolver):
                     e.setUe(self.system.U)
                 logging.debug('Updated elements')
                 err = np.linalg.norm(du)
-                logging.info(
+                logging.debug(
                     f'----------------- Iteration error {err} -------------------')
                 if err < self.tol:
                     warn = 'No warnings'
                     break
             if err > self.tol:
                 logging.error(
-                    f'No convergence achived! Error: {err}, ld: {ld}, increment: {i}')
+                    f'No convergence achived!  Error: {err}, ld: {ld}, increment: {i}. Stopping')
+                break
+
+            if k > self.max_iter_momentum:
+                self.delta_lambda_bar /= 10
+                logging.warning(
+                    f'Momentum limit reached. Decreasing delta_lambda_bar to {self.delta_lambda_bar}, ld = {ld}, k = {k}, error = {err}')
+                self.system.U = solutioms[-1]
+                for e in self.system.elements:
+                    e.restartMatrix()
+                    e.setUe(self.system.U)
+                continue
+            if k < self.min_iter_momentum:
+                self.delta_lambda_bar *= 1.1
+                warning = f'Momentum. Increasing delta_lambda_bar to {self.delta_lambda_bar}, ld = {ld}, k = {k}, error = {err}'
+                logging.warning(warning)
+            if self.delta_lambda_bar < self.tol:
+                logging.error('Delta lambda bar too small. Stopping')
+                break
+            if self.delta_lambda_bar > 10e3:
+                logging.error('Delta lambda bar too big. Stopping')
+                break
             solutioms.append(self.system.U.copy())
             solutioms_info.append(
                 {'solver-type': self.type, 'last-it-error': err, 'n-it': i, 'warnings': warn, 'ld': ld})
+
         self.solutions_info = solutioms_info
         self.solutions = solutioms
         self.setSolution()

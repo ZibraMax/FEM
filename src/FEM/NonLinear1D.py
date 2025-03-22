@@ -4,7 +4,7 @@
 
 from re import M
 from .Core import Core, Geometry
-from .Solvers import NoLinear
+from .Solvers import NonLinear
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
@@ -37,7 +37,7 @@ class NonLinearSimpleEquation(Core):
 
         self.a = a
         self.f = f
-        Core.__init__(self, geometry, solver=NoLinear.Newton, **kargs)
+        Core.__init__(self, geometry, solver=NonLinear.Newton, **kargs)
         self.name = '1D non lineal sample equation'
         self.properties['a'] = None
         self.properties['f'] = None
