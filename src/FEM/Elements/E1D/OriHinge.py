@@ -8,7 +8,6 @@ class OriHinge(LinealElement, LinearScheme):
 
     def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
         bar_coords = np.array([coords[1], coords[2]])
-        print(bar_coords)
         LinealElement.__init__(self, bar_coords, gdl, **kargs)
         LinearScheme.__init__(self, 3)
 
@@ -54,43 +53,43 @@ class OriHinge(LinealElement, LinearScheme):
 
         cross_product = np.cross(self.rkj, self.m)
         d2tdxi2 = -(self.rkj_n / (self.m_n2**2)) * \
-            self.dia(self.m, cross_product)
+            self.dia(self.m, cross_product)  # yes
 
         cross_product_n = np.cross(self.rkj, self.n)
         d2tdxl2 = (self.rkj_n / (self.n_n2**2)) * \
-            self.dia(self.n, cross_product_n)
+            self.dia(self.n, cross_product_n)  # yes
 
         cross_product_m_rij = np.cross(self.rij, self.m)
         d2tdxixk = (np.outer(self.m, self.rkj) / (self.m_n2 * self.rkj_n)) + \
             (self.rkj_n / (self.m_n2**2)) * \
-            self.dia(self.m, cross_product_m_rij)
+            self.dia(self.m, cross_product_m_rij)  # yes
 
         cross_product_n_rkl = np.cross(self.rkl, self.n)
         d2tdxlxj = (np.outer(self.n, self.rkj) / (self.n_n2 * self.rkj_n)) - \
             (self.rkj_n / (self.n_n2**2)) * \
-            self.dia(self.n, cross_product_n_rkl)
+            self.dia(self.n, cross_product_n_rkl)  # yes
 
         cross_product_m_diff = np.cross(self.rkj - self.rij, self.m)
         d2tdxixj = -(np.outer(self.m, self.rkj) / (self.m_n2 * self.rkj_n)) + \
             (self.rkj_n / (self.m_n2**2)) * \
-            self.dia(self.m, cross_product_m_diff)
+            self.dia(self.m, cross_product_m_diff)  # yes
 
         cross_product_n_diff = np.cross(self.rkj - self.rkl, self.n)
         d2tdxlxk = -(np.outer(self.n, self.rkj) / (self.n_n2 * self.rkj_n)) - \
             (self.rkj_n / (self.n_n2**2)) * \
-            self.dia(self.n, cross_product_n_diff)
+            self.dia(self.n, cross_product_n_diff)  # yes
 
         d2tdxj2 = np.outer(self.dtdxi, self.dA_dxj) + (self.A - 1) * d2tdxixj - (
-            np.outer(self.dtdxl, self.dB_dxj) + self.B * d2tdxlxk
-        )
+            np.outer(self.dtdxl, self.dB_dxj) + self.B * d2tdxlxj
+        )  # yes
 
         d2tdxjxk = np.outer(self.dtdxi, self.dA_dxk) + (self.A - 1) * d2tdxixk - (
             np.outer(self.dtdxl, self.dB_dxk) + self.B * d2tdxlxk
-        )
+        )  # yes
 
         d2tdxk2 = np.outer(self.dtdxl, self.dB_dxk) + (self.B - 1) * d2tdxlxk - (
             np.outer(self.dtdxi, self.dA_dxk) + self.A * d2tdxixk
-        )
+        )  # yes
 
         d2tdxlxi = np.zeros((3, 3))
 
@@ -121,28 +120,33 @@ class OriHinge(LinealElement, LinearScheme):
     def get_kf(self):
         return self.kf(self.theta)
 
-    def get_M(self):
-        return self.kf(self.theta_0)*(self.theta-self.theta_0)
+    def get_theta_from_u(self):
+        Ue = self.Ue.T.flatten().reshape([12, 1])
+        J = self.jacobian().flatten().reshape([12, 1])
+        return self.theta_0 + J.T@Ue
+
+    def get_M(self, theta):
+        return self.kf(self.theta_0)*(theta-self.theta_0)
 
     def jacobian(self):
-        J = np.array([self.dtdxi, self.dtdxj, self.dtdxk, self.dtdxl])
+        J = np.array(
+            [self.dtdxi, self.dtdxj, self.dtdxk, self.dtdxl])  # working
         return J
 
-    def elementMatrix(self):
+    def _elementMatrixNonLineal(self):
         J = self.jacobian().flatten().reshape([12, 1])
         k = self.get_kf()
-        return k*J@J.T
+        M = self.get_M(self.get_theta_from_u())
+        Te = M*J
+        return k*J@J.T, Te
 
     def elementMatrixNonLineal(self):
         self.calculate_vectors()
-        self.theta = self.calculate_theta()
+        self.theta = self.get_theta_from_u()
         J = self.jacobian().flatten().reshape([12, 1])
         k = self.get_kf()
         Ke = k*J@J.T
-        M = self.get_M()
-        Kg = M*self.d2theta_dxi2.T
+        M = self.get_M(self.theta)
+        Kg = M*self.d2theta_dxi2
         Te = M*J
         return Ke+Kg, Te
-
-        # self.calculate_vectors()
-        # self.theta = self.calculate_theta()

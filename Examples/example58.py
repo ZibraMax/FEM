@@ -15,7 +15,7 @@ if __name__ == '__main__':
         return 1
 
     L = 1
-    EA = 9999999
+    EA = 1000
 
     x_coord = np.sin(np.pi/3)*L
     theta_0 = R(210)
@@ -42,11 +42,12 @@ if __name__ == '__main__':
         geo.cbe += [[node*3, 0], [node*3+1, 0], [node*3+2, 0]]
     O = BarAndHingeNonLinear(geo, EA, 1, verbose=False)
     O.solver.set_increments(200)
+    O.solver.maxiter = 500
     O.solver.set_delta_lambda_bar(0.1)
     for e in O.elements:
         if e.__class__.__name__ == 'OriHinge':
             e.set_kf(kf)
-    O.addLoadNode(3, [0.0, 0, 1.0])
+    O.addLoadNode(3, [0.0, 0, 10.0])
     O.solve()
     O.exportJSON('./Examples/Mesh_tests/Bar_and_hinge_non_linear.json')
 

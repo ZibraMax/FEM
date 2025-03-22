@@ -340,7 +340,7 @@ class MGDCM(NonLinearSolver):
                     break
             if err > self.tol:
                 logging.error(
-                    f'No convergence achived! Error: {err}, ld: {ld}')
+                    f'No convergence achived! Error: {err}, ld: {ld}, increment: {i}')
             solutioms.append(self.system.U.copy())
             solutioms_info.append(
                 {'solver-type': self.type, 'last-it-error': err, 'n-it': i, 'warnings': warn, 'ld': ld})
