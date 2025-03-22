@@ -41,6 +41,14 @@ Examples.Example50\-2 module
    :undoc-members:
    :show-inheritance:
 
+Examples.Example59 module
+-------------------------
+
+.. automodule:: Examples.Example59
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.Punto3 module
 ----------------------
 
