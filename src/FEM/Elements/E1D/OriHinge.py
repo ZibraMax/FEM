@@ -133,7 +133,7 @@ class OriHinge(LinealElement, LinearScheme):
             [self.dtdxi, self.dtdxj, self.dtdxk, self.dtdxl])  # working
         return J
 
-    def _elementMatrixNonLineal(self):
+    def elementMatrix(self):
         J = self.jacobian().flatten().reshape([12, 1])
         k = self.get_kf()
         M = self.get_M(self.get_theta_from_u())

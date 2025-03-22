@@ -158,7 +158,7 @@ class BarAndHingeLinear(Core):
         for ee, e in enumerate(tqdm(self.elements, unit='Element')):
             e.gdlm = e.gdl.T.flatten()  # Change in numbering...
             if e.__class__.__name__ == 'OriHinge':
-                Ke = e.elementMatrix()
+                Ke, te = e.elementMatrix()
             else:
                 Ke = self.barElementMatrix(e, ee)
             self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
