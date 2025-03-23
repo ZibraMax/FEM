@@ -24,9 +24,9 @@ class OriHinge(LinealElement, LinearScheme):
         self.k = self.hinge_coords[2] + self.Ue.T[2]
         self.l = self.hinge_coords[3] + self.Ue.T[3]
 
-        self.rij = -(self.i-self.j)
-        self.rkj = -(self.k-self.j)
-        self.rkl = -(self.k-self.l)
+        self.rij = (self.i-self.j)
+        self.rkj = (self.k-self.j)
+        self.rkl = (self.k-self.l)
 
         self.rij_n = np.linalg.norm(self.rij)
         self.rkj_n = np.linalg.norm(self.rkj)
@@ -108,11 +108,12 @@ class OriHinge(LinealElement, LinearScheme):
 
     def calculate_theta(self):
         eta = 1
-        if np.dot(self.m, self.rkl) != 0:
+        if round(np.dot(self.m, self.rkl), 8) != 0:
             eta = np.sign(np.dot(self.m, self.rkl))
-
-        theta_ = eta*np.arccos(np.dot(self.m, self.n) /
-                                     (np.linalg.norm(self.m)*np.linalg.norm(self.n)))
+        cosa = np.dot(self.m, self.n) / \
+            (np.linalg.norm(self.m)*np.linalg.norm(self.n))
+        cosa = max(min(cosa, 1), -1)
+        theta_ = eta*np.arccos(cosa)
         theta_ = theta_ % (2*np.pi)
         return theta_
 
