@@ -15,19 +15,15 @@ if __name__ == '__main__':
     def D(theta):
         return theta*180/np.pi
 
-    def k_hinges(theta):
-        return 1
+    k_hinges = 1
 
-    def k_panels(theta):
-        return stifness_f*k_hinges(theta)
+    k_panels = stifness_f*k_hinges
 
     E = 10e4
     A = 0.2
 
     # Miura ori coordinates
     miura_coords = np.loadtxt('./miura_cell_coords.txt')
-    idx = [0, 3, 6, 1, 4, 7, 2, 5, 8]
-    miura_coords = miura_coords[idx]
 
     elements = [[0, 1],  # Bar
                 [1, 2],  # Bar
@@ -71,10 +67,10 @@ if __name__ == '__main__':
     O.addLoadNode(2, [-1.0, 0.0, 0.0])
     O.addLoadNode(5, [-1.0, 0.0, 0.0])
     O.addLoadNode(8, [-1.0, 0.0, 0.0])
-    O.solver.set_increments(20)
+    O.solver.set_increments(50)
     O.solver.maxiter = 50
     O.solver.tol = 1e-3
-    O.solver.set_delta_lambda_bar(0.1)
+    O.solver.set_delta_lambda_bar(0.07)
     hinges = [16, 17, 18, 19]
     panels = [20, 21, 22, 23]
     for h in hinges:
@@ -92,7 +88,7 @@ if __name__ == '__main__':
         angles = []
         for hinge in hinges:
             O.elements[hinge].calculate_vectors()
-            tt = D(O.elements[17].calculate_theta())
+            tt = D(2*np.pi-O.elements[17].calculate_theta())
             angles.append(tt)
         print(O.solution_info['ld'])
         displacements.append(angles)
@@ -103,8 +99,13 @@ if __name__ == '__main__':
     fig = plt.figure(figsize=(12, 5))
     ax = fig.add_subplot(1, 2, 1, projection='3d')
     ax2 = fig.add_subplot(1, 2, 2)
+    aa = {16: '$\\rho_1$',
+          17: '$\\rho_2$',
+          18: '$\\rho_3$',
+          19: '$\\rho_4$'}
+
     cosas = ax2.plot(displacements, load_factors, 'o-',
-                     label=[str(i) for i in hinges])
+                     label=[aa[i] for i in hinges])
     ax2.set_ylabel('Load factor')
     ax2.set_xlabel('Dihedral angle (degrees)')
     ax2.legend()

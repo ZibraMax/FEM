@@ -11,11 +11,9 @@ if __name__ == '__main__':
     def D(theta):
         return theta*180/np.pi
 
-    def kf(theta):
-        return 1
-
+    kf = 0.3
     L = 1
-    EA = 100
+    EA = 10000*0.1
 
     x_coord = np.sin(np.pi/3)*L
     theta_0 = R(210)
@@ -33,7 +31,7 @@ if __name__ == '__main__':
                 [2, 0],
                 [0, 3],
                 [1, 3],
-                [3, 0, 1, 2]]
+                [2, 0, 1, 3]]
 
     types = ['L1V']*(len(elements)-1) + ['OH']*1
 
@@ -41,10 +39,10 @@ if __name__ == '__main__':
     for node in [0, 1, 2]:
         geo.cbe += [[node*3, 0], [node*3+1, 0], [node*3+2, 0]]
     O = BarAndHingeNonLinear(geo, EA, 1, verbose=False)
-    O.solver.set_increments(100)
-    O.solver.maxiter = 500
-    O.solver.tol = 1e-3
-    O.solver.set_delta_lambda_bar(0.005)
+    O.solver.set_increments(30)
+    O.solver.maxiter = 1000
+    O.solver.tol = 1e-4
+    O.solver.set_delta_lambda_bar(0.01)
     for e in O.elements:
         if e.__class__.__name__ == 'OriHinge':
             e.set_kf(kf)
@@ -57,8 +55,8 @@ if __name__ == '__main__':
     for i in range(len(O.solver.solutions)):
         O.solver.setSolution(i, elements=True)
         O.elements[-1].calculate_vectors()
-        tt = D(O.elements[-1].calculate_theta())
-        print(O.solution_info['ld'])
+        tt = D(2*np.pi-O.elements[-1].calculate_theta())
+        print(tt, O.solution_info['ld'])
         displacements.append(tt)
         load_factors.append(O.solution_info['ld'])
 
@@ -91,7 +89,7 @@ if __name__ == '__main__':
                 ax.plot(coords[:, 0], coords[:, 1], coords[:, 2], 'r-')[0])
 
     def animate(i, lines):
-        O.solver.setSolution(i, elements=True)
+        O.solver.setSolution(i-1, elements=True)
         for j, e in enumerate(O.elements):
             if e.__class__.__name__ != 'OriHinge':
                 coords = e.coords + e.Ue.T
@@ -100,13 +98,16 @@ if __name__ == '__main__':
         cosa.set_data(displacements[:i], load_factors[:i])
         return lines+[cosa]
 
-    anim = FuncAnimation(
-        fig,
-        animate,
-        frames=len(O.solver.solutions),
-        interval=60,
-        fargs=(lines,),
-        blit=True
-    )
-    html = anim.save('./Examples/examples_results/Truss_non_lineal.mp4')
+    # anim = FuncAnimation(
+    #     fig,
+    #     animate,
+    #     frames=len(O.solver.solutions),
+    #     interval=60,
+    #     fargs=(lines,),
+    #     blit=True
+    # )
+    # html = anim.save('./Examples/examples_results/Truss_non_lineal.mp4')
+    animate(len(O.solver.solutions), lines)
+    np.savetxt('./Pyuthon2.csv',
+               np.array([displacements, load_factors]).T, delimiter=',')
     plt.show()

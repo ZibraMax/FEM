@@ -15,6 +15,8 @@ class OriHinge(LinealElement, LinearScheme):
         self.calculate_vectors()
         self.theta_0 = self.calculate_theta()
         self.theta = self.calculate_theta()
+        self.theta_1 = 10*np.pi/180
+        self.theta_2 = 350*np.pi/180
 
     def calculate_vectors(self):
         self.i = self.hinge_coords[0] + self.Ue.T[0]
@@ -117,16 +119,46 @@ class OriHinge(LinealElement, LinearScheme):
     def set_kf(self, kf: Callable):
         self.kf = kf
 
-    def get_kf(self):
-        return self.kf(self.theta)
-
     def get_theta_from_u(self):
         Ue = self.Ue.T.flatten().reshape([12, 1])
         J = self.jacobian().flatten().reshape([12, 1])
         return self.theta_0 + J.T@Ue
 
+    def get_kf(self, theta):
+        theta_1 = self.theta_1
+        theta_2 = self.theta_2
+        k_0 = self.kf
+        L_r = self.rkj_n
+        if 0 < theta < theta_1:
+            k = L_r * k_0 * \
+                (1 / np.cos(np.pi * (theta - theta_1) / (2 * theta_1)))**2
+        elif theta_1 <= theta <= theta_2:
+            k = L_r * k_0
+        elif theta_2 < theta < 2 * np.pi:
+            k = L_r * k_0 * \
+                (1 / np.cos(np.pi * (theta - theta_2) / (4 * np.pi - 2 * theta_2)))**2
+        else:
+            k = None  # Value is undefined outside the specified range
+        return k
+
     def get_M(self, theta):
-        return self.kf(self.theta_0)*(theta-self.theta_0)
+        theta_0 = self.theta_0
+        theta_1 = self.theta_1
+        theta_2 = self.theta_2
+        k_0 = self.kf
+        L_r = self.rkj_n
+
+        if 0 < theta < theta_1:
+            M = L_r*k_0*(theta_1-theta_0)+(2*k_0*theta_1/np.pi) * \
+                np.tan(np.pi*(theta-theta_1)/(2*theta_1))
+        elif theta_1 <= theta <= theta_2:
+            M = L_r*k_0*(theta-theta_0)
+        elif theta_2 < theta < 2*np.pi:
+            M = L_r*k_0*(theta_2-theta_0)+(2*k_0*(2*np.pi-theta_2)/np.pi) * \
+                np.tan(np.pi*(theta-theta_2)/(4*np.pi-2*theta_2))
+        else:
+            M = None  # Value is undefined outside the specified range
+        return M
 
     def jacobian(self):
         J = np.array(
@@ -135,7 +167,7 @@ class OriHinge(LinealElement, LinearScheme):
 
     def elementMatrix(self):
         J = self.jacobian().flatten().reshape([12, 1])
-        k = self.get_kf()
+        k = self.get_kf(self.theta)
         M = self.get_M(self.get_theta_from_u())
         Te = M*J
         return k*J@J.T, Te
@@ -144,7 +176,7 @@ class OriHinge(LinealElement, LinearScheme):
         self.calculate_vectors()
         self.theta = self.get_theta_from_u()
         J = self.jacobian().flatten().reshape([12, 1])
-        k = self.get_kf()
+        k = self.get_kf(self.theta)
         Ke = k*J@J.T
         M = self.get_M(self.theta)
         Kg = M*self.d2theta_dxi2
