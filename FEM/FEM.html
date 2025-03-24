@@ -1698,6 +1698,11 @@ the essential boundary conditions will be applied.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Unhinged.</span></span><span class="sig-name descname"><span class="pre">BarAndHingeNonLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.Geometry.html#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.BarAndHingeNonLinear" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Core.Core" title="FEM.Core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a></p>
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Unhinged.BarAndHingeNonLinear.Ogden">
+<span class="sig-name descname"><span class="pre">Ogden</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.BarAndHingeNonLinear.Ogden" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Unhinged.BarAndHingeNonLinear.addLoadNode">
 <span class="sig-name descname"><span class="pre">addLoadNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.BarAndHingeNonLinear.addLoadNode" title="Link to this definition">¶</a></dt>
 <dd><p>Add a node load to the truss analysis</p>
@@ -2025,6 +2030,7 @@ be a 2-D Numpy Array.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#FEM.Unhinged.BarAndHingeNonLinear"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Unhinged.BarAndHingeNonLinear.Ogden"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.Ogden()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Unhinged.BarAndHingeNonLinear.addLoadNode"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.addLoadNode()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Unhinged.BarAndHingeNonLinear.barElementMatrix"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.barElementMatrix()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Unhinged.BarAndHingeNonLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.elementMatrices()</span></code></a></li>
