@@ -6,6 +6,7 @@ import logging
 from tqdm import tqdm
 from .Solver import Solver
 from scipy.sparse.linalg import spsolve
+from scipy import sparse as spa
 
 
 class NonLinearSolver(Solver):
@@ -303,49 +304,60 @@ class MGDCM(NonLinearSolver):
         for i in range(1, increments+1):
             logging.info(f'================INCREMENT {i}===================')
             for k in range(1, self.maxiter+1):
-                logging.debug(
-                    f'----------------- Iteration {k} -------------------')
-                self.system.restartMatrix()
-                logging.debug('Matrix at 0')
-                self.system.elementMatrices()
-                logging.debug('Calculating element matrix')
-                self.system.ensembling()
-                logging.debug('Matrices enssembling')
-                free_dofs = self.system.boundaryConditions()
-                logging.debug('Boundary conditions')
-                Kij = self.system.K[np.ix_(free_dofs, free_dofs)]
-                Fint = self.system.F_int[free_dofs]
-                Fext = self.system.S.copy()[free_dofs]
-                R = ld*Fext - Fint
-                RHS = np.zeros([len(free_dofs), 2]).T
-                RHS[0] = Fext.flatten()
-                RHS[1] = R.flatten()
-                RHS = RHS.T
-                ans = spsolve(Kij, RHS)
-                duhat = ans[:, 0]
-                duguino = ans[:, 1]
-                if k == 1:
-                    duguino[:] = 0
-                logging.debug('Equation system solved')
-                DUHAT = np.zeros(len(self.system.U))
-                DUHAT[free_dofs] = duhat
-                DUGUINO = np.zeros(len(self.system.U))
-                DUGUINO[free_dofs] = duguino
-                dldp1 = self.get_dld(DUHAT, DUGUINO, i, k)
-                logging.debug(f'i {i}, k {k}, ld {dldp1}')
-                logging.debug(f'Load factor calculated {dldp1}')
-                du = duhat * dldp1 + duguino
-                self.system.U[free_dofs] += du.reshape([len(free_dofs), 1])
-                ld += dldp1
-                logging.debug('Updated elements')
+                try:
+                    logging.debug(
+                        f'----------------- Iteration {k} -------------------')
+                    self.system.restartMatrix()
+                    logging.debug('Matrix at 0')
+                    self.system.elementMatrices()
+                    logging.debug('Calculating element matrix')
+                    self.system.ensembling()
+                    logging.debug('Matrices enssembling')
+                    free_dofs = self.system.boundaryConditions()
+                    logging.debug('Boundary conditions')
+                    Kij = self.system.K[np.ix_(free_dofs, free_dofs)]
+                    Fint = self.system.F_int[free_dofs]
+                    Fext = self.system.S.copy()[free_dofs]
+                    R = ld*Fext - Fint
+                    RHS = np.zeros([len(free_dofs), 2]).T
+                    RHS[0] = Fext.flatten()
+                    RHS[1] = R.flatten()
+                    RHS = RHS.T
+                    ans = spsolve(Kij, RHS)
+                    duhat = ans[:, 0]
+                    duguino = ans[:, 1]
+                    if k == 1:
+                        duguino[:] = 0
+                    logging.debug('Equation system solved')
+                    DUHAT = np.zeros(len(self.system.U))
+                    DUHAT[free_dofs] = duhat
+                    DUGUINO = np.zeros(len(self.system.U))
+                    DUGUINO[free_dofs] = duguino
+                    dldp1 = self.get_dld(DUHAT, DUGUINO, i, k)
+                    logging.debug(f'i {i}, k {k}, ld {dldp1}')
+                    logging.debug(f'Load factor calculated {dldp1}')
+                    du = duhat * dldp1 + duguino
+                    if np.isnan(du).any():
+                        logging.error('Nan in du')
+                        err = 0
+                        warn = 'Nan in du'
+                        break
 
-                for e in self.system.elements:
-                    e.restartMatrix()
-                    e.setUe(self.system.U)
-                logging.debug('Updated elements')
-                err = np.linalg.norm(du)
-                logging.debug(
-                    f'----------------- Iteration error {err} -------------------')
+                    self.system.U[free_dofs] += du.reshape([len(free_dofs), 1])
+                    ld += dldp1
+                    logging.debug('Updated elements')
+
+                    for e in self.system.elements:
+                        e.restartMatrix()
+                        e.setUe(self.system.U)
+                    logging.debug('Updated elements')
+                    err = np.linalg.norm(du)
+                    logging.debug(
+                        f'----------------- Iteration error {err} -------------------')
+                except:
+                    logging.error('Error in iteration')
+                    err = 100
+                    break
                 if err < self.tol:
                     warn = 'No warnings'
                     break

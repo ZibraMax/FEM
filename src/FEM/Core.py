@@ -132,9 +132,10 @@ class Core():
         logging.info('Boundary conditions...')
         for i in tqdm(self.cbn, unit=' Natural'):
             self.Q[int(i[0])] = i[1]
-        free_dofs = np.setdiff1d(np.arange(self.ngdl),
-                                 np.array(self.cbe)[:, 0].astype(int))
+        free_dofs = np.arange(self.ngdl)
         if self.cbe:
+            free_dofs = np.setdiff1d(np.arange(self.ngdl),
+                                     np.array(self.cbe)[:, 0].astype(int))
             boundary_conditions = np.zeros([self.ngdl, 1])
             cb = np.array(self.cbe)
             ncb = len(cb)

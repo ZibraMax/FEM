@@ -250,10 +250,13 @@ class BarAndHingeNonLinear(Core):
 
     def elementMatrices(self):
         self.F_int = np.zeros([self.ngdl, 1])
+        self.F = np.zeros([self.ngdl, 1])
         for ee, e in enumerate(tqdm(self.elements, unit='Element')):
             e.gdlm = e.gdl.T.flatten()  # Change in numbering...
             if e.__class__.__name__ == 'OriHinge':
                 Ke, Te = e.elementMatrixNonLineal()
+                if e.internal_force is not None:
+                    self.F[np.ix_(e.gdlm)] += e.get_internal_force()
             else:
                 Ke, Te = self.barElementMatrix(e, ee)
             self.K[np.ix_(e.gdlm, e.gdlm)] += Ke

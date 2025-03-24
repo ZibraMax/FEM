@@ -17,6 +17,7 @@ class OriHinge(LinealElement, LinearScheme):
         self.theta = self.calculate_theta()
         self.theta_1 = 10*np.pi/180
         self.theta_2 = 350*np.pi/180
+        self.internal_force = None
 
     def calculate_vectors(self):
         self.i = self.hinge_coords[0] + self.Ue.T[0]
@@ -102,6 +103,16 @@ class OriHinge(LinealElement, LinearScheme):
                                       [d2tdxixk.T, d2tdxjxk.T,
                                           d2tdxk2, d2tdxlxk.T],
                                       [d2tdxlxi.T, d2tdxlxj, d2tdxlxk, d2tdxl2]])
+
+    def set_internal_force(self, internal_force):
+        self.internal_force = internal_force
+
+    def get_internal_force(self):
+        if self.internal_force is not None:
+            J = self.jacobian().flatten().reshape([12, 1])
+            return self.internal_force*J
+        else:
+            return np.zeros([12, 1])
 
     def dia(self, a, b):
         return np.outer(a, b) + np.outer(b, a)
