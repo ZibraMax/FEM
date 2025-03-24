@@ -123,7 +123,9 @@ class OriHinge(LinealElement, LinearScheme):
     def get_theta_from_u(self):
         Ue = self.Ue.T.flatten().reshape([12, 1])
         J = self.jacobian().flatten().reshape([12, 1])
-        return self.theta_0 + J.T@Ue
+        r = self.theta_0 + J.T@Ue
+        r = r % (2*np.pi)
+        return r
 
     def get_kf(self, theta):
         theta_1 = self.theta_1

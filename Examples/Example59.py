@@ -69,7 +69,7 @@ if __name__ == '__main__':
     O.addLoadNode(8, [-1.0, 0.0, 0.0])
     O.solver.set_increments(50)
     O.solver.maxiter = 50
-    O.solver.tol = 1e-3
+    O.solver.tol = 1e-6
     O.solver.set_delta_lambda_bar(0.07)
     hinges = [16, 17, 18, 19]
     panels = [20, 21, 22, 23]
@@ -128,6 +128,7 @@ if __name__ == '__main__':
 
     def animate(i, lines):
         O.solver.setSolution(i, elements=True)
+        ax.set_box_aspect([1, 1, 1])
         for j, e in enumerate(O.elements):
             if e.__class__.__name__ != 'OriHinge':
                 coords = e.coords + e.Ue.T
@@ -145,6 +146,11 @@ if __name__ == '__main__':
         blit=True
     )
     html = anim.to_jshtml()
-    with open('./mori.html', 'w') as f:
+
+    ax.axis('off')
+    # set aspect equal 3D
+
+    ax.view_init(elev=30, azim=30)
+    with open('./miura_simple.html', 'w') as f:
 
         f.write(html)

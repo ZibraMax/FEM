@@ -324,8 +324,14 @@ class MGDCM(NonLinearSolver):
                 ans = spsolve(Kij, RHS)
                 duhat = ans[:, 0]
                 duguino = ans[:, 1]
+                if k == 1:
+                    duguino[:] = 0
                 logging.debug('Equation system solved')
-                dldp1 = self.get_dld(duhat, duguino, i, k)
+                DUHAT = np.zeros(len(self.system.U))
+                DUHAT[free_dofs] = duhat
+                DUGUINO = np.zeros(len(self.system.U))
+                DUGUINO[free_dofs] = duguino
+                dldp1 = self.get_dld(DUHAT, DUGUINO, i, k)
                 logging.debug(f'i {i}, k {k}, ld {dldp1}')
                 logging.debug(f'Load factor calculated {dldp1}')
                 du = duhat * dldp1 + duguino

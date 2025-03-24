@@ -107,9 +107,9 @@ class TrussNonLinear(Core):
             Ke = np.zeros([6, 6])
 
             KE = C*A*L*B1P.T@B1P
-            K1 = C*A**L*((B2Ue)@B1P + B1P.T@(B2Ue.T))
+            K1 = C*A*L*((B2Ue)@B1P + B1P.T@(B2Ue.T))
             K2 = C*A*L*B2Ue@B2Ue.T
-            KG = S11*B2
+            KG = S11*A*L*B2
 
             Ke = KE + K1 + K2 + KG
             self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
@@ -190,10 +190,27 @@ class BarAndHingeNonLinear(Core):
     def addLoadNode(self, node: int, load: list):
         """Add a node load to the truss analysis"""
         self.cbn += [[node*3, load[0]],
-                     [node*3+1, load[1]], [node*3+2, load[2]]]
+                     [node*3+1, load[1]],
+                     [node*3+2, load[2]]]
+
+    def Ogden(self, Ex, C0):
+        # Ogden hyperelastic constitutive model for bar elements
+        alfa = [3, 1]  # Linear
+
+        pstr = np.real(np.sqrt(2 * Ex + 1))
+        C0 = np.where(pstr < 1, 1 * C0, C0)
+
+        Ct = C0 / (alfa[0] - alfa[1]) * ((alfa[0] - 2) * pstr **
+                                         (alfa[0] - 4) - (alfa[1] - 2) * pstr**(alfa[1] - 4))
+        Sx = C0 / (alfa[0] - alfa[1]) * \
+            (pstr**(alfa[0] - 2) - pstr**(alfa[1] - 2))
+
+        Wb = C0 / (alfa[0] - alfa[1]) * ((pstr**alfa[0] - 1) /
+                                         alfa[0] - (pstr**alfa[1] - 1) / alfa[1])
+
+        return Sx, Ct, Wb
 
     def barElementMatrix(self, e, ee):
-        e.gdlm = e.gdl.T.flatten()
         L = np.linalg.norm(e.coords[1] - e.coords[0])
         C0 = self.E[ee]
         A = self.A[ee]
@@ -214,17 +231,19 @@ class BarAndHingeNonLinear(Core):
         B2Ue = B2@Ue
 
         Ex = (B1P@Ue + 1/2 * Ue.T@B2Ue)[0, 0]
-        S11 = C0*Ex
+        # S11 = C0*Ex
+        S11, C0, Wb = self.Ogden(Ex, C0)
+
         Tbar = S11*A*L*(B1P.T+B2Ue)
         C = C0
         # Deformed shape
 
         Ke = np.zeros([6, 6])
 
-        KE = C*A*L*B1P.T@B1P
-        K1 = C*A**L*((B2Ue)@B1P + B1P.T@(B2Ue.T))
-        K2 = C*A*L*B2Ue@B2Ue.T
-        KG = S11*B2
+        KE = C*A*L*B1P.T@B1P  # This one works
+        K1 = C*A*L*((B2Ue)@B1P + B1P.T@(B2Ue.T))
+        K2 = C*A*L*B2Ue@B2Ue.T  # This one wordks!
+        KG = S11*A*L*B2
 
         Ke = KE + K1 + K2 + KG
         return Ke, Tbar
@@ -238,7 +257,7 @@ class BarAndHingeNonLinear(Core):
             else:
                 Ke, Te = self.barElementMatrix(e, ee)
             self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
-        self.F_int[np.ix_(e.gdlm)] += Te
+            self.F_int[np.ix_(e.gdlm)] += Te
 
     def ensembling(self) -> None:
         """Creation of the system sparse matrix. Force vector is ensembled in integration method

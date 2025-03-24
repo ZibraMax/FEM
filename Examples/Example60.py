@@ -59,10 +59,10 @@ if __name__ == '__main__':
         geo.cbe.append([node*3+2, 0.0])
     O = BarAndHingeNonLinear(geo, E, A, verbose=True)
     O.addLoadNode(126, [0.0, 0.0, -1.0])
-    O.solver.set_increments(10)
+    O.solver.set_increments(1000)
     O.solver.maxiter = 100
-    O.solver.tol = 1e-6
-    O.solver.set_delta_lambda_bar(0.2)
+    O.solver.tol = 1e-3
+    O.solver.set_delta_lambda_bar(0.5)
 
     for h in range(len(hinges)):
         O.elements[h].set_kf(k_hinges)
@@ -75,10 +75,10 @@ if __name__ == '__main__':
     load_factors = []
     for i in range(len(O.solver.solutions)):
         O.solver.setSolution(i, elements=True)
-        displacements.append([O.U[126*3+2][0]])
+        displacements.append([-O.U[126*3+2][0]])
         load_factors.append([O.solution_info['ld']])
         print(
-            f"Displacement: {O.U[126*3+2][0]} Load factor: {O.solution_info['ld']}")
+            f"Displacement: {-O.U[126*3+2][0]} Load factor: {O.solution_info['ld']}")
     displacements = np.array(displacements)
     load_factors = np.array(load_factors)
     # Plot the results
@@ -129,6 +129,11 @@ if __name__ == '__main__':
         fargs=(lines,),
         blit=True
     )
+    ax.axis('off')
+    ax.set(xlim3d=(0, 30), xlabel='X')
+    ax.set(ylim3d=(0, 30), ylabel='Y')
+    ax.set(zlim3d=(0, 30), zlabel='Z')
+
     html = anim.to_jshtml()
     with open('./mori.html', 'w') as f:
 
