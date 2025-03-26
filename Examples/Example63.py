@@ -14,15 +14,24 @@ if __name__ == '__main__':
 
     def D(theta):
         return theta*180/np.pi
-    stifness_f = 10
+    stifness_f = 500
     k_hinges = 1
     k_panels = stifness_f*k_hinges
     E = 1e4
     A = 1
 
-    input_data = json.load(open("input_data_unfolded.json"))
+    input_data = json.load(open("input_data.json"))
 
     miura_coords = np.array(input_data["nodes"])
+    # coords_switch = [1, 10, 19, 28, 37, 46, 55, 64, 73]
+    # miura_coords[coords_switch, 0] += 0.684
+    # coords_switch = [i+2 for i in coords_switch]
+    # miura_coords[coords_switch, 0] += 0.684
+    # coords_switch = [i+2 for i in coords_switch]
+    # miura_coords[coords_switch, 0] += 0.684
+    # coords_switch = [i+2 for i in coords_switch]
+    # miura_coords[coords_switch, 0] += 0.684
+
     perimeter = np.array(input_data["perimeter"]).astype(int)-1
     hinges = np.array(input_data["folds"]).astype(int)-1
     panels = np.array(input_data["bend"]).astype(int)-1
@@ -57,24 +66,42 @@ if __name__ == '__main__':
     # node, sx, sy, sz = load
     # O.addLoadNode(int(node), [float(sx), float(sy), float(sz)])
     for i, hinge in enumerate(hinges):
-        force = -1
-        if assigment[i] == "M":
-            force = 1
-        O.elements[i].set_internal_force(force)
+        try:
+            force = -1
+            if assigment[i] == 0:
+                force = 1
+            O.elements[i].set_internal_force(force)
+        except:
+            pass
 
     O.solver.set_increments(100)
     O.solver.maxiter = 500
     O.solver.tol = 1e-4
     O.solver.set_delta_lambda_bar(0.3)
     fig = plt.figure()
-    ax = fig.add_subplot(projection="3d")
+    ax = fig.add_subplot()
     for i, e in enumerate(O.elements):
         if types[i] == "OH":
-            ax.plot(e.coords[:, 0], e.coords[:, 1],
-                    e.coords[:, 2], '--', c='yellow', zorder=10)
+            # anotate hinge number in the middle of the hinge
+            if i < len(hinges):
+                x = np.mean(e.coords[:, 0])
+                y = np.mean(e.coords[:, 1])
+                # z = np.mean(e.coords[:, 2])
+                if assigment[i] == 0:
+                    ax.text(x, y, f"{i}", color='red', fontsize=10)
+                    ax.plot(e.coords[:, 0], e.coords[:, 1],
+                            '--', c='r', zorder=10)
+                else:
+                    ax.text(x, y, f"{i}", color='blue', fontsize=10)
+                    ax.plot(e.coords[:, 0], e.coords[:, 1],
+                            '--', c='b', zorder=10)
         else:
-            ax.plot(e.coords[:, 0], e.coords[:, 1],
-                    e.coords[:, 2], 'k-')
+            if i < len(hinges) or (i > len(hinges)+len(panels) and i < len(hinges)+len(panels)+len(perimeter)):
+                ax.plot(e.coords[:, 0], e.coords[:, 1], 'k-')
+    for i, node in enumerate(O.geometry.gdls):
+        ax.text(node[0], node[1], f"{i}", fontsize=10)
+
+    plt.axis('off')
     plt.show()
 
     for h in range(len(hinges)):
@@ -82,7 +109,17 @@ if __name__ == '__main__':
     for p in range(len(hinges), len(hinges)+len(panels)):
         O.elements[p].set_kf(k_panels)
     O.solve()
-    O.exportJSON('./Examples/Mesh_tests/Fold_test.json')
+    O.exportJSON('./Examples/Mesh_tests/Fold_test_full_miura2.json')
+
+    # solutions = json.load(
+    #     open('./Examples/Mesh_tests/Fold_test_full_stiff.json'))
+    # for i, sol in enumerate(solutions["solutions"]):
+    #     U = np.array(sol["U"])
+    #     info = sol["info"]
+    #     if i != 16:
+    #         O.solver.solutions.append(U)
+    #         O.solver.solutions_info.append(info)
+    # O.solver.setSolution(-1, True)
 
     displacements = []
     load_factors = []
@@ -145,7 +182,11 @@ if __name__ == '__main__':
         fargs=(lines,),
         blit=True
     )
+    ax.axis('off')
+    ax.set(xlim3d=(0, 20), xlabel='X')
+    ax.set(ylim3d=(0, 20), ylabel='Y')
+    ax.set(zlim3d=(0, 20), zlabel='Z')
     html = anim.to_jshtml()
-    with open('./MVassigment_unfolded.html', 'w') as f:
+    with open('./MVassigment_unfolded_masgrande_miura2.html', 'w') as f:
 
         f.write(html)
