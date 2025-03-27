@@ -544,3 +544,11 @@ Examples.example\_ojo\_mitad module
    :members:
    :undoc-members:
    :show-inheritance:
+
+Examples.maybi module
+---------------------
+
+.. automodule:: Examples.maybi
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -612,7 +612,7 @@ be a 2-D Numpy Array.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Core.Core.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Core.Core.solve" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Core.Core.solve" title="Link to this definition">¶</a></dt>
 <dd><p>A series of Finite Element steps</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1725,6 +1725,11 @@ the essential boundary conditions will be applied.</p>
 <dd><p>Creation of the system sparse matrix. Force vector is ensembled in integration method</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Unhinged.BarAndHingeNonLinear.import_fold_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">import_fold_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Unhinged.BarAndHingeNonLinear.import_fold_file" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -2035,6 +2040,7 @@ be a 2-D Numpy Array.</p>
 <li><a class="reference internal" href="#FEM.Unhinged.BarAndHingeNonLinear.barElementMatrix"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.barElementMatrix()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Unhinged.BarAndHingeNonLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.elementMatrices()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Unhinged.BarAndHingeNonLinear.ensembling"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.ensembling()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Unhinged.BarAndHingeNonLinear.import_fold_file"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.import_fold_file()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#FEM.Unhinged.TrussLinear"><code class="docutils literal notranslate"><span class="pre">TrussLinear</span></code></a><ul>
