@@ -213,7 +213,7 @@ class Core():
         """
         self.solver.run(**kargs)
 
-    def solve(self, plot: bool = True, **kargs) -> None:
+    def solve(self, plot: bool = False, **kargs) -> None:
         """A series of Finite Element steps
 
         Args:

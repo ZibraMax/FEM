@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
 from scipy import sparse  # Creation of sparse matrices
+import json
 
 
 class TrussLinear(Core):
@@ -267,3 +268,39 @@ class BarAndHingeNonLinear(Core):
         """
         logging.info('Ensembling equation system...')
         logging.info('Done!')
+
+    @classmethod
+    def import_fold_file(self, filename: str):
+        data = json.load(open(filename, 'r'))
+        coords = np.array(data['vertices_coords'])
+        bars = data['edges_vertices']
+        assigment = data['edges_assignment']
+        faces = data['faces_vertices']
+        faces_shared = {}
+        for facei in faces:
+            for facej in faces:
+                if facei != facej:
+                    shared = set(facei).intersection(set(facej))
+                    if len(shared) == 2:
+                        if tuple(facei) not in faces_shared:
+                            faces_shared[tuple(facei)] = []
+                        faces_shared[tuple(facei)].append(facej)
+        hinges = []
+        mva = []
+        visited_bars = []
+        for facei, facesj in faces_shared.items():
+            # get the nodes shared between the faces
+            for facej in facesj:
+                shared = set(facei).intersection(set(facej))
+                # get the nodes not shared between the faces
+                not_shared = list(set(facei).union(
+                    set(facej)).difference(shared))
+                for i, edge in enumerate(bars):
+                    if set(edge) == set(shared) and i not in visited_bars:
+                        hinges.append([not_shared[0], *shared, not_shared[1]])
+                        mva.append(assigment[i] == "V")
+                        visited_bars.append(i)
+                        break
+        coords = np.array(coords)*1000
+        coords[:, [0, 1, 2]] = coords[:, [0, 2, 1]]
+        return coords, bars, hinges, mva

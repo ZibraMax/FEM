@@ -247,7 +247,7 @@ class MGDCM(NonLinearSolver):
         self.delta_lambda_bar = 0.5
         self.increments = 10
         self.max_iter_momentum = 15
-        self.min_iter_momentum = 2
+        self.min_iter_momentum = 4
 
     def set_increments(self, increments):
         self.increments = increments
@@ -283,6 +283,7 @@ class MGDCM(NonLinearSolver):
         logging.info('Starting iterations.')
         logging.info(f'tol: {self.tol}, maxiter: {self.maxiter}')
         if _guess:
+            print('Guess')
             self.system.U = guess
         else:
             self.system.U = np.zeros(self.system.U.shape)
@@ -302,7 +303,8 @@ class MGDCM(NonLinearSolver):
         logging.info(f'Number of increments: {increments}')
         ld = 0.0
         for i in range(1, increments+1):
-            logging.info(f'================INCREMENT {i}===================')
+            logging.info(
+                f'================INCREMENT {i} LD {ld} ===================')
             for k in range(1, self.maxiter+1):
                 try:
                     logging.debug(
@@ -352,8 +354,8 @@ class MGDCM(NonLinearSolver):
                         e.setUe(self.system.U)
                     logging.debug('Updated elements')
                     err = np.linalg.norm(du)
-                    logging.debug(
-                        f'----------------- Iteration error {err} -------------------')
+                    logging.info(
+                        f'----------------- step {i} iteration {k} error {err} -------------------')
                 except:
                     logging.error('Error in iteration')
                     err = 100
@@ -361,13 +363,8 @@ class MGDCM(NonLinearSolver):
                 if err < self.tol:
                     warn = 'No warnings'
                     break
-            if err > self.tol:
-                logging.error(
-                    f'No convergence achived!  Error: {err}, ld: {ld}, increment: {i}. Stopping')
-                break
-
             if k > self.max_iter_momentum:
-                self.delta_lambda_bar /= 10
+                self.delta_lambda_bar /= 2
                 logging.warning(
                     f'Momentum limit reached. Decreasing delta_lambda_bar to {self.delta_lambda_bar}, ld = {ld}, k = {k}, error = {err}')
                 self.system.U = solutioms[-1]
@@ -375,19 +372,25 @@ class MGDCM(NonLinearSolver):
                     e.restartMatrix()
                     e.setUe(self.system.U)
                 continue
+            solutioms.append(self.system.U.copy())
+            solutioms_info.append(
+                {'solver-type': self.type, 'last-it-error': err, 'n-it': i, 'warnings': warn, 'ld': ld})
+            if err > self.tol:
+                logging.error(
+                    f'No convergence achived!  Error: {err}, ld: {ld}, increment: {i}. Stopping')
+                break
+
             if k < self.min_iter_momentum:
                 self.delta_lambda_bar *= 1.5
                 warning = f'Momentum. Increasing delta_lambda_bar to {self.delta_lambda_bar}, ld = {ld}, k = {k}, error = {err}'
                 logging.warning(warning)
+
             if self.delta_lambda_bar < self.tol:
                 logging.error('Delta lambda bar too small. Stopping')
                 break
             if self.delta_lambda_bar > 10e3:
                 logging.error('Delta lambda bar too big. Stopping')
                 break
-            solutioms.append(self.system.U.copy())
-            solutioms_info.append(
-                {'solver-type': self.type, 'last-it-error': err, 'n-it': i, 'warnings': warn, 'ld': ld})
 
         self.solutions_info = solutioms_info
         self.solutions = solutioms
