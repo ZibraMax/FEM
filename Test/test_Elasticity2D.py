@@ -127,6 +127,8 @@ class TestElasticity2D(unittest.TestCase):
         O = PlaneStressSparse(
             geometry, E, v, b, fy=lambda x: -gamma, verbose=True, name='test_cantilever_beam_uniform_1')
         O.solve(plot=False)
+        O.exportJSON(
+            'Test/resources/results/test_cantilever_beam_uniform_1.json')
         X, U = O.profile([0, 0.5*h], [L, 0.5*h], n=10)
         U = np.array(U)[:, 1].flatten()
         def g(x): return W*x**2/24/E/I*(x**2+6*L**2-4*L*x)+W*(L*x-x**2/2)/k/A/G
@@ -228,7 +230,7 @@ class TestElasticity2D(unittest.TestCase):
 
         .. math::
 
-            U = \\frac{P^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
+            U = \\frac{Px^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
 
         .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_1.png
             :alt: Virtual work statement
@@ -298,7 +300,7 @@ class TestElasticity2D(unittest.TestCase):
 
         .. math::
 
-            U = \\frac{P^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
+            U = \\frac{Px^2}{6EI}\\left(3L-x\\right)+\\frac{Px}{kAG}
 
         .. figure:: https://raw.githubusercontent.com/ZibraMax/FEM/master/Test/resources/results/test_cantilever_beam_point_2.png
             :alt: Virtual work statement
