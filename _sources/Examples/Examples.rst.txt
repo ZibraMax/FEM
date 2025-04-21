@@ -89,6 +89,22 @@ Examples.Example64 module
    :undoc-members:
    :show-inheritance:
 
+Examples.Example65 module
+-------------------------
+
+.. automodule:: Examples.Example65
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.Example66 module
+-------------------------
+
+.. automodule:: Examples.Example66
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.Punto3 module
 ----------------------
 
@@ -505,6 +521,14 @@ Examples.example6 module
    :undoc-members:
    :show-inheritance:
 
+Examples.example67 module
+-------------------------
+
+.. automodule:: Examples.example67
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.example7 module
 ------------------------
 
@@ -549,14 +573,6 @@ Examples.example\_ojo\_mitad module
 -----------------------------------
 
 .. automodule:: Examples.example_ojo_mitad
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.maybi module
----------------------
-
-.. automodule:: Examples.maybi
    :members:
    :undoc-members:
    :show-inheritance:
