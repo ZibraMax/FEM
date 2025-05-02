@@ -304,3 +304,49 @@ class BarAndHingeNonLinear(Core):
         coords = np.array(coords)*1000
         coords[:, [0, 1, 2]] = coords[:, [0, 2, 1]]
         return coords, bars, hinges, mva
+
+
+class ShellAndHingeNonLinear(Core):
+    def __init__(self, geometry: Geometry, E: list, v: list, t: list, **kargs):
+        solver = MGDCM
+        Core.__init__(self, geometry, solver, sparse=True, **kargs)
+        if isinstance(E, float) or isinstance(E, int):
+            E = [E]*len(geometry.elements)
+        if isinstance(v, float) or isinstance(v, int):
+            v = [v]*len(geometry.elements)
+        if isinstance(t, float) or isinstance(t, int):
+            t = [t]*len(geometry.elements)
+        self.E = E
+        self.v = v
+        self.t = t
+        self.properties["E"] = E
+        self.properties["v"] = v
+        self.properties["t"] = t
+        self.name = 'Shell and hinge analysis for origami. Non linear'
+        self.K = sparse.lil_matrix((self.ngdl, self.ngdl))
+        for i, e in enumerate(geometry.elements):
+            if e.__class__.__name__ == 'MITC6':
+                e.set_material(E[i], v[i], t[i])
+
+    def addLoadNode(self, node: int, load: list):
+        """Add a node load to the truss analysis"""
+        self.cbn += [[node*5, load[0]],
+                     [node*5+1, load[1]],
+                     [node*5+2, load[2]]]
+
+    def elementMatrices(self):
+        self.F_int = np.zeros([self.ngdl, 1])
+        self.F = np.zeros([self.ngdl, 1])
+        for ee, e in enumerate(tqdm(self.elements, unit='Element')):
+            e.gdlm = e.gdl.T.flatten()
+            Ke, Te = e.elementMatrixNonLineal()
+            if e.internal_force is not None:
+                self.F[np.ix_(e.gdlm)] += e.get_internal_force()
+            self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
+            self.F_int[np.ix_(e.gdlm)] += Te
+
+    def ensembling(self) -> None:
+        """Creation of the system sparse matrix. Force vector is ensembled in integration method
+        """
+        logging.info('Ensembling equation system...')
+        logging.info('Done!')

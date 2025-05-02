@@ -15,6 +15,7 @@ from ..Elements.E2D.Serendipity import Serendipity
 from ..Elements.E2D.Quadrilateral import Quadrilateral
 from ..Elements.E2D.QTriangular import QTriangular
 from ..Elements.E2D.LTriangular import LTriangular
+from ..Elements.E2D.MITC6 import MITC6
 from ..Elements.E3D.Brick import Brick, BrickO2
 from ..Elements.E3D.Tetrahedral import Tetrahedral, TetrahedralO2
 from .Region import Region, Region1D, Region2D
@@ -24,7 +25,7 @@ from tqdm import tqdm
 from scipy.spatial import KDTree
 
 types = {'T1V': LTriangular, 'T2V': QTriangular, 'C1V': Quadrilateral, 'C2V': Serendipity, "L1V": LinealElement,
-         "L2V": QuadraticElement, "L3V": CubicElement, "B1V": Brick, "B2V": BrickO2, "TE1V": Tetrahedral, "TE2V": TetrahedralO2, "OH": OriHinge}
+         "L2V": QuadraticElement, "L3V": CubicElement, "B1V": Brick, "B2V": BrickO2, "TE1V": Tetrahedral, "TE2V": TetrahedralO2, "OH": OriHinge, "MITC6": MITC6}
 
 
 class Geometry:
@@ -68,7 +69,7 @@ class Geometry:
         self.initialize()
         self.min_search_radius = -1
         self.calculateCentroids()
-        centroides = np.array(self.centroids)[:, 0, :]
+        centroides = np.array(self.centroids)
         try:
             self.KDTree = KDTree(centroides)
         except Exception as e:
@@ -167,7 +168,7 @@ class Geometry:
             self.min_search_radius = max(
                 min_search_radius, self.min_search_radius)
             x, _ = e.T(e.center.T)
-            self.centroids.append(x.tolist())
+            self.centroids.append(x.flatten().tolist())
 
     def setCbe(self, cbe: list) -> None:
         """This method have to be used to assign essential boundary conditions. Thes method prevents to assign duplicated boundary conditions

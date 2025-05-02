@@ -38,7 +38,7 @@ coords, dicc = enmalladoEsferaFernando(L, nex)
 geo = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
 time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
-log_filename = f'CarbSphere_{L}_{l}_{time}'
+log_filename = f'SiSphere_{L}_{l}_{time}'
 
 O = NonLocalElasticityFromTensor(
     geo, C, rho, l, 0.0, Lr, af, solver=LinealEigen, name=log_filename, verbose=True)
@@ -51,7 +51,7 @@ duration = O.logger.end_timer().total_seconds()
 O.properties['duration'] = duration
 for z in Z[::-1]:
     logging.info(f'Solving for z={z}')
-    filename = f'CarbSphere_{L}_{l}_{z}_{time}.json'
+    filename = f'SiSphere_{L}_{l}_{z}_{time}.json'
 
     O.z1 = z
     O.z2 = 1-z

@@ -22,7 +22,7 @@ def runSim(R, l):
     ne = max(10, min(int(L//(l)), 200))
     print(L, l, ne)
     proc = Popen(
-        f'c:/Users/david/Desktop/FEM/.venv/Scripts/python.exe nolocal_runner_spheres.py {L} {l} {ne} {C11} {C12} {C44} {rho}', creationflags=CREATE_NEW_CONSOLE)
+        f'C:/Users/ar257/Desktop/FEM/.venv/Scripts/python.exe nolocal_runner_spheres.py {L} {l} {ne} {C11} {C12} {C44} {rho}', creationflags=CREATE_NEW_CONSOLE)
     Popen.communicate(proc)
     i = i + 1
     process = False

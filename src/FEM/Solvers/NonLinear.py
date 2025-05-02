@@ -356,7 +356,8 @@ class MGDCM(NonLinearSolver):
                     err = np.linalg.norm(du)
                     logging.info(
                         f'----------------- step {i} iteration {k} error {err} -------------------')
-                except:
+                except Exception as e:
+                    raise e
                     logging.error('Error in iteration')
                     err = 100
                     break

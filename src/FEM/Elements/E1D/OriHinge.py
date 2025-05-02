@@ -8,6 +8,7 @@ class OriHinge(LinealElement, LinearScheme):
 
     def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
         bar_coords = np.array([coords[1], coords[2]])
+        gdl = gdl[:3]
         LinealElement.__init__(self, bar_coords, gdl, **kargs)
         LinearScheme.__init__(self, 3)
 
