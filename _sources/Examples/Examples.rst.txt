@@ -105,6 +105,14 @@ Examples.Example66 module
    :undoc-members:
    :show-inheritance:
 
+Examples.MITC6 module
+---------------------
+
+.. automodule:: Examples.MITC6
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.Punto3 module
 ----------------------
 
@@ -117,6 +125,38 @@ Examples.Punto6 module
 ----------------------
 
 .. automodule:: Examples.Punto6
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.ShellAndHinge module
+-----------------------------
+
+.. automodule:: Examples.ShellAndHinge
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.ShellAndHinge2 module
+------------------------------
+
+.. automodule:: Examples.ShellAndHinge2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.ShellAndHinge2 copy module
+-----------------------------------
+
+.. automodule:: Examples.ShellAndHinge2 copy
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.ShellAndHinge3 module
+------------------------------
+
+.. automodule:: Examples.ShellAndHinge3
    :members:
    :undoc-members:
    :show-inheritance:

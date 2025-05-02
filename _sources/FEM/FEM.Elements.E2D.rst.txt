@@ -25,6 +25,14 @@ FEM.Elements.E2D.LTriangular module
    :undoc-members:
    :show-inheritance:
 
+FEM.Elements.E2D.MITC6 module
+-----------------------------
+
+.. automodule:: FEM.Elements.E2D.MITC6
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Elements.E2D.QTriangular module
 -----------------------------------
 

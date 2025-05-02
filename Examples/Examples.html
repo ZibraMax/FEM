@@ -305,11 +305,90 @@
 <section id="module-Examples.Example66">
 <span id="examples-example66-module"></span><h2>Examples.Example66 module<a class="headerlink" href="#module-Examples.Example66" title="Link to this heading">¶</a></h2>
 </section>
+<section id="module-Examples.MITC6">
+<span id="examples-mitc6-module"></span><h2>Examples.MITC6 module<a class="headerlink" href="#module-Examples.MITC6" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.MITC6.assemble_B_bending">
+<span class="sig-prename descclassname"><span class="pre">Examples.MITC6.</span></span><span class="sig-name descname"><span class="pre">assemble_B_bending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdxy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Examples.MITC6.assemble_B_bending" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.MITC6.assemble_B_membrane">
+<span class="sig-prename descclassname"><span class="pre">Examples.MITC6.</span></span><span class="sig-name descname"><span class="pre">assemble_B_membrane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdxy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Examples.MITC6.assemble_B_membrane" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.MITC6.assemble_B_shear">
+<span class="sig-prename descclassname"><span class="pre">Examples.MITC6.</span></span><span class="sig-name descname"><span class="pre">assemble_B_shear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Examples.MITC6.assemble_B_shear" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.MITC6.assemble_Ktangent_Fint">
+<span class="sig-prename descclassname"><span class="pre">Examples.MITC6.</span></span><span class="sig-name descname"><span class="pre">assemble_Ktangent_Fint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_disp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_membrane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_bending</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_shear</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Examples.MITC6.assemble_Ktangent_Fint" title="Link to this definition">¶</a></dt>
+<dd><p>Assembles the tangent stiffness matrix and internal force vector
+for MITC6 5-DOF shell element (large displacement, updated geometry).</p>
+<p>Inputs:
+- x_current: (6x3) array of current nodal coordinates (deformed shape)
+- u_disp: (30,) displacement vector
+- D_membrane: (3x3) material matrix (membrane)
+- D_bending: (3x3) material matrix (bending)
+- D_shear: (2x2) material matrix (shear)</p>
+<p>Outputs:
+- K_tangent: (30x30) tangent stiffness matrix
+- F_int: (30,) internal force vector</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.MITC6.build_global_transformation">
+<span class="sig-prename descclassname"><span class="pre">Examples.MITC6.</span></span><span class="sig-name descname"><span class="pre">build_global_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Examples.MITC6.build_global_transformation" title="Link to this definition">¶</a></dt>
+<dd><p>Builds the 30x30 rotation matrix T for 5-DOF shell element:
+- Translations (u,v,w) rotated with basis,
+- Rotations (theta_x, theta_y) remain local.</p>
+<p>Inputs:
+- basis: (3x3) matrix with e1, e2, e3 as columns.</p>
+<p>Output:
+- T: (30x30) global transformation matrix</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.MITC6.compute_local_coordinates">
+<span class="sig-prename descclassname"><span class="pre">Examples.MITC6.</span></span><span class="sig-name descname"><span class="pre">compute_local_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Examples.MITC6.compute_local_coordinates" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.MITC6.generate_flat_panel">
+<span class="sig-prename descclassname"><span class="pre">Examples.MITC6.</span></span><span class="sig-name descname"><span class="pre">generate_flat_panel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Examples.MITC6.generate_flat_panel" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a simple flat triangular panel (ground plane) with 6-node MITC6 layout.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.MITC6.get_D_matrices">
+<span class="sig-prename descclassname"><span class="pre">Examples.MITC6.</span></span><span class="sig-name descname"><span class="pre">get_D_matrices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">210000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8333333333333334</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Examples.MITC6.get_D_matrices" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Examples.MITC6.shape_functions_MITC6">
+<span class="sig-prename descclassname"><span class="pre">Examples.MITC6.</span></span><span class="sig-name descname"><span class="pre">shape_functions_MITC6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Examples.MITC6.shape_functions_MITC6" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
 <section id="module-Examples.Punto3">
 <span id="examples-punto3-module"></span><h2>Examples.Punto3 module<a class="headerlink" href="#module-Examples.Punto3" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.Punto6">
 <span id="examples-punto6-module"></span><h2>Examples.Punto6 module<a class="headerlink" href="#module-Examples.Punto6" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-Examples.ShellAndHinge">
+<span id="examples-shellandhinge-module"></span><h2>Examples.ShellAndHinge module<a class="headerlink" href="#module-Examples.ShellAndHinge" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-Examples.ShellAndHinge2">
+<span id="examples-shellandhinge2-module"></span><h2>Examples.ShellAndHinge2 module<a class="headerlink" href="#module-Examples.ShellAndHinge2" title="Link to this heading">¶</a></h2>
+</section>
+<section id="examples-shellandhinge2-copy-module">
+<h2>Examples.ShellAndHinge2 copy module<a class="headerlink" href="#examples-shellandhinge2-copy-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-Examples.ShellAndHinge3">
+<span id="examples-shellandhinge3-module"></span><h2>Examples.ShellAndHinge3 module<a class="headerlink" href="#module-Examples.ShellAndHinge3" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-Examples.example1">
 <span id="examples-example1-module"></span><h2>Examples.example1 module<a class="headerlink" href="#module-Examples.example1" title="Link to this heading">¶</a></h2>
@@ -1024,8 +1103,24 @@ For example, a 2D triangular element of 3 nodes and 2 variables per node (plane 
 <li><a class="reference internal" href="#module-Examples.Example64">Examples.Example64 module</a></li>
 <li><a class="reference internal" href="#module-Examples.Example65">Examples.Example65 module</a></li>
 <li><a class="reference internal" href="#module-Examples.Example66">Examples.Example66 module</a></li>
+<li><a class="reference internal" href="#module-Examples.MITC6">Examples.MITC6 module</a><ul>
+<li><a class="reference internal" href="#Examples.MITC6.assemble_B_bending"><code class="docutils literal notranslate"><span class="pre">assemble_B_bending()</span></code></a></li>
+<li><a class="reference internal" href="#Examples.MITC6.assemble_B_membrane"><code class="docutils literal notranslate"><span class="pre">assemble_B_membrane()</span></code></a></li>
+<li><a class="reference internal" href="#Examples.MITC6.assemble_B_shear"><code class="docutils literal notranslate"><span class="pre">assemble_B_shear()</span></code></a></li>
+<li><a class="reference internal" href="#Examples.MITC6.assemble_Ktangent_Fint"><code class="docutils literal notranslate"><span class="pre">assemble_Ktangent_Fint()</span></code></a></li>
+<li><a class="reference internal" href="#Examples.MITC6.build_global_transformation"><code class="docutils literal notranslate"><span class="pre">build_global_transformation()</span></code></a></li>
+<li><a class="reference internal" href="#Examples.MITC6.compute_local_coordinates"><code class="docutils literal notranslate"><span class="pre">compute_local_coordinates()</span></code></a></li>
+<li><a class="reference internal" href="#Examples.MITC6.generate_flat_panel"><code class="docutils literal notranslate"><span class="pre">generate_flat_panel()</span></code></a></li>
+<li><a class="reference internal" href="#Examples.MITC6.get_D_matrices"><code class="docutils literal notranslate"><span class="pre">get_D_matrices()</span></code></a></li>
+<li><a class="reference internal" href="#Examples.MITC6.shape_functions_MITC6"><code class="docutils literal notranslate"><span class="pre">shape_functions_MITC6()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-Examples.Punto3">Examples.Punto3 module</a></li>
 <li><a class="reference internal" href="#module-Examples.Punto6">Examples.Punto6 module</a></li>
+<li><a class="reference internal" href="#module-Examples.ShellAndHinge">Examples.ShellAndHinge module</a></li>
+<li><a class="reference internal" href="#module-Examples.ShellAndHinge2">Examples.ShellAndHinge2 module</a></li>
+<li><a class="reference internal" href="#examples-shellandhinge2-copy-module">Examples.ShellAndHinge2 copy module</a></li>
+<li><a class="reference internal" href="#module-Examples.ShellAndHinge3">Examples.ShellAndHinge3 module</a></li>
 <li><a class="reference internal" href="#module-Examples.example1">Examples.example1 module</a><ul>
 <li><a class="reference internal" href="#creation-of-2d-elements">Creation of 2D elements</a><ul>
 <li><a class="reference internal" href="#coordinate-trasformation-and-shape-functions">Coordinate trasformation and shape functions</a></li>

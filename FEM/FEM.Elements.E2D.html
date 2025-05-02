@@ -395,6 +395,75 @@
 </dd></dl>
 
 </section>
+<section id="module-FEM.Elements.E2D.MITC6">
+<span id="fem-elements-e2d-mitc6-module"></span><h2>FEM.Elements.E2D.MITC6 module<a class="headerlink" href="#module-FEM.Elements.E2D.MITC6" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.MITC6">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.MITC6.</span></span><span class="sig-name descname"><span class="pre">MITC6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.MITC6" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E2D.Element2D.Element2D" title="FEM.Elements.E2D.Element2D.Element2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element2D</span></code></a>, <a class="reference internal" href="#FEM.Elements.E2D.TriangularScheme.TriangularScheme" title="FEM.Elements.E2D.TriangularScheme.TriangularScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriangularScheme</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.MITC6.dpsis">
+<span class="sig-name descname"><span class="pre">dpsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.MITC6.dpsis" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.MITC6.elementMatrixNonLineal">
+<span class="sig-name descname"><span class="pre">elementMatrixNonLineal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.MITC6.elementMatrixNonLineal" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.MITC6.psis">
+<span class="sig-name descname"><span class="pre">psis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.MITC6.psis" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.MITC6.set_material">
+<span class="sig-name descname"><span class="pre">set_material</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.MITC6.set_material" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.assemble_B_bending">
+<span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.MITC6.</span></span><span class="sig-name descname"><span class="pre">assemble_B_bending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdxy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.assemble_B_bending" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.assemble_B_membrane">
+<span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.MITC6.</span></span><span class="sig-name descname"><span class="pre">assemble_B_membrane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdxy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.assemble_B_membrane" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.assemble_B_shear">
+<span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.MITC6.</span></span><span class="sig-name descname"><span class="pre">assemble_B_shear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.assemble_B_shear" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.assemble_Ktangent_Fint">
+<span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.MITC6.</span></span><span class="sig-name descname"><span class="pre">assemble_Ktangent_Fint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_disp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_membrane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_bending</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D_shear</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.assemble_Ktangent_Fint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.build_global_transformation">
+<span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.MITC6.</span></span><span class="sig-name descname"><span class="pre">build_global_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.build_global_transformation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.compute_local_coordinates">
+<span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.MITC6.</span></span><span class="sig-name descname"><span class="pre">compute_local_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.compute_local_coordinates" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.get_D_matrices">
+<span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.MITC6.</span></span><span class="sig-name descname"><span class="pre">get_D_matrices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">210000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8333333333333334</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.get_D_matrices" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.MITC6.shape_functions_MITC6">
+<span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.MITC6.</span></span><span class="sig-name descname"><span class="pre">shape_functions_MITC6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.MITC6.shape_functions_MITC6" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
 <section id="module-FEM.Elements.E2D.QTriangular">
 <span id="fem-elements-e2d-qtriangular-module"></span><h2>FEM.Elements.E2D.QTriangular module<a class="headerlink" href="#module-FEM.Elements.E2D.QTriangular" title="Link to this heading">¶</a></h2>
 <section id="triangular-second-order-element">
@@ -737,6 +806,24 @@
 <li><a class="reference internal" href="#FEM.Elements.E2D.LTriangular.LTriangular.psis"><code class="docutils literal notranslate"><span class="pre">LTriangular.psis()</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E2D.MITC6">FEM.Elements.E2D.MITC6 module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.MITC6"><code class="docutils literal notranslate"><span class="pre">MITC6</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.MITC6.dpsis"><code class="docutils literal notranslate"><span class="pre">MITC6.dpsis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.MITC6.elementMatrixNonLineal"><code class="docutils literal notranslate"><span class="pre">MITC6.elementMatrixNonLineal()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.MITC6.psis"><code class="docutils literal notranslate"><span class="pre">MITC6.psis()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.MITC6.set_material"><code class="docutils literal notranslate"><span class="pre">MITC6.set_material()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.assemble_B_bending"><code class="docutils literal notranslate"><span class="pre">assemble_B_bending()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.assemble_B_membrane"><code class="docutils literal notranslate"><span class="pre">assemble_B_membrane()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.assemble_B_shear"><code class="docutils literal notranslate"><span class="pre">assemble_B_shear()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.assemble_Ktangent_Fint"><code class="docutils literal notranslate"><span class="pre">assemble_Ktangent_Fint()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.build_global_transformation"><code class="docutils literal notranslate"><span class="pre">build_global_transformation()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.compute_local_coordinates"><code class="docutils literal notranslate"><span class="pre">compute_local_coordinates()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.get_D_matrices"><code class="docutils literal notranslate"><span class="pre">get_D_matrices()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.shape_functions_MITC6"><code class="docutils literal notranslate"><span class="pre">shape_functions_MITC6()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-FEM.Elements.E2D.QTriangular">FEM.Elements.E2D.QTriangular module</a><ul>
