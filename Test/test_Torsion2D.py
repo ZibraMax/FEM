@@ -105,7 +105,7 @@ class TestTorsion2D(unittest.TestCase):
         GG = []
         path = mpltPath.Path(vertextra)
         for centroide in geometria.centroids:
-            inside2 = path.contains_points([centroide[0]])
+            inside2 = path.contains_points([centroide])
             GG += [G]
             if inside2[0]:
                 GG[-1] = 1*10**-6
