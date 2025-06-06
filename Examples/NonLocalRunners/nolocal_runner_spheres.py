@@ -13,7 +13,7 @@ import datetime
 # .__class__.__name__
 L = float(sys.argv[1])
 l = float(sys.argv[2])
-Z = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+Z = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 nex = int(sys.argv[3])
 omega = 6
 Lr = omega*l
@@ -38,7 +38,7 @@ coords, dicc = enmalladoEsferaFernando(L, nex)
 geo = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
 time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
-log_filename = f'SiSphere_{L}_{l}_{time}'
+log_filename = f'Sphere_{L}_{l}_{time}'
 
 O = NonLocalElasticityFromTensor(
     geo, C, rho, l, 0.0, Lr, af, solver=LinealEigen, name=log_filename, verbose=True)
@@ -51,7 +51,7 @@ duration = O.logger.end_timer().total_seconds()
 O.properties['duration'] = duration
 for z in Z[::-1]:
     logging.info(f'Solving for z={z}')
-    filename = f'SiSphere_{L}_{l}_{z}_{time}.json'
+    filename = f'Sphere_{L}_{l}_{z}_{time}.json'
 
     O.z1 = z
     O.z2 = 1-z
