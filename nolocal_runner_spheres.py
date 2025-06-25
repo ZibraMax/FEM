@@ -34,7 +34,7 @@ def af(rho):
     return (1/(8*np.pi*l**3))*np.exp(-rho)
 
 
-coords, dicc = enmalladoEsferaFernando(L, nex)
+coords, dicc = enmalladoEsferaFernando(2*L, nex)
 geo = Geometry3D(dicc, coords, ["B1V"]*len(dicc), nvn=3, fast=True)
 time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
