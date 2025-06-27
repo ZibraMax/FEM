@@ -173,6 +173,29 @@ class Elasticity(Core):
         return _x, np.array(valuesU), np.array(valuesDU)
 
 
+class ElasticityMembranes(Elasticity):
+    """docstring for ElasticityMembranes
+    """
+
+    def __init__(self, geometry: Geometry, E: Tuple[float, list], v: Tuple[float, list], t: Tuple[float, list], fx: Callable = lambda x: 0, fy: Callable = lambda x: 0, fz: Callable = lambda x: 0, **kargs) -> None:
+        if isinstance(t, float) or isinstance(t, int):
+            t = [t]*len(geometry.elements)
+        self.t = t
+        Elasticity.__init__(self, geometry, E, v, None, **kargs)
+        self.name = 'Elasticity Membranes sparse'
+        for i, e in enumerate(geometry.elements):
+            e.assign_properties(self.E[i], self.v[i], self.t[i])
+
+    def elementMatrices(self) -> None:
+        """Calculate the element matrices usign Reddy's (2005) finite element model
+        """
+
+        for ee, e in enumerate(tqdm(self.elements, unit='Element')):
+            e.gdlm = e.gdl.T.flatten()
+            Ke = e.stiffnessMatrix()
+            self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
+
+
 class NonLocalElasticity(Elasticity):
     """Creates a 3D Elasticity problem
 

@@ -19,11 +19,11 @@ rho = float(sys.argv[6])  # 2.329
 
 def runSim(R, l):
     global process, i
-    L = R*1.6119915
-    ne = max(7, min(int(L//(l)), 200))
+    L = R
+    ne = max(8, min(int(L//(l)), 15))
     print(L, l, ne)
     proc = Popen(
-        f'C:/Users/ar257/Desktop/FEM/.venv/Scripts/python.exe nolocal_runner.py {L} {l} {ne} {C11} {C12} {C44} {rho}', creationflags=CREATE_NEW_CONSOLE)
+        f'C:/Users/ar257/Desktop/FEM/.venv/Scripts/python.exe nolocal_runner_spheres.py {L} {l} {ne} {C11} {C12} {C44} {rho}', creationflags=CREATE_NEW_CONSOLE)
     Popen.communicate(proc)
     i = i + 1
     process = False

@@ -13,6 +13,7 @@ from ..Elements.E1D.QuadraticElement import QuadraticElement
 from ..Elements.E1D.OriHinge import OriHinge
 from ..Elements.E2D.Serendipity import Serendipity
 from ..Elements.E2D.Quadrilateral import Quadrilateral
+from ..Elements.E2D.Membrane import Membrane
 from ..Elements.E2D.QTriangular import QTriangular
 from ..Elements.E2D.LTriangular import LTriangular
 from ..Elements.E2D.MITC6 import MITC6
@@ -25,7 +26,7 @@ from tqdm import tqdm
 from scipy.spatial import KDTree
 
 types = {'T1V': LTriangular, 'T2V': QTriangular, 'C1V': Quadrilateral, 'C2V': Serendipity, "L1V": LinealElement,
-         "L2V": QuadraticElement, "L3V": CubicElement, "B1V": Brick, "B2V": BrickO2, "TE1V": Tetrahedral, "TE2V": TetrahedralO2, "OH": OriHinge, "MITC6": MITC6}
+         "L2V": QuadraticElement, "L3V": CubicElement, "B1V": Brick, "B2V": BrickO2, "TE1V": Tetrahedral, "TE2V": TetrahedralO2, "OH": OriHinge, "MITC6": MITC6, "MEM": Membrane}
 
 
 class Geometry:
