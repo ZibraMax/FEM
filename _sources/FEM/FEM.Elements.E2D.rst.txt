@@ -33,6 +33,14 @@ FEM.Elements.E2D.MITC6 module
    :undoc-members:
    :show-inheritance:
 
+FEM.Elements.E2D.Membrane module
+--------------------------------
+
+.. automodule:: FEM.Elements.E2D.Membrane
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 FEM.Elements.E2D.QTriangular module
 -----------------------------------
 

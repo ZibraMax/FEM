@@ -293,6 +293,7 @@
 <li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Element2D">FEM.Elements.E2D.Element2D module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.LTriangular">FEM.Elements.E2D.LTriangular module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.MITC6">FEM.Elements.E2D.MITC6 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Membrane">FEM.Elements.E2D.Membrane module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.QTriangular">FEM.Elements.E2D.QTriangular module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.Quadrilateral">FEM.Elements.E2D.Quadrilateral module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Elements.E2D.html#module-FEM.Elements.E2D.RectangularScheme">FEM.Elements.E2D.RectangularScheme module</a></li>
@@ -1154,6 +1155,19 @@ be a 2-D Numpy Array.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elasticity3D.ElasticityMembranes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elasticity3D.</span></span><span class="sig-name descname"><span class="pre">ElasticityMembranes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">~FEM.Geometry.Geometry.Geometry,</span> <span class="pre">E:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">v:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">t:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">fx:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">ElasticityMembranes.&lt;lambda&gt;&gt;,</span> <span class="pre">fy:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">ElasticityMembranes.&lt;lambda&gt;&gt;,</span> <span class="pre">fz:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">ElasticityMembranes.&lt;lambda&gt;&gt;,</span> <span class="pre">**kargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elasticity3D.ElasticityMembranes" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elasticity3D.Elasticity" title="FEM.Elasticity3D.Elasticity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Elasticity</span></code></a></p>
+<p>docstring for ElasticityMembranes</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elasticity3D.ElasticityMembranes.elementMatrices">
+<span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elasticity3D.ElasticityMembranes.elementMatrices" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the element matrices usign Reddy’s (2005) finite element model</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elasticity3D.NonLocalElasticity">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elasticity3D.</span></span><span class="sig-name descname"><span class="pre">NonLocalElasticity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">geometry:</span> <span class="pre">~FEM.Geometry.Geometry.Geometry,</span> <span class="pre">E:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">v:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">rho:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">list],</span> <span class="pre">l:</span> <span class="pre">float,</span> <span class="pre">z1:</span> <span class="pre">float,</span> <span class="pre">Lr:</span> <span class="pre">float,</span> <span class="pre">af:</span> <span class="pre">~typing.Callable,</span> <span class="pre">fx:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">NonLocalElasticity.&lt;lambda&gt;&gt;,</span> <span class="pre">fy:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">NonLocalElasticity.&lt;lambda&gt;&gt;,</span> <span class="pre">fz:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">NonLocalElasticity.&lt;lambda&gt;&gt;,</span> <span class="pre">**kargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elasticity3D.NonLocalElasticity" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elasticity3D.Elasticity" title="FEM.Elasticity3D.Elasticity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Elasticity</span></code></a></p>
@@ -1958,6 +1972,10 @@ be a 2-D Numpy Array.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#FEM.Elasticity3D.ElasticityFromTensor"><code class="docutils literal notranslate"><span class="pre">ElasticityFromTensor</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elasticity3D.ElasticityMembranes"><code class="docutils literal notranslate"><span class="pre">ElasticityMembranes</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elasticity3D.ElasticityMembranes.elementMatrices"><code class="docutils literal notranslate"><span class="pre">ElasticityMembranes.elementMatrices()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#FEM.Elasticity3D.NonLocalElasticity"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticity</span></code></a><ul>
 <li><a class="reference internal" href="#FEM.Elasticity3D.NonLocalElasticity.elementMatrices"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticity.elementMatrices()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elasticity3D.NonLocalElasticity.ensembling"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticity.ensembling()</span></code></a></li>

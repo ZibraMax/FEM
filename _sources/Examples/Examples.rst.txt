@@ -609,6 +609,14 @@ Examples.example\_cat module
    :undoc-members:
    :show-inheritance:
 
+Examples.example\_membranes module
+----------------------------------
+
+.. automodule:: Examples.example_membranes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.example\_ojo module
 ----------------------------
 

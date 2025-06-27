@@ -464,6 +464,36 @@
 <dd></dd></dl>
 
 </section>
+<section id="module-FEM.Elements.E2D.Membrane">
+<span id="fem-elements-e2d-membrane-module"></span><h2>FEM.Elements.E2D.Membrane module<a class="headerlink" href="#module-FEM.Elements.E2D.Membrane" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.E2D.Membrane.</span></span><span class="sig-name descname"><span class="pre">Membrane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.E2D.Quadrilateral.Quadrilateral" title="FEM.Elements.E2D.Quadrilateral.Quadrilateral"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quadrilateral</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.assign_properties">
+<span class="sig-name descname"><span class="pre">assign_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.assign_properties" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.build_global_transform">
+<span class="sig-name descname"><span class="pre">build_global_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T_plane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_nodes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.build_global_transform" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.compute_B_matrix">
+<span class="sig-name descname"><span class="pre">compute_B_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dNdy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.compute_B_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Builds membrane B-matrix (plane stress assumption)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.stiffnessMatrix">
+<span class="sig-name descname"><span class="pre">stiffnessMatrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.stiffnessMatrix" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-FEM.Elements.E2D.QTriangular">
 <span id="fem-elements-e2d-qtriangular-module"></span><h2>FEM.Elements.E2D.QTriangular module<a class="headerlink" href="#module-FEM.Elements.E2D.QTriangular" title="Link to this heading">¶</a></h2>
 <section id="triangular-second-order-element">
@@ -824,6 +854,16 @@
 <li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.compute_local_coordinates"><code class="docutils literal notranslate"><span class="pre">compute_local_coordinates()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.get_D_matrices"><code class="docutils literal notranslate"><span class="pre">get_D_matrices()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.E2D.MITC6.shape_functions_MITC6"><code class="docutils literal notranslate"><span class="pre">shape_functions_MITC6()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.E2D.Membrane">FEM.Elements.E2D.Membrane module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane"><code class="docutils literal notranslate"><span class="pre">Membrane</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.assign_properties"><code class="docutils literal notranslate"><span class="pre">Membrane.assign_properties()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.build_global_transform"><code class="docutils literal notranslate"><span class="pre">Membrane.build_global_transform()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.compute_B_matrix"><code class="docutils literal notranslate"><span class="pre">Membrane.compute_B_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.stiffnessMatrix"><code class="docutils literal notranslate"><span class="pre">Membrane.stiffnessMatrix()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-FEM.Elements.E2D.QTriangular">FEM.Elements.E2D.QTriangular module</a><ul>
