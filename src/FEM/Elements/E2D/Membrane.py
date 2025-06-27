@@ -43,8 +43,8 @@ class Membrane(Quadrilateral):
         E = self.E
         nu = self.nu
 
-        c11 = E / (1 - nu**2)  # Revisar
-        c12 = nu * c11  # Revisar
+        c11 = E / (1 - nu**2)
+        c12 = nu * c11
         c22 = c11
         c66 = E / (2 * (1 + nu))
         C = np.array([
@@ -55,8 +55,8 @@ class Membrane(Quadrilateral):
             JP = np.linalg.pinv(jac)
             e3 = np.cross(*jac, axis=0)
             detjac = np.linalg.norm(e3)
-            e1 = jac[0].copy()  # This is important, creo
-            e2 = jac[1].copy()  # This is important, creo
+            e1 = jac[0].copy()  # This is important, creo. Lo es
+            e2 = jac[1].copy()  # This is important, creo. Lo es
 
             # Ortonormalizar la cosa
             e1 /= np.linalg.norm(e1)
