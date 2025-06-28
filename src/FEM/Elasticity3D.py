@@ -189,11 +189,13 @@ class ElasticityMembranes(Elasticity):
     def elementMatrices(self) -> None:
         """Calculate the element matrices usign Reddy's (2005) finite element model
         """
+        self.F_int = np.zeros([self.ngdl, 1])
 
         for ee, e in enumerate(tqdm(self.elements, unit='Element')):
             e.gdlm = e.gdl.T.flatten()
-            Ke = e.stiffnessMatrix()
+            Ke, Fe = e.stiffnessMatrix()
             self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
+            self.F_int[np.ix_(e.gdlm)] += Fe.reshape([-1, 1])
 
 
 class NonLocalElasticity(Elasticity):

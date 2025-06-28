@@ -248,6 +248,7 @@ class MGDCM(NonLinearSolver):
         self.increments = 10
         self.max_iter_momentum = 15
         self.min_iter_momentum = 4
+        self.momentum = True
 
     def set_increments(self, increments):
         self.increments = increments
@@ -364,7 +365,7 @@ class MGDCM(NonLinearSolver):
                 if err < self.tol:
                     warn = 'No warnings'
                     break
-            if k > self.max_iter_momentum:
+            if k > self.max_iter_momentum and self.momentum:
                 self.delta_lambda_bar /= 2
                 logging.warning(
                     f'Momentum limit reached. Decreasing delta_lambda_bar to {self.delta_lambda_bar}, ld = {ld}, k = {k}, error = {err}')
@@ -381,7 +382,7 @@ class MGDCM(NonLinearSolver):
                     f'No convergence achived!  Error: {err}, ld: {ld}, increment: {i}. Stopping')
                 break
 
-            if k < self.min_iter_momentum:
+            if k < self.min_iter_momentum and self.momentum:
                 self.delta_lambda_bar *= 1.5
                 warning = f'Momentum. Increasing delta_lambda_bar to {self.delta_lambda_bar}, ld = {ld}, k = {k}, error = {err}'
                 logging.warning(warning)
