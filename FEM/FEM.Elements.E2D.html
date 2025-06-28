@@ -481,6 +481,35 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.calculate_deformation_gradient">
+<span class="sig-name descname"><span class="pre">calculate_deformation_gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_plane</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.calculate_deformation_gradient" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.calculate_strains">
+<span class="sig-name descname"><span class="pre">calculate_strains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.calculate_strains" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates Green-Lagrange amd Cauchy strains from deformation gradient</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.calculate_stress">
+<span class="sig-name descname"><span class="pre">calculate_stress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.calculate_stress" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates stress from strains using constitutive matrix</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.compute_BL2_matrix">
+<span class="sig-name descname"><span class="pre">compute_BL2_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dNdy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Uet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.compute_BL2_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Builds membrane B-L2 matrix (plane stress assumption)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.compute_BNL_matrix">
+<span class="sig-name descname"><span class="pre">compute_BNL_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dNdy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.compute_BNL_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Builds membrane B-NL matrix (plane stress assumption)</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.E2D.Membrane.Membrane.compute_B_matrix">
 <span class="sig-name descname"><span class="pre">compute_B_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dNdx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dNdy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.E2D.Membrane.Membrane.compute_B_matrix" title="Link to this definition">¶</a></dt>
 <dd><p>Builds membrane B-matrix (plane stress assumption)</p>
@@ -860,6 +889,11 @@
 <li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane"><code class="docutils literal notranslate"><span class="pre">Membrane</span></code></a><ul>
 <li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.assign_properties"><code class="docutils literal notranslate"><span class="pre">Membrane.assign_properties()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.build_global_transform"><code class="docutils literal notranslate"><span class="pre">Membrane.build_global_transform()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.calculate_deformation_gradient"><code class="docutils literal notranslate"><span class="pre">Membrane.calculate_deformation_gradient()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.calculate_strains"><code class="docutils literal notranslate"><span class="pre">Membrane.calculate_strains()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.calculate_stress"><code class="docutils literal notranslate"><span class="pre">Membrane.calculate_stress()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.compute_BL2_matrix"><code class="docutils literal notranslate"><span class="pre">Membrane.compute_BL2_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.compute_BNL_matrix"><code class="docutils literal notranslate"><span class="pre">Membrane.compute_BNL_matrix()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.compute_B_matrix"><code class="docutils literal notranslate"><span class="pre">Membrane.compute_B_matrix()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.E2D.Membrane.Membrane.stiffnessMatrix"><code class="docutils literal notranslate"><span class="pre">Membrane.stiffnessMatrix()</span></code></a></li>
 </ul>
