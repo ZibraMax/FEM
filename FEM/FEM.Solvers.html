@@ -421,6 +421,18 @@
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.NewtonTotalLagrangian">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.NonLinear.</span></span><span class="sig-name descname"><span class="pre">NewtonTotalLagrangian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.NewtonTotalLagrangian" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.NonLinear.NonLinearSolver" title="FEM.Solvers.NonLinear.NonLinearSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonLinearSolver</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.NewtonTotalLagrangian.solve">
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Solvers.NonLinear.NewtonTotalLagrangian.solve" title="Link to this definition">¶</a></dt>
+<dd><p>Solves the equation system using newtons method</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="FEM.Solvers.NonLinear.NonLinearSolver">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.NonLinear.</span></span><span class="sig-name descname"><span class="pre">NonLinearSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.NonLinearSolver" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.Solver.Solver" title="FEM.Solvers.Solver.Solver"><code class="xref py py-class docutils literal notranslate"><span class="pre">Solver</span></code></a></p>
@@ -578,6 +590,10 @@
 </li>
 <li><a class="reference internal" href="#FEM.Solvers.NonLinear.Newton"><code class="docutils literal notranslate"><span class="pre">Newton</span></code></a><ul>
 <li><a class="reference internal" href="#FEM.Solvers.NonLinear.Newton.solve"><code class="docutils literal notranslate"><span class="pre">Newton.solve()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Solvers.NonLinear.NewtonTotalLagrangian"><code class="docutils literal notranslate"><span class="pre">NewtonTotalLagrangian</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Solvers.NonLinear.NewtonTotalLagrangian.solve"><code class="docutils literal notranslate"><span class="pre">NewtonTotalLagrangian.solve()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#FEM.Solvers.NonLinear.NonLinearSolver"><code class="docutils literal notranslate"><span class="pre">NonLinearSolver</span></code></a><ul>

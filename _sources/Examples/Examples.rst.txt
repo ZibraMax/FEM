@@ -617,6 +617,14 @@ Examples.example\_membranes module
    :undoc-members:
    :show-inheritance:
 
+Examples.example\_membranes\_2 module
+-------------------------------------
+
+.. automodule:: Examples.example_membranes_2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.example\_ojo module
 ----------------------------
 
