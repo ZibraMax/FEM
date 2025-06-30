@@ -140,10 +140,16 @@ class Membrane(Quadrilateral):
         _j_t = _dp @ (self.coords + self.Ue.T)
         weights = self.W
         t = self.t
+        center_jac, dp_center = self.J(self.center.T)
+        _, _, _, _, T_plane = self.calculate_orthonormal_basis(center_jac[0])
+        center_jac_t = dp_center @ (self.coords + self.Ue.T)
+        _, _, _, _, T_plane_t = self.calculate_orthonormal_basis(
+            center_jac_t[0])
+
         for x, jac, jac_t, wi, ni, dni in zip(_x, _j, _j_t, weights, _p, _dp):
             JP = np.linalg.pinv(jac)  # Puede que sea otra cosa
-            detjac, e1, e2, e3, T_plane = self.calculate_orthonormal_basis(jac)
-            _, _, _, _, T_plane_t = self.calculate_orthonormal_basis(jac_t)
+            detjac, e1, e2, e3, _ = self.calculate_orthonormal_basis(jac)
+            _, _, _, _, _ = self.calculate_orthonormal_basis(jac_t)
             # En teoria estas son las derivadas de las funciones de forma pero en X, Y, Z
             dpx = JP @ dni
             # Ahora hay que proyectar esas derivadas en el plano usando la base ortonormal

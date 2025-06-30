@@ -93,7 +93,7 @@ class Core():
             self.K[np.ix_(e.gdlm, e.gdlm)] += e.Ke
             self.F[np.ix_(e.gdlm)] += e.Fe
             self.Q[np.ix_(e.gdlm)] += e.Qe
-            if 'newton' in self.solver.type:
+            if 'non-lineal-newton' == self.solver.type:
                 try:
                     self.T[np.ix_(e.gdlm, e.gdlm)] += e.Te
                 except Exception as e:
@@ -112,7 +112,7 @@ class Core():
         self.F[:, :] = 0.0
         self.Q[:, :] = 0.0
         self.S[:, :] = 0.0
-        if 'newton' in self.solver.type:
+        if 'non-lineal-newton' == self.solver.type:
             try:
                 self.T[:, :] = 0.0
             except Exception as e:
@@ -147,7 +147,7 @@ class Core():
                 self.K[int(i[0]), :] = 0
                 self.K[:, int(i[0])] = 0
                 self.K[int(i[0]), int(i[0])] = 1
-                if 'newton' in self.solver.type:
+                if 'non-lineal-newton' == self.solver.type:
                     try:
                         self.T[int(i[0]), :] = 0
                         self.T[:, int(i[0])] = 0
@@ -194,7 +194,7 @@ class Core():
                     self.M[int(i[0]), :] = 0
                     self.M[:, int(i[0])] = 0
                     self.M[int(i[0]), int(i[0])] = 1
-                if 'newton' in self.solver.type:
+                if "non-lineal-newton" == self.solver.type:
                     try:
                         self.T[int(i[0]), :] = 0
                         self.T[:, int(i[0])] = 0

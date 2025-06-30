@@ -34,6 +34,80 @@ class NonLinearSolver(Solver):
         self.solve(**kargs)
 
 
+class NewtonTotalLagrangian(NonLinearSolver):
+    def __init__(self, FEMObject: 'Core', tol: float = 10**(-10), n: int = 50) -> None:
+        """Creates a Newton Raphson iterative solver
+
+        Args:
+            FEMObject (Core): Finite Element Model. The model have to calculate tangent matrix T in the self.elementMatrices() method.
+            tol (float, optional): Tolerance for the maximum absolute value for the delta vector. Defaults to 10**(-10).
+            n (int, optional): Maximum number of iterations per step. Defaults to 50.
+        """
+        NonLinearSolver.__init__(self, FEMObject, tol, n)
+        self.type = 'non-lineal-newton-total-lagrangian'
+        self.load_steps = 10
+        self.ld = 0.0
+
+    def solve(self, path: str = '', **kargs) -> None:
+        """Solves the equation system using newtons method
+        """
+        solutioms = []
+        solutioms_info = []
+        logging.info('Starting newton iterations.')
+        logging.info(f'tol: {self.tol}, maxiter: {self.maxiter}')
+        for i in self.system.cbe:
+            self.system.U[int(i[0])] = i[1]
+        for e in self.system.elements:
+            e.restartMatrix()
+            e.setUe(self.system.U)
+        solutioms.append(self.system.U.copy())
+        solutioms_info.append(
+            {'solver-type': self.type, 'last-it-error': "Initial conf", 'n-it': 0, 'warnings': "No", 'ld': 0})
+        for load_step in range(self.load_steps):
+            self.ld = (load_step+1)/self.load_steps
+            logging.info(
+                f'================LOAD STEP {load_step+1}-ld:{self.ld}===================')
+            warn = 'Max number of iterations. Not convergence achived!'
+            for k in range(self.maxiter):
+                logging.debug(
+                    f'----------------- Newton iteration {k} -------------------')
+                self.system.restartMatrix()
+                logging.debug('Matrix at 0')
+                self.system.elementMatrices()
+                logging.debug('Calculating element matrix')
+                self.system.ensembling()
+                logging.debug('Matrices ensambling')
+                free_dofs = self.system.boundaryConditions()
+                logging.debug('Boundary conditions')
+                Kij = self.system.K[np.ix_(free_dofs, free_dofs)]
+                Fint = self.system.F_int[free_dofs]
+                Fext = self.system.S.copy()[free_dofs]
+                R = self.ld*Fext - Fint
+                du = spsolve(Kij, R)
+                DU = np.zeros(len(self.system.U))
+                DU[free_dofs] = du
+                logging.debug('Solving system')
+                self.system.U[free_dofs] += du.reshape([len(free_dofs), 1])
+                for e in self.system.elements:
+                    e.restartMatrix()
+                    e.setUe(self.system.U)
+                logging.debug('Updated elements')
+                ee_vec = du/self.system.U
+                err = np.linalg.norm(
+                    ee_vec[np.isfinite(ee_vec)])  # Check the 0's
+                logging.info(
+                    f'----------------- Iteration error {err} -------------------')
+                if err < self.tol:
+                    warn = 'No warnings'
+                    break
+            solutioms.append(self.system.U.copy())
+            solutioms_info.append(
+                {'solver-type': self.type, 'last-it-error': err, 'n-it': i, 'warnings': warn, 'ld': self.ld})
+        self.solutions_info = solutioms_info
+        self.solutions = solutioms
+        self.setSolution()
+
+
 class Newton(NonLinearSolver):
     """Creates a Newton Raphson iterative solver
 

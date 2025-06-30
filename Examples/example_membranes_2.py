@@ -56,12 +56,10 @@ geometry.cbn = [[14, -P], [5, -P]]
 E = 210e3  # Young's modulus in MPa
 nu = 0.3  # Poisson's ratio
 
-O = FEM.ElasticityMembranes(geometry, E, nu, t, solver=FEM.MGDCM)
-O.solver.set_increments(150)
-O.solver.maxiter = 40
-O.solver.momentum = False
-O.solver.tol = 1e-6
-O.solver.set_delta_lambda_bar(0.1)
+O = FEM.ElasticityMembranes(
+    geometry, E, nu, t, solver=FEM.Solvers.NewtonTotalLagrangian, verbose=False)
+O.solver.load_steps = 10
+
 O.solve()
 O.elementMatrices()
 K = np.array(O.K.todense())
