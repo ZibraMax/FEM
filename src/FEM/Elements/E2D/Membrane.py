@@ -116,29 +116,34 @@ class Membrane(Quadrilateral):
 
         return BNL
 
+    def calculate_orthonormal_basis(self, jac):
+        e3 = np.cross(*jac, axis=0)
+        detjac = np.linalg.norm(e3)
+        e1 = jac[0].copy()
+        e2 = jac[1].copy()
+
+        # Ortonormalizar la cosa
+        e1 /= np.linalg.norm(e1)
+        e2 = np.cross(e3, e1)
+        e2 /= np.linalg.norm(e2)
+
+        # Matriz de proyeccion
+        # 3x2 transformation to local plane
+        T_plane = np.vstack((e1, e2)).T
+        return detjac, e1, e2, e3, T_plane
+
     def stiffnessMatrix(self):
         Ke = 0.0
         Fe = 0.0
         _x, _p = self.T(self.Z.T)
         _j, _dp = self.J(self.Z.T)
+        _j_t = _dp @ (self.coords + self.Ue.T)
         weights = self.W
         t = self.t
-        for x, jac, wi, ni, dni in zip(_x, _j, weights, _p, _dp):
+        for x, jac, jac_t, wi, ni, dni in zip(_x, _j, _j_t, weights, _p, _dp):
             JP = np.linalg.pinv(jac)  # Puede que sea otra cosa
-            e3 = np.cross(*jac, axis=0)
-            detjac = np.linalg.norm(e3)
-            e1 = jac[0].copy()  # This is important, creo. Lo es
-            e2 = jac[1].copy()  # This is important, creo. Lo es
-
-            # Ortonormalizar la cosa
-            e1 /= np.linalg.norm(e1)
-            e2 = np.cross(e3, e1)
-            e2 /= np.linalg.norm(e2)
-
-            # Matriz de proyeccion
-            # 3x2 transformation to local plane
-            T_plane = np.vstack((e1, e2)).T
-
+            detjac, e1, e2, e3, T_plane = self.calculate_orthonormal_basis(jac)
+            _, _, _, _, T_plane_t = self.calculate_orthonormal_basis(jac_t)
             # En teoria estas son las derivadas de las funciones de forma pero en X, Y, Z
             dpx = JP @ dni
             # Ahora hay que proyectar esas derivadas en el plano usando la base ortonormal
@@ -158,10 +163,14 @@ class Membrane(Quadrilateral):
             BNL = self.compute_BNL_matrix(*dpt)
             BL = BL1 + BL2
             T = self.build_global_transform(T_plane, len(self.gdl.T))
+            T_t = self.build_global_transform(T_plane_t, len(self.gdl.T))
             Ke_l_local = t*(BL.T @ self.C @ BL)*detjac*wi
             S_nl_int = np.zeros((4, 4))
             S_nl_int[0:2, 0:2] = S
             S_nl_int[2:4, 2:4] = S
+
+            # T = T_t
+
             Ke_nl_local = t*(BNL.T @ S_nl_int @ BNL)*detjac*wi
 
             S_vec = S.flatten()[[0, 3, 1]]
