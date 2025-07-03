@@ -49,7 +49,7 @@ class Membrane(Quadrilateral):
         t_0 = X_0 @ T_plane
         F = dpt @ t_t
         Uet = t_t - t_0
-        return F, Uet
+        return F, Uet, t_0, t_t
 
     # Considerar mover esta fuction a un lugar más general
     def calculate_strains(self, F):
@@ -85,22 +85,19 @@ class Membrane(Quadrilateral):
         Ux = Uet.T[0]
         Uy = Uet.T[1]
 
-        l11 = np.sum(dNdx*Ux)
-        l21 = np.sum(dNdx*Uy)
-        l12 = np.sum(dNdy*Ux)
-        l22 = np.sum(dNdy*Uy)
-        L = np.array([[l11, l12],
-                      [l21, l22]])
+        dudx = np.sum(dNdx*Ux)
+        dvdx = np.sum(dNdx*Uy)
+        dudy = np.sum(dNdy*Ux)
+        dvdy = np.sum(dNdy*Uy)
 
         for i in range(n_nodes):
-            BL2[0, 2 * i] = dNdx[i] * L[0, 0]
-            BL2[0, 2 * i + 1] = dNdx[i] * L[1, 0]
+            BL2[0, 2 * i] = dudx*dNdx[i]
+            BL2[1, 2 * i] = dudy*dNdy[i]
+            BL2[2, 2 * i] = dudx*dNdy[i] + dudy*dNdx[i]
 
-            BL2[1, 2 * i] = dNdy[i] * L[0, 1]
-            BL2[1, 2 * i + 1] = dNdy[i] * L[1, 1]
-
-            BL2[2, 2 * i] = dNdy[i] * L[0, 0] + dNdx[i] * L[0, 1]
-            BL2[2, 2 * i + 1] = dNdy[i] * L[1, 0] + dNdx[i] * L[1, 1]
+            BL2[0, 2 * i + 1] = dvdx*dNdx[i]
+            BL2[1, 2 * i + 1] = dvdy*dNdy[i]
+            BL2[2, 2 * i + 1] = dvdx*dNdy[i] + dvdy*dNdx[i]
         return BL2
 
     def compute_BNL_matrix(self, dNdx, dNdy):
@@ -147,7 +144,9 @@ class Membrane(Quadrilateral):
             center_jac_t[0])
 
         for x, jac, jac_t, wi, ni, dni in zip(_x, _j, _j_t, weights, _p, _dp):
-            JP = np.linalg.pinv(jac)  # Puede que sea otra cosa
+            J = jac.T
+            JP = J@np.linalg.inv(J.T@J)
+            # JP = np.linalg.pinv(J.T)
             detjac, e1, e2, e3, _ = self.calculate_orthonormal_basis(jac)
             _, _, _, _, _ = self.calculate_orthonormal_basis(jac_t)
             # En teoria estas son las derivadas de las funciones de forma pero en X, Y, Z
@@ -158,9 +157,30 @@ class Membrane(Quadrilateral):
             dpt = dpt.T  # Transpose porque si
 
             # Calculamos el gradiente de deformación
-            F, Uet = self.calculate_deformation_gradient(dpt, T_plane)
+            F, Uet, t_0, t_t = self.calculate_deformation_gradient(
+                dpt, T_plane)
+            # in_plane_jacobian = dni @ t_0
+            # dpt = np.linalg.inv(in_plane_jacobian) @ dni
             # Calculamos las deformaciones
             e, E = self.calculate_strains(F)
+            dNdx = dpt[0]
+            dNdy = dpt[1]
+            Ux = Uet.T[0]
+            Uy = Uet.T[1]
+            dudx = np.sum(dNdx*Ux)
+            dvdx = np.sum(dNdx*Uy)
+            dudy = np.sum(dNdy*Ux)
+            dvdy = np.sum(dNdy*Uy)
+
+            E = E*0.0
+            exx = dudx+1/2*(dudx**2 + dvdx**2)
+            eyy = dvdy+1/2*(dudy**2 + dvdy**2)
+            exy = dudy + dvdx + dudy*dudx + dvdx*dvdy
+            E[0, 0] = exx
+            E[1, 1] = eyy
+            E[0, 1] = exy
+            E[1, 0] = exy
+
             # Calculamos los esfuersos
             s, S = self.calculate_stress(e, E)
 

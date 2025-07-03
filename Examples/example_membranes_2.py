@@ -51,14 +51,14 @@ geometry.cbe = [[0, 0],
                 [17, 0]]
 # [14, 1],
 # [5, 1]]
-P = 1000
+P = 2000
 geometry.cbn = [[14, -P], [5, -P]]
 E = 210e3  # Young's modulus in MPa
 nu = 0.3  # Poisson's ratio
 
 O = FEM.ElasticityMembranes(
     geometry, E, nu, t, solver=FEM.Solvers.NewtonTotalLagrangian, verbose=False)
-O.solver.load_steps = 10
+O.solver.load_steps = 400
 
 O.solve()
 O.elementMatrices()

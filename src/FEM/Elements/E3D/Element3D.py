@@ -15,7 +15,7 @@ class Element3D(Element):
     """
 
     def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, **kargs) -> None:
-        """Create a 2D element
+        """Create a 3D element
 
         Args:
             coords (np.ndarray): Element coordinate matrix

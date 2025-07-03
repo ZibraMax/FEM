@@ -1,3 +1,4 @@
+import matplotlib.animation as animation
 import FEM
 import numpy as np
 import matplotlib.pyplot as plt
@@ -45,9 +46,12 @@ geometry.cbe = [[0, 0],
                 [7, 0],
                 [8, 0],
                 [9, 0],
+                # [10, 0],
                 [11, 0],
                 [12, 0],
+                # [13, 0],
                 [15, 0],
+                # [16, 0],
                 [17, 0]]
 # [14, 1],
 # [5, 1]]
@@ -98,4 +102,39 @@ plt.xlabel("Displacement")
 plt.title("Force-Displacement Curve for Membrane Element")
 plt.legend()
 plt.grid()
+plt.show()
+
+# Plot the deformed shape
+plots = []
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111, projection='3d')
+for e in O.elements:
+    surf = ax.plot_trisurf(e.coords[:, 0], e.coords[:, 1],
+                           e.coords[:, 2], alpha=0.5, color='b')
+    plots.append(surf)
+
+
+def animate(i, plots):
+    plots = []
+    ax.clear()
+    O.solver.setSolution(i-1, elements=True)
+    for e in O.elements:
+        coords = e.coords + e.Ue[:3].T
+        surf = ax.plot_trisurf(coords[:, 0], coords[:, 1],
+                               coords[:, 2], alpha=0.5, color='r')
+        plots.append(surf)
+    ax.set_xlim(0, 2*a)
+    ax.set_ylim(0, h)
+    ax.set_zlim(-b, b)
+    ax.set_xlabel('X-axis')
+    ax.set_ylabel('Y-axis')
+    ax.set_zlabel('Z-axis')
+    ax.set_title(
+        f'Deformed shape at load step {i}, load factor: {O.solution_info["ld"]:.2f}')
+
+    return plots
+
+
+pam_ani = animation.FuncAnimation(fig, animate, fargs=(plots,),
+                                  interval=7, blit=False, frames=len(O.solver.solutions))
 plt.show()
