@@ -12,6 +12,8 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   FEM.Elements.ContinumElements
+   FEM.Elements.E0D
    FEM.Elements.E1D
    FEM.Elements.E2D
    FEM.Elements.E3D

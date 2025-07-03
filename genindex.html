@@ -201,6 +201,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="FEM/modules.html">FEM</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of FEM</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="FEM/FEM.html">FEM package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of FEM package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3 has-children"><a class="reference internal" href="FEM/FEM.Elements.html">FEM.Elements package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of FEM.Elements package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM/FEM.Elements.ContinumElements.html">FEM.Elements.ContinumElements package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM/FEM.Elements.E0D.html">FEM.Elements.E0D package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="FEM/FEM.Elements.E1D.html">FEM.Elements.E1D package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="FEM/FEM.Elements.E2D.html">FEM.Elements.E2D package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="FEM/FEM.Elements.E3D.html">FEM.Elements.E3D package</a></li>
@@ -287,6 +289,8 @@
 </li>
         </ul></li>
         <li><a href="FEM/FEM.Utils.html#FEM.Utils.polygonal.angleBetweenAngles">angleBetweenAngles() (in module FEM.Utils.polygonal)</a>
+</li>
+        <li><a href="Examples/Examples.html#Examples.example_membranes.animate">animate() (in module Examples.example_membranes)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
@@ -380,10 +384,18 @@
 </li>
         <li><a href="FEM/FEM.Elements.E2D.html#FEM.Elements.E2D.Membrane.Membrane.calculate_stress">calculate_stress() (FEM.Elements.E2D.Membrane.Membrane method)</a>
 </li>
-        <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.calculate_theta">calculate_theta() (FEM.Elements.E1D.OriHinge.OriHinge method)</a>
+        <li><a href="FEM/FEM.Elements.E0D.html#FEM.Elements.E0D.Spring.Spring.calculate_theta">calculate_theta() (FEM.Elements.E0D.Spring.Spring method)</a>
+
+        <ul>
+          <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.calculate_theta">(FEM.Elements.E1D.OriHinge.OriHinge method)</a>
 </li>
-        <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.calculate_vectors">calculate_vectors() (FEM.Elements.E1D.OriHinge.OriHinge method)</a>
+        </ul></li>
+        <li><a href="FEM/FEM.Elements.E0D.html#FEM.Elements.E0D.Spring.Spring.calculate_vectors">calculate_vectors() (FEM.Elements.E0D.Spring.Spring method)</a>
+
+        <ul>
+          <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.calculate_vectors">(FEM.Elements.E1D.OriHinge.OriHinge method)</a>
 </li>
+        </ul></li>
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.calculateCentroids">calculateCentroids() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.calculateRegions">calculateRegions() (FEM.Geometry.Geometry.Geometry method)</a>
@@ -422,6 +434,8 @@
           <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometree.Quadrant3DSpherical.contains">(FEM.Geometry.Geometree.Quadrant3DSpherical method)</a>
 </li>
         </ul></li>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase">ContinumBase (class in FEM.Elements.ContinumElements.ContinumBase)</a>
+</li>
         <li><a href="FEM/FEM.html#FEM.Core.Core">Core (class in FEM.Core)</a>
 </li>
         <li><a href="FEM/FEM.html#FEM.Core.CoreHiperbolic">CoreHiperbolic (class in FEM.Core)</a>
@@ -555,6 +569,8 @@
 </li>
           <li><a href="FEM/FEM.html#FEM.Elasticity3D.NonLocalElasticityLegacy.elementMatrices">(FEM.Elasticity3D.NonLocalElasticityLegacy method)</a>
 </li>
+          <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.elementMatrices">(FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
+</li>
           <li><a href="FEM/FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam.elementMatrices">(FEM.EulerBernoulliBeam.EulerBernoulliBeam method)</a>
 </li>
           <li><a href="FEM/FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLinear.elementMatrices">(FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLinear method)</a>
@@ -590,9 +606,11 @@
           <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.elementMatrix">(FEM.Elements.E1D.OriHinge.OriHinge method)</a>
 </li>
         </ul></li>
-        <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.elementMatrixNonLineal">elementMatrixNonLineal() (FEM.Elements.E1D.OriHinge.OriHinge method)</a>
+        <li><a href="FEM/FEM.Elements.E0D.html#FEM.Elements.E0D.Spring.Spring.elementMatrixNonLineal">elementMatrixNonLineal() (FEM.Elements.E0D.Spring.Spring method)</a>
 
         <ul>
+          <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.elementMatrixNonLineal">(FEM.Elements.E1D.OriHinge.OriHinge method)</a>
+</li>
           <li><a href="FEM/FEM.Elements.E2D.html#FEM.Elements.E2D.MITC6.MITC6.elementMatrixNonLineal">(FEM.Elements.E2D.MITC6.MITC6 method)</a>
 </li>
         </ul></li>
@@ -811,6 +829,8 @@
           <li><a href="Examples/Examples.html#module-Examples.example31">module</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     Examples.example32
 
@@ -818,8 +838,6 @@
           <li><a href="Examples/Examples.html#module-Examples.example32">module</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     Examples.example33
 
@@ -1236,6 +1254,34 @@
 </li>
         </ul></li>
         <li>
+    FEM.Elements.ContinumElements
+
+        <ul>
+          <li><a href="FEM/FEM.Elements.ContinumElements.html#module-FEM.Elements.ContinumElements">module</a>
+</li>
+        </ul></li>
+        <li>
+    FEM.Elements.ContinumElements.ContinumBase
+
+        <ul>
+          <li><a href="FEM/FEM.Elements.ContinumElements.html#module-FEM.Elements.ContinumElements.ContinumBase">module</a>
+</li>
+        </ul></li>
+        <li>
+    FEM.Elements.E0D
+
+        <ul>
+          <li><a href="FEM/FEM.Elements.E0D.html#module-FEM.Elements.E0D">module</a>
+</li>
+        </ul></li>
+        <li>
+    FEM.Elements.E0D.Spring
+
+        <ul>
+          <li><a href="FEM/FEM.Elements.E0D.html#module-FEM.Elements.E0D.Spring">module</a>
+</li>
+        </ul></li>
+        <li>
     FEM.Elements.E1D
 
         <ul>
@@ -1361,6 +1407,8 @@
           <li><a href="FEM/FEM.Elements.E2D.html#module-FEM.Elements.E2D.TriangularScheme">module</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     FEM.Elements.E3D
 
@@ -1375,8 +1423,6 @@
           <li><a href="FEM/FEM.Elements.E3D.html#module-FEM.Elements.E3D.Brick">module</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     FEM.Elements.E3D.BrickScheme
 
@@ -1548,6 +1594,8 @@
         <li><a href="FEM/FEM.html#FEM.FEMLogger.FEMLogger">FEMLogger (class in FEM.FEMLogger)</a>
 </li>
         <li><a href="FEM/FEM.html#FEM.FEMLogger.TimeFilter.filter">filter() (FEM.FEMLogger.TimeFilter method)</a>
+</li>
+        <li><a href="FEM/FEM.Elements.E0D.html#FEM.Elements.E0D.Spring.Spring.force_vector">force_vector() (FEM.Elements.E0D.Spring.Spring method)</a>
 </li>
         <li><a href="FEM/FEM.html#FEM.FEMLogger.LogFormatter.format">format() (FEM.FEMLogger.LogFormatter method)</a>
 </li>
@@ -1943,6 +1991,14 @@
 </li>
           <li><a href="FEM/FEM.Elements.html#module-FEM.Elements">FEM.Elements</a>
 </li>
+          <li><a href="FEM/FEM.Elements.ContinumElements.html#module-FEM.Elements.ContinumElements">FEM.Elements.ContinumElements</a>
+</li>
+          <li><a href="FEM/FEM.Elements.ContinumElements.html#module-FEM.Elements.ContinumElements.ContinumBase">FEM.Elements.ContinumElements.ContinumBase</a>
+</li>
+          <li><a href="FEM/FEM.Elements.E0D.html#module-FEM.Elements.E0D">FEM.Elements.E0D</a>
+</li>
+          <li><a href="FEM/FEM.Elements.E0D.html#module-FEM.Elements.E0D.Spring">FEM.Elements.E0D.Spring</a>
+</li>
           <li><a href="FEM/FEM.Elements.E1D.html#module-FEM.Elements.E1D">FEM.Elements.E1D</a>
 </li>
           <li><a href="FEM/FEM.Elements.E1D.html#module-FEM.Elements.E1D.CubicElement">FEM.Elements.E1D.CubicElement</a>
@@ -2237,13 +2293,15 @@
         <li><a href="FEM/FEM.html#FEM.Core.Core.restartMatrix">restartMatrix() (FEM.Core.Core method)</a>
 
         <ul>
+          <li><a href="FEM/FEM.Elements.E0D.html#FEM.Elements.E0D.Spring.Spring.restartMatrix">(FEM.Elements.E0D.Spring.Spring method)</a>
+</li>
           <li><a href="FEM/FEM.Elements.html#FEM.Elements.Element.Element.restartMatrix">(FEM.Elements.Element.Element method)</a>
 </li>
         </ul></li>
-        <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.revolve">revolve() (FEM.Geometry.Geometry.Geometry2D method)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.revolve">revolve() (FEM.Geometry.Geometry.Geometry2D method)</a>
+</li>
         <li><a href="FEM/FEM.Utils.html#FEM.Utils.polygonal.roundCorner">roundCorner() (in module FEM.Utils.polygonal)</a>
 </li>
         <li><a href="FEM/FEM.Solvers.html#FEM.Solvers.Linear.LinealEigen.run">run() (FEM.Solvers.Linear.LinealEigen method)</a>
@@ -2302,8 +2360,12 @@
 </li>
         <li><a href="FEM/FEM.Solvers.html#FEM.Solvers.Solver.Solver.setSolution">setSolution() (FEM.Solvers.Solver.Solver method)</a>
 </li>
-        <li><a href="FEM/FEM.Elements.html#FEM.Elements.Element.Element.setUe">setUe() (FEM.Elements.Element.Element method)</a>
+        <li><a href="FEM/FEM.Elements.E0D.html#FEM.Elements.E0D.Spring.Spring.setUe">setUe() (FEM.Elements.E0D.Spring.Spring method)</a>
+
+        <ul>
+          <li><a href="FEM/FEM.Elements.html#FEM.Elements.Element.Element.setUe">(FEM.Elements.Element.Element method)</a>
 </li>
+        </ul></li>
         <li><a href="FEM/FEM.html#FEM.FEMLogger.FEMLogger.setup_logging">setup_logging() (FEM.FEMLogger.FEMLogger method)</a>
 </li>
         <li><a href="Examples/Examples.html#Examples.MITC6.shape_functions_MITC6">shape_functions_MITC6() (in module Examples.MITC6)</a>
@@ -2345,6 +2407,10 @@
         <li><a href="FEM/FEM.html#FEM.Core.Core.solveFromFile">solveFromFile() (FEM.Core.Core method)</a>
 </li>
         <li><a href="FEM/FEM.Solvers.html#FEM.Solvers.Solver.Solver">Solver (class in FEM.Solvers.Solver)</a>
+</li>
+        <li><a href="FEM/FEM.Elements.E0D.html#FEM.Elements.E0D.Spring.Spring">Spring (class in FEM.Elements.E0D.Spring)</a>
+</li>
+        <li><a href="FEM/FEM.Elements.E0D.html#FEM.Elements.E0D.Spring.Spring.stiffness_matrix">stiffness_matrix() (FEM.Elements.E0D.Spring.Spring method)</a>
 </li>
         <li><a href="FEM/FEM.Elements.E2D.html#FEM.Elements.E2D.Membrane.Membrane.stiffnessMatrix">stiffnessMatrix() (FEM.Elements.E2D.Membrane.Membrane method)</a>
 </li>

@@ -1,0 +1,18 @@
+FEM.Elements.ContinumElements package
+=====================================
+
+.. automodule:: FEM.Elements.ContinumElements
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+FEM.Elements.ContinumElements.ContinumBase module
+-------------------------------------------------
+
+.. automodule:: FEM.Elements.ContinumElements.ContinumBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
