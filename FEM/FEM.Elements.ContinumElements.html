@@ -315,6 +315,13 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.Bar.rotation_matrix">
+<span class="sig-name descname"><span class="pre">rotation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.Bar.rotation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the rotation matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.Bar.transformation_matrix">
 <span class="sig-name descname"><span class="pre">transformation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.Bar.transformation_matrix" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the transformation matrix for the element.</p>
@@ -397,6 +404,35 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.ContinumBase.ContinumBase.project_coords">
+<span class="sig-name descname"><span class="pre">project_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.project_coords" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.ContinumBase.ContinumBase.project_disp">
+<span class="sig-name descname"><span class="pre">project_disp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.project_disp" title="Link to this definition">¶</a></dt>
+<dd><p>Project the displacements to the original coordinates system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.ContinumBase.ContinumBase.rotation_matrix">
+<span class="sig-name descname"><span class="pre">rotation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.rotation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the rotation matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.ContinumBase.ContinumBase.setUe">
+<span class="sig-name descname"><span class="pre">setUe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">U</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.setUe" title="Link to this definition">¶</a></dt>
+<dd><p>Assing element local solution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>U</strong> (<em>np.ndarray</em>) – Global solution</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.ContinumElements.ContinumBase.ContinumBase.set_constitutive_model">
 <span class="sig-name descname"><span class="pre">set_constitutive_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">CM</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.set_constitutive_model" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -476,6 +512,7 @@
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.calculate_BNL"><code class="docutils literal notranslate"><span class="pre">Bar.calculate_BNL()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.get_local_jacobian"><code class="docutils literal notranslate"><span class="pre">Bar.get_local_jacobian()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.organize_S"><code class="docutils literal notranslate"><span class="pre">Bar.organize_S()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.rotation_matrix"><code class="docutils literal notranslate"><span class="pre">Bar.rotation_matrix()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">Bar.transformation_matrix()</span></code></a></li>
 </ul>
 </li>
@@ -490,6 +527,10 @@
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.get_local_jacobian"><code class="docutils literal notranslate"><span class="pre">ContinumBase.get_local_jacobian()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.green_lagrange_strain"><code class="docutils literal notranslate"><span class="pre">ContinumBase.green_lagrange_strain()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.organize_S"><code class="docutils literal notranslate"><span class="pre">ContinumBase.organize_S()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.project_coords"><code class="docutils literal notranslate"><span class="pre">ContinumBase.project_coords()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.project_disp"><code class="docutils literal notranslate"><span class="pre">ContinumBase.project_disp()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.rotation_matrix"><code class="docutils literal notranslate"><span class="pre">ContinumBase.rotation_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.setUe"><code class="docutils literal notranslate"><span class="pre">ContinumBase.setUe()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.set_constitutive_model"><code class="docutils literal notranslate"><span class="pre">ContinumBase.set_constitutive_model()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">ContinumBase.transformation_matrix()</span></code></a></li>
 </ul>

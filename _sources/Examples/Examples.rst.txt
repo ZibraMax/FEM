@@ -640,3 +640,11 @@ Examples.example\_ojo\_mitad module
    :members:
    :undoc-members:
    :show-inheritance:
+
+Examples.safarrancho module
+---------------------------
+
+.. automodule:: Examples.safarrancho
+   :members:
+   :undoc-members:
+   :show-inheritance:
