@@ -22,7 +22,7 @@ class Bar(ContinumBase):
         """
         dp1dx = dpx[0, 0]
         dp2dx = dpx[0, 1]
-        dudx = self.Ue.T @ dpx
+        dudx = np.sum(dpx * self.t_Ue.T)
         return np.array([[dp1dx+dudx*dp1dx, dp2dx+dudx*dp2dx]])
 
     def organize_S(self, S) -> tuple:
@@ -45,6 +45,16 @@ class Bar(ContinumBase):
         T = np.array([[*R, *o],
                       [*o, *R]])
         return T
+
+    def rotation_matrix(self) -> np.ndarray:
+        """Calculate the rotation matrix for the element.
+
+        This method should be implemented in derived classes.
+        """
+        RR = self.coords[-1] - self.coords[0]
+        norm = np.linalg.norm(RR)
+        R = RR / norm
+        return R
 
     def get_local_jacobian(self, jac: np.ndarray) -> np.ndarray:
         """Get the local Jacobian matrix for the element.

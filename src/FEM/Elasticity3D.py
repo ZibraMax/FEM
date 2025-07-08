@@ -5,7 +5,9 @@ import numpy as np
 from tqdm import tqdm
 from scipy import sparse
 from FEM.Solvers.Linear import LinearSparse
+from FEM.Solvers.NonLinear import NewtonTotalLagrangian, MGDCM
 from .Elements.E2D import Quadrilateral
+from .Elements.ContinumElements import ContinumBase, Bar
 from .Core import Core, Geometry, logging
 
 
@@ -527,3 +529,44 @@ class NonLocalElasticityLegacy(Elasticity):
         self.M = sparse.coo_matrix(
             (self.Vm, (self.Im, self.Jm)), shape=(self.ngdl, self.ngdl)).tocsr()
         logging.info('Done!')
+
+
+class ContinumTotalLagrangian(Elasticity):
+    """docstring for ElasticityMembranes
+    """
+
+    def __init__(self, geometry: Geometry, constitutive_model: Tuple[Callable, list], **kargs) -> None:
+        solver = kargs.get('solver', NewtonTotalLagrangian)
+        kargs.pop('solver', None)
+        Elasticity.__init__(self, geometry, 0, 0, None,
+                            solver=solver, **kargs)
+
+        self.name = 'Elasticity Total Lagrangian sparse'
+        for i, e in enumerate(geometry.elements):
+            self.elements[i] = Bar(
+                e.coords, e._coords, e.gdl,
+                Z=e.Z,
+                W=e.W,
+                domain=e.domain,
+                center=e.center,
+                psis=e.psis,
+                dpsis=e.dpsis,
+                fast=True)
+            self.elements[i].gdlm = self.elements[i].gdl.T.flatten()
+            if isinstance(constitutive_model, Callable):
+                self.elements[i].set_constitutive_model(constitutive_model)
+            elif isinstance(constitutive_model, list):
+                self.elements[i].set_constitutive_model(
+                    constitutive_model[i])
+            else:
+                raise ValueError(
+                    'Constitutive model must be a callable or a list of callables for each element.')
+
+    def elementMatrices(self) -> None:
+        """Calculate the element matrices usign Reddy's (2005) finite element model
+        """
+        self.F_int = np.zeros([self.ngdl, 1])
+        for ee, e in enumerate(tqdm(self.elements, unit='Element')):
+            Ke, Fe = e.elementMatrices()
+            self.K[np.ix_(e.gdlm, e.gdlm)] += Ke
+            self.F_int[np.ix_(e.gdlm)] += Fe.reshape([-1, 1])
