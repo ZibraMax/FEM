@@ -40,9 +40,9 @@ if __name__ == '__main__':
         S = young * E
         return C, S, A
     O = ContinumTotalLagrangian(geo, cm, solver=MGDCM)
-    O.solver.set_delta_lambda_bar(0.5)
+    O.solver.set_delta_lambda_bar(0.1)
     O.solver.momentum = False
-    O.solver.set_increments(250)
+    O.solver.set_increments(100)
     O.cbn = [[2, -0.1*EA]]
     O.solve()
 
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     anim = FuncAnimation(
         fig,
         animate,
-        frames=len(O.solver.solutions),
+        frames=len(O.solver.solutions)-1,
         interval=60,
         fargs=(lines,),
         blit=True

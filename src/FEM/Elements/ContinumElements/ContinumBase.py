@@ -88,7 +88,7 @@ class ContinumBase():
         raise NotImplementedError(
             "This method should be implemented in derived classes.")
 
-    def rotation_matrix(self) -> np.ndarray:
+    def rotation_matrix(self, deformed=True) -> np.ndarray:
         """Calculate the rotation matrix for the element.
 
         This method should be implemented in derived classes.
@@ -96,7 +96,7 @@ class ContinumBase():
         raise NotImplementedError(
             "This method should be implemented in derived classes.")
 
-    def transformation_matrix(self) -> np.ndarray:
+    def transformation_matrix(self, deformed=True) -> np.ndarray:
         """Calculate the transformation matrix for the element.
 
         This method should be implemented in derived classes.
@@ -104,7 +104,7 @@ class ContinumBase():
         raise NotImplementedError(
             "This method should be implemented in derived classes.")
 
-    def get_local_jacobian(self, jac: np.ndarray) -> np.ndarray:
+    def get_local_jacobian(self, jac: np.ndarray, deformed=True) -> np.ndarray:
         """Get the local Jacobian matrix for the element.
 
         Args:
@@ -151,8 +151,8 @@ class ContinumBase():
             Ke += const*(BL.T @ C @ BL + BNL.T @ S_stiff @ BNL) * detjac * wi
             Fe += const*(BL.T @ S_force) * detjac * wi
 
-        T = self.transformation_matrix()
-        if T is not None:
-            Ke = T.T @ Ke @ T
-            Fe = T.T @ Fe
+        T1 = self.transformation_matrix(False)
+        T2 = self.transformation_matrix(False)
+        Ke = T1.T @ Ke @ T1
+        Fe = T2.T @ Fe
         return Ke, Fe

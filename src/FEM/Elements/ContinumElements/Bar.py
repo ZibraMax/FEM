@@ -32,31 +32,30 @@ class BarBase(ContinumBase):
         """
         return S.reshape([1, 1]), S.reshape([1, 1])
 
-    def transformation_matrix(self) -> np.ndarray:
+    def transformation_matrix(self, deformed=True) -> np.ndarray:
         """Calculate the transformation matrix for the element.
 
         This method should be implemented in derived classes.
         """
-        RR = self.coords[-1] - self.coords[0]
-        norm = np.linalg.norm(RR)
-        R = RR / norm
+        R = self.rotation_matrix(deformed)
         o = np.zeros_like(R)
         # No se, no creo que sea tan facil tampoco...
         T = np.array([[*R, *o],
                       [*o, *R]])
         return T
 
-    def rotation_matrix(self) -> np.ndarray:
+    def rotation_matrix(self, deformed=True) -> np.ndarray:
         """Calculate the rotation matrix for the element.
 
         This method should be implemented in derived classes.
         """
-        RR = self.coords[-1] - self.coords[0]
+        coords = self.coords + self.Ue.T*deformed
+        RR = coords[-1] - coords[0]
         norm = np.linalg.norm(RR)
         R = RR / norm
         return R
 
-    def get_local_jacobian(self, jac: np.ndarray) -> np.ndarray:
+    def get_local_jacobian(self, jac: np.ndarray, deformed=True) -> np.ndarray:
         """Get the local Jacobian matrix for the element.
 
         Args:
@@ -65,7 +64,8 @@ class BarBase(ContinumBase):
         Returns:
             np.ndarray: The local Jacobian matrix.
         """
-        RR = self.coords[-1] - self.coords[0]
+        coords = self.coords + self.Ue.T*deformed
+        RR = coords[-1] - coords[0]
         norm = np.linalg.norm(RR)
         return np.array([[norm/2]])
 
