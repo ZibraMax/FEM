@@ -273,26 +273,26 @@
 <section id="module-FEM.Elements.ContinumElements.Bar">
 <span id="fem-elements-continumelements-bar-module"></span><h2>FEM.Elements.ContinumElements.Bar module<a class="headerlink" href="#module-FEM.Elements.ContinumElements.Bar" title="Link to this heading">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.Bar">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Bar.</span></span><span class="sig-name descname"><span class="pre">Bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.Bar" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.BarBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Bar.</span></span><span class="sig-name descname"><span class="pre">BarBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.BarBase" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase" title="FEM.Elements.ContinumElements.ContinumBase.ContinumBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContinumBase</span></code></a></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.Bar.calculate_BL">
-<span class="sig-name descname"><span class="pre">calculate_BL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpx</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.Bar.calculate_BL" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.BarBase.calculate_BL">
+<span class="sig-name descname"><span class="pre">calculate_BL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpx</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.BarBase.calculate_BL" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the BL matrix for the element.</p>
 <p>This method should be implemented in derived classes.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.Bar.calculate_BNL">
-<span class="sig-name descname"><span class="pre">calculate_BNL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpx</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.Bar.calculate_BNL" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.BarBase.calculate_BNL">
+<span class="sig-name descname"><span class="pre">calculate_BNL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpx</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.BarBase.calculate_BNL" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the BNL matrix for the element.</p>
 <p>This method should be implemented in derived classes.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.Bar.get_local_jacobian">
-<span class="sig-name descname"><span class="pre">get_local_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.Bar.get_local_jacobian" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.BarBase.get_local_jacobian">
+<span class="sig-name descname"><span class="pre">get_local_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.BarBase.get_local_jacobian" title="Link to this definition">¶</a></dt>
 <dd><p>Get the local Jacobian matrix for the element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -308,26 +308,38 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.Bar.organize_S">
-<span class="sig-name descname"><span class="pre">organize_S</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.Bar.organize_S" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.BarBase.organize_S">
+<span class="sig-name descname"><span class="pre">organize_S</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.BarBase.organize_S" title="Link to this definition">¶</a></dt>
 <dd><p>Organize the stress tensor S and the constitutive matrix C.</p>
 <p>This method should be implemented in derived classes.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.Bar.rotation_matrix">
-<span class="sig-name descname"><span class="pre">rotation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.Bar.rotation_matrix" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.BarBase.rotation_matrix">
+<span class="sig-name descname"><span class="pre">rotation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.BarBase.rotation_matrix" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the rotation matrix for the element.</p>
 <p>This method should be implemented in derived classes.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.Bar.transformation_matrix">
-<span class="sig-name descname"><span class="pre">transformation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.Bar.transformation_matrix" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.BarBase.transformation_matrix">
+<span class="sig-name descname"><span class="pre">transformation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.BarBase.transformation_matrix" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the transformation matrix for the element.</p>
 <p>This method should be implemented in derived classes.</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.BarLinear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Bar.</span></span><span class="sig-name descname"><span class="pre">BarLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.BarLinear" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarBase" title="FEM.Elements.ContinumElements.Bar.BarBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">BarBase</span></code></a>, <a class="reference internal" href="FEM.Elements.E1D.html#FEM.Elements.E1D.LinealElement.LinealElement" title="FEM.Elements.E1D.LinealElement.LinealElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinealElement</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Bar.BarQuadratic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Bar.</span></span><span class="sig-name descname"><span class="pre">BarQuadratic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Bar.BarQuadratic" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarBase" title="FEM.Elements.ContinumElements.Bar.BarBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">BarBase</span></code></a>, <a class="reference internal" href="FEM.Elements.E1D.html#FEM.Elements.E1D.QuadraticElement.QuadraticElement" title="FEM.Elements.E1D.QuadraticElement.QuadraticElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuadraticElement</span></code></a></p>
 </dd></dl>
 
 </section>
@@ -335,8 +347,8 @@
 <span id="fem-elements-continumelements-continumbase-module"></span><h2>FEM.Elements.ContinumElements.ContinumBase module<a class="headerlink" href="#module-FEM.Elements.ContinumElements.ContinumBase" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="FEM.Elements.ContinumElements.ContinumBase.ContinumBase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.ContinumBase.</span></span><span class="sig-name descname"><span class="pre">ContinumBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="FEM.Elements.html#FEM.Elements.Element.Element" title="FEM.Elements.Element.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.ContinumBase.</span></span><span class="sig-name descname"><span class="pre">ContinumBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Base class for continuum elements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -507,15 +519,17 @@
 <li><a class="reference internal" href="#">FEM.Elements.ContinumElements package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-FEM.Elements.ContinumElements.Bar">FEM.Elements.ContinumElements.Bar module</a><ul>
-<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar"><code class="docutils literal notranslate"><span class="pre">Bar</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.calculate_BL"><code class="docutils literal notranslate"><span class="pre">Bar.calculate_BL()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.calculate_BNL"><code class="docutils literal notranslate"><span class="pre">Bar.calculate_BNL()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.get_local_jacobian"><code class="docutils literal notranslate"><span class="pre">Bar.get_local_jacobian()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.organize_S"><code class="docutils literal notranslate"><span class="pre">Bar.organize_S()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.rotation_matrix"><code class="docutils literal notranslate"><span class="pre">Bar.rotation_matrix()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.Bar.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">Bar.transformation_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarBase"><code class="docutils literal notranslate"><span class="pre">BarBase</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarBase.calculate_BL"><code class="docutils literal notranslate"><span class="pre">BarBase.calculate_BL()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarBase.calculate_BNL"><code class="docutils literal notranslate"><span class="pre">BarBase.calculate_BNL()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarBase.get_local_jacobian"><code class="docutils literal notranslate"><span class="pre">BarBase.get_local_jacobian()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarBase.organize_S"><code class="docutils literal notranslate"><span class="pre">BarBase.organize_S()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarBase.rotation_matrix"><code class="docutils literal notranslate"><span class="pre">BarBase.rotation_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarBase.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">BarBase.transformation_matrix()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarLinear"><code class="docutils literal notranslate"><span class="pre">BarLinear</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Bar.BarQuadratic"><code class="docutils literal notranslate"><span class="pre">BarQuadratic</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-FEM.Elements.ContinumElements.ContinumBase">FEM.Elements.ContinumElements.ContinumBase module</a><ul>

@@ -334,11 +334,11 @@
   <h2>B</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.Bar">Bar (class in FEM.Elements.ContinumElements.Bar)</a>
-</li>
         <li><a href="FEM/FEM.html#FEM.Unhinged.BarAndHingeLinear">BarAndHingeLinear (class in FEM.Unhinged)</a>
 </li>
         <li><a href="FEM/FEM.html#FEM.Unhinged.BarAndHingeNonLinear">BarAndHingeNonLinear (class in FEM.Unhinged)</a>
+</li>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.BarBase">BarBase (class in FEM.Elements.ContinumElements.Bar)</a>
 </li>
         <li><a href="FEM/FEM.html#FEM.Unhinged.BarAndHingeLinear.barElementMatrix">barElementMatrix() (FEM.Unhinged.BarAndHingeLinear method)</a>
 
@@ -346,6 +346,10 @@
           <li><a href="FEM/FEM.html#FEM.Unhinged.BarAndHingeNonLinear.barElementMatrix">(FEM.Unhinged.BarAndHingeNonLinear method)</a>
 </li>
         </ul></li>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.BarLinear">BarLinear (class in FEM.Elements.ContinumElements.Bar)</a>
+</li>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.BarQuadratic">BarQuadratic (class in FEM.Elements.ContinumElements.Bar)</a>
+</li>
         <li><a href="FEM/FEM.html#FEM.Core.Core.boundaryConditions">boundaryConditions() (FEM.Core.Core method)</a>
 
         <ul>
@@ -378,13 +382,13 @@
   <h2>C</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.Bar.calculate_BL">calculate_BL() (FEM.Elements.ContinumElements.Bar.Bar method)</a>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.BarBase.calculate_BL">calculate_BL() (FEM.Elements.ContinumElements.Bar.BarBase method)</a>
 
         <ul>
           <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.calculate_BL">(FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
 </li>
         </ul></li>
-        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.Bar.calculate_BNL">calculate_BNL() (FEM.Elements.ContinumElements.Bar.Bar method)</a>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.BarBase.calculate_BNL">calculate_BNL() (FEM.Elements.ContinumElements.Bar.BarBase method)</a>
 
         <ul>
           <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.calculate_BNL">(FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
@@ -1648,13 +1652,7 @@
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.generateBCFromCoords">generateBCFromCoords() (FEM.Geometry.Geometry.Geometry2D method)</a>
 </li>
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.generateElements">generateElements() (FEM.Geometry.Geometry.Geometry method)</a>
-
-        <ul>
-          <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry1D.generateElements">(FEM.Geometry.Geometry.Geometry1D method)</a>
 </li>
-          <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Orimetry.generateElements">(FEM.Geometry.Geometry.Orimetry method)</a>
-</li>
-        </ul></li>
         <li><a href="FEM/FEM.Utils.html#FEM.Utils.polygonal.generatePolygon">generatePolygon() (in module FEM.Utils.polygonal)</a>
 </li>
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.generateRegionFromCoords">generateRegionFromCoords() (FEM.Geometry.Geometry.Geometry2D method)</a>
@@ -1679,11 +1677,11 @@
 </li>
         <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.get_internal_force">get_internal_force() (FEM.Elements.E1D.OriHinge.OriHinge method)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.get_kf">get_kf() (FEM.Elements.E1D.OriHinge.OriHinge method)</a>
 </li>
-        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.Bar.get_local_jacobian">get_local_jacobian() (FEM.Elements.ContinumElements.Bar.Bar method)</a>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.BarBase.get_local_jacobian">get_local_jacobian() (FEM.Elements.ContinumElements.Bar.BarBase method)</a>
 
         <ul>
           <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.get_local_jacobian">(FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
@@ -2184,7 +2182,7 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="FEM/FEM.html#FEM.Unhinged.BarAndHingeNonLinear.Ogden">Ogden() (FEM.Unhinged.BarAndHingeNonLinear method)</a>
 </li>
-        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.Bar.organize_S">organize_S() (FEM.Elements.ContinumElements.Bar.Bar method)</a>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.BarBase.organize_S">organize_S() (FEM.Elements.ContinumElements.Bar.BarBase method)</a>
 
         <ul>
           <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.organize_S">(FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
@@ -2360,7 +2358,7 @@
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.Bar.rotation_matrix">rotation_matrix() (FEM.Elements.ContinumElements.Bar.Bar method)</a>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.BarBase.rotation_matrix">rotation_matrix() (FEM.Elements.ContinumElements.Bar.BarBase method)</a>
 
         <ul>
           <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.rotation_matrix">(FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
@@ -2586,7 +2584,7 @@
 </li>
         <li><a href="FEM/FEM.html#FEM.Torsion2D.Torsion2D">Torsion2D (class in FEM.Torsion2D)</a>
 </li>
-        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.Bar.transformation_matrix">transformation_matrix() (FEM.Elements.ContinumElements.Bar.Bar method)</a>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bar.BarBase.transformation_matrix">transformation_matrix() (FEM.Elements.ContinumElements.Bar.BarBase method)</a>
 
         <ul>
           <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.transformation_matrix">(FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
