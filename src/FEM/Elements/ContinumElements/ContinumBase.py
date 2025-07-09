@@ -1,8 +1,7 @@
-from ..Element import Element
 import numpy as np
 
 
-class ContinumBase(Element):
+class ContinumBase():
     """Base class for continuum elements.
 
     Args:
@@ -11,7 +10,7 @@ class ContinumBase(Element):
         gdl (np.ndarray): Degree of freedom matrix
     """
 
-    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, **kargs) -> None:
+    def __init__(self, **kargs) -> None:
         """Create a continuum element
 
         Args:
@@ -19,14 +18,6 @@ class ContinumBase(Element):
             _coords (np.ndarray): Element coordinate matrix for graphical interface purposes
             gdl (np.ndarray): Degree of freedom matrix
         """
-        self.Z = kargs.get('Z', None)
-        self.W = kargs.get('W', None)
-        self.center = kargs.get('center', None)
-        self.domain = kargs.get('domain', None)
-        self.psis = kargs.get('psis', None)
-        self.dpsis = kargs.get('dpsis', None)
-        super().__init__(coords, _coords, gdl, fast=True)
-
         self.project_coords()
         self.project_disp()
 
@@ -61,21 +52,6 @@ class ContinumBase(Element):
 
     def set_constitutive_model(self, CM) -> None:
         self.constitutive_model = CM
-
-    def setUe(self, U: np.ndarray) -> None:
-        """Assing element local solution
-
-        Args:
-            U(np.ndarray): Global solution
-        """
-
-        for i in range(len(self.gdl)):
-            self.Ue[i] = U[np.ix_(self.gdl[i])].flatten()
-        n = len(self._coords)
-        m = len(self.gdl)
-        self._Ueg = self.Ue[np.ix_(np.linspace(
-            0, m-1, m).astype(int), np.linspace(0, n-1, n).astype(int))]
-        self._Ueg = np.array(self._Ueg.T.tolist()+[self._Ueg.T[0].tolist()])
 
     def calculate_deformation_gradient(self, dpt):
         t_0 = self.t_coords.copy()

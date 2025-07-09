@@ -1,12 +1,12 @@
 from .ContinumBase import ContinumBase
+from ..E1D import LinealElement, QuadraticElement
 import numpy as np
 
 
-class Bar(ContinumBase):
+class BarBase(ContinumBase):
 
-    def __init__(self, coords: np.ndarray, _coords: np.ndarray, gdl: np.ndarray, **kargs):
-        _coords = _coords.copy()
-        ContinumBase.__init__(self, coords, _coords, gdl, **kargs)
+    def __init__(self, **kargs):
+        ContinumBase.__init__(self, **kargs)
 
     def calculate_BNL(self, dpx) -> np.ndarray:
         """Calculate the BNL matrix for the element.
@@ -68,3 +68,15 @@ class Bar(ContinumBase):
         RR = self.coords[-1] - self.coords[0]
         norm = np.linalg.norm(RR)
         return np.array([[norm/2]])
+
+
+class BarLinear(BarBase, LinealElement):
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
+        LinealElement.__init__(self, coords, gdl, 2, **kargs)
+        BarBase.__init__(self, **kargs)
+
+
+class BarQuadratic(BarBase, QuadraticElement):
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
+        QuadraticElement.__init__(self, coords, gdl, 2, **kargs)
+        BarBase.__init__(self, **kargs)

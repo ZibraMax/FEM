@@ -7,7 +7,6 @@ from scipy import sparse
 from FEM.Solvers.Linear import LinearSparse
 from FEM.Solvers.NonLinear import NewtonTotalLagrangian, MGDCM
 from .Elements.E2D import Quadrilateral
-from .Elements.ContinumElements import ContinumBase, Bar
 from .Core import Core, Geometry, logging
 
 
@@ -543,15 +542,6 @@ class ContinumTotalLagrangian(Elasticity):
 
         self.name = 'Elasticity Total Lagrangian sparse'
         for i, e in enumerate(geometry.elements):
-            self.elements[i] = Bar(
-                e.coords, e._coords, e.gdl,
-                Z=e.Z,
-                W=e.W,
-                domain=e.domain,
-                center=e.center,
-                psis=e.psis,
-                dpsis=e.dpsis,
-                fast=True)
             self.elements[i].gdlm = self.elements[i].gdl.T.flatten()
             if isinstance(constitutive_model, Callable):
                 self.elements[i].set_constitutive_model(constitutive_model)

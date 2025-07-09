@@ -151,8 +151,12 @@ class Geometry:
             for j in range(self.nvn):
                 gdl[j, :] = (np.array(d)*self.nvn+j)
             gdl = gdl.astype(int)
-            self.elements[i] = types[self.types[i]](
-                coords, gdl, fast=self.fast)
+            if self.types[i] in types:
+                self.elements[i] = types[self.types[i]](
+                    coords, gdl, fast=self.fast)
+            else:
+                self.elements[i] = self.types[i](
+                    coords, gdl, fast=self.fast)
             self.elements[i].index = i
         print('Done!')
 
@@ -351,21 +355,6 @@ class Geometry1D(Geometry):
         """
 
         Geometry.__init__(self, dictionary, gdls, types, nvn, [], fast)
-
-    def generateElements(self) -> None:
-        """Generate elements structure
-        """
-        for i, d in enumerate(self.dictionary):
-            coords = np.array(self.gdls)[np.ix_(d)]
-            gdl = np.zeros([self.nvn, len(d)])
-            for i in range(self.nvn):
-                gdl[i, :] = (np.array(d)*self.nvn+i)
-            gdl = gdl.astype(int)
-            if self.types[i] == 'L1V':
-                element = LinealElement(coords, gdl)
-            elif self.types[i] == 'L2V':
-                element = QuadraticElement(coords, gdl)
-            self.elements.append(element)
 
     def show(self) -> None:
         """Create a geometry graph
@@ -965,22 +954,6 @@ class Orimetry(Geometry3D):
 
         self.generateElements()
         self.calculateRegions()
-
-    def generateElements(self) -> None:
-        """Generate elements structure
-        """
-        print('Generating element structure')
-        self.elements = [0.0]*len(self.dictionary)
-        for i, d in enumerate(tqdm(self.dictionary, unit='Element')):
-            coords = self.gdls[np.ix_(d)]
-            gdl = np.zeros([self.nvn, len(d)])
-            for j in range(self.nvn):
-                gdl[j, :] = (np.array(d)*self.nvn+j)
-            gdl = gdl.astype(int)
-            self.elements[i] = types[self.types[i]](
-                coords, gdl, fast=self.fast)
-            self.elements[i].index = i
-        print('Done!')
 
 
 class Lineal(Geometry1D):

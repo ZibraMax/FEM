@@ -1,7 +1,5 @@
 if __name__ == '__main__':
-    from FEM import MGDCM
-    from FEM import ContinumTotalLagrangian
-    from FEM.Geometry import Geometry3D
+    from FEM import MGDCM, NewtonTotalLagrangian, ContinumTotalLagrangian, BarLinear, Geometry3D
     import matplotlib.pyplot as plt
     import numpy as np
     from matplotlib.animation import FuncAnimation
@@ -31,7 +29,7 @@ if __name__ == '__main__':
                 [0, 2],
                 [0, 3]]
 
-    types = ['L1V']*(len(elements))
+    types = [BarLinear]*(len(elements))
 
     geo = Geometry3D(elements, coords, types, 3, fast=True)
     for node in [1, 2, 3]:
@@ -42,7 +40,7 @@ if __name__ == '__main__':
         S = young * E
         return C, S, A
     O = ContinumTotalLagrangian(geo, cm, solver=MGDCM)
-    O.solver.set_delta_lambda_bar(0.1)
+    O.solver.set_delta_lambda_bar(0.5)
     O.solver.momentum = False
     O.solver.set_increments(250)
     O.cbn = [[2, -0.1*EA]]
