@@ -9,10 +9,10 @@ FEM.Elements.ContinumElements package
 Submodules
 ----------
 
-FEM.Elements.ContinumElements.Bar module
-----------------------------------------
+FEM.Elements.ContinumElements.Bars module
+-----------------------------------------
 
-.. automodule:: FEM.Elements.ContinumElements.Bar
+.. automodule:: FEM.Elements.ContinumElements.Bars
    :members:
    :undoc-members:
    :show-inheritance:

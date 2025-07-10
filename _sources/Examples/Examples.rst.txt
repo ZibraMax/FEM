@@ -545,6 +545,14 @@ Examples.example57 module
    :undoc-members:
    :show-inheritance:
 
+Examples.example57 2D module
+----------------------------
+
+.. automodule:: Examples.example57 2D
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.example58 module
 -------------------------
 
@@ -645,6 +653,14 @@ Examples.safarrancho module
 ---------------------------
 
 .. automodule:: Examples.safarrancho
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.safarrancho2 module
+----------------------------
+
+.. automodule:: Examples.safarrancho2
    :members:
    :undoc-members:
    :show-inheritance:
