@@ -1,2 +1,2 @@
-from .Bar import *
+from .Bars import *
 from .ContinumBase import *

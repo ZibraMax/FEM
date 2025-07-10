@@ -208,8 +208,8 @@ class BarAndHingeNonLinear(Core):
 
         Wb = C0 / (alfa[0] - alfa[1]) * ((pstr**alfa[0] - 1) /
                                          alfa[0] - (pstr**alfa[1] - 1) / alfa[1])
-
-        return Sx, Ct, Wb
+        return C0*Ex, C0, Wb
+        # return Sx, Ct, Wb
 
     def barElementMatrix(self, e, ee):
         L = np.linalg.norm(e.coords[1] - e.coords[0])

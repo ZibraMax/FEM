@@ -21,15 +21,16 @@ class ContinumBase():
         self.project_coords()
         self.project_disp()
 
-    def project_coords(self) -> None:
-        R = self.rotation_matrix()
-        self.t_coords = self.coords@R
+    def project_coords(self, deformed=True) -> None:
+        R = self.rotation_matrix(deformed)
+        coords = self.coords
+        self.t_coords = coords@R
         self.t_coords = self.t_coords.reshape(
             len(self.t_coords), 1)  # Only works for bar elements
 
-    def project_disp(self) -> None:
+    def project_disp(self, deformed=True) -> None:
         """Project the displacements to the original coordinates system."""
-        R = self.rotation_matrix()
+        R = self.rotation_matrix(deformed)
         self.t_Ue = self.Ue.T@R
         # Only works for bar elements
         self.t_Ue = self.t_Ue.reshape(1, len(self.t_Ue))
@@ -48,6 +49,7 @@ class ContinumBase():
         self._Ueg = self.Ue[np.ix_(np.linspace(
             0, m-1, m).astype(int), np.linspace(0, n-1, n).astype(int))]
         self._Ueg = np.array(self._Ueg.T.tolist()+[self._Ueg.T[0].tolist()])
+        self.project_coords()
         self.project_disp()
 
     def set_constitutive_model(self, CM) -> None:
@@ -151,8 +153,8 @@ class ContinumBase():
             Ke += const*(BL.T @ C @ BL + BNL.T @ S_stiff @ BNL) * detjac * wi
             Fe += const*(BL.T @ S_force) * detjac * wi
 
-        T1 = self.transformation_matrix(False)
-        T2 = self.transformation_matrix(False)
+        T1 = self.transformation_matrix(True)
+        T2 = self.transformation_matrix(True)
         Ke = T1.T @ Ke @ T1
         Fe = T2.T @ Fe
         return Ke, Fe

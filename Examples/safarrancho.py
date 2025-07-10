@@ -34,7 +34,20 @@ if __name__ == '__main__':
     geo = Geometry3D(elements, coords, types, 3, fast=True)
     for node in [1, 2, 3]:
         geo.cbe += [[node*3, 0], [node*3+1, 0], [node*3+2, 0]]
+    # def cm(Ex):
+    #     # Ogden hyperelastic constitutive model for bar elements
+    #     C0 = young
+    #     alfa = [3, 1]  # Linear
 
+    #     pstr = np.real(np.sqrt(2 * Ex + 1))
+    #     C0 = np.where(pstr < 1, 1 * C0, C0)
+
+    #     Ct = C0 / (alfa[0] - alfa[1]) * ((alfa[0] - 2) * pstr **
+    #                                      (alfa[0] - 4) - (alfa[1] - 2) * pstr**(alfa[1] - 4))
+    #     Sx = C0 / (alfa[0] - alfa[1]) * \
+    #         (pstr**(alfa[0] - 2) - pstr**(alfa[1] - 2))
+
+    #     return Ct[0, 0], Sx[0, 0], A
     def cm(E):
         C = young
         S = young * E
@@ -42,7 +55,7 @@ if __name__ == '__main__':
     O = ContinumTotalLagrangian(geo, cm, solver=MGDCM)
     O.solver.set_delta_lambda_bar(0.1)
     O.solver.momentum = False
-    O.solver.set_increments(100)
+    O.solver.set_increments(220)
     O.cbn = [[2, -0.1*EA]]
     O.solve()
 
@@ -98,4 +111,8 @@ if __name__ == '__main__':
         blit=True
     )
     # html = anim.save('./Examples/examples_results/Truss_non_lineal.mp4')
+    # Export disp and load factors in a single file
+    data = np.array([displacements, load_factors]).T
+    np.savetxt('./Examples/examples_results/safarrancho.txt', data,
+               header='Displacement\tLoad factor')
     plt.show()

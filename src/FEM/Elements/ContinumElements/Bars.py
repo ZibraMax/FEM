@@ -55,7 +55,7 @@ class BarBase(ContinumBase):
         R = RR / norm
         return R
 
-    def get_local_jacobian(self, jac: np.ndarray, deformed=True) -> np.ndarray:
+    def get_local_jacobian(self, jac: np.ndarray) -> np.ndarray:
         """Get the local Jacobian matrix for the element.
 
         Args:
@@ -64,7 +64,7 @@ class BarBase(ContinumBase):
         Returns:
             np.ndarray: The local Jacobian matrix.
         """
-        coords = self.coords + self.Ue.T*deformed
+        coords = self.coords
         RR = coords[-1] - coords[0]
         norm = np.linalg.norm(RR)
         return np.array([[norm/2]])
@@ -72,7 +72,7 @@ class BarBase(ContinumBase):
 
 class BarLinear(BarBase, LinealElement):
     def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
-        LinealElement.__init__(self, coords, gdl, 2, **kargs)
+        LinealElement.__init__(self, coords, gdl, 1, **kargs)
         BarBase.__init__(self, **kargs)
 
 

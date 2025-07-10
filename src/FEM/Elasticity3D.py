@@ -57,7 +57,8 @@ class Elasticity(Core):
         self.fx = fx
         self.fy = fy
         self.fz = fz
-        if not geometry.nvn == 3:
+        override_nvn = kargs.pop('override_nvn', False)
+        if not geometry.nvn == 3 and not override_nvn:
             print(
                 'Boundary conditions lost, please usea a geometry with 3 variables per node (nvn=3)\nRegenerating Geoemtry...')
             geometry.nvn = 3
