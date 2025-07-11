@@ -5,14 +5,14 @@ if __name__ == '__main__':
     import numpy as np
     from matplotlib.animation import FuncAnimation
 
-    a = 1
-    b = 1
+    a = 400
+    b = 20
     L = (a**2 + b**2)**0.5
-    h = 0.5
-    t = 0.1
+    h = 1
+    t = 653
     A = h*t
-    P = 1000
-    young = 210e3  # Young's modulus in MPa
+    P = 1
+    young = 20500  # Young's modulus in MPa
     EA = young*A
 
     coords = [
@@ -92,4 +92,14 @@ if __name__ == '__main__':
         blit=True
     )
     # html = anim.save('./Examples/examples_results/Truss_non_lineal.mp4')
+    # plt.show()
+    plt.figure(figsize=(6, 6))
+    plt.plot(np.array(displacements)/b, np.array(load_factors)/EA*1000000)
+    plt.xlabel('Displacement')
+    plt.ylabel('Load')
+    plt.xlim(0, 3)
+    plt.ylim(-0.1, 0.1)
+    plt.savefig('baranhinge.png', dpi=300, transparent=True)
+    plt.grid()
+    plt.legend()
     plt.show()

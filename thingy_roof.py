@@ -2,12 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-a = 1
-b = 1
+a = 400
+b = 20
 L = (a**2 + b**2)**0.5
-young = 210e3  # Young's modulus in MPa
-h = 0.5
-t = 0.1
+young = 20500  # Young's modulus in MPa
+h = 1
+t = 653
 A = h*t
 EA = young*A
 
@@ -62,13 +62,16 @@ def get_force4(delta):
     return -P
 
 
-U = np.linspace(0, 8, 100)
-F = np.array([get_force(u) for u in U])
-F2 = np.array([get_force2(u) for u in U])
-F3 = np.array([get_force3(u) for u in U])
-F4 = np.array([get_force4(u) for u in U])
+fact = EA/1000
+U = np.linspace(0, 3*b, 100)
+F = np.array([get_force(u) for u in U])/fact
+F2 = np.array([get_force2(u) for u in U])/fact
+F3 = np.array([get_force3(u) for u in U])/fact
+F4 = np.array([get_force4(u) for u in U])/fact
 # np.savetxt('./Examples/examples_results/roof_analytical.csv', np.array([U, F]).T,
 #    header='Displacement\tLoad', delimiter=',')
+U = U/b
+fig = plt.figure(figsize=(6, 6))
 plt.plot(U, F, label='Green Lagrange strain')
 plt.plot(U, F2, label='Engineering strain')
 plt.plot(U, F3, label='"True" strain')
@@ -76,7 +79,9 @@ plt.plot(U, F4, label='Logarithmic strain')
 
 plt.xlabel('Displacement')
 plt.ylabel('Load')
-plt.title('Analytical solution')
+plt.xlim(0, 3)
+plt.ylim(-0.1, 0.1)
+plt.savefig('roof_analytical.png', dpi=300, transparent=True)
 plt.grid()
 plt.legend()
 plt.show()
