@@ -14,14 +14,14 @@ if __name__ == '__main__':
         vertical_component = (y / l)
         return -2 * N * vertical_component
 
-    a = 1
-    b = 1
+    a = 400
+    b = 20
     L = (a**2 + b**2)**0.5
-    h = 0.5
-    t = 0.1
+    h = 1
+    t = 653
     A = h*t
     P = 1000
-    young = 210e3  # Young's modulus in MPa
+    young = 20500  # Young's modulus in MPa
 
     coords = [
         [0, 0],
@@ -37,25 +37,25 @@ if __name__ == '__main__':
     for node in [0, 2]:
         geo.cbe += [[node*2, 0], [node*2+1, 0]]
 
-    def cm(Ex):
-        # Ogden hyperelastic constitutive model for bar elements
-        C0 = young
-        alfa = [3, 1]  # Linear
+    # def cm(Ex):
+    #     # Ogden hyperelastic constitutive model for bar elements
+    #     C0 = young
+    #     alfa = [3, 1]  # Linear
 
-        pstr = np.real(np.sqrt(2 * Ex + 1))
-        C0 = np.where(pstr < 1, 1 * C0, C0)
+    #     pstr = np.real(np.sqrt(2 * Ex + 1))
+    #     C0 = np.where(pstr < 1, 1 * C0, C0)
 
-        Ct = C0 / (alfa[0] - alfa[1]) * ((alfa[0] - 2) * pstr **
-                                         (alfa[0] - 4) - (alfa[1] - 2) * pstr**(alfa[1] - 4))
-        Sx = C0 / (alfa[0] - alfa[1]) * \
-            (pstr**(alfa[0] - 2) - pstr**(alfa[1] - 2))
+    #     Ct = C0 / (alfa[0] - alfa[1]) * ((alfa[0] - 2) * pstr **
+    #                                      (alfa[0] - 4) - (alfa[1] - 2) * pstr**(alfa[1] - 4))
+    #     Sx = C0 / (alfa[0] - alfa[1]) * \
+    #         (pstr**(alfa[0] - 2) - pstr**(alfa[1] - 2))
 
-        return Ct[0, 0], Sx[0, 0], A
+    #     return Ct[0, 0], Sx[0, 0], A
 
-    # def cm(E):
-    #     C = young
-    #     S = young * E
-    #     return C, S, A
+    def cm(E):
+        C = young
+        S = young * E
+        return C, S, A
     O = ContinumTotalLagrangian(geo, cm, solver=MGDCM, override_nvn=True)
     O.solver.set_delta_lambda_bar(0.1)
     O.solver.momentum = False

@@ -62,7 +62,7 @@ def get_force4(delta):
     return -P
 
 
-fact = EA/1000
+fact = 1000
 U = np.linspace(0, 3*b, 100)
 F = np.array([get_force(u) for u in U])/fact
 F2 = np.array([get_force2(u) for u in U])/fact
@@ -80,8 +80,9 @@ plt.plot(U, F4, label='Logarithmic strain')
 plt.xlabel('Displacement')
 plt.ylabel('Load')
 plt.xlim(0, 3)
-plt.ylim(-0.1, 0.1)
+plt.ylim(-1, 1)
 plt.savefig('roof_analytical.png', dpi=300, transparent=True)
 plt.grid()
 plt.legend()
+plt.tight_layout()
 plt.show()

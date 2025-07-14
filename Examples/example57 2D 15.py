@@ -5,14 +5,14 @@ if __name__ == '__main__':
     import numpy as np
     from matplotlib.animation import FuncAnimation
 
-    a = 1
-    b = 1
+    a = 400
+    b = 20
     L = (a**2 + b**2)**0.5
-    h = 0.5
-    t = 0.1
+    h = 1
+    t = 653
     A = h*t
-    P = 1000
-    young = 210e3  # Young's modulus in MPa
+    P = 1
+    young = 20500  # Young's modulus in MPa
     EA = young*A
 
     coords = [
@@ -30,9 +30,9 @@ if __name__ == '__main__':
     geo.cbe += [[1*3+2, 0]]
     O = TrussNonLinear(geo, EA, 1)
     O.solver.set_delta_lambda_bar(0.1)
-    O.solver.set_increments(220)
+    O.solver.set_increments(100)
     O.solver.momentum = False
-    O.addLoadNode(1, [0.0, -P, 0])
+    O.addLoadNode(1, [0.0, -1000, 0])
     O.solve()
     O.exportJSON('./Examples/Mesh_tests/Truss_non_lineal2D.json')
 
