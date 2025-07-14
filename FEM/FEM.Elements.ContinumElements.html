@@ -459,6 +459,79 @@
 </dd></dl>
 
 </section>
+<section id="module-FEM.Elements.ContinumElements.Membranes">
+<span id="fem-elements-continumelements-membranes-module"></span><h2>FEM.Elements.ContinumElements.Membranes module<a class="headerlink" href="#module-FEM.Elements.ContinumElements.Membranes" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Membranes.MembraneBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Membranes.</span></span><span class="sig-name descname"><span class="pre">MembraneBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase" title="FEM.Elements.ContinumElements.ContinumBase.ContinumBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContinumBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Membranes.MembraneBase.calculate_BL">
+<span class="sig-name descname"><span class="pre">calculate_BL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpx</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.calculate_BL" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the BL matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Membranes.MembraneBase.calculate_BNL">
+<span class="sig-name descname"><span class="pre">calculate_BNL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpx</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.calculate_BNL" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the BNL matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Membranes.MembraneBase.get_local_jacobian">
+<span class="sig-name descname"><span class="pre">get_local_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.get_local_jacobian" title="Link to this definition">¶</a></dt>
+<dd><p>Get the local Jacobian matrix for the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>jac</strong> (<em>np.ndarray</em>) – The Jacobian matrix from the integration points.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The local Jacobian matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Membranes.MembraneBase.organize_S">
+<span class="sig-name descname"><span class="pre">organize_S</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.organize_S" title="Link to this definition">¶</a></dt>
+<dd><p>Organize the stress tensor S and the constitutive matrix C.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Membranes.MembraneBase.rotation_matrix">
+<span class="sig-name descname"><span class="pre">rotation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.rotation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the rotation matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Membranes.MembraneBase.transformation_matrix">
+<span class="sig-name descname"><span class="pre">transformation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.transformation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the transformation matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Membranes.QuadMembraneLinear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Membranes.</span></span><span class="sig-name descname"><span class="pre">QuadMembraneLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Membranes.QuadMembraneLinear" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase" title="FEM.Elements.ContinumElements.Membranes.MembraneBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">MembraneBase</span></code></a>, <a class="reference internal" href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral" title="FEM.Elements.E2D.Quadrilateral.Quadrilateral"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quadrilateral</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Membranes.TriMembraneLinear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Membranes.</span></span><span class="sig-name descname"><span class="pre">TriMembraneLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Membranes.TriMembraneLinear" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase" title="FEM.Elements.ContinumElements.Membranes.MembraneBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">MembraneBase</span></code></a>, <a class="reference internal" href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular" title="FEM.Elements.E2D.LTriangular.LTriangular"><code class="xref py py-class docutils literal notranslate"><span class="pre">LTriangular</span></code></a></p>
+</dd></dl>
+
+</section>
 </section>
 
         </article>
@@ -549,6 +622,20 @@
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">ContinumBase.transformation_matrix()</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.ContinumElements.Membranes">FEM.Elements.ContinumElements.Membranes module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase"><code class="docutils literal notranslate"><span class="pre">MembraneBase</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.calculate_BL"><code class="docutils literal notranslate"><span class="pre">MembraneBase.calculate_BL()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.calculate_BNL"><code class="docutils literal notranslate"><span class="pre">MembraneBase.calculate_BNL()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.get_local_jacobian"><code class="docutils literal notranslate"><span class="pre">MembraneBase.get_local_jacobian()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.organize_S"><code class="docutils literal notranslate"><span class="pre">MembraneBase.organize_S()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.rotation_matrix"><code class="docutils literal notranslate"><span class="pre">MembraneBase.rotation_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.MembraneBase.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">MembraneBase.transformation_matrix()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.QuadMembraneLinear"><code class="docutils literal notranslate"><span class="pre">QuadMembraneLinear</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.TriMembraneLinear"><code class="docutils literal notranslate"><span class="pre">TriMembraneLinear</span></code></a></li>
 </ul>
 </li>
 </ul>

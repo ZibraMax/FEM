@@ -553,6 +553,14 @@ Examples.example57 2D module
    :undoc-members:
    :show-inheritance:
 
+Examples.example57 2D 15 module
+-------------------------------
+
+.. automodule:: Examples.example57 2D 15
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.example58 module
 -------------------------
 
