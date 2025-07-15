@@ -25,15 +25,12 @@ class ContinumBase():
         R = self.rotation_matrix(deformed)
         coords = self.coords
         self.t_coords = coords@R
-        self.t_coords = self.t_coords.reshape(
-            len(self.t_coords), 1)  # Only works for bar elements
 
     def project_disp(self, deformed=True) -> None:
         """Project the displacements to the original coordinates system."""
         R = self.rotation_matrix(deformed)
         self.t_Ue = self.Ue.T@R
-        # Only works for bar elements
-        self.t_Ue = self.t_Ue.reshape(1, len(self.t_Ue))
+        self.t_Ue = self.t_Ue.T
 
     def setUe(self, U: np.ndarray) -> None:
         """Assing element local solution
@@ -106,7 +103,7 @@ class ContinumBase():
         raise NotImplementedError(
             "This method should be implemented in derived classes.")
 
-    def get_local_jacobian(self, jac: np.ndarray, deformed=True) -> np.ndarray:
+    def get_local_jacobian(self, jac: np.ndarray, dni: np.array) -> np.ndarray:
         """Get the local Jacobian matrix for the element.
 
         Args:
@@ -137,7 +134,7 @@ class ContinumBase():
         Ke = 0.0
         Fe = 0.0
         for x, jac, wi, ni, dni in zip(_x, _j, weights, _p, _dp):
-            J = self.get_local_jacobian(jac)
+            J = self.get_local_jacobian(jac, dni)
             detjac = np.linalg.det(J)
             # Esto asume que el jacobiano tiene inversa
             dpx = np.linalg.inv(J) @ dni
@@ -145,7 +142,8 @@ class ContinumBase():
             F = self.calculate_deformation_gradient(dpx)
             E = self.green_lagrange_strain(F)
             C, S, const = self.constitutive_model(E)
-            C = np.array([[C]])
+            if isinstance(C, float) or isinstance(C, int):
+                C = np.array([[C]])
             S_stiff, S_force = self.organize_S(S)
 
             BL = self.calculate_BL(dpx)

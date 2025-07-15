@@ -89,8 +89,8 @@ if __name__ == '__main__':
     ax2.set_xlabel('Displacement')
     ax2.set_title('Displacement vs Load factor')
     ax2.grid()
-    ax2.set_xlim(1.1*min(displacements), 1.1*max(displacements))
-    ax2.set_ylim(1.1*min(load_factors), 1.1*max(load_factors))
+    ax2.set_xlim(0, 60)
+    ax2.set_ylim(-1, 1)
     ax.set(xlim=(-a*0.1, 2*a*1.1), xlabel='X')
     ax.set(ylim=(-b*1.5, b*1.1), ylabel='Y')
     plt.tight_layout()
@@ -123,6 +123,6 @@ if __name__ == '__main__':
         fargs=(lines,),
         blit=True
     )
-    # html = anim.save('./Examples/examples_results/Truss_non_lineal.mp4')
-
+    anim.save(
+        './Examples/examples_results/Truss_non_lineal_continumm_incremental_bars.mp4')
     plt.show()

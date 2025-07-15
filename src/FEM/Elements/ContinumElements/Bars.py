@@ -55,7 +55,7 @@ class BarBase(ContinumBase):
         R = RR / norm
         return R
 
-    def get_local_jacobian(self, jac: np.ndarray) -> np.ndarray:
+    def get_local_jacobian(self, jac: np.ndarray, dni) -> np.ndarray:
         """Get the local Jacobian matrix for the element.
 
         Args:
