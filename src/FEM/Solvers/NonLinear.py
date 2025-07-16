@@ -308,7 +308,7 @@ class MGDCM(NonLinearSolver):
     """docstring for DirectIteration
     """
 
-    def __init__(self, FEMObject: 'Core', tol: float = 10**(-6), n: int = 200) -> None:
+    def __init__(self, FEMObject: 'Core', tol: float = 10**(-3), n: int = 200) -> None:
         """Creates a MODIFIED GENERALIZED DISPLACEMENT CONTROL METHOD iterative solver
 
         Args:
@@ -428,7 +428,13 @@ class MGDCM(NonLinearSolver):
                         e.restartMatrix()
                         e.setUe(self.system.U)
                     logging.debug('Updated elements')
-                    err = np.linalg.norm(du)
+                    # TODO cambiar este error de miercoles...
+                    # Normalize the error vector
+                    ee_vec = du/self.system.U[free_dofs]
+                    err1 = np.linalg.norm(
+                        ee_vec[np.isfinite(ee_vec)])
+                    err2 = np.linalg.norm(du)
+                    err = min(err1, err2)
                     logging.info(
                         f'----------------- step {i} iteration {k} error {err} -------------------')
                 except Exception as e:
