@@ -680,3 +680,19 @@ Examples.safarrancho3 module
    :members:
    :undoc-members:
    :show-inheritance:
+
+Examples.safarrancho4 module
+----------------------------
+
+.. automodule:: Examples.safarrancho4
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.safarrancho5 module
+----------------------------
+
+.. automodule:: Examples.safarrancho5
+   :members:
+   :undoc-members:
+   :show-inheritance:
