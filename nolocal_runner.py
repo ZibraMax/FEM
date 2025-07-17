@@ -111,13 +111,16 @@ for z in Z[::-1]:
 
     O.z1 = z
     O.z2 = 1-z
+    O.F[:, :] = 0.0
+    O.Q[:, :] = 0.0
+    O.S[:, :] = 0.0
     O.ensembling()
-    O.boundaryConditions()
+    O.condensedSystem()
     logging.info('Converting to csr format')
     O.K = O.K.tocsr()
     logging.info('Solving...')
     eigv, eigvec = eigsh(
-        O.K, 20, O.M, which='SM')
+        O.K, 40, O.M, which='SM')
     idx = eigv.argsort()
     eigv = eigv[idx]
     eigvec = eigvec[:, idx]
