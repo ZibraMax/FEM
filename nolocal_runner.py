@@ -13,8 +13,6 @@ L = float(sys.argv[1])
 l = float(sys.argv[2])
 Z = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 nex = int(sys.argv[3])
-omega = 6
-Lr = omega*l
 
 
 E = float(sys.argv[4])  # 223.1e6
@@ -23,14 +21,17 @@ rho = float(sys.argv[6])
 fa = int(sys.argv[7])
 h = L/10
 b = L/10
-
+kernel = 'bi-exponential'
 if fa == 1:
-    print('Using exponential kernel')
+    print('Using exponential attenuation')
+    Lr = 6*l
 
     def af(rho):
         return (1/(8*np.pi*l**3))*np.exp(-rho)
 else:
     print('Using the other kernel')
+    kernel = 'Eringen-3d'
+    Lr = 10*l
 
     def af(rho):
         xx = rho*l
@@ -99,6 +100,7 @@ log_filename = f'Beam_{L}_{l}_{time}'
 
 O = NonLocalElasticity(
     geo, E, v, rho, l, 0.0, Lr, af, solver=LinealEigen, name=log_filename, verbose=True)
+O.cbe = cb
 logging.info(format(sys.argv))
 logging.info('Creating element matrices...')
 O.elementMatrices()
@@ -111,26 +113,32 @@ for z in Z[::-1]:
 
     O.z1 = z
     O.z2 = 1-z
-    O.F[:, :] = 0.0
-    O.Q[:, :] = 0.0
-    O.S[:, :] = 0.0
     O.ensembling()
-    O.condensedSystem()
-    logging.info('Converting to csr format')
-    O.K = O.K.tocsr()
+    free_dofs = O.boundaryConditions()
+    K = O.K[free_dofs, :][:, free_dofs]
+    M = O.M[free_dofs, :][:, free_dofs]
+    K = K.tocsr()
+    M = M.tocsr()
     logging.info('Solving...')
     eigv, eigvec = eigsh(
-        O.K, 40, O.M, which='SM')
+        K, 40, M, which='SM')
     idx = eigv.argsort()
     eigv = eigv[idx]
     eigvec = eigvec[:, idx]
     O.eigv = eigv
     O.eigvec = eigvec
-    O.solver.solutions = eigvec.T
+    O.solver.solutions = []
+
+    for i in eigvec.T:
+        full_u = np.zeros(O.ngdl)
+        full_u[free_dofs] = i
+        O.solver.solutions.append(full_u)
+
     O.solver.solutions_info = [
         {'solver-type': O.solver.type, 'eigv': ei} for ei in O.eigv]
     O.solver.setSolution(0)
     logging.info('Solved!')
     O.properties['z1'] = O.z1
+    O.properties['af'] = kernel
 
     O.exportJSON(filename)
