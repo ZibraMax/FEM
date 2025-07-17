@@ -625,22 +625,6 @@ Examples.example\_cat module
    :undoc-members:
    :show-inheritance:
 
-Examples.example\_membranes module
-----------------------------------
-
-.. automodule:: Examples.example_membranes
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Examples.example\_membranes\_2 module
--------------------------------------
-
-.. automodule:: Examples.example_membranes_2
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Examples.example\_ojo module
 ----------------------------
 
@@ -693,6 +677,14 @@ Examples.safarrancho5 module
 ----------------------------
 
 .. automodule:: Examples.safarrancho5
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.safarrancho6 module
+----------------------------
+
+.. automodule:: Examples.safarrancho6
    :members:
    :undoc-members:
    :show-inheritance:
