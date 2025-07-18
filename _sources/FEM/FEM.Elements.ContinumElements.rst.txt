@@ -32,3 +32,11 @@ FEM.Elements.ContinumElements.Membranes module
    :members:
    :undoc-members:
    :show-inheritance:
+
+FEM.Elements.ContinumElements.Shells module
+-------------------------------------------
+
+.. automodule:: FEM.Elements.ContinumElements.Shells
+   :members:
+   :undoc-members:
+   :show-inheritance:
