@@ -688,3 +688,11 @@ Examples.safarrancho6 module
    :members:
    :undoc-members:
    :show-inheritance:
+
+Examples.safarrancho7 module
+----------------------------
+
+.. automodule:: Examples.safarrancho7
+   :members:
+   :undoc-members:
+   :show-inheritance:
