@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    from FEM import MGDCM, NewtonTotalLagrangian, ContinumTotalLagrangian, QuadMembraneLinear, Geometry3D
+    from FEM import MGDCM, ContinumTotalLagrangian, QuadMembraneLinear, QuadShellLinear, Geometry3D
     import matplotlib.pyplot as plt
     import numpy as np
     import matplotlib.animation as animation
@@ -46,9 +46,9 @@ if __name__ == '__main__':
         [0, 1, 4, 3],
         [1, 2, 5, 4]]
 
-    types = [QuadMembraneLinear]*(len(elements))
+    types = [QuadShellLinear]*(len(elements))
 
-    geo = Geometry3D(elements, coords, types, 3, fast=True)
+    geo = Geometry3D(elements, coords, types, 5, fast=True)
     geo.cbe = [[0, 0],
                [1, 0],
                [2, 0],
@@ -72,10 +72,10 @@ if __name__ == '__main__':
         _S[0, 1] = S[2, 0]
         _S[1, 0] = S[2, 0]
         return C, _S, t
-    O = ContinumTotalLagrangian(
-        geo, cm, solver=NewtonTotalLagrangian, override_nvn=True)
-    O.solver.load_steps = 100
-    O.solver.unloading = True
+    O = ContinumTotalLagrangian(geo, cm, solver=MGDCM, override_nvn=True)
+    O.solver.set_delta_lambda_bar(0.05)
+    O.solver.momentum = False
+    O.solver.set_increments(220)
     O.cbn = [[5, -P/2], [14, -P/2]]
     O.solve()
 
@@ -86,6 +86,8 @@ if __name__ == '__main__':
         displacements.append(-O.U[5][0])
         load_factors.append(O.solution_info['ld'])
     data = np.array([displacements, load_factors]).T
+    np.savetxt('./Examples/examples_results/safarrancho3.csv', data,
+               header='Displacement\tLoad factor', delimiter=',')
     us = np.linspace(0, np.max(displacements), len(displacements))
     force = -analytical_force(us, young, A, a, b)/P
 
@@ -137,5 +139,5 @@ if __name__ == '__main__':
     pam_ani = animation.FuncAnimation(fig, animate, fargs=(plots,),
                                       interval=5, blit=False, frames=len(O.solver.solutions))
     pam_ani.save(
-        './Examples/examples_results/Truss_non_lineal_continumm_incremental_membranes_newton.mp4')
+        './Examples/examples_results/Truss_non_lineal_continumm_incremental_membranes.mp4')
     plt.show()

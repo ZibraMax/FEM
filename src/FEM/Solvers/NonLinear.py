@@ -47,6 +47,7 @@ class NewtonTotalLagrangian(NonLinearSolver):
         self.type = 'non-lineal-newton-total-lagrangian'
         self.load_steps = 10
         self.ld = 0.0
+        self.unloading = False
 
     def solve(self, path: str = '', **kargs) -> None:
         """Solves the equation system using newtons method
@@ -63,7 +64,10 @@ class NewtonTotalLagrangian(NonLinearSolver):
         solutioms.append(self.system.U.copy())
         solutioms_info.append(
             {'solver-type': self.type, 'last-it-error': "Initial conf", 'n-it': 0, 'warnings': "No", 'ld': 0})
-        for load_step in range(self.load_steps):
+        steps = list(range(self.load_steps))
+        if self.unloading:
+            steps += list(range(self.load_steps))[::-1]
+        for load_step in steps:
             self.ld = (load_step+1)/self.load_steps
             logging.info(
                 f'================LOAD STEP {load_step+1}-ld:{self.ld}===================')
