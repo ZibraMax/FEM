@@ -15,12 +15,13 @@ E = float(sys.argv[4])
 v = float(sys.argv[5])
 dens = float(sys.argv[6])
 af = float(sys.argv[7])
+k = float(sys.argv[8])
 
 Z = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 omega = 6
 Lr = omega*l
-h = L/10
-b = L/10
+h = L/k
+b = L/k
 t = b
 l0 = 0.5/np.pi/l/l/t
 att = "bi-exponential"
@@ -32,7 +33,7 @@ def af(rho):
 
 _a = L
 _b = h
-ny = max(nx//10, 4)
+ny = max(nx//k, 4)
 if ny % 2 != 0:
     ny += 1
 
@@ -91,5 +92,6 @@ for z in Z[::-1]:
     logging.info('Solved!')
     O.properties['z1'] = O.z1
     O.properties['af'] = att
+    O.properties['h'] = h
 
     O.exportJSON(filename)
