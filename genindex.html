@@ -391,6 +391,10 @@
         </ul></li>
         <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.calculate_deformation_gradient">calculate_deformation_gradient() (FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
 </li>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_deformation_gradients">calculate_deformation_gradients() (FEM.Elements.ContinumElements.Shells.ShellBase method)</a>
+</li>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_e1_e2">calculate_e1_e2() (FEM.Elements.ContinumElements.Shells.ShellBase method)</a>
+</li>
         <li><a href="FEM/FEM.Elements.E0D.html#FEM.Elements.E0D.Spring.Spring.calculate_theta">calculate_theta() (FEM.Elements.E0D.Spring.Spring method)</a>
 
         <ul>
@@ -407,10 +411,10 @@
 </li>
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.calculateRegions">calculateRegions() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
-        <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbeAllRegions">cbeAllRegions() (FEM.Geometry.Geometry.Geometry method)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbeAllRegions">cbeAllRegions() (FEM.Geometry.Geometry.Geometry method)</a>
+</li>
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.cbFromRegion">cbFromRegion() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry2D.cbOnHole">cbOnHole() (FEM.Geometry.Geometry.Geometry2D method)</a>
@@ -1691,8 +1695,12 @@
 </li>
         <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.get_internal_force">get_internal_force() (FEM.Elements.E1D.OriHinge.OriHinge method)</a>
 </li>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Shells.ShellBase.get_jacobians">get_jacobians() (FEM.Elements.ContinumElements.Shells.ShellBase method)</a>
+</li>
         <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.get_kf">get_kf() (FEM.Elements.E1D.OriHinge.OriHinge method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Bars.BarBase.get_local_jacobian">get_local_jacobian() (FEM.Elements.ContinumElements.Bars.BarBase method)</a>
 
         <ul>
@@ -1703,8 +1711,6 @@
           <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Shells.ShellBase.get_local_jacobian">(FEM.Elements.ContinumElements.Shells.ShellBase method)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.get_M">get_M() (FEM.Elements.E1D.OriHinge.OriHinge method)</a>
 </li>
         <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.OriHinge.OriHinge.get_theta_from_u">get_theta_from_u() (FEM.Elements.E1D.OriHinge.OriHinge method)</a>
@@ -2305,9 +2311,17 @@
 </li>
         </ul></li>
         <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.project_coords">project_coords() (FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
+
+        <ul>
+          <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Shells.ShellBase.project_coords">(FEM.Elements.ContinumElements.Shells.ShellBase method)</a>
 </li>
+        </ul></li>
         <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.ContinumBase.ContinumBase.project_disp">project_disp() (FEM.Elements.ContinumElements.ContinumBase.ContinumBase method)</a>
+
+        <ul>
+          <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Shells.ShellBase.project_disp">(FEM.Elements.ContinumElements.Shells.ShellBase method)</a>
 </li>
+        </ul></li>
         <li><a href="FEM/FEM.Elements.E1D.html#FEM.Elements.E1D.CubicElement.CubicElement.psis">psis() (FEM.Elements.E1D.CubicElement.CubicElement method)</a>
 
         <ul>
@@ -2458,6 +2472,8 @@
 </li>
         <li><a href="FEM/FEM.Elements.E2D.html#FEM.Elements.E2D.MITC6.MITC6.set_material">set_material() (FEM.Elements.E2D.MITC6.MITC6 method)</a>
 </li>
+        <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Shells.ShellBase.set_thickness">set_thickness() (FEM.Elements.ContinumElements.Shells.ShellBase method)</a>
+</li>
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Geometry.Geometry.setCbe">setCbe() (FEM.Geometry.Geometry.Geometry method)</a>
 </li>
         <li><a href="FEM/FEM.Geometry.html#FEM.Geometry.Region.Region.setNodesOfRegion">setNodesOfRegion() (FEM.Geometry.Region.Region method)</a>
@@ -2474,14 +2490,14 @@
         </ul></li>
         <li><a href="FEM/FEM.html#FEM.FEMLogger.FEMLogger.setup_logging">setup_logging() (FEM.FEMLogger.FEMLogger method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="Examples/Examples.html#Examples.MITC6.shape_functions_MITC6">shape_functions_MITC6() (in module Examples.MITC6)</a>
 
         <ul>
           <li><a href="FEM/FEM.Elements.E2D.html#FEM.Elements.E2D.MITC6.shape_functions_MITC6">(in module FEM.Elements.E2D.MITC6)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="FEM/FEM.html#FEM.Unhinged.ShellAndHingeNonLinear">ShellAndHingeNonLinear (class in FEM.Unhinged)</a>
 </li>
         <li><a href="FEM/FEM.Elements.ContinumElements.html#FEM.Elements.ContinumElements.Shells.ShellBase">ShellBase (class in FEM.Elements.ContinumElements.Shells)</a>
