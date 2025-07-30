@@ -21,5 +21,7 @@ if __name__ == '__main__':
     element.set_thickness(0.1)
     element.get_jacobians(0.5)
     element.calculate_deformation_gradients(0.5)
+    dpx = element.calculate_dpxs(0.5, 0)
+    BNL = element.calculate_BNL(dpx)
     # element.set_constitutive_model(cm)
     a = 0

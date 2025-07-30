@@ -58,8 +58,44 @@ class ShellBase(ContinumBase):
             E2.append(e2)
         return E1, E2
 
+    def calculate_dpxs(self, w, k) -> np.ndarray:
+        DPXS = []
+        _J = self.JS_inv[k]
+        for psi, dpsiz, th in zip(self._p[k], self.dpz[k].T, self.th):
+            dpz = np.zeros(6)
+            dpz[0:2] = dpsiz
+            dpz[3] = 1/2*w*th*dpsiz[0]
+            dpz[4] = 1/2*w*th*dpsiz[1]
+            dpz[5] = 1/2*th*psi
+
+            dpx1 = _J @ dpz[:3]
+            dpx2 = _J @ dpz[3:6]
+            DPXS.append([*dpx1, *dpx2])
+        return np.array(DPXS)
+
     def calculate_BNL(self, dpx) -> np.ndarray:
-        return
+        n = len(self.coords)
+        BNL = np.zeros((9, 5*n))
+        _e1, _e2 = self.calculate_e1_e2(deformed=True)
+        for i in range(n):
+            e1 = _e1[i]
+            e2 = _e2[i]
+            __dpx = dpx[:, i]
+            _dpx = __dpx[:3]
+            _dpe = __dpx[3:6]
+
+            BNL[0:3, 5*i] = _dpx
+            BNL[3:6, 5*i+1] = _dpx
+            BNL[6:9, 5*i+2] = _dpx
+
+            BNL[0:3, 5*i+3] = _dpe*e1[0]
+            BNL[3:6, 5*i+3] = _dpe*e1[1]
+            BNL[6:9, 5*i+3] = _dpe*e1[2]
+
+            BNL[0:3, 5*i+4] = -_dpe*e2[0]
+            BNL[3:6, 5*i+4] = -_dpe*e2[1]
+            BNL[6:9, 5*i+4] = -_dpe*e2[2]
+        return BNL
 
     def calculate_BL(self, dpx) -> np.ndarray:
         return
