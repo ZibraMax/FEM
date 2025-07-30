@@ -544,6 +544,11 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Shells.</span></span><span class="sig-name descname"><span class="pre">ShellBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase" title="FEM.Elements.ContinumElements.ContinumBase.ContinumBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContinumBase</span></code></a></p>
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.calculate_A">
+<span class="sig-name descname"><span class="pre">calculate_A</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_A" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BL">
 <span class="sig-name descname"><span class="pre">calculate_BL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpx</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BL" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the BL matrix for the element.</p>
@@ -572,6 +577,13 @@
 <dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.calculate_e1_e2">
 <span class="sig-name descname"><span class="pre">calculate_e1_e2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_e1_e2" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the e1 and e2 vectors for the shell element.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.elementMatrices">
+<span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.elementMatrices" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate element matrices and vectors.</p>
+<p>This method should be implemented in derived classes.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -623,7 +635,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.set_thickness">
-<span class="sig-name descname"><span class="pre">set_thickness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.set_thickness" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_thickness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_gauss_thickness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.set_thickness" title="Link to this definition">¶</a></dt>
 <dd><p>Set the thickness of the shell element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -757,11 +769,13 @@
 <li><a class="reference internal" href="#module-FEM.Elements.ContinumElements.Shells">FEM.Elements.ContinumElements.Shells module</a><ul>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.QuadShellLinear"><code class="docutils literal notranslate"><span class="pre">QuadShellLinear</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase"><code class="docutils literal notranslate"><span class="pre">ShellBase</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_A"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_A()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BL"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_BL()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BNL"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_BNL()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_deformation_gradients"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_deformation_gradients()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_dpxs"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_dpxs()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_e1_e2"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_e1_e2()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.elementMatrices"><code class="docutils literal notranslate"><span class="pre">ShellBase.elementMatrices()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.get_jacobians"><code class="docutils literal notranslate"><span class="pre">ShellBase.get_jacobians()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.get_local_jacobian"><code class="docutils literal notranslate"><span class="pre">ShellBase.get_local_jacobian()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.organize_S"><code class="docutils literal notranslate"><span class="pre">ShellBase.organize_S()</span></code></a></li>
