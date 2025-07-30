@@ -8,7 +8,7 @@ class ShellBase(ContinumBase):
     def __init__(self, **kargs):
         ContinumBase.__init__(self, **kargs)
 
-    def set_thickness(self, t: float, e3: np.ndarray = None) -> None:
+    def set_thickness(self, t: float, e3: np.ndarray = None, n_gauss_thickness: int = 2) -> None:
         """Set the thickness of the shell element.
 
         Args:
@@ -16,6 +16,7 @@ class ShellBase(ContinumBase):
         """
 
         # If thickness is not a list, create a list with n elements, n is the number of nodes
+        self.n_gauss_thickness = n_gauss_thickness
         if not isinstance(t, list):
             t = [t] * len(self.coords)
         if len(t) != len(self.coords):
@@ -80,7 +81,7 @@ class ShellBase(ContinumBase):
         for i in range(n):
             e1 = _e1[i]
             e2 = _e2[i]
-            __dpx = dpx[:, i]
+            __dpx = dpx[i]
             _dpx = __dpx[:3]
             _dpe = __dpx[3:6]
 
@@ -97,14 +98,59 @@ class ShellBase(ContinumBase):
             BNL[6:9, 5*i+4] = -_dpe*e2[2]
         return BNL
 
+    def calculate_A(self, F):
+        dudx = F+np.eye(3)
+        A = np.zeros((6, 9))
+        A[0, 0] = dudx[0, 0]
+        A[0, 3] = dudx[0, 1]
+        A[0, 6] = dudx[0, 2]
+
+        A[1, 1] = dudx[1, 0]
+        A[1, 4] = dudx[1, 1]
+        A[1, 7] = dudx[1, 2]
+
+        A[2, 2] = dudx[2, 0]
+        A[2, 5] = dudx[2, 1]
+        A[2, 8] = dudx[2, 2]
+
+        fila = np.array([dudx[0, 1], dudx[0, 0], 0, dudx[1, 1],
+                         dudx[1, 0], 0, dudx[2, 1], dudx[2, 0], 0])
+        A[3, :] = fila
+
+        fila = np.array([dudx[0, 2], 0, dudx[0, 0], dudx[1, 2],
+                        0, dudx[1, 0], dudx[2, 2], 0, dudx[2, 0]])
+        A[4, :] = fila
+
+        fila = np.array([0, dudx[0, 2], dudx[0, 1], 0,
+                        dudx[1, 2], dudx[1, 1], 0, dudx[2, 2], dudx[2, 1]])
+        A[5, :] = fila
+
+        return 1/2*A
+
     def calculate_BL(self, dpx) -> np.ndarray:
+
         return
 
     def organize_S(self, S) -> tuple:
-        return
+        S_stiff = np.zeros((9, 9))
+
+        S_stiff[0:3, 0:3] = S
+        S_stiff[3:6, 3:6] = S
+        S_stiff[6:9, 6:9] = S
+
+        # Create 6x1 Voigt stress vector
+        S_vect = np.zeros((6, 1))
+        S_vect[0] = S[0, 0]  # S11
+        S_vect[1] = S[1, 1]  # S22
+        S_vect[2] = S[2, 2]  # S33
+        S_vect[3] = S[0, 1]  # S12
+        S_vect[4] = S[1, 2]  # S23
+        S_vect[5] = S[0, 2]  # S13
+
+        return S_stiff, S_vect
 
     def transformation_matrix(self, deformed=True) -> np.ndarray:
-        return
+        return 1
 
     def rotation_matrix(self, deformed=True) -> np.ndarray:
         return np.eye(5)
@@ -150,6 +196,7 @@ class ShellBase(ContinumBase):
     def get_jacobians(self, w):
         self.JS = self._get_spatial_derivatives(w, deformed=False)
         self.JS_inv = [np.linalg.inv(j) for j in self.JS]
+        return self.JS, self.JS_inv
 
     def calculate_deformation_gradients(self, w):
         """Calculate the deformation gradients for the shell element."""
@@ -163,6 +210,50 @@ class ShellBase(ContinumBase):
             col3 = J_inv @ J2[:, 2]
             F = np.column_stack((col1, col2, col3))
             self.FS.append(F)
+        return self.FS
+
+    def elementMatrices(self) -> None:
+        """Calculate element matrices and vectors.
+
+        This method should be implemented in derived classes.
+        """
+
+        """Calculate the lineal stiffness matrix.
+
+        This method should be implemented in derived classes.
+        """
+        weights = self.W
+        t_z, t_w = np.polynomial.legendre.leggauss(self.n_gauss_thickness)
+        Ke = 0.0
+        Fe = 0.0
+        for z_t, w_t in zip(t_z, t_w):
+            JS, _JS = self.get_jacobians(z_t)
+            FS = self.calculate_deformation_gradients(z_t)
+
+            for gi in range(len(weights)):
+                detjac = np.linalg.det(JS[gi])
+                wi = weights[gi] * w_t
+                F = FS[gi]
+                E = self.green_lagrange_strain(F)
+                C, S = self.constitutive_model(E)
+                const = 1
+                S_stiff, S_force = self.organize_S(S)
+                dpx = self.calculate_dpxs(z_t, gi)
+                # Estos dpx pueden ser diferentes porque toca rotarlos. Esperemos un poco
+
+                BNL = self.calculate_BNL(dpx)
+                A = self.calculate_A(F)
+                BL = A @ BNL
+
+                Ke += const*(BL.T @ C @ BL + BNL.T @
+                             S_stiff @ BNL) * detjac * wi
+                Fe += const*(BL.T @ S_force) * detjac * wi
+
+        # T1 = self.transformation_matrix(True)
+        # T2 = self.transformation_matrix(True)
+        # Ke = T1.T @ Ke @ T1
+        # Fe = T2.T @ Fe
+        return Ke, Fe
 
 
 class QuadShellLinear(ShellBase, Quadrilateral):

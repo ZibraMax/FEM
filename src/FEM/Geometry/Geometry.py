@@ -595,8 +595,8 @@ class Geometry2D(Geometry):
             Y = coords[:, 1]
             ax.plot(X, Y, '-', color='black',
                     alpha=1-0.6*draw_bc, zorder=-10)
-            cx = self.centroids[i][0][0]
-            cy = self.centroids[i][0][1]
+            cx = self.centroids[i][0]
+            cy = self.centroids[i][1]
             if draw_labels:
                 ax.plot(cx, cy, 'o', markersize=texto +
                         bolita, color='yellow')
