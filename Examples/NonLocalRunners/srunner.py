@@ -10,19 +10,20 @@ i = 0
 process = True
 
 
-C11 = float(sys.argv[3])  # 223.1e6
-C12 = float(sys.argv[4])  # 63.9e6
-C44 = float(sys.argv[5])  # 79.6e6
-rho = float(sys.argv[6])  # 2.329
+nex = int(sys.argv[3])
+E = float(sys.argv[4])
+v = float(sys.argv[5])
+rho = float(sys.argv[6])
+fa = int(sys.argv[7])
 
 
 def runSim(R, l):
     global process, i
     L = R
-    ne = max(10, min(int(L//(l)), 200))
-    print(L, l, ne)
+    print('Running', i, 'of', len(R), 'for R =', R, 'l =',
+          l, 'nex =', nex, 'E =', E, 'v =', v, 'rho =', rho)
     proc = Popen(
-        f'C:/Users/ar257/Desktop/FEM/.venv/Scripts/python.exe nolocal_runner_spheres.py {L} {l} {ne} {C11} {C12} {C44} {rho}', creationflags=CREATE_NEW_CONSOLE)
+        f'C:/Users/ar257/Desktop/FEM/.venv/Scripts/python.exe nolocal_runner_spheres.py {L} {l} {nex} {E} {v} {rho} {fa}', creationflags=CREATE_NEW_CONSOLE)
     Popen.communicate(proc)
     i = i + 1
     process = False

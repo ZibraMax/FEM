@@ -92,28 +92,33 @@ logging.info('Done!')
 duration = O.logger.end_timer().total_seconds()
 O.properties['duration'] = duration
 for z in Z[::-1]:
-    logging.info(f'Solving for z={z}')
-    filename = f'Cube_{L}_{l}_{z}_{time}.json'
+    try:
 
-    O.z1 = z
-    O.z2 = 1-z
-    O.ensembling()
-    O.boundaryConditions()
-    logging.info('Converting to csr format')
-    O.K = O.K.tocsr()
-    logging.info('Solving...')
-    eigv, eigvec = eigsh(
-        O.K, 20, O.M, which='SM')
-    idx = eigv.argsort()
-    eigv = eigv[idx]
-    eigvec = eigvec[:, idx]
-    O.eigv = eigv
-    O.eigvec = eigvec
-    O.solver.solutions = eigvec.T
-    O.solver.solutions_info = [
-        {'solver-type': O.solver.type, 'eigv': ei} for ei in O.eigv]
-    O.solver.setSolution(0)
-    logging.info('Solved!')
-    O.properties['z1'] = O.z1
+        logging.info(f'Solving for z={z}')
+        filename = f'Cube_{L}_{l}_{z}_{time}.json'
 
-    O.exportJSON(filename)
+        O.z1 = z
+        O.z2 = 1-z
+        O.ensembling()
+        O.boundaryConditions()
+        logging.info('Converting to csr format')
+        O.K = O.K.tocsr()
+        logging.info('Solving...')
+        eigv, eigvec = eigsh(
+            O.K, 20, O.M, which='SM')
+        idx = eigv.argsort()
+        eigv = eigv[idx]
+        eigvec = eigvec[:, idx]
+        O.eigv = eigv
+        O.eigvec = eigvec
+        O.solver.solutions = eigvec.T
+        O.solver.solutions_info = [
+            {'solver-type': O.solver.type, 'eigv': ei} for ei in O.eigv]
+        O.solver.setSolution(0)
+        logging.info('Solved!')
+        O.properties['z1'] = O.z1
+
+        O.exportJSON(filename)
+    except Exception as e:
+        logging.error(f'Error solving for z={z}: {e}')
+        print(f'Error solving for z={z}: {e}')
