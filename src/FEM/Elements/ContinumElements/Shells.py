@@ -318,7 +318,7 @@ class ShellBase(ContinumBase):
         Fe = 0.0
         for z_t, w_t in zip(t_z, t_w):
             JS, _JS = self.get_jacobians(z_t)
-            # FS = self.calculate_deformation_gradients(z_t)
+            FS = self.calculate_deformation_gradients_legacy(z_t)
 
             for gi in range(len(weights)):
                 detjac = np.linalg.det(JS[gi])
@@ -328,16 +328,17 @@ class ShellBase(ContinumBase):
                 BNL = self.calculate_BNL(dpx)
                 uij = BNL @ self.Ue.T.flatten().reshape(-1, 1)
                 uij = uij.flatten()
-                F = np.zeros([3, 3])
-                F[0, 0] = uij[0] + 1
-                F[1, 1] = uij[1] + 1
-                F[2, 2] = uij[2] + 1
-                F[0, 1] = uij[3]
-                F[1, 0] = uij[4]
-                F[0, 2] = uij[5]
-                F[2, 0] = uij[6]
-                F[1, 2] = uij[7]
-                F[2, 1] = uij[8]
+                # F = np.zeros([3, 3])
+                # F[0, 0] = uij[0] + 1
+                # F[1, 1] = uij[1] + 1
+                # F[2, 2] = uij[2] + 1
+                # F[0, 1] = uij[3]
+                # F[1, 0] = uij[4]
+                # F[0, 2] = uij[5]
+                # F[2, 0] = uij[6]
+                # F[1, 2] = uij[7]
+                # F[2, 1] = uij[8]
+                F = FS[gi]
                 E = self.green_lagrange_strain(F)
                 C, S = self.constitutive_model(E)
                 S_stiff, S_force = self.organize_S(S)

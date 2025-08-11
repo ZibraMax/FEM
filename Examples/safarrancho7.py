@@ -72,7 +72,8 @@ if __name__ == '__main__':
         geo, cm, solver=NewtonTotalLagrangian, override_nvn=True)
     for e in O.elements:
         e.set_thickness(t)
-    O.solver.load_steps = 100
+    O.solver.load_steps = 10
+    O.solver.maxiter = 100
 
     nodes_force = [1, 4]
 
