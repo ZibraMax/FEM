@@ -8,7 +8,7 @@ class ShellBase(ContinumBase):
     def __init__(self, **kargs):
         ContinumBase.__init__(self, **kargs)
 
-    def set_thickness(self, t: float, e3: np.ndarray = None, n_gauss_thickness: int = 2) -> None:
+    def set_thickness(self, t: float, e3: np.ndarray = None, n_gauss_thickness: int = 1) -> None:
 
         # If thickness is not a list, create a list with n elements, n is the number of nodes
         self.n_gauss_thickness = n_gauss_thickness
@@ -128,7 +128,7 @@ class ShellBase(ContinumBase):
         e1s, e2s = self.calculate_e1_e2(deformed=True)
 
         # Esto EN TEORÍA también se podría calcular con BNL
-        lij = F + np.eye(3)
+        lij = F
         lb1 = []
         lb2 = []
         for i in range(len(self.coords)):
@@ -328,17 +328,17 @@ class ShellBase(ContinumBase):
                 BNL = self.calculate_BNL(dpx)
                 uij = BNL @ self.Ue.T.flatten().reshape(-1, 1)
                 uij = uij.flatten()
-                # F = np.zeros([3, 3])
-                # F[0, 0] = uij[0] + 1
-                # F[1, 1] = uij[1] + 1
-                # F[2, 2] = uij[2] + 1
-                # F[0, 1] = uij[3]
-                # F[1, 0] = uij[4]
-                # F[0, 2] = uij[5]
-                # F[2, 0] = uij[6]
-                # F[1, 2] = uij[7]
-                # F[2, 1] = uij[8]
-                F = FS[gi]
+                F = np.zeros([3, 3])
+                F[0, 0] = uij[0] + 1
+                F[1, 1] = uij[1] + 1
+                F[2, 2] = uij[2] + 1
+                F[0, 1] = uij[3]
+                F[1, 0] = uij[4]
+                F[0, 2] = uij[5]
+                F[2, 0] = uij[6]
+                F[1, 2] = uij[7]
+                F[2, 1] = uij[8]
+                # F = FS[gi]
                 E = self.green_lagrange_strain(F)
                 C, S = self.constitutive_model(E)
                 S_stiff, S_force = self.organize_S(S)
