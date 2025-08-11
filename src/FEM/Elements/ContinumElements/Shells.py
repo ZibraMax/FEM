@@ -9,11 +9,6 @@ class ShellBase(ContinumBase):
         ContinumBase.__init__(self, **kargs)
 
     def set_thickness(self, t: float, e3: np.ndarray = None, n_gauss_thickness: int = 2) -> None:
-        """Set the thickness of the shell element.
-
-        Args:
-            t (float): Thickness of the shell element.
-        """
 
         # If thickness is not a list, create a list with n elements, n is the number of nodes
         self.n_gauss_thickness = n_gauss_thickness
@@ -59,95 +54,191 @@ class ShellBase(ContinumBase):
             E2.append(e2)
         return E1, E2
 
-    def calculate_dpxs(self, w, k) -> np.ndarray:
-        DPXS = []
-        _J = self.JS_inv[k]
-        for psi, dpsiz, th in zip(self._p[k], self.dpz[k].T, self.th):
-            dpz = np.zeros(6)
-            dpz[0:2] = dpsiz
-            dpz[3] = 1/2*w*th*dpsiz[0]
-            dpz[4] = 1/2*w*th*dpsiz[1]
-            dpz[5] = 1/2*th*psi
+    def calculate_dpxs(self, w, k, J_INV) -> np.ndarray:
+        # w is  gauss point in thickness
+        # k is the index of the gausss point in s,r
+        # J_INV is the inverse of the jacobian at the gauss point
+        dpnodedx = []
+        dpnodedy = []
+        dpnodedz = []
+        dpbnodedx = []
+        dpbnodedy = []
+        dpbnodedz = []
 
-            dpx1 = _J @ dpz[:3]
-            dpx2 = _J @ dpz[3:6]
-            DPXS.append([*dpx1, *dpx2])
-        return np.array(DPXS)
+        dpnodedi = J_INV[:, :2] @ self.dpz[k]
 
-    def calculate_BNL(self, dpx) -> np.ndarray:
-        n = len(self.coords)
-        BNL = np.zeros((9, 5*n))
-        _e1, _e2 = self.calculate_e1_e2(deformed=True)
-        for i in range(n):
-            e1 = _e1[i]
-            e2 = _e2[i]
-            __dpx = dpx[i]
-            _dpx = __dpx[:3]
-            _dpe = __dpx[3:6]
+        for i in range(len(self.coords)):
+            hk = self.th[i] / 2
+            dpbnodedx.append(hk*(J_INV[0, 2]*self._p[k][i] + w*dpnodedi[0][i]))
+            dpbnodedy.append(hk*(J_INV[1, 2]*self._p[k][i] + w*dpnodedi[1][i]))
+            dpbnodedz.append(hk*(J_INV[2, 2]*self._p[k][i] + w*dpnodedi[2][i]))
+        dpnodedx, dpnodedy, dpnodedz = dpnodedi
+        dpxs = [dpnodedx, dpnodedy, dpnodedz,
+                dpbnodedx, dpbnodedy, dpbnodedz]
+        dpxs = np.array(dpxs)
+        return dpxs
 
-            BNL[0:3, 5*i] = _dpx
-            BNL[3:6, 5*i+1] = _dpx
-            BNL[6:9, 5*i+2] = _dpx
+    def calculate_BNL(self, dpxs) -> np.ndarray:
+        dpnodedx, dpnodedy, dpnodedz, dpbnodedx, dpbnodedy, dpbnodedz = dpxs
+        BNL = np.zeros((9, len(self.coords)*5))
+        # Deformed??? No se.... Yo creo que no, pero dice que si
+        e1s, e2s = self.calculate_e1_e2(deformed=True)
+        for i in range(len(self.coords)):
+            e1 = e1s[i]
+            e2 = e2s[i]
+            BNL[0, i*5] = dpnodedx[i]
+            BNL[0, i*5+3] = dpbnodedx[i]*e1[0]
+            BNL[0, i*5+4] = dpbnodedx[i]*e2[0]
 
-            BNL[0:3, 5*i+3] = _dpe*e1[0]
-            BNL[3:6, 5*i+3] = _dpe*e1[1]
-            BNL[6:9, 5*i+3] = _dpe*e1[2]
+            BNL[1, i*5+1] = dpnodedy[i]
+            BNL[1, i*5+3] = dpbnodedy[i]*e1[1]
+            BNL[1, i*5+4] = dpbnodedy[i]*e2[1]
 
-            BNL[0:3, 5*i+4] = -_dpe*e2[0]
-            BNL[3:6, 5*i+4] = -_dpe*e2[1]
-            BNL[6:9, 5*i+4] = -_dpe*e2[2]
+            BNL[2, i*5+2] = dpnodedz[i]
+            BNL[2, i*5+3] = dpbnodedz[i]*e1[2]
+            BNL[2, i*5+4] = dpbnodedz[i]*e2[2]
+
+            BNL[3, i*5] = dpnodedy[i]
+            BNL[3, i*5+3] = dpbnodedy[i]*e1[0]
+            BNL[3, i*5+4] = dpbnodedy[i]*e2[0]
+
+            BNL[4, i*5+1] = dpnodedx[i]
+            BNL[4, i*5+3] = dpbnodedx[i]*e1[1]
+            BNL[4, i*5+4] = dpbnodedx[i]*e2[1]
+
+            BNL[5, i*5] = dpnodedz[i]
+            BNL[5, i*5+3] = dpbnodedz[i]*e1[0]
+            BNL[5, i*5+4] = dpbnodedz[i]*e2[0]
+
+            BNL[6, i*5+2] = dpnodedx[i]
+            BNL[6, i*5+3] = dpbnodedx[i]*e1[2]
+            BNL[6, i*5+4] = dpbnodedx[i]*e2[2]
+
+            BNL[7, i*5+1] = dpnodedz[i]
+            BNL[7, i*5+3] = dpbnodedz[i]*e1[1]
+            BNL[7, i*5+4] = dpbnodedz[i]*e2[1]
+
+            BNL[8, i*5+2] = dpnodedy[i]
+            BNL[8, i*5+3] = dpbnodedy[i]*e1[2]
+            BNL[8, i*5+4] = dpbnodedy[i]*e2[2]
+
         return BNL
 
-    def calculate_A(self, F):
-        dudx = F+np.eye(3)
-        A = np.zeros((6, 9))
-        A[0, 0] = dudx[0, 0]
-        A[0, 3] = dudx[0, 1]
-        A[0, 6] = dudx[0, 2]
+    def calculate_ls(self, F) -> np.ndarray:
+        e1s, e2s = self.calculate_e1_e2(deformed=True)
 
-        A[1, 1] = dudx[1, 0]
-        A[1, 4] = dudx[1, 1]
-        A[1, 7] = dudx[1, 2]
+        # Esto EN TEORÍA también se podría calcular con BNL
+        lij = F + np.eye(3)
+        lb1 = []
+        lb2 = []
+        for i in range(len(self.coords)):
+            e1 = e1s[i]
+            e2 = e2s[i]
+            _lb1x = lij[0]@e1
+            _lb1y = lij[1]@e1
+            _lb1z = lij[2]@e1
+            _lb1 = np.array([_lb1x, _lb1y, _lb1z])
+            _lb2x = lij[0]@e2
+            _lb2y = lij[1]@e2
+            _lb2z = lij[2]@e2
+            _lb2 = np.array([_lb2x, _lb2y, _lb2z])
+            lb1.append(_lb1)
+            lb2.append(_lb2)
+        return lij, lb1, lb2
 
-        A[2, 2] = dudx[2, 0]
-        A[2, 5] = dudx[2, 1]
-        A[2, 8] = dudx[2, 2]
+    def calculate_BL(self, dpxs, F) -> np.ndarray:
+        dpnodedx, dpnodedy, dpnodedz, dpbnodedx, dpbnodedy, dpbnodedz = dpxs
+        lij, lb1, lb2 = self.calculate_ls(F)
+        n = len(self.coords)
+        BL = np.zeros((6, 5*n))
+        for i in range(n):
+            _lb1 = lb1[i]
+            _lb2 = lb2[i]
 
-        fila = np.array([dudx[0, 1], dudx[0, 0], 0, dudx[1, 1],
-                         dudx[1, 0], 0, dudx[2, 1], dudx[2, 0], 0])
-        A[3, :] = fila
+            BL[0, 5*i] = dpnodedx[i]*lij[0, 0]
+            BL[0, 5*i+1] = dpnodedx[i]*lij[1, 0]
+            BL[0, 5*i+2] = dpnodedx[i]*lij[2, 0]
+            BL[0, 5*i+3] = dpbnodedx[i]*_lb1[0]
+            BL[0, 5*i+4] = dpbnodedx[i]*_lb2[0]
 
-        fila = np.array([dudx[0, 2], 0, dudx[0, 0], dudx[1, 2],
-                        0, dudx[1, 0], dudx[2, 2], 0, dudx[2, 0]])
-        A[4, :] = fila
+            BL[1, 5*i] = dpnodedy[i]*lij[0, 1]
+            BL[1, 5*i+1] = dpnodedy[i]*lij[1, 1]
+            BL[1, 5*i+2] = dpnodedy[i]*lij[2, 1]
+            BL[1, 5*i+3] = dpbnodedy[i]*_lb1[1]
+            BL[1, 5*i+4] = dpbnodedy[i]*_lb2[1]
 
-        fila = np.array([0, dudx[0, 2], dudx[0, 1], 0,
-                        dudx[1, 2], dudx[1, 1], 0, dudx[2, 2], dudx[2, 1]])
-        A[5, :] = fila
+            BL[2, 5*i] = dpnodedz[i]*lij[0, 2]
+            BL[2, 5*i+1] = dpnodedz[i]*lij[1, 2]
+            BL[2, 5*i+2] = dpnodedz[i]*lij[2, 2]
+            BL[2, 5*i+3] = dpbnodedz[i]*_lb1[2]
+            BL[2, 5*i+4] = dpbnodedz[i]*_lb2[2]
 
-        return 1/2*A
+            BL[3, 5*i] = dpnodedy[i]*lij[0, 0] + dpnodedx[i]*lij[0, 1]
+            BL[3, 5*i+1] = dpnodedy[i]*lij[1, 0] + dpnodedx[i]*lij[1, 1]
+            BL[3, 5*i+2] = dpnodedy[i]*lij[2, 0] + dpnodedx[i]*lij[2, 1]
 
-    def calculate_BL(self, dpx) -> np.ndarray:
+            BL[3, 5*i+3] = dpbnodedy[i]*_lb1[0] + dpbnodedx[i]*_lb1[1]
+            BL[3, 5*i+4] = dpbnodedy[i]*_lb2[0] + dpbnodedx[i]*_lb2[1]
 
-        return
+            BL[4, 5*i] = dpnodedz[i]*lij[0, 0] + dpnodedx[i]*lij[0, 2]
+            BL[4, 5*i+1] = dpnodedz[i]*lij[1, 0] + dpnodedx[i]*lij[1, 2]
+            BL[4, 5*i+2] = dpnodedz[i]*lij[2, 0] + dpnodedx[i]*lij[2, 2]
+            BL[4, 5*i+3] = dpbnodedz[i]*_lb1[0] + dpbnodedx[i]*_lb1[2]
+            BL[4, 5*i+4] = dpbnodedz[i]*_lb2[0] + dpbnodedx[i]*_lb2[2]
+
+            BL[5, 5*i] = dpnodedz[i]*lij[0, 1] + dpnodedy[i]*lij[0, 2]
+            BL[5, 5*i+1] = dpnodedz[i]*lij[1, 1] + dpnodedy[i]*lij[1, 2]
+            BL[5, 5*i+2] = dpnodedz[i]*lij[2, 1] + dpnodedy[i]*lij[2, 2]
+            BL[5, 5*i+3] = dpbnodedz[i]*_lb1[1] + dpbnodedy[i]*_lb1[2]
+            BL[5, 5*i+4] = dpbnodedz[i]*_lb2[1] + dpbnodedy[i]*_lb2[2]
+
+        return BL
 
     def organize_S(self, S) -> tuple:
-        S_stiff = np.zeros((9, 9))
+        # S is 3x3
 
-        S_stiff[0:3, 0:3] = S
-        S_stiff[3:6, 3:6] = S
-        S_stiff[6:9, 6:9] = S
+        S_force = np.zeros((6, 1))
+        S_force[0, 0] = S[0, 0]  # S11
+        S_force[1, 0] = S[1, 1]  # S22
+        S_force[2, 0] = S[2, 2]  # S33
+        S_force[3, 0] = S[0, 1]  # S[1, 0] = S[0, 1]  # S12
+        S_force[4, 0] = S[0, 2]  # S[0, 2]  # S13
+        S_force[5, 0] = S[1, 2]  # S[1, 2]  # S23
 
-        # Create 6x1 Voigt stress vector
-        S_vect = np.zeros((6, 1))
-        S_vect[0] = S[0, 0]  # S11
-        S_vect[1] = S[1, 1]  # S22
-        S_vect[2] = S[2, 2]  # S33
-        S_vect[3] = S[0, 1]  # S12
-        S_vect[4] = S[1, 2]  # S23
-        S_vect[5] = S[0, 2]  # S13
+        mS = np.zeros((9, 9))
 
-        return S_stiff, S_vect
+        # Fill according to the pattern in the image
+        mS[0, 0] = S[0, 0]
+        mS[0, 3] = S[0, 1]
+        mS[0, 5] = S[0, 2]
+
+        mS[1, 1] = S[1, 1]
+        mS[1, 4] = S[1, 0]
+        mS[1, 7] = S[1, 2]
+
+        mS[2, 2] = S[2, 2]
+        mS[2, 6] = S[2, 0]
+        mS[2, 8] = S[2, 1]
+
+        mS[3, 3] = S[1, 1]
+        mS[3, 5] = S[1, 2]
+
+        mS[4, 4] = S[0, 0]
+        mS[4, 7] = S[0, 2]
+
+        mS[5, 5] = S[2, 2]
+
+        mS[6, 6] = S[0, 0]
+        mS[6, 8] = S[0, 1]
+
+        mS[7, 7] = S[2, 2]
+
+        mS[8, 8] = S[1, 1]
+
+        # Make symmetric
+        mS = mS + mS.T - np.diag(np.diag(mS))
+
+        pass mS, S_force
 
     def transformation_matrix(self, deformed=True) -> np.ndarray:
         return 1
@@ -164,7 +255,6 @@ class ShellBase(ContinumBase):
         self.t_coords = coords@R
 
     def project_disp(self, deformed=True) -> None:
-        """Project the displacements to the original coordinates system."""
         R = self.rotation_matrix(deformed)
         self.t_Ue = self.Ue.T@R
         self.t_Ue = self.t_Ue.T
@@ -198,9 +288,9 @@ class ShellBase(ContinumBase):
         self.JS_inv = [np.linalg.inv(j) for j in self.JS]
         return self.JS, self.JS_inv
 
-    def calculate_deformation_gradients(self, w):
+    def calculate_deformation_gradients_legacy(self, w):
         """Calculate the deformation gradients for the shell element."""
-        self.FS = []
+        FS = []
         JS2 = self._get_spatial_derivatives(w, deformed=True)
         for i in range(len(self.JS)):
             J_inv = self.JS_inv[i]  # Jacobian with undeformed coordinates
@@ -209,8 +299,8 @@ class ShellBase(ContinumBase):
             col2 = J_inv @ J2[:, 1]
             col3 = J_inv @ J2[:, 2]
             F = np.column_stack((col1, col2, col3))
-            self.FS.append(F)
-        return self.FS
+            FS.append(F)
+        return FS
 
     def elementMatrices(self) -> None:
         """Calculate element matrices and vectors.
@@ -228,26 +318,34 @@ class ShellBase(ContinumBase):
         Fe = 0.0
         for z_t, w_t in zip(t_z, t_w):
             JS, _JS = self.get_jacobians(z_t)
-            FS = self.calculate_deformation_gradients(z_t)
+            # FS = self.calculate_deformation_gradients(z_t)
 
             for gi in range(len(weights)):
                 detjac = np.linalg.det(JS[gi])
                 wi = weights[gi] * w_t
-                F = FS[gi]
+
+                dpx = self.calculate_dpxs(z_t, gi, _JS[gi])
+                BNL = self.calculate_BNL(dpx)
+                uij = BNL @ self.Ue.T.flatten().reshape(-1, 1)
+                uij = uij.flatten()
+                F = np.array([3, 3])
+                F[0, 0] = uij[0] + 1
+                F[1, 1] = uij[1] + 1
+                F[2, 2] = uij[2] + 1
+                F[0, 1] = uij[3]
+                F[1, 0] = uij[4]
+                F[0, 2] = uij[5]
+                F[2, 0] = uij[6]
+                F[1, 2] = uij[7]
+                F[2, 1] = uij[8]
                 E = self.green_lagrange_strain(F)
                 C, S = self.constitutive_model(E)
-                const = 1
                 S_stiff, S_force = self.organize_S(S)
-                dpx = self.calculate_dpxs(z_t, gi)
-                # Estos dpx pueden ser diferentes porque toca rotarlos. Esperemos un poco
 
-                BNL = self.calculate_BNL(dpx)
-                A = self.calculate_A(F)
-                BL = A @ BNL
-
-                Ke += const*(BL.T @ C @ BL + BNL.T @
-                             S_stiff @ BNL) * detjac * wi
-                Fe += const*(BL.T @ S_force) * detjac * wi
+                BL = self.calculate_BL(dpx, F)
+                Ke += (BL.T @ C @ BL + BNL.T @
+                       S_stiff @ BNL) * detjac * wi
+                Fe += (BL.T @ S_force) * detjac * wi
 
         # T1 = self.transformation_matrix(True)
         # T2 = self.transformation_matrix(True)
