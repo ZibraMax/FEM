@@ -238,7 +238,7 @@ class ShellBase(ContinumBase):
         # Make symmetric
         mS = mS + mS.T - np.diag(np.diag(mS))
 
-        pass mS, S_force
+        return mS, S_force
 
     def transformation_matrix(self, deformed=True) -> np.ndarray:
         return 1
@@ -328,7 +328,7 @@ class ShellBase(ContinumBase):
                 BNL = self.calculate_BNL(dpx)
                 uij = BNL @ self.Ue.T.flatten().reshape(-1, 1)
                 uij = uij.flatten()
-                F = np.array([3, 3])
+                F = np.zeros([3, 3])
                 F[0, 0] = uij[0] + 1
                 F[1, 1] = uij[1] + 1
                 F[2, 2] = uij[2] + 1
