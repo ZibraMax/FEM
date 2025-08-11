@@ -40,3 +40,11 @@ FEM.Elements.ContinumElements.Shells module
    :members:
    :undoc-members:
    :show-inheritance:
+
+FEM.Elements.ContinumElements.Shells\_antiguo module
+----------------------------------------------------
+
+.. automodule:: FEM.Elements.ContinumElements.Shells_antiguo
+   :members:
+   :undoc-members:
+   :show-inheritance:

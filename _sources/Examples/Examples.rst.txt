@@ -641,14 +641,6 @@ Examples.example\_ojo\_mitad module
    :undoc-members:
    :show-inheritance:
 
-Examples.fg module
-------------------
-
-.. automodule:: Examples.fg
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Examples.safarrancho module
 ---------------------------
 

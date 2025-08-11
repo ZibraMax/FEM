@@ -264,228 +264,13 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-FEM.Utils">
-<span id="fem-utils-package"></span><h1>FEM.Utils package<a class="headerlink" href="#module-FEM.Utils" title="Link to this heading">¶</a></h1>
-<p>Utilities</p>
+          <section id="fem-utils-package">
+<h1>FEM.Utils package<a class="headerlink" href="#fem-utils-package" title="Link to this heading">¶</a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
-<section id="module-FEM.Utils.polygonal">
-<span id="fem-utils-polygonal-module"></span><h2>FEM.Utils.polygonal module<a class="headerlink" href="#module-FEM.Utils.polygonal" title="Link to this heading">¶</a></h2>
-<p>Polygonal help functions</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.angleBetweenAngles">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">angleBetweenAngles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.angleBetweenAngles" title="Link to this definition">¶</a></dt>
-<dd><p>Evaluates if a angle is between 2 angles</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>start</strong> (<em>float</em>) – Start angle</p></li>
-<li><p><strong>end</strong> (<em>float</em>) – End angle</p></li>
-<li><p><strong>mid</strong> (<em>float</em>) – Angle to be evaluated</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Tru if mid is between start-end</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.clip">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">clip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.clip" title="Link to this definition">¶</a></dt>
-<dd><p>Clip 1D</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>float</em>) – Point x</p></li>
-<li><p><strong>mi</strong> (<em>float</em>) – min</p></li>
-<li><p><strong>ma</strong> (<em>float</em>) – max</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>idk</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.dist">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.dist" title="Link to this definition">¶</a></dt>
-<dd><p>Calculate the distancie between 2 points</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<em>list</em>) – point a</p></li>
-<li><p><strong>b</strong> (<em>list</em>) – point b</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Distance between a and b</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.enmalladoEsferaFernando">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">enmalladoEsferaFernando</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.enmalladoEsferaFernando" title="Link to this definition">¶</a></dt>
-<dd><dl>
-<dt>Crea el enmallado de una esfera de diámetro L con n numero de elementos</dt><dd><p>por lado. Para crear el enmallado se deforma un cubo a la forma de una
-esfera.</p>
-<p>Autor: Fernando Ramirez Rodriguez
-Traducido de Matlab.</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>L</strong> (<em>float</em>) – Diametro de la esfera</p></li>
-<li><p><strong>n</strong> (<em>float</em>) – Número de elementos por lado. El numero deelemtnos final es n^3</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Matriz de coordenadas y conectividad</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[np.ndarray,list]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.enmalladoFernando">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">enmalladoFernando</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ney</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.enmalladoFernando" title="Link to this definition">¶</a></dt>
-<dd><p>Crea un enmallado 2D de un rectangulo</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>lx</strong> (<em>floar</em>) – Base del rectángulo</p></li>
-<li><p><strong>ly</strong> (<em>float</em>) – Altura del rectámgulo</p></li>
-<li><p><strong>nex</strong> (<em>int</em>) – Numero de elementos en el eje x</p></li>
-<li><p><strong>ney</strong> (<em>int</em>) – Numero de elementos en el eje y</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>coordinates matrix (np.ndarray) and element dictionary (list)</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.generatePolygon">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">generatePolygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctrX</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrY</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aveRadius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">irregularity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spikeyness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numVerts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.generatePolygon" title="Link to this definition">¶</a></dt>
-<dd><p>Generate a random polygon.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ctrX</strong> (<em>float</em><em>, </em><em>optional</em>) – X centroid. Defaults to 10.</p></li>
-<li><p><strong>ctrY</strong> (<em>float</em><em>, </em><em>optional</em>) – Y centroid. Defaults to 10.</p></li>
-<li><p><strong>aveRadius</strong> (<em>float</em><em>, </em><em>optional</em>) – Average radious. Defaults to 5.</p></li>
-<li><p><strong>irregularity</strong> (<em>float</em><em>, </em><em>optional</em>) – Irregularity. Defaults to 0.5.</p></li>
-<li><p><strong>spikeyness</strong> (<em>float</em><em>, </em><em>optional</em>) – Spikeyness. Defaults to 0.5.</p></li>
-<li><p><strong>numVerts</strong> (<em>float</em><em>, </em><em>optional</em>) – Number of vertices. Defaults to 6.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Poligon coordinates matrix.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.giveCoordsCircle">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">giveCoordsCircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">O</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isFillet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.giveCoordsCircle" title="Link to this definition">¶</a></dt>
-<dd><p>Calculates the coordinates of a circle</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>O</strong> (<em>list</em>) – Center coordinates of circle</p></li>
-<li><p><strong>r</strong> (<em>float</em>) – Circle radius</p></li>
-<li><p><strong>sa</strong> (<em>float</em>) – Start angle. Defaults to 0</p></li>
-<li><p><strong>a</strong> (<em>float</em>) – End angle. Defaults to <span class="math notranslate nohighlight">\(2\pi\)</span></p></li>
-<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of coords to calculate. Defaults to 10.</p></li>
-<li><p><strong>isFillet</strong> (<em>bool</em><em>, </em><em>optional</em>) – If the circle will be used as fillet. Defaults to False.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Circle coordinates and regions</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list and list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.isBetween">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">isBetween</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.isBetween" title="Link to this definition">¶</a></dt>
-<dd><p>Test if a point is between a line in a given tolerance. Works in 2D and 3D.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<em>list</em>) – Start point of line</p></li>
-<li><p><strong>b</strong> (<em>list</em>) – End point of line</p></li>
-<li><p><strong>c</strong> (<em>list</em>) – Point to be tested between line</p></li>
-<li><p><strong>tol</strong> (<em>float</em>) – Tolerance. Defaults to 1*10**-5</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True if point is in line</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.plot_list_elements">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">plot_list_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Utils.polygonal.plot_list_elements" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.roundCorner">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">roundCorner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#FEM.Utils.polygonal.roundCorner" title="Link to this definition">¶</a></dt>
-<dd><p>Calculates the origin, start angle and sweep angle of a given corner with a given radius
-Source: <a class="reference external" href="https://stackoverflow.com/questions/24771828/algorithm-for-creating-rounded-corners-in-a-polygon">https://stackoverflow.com/questions/24771828/algorithm-for-creating-rounded-corners-in-a-polygon</a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>P1</strong> (<em>list</em>) – First point</p></li>
-<li><p><strong>P2</strong> (<em>list</em>) – Second Point</p></li>
-<li><p><strong>P</strong> (<em>list</em>) – Center point</p></li>
-<li><p><strong>r</strong> (<em>float</em>) – Radius of corner</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Circle center coordinates, start angle, sweep angle</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="FEM.Utils.polygonal.testNeighborg">
-<span class="sig-prename descclassname"><span class="pre">FEM.Utils.polygonal.</span></span><span class="sig-name descname"><span class="pre">testNeighborg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Utils.polygonal.testNeighborg" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<section id="fem-utils-polygonal-module">
+<h2>FEM.Utils.polygonal module<a class="headerlink" href="#fem-utils-polygonal-module" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -546,20 +331,7 @@ Source: <a class="reference external" href="https://stackoverflow.com/questions/
             <ul>
 <li><a class="reference internal" href="#">FEM.Utils package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-FEM.Utils.polygonal">FEM.Utils.polygonal module</a><ul>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.angleBetweenAngles"><code class="docutils literal notranslate"><span class="pre">angleBetweenAngles()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.clip"><code class="docutils literal notranslate"><span class="pre">clip()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.dist"><code class="docutils literal notranslate"><span class="pre">dist()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.enmalladoEsferaFernando"><code class="docutils literal notranslate"><span class="pre">enmalladoEsferaFernando()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.enmalladoFernando"><code class="docutils literal notranslate"><span class="pre">enmalladoFernando()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.generatePolygon"><code class="docutils literal notranslate"><span class="pre">generatePolygon()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.giveCoordsCircle"><code class="docutils literal notranslate"><span class="pre">giveCoordsCircle()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.isBetween"><code class="docutils literal notranslate"><span class="pre">isBetween()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.plot_list_elements"><code class="docutils literal notranslate"><span class="pre">plot_list_elements()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.roundCorner"><code class="docutils literal notranslate"><span class="pre">roundCorner()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Utils.polygonal.testNeighborg"><code class="docutils literal notranslate"><span class="pre">testNeighborg()</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#fem-utils-polygonal-module">FEM.Utils.polygonal module</a></li>
 </ul>
 </li>
 </ul>
@@ -575,6 +347,5 @@ Source: <a class="reference external" href="https://stackoverflow.com/questions/
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

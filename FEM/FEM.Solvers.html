@@ -264,239 +264,22 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-FEM.Solvers">
-<span id="fem-solvers-package"></span><h1>FEM.Solvers package<a class="headerlink" href="#module-FEM.Solvers" title="Link to this heading">¶</a></h1>
-<p>Solvers for Finite Element Method</p>
+          <section id="fem-solvers-package">
+<h1>FEM.Solvers package<a class="headerlink" href="#fem-solvers-package" title="Link to this heading">¶</a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
-<section id="module-FEM.Solvers.Linear">
-<span id="fem-solvers-linear-module"></span><h2>FEM.Solvers.Linear module<a class="headerlink" href="#module-FEM.Solvers.Linear" title="Link to this heading">¶</a></h2>
-<p>Define the structure of a lineal finite element solver</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.Linear.LinealEigen">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.Linear.</span></span><span class="sig-name descname"><span class="pre">LinealEigen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Linear.LinealEigen" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.Linear.Linear" title="FEM.Solvers.Linear.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">Linear</span></code></a></p>
-<p>Eigen value solver</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>FEMObject</strong> (<a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><em>Core</em></a>) – FEM problem</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.Linear.LinealEigen.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Linear.LinealEigen.run" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the smallest k eigenvalues using scipy’s eigen value solver</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where the solution is stored. Defaults to ‘’.</p></li>
-<li><p><strong>k</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of eigenvalues to calculate. Defaults to 20.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.Linear.Linear">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.Linear.</span></span><span class="sig-name descname"><span class="pre">Linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Linear.Linear" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.Solver.Solver" title="FEM.Solvers.Solver.Solver"><code class="xref py py-class docutils literal notranslate"><span class="pre">Solver</span></code></a></p>
-<p>Lineal Finite Element Solver.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.Linear.Linear.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Linear.Linear.run" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system using numpy’s solve function</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where the solution is stored. Defaults to ‘’.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.Linear.LinearSparse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.Linear.</span></span><span class="sig-name descname"><span class="pre">LinearSparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Linear.LinearSparse" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.Linear.Linear" title="FEM.Solvers.Linear.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">Linear</span></code></a></p>
-<p>Lineal Finite Element Solver using sparse matrix</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.Linear.LinearSparse.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Linear.LinearSparse.run" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system using scipy’s spsolve function</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path where the solution is stored. Defaults to ‘’.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<section id="fem-solvers-linear-module">
+<h2>FEM.Solvers.Linear module<a class="headerlink" href="#fem-solvers-linear-module" title="Link to this heading">¶</a></h2>
 </section>
-<section id="module-FEM.Solvers.NonLinear">
-<span id="fem-solvers-nonlinear-module"></span><h2>FEM.Solvers.NonLinear module<a class="headerlink" href="#module-FEM.Solvers.NonLinear" title="Link to this heading">¶</a></h2>
-<p>Define the structure of a non lineal finite element solver</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.DirectIteration">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.NonLinear.</span></span><span class="sig-name descname"><span class="pre">DirectIteration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.DirectIteration" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.NonLinear.NonLinearSolver" title="FEM.Solvers.NonLinear.NonLinearSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonLinearSolver</span></code></a></p>
-<p>docstring for DirectIteration</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.DirectIteration.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Solvers.NonLinear.DirectIteration.solve" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system using newtons method</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.LoadControl">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.NonLinear.</span></span><span class="sig-name descname"><span class="pre">LoadControl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.LoadControl" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.NonLinear.DirectIteration" title="FEM.Solvers.NonLinear.DirectIteration"><code class="xref py py-class docutils literal notranslate"><span class="pre">DirectIteration</span></code></a></p>
-<p>General class for non lineal solvers
-:param tol: Tolerance for the maximum absolute value for the delta vector
-:type tol: float
-:param n: Maximum number of iterations per step
-:type n: int</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.LoadControl.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Solvers.NonLinear.LoadControl.run" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system using newtons method</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.LoadControl.set_increments">
-<span class="sig-name descname"><span class="pre">set_increments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increments</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.LoadControl.set_increments" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.MGDCM">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.NonLinear.</span></span><span class="sig-name descname"><span class="pre">MGDCM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.MGDCM" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.NonLinear.NonLinearSolver" title="FEM.Solvers.NonLinear.NonLinearSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonLinearSolver</span></code></a></p>
-<p>docstring for DirectIteration</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.MGDCM.get_dld">
-<span class="sig-name descname"><span class="pre">get_dld</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.MGDCM.get_dld" title="Link to this definition">¶</a></dt>
-<dd><p>Calculates the load factor for the next iteration</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.MGDCM.set_delta_lambda_bar">
-<span class="sig-name descname"><span class="pre">set_delta_lambda_bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_lambda_bar</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.MGDCM.set_delta_lambda_bar" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.MGDCM.set_increments">
-<span class="sig-name descname"><span class="pre">set_increments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increments</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.MGDCM.set_increments" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.MGDCM.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Solvers.NonLinear.MGDCM.solve" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system using mgdcm method</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.Newton">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.NonLinear.</span></span><span class="sig-name descname"><span class="pre">Newton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.Newton" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.NonLinear.NonLinearSolver" title="FEM.Solvers.NonLinear.NonLinearSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonLinearSolver</span></code></a></p>
-<p>Creates a Newton Raphson iterative solver</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>FEMObject</strong> (<a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><em>Core</em></a>) – Finite Element Model. The model have to calculate tangent matrix T in the self.elementMatrices() method.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.Newton.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Solvers.NonLinear.Newton.solve" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system using newtons method</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.NewtonTotalLagrangian">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.NonLinear.</span></span><span class="sig-name descname"><span class="pre">NewtonTotalLagrangian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.NewtonTotalLagrangian" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.NonLinear.NonLinearSolver" title="FEM.Solvers.NonLinear.NonLinearSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonLinearSolver</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.NewtonTotalLagrangian.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Solvers.NonLinear.NewtonTotalLagrangian.solve" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system using newtons method</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.NonLinearSolver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.NonLinear.</span></span><span class="sig-name descname"><span class="pre">NonLinearSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.NonLinear.NonLinearSolver" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.Solver.Solver" title="FEM.Solvers.Solver.Solver"><code class="xref py py-class docutils literal notranslate"><span class="pre">Solver</span></code></a></p>
-<p>General class for non lineal solvers
-:param tol: Tolerance for the maximum absolute value for the delta vector
-:type tol: float
-:param n: Maximum number of iterations per step
-:type n: int</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.NonLinear.NonLinearSolver.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Solvers.NonLinear.NonLinearSolver.run" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system using newtons method</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="fem-solvers-nonlinear-module">
+<h2>FEM.Solvers.NonLinear module<a class="headerlink" href="#fem-solvers-nonlinear-module" title="Link to this heading">¶</a></h2>
 </section>
-<section id="module-FEM.Solvers.Solver">
-<span id="fem-solvers-solver-module"></span><h2>FEM.Solvers.Solver module<a class="headerlink" href="#module-FEM.Solvers.Solver" title="Link to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.Solver.Solver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.Solver.</span></span><span class="sig-name descname"><span class="pre">Solver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Solver.Solver" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Base Finite Element Solver.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.Solver.Solver.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Solver.Solver.run" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.Solver.Solver.setSolution">
-<span class="sig-name descname"><span class="pre">setSolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Solvers.Solver.Solver.setSolution" title="Link to this definition">¶</a></dt>
-<dd><p>Sets the solution to the FEM Object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>step</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of solution. Defaults to the last solution found.</p></li>
-<li><p><strong>elements</strong> (<em>bool</em><em>, </em><em>optional</em>) – To pass the general solution to the domain elements. Defaults to false.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<section id="fem-solvers-solver-module">
+<h2>FEM.Solvers.Solver module<a class="headerlink" href="#fem-solvers-solver-module" title="Link to this heading">¶</a></h2>
 </section>
-<section id="module-FEM.Solvers.Transient">
-<span id="fem-solvers-transient-module"></span><h2>FEM.Solvers.Transient module<a class="headerlink" href="#module-FEM.Solvers.Transient" title="Link to this heading">¶</a></h2>
-<p>Define the structure of a lineal finite element solver</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="FEM.Solvers.Transient.Parabolic">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Solvers.Transient.</span></span><span class="sig-name descname"><span class="pre">Parabolic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FEMObject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="FEM.html#FEM.Core.Core" title="FEM.Core.Core"><span class="pre">Core</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Transient.Parabolic" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#FEM.Solvers.Solver.Solver" title="FEM.Solvers.Solver.Solver"><code class="xref py py-class docutils literal notranslate"><span class="pre">Solver</span></code></a></p>
-<p>Lineal Finite Element Solver.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="FEM.Solvers.Transient.Parabolic.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Solvers.Transient.Parabolic.run" title="Link to this definition">¶</a></dt>
-<dd><p>Solves the equation system</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="fem-solvers-transient-module">
+<h2>FEM.Solvers.Transient module<a class="headerlink" href="#fem-solvers-transient-module" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -557,67 +340,10 @@
             <ul>
 <li><a class="reference internal" href="#">FEM.Solvers package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-FEM.Solvers.Linear">FEM.Solvers.Linear module</a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.Linear.LinealEigen"><code class="docutils literal notranslate"><span class="pre">LinealEigen</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.Linear.LinealEigen.run"><code class="docutils literal notranslate"><span class="pre">LinealEigen.run()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#FEM.Solvers.Linear.Linear"><code class="docutils literal notranslate"><span class="pre">Linear</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.Linear.Linear.run"><code class="docutils literal notranslate"><span class="pre">Linear.run()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#FEM.Solvers.Linear.LinearSparse"><code class="docutils literal notranslate"><span class="pre">LinearSparse</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.Linear.LinearSparse.run"><code class="docutils literal notranslate"><span class="pre">LinearSparse.run()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-FEM.Solvers.NonLinear">FEM.Solvers.NonLinear module</a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.DirectIteration"><code class="docutils literal notranslate"><span class="pre">DirectIteration</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.DirectIteration.solve"><code class="docutils literal notranslate"><span class="pre">DirectIteration.solve()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.LoadControl"><code class="docutils literal notranslate"><span class="pre">LoadControl</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.LoadControl.run"><code class="docutils literal notranslate"><span class="pre">LoadControl.run()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.LoadControl.set_increments"><code class="docutils literal notranslate"><span class="pre">LoadControl.set_increments()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.MGDCM"><code class="docutils literal notranslate"><span class="pre">MGDCM</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.MGDCM.get_dld"><code class="docutils literal notranslate"><span class="pre">MGDCM.get_dld()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.MGDCM.set_delta_lambda_bar"><code class="docutils literal notranslate"><span class="pre">MGDCM.set_delta_lambda_bar()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.MGDCM.set_increments"><code class="docutils literal notranslate"><span class="pre">MGDCM.set_increments()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.MGDCM.solve"><code class="docutils literal notranslate"><span class="pre">MGDCM.solve()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.Newton"><code class="docutils literal notranslate"><span class="pre">Newton</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.Newton.solve"><code class="docutils literal notranslate"><span class="pre">Newton.solve()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.NewtonTotalLagrangian"><code class="docutils literal notranslate"><span class="pre">NewtonTotalLagrangian</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.NewtonTotalLagrangian.solve"><code class="docutils literal notranslate"><span class="pre">NewtonTotalLagrangian.solve()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.NonLinearSolver"><code class="docutils literal notranslate"><span class="pre">NonLinearSolver</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.NonLinear.NonLinearSolver.run"><code class="docutils literal notranslate"><span class="pre">NonLinearSolver.run()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-FEM.Solvers.Solver">FEM.Solvers.Solver module</a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.Solver.Solver"><code class="docutils literal notranslate"><span class="pre">Solver</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.Solver.Solver.run"><code class="docutils literal notranslate"><span class="pre">Solver.run()</span></code></a></li>
-<li><a class="reference internal" href="#FEM.Solvers.Solver.Solver.setSolution"><code class="docutils literal notranslate"><span class="pre">Solver.setSolution()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-FEM.Solvers.Transient">FEM.Solvers.Transient module</a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.Transient.Parabolic"><code class="docutils literal notranslate"><span class="pre">Parabolic</span></code></a><ul>
-<li><a class="reference internal" href="#FEM.Solvers.Transient.Parabolic.run"><code class="docutils literal notranslate"><span class="pre">Parabolic.run()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#fem-solvers-linear-module">FEM.Solvers.Linear module</a></li>
+<li><a class="reference internal" href="#fem-solvers-nonlinear-module">FEM.Solvers.NonLinear module</a></li>
+<li><a class="reference internal" href="#fem-solvers-solver-module">FEM.Solvers.Solver module</a></li>
+<li><a class="reference internal" href="#fem-solvers-transient-module">FEM.Solvers.Transient module</a></li>
 </ul>
 </li>
 </ul>
