@@ -264,8 +264,8 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="fem-elements-continumelements-package">
-<h1>FEM.Elements.ContinumElements package<a class="headerlink" href="#fem-elements-continumelements-package" title="Link to this heading">¶</a></h1>
+          <section id="module-FEM.Elements.ContinumElements">
+<span id="fem-elements-continumelements-package"></span><h1>FEM.Elements.ContinumElements package<a class="headerlink" href="#module-FEM.Elements.ContinumElements" title="Link to this heading">¶</a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
@@ -531,11 +531,257 @@
 </dd></dl>
 
 </section>
-<section id="fem-elements-continumelements-shells-module">
-<h2>FEM.Elements.ContinumElements.Shells module<a class="headerlink" href="#fem-elements-continumelements-shells-module" title="Link to this heading">¶</a></h2>
+<section id="module-FEM.Elements.ContinumElements.Shells">
+<span id="fem-elements-continumelements-shells-module"></span><h2>FEM.Elements.ContinumElements.Shells module<a class="headerlink" href="#module-FEM.Elements.ContinumElements.Shells" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.QuadShellLinear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Shells.</span></span><span class="sig-name descname"><span class="pre">QuadShellLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.QuadShellLinear" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase" title="FEM.Elements.ContinumElements.Shells.ShellBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShellBase</span></code></a>, <a class="reference internal" href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral" title="FEM.Elements.E2D.Quadrilateral.Quadrilateral"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quadrilateral</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Shells.</span></span><span class="sig-name descname"><span class="pre">ShellBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase" title="FEM.Elements.ContinumElements.ContinumBase.ContinumBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContinumBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BL">
+<span class="sig-name descname"><span class="pre">calculate_BL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpxs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BL" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the BL matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BNL">
+<span class="sig-name descname"><span class="pre">calculate_BNL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpxs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BNL" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the BNL matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.calculate_deformation_gradients_legacy">
+<span class="sig-name descname"><span class="pre">calculate_deformation_gradients_legacy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_deformation_gradients_legacy" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the deformation gradients for the shell element.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.calculate_dpxs">
+<span class="sig-name descname"><span class="pre">calculate_dpxs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">J_INV</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_dpxs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.calculate_e1_e2">
+<span class="sig-name descname"><span class="pre">calculate_e1_e2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_e1_e2" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the e1 and e2 vectors for the shell element.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.calculate_ls">
+<span class="sig-name descname"><span class="pre">calculate_ls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_ls" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.elementMatrices">
+<span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.elementMatrices" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate element matrices and vectors.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.get_jacobians">
+<span class="sig-name descname"><span class="pre">get_jacobians</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.get_jacobians" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.get_local_jacobian">
+<span class="sig-name descname"><span class="pre">get_local_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dni</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.get_local_jacobian" title="Link to this definition">¶</a></dt>
+<dd><p>Get the local Jacobian matrix for the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>jac</strong> (<em>np.ndarray</em>) – The Jacobian matrix from the integration points.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The local Jacobian matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.organize_S">
+<span class="sig-name descname"><span class="pre">organize_S</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.organize_S" title="Link to this definition">¶</a></dt>
+<dd><p>Organize the stress tensor S and the constitutive matrix C.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.project_coords">
+<span class="sig-name descname"><span class="pre">project_coords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.project_coords" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.project_disp">
+<span class="sig-name descname"><span class="pre">project_disp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.project_disp" title="Link to this definition">¶</a></dt>
+<dd><p>Project the displacements to the original coordinates system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.rotation_matrix">
+<span class="sig-name descname"><span class="pre">rotation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.rotation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the rotation matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.set_thickness">
+<span class="sig-name descname"><span class="pre">set_thickness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_gauss_thickness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.set_thickness" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.ShellBase.transformation_matrix">
+<span class="sig-name descname"><span class="pre">transformation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.ShellBase.transformation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the transformation matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells.TriShelleLinear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Shells.</span></span><span class="sig-name descname"><span class="pre">TriShelleLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells.TriShelleLinear" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase" title="FEM.Elements.ContinumElements.Shells.ShellBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShellBase</span></code></a>, <a class="reference internal" href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular" title="FEM.Elements.E2D.LTriangular.LTriangular"><code class="xref py py-class docutils literal notranslate"><span class="pre">LTriangular</span></code></a></p>
+</dd></dl>
+
 </section>
-<section id="fem-elements-continumelements-shells-antiguo-module">
-<h2>FEM.Elements.ContinumElements.Shells_antiguo module<a class="headerlink" href="#fem-elements-continumelements-shells-antiguo-module" title="Link to this heading">¶</a></h2>
+<section id="module-FEM.Elements.ContinumElements.Shells_antiguo">
+<span id="fem-elements-continumelements-shells-antiguo-module"></span><h2>FEM.Elements.ContinumElements.Shells_antiguo module<a class="headerlink" href="#module-FEM.Elements.ContinumElements.Shells_antiguo" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.QuadShellLinear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Shells_antiguo.</span></span><span class="sig-name descname"><span class="pre">QuadShellLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.QuadShellLinear" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase" title="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShellBase</span></code></a>, <a class="reference internal" href="FEM.Elements.E2D.html#FEM.Elements.E2D.Quadrilateral.Quadrilateral" title="FEM.Elements.E2D.Quadrilateral.Quadrilateral"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quadrilateral</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Shells_antiguo.</span></span><span class="sig-name descname"><span class="pre">ShellBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.ContinumBase.ContinumBase" title="FEM.Elements.ContinumElements.ContinumBase.ContinumBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContinumBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_A">
+<span class="sig-name descname"><span class="pre">calculate_A</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_A" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_BL">
+<span class="sig-name descname"><span class="pre">calculate_BL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpx</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_BL" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the BL matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_BNL">
+<span class="sig-name descname"><span class="pre">calculate_BNL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dpx</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_BNL" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the BNL matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_deformation_gradients">
+<span class="sig-name descname"><span class="pre">calculate_deformation_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_deformation_gradients" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the deformation gradients for the shell element.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_dpxs">
+<span class="sig-name descname"><span class="pre">calculate_dpxs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_dpxs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_e1_e2">
+<span class="sig-name descname"><span class="pre">calculate_e1_e2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_e1_e2" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the e1 and e2 vectors for the shell element.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.elementMatrices">
+<span class="sig-name descname"><span class="pre">elementMatrices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.elementMatrices" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate element matrices and vectors.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.get_jacobians">
+<span class="sig-name descname"><span class="pre">get_jacobians</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.get_jacobians" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.get_local_jacobian">
+<span class="sig-name descname"><span class="pre">get_local_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dni</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.get_local_jacobian" title="Link to this definition">¶</a></dt>
+<dd><p>Get the local Jacobian matrix for the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>jac</strong> (<em>np.ndarray</em>) – The Jacobian matrix from the integration points.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The local Jacobian matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.organize_S">
+<span class="sig-name descname"><span class="pre">organize_S</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.organize_S" title="Link to this definition">¶</a></dt>
+<dd><p>Organize the stress tensor S and the constitutive matrix C.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.project_coords">
+<span class="sig-name descname"><span class="pre">project_coords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.project_coords" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.project_disp">
+<span class="sig-name descname"><span class="pre">project_disp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.project_disp" title="Link to this definition">¶</a></dt>
+<dd><p>Project the displacements to the original coordinates system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.rotation_matrix">
+<span class="sig-name descname"><span class="pre">rotation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.rotation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the rotation matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.set_thickness">
+<span class="sig-name descname"><span class="pre">set_thickness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_gauss_thickness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.set_thickness" title="Link to this definition">¶</a></dt>
+<dd><p>Set the thickness of the shell element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<em>float</em>) – Thickness of the shell element.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.transformation_matrix">
+<span class="sig-name descname"><span class="pre">transformation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.transformation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the transformation matrix for the element.</p>
+<p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_antiguo.TriShelleLinear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Elements.ContinumElements.Shells_antiguo.</span></span><span class="sig-name descname"><span class="pre">TriShelleLinear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_antiguo.TriShelleLinear" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase" title="FEM.Elements.ContinumElements.Shells_antiguo.ShellBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShellBase</span></code></a>, <a class="reference internal" href="FEM.Elements.E2D.html#FEM.Elements.E2D.LTriangular.LTriangular" title="FEM.Elements.E2D.LTriangular.LTriangular"><code class="xref py py-class docutils literal notranslate"><span class="pre">LTriangular</span></code></a></p>
+</dd></dl>
+
 </section>
 </section>
 
@@ -643,8 +889,52 @@
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Membranes.TriMembraneLinear"><code class="docutils literal notranslate"><span class="pre">TriMembraneLinear</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fem-elements-continumelements-shells-module">FEM.Elements.ContinumElements.Shells module</a></li>
-<li><a class="reference internal" href="#fem-elements-continumelements-shells-antiguo-module">FEM.Elements.ContinumElements.Shells_antiguo module</a></li>
+<li><a class="reference internal" href="#module-FEM.Elements.ContinumElements.Shells">FEM.Elements.ContinumElements.Shells module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.QuadShellLinear"><code class="docutils literal notranslate"><span class="pre">QuadShellLinear</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase"><code class="docutils literal notranslate"><span class="pre">ShellBase</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BL"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_BL()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_BNL"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_BNL()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_deformation_gradients_legacy"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_deformation_gradients_legacy()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_dpxs"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_dpxs()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_e1_e2"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_e1_e2()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.calculate_ls"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_ls()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.elementMatrices"><code class="docutils literal notranslate"><span class="pre">ShellBase.elementMatrices()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.get_jacobians"><code class="docutils literal notranslate"><span class="pre">ShellBase.get_jacobians()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.get_local_jacobian"><code class="docutils literal notranslate"><span class="pre">ShellBase.get_local_jacobian()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.organize_S"><code class="docutils literal notranslate"><span class="pre">ShellBase.organize_S()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.project_coords"><code class="docutils literal notranslate"><span class="pre">ShellBase.project_coords()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.project_disp"><code class="docutils literal notranslate"><span class="pre">ShellBase.project_disp()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.rotation_matrix"><code class="docutils literal notranslate"><span class="pre">ShellBase.rotation_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.set_thickness"><code class="docutils literal notranslate"><span class="pre">ShellBase.set_thickness()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.ShellBase.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">ShellBase.transformation_matrix()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells.TriShelleLinear"><code class="docutils literal notranslate"><span class="pre">TriShelleLinear</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Elements.ContinumElements.Shells_antiguo">FEM.Elements.ContinumElements.Shells_antiguo module</a><ul>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.QuadShellLinear"><code class="docutils literal notranslate"><span class="pre">QuadShellLinear</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase"><code class="docutils literal notranslate"><span class="pre">ShellBase</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_A"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_A()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_BL"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_BL()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_BNL"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_BNL()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_deformation_gradients"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_deformation_gradients()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_dpxs"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_dpxs()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.calculate_e1_e2"><code class="docutils literal notranslate"><span class="pre">ShellBase.calculate_e1_e2()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.elementMatrices"><code class="docutils literal notranslate"><span class="pre">ShellBase.elementMatrices()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.get_jacobians"><code class="docutils literal notranslate"><span class="pre">ShellBase.get_jacobians()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.get_local_jacobian"><code class="docutils literal notranslate"><span class="pre">ShellBase.get_local_jacobian()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.organize_S"><code class="docutils literal notranslate"><span class="pre">ShellBase.organize_S()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.project_coords"><code class="docutils literal notranslate"><span class="pre">ShellBase.project_coords()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.project_disp"><code class="docutils literal notranslate"><span class="pre">ShellBase.project_disp()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.rotation_matrix"><code class="docutils literal notranslate"><span class="pre">ShellBase.rotation_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.set_thickness"><code class="docutils literal notranslate"><span class="pre">ShellBase.set_thickness()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.ShellBase.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">ShellBase.transformation_matrix()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_antiguo.TriShelleLinear"><code class="docutils literal notranslate"><span class="pre">TriShelleLinear</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

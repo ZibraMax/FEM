@@ -264,19 +264,749 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="fem-geometry-package">
-<h1>FEM.Geometry package<a class="headerlink" href="#fem-geometry-package" title="Link to this heading">¶</a></h1>
+          <section id="module-FEM.Geometry">
+<span id="fem-geometry-package"></span><h1>FEM.Geometry package<a class="headerlink" href="#module-FEM.Geometry" title="Link to this heading">¶</a></h1>
+<p>Meshing and geometry definitions</p>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
-<section id="fem-geometry-geometree-module">
-<h2>FEM.Geometry.Geometree module<a class="headerlink" href="#fem-geometry-geometree-module" title="Link to this heading">¶</a></h2>
+<section id="module-FEM.Geometry.Geometree">
+<span id="fem-geometry-geometree-module"></span><h2>FEM.Geometry.Geometree module<a class="headerlink" href="#module-FEM.Geometry.Geometree" title="Link to this heading">¶</a></h2>
+<p>DEPRECATED</p>
+<p>This class was my introduction to OctTrees. I implemented all geometry with this class. Then, I realized SciPy has a KDTree implementation, faster and better. IDK what to tink about it</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometree.</span></span><span class="sig-name descname"><span class="pre">Geometree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boundary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.add_point">
+<span class="sig-name descname"><span class="pre">add_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.add_point" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.contains" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.draw" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.draw_points">
+<span class="sig-name descname"><span class="pre">draw_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.draw_points" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.graph_query_range">
+<span class="sig-name descname"><span class="pre">graph_query_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.graph_query_range" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.min_search_size">
+<span class="sig-name descname"><span class="pre">min_search_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.min_search_size" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.query_first_point_set">
+<span class="sig-name descname"><span class="pre">query_first_point_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.query_first_point_set" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.query_range">
+<span class="sig-name descname"><span class="pre">query_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quadrant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.query_range" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.query_range_point_radius">
+<span class="sig-name descname"><span class="pre">query_range_point_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.query_range_point_radius" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Geometree.subdivide">
+<span class="sig-name descname"><span class="pre">subdivide</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometree.Geometree.subdivide" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Quadrant3D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometree.</span></span><span class="sig-name descname"><span class="pre">Quadrant3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Quadrant3D" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Quadrant3D.boxes_disjoint">
+<span class="sig-name descname"><span class="pre">boxes_disjoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Quadrant3D.boxes_disjoint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Quadrant3D.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometree.Quadrant3D.contains" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Quadrant3D.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Quadrant3D.draw" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Quadrant3D.draw_">
+<span class="sig-name descname"><span class="pre">draw_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Quadrant3D.draw_" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Quadrant3D.intesects_quadrant">
+<span class="sig-name descname"><span class="pre">intesects_quadrant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometree.Quadrant3D.intesects_quadrant" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Quadrant3D.subdivide">
+<span class="sig-name descname"><span class="pre">subdivide</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometree.Quadrant3D.subdivide" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Quadrant3DSpherical">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometree.</span></span><span class="sig-name descname"><span class="pre">Quadrant3DSpherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometree.Quadrant3DSpherical" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3D" title="FEM.Geometry.Geometree.Quadrant3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quadrant3D</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometree.Quadrant3DSpherical.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometree.Quadrant3DSpherical.contains" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="fem-geometry-geometry-module">
-<h2>FEM.Geometry.Geometry module<a class="headerlink" href="#fem-geometry-geometry-module" title="Link to this heading">¶</a></h2>
+<section id="module-FEM.Geometry.Geometry">
+<span id="fem-geometry-geometry-module"></span><h2>FEM.Geometry.Geometry module<a class="headerlink" href="#module-FEM.Geometry.Geometry" title="Link to this heading">¶</a></h2>
+<p>Geometry definitions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Delaunay">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Delaunay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holes_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fillets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_segs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Delaunay" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D" title="FEM.Geometry.Geometry.Geometry2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geometry2D</span></code></a></p>
+<p>Generate Delaunay triangulation using Triangle</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices</strong> (<em>list</em>) – matrix containing the domain vertices coordinates</p></li>
+<li><p><strong>params</strong> (<em>str</em>) – Triangulation parameters, use the aux function _strdelaunay</p></li>
+<li><p><strong>nvn</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of variables per node. Defaults to 1.</p></li>
+<li><p><strong>holes_dict</strong> (<em>list</em><em>, </em><em>optional</em>) – A list of holes dicts. Defaults to None.</p></li>
+<li><p><strong>fillets</strong> (<em>list</em><em>, </em><em>optional</em>) – A list of fillets. Defaults to None.</p></li>
+<li><p><strong>fast</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the created elements will have have the fast propertie (see Element class docs)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Delaunay.extrude">
+<span class="sig-name descname"><span class="pre">extrude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D" title="FEM.Geometry.Geometry.Geometry3D"><span class="pre">Geometry3D</span></a></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Delaunay.extrude" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><span class="pre">Region</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Define a general geometry structure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dictionary</strong> (<em>list</em>) – Matrix with element definitions. Each row is an element. The gdl are defined in columns</p></li>
+<li><p><strong>gdls</strong> (<em>list</em>) – List of domain coordinates</p></li>
+<li><p><strong>types</strong> (<em>list</em>) – Types of each element</p></li>
+<li><p><strong>nvn</strong> (<em>int</em><em>, </em><em>optional</em>) – Nunmber of variables per node. Defaults to 1.</p></li>
+<li><p><strong>regions</strong> (<em>list</em><em>, </em><em>optional</em>) – List of domain regions. Defaults to [].</p></li>
+<li><p><strong>fast</strong> (<em>bool</em>) – If True, the created elements will have have the fast propertie (see Element class docs)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.addRegions">
+<span class="sig-name descname"><span class="pre">addRegions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><span class="pre">Region</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.addRegions" title="Link to this definition">¶</a></dt>
+<dd><p>Adds regions to an already created geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>regions</strong> (<em>list</em><em>[</em><a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><em>Region</em></a><em>]</em>) – Regions to be created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.calculateCentroids">
+<span class="sig-name descname"><span class="pre">calculateCentroids</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.calculateCentroids" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate elements centroids</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.calculateRegions">
+<span class="sig-name descname"><span class="pre">calculateRegions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.calculateRegions" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the nodes of the geometry regions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.cbFromRegion">
+<span class="sig-name descname"><span class="pre">cbFromRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.cbFromRegion" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a list of boundary conditions from specified boundary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> (<em>int</em>) – region number</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – Value of the bc</p></li>
+<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number, starts with 1. Defaults to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of boundary conditions that can be concatenated or assigned to the geometry</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.cbeAllRegions">
+<span class="sig-name descname"><span class="pre">cbeAllRegions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.cbeAllRegions" title="Link to this definition">¶</a></dt>
+<dd><p>Set all regions boundary conditions to the specified value to all the variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – Value of the boundary condition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.detectNonLocal">
+<span class="sig-name descname"><span class="pre">detectNonLocal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.detectNonLocal" title="Link to this definition">¶</a></dt>
+<dd><p>Detect adjacent elements between a distance Lr. Uses KDTrees</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lr</strong> (<em>float</em>) – Distance to detect adjacent elements</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Non local element dictionary</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.detectNonLocalLegacy">
+<span class="sig-name descname"><span class="pre">detectNonLocalLegacy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.detectNonLocalLegacy" title="Link to this definition">¶</a></dt>
+<dd><p>Detect adjacent elements between a distance Lr. Uses iterative approach
+:param lr: Distance to detect adjacent elements
+:type lr: float</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Non local element dictionary</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.exportJSON">
+<span class="sig-name descname"><span class="pre">exportJSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.exportJSON" title="Link to this definition">¶</a></dt>
+<dd><p>Export geometry definition as JSON file or JSON string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – If given, a JSON file is created. Defaults to None.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>JSON string</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.generateElements">
+<span class="sig-name descname"><span class="pre">generateElements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.generateElements" title="Link to this definition">¶</a></dt>
+<dd><p>Generate elements structure</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.giveElementsOfRegion">
+<span class="sig-name descname"><span class="pre">giveElementsOfRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">centroid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.giveElementsOfRegion" title="Link to this definition">¶</a></dt>
+<dd><p>Give elements over a region</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> (<em>int</em>) – region number. Start with 0</p></li>
+<li><p><strong>centroid</strong> (<em>bool</em>) – To use the centroid as find method. Defaults to false. Use the nodes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of elements in the specified region</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.giveNodesOfRegion">
+<span class="sig-name descname"><span class="pre">giveNodesOfRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.giveNodesOfRegion" title="Link to this definition">¶</a></dt>
+<dd><p>Give nodes over a region</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region</strong> (<em>int</em>) – region number. Start with 0</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of nodes in the specified region</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.giveRegions">
+<span class="sig-name descname"><span class="pre">giveRegions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.giveRegions" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a list of regions coordinates matrix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of regions coordinates matrix</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.importJSON">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">importJSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.importJSON" title="Link to this definition">¶</a></dt>
+<dd><p>Import geometry definition from JSON file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Path to the JSON file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Geometry generated using the JSON file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry">Geometry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.initialize" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the total number of GDL’s and generates the elements structure</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.maskFromRegions">
+<span class="sig-name descname"><span class="pre">maskFromRegions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.maskFromRegions" title="Link to this definition">¶</a></dt>
+<dd><p>Create the display mask from geometry regions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.setCbe">
+<span class="sig-name descname"><span class="pre">setCbe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cbe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.setCbe" title="Link to this definition">¶</a></dt>
+<dd><p>This method have to be used to assign essential boundary conditions. Thes method prevents to assign duplicated boundary conditions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cbe</strong> (<em>list</em>) – Boundary conditions to be applied</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry.show" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a geometry graph</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry1D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Geometry1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry1D" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geometry</span></code></a></p>
+<p>Define an 1D geometry structure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dictionary</strong> (<em>list</em>) – Matrix with element definitions. Each row is an element. The gdl are defined in columns</p></li>
+<li><p><strong>gdls</strong> (<em>list</em>) – List of domain coordinates</p></li>
+<li><p><strong>types</strong> (<em>list</em>) – Types of each element</p></li>
+<li><p><strong>nvn</strong> (<em>int</em><em>, </em><em>optional</em>) – Nunmber of variables per node. Defaults to 1.</p></li>
+<li><p><strong>fast</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the created elements will have have the fast propertie (see Element class docs)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry1D.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry1D.show" title="Link to this definition">¶</a></dt>
+<dd><p>Create a geometry graph</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Geometry2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><span class="pre">Region</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geometry</span></code></a></p>
+<p>Creates a 2D geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dictionary</strong> (<em>list</em>) – Matrix with element definitions. Each row is an element. The gdl are defined in columns</p></li>
+<li><p><strong>gdls</strong> (<em>list</em>) – List of domain coordinates</p></li>
+<li><p><strong>types</strong> (<em>list</em>) – Types of each element</p></li>
+<li><p><strong>nvn</strong> (<em>int</em><em>, </em><em>optional</em>) – Nunmber of variables per node. Defaults to 1.</p></li>
+<li><p><strong>regions</strong> (<em>list</em><em>[</em><a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><em>Region</em></a><em>]</em><em>, </em><em>optional</em>) – List of regions to apply in the geometry. Defaults to None.</p></li>
+<li><p><strong>fast</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the created elements will have have the fast propertie (see Element class docs)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.cbOnHole">
+<span class="sig-name descname"><span class="pre">cbOnHole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ea</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.283185307179586</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.cbOnHole" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a list of boundary conditions from specified hole.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hole</strong> (<em>int</em>) – Hole index in wich load will be applied</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – Value of the bc</p></li>
+<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number, starts with 1. Defaults to 1.</p></li>
+<li><p><strong>sa</strong> (<em>float</em><em>, </em><em>optional</em>) – Start face angle. Defaults to 0.</p></li>
+<li><p><strong>ea</strong> (<em>float</em><em>, </em><em>optional</em>) – Finish face angle. Defaults to <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of boundary conditions that can be concatenated or assigned to the geometry</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.generateBCFromCoords">
+<span class="sig-name descname"><span class="pre">generateBCFromCoords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.generateBCFromCoords" title="Link to this definition">¶</a></dt>
+<dd><p>Generates boundary conditions by coordinates. The boundary condition is applied to the nearest node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – X coordinate of point</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Y coordinate of point</p></li>
+<li><p><strong>value</strong> (<em>float</em><em>, </em><em>optional</em>) – Value of the boundary condition. Defaults to 0.</p></li>
+<li><p><strong>nv</strong> (<em>int</em><em>, </em><em>optional</em>) – Variable number. The first variable is 1. Defaults to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matrix of boundary coordinates that can be concatenated</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.generateRegionFromCoords">
+<span class="sig-name descname"><span class="pre">generateRegionFromCoords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.generateRegionFromCoords" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a geometry Region1D by specified coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p0</strong> (<em>list</em>) – region start point</p></li>
+<li><p><strong>p1</strong> (<em>list</em>) – region end point</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.loadOnHole">
+<span class="sig-name descname"><span class="pre">loadOnHole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ea</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.loadOnHole" title="Link to this definition">¶</a></dt>
+<dd><p>Assign loads over a hole.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hole</strong> (<em>int</em>) – Hole index in wich load will be applied</p></li>
+<li><p><strong>sa</strong> (<em>float</em><em>, </em><em>optional</em>) – Start face angle. Defaults to 0.</p></li>
+<li><p><strong>ea</strong> (<em>float</em><em>, </em><em>optional</em>) – Finish face angle. Defaults to <span class="math notranslate nohighlight">\(2\pi\)</span>.</p></li>
+<li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function x component. Defaults to None.</p></li>
+<li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function y component. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.loadOnRegion">
+<span class="sig-name descname"><span class="pre">loadOnRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.loadOnRegion" title="Link to this definition">¶</a></dt>
+<dd><p>Assign a load over a geometry region.</p>
+<p>The start point of region is the 0 point of load
+The end point of region is the end point of load</p>
+<p>Load must be defined as a function (normal or lambda)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> (<em>int</em>) – region in wich load will be applied</p></li>
+<li><p><strong>fx</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function x component. Defaults to None.</p></li>
+<li><p><strong>fy</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function y component. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.loadOnRegionVF">
+<span class="sig-name descname"><span class="pre">loadOnRegionVF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.loadOnRegionVF" title="Link to this definition">¶</a></dt>
+<dd><p>Assign a load over a geometry region.</p>
+<p>The start point of region is the 0 point of load
+The end point of region is the end point of load</p>
+<p>Load must be defined as a function (normal or lambda)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> (<em>int</em>) – region in wich load will be applied</p></li>
+<li><p><strong>f</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.normalLoadOnRegion">
+<span class="sig-name descname"><span class="pre">normalLoadOnRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.normalLoadOnRegion" title="Link to this definition">¶</a></dt>
+<dd><p>Assign a load over a geometry region.</p>
+<p>The start point of region is the 0 point of load
+The end point of region is the end point of load</p>
+<p>Load must be defined as a function (normal or lambda)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region</strong> (<em>int</em>) – region in wich load will be applied</p></li>
+<li><p><strong>f</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Load Function. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.revolve">
+<span class="sig-name descname"><span class="pre">revolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.revolve" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry2D.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bolita</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_segs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_bc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_bc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry2D.show" title="Link to this definition">¶</a></dt>
+<dd><p>Create a geometry graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>texto</strong> (<em>int</em><em>, </em><em>optional</em>) – Text size. Defaults to 10.</p></li>
+<li><p><strong>bolita</strong> (<em>int</em><em>, </em><em>optional</em>) – Node size. Defaults to 0.</p></li>
+<li><p><strong>draw_segs</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw or not draw the regions. Defaults to True.</p></li>
+<li><p><strong>draw_labels</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw or not draw element labels. Defaults to False.</p></li>
+<li><p><strong>draw_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw boundary conditions. Defaults to False.</p></li>
+<li><p><strong>label_bc</strong> (<em>bool</em><em>, </em><em>optional</em>) – To draw labels on boundary conditions. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Geometry3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><span class="pre">Region</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geometry</span></code></a></p>
+<p>Creates a 3D geometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dictionary</strong> (<em>list</em>) – Matrix with element definitions. Each row is an element. The gdl are defined in columns</p></li>
+<li><p><strong>gdls</strong> (<em>list</em>) – List of domain coordinates</p></li>
+<li><p><strong>types</strong> (<em>list</em>) – Types of each element</p></li>
+<li><p><strong>nvn</strong> (<em>int</em><em>, </em><em>optional</em>) – Nunmber of variables per node. Defaults to 1.</p></li>
+<li><p><strong>regions</strong> (<em>list</em><em>[</em><a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><em>Region</em></a><em>]</em><em>, </em><em>optional</em>) – List of regions to apply in the geometry. Defaults to None.</p></li>
+<li><p><strong>fast</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the created elements will have have the fast propertie (see Element class docs)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.detectBoundaryElements">
+<span class="sig-name descname"><span class="pre">detectBoundaryElements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElements" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.detectBoundaryElementsLegacy">
+<span class="sig-name descname"><span class="pre">detectBoundaryElementsLegacy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElementsLegacy" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.isBoundary">
+<span class="sig-name descname"><span class="pre">isBoundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.isBoundary" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Geometry3D.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Geometry3D.show" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a geometry graph</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Lineal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Lineal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lenght</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Lineal" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry1D" title="FEM.Geometry.Geometry.Geometry1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geometry1D</span></code></a></p>
+<p>Generate a evenly spaced elements domain</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lenght</strong> (<em>float</em>) – Domain lenght</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – Number of elements</p></li>
+<li><p><strong>o</strong> (<em>int</em>) – Element order, can be 1 or 2</p></li>
+<li><p><strong>nvn</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of variables per node. Defaults to 1.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Orimetry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Geometry.</span></span><span class="sig-name descname"><span class="pre">Orimetry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><span class="pre">Region</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Geometry.Orimetry" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D" title="FEM.Geometry.Geometry.Geometry3D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geometry3D</span></code></a></p>
+<p>docstring for Orimetry</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Geometry.Orimetry.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Geometry.Orimetry.initialize" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the total number of GDL’s and generates the elements structure</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="fem-geometry-region-module">
-<h2>FEM.Geometry.Region module<a class="headerlink" href="#fem-geometry-region-module" title="Link to this heading">¶</a></h2>
+<section id="module-FEM.Geometry.Region">
+<span id="fem-geometry-region-module"></span><h2>FEM.Geometry.Region module<a class="headerlink" href="#module-FEM.Geometry.Region" title="Link to this heading">¶</a></h2>
+<p>Defines geometry region. Regions are used to set boundary conditions and loads to 2D and 3D problems</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Region.Region">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Region.</span></span><span class="sig-name descname"><span class="pre">Region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Region.Region" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Creates a general region</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coords</strong> (<em>np.ndarray</em>) – Coordinates matrix of therefion. Each row is a coordinate, each column is a dimension.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Region.Region.setNodesOfRegion">
+<span class="sig-name descname"><span class="pre">setNodesOfRegion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><span class="pre">Geometry</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#FEM.Geometry.Region.Region.setNodesOfRegion" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the nodes of the geometry which are inside the region.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> (<a class="reference internal" href="#FEM.Geometry.Geometry.Geometry" title="FEM.Geometry.Geometry.Geometry"><em>Geometry</em></a>) – Input geometry</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Near tolerance. Defaults to 10**(-5).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Region.Region1D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Region.</span></span><span class="sig-name descname"><span class="pre">Region1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Region.Region1D" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><code class="xref py py-class docutils literal notranslate"><span class="pre">Region</span></code></a></p>
+<p>Creates a line region (1D element)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coords</strong> (<em>np.ndarray</em>) – Coordinate matrix. Must be of two rows and 2 or 3 columns. 2 columns for 2D region, 3 columns for 3D region.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Region.Region1D.isBetween">
+<span class="sig-name descname"><span class="pre">isBetween</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Geometry.Region.Region1D.isBetween" title="Link to this definition">¶</a></dt>
+<dd><p>Check if a given point is inside the region.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<em>np.ndarray</em>) – Point to be tested</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerance for check. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the point is inside the region</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="FEM.Geometry.Region.Region2D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FEM.Geometry.Region.</span></span><span class="sig-name descname"><span class="pre">Region2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Geometry.Region.Region2D" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#FEM.Geometry.Region.Region" title="FEM.Geometry.Region.Region"><code class="xref py py-class docutils literal notranslate"><span class="pre">Region</span></code></a></p>
+<p>Creates a square region (2D element)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coords</strong> (<em>np.ndarray</em>) – Coordinate matrix. Must be of four rows and 3 columns.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Region.Region2D.isBetween">
+<span class="sig-name descname"><span class="pre">isBetween</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#FEM.Geometry.Region.Region2D.isBetween" title="Link to this definition">¶</a></dt>
+<dd><p>Check if a given point is inside the region.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<em>np.ndarray</em>) – Point to be tested</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Tolerance for check. Defaults to 1*10**(-5).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the point is inside the region</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Geometry.Region.Region2D.pointToPlaneDistance">
+<span class="sig-name descname"><span class="pre">pointToPlaneDistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#FEM.Geometry.Region.Region2D.pointToPlaneDistance" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the distance from a given point to the region.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>np.ndarray</em>) – Point to be tested</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Distance between the plane and the point</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -337,9 +1067,106 @@
             <ul>
 <li><a class="reference internal" href="#">FEM.Geometry package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#fem-geometry-geometree-module">FEM.Geometry.Geometree module</a></li>
-<li><a class="reference internal" href="#fem-geometry-geometry-module">FEM.Geometry.Geometry module</a></li>
-<li><a class="reference internal" href="#fem-geometry-region-module">FEM.Geometry.Region module</a></li>
+<li><a class="reference internal" href="#module-FEM.Geometry.Geometree">FEM.Geometry.Geometree module</a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree"><code class="docutils literal notranslate"><span class="pre">Geometree</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.add_point"><code class="docutils literal notranslate"><span class="pre">Geometree.add_point()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.contains"><code class="docutils literal notranslate"><span class="pre">Geometree.contains()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.draw"><code class="docutils literal notranslate"><span class="pre">Geometree.draw()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.draw_points"><code class="docutils literal notranslate"><span class="pre">Geometree.draw_points()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.graph_query_range"><code class="docutils literal notranslate"><span class="pre">Geometree.graph_query_range()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.min_search_size"><code class="docutils literal notranslate"><span class="pre">Geometree.min_search_size</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.query_first_point_set"><code class="docutils literal notranslate"><span class="pre">Geometree.query_first_point_set()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.query_range"><code class="docutils literal notranslate"><span class="pre">Geometree.query_range()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.query_range_point_radius"><code class="docutils literal notranslate"><span class="pre">Geometree.query_range_point_radius()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Geometree.subdivide"><code class="docutils literal notranslate"><span class="pre">Geometree.subdivide()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3D"><code class="docutils literal notranslate"><span class="pre">Quadrant3D</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3D.boxes_disjoint"><code class="docutils literal notranslate"><span class="pre">Quadrant3D.boxes_disjoint()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3D.contains"><code class="docutils literal notranslate"><span class="pre">Quadrant3D.contains()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3D.draw"><code class="docutils literal notranslate"><span class="pre">Quadrant3D.draw()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3D.draw_"><code class="docutils literal notranslate"><span class="pre">Quadrant3D.draw_()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3D.intesects_quadrant"><code class="docutils literal notranslate"><span class="pre">Quadrant3D.intesects_quadrant()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3D.subdivide"><code class="docutils literal notranslate"><span class="pre">Quadrant3D.subdivide()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3DSpherical"><code class="docutils literal notranslate"><span class="pre">Quadrant3DSpherical</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometree.Quadrant3DSpherical.contains"><code class="docutils literal notranslate"><span class="pre">Quadrant3DSpherical.contains()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Geometry.Geometry">FEM.Geometry.Geometry module</a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Delaunay"><code class="docutils literal notranslate"><span class="pre">Delaunay</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Delaunay.extrude"><code class="docutils literal notranslate"><span class="pre">Delaunay.extrude()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.addRegions"><code class="docutils literal notranslate"><span class="pre">Geometry.addRegions()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.calculateCentroids"><code class="docutils literal notranslate"><span class="pre">Geometry.calculateCentroids()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.calculateRegions"><code class="docutils literal notranslate"><span class="pre">Geometry.calculateRegions()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.cbFromRegion"><code class="docutils literal notranslate"><span class="pre">Geometry.cbFromRegion()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.cbeAllRegions"><code class="docutils literal notranslate"><span class="pre">Geometry.cbeAllRegions()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.detectNonLocal"><code class="docutils literal notranslate"><span class="pre">Geometry.detectNonLocal()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.detectNonLocalLegacy"><code class="docutils literal notranslate"><span class="pre">Geometry.detectNonLocalLegacy()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.exportJSON"><code class="docutils literal notranslate"><span class="pre">Geometry.exportJSON()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.generateElements"><code class="docutils literal notranslate"><span class="pre">Geometry.generateElements()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.giveElementsOfRegion"><code class="docutils literal notranslate"><span class="pre">Geometry.giveElementsOfRegion()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.giveNodesOfRegion"><code class="docutils literal notranslate"><span class="pre">Geometry.giveNodesOfRegion()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.giveRegions"><code class="docutils literal notranslate"><span class="pre">Geometry.giveRegions()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.importJSON"><code class="docutils literal notranslate"><span class="pre">Geometry.importJSON()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.initialize"><code class="docutils literal notranslate"><span class="pre">Geometry.initialize()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.maskFromRegions"><code class="docutils literal notranslate"><span class="pre">Geometry.maskFromRegions()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.setCbe"><code class="docutils literal notranslate"><span class="pre">Geometry.setCbe()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry.show"><code class="docutils literal notranslate"><span class="pre">Geometry.show()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry1D"><code class="docutils literal notranslate"><span class="pre">Geometry1D</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry1D.show"><code class="docutils literal notranslate"><span class="pre">Geometry1D.show()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D"><code class="docutils literal notranslate"><span class="pre">Geometry2D</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D.cbOnHole"><code class="docutils literal notranslate"><span class="pre">Geometry2D.cbOnHole()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D.generateBCFromCoords"><code class="docutils literal notranslate"><span class="pre">Geometry2D.generateBCFromCoords()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D.generateRegionFromCoords"><code class="docutils literal notranslate"><span class="pre">Geometry2D.generateRegionFromCoords()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D.loadOnHole"><code class="docutils literal notranslate"><span class="pre">Geometry2D.loadOnHole()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D.loadOnRegion"><code class="docutils literal notranslate"><span class="pre">Geometry2D.loadOnRegion()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D.loadOnRegionVF"><code class="docutils literal notranslate"><span class="pre">Geometry2D.loadOnRegionVF()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D.normalLoadOnRegion"><code class="docutils literal notranslate"><span class="pre">Geometry2D.normalLoadOnRegion()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D.revolve"><code class="docutils literal notranslate"><span class="pre">Geometry2D.revolve()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry2D.show"><code class="docutils literal notranslate"><span class="pre">Geometry2D.show()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D"><code class="docutils literal notranslate"><span class="pre">Geometry3D</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElements"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBoundaryElements()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.detectBoundaryElementsLegacy"><code class="docutils literal notranslate"><span class="pre">Geometry3D.detectBoundaryElementsLegacy()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.isBoundary"><code class="docutils literal notranslate"><span class="pre">Geometry3D.isBoundary()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Geometry3D.show"><code class="docutils literal notranslate"><span class="pre">Geometry3D.show()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Lineal"><code class="docutils literal notranslate"><span class="pre">Lineal</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Orimetry"><code class="docutils literal notranslate"><span class="pre">Orimetry</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Geometry.Orimetry.initialize"><code class="docutils literal notranslate"><span class="pre">Orimetry.initialize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-FEM.Geometry.Region">FEM.Geometry.Region module</a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Region.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Region.Region.setNodesOfRegion"><code class="docutils literal notranslate"><span class="pre">Region.setNodesOfRegion()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Geometry.Region.Region1D"><code class="docutils literal notranslate"><span class="pre">Region1D</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Region.Region1D.isBetween"><code class="docutils literal notranslate"><span class="pre">Region1D.isBetween()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#FEM.Geometry.Region.Region2D"><code class="docutils literal notranslate"><span class="pre">Region2D</span></code></a><ul>
+<li><a class="reference internal" href="#FEM.Geometry.Region.Region2D.isBetween"><code class="docutils literal notranslate"><span class="pre">Region2D.isBetween()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Geometry.Region.Region2D.pointToPlaneDistance"><code class="docutils literal notranslate"><span class="pre">Region2D.pointToPlaneDistance()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -355,5 +1182,6 @@
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

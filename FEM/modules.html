@@ -269,6 +269,7 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="FEM.html">FEM package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#FEM.importJSON"><code class="docutils literal notranslate"><span class="pre">importJSON()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="FEM.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="FEM.Elements.html">FEM.Elements package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Elements.html#subpackages">Subpackages</a></li>
@@ -278,39 +279,252 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.Geometry.html">FEM.Geometry package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#fem-geometry-geometree-module">FEM.Geometry.Geometree module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#fem-geometry-geometry-module">FEM.Geometry.Geometry module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#fem-geometry-region-module">FEM.Geometry.Region module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#module-FEM.Geometry.Geometree">FEM.Geometry.Geometree module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#module-FEM.Geometry.Geometry">FEM.Geometry.Geometry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Geometry.html#module-FEM.Geometry.Region">FEM.Geometry.Region module</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.Solvers.html">FEM.Solvers package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#fem-solvers-linear-module">FEM.Solvers.Linear module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#fem-solvers-nonlinear-module">FEM.Solvers.NonLinear module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#fem-solvers-solver-module">FEM.Solvers.Solver module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#fem-solvers-transient-module">FEM.Solvers.Transient module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#module-FEM.Solvers.Linear">FEM.Solvers.Linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#module-FEM.Solvers.NonLinear">FEM.Solvers.NonLinear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#module-FEM.Solvers.Solver">FEM.Solvers.Solver module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Solvers.html#module-FEM.Solvers.Transient">FEM.Solvers.Transient module</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="FEM.Utils.html">FEM.Utils package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="FEM.Utils.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="FEM.Utils.html#fem-utils-polygonal-module">FEM.Utils.polygonal module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.Utils.html#module-FEM.Utils.polygonal">FEM.Utils.polygonal module</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="FEM.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-core-module">FEM.Core module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-edo1d-module">FEM.EDO1D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-elasticity2d-module">FEM.Elasticity2D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-elasticity3d-module">FEM.Elasticity3D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-eulerbernoullibeam-module">FEM.EulerBernoulliBeam module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-femlogger-module">FEM.FEMLogger module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-heat1d-module">FEM.Heat1D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-heat2d-module">FEM.Heat2D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-nonlinear1d-module">FEM.NonLinear1D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-poisson2d-module">FEM.Poisson2D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-torsion2d-module">FEM.Torsion2D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FEM.html#fem-unhinged-module">FEM.Unhinged module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.Core">FEM.Core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Core.Core"><code class="docutils literal notranslate"><span class="pre">Core</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.boundaryConditions"><code class="docutils literal notranslate"><span class="pre">Core.boundaryConditions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.condensedSystem"><code class="docutils literal notranslate"><span class="pre">Core.condensedSystem()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.description"><code class="docutils literal notranslate"><span class="pre">Core.description()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Core.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.ensembling"><code class="docutils literal notranslate"><span class="pre">Core.ensembling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.exportJSON"><code class="docutils literal notranslate"><span class="pre">Core.exportJSON()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.postProcess"><code class="docutils literal notranslate"><span class="pre">Core.postProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.profile"><code class="docutils literal notranslate"><span class="pre">Core.profile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.restartMatrix"><code class="docutils literal notranslate"><span class="pre">Core.restartMatrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.solve"><code class="docutils literal notranslate"><span class="pre">Core.solve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.solveES"><code class="docutils literal notranslate"><span class="pre">Core.solveES()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.solveFromArray"><code class="docutils literal notranslate"><span class="pre">Core.solveFromArray()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.Core.solveFromFile"><code class="docutils literal notranslate"><span class="pre">Core.solveFromFile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Core.CoreHiperbolic"><code class="docutils literal notranslate"><span class="pre">CoreHiperbolic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.CoreHiperbolic.apply_initial_condition"><code class="docutils literal notranslate"><span class="pre">CoreHiperbolic.apply_initial_condition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.CoreHiperbolic.set_initial_condition"><code class="docutils literal notranslate"><span class="pre">CoreHiperbolic.set_initial_condition()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Core.CoreParabolic"><code class="docutils literal notranslate"><span class="pre">CoreParabolic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.CoreParabolic.postProcess"><code class="docutils literal notranslate"><span class="pre">CoreParabolic.postProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.CoreParabolic.set_alpha"><code class="docutils literal notranslate"><span class="pre">CoreParabolic.set_alpha()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Core.CoreTransient"><code class="docutils literal notranslate"><span class="pre">CoreTransient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.CoreTransient.apply_initial_condition"><code class="docutils literal notranslate"><span class="pre">CoreTransient.apply_initial_condition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.CoreTransient.ensembling"><code class="docutils literal notranslate"><span class="pre">CoreTransient.ensembling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Core.CoreTransient.set_initial_condition"><code class="docutils literal notranslate"><span class="pre">CoreTransient.set_initial_condition()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.EDO1D">FEM.EDO1D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.EDO1D.EDO1D"><code class="docutils literal notranslate"><span class="pre">EDO1D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.EDO1D.EDO1D.elementMatrices"><code class="docutils literal notranslate"><span class="pre">EDO1D.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.EDO1D.EDO1D.postProcess"><code class="docutils literal notranslate"><span class="pre">EDO1D.postProcess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.Elasticity2D">FEM.Elasticity2D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStrain"><code class="docutils literal notranslate"><span class="pre">PlaneStrain</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStrainSparse"><code class="docutils literal notranslate"><span class="pre">PlaneStrainSparse</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStress"><code class="docutils literal notranslate"><span class="pre">PlaneStress</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparse"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparse.elementMatrices"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparse.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparse.elementMatrix"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparse.elementMatrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparse.ensembling"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparse.ensembling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparse.postProcess"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparse.postProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparse.profile"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparse.profile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparseNonHomogeneous"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparseNonHomogeneous</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparseNonHomogeneous.elementMatrices"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparseNonHomogeneous.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparseNonHomogeneous.elementMatrix"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparseNonHomogeneous.elementMatrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparseNonHomogeneous.ensembling"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparseNonHomogeneous.ensembling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparseNonHomogeneous.postProcess"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparseNonHomogeneous.postProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressNonLocalSparseNonHomogeneous.profile"><code class="docutils literal notranslate"><span class="pre">PlaneStressNonLocalSparseNonHomogeneous.profile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressOrthotropic"><code class="docutils literal notranslate"><span class="pre">PlaneStressOrthotropic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressOrthotropic.elementMatrices"><code class="docutils literal notranslate"><span class="pre">PlaneStressOrthotropic.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressOrthotropic.giveStressPoint"><code class="docutils literal notranslate"><span class="pre">PlaneStressOrthotropic.giveStressPoint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressOrthotropic.postProcess"><code class="docutils literal notranslate"><span class="pre">PlaneStressOrthotropic.postProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressOrthotropic.profile"><code class="docutils literal notranslate"><span class="pre">PlaneStressOrthotropic.profile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressOrthotropicSparse"><code class="docutils literal notranslate"><span class="pre">PlaneStressOrthotropicSparse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressOrthotropicSparse.elementMatrices"><code class="docutils literal notranslate"><span class="pre">PlaneStressOrthotropicSparse.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressOrthotropicSparse.ensembling"><code class="docutils literal notranslate"><span class="pre">PlaneStressOrthotropicSparse.ensembling()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity2D.PlaneStressSparse"><code class="docutils literal notranslate"><span class="pre">PlaneStressSparse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.Elasticity3D">FEM.Elasticity3D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.ContinumTotalLagrangian"><code class="docutils literal notranslate"><span class="pre">ContinumTotalLagrangian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.ContinumTotalLagrangian.elementMatrices"><code class="docutils literal notranslate"><span class="pre">ContinumTotalLagrangian.elementMatrices()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.Elasticity"><code class="docutils literal notranslate"><span class="pre">Elasticity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.Elasticity.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Elasticity.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.Elasticity.ensembling"><code class="docutils literal notranslate"><span class="pre">Elasticity.ensembling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.Elasticity.postProcess"><code class="docutils literal notranslate"><span class="pre">Elasticity.postProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.Elasticity.profile"><code class="docutils literal notranslate"><span class="pre">Elasticity.profile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.ElasticityFromTensor"><code class="docutils literal notranslate"><span class="pre">ElasticityFromTensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.ElasticityMembranes"><code class="docutils literal notranslate"><span class="pre">ElasticityMembranes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.ElasticityMembranes.elementMatrices"><code class="docutils literal notranslate"><span class="pre">ElasticityMembranes.elementMatrices()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.NonLocalElasticity"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.NonLocalElasticity.elementMatrices"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticity.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.NonLocalElasticity.ensembling"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticity.ensembling()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.NonLocalElasticityFromTensor"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticityFromTensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.NonLocalElasticityLegacy"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticityLegacy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.NonLocalElasticityLegacy.elementMatrices"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticityLegacy.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Elasticity3D.NonLocalElasticityLegacy.ensembling"><code class="docutils literal notranslate"><span class="pre">NonLocalElasticityLegacy.ensembling()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.EulerBernoulliBeam">FEM.EulerBernoulliBeam module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliBeam</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam.elementMatrices"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliBeam.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeam.postProcess"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliBeam.postProcess()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLinear"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliBeamNonLinear</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliBeamNonLinear.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.EulerBernoulliBeam.EulerBernoulliBeamNonLinear.postProcess"><code class="docutils literal notranslate"><span class="pre">EulerBernoulliBeamNonLinear.postProcess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.FEMLogger">FEM.FEMLogger module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.FEMLogger.FEMLogger"><code class="docutils literal notranslate"><span class="pre">FEMLogger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.FEMLogger.FEMLogger.end_timer"><code class="docutils literal notranslate"><span class="pre">FEMLogger.end_timer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.FEMLogger.FEMLogger.setup_logging"><code class="docutils literal notranslate"><span class="pre">FEMLogger.setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.FEMLogger.LogFormatter"><code class="docutils literal notranslate"><span class="pre">LogFormatter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.FEMLogger.LogFormatter.COLOR_CODES"><code class="docutils literal notranslate"><span class="pre">LogFormatter.COLOR_CODES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.FEMLogger.LogFormatter.RESET_CODE"><code class="docutils literal notranslate"><span class="pre">LogFormatter.RESET_CODE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.FEMLogger.LogFormatter.format"><code class="docutils literal notranslate"><span class="pre">LogFormatter.format()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.FEMLogger.TimeFilter"><code class="docutils literal notranslate"><span class="pre">TimeFilter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.FEMLogger.TimeFilter.filter"><code class="docutils literal notranslate"><span class="pre">TimeFilter.filter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.Heat1D">FEM.Heat1D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Heat1D.Heat1D"><code class="docutils literal notranslate"><span class="pre">Heat1D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat1D.Heat1D.boundaryConditions"><code class="docutils literal notranslate"><span class="pre">Heat1D.boundaryConditions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat1D.Heat1D.defineConvectiveBoderConditions"><code class="docutils literal notranslate"><span class="pre">Heat1D.defineConvectiveBoderConditions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat1D.Heat1D.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Heat1D.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat1D.Heat1D.postProcess"><code class="docutils literal notranslate"><span class="pre">Heat1D.postProcess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat1D.Heat1D.set_convective_conditions"><code class="docutils literal notranslate"><span class="pre">Heat1D.set_convective_conditions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Heat1D.Heat1DTransient"><code class="docutils literal notranslate"><span class="pre">Heat1DTransient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat1D.Heat1DTransient.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Heat1DTransient.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat1D.Heat1DTransient.postProcess"><code class="docutils literal notranslate"><span class="pre">Heat1DTransient.postProcess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.Heat2D">FEM.Heat2D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Heat2D.Heat2D"><code class="docutils literal notranslate"><span class="pre">Heat2D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat2D.Heat2D.defineConvectiveBoderConditions"><code class="docutils literal notranslate"><span class="pre">Heat2D.defineConvectiveBoderConditions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat2D.Heat2D.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Heat2D.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Heat2D.Heat2D.postProcess"><code class="docutils literal notranslate"><span class="pre">Heat2D.postProcess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.NonLinear1D">FEM.NonLinear1D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.NonLinear1D.NonLinearSimpleEquation"><code class="docutils literal notranslate"><span class="pre">NonLinearSimpleEquation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.NonLinear1D.NonLinearSimpleEquation.elementMatrices"><code class="docutils literal notranslate"><span class="pre">NonLinearSimpleEquation.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.NonLinear1D.NonLinearSimpleEquation.postProcess"><code class="docutils literal notranslate"><span class="pre">NonLinearSimpleEquation.postProcess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.Poisson2D">FEM.Poisson2D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Poisson2D.Poisson2D"><code class="docutils literal notranslate"><span class="pre">Poisson2D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Poisson2D.Poisson2D.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Poisson2D.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Poisson2D.Poisson2D.postProcess"><code class="docutils literal notranslate"><span class="pre">Poisson2D.postProcess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.Torsion2D">FEM.Torsion2D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D"><code class="docutils literal notranslate"><span class="pre">Torsion2D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D.elementMatrices"><code class="docutils literal notranslate"><span class="pre">Torsion2D.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Torsion2D.Torsion2D.postProcess"><code class="docutils literal notranslate"><span class="pre">Torsion2D.postProcess()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FEM.html#module-FEM.Unhinged">FEM.Unhinged module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeLinear"><code class="docutils literal notranslate"><span class="pre">BarAndHingeLinear</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeLinear.addLoadNode"><code class="docutils literal notranslate"><span class="pre">BarAndHingeLinear.addLoadNode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeLinear.barElementMatrix"><code class="docutils literal notranslate"><span class="pre">BarAndHingeLinear.barElementMatrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">BarAndHingeLinear.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeLinear.ensembling"><code class="docutils literal notranslate"><span class="pre">BarAndHingeLinear.ensembling()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeNonLinear"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeNonLinear.Ogden"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.Ogden()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeNonLinear.addLoadNode"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.addLoadNode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeNonLinear.barElementMatrix"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.barElementMatrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeNonLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeNonLinear.ensembling"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.ensembling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.BarAndHingeNonLinear.import_fold_file"><code class="docutils literal notranslate"><span class="pre">BarAndHingeNonLinear.import_fold_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Unhinged.ShellAndHingeNonLinear"><code class="docutils literal notranslate"><span class="pre">ShellAndHingeNonLinear</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.ShellAndHingeNonLinear.addLoadNode"><code class="docutils literal notranslate"><span class="pre">ShellAndHingeNonLinear.addLoadNode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.ShellAndHingeNonLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">ShellAndHingeNonLinear.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.ShellAndHingeNonLinear.ensembling"><code class="docutils literal notranslate"><span class="pre">ShellAndHingeNonLinear.ensembling()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Unhinged.TrussLinear"><code class="docutils literal notranslate"><span class="pre">TrussLinear</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.TrussLinear.addLoadNode"><code class="docutils literal notranslate"><span class="pre">TrussLinear.addLoadNode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.TrussLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">TrussLinear.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.TrussLinear.ensembling"><code class="docutils literal notranslate"><span class="pre">TrussLinear.ensembling()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FEM.html#FEM.Unhinged.TrussNonLinear"><code class="docutils literal notranslate"><span class="pre">TrussNonLinear</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.TrussNonLinear.addLoadNode"><code class="docutils literal notranslate"><span class="pre">TrussNonLinear.addLoadNode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.TrussNonLinear.elementMatrices"><code class="docutils literal notranslate"><span class="pre">TrussNonLinear.elementMatrices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="FEM.html#FEM.Unhinged.TrussNonLinear.ensembling"><code class="docutils literal notranslate"><span class="pre">TrussNonLinear.ensembling()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
