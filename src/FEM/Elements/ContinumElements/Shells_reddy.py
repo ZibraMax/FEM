@@ -256,13 +256,13 @@ class ShellBase(ContinumBase):
         return Ke, Fe
 
 
-class QuadShellLinear(ShellBase, Quadrilateral):
+class QuadShellLinearReddy(ShellBase, Quadrilateral):
     def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
         Quadrilateral.__init__(self, coords, gdl, 3, **kargs)
         ShellBase.__init__(self, **kargs)
 
 
-class TriShelleLinear(ShellBase, LTriangular):
+class TriShelleLinearReddy(ShellBase, LTriangular):
     def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
         LTriangular.__init__(self, coords, gdl, 2, **kargs)
         ShellBase.__init__(self, **kargs)

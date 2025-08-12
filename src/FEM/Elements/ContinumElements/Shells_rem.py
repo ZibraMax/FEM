@@ -37,12 +37,13 @@ class ShellBase(ContinumBase):
             self.e3 = [np.array(i) for i in e3]  # Garantiza que sea np
         self.e1 = np.zeros_like(self.e3)
         self.e2 = np.zeros_like(self.e3)
-        self.e1, self.e2 = self.calculate_e1_e2()
+        self.e1, self.e2, _ = self.calculate_e1_e2()
 
     def calculate_e1_e2(self, deformed=False):
         """Calculate the e1 and e2 vectors for the shell element."""
         E1 = []
         E2 = []
+        E3 = []
         for i in range(len(self.coords)):
             e3 = self.e3[i] + (self.Ue[3][i]*self.e1[i] -
                                self.Ue[4][i]*self.e2[i])*deformed
@@ -52,7 +53,8 @@ class ShellBase(ContinumBase):
             e2 /= np.linalg.norm(e2)
             E1.append(e1)
             E2.append(e2)
-        return E1, E2
+            E3.append(e3)
+        return E1, E2, E3
 
     def calculate_dpxs(self, w, k, J_INV) -> np.ndarray:
         # w is  gauss point in thickness
@@ -353,6 +355,29 @@ class ShellBase(ContinumBase):
         # Ke = T1.T @ Ke @ T1
         # Fe = T2.T @ Fe
         return Ke, Fe
+
+    def x(self, r, s, t, deformed=False):
+        """Spatial transformation, from a gauss point (r,s,t) to an spatial point X,Y,Z
+        """
+        res = 0.0
+        z = np.array([[r], [s]])
+        _, phi = self.T(z)
+        phi = phi[0]
+        coords = self.coords + deformed*self.Ue[:3].T
+        e3 = self.e3
+        if deformed:
+            _, _, e3 = self.calculate_e1_e2(deformed)
+
+        for k in range(len(self.coords)):
+            res += phi[k]*coords[k] + 1/2*self.th[k]*t*phi[k]*e3[k]
+        return res
+
+    def numerical_jacobian(self, r, s, t, deformed=False, h=0.0000001):
+        dX = (self.x(r+h, s, t, deformed) - self.x(r-h, s, t, deformed))/(2*h)
+        dY = (self.x(r, s+h, t, deformed) - self.x(r, s-h, t, deformed))/(2*h)
+        dZ = (self.x(r, s, t+h, deformed) - self.x(r, s, t-h, deformed))/(2*h)
+
+        return np.array([dX, dY, dZ]).T
 
 
 class QuadShellLinear(ShellBase, Quadrilateral):

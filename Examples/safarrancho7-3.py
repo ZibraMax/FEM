@@ -3,33 +3,19 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     import numpy as np
     import matplotlib.animation as animation
+    coords = np.array([
+        [0.0, 0.0, 0.0],   # Node 1
+        [1.0, 0.0, 0.0],   # Node 2
+        [1.0, 1.0, 0.1],   # Node 3 (slightly out of plane)
+        [0.0, 1.0, 0.1]    # Node 4 (slightly out of plane)
+    ])
+    t = 0.1
 
-    x1 = np.array([-1.0, -1.0,  0.0])
-    x2 = np.array([1.0, -1.0,  0.0])
-    x3 = np.array([1.0,  1.0,  0.0])
-    x4 = np.array([-1.0,  1.0,  0.0])
-    t = 2
-    P = 1000
     nu = 0.3
     young = 20500  # Young's modulus in MPa
-
-    coords = np.array([x1, x2, x3, x4])
     elements = [[0, 1, 2, 3]]
-
     types = [QuadShellLinear]*(len(elements))
-
     geo = Geometry3D(elements, coords, types, 5, fast=True)
-
-    disp_fixed_nodes = [0, 1]
-
-    geo.cbe = []
-    for i in disp_fixed_nodes:
-        geo.cbe.append([i*5, 0])
-        geo.cbe.append([i*5+1, 0])
-        geo.cbe.append([i*5+2, 0])
-        geo.cbe.append([i*5+3, 0])
-        geo.cbe.append([i*5+4, 0])
-
     E = young  # Young's modulus in Pascals
     v = nu  # Poisson's ratio
     k = 5/6
@@ -63,18 +49,17 @@ if __name__ == '__main__':
         geo, cm, solver=NewtonTotalLagrangian, override_nvn=True)
     for e in O.elements:
         e.set_thickness(t)
-        print(e.numerical_jacobian(0.0, 0.0, 0.0))
-    O.solver.load_steps = 100
-    O.solver.maxiter = 100
-    nodes_force = [2, 3]
-    O.cbn = [[nodes_force[0]*5+1, -P/2], [nodes_force[1]*5+1, -P/2]]
-    O.solve()
-
-    displacements = []
-    load_factors = []
-    for i in range(len(O.solver.solutions)):
-        O.solver.setSolution(i, elements=True)
-        displacements.append(-O.U[nodes_force[0]*5+2][0])
-        load_factors.append(O.solution_info['ld'])
-    data = np.array([displacements, load_factors]).T
-    print(data)
+    W, _ = np.polynomial.legendre.leggauss(4)
+    np.random.seed(42)
+    e.Ue = np.random.random(e.Ue.shape)*1  # small random displ
+    deff = True
+    for w in W:
+        JS = e._get_spatial_derivatives(w, deformed=deff)
+        for i, z in enumerate(e.Z):
+            num = e.numerical_jacobian(*z, w, deformed=deff)
+            delta = np.max(np.abs(JS-num))
+            if delta > 1e-6:
+                print(f"Discrepancy at Gauss point {i}, w={w}: {delta}")
+            else:
+                print(
+                    f"Gauss point {i}, w={w}: Jacobian matches numerical calculation.")
