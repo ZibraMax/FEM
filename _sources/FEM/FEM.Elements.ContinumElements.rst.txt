@@ -33,18 +33,18 @@ FEM.Elements.ContinumElements.Membranes module
    :undoc-members:
    :show-inheritance:
 
-FEM.Elements.ContinumElements.Shells module
--------------------------------------------
+FEM.Elements.ContinumElements.Shells\_reddy module
+--------------------------------------------------
 
-.. automodule:: FEM.Elements.ContinumElements.Shells
+.. automodule:: FEM.Elements.ContinumElements.Shells_reddy
    :members:
    :undoc-members:
    :show-inheritance:
 
-FEM.Elements.ContinumElements.Shells\_antiguo module
-----------------------------------------------------
+FEM.Elements.ContinumElements.Shells\_rem module
+------------------------------------------------
 
-.. automodule:: FEM.Elements.ContinumElements.Shells_antiguo
+.. automodule:: FEM.Elements.ContinumElements.Shells_rem
    :members:
    :undoc-members:
    :show-inheritance:
