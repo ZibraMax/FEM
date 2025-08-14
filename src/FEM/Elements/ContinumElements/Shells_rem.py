@@ -51,6 +51,7 @@ class ShellBase(ContinumBase):
             e1 /= np.linalg.norm(e1)
             e2 = np.cross(e3, e1)
             e2 /= np.linalg.norm(e2)
+            e3 /= np.linalg.norm(e3)
             E1.append(e1)
             E2.append(e2)
             E3.append(e3)
@@ -67,14 +68,18 @@ class ShellBase(ContinumBase):
         dpbnodedy = []
         dpbnodedz = []
 
-        dpnodedi = J_INV[:, :2] @ self.dpz[k]
-
         for i in range(len(self.coords)):
+
+            dpnodedx.append(J_INV[0, 0]*self.dpz[k][0]
+                            [i] + J_INV[0, 1]*self.dpz[k][1][i])
+            dpnodedy.append(J_INV[1, 0]*self.dpz[k][0]
+                            [i] + J_INV[1, 1]*self.dpz[k][1][i])
+            dpnodedz.append(J_INV[2, 0]*self.dpz[k][0]
+                            [i] + J_INV[2, 1]*self.dpz[k][1][i])
             hk = self.th[i] / 2
-            dpbnodedx.append(hk*(J_INV[0, 2]*self._p[k][i] + w*dpnodedi[0][i]))
-            dpbnodedy.append(hk*(J_INV[1, 2]*self._p[k][i] + w*dpnodedi[1][i]))
-            dpbnodedz.append(hk*(J_INV[2, 2]*self._p[k][i] + w*dpnodedi[2][i]))
-        dpnodedx, dpnodedy, dpnodedz = dpnodedi
+            dpbnodedx.append(hk*(J_INV[0, 2]*self._p[k][i] + w*dpnodedx[-1]))
+            dpbnodedy.append(hk*(J_INV[1, 2]*self._p[k][i] + w*dpnodedy[-1]))
+            dpbnodedz.append(hk*(J_INV[2, 2]*self._p[k][i] + w*dpnodedz[-1]))
         dpxs = [dpnodedx, dpnodedy, dpnodedz,
                 dpbnodedx, dpbnodedy, dpbnodedz]
         dpxs = np.array(dpxs)
@@ -83,8 +88,7 @@ class ShellBase(ContinumBase):
     def calculate_BNL(self, dpxs) -> np.ndarray:
         dpnodedx, dpnodedy, dpnodedz, dpbnodedx, dpbnodedy, dpbnodedz = dpxs
         BNL = np.zeros((9, len(self.coords)*5))
-        # Deformed??? No se.... Yo creo que no, pero dice que si
-        e1s, e2s = self.calculate_e1_e2(deformed=True)
+        e1s, e2s, _ = self.calculate_e1_e2(deformed=True)
         for i in range(len(self.coords)):
             e1 = e1s[i]
             e2 = e2s[i]
@@ -124,10 +128,12 @@ class ShellBase(ContinumBase):
             BNL[8, i*5+3] = dpbnodedy[i]*e1[2]
             BNL[8, i*5+4] = dpbnodedy[i]*e2[2]
 
+            BNL[:, i*5+4] *= -1
+
         return BNL
 
     def calculate_ls(self, F) -> np.ndarray:
-        e1s, e2s = self.calculate_e1_e2(deformed=True)
+        e1s, e2s, _ = self.calculate_e1_e2(deformed=True)
 
         # Esto EN TEORÍA también se podría calcular con BNL
         lij = F
@@ -193,6 +199,8 @@ class ShellBase(ContinumBase):
             BL[5, 5*i+2] = dpnodedz[i]*lij[2, 1] + dpnodedy[i]*lij[2, 2]
             BL[5, 5*i+3] = dpbnodedz[i]*_lb1[1] + dpbnodedy[i]*_lb1[2]
             BL[5, 5*i+4] = dpbnodedz[i]*_lb2[1] + dpbnodedy[i]*_lb2[2]
+
+            BL[:, i*5+4] *= -1
 
         return BL
 
@@ -378,6 +386,37 @@ class ShellBase(ContinumBase):
         dZ = (self.x(r, s, t+h, deformed) - self.x(r, s, t-h, deformed))/(2*h)
 
         return np.array([dX, dY, dZ]).T
+
+    def u1(self, r, s, t):
+        """Displacement at a gauss point (r,s,t)"""
+        x0 = self.x(r, s, t, deformed=False)
+        x1 = self.x(r, s, t, deformed=True)
+        u = x1 - x0
+        return u
+
+    def u_incr(self, r, s, t, Ue):
+        U1 = self.Ue.copy()
+        U21 = Ue.copy()
+        x_deformed = self.x(r, s, t, deformed=True)
+        self.Ue = U1 + U21
+        x_deformed_incr = self.x(r, s, t, deformed=True)
+        self.Ue = U1
+        return x_deformed_incr - x_deformed
+
+    def u_incr_deriv(self, r, s, t, Ue, h=1e-8):
+        du_dr = (self.u_incr(r+h, s, t, Ue) -
+                 self.u_incr(r-h, s, t, Ue)) / (2*h)
+        du_ds = (self.u_incr(r, s+h, t, Ue) -
+                 self.u_incr(r, s-h, t, Ue)) / (2*h)
+        du_dt = (self.u_incr(r, s, t+h, Ue) -
+                 self.u_incr(r, s, t-h, Ue)) / (2*h)
+        return np.array([du_dr, du_ds, du_dt]).T
+
+    def u_deriv(self, r, s, t, h=1e-8):
+        du_dr = (self.u1(r+h, s, t) - self.u1(r-h, s, t)) / (2*h)
+        du_ds = (self.u1(r, s+h, t) - self.u1(r, s-h, t)) / (2*h)
+        du_dt = (self.u1(r, s, t+h) - self.u1(r, s, t-h)) / (2*h)
+        return np.array([du_dr, du_ds, du_dt]).T
 
 
 class QuadShellLinear(ShellBase, Quadrilateral):

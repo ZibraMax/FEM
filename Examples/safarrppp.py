@@ -1,22 +1,22 @@
 if __name__ == '__main__':
-    from FEM import NewtonTotalLagrangian, MGDCM, ContinumTotalLagrangian, QuadMembraneLinear, QuadShellLinearReddy, Geometry3D
+    from FEM import NewtonTotalLagrangian, MGDCM, ContinumTotalLagrangian, QuadMembraneLinear, QuadShellLinear, Geometry3D
     import matplotlib.pyplot as plt
     import numpy as np
     import matplotlib.animation as animation
 
-    x1 = np.array([-1.0, -1.0,  0.0])
-    x2 = np.array([1.0, -1.0,  0.0])
-    x3 = np.array([1.0,  1.0,  0.0])
-    x4 = np.array([-1.0,  1.0,  0.0])
-    t = 2
-    P = 1000
+    x1 = np.array([-1.0, -1.0,  0.0])*5
+    x2 = np.array([1.0, -1.0,  0.0])*5
+    x3 = np.array([1.0,  1.0,  0.0])*5
+    x4 = np.array([-1.0,  1.0,  0.0])*5
+    t = 0.5
+    P = 7000
     nu = 0.3
     young = 20500  # Young's modulus in MPa
 
     coords = np.array([x1, x2, x3, x4])
     elements = [[0, 1, 2, 3]]
 
-    types = [QuadShellLinearReddy]*(len(elements))
+    types = [QuadShellLinear]*(len(elements))
 
     geo = Geometry3D(elements, coords, types, 5, fast=True)
 
@@ -60,20 +60,24 @@ if __name__ == '__main__':
         S[0, 2] = S[2, 0] = S_voigt[5, 0]  # S13
         return C, S
     O = ContinumTotalLagrangian(
-        geo, cm, solver=NewtonTotalLagrangian, override_nvn=True)
+        geo, cm, solver=MGDCM, override_nvn=True)
     for e in O.elements:
         e.set_thickness(t)
-    O.solver.load_steps = 100
-    O.solver.maxiter = 100
+    O.solver.set_delta_lambda_bar(0.05)
+    O.solver.momentum = False
+    O.solver.set_increments(220)
     nodes_force = [2, 3]
-    O.cbn = [[nodes_force[0]*5+1, -P/2], [nodes_force[1]*5+1, -P/2]]
+    O.cbn = [[nodes_force[0]*5+1, P/2], [nodes_force[1]*5+1, P/2]]
     O.solve()
 
     displacements = []
     load_factors = []
     for i in range(len(O.solver.solutions)):
         O.solver.setSolution(i, elements=True)
-        displacements.append(-O.U[nodes_force[0]*5+2][0])
-        load_factors.append(O.solution_info['ld'])
+        displacements.append(O.U[nodes_force[0]*5+1][0])
+        load_factors.append(O.solution_info['ld']*P/2)
     data = np.array([displacements, load_factors]).T
-    print(data)
+    np.savetxt("safarrppp.csv", data, delimiter=",")
+    plt.plot(*data.T)
+    plt.grid()
+    plt.show()

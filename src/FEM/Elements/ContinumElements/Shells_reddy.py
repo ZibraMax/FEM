@@ -42,12 +42,13 @@ class ShellBase(ContinumBase):
             self.e3 = [np.array(i) for i in e3]  # Garantiza que sea np
         self.e1 = np.zeros_like(self.e3)
         self.e2 = np.zeros_like(self.e3)
-        self.e1, self.e2 = self.calculate_e1_e2()
+        self.e1, self.e2, _ = self.calculate_e1_e2()
 
     def calculate_e1_e2(self, deformed=False):
         """Calculate the e1 and e2 vectors for the shell element."""
         E1 = []
         E2 = []
+        E3 = []
         for i in range(len(self.coords)):
             e3 = self.e3[i] + (self.Ue[3][i]*self.e1[i] -
                                self.Ue[4][i]*self.e2[i])*deformed
@@ -57,7 +58,9 @@ class ShellBase(ContinumBase):
             e2 /= np.linalg.norm(e2)
             E1.append(e1)
             E2.append(e2)
-        return E1, E2
+            e3 /= np.linalg.norm(e3)
+            E3.append(e3)
+        return E1, E2, E3
 
     def calculate_dpxs(self, w, k) -> np.ndarray:
         DPXS = []
@@ -77,7 +80,7 @@ class ShellBase(ContinumBase):
     def calculate_BNL(self, dpx) -> np.ndarray:
         n = len(self.coords)
         BNL = np.zeros((9, 5*n))
-        _e1, _e2 = self.calculate_e1_e2(deformed=True)
+        _e1, _e2, _ = self.calculate_e1_e2(deformed=True)
         for i in range(n):
             e1 = _e1[i]
             e2 = _e2[i]
@@ -254,6 +257,60 @@ class ShellBase(ContinumBase):
         # Ke = T1.T @ Ke @ T1
         # Fe = T2.T @ Fe
         return Ke, Fe
+
+    def x(self, r, s, t, deformed=False):
+        """Spatial transformation, from a gauss point (r,s,t) to an spatial point X,Y,Z
+        """
+        res = 0.0
+        z = np.array([[r], [s]])
+        _, phi = self.T(z)
+        phi = phi[0]
+        coords = self.coords + deformed*self.Ue[:3].T
+        e3 = self.e3
+        if deformed:
+            _, _, e3 = self.calculate_e1_e2(deformed)
+
+        for k in range(len(self.coords)):
+            res += phi[k]*coords[k] + 1/2*self.th[k]*t*phi[k]*e3[k]
+        return res
+
+    def numerical_jacobian(self, r, s, t, deformed=False, h=0.0000001):
+        dX = (self.x(r+h, s, t, deformed) - self.x(r-h, s, t, deformed))/(2*h)
+        dY = (self.x(r, s+h, t, deformed) - self.x(r, s-h, t, deformed))/(2*h)
+        dZ = (self.x(r, s, t+h, deformed) - self.x(r, s, t-h, deformed))/(2*h)
+
+        return np.array([dX, dY, dZ]).T
+
+    def u1(self, r, s, t):
+        """Displacement at a gauss point (r,s,t)"""
+        x0 = self.x(r, s, t, deformed=False)
+        x1 = self.x(r, s, t, deformed=True)
+        u = x1 - x0
+        return u
+
+    def u_incr(self, r, s, t, Ue):
+        U1 = self.Ue.copy()
+        U21 = Ue.copy()
+        x_deformed = self.x(r, s, t, deformed=True)
+        self.Ue = U1 + U21
+        x_deformed_incr = self.x(r, s, t, deformed=True)
+        self.Ue = U1
+        return x_deformed_incr - x_deformed
+
+    def u_incr_deriv(self, r, s, t, Ue, h=1e-8):
+        du_dr = (self.u_incr(r+h, s, t, Ue) -
+                 self.u_incr(r-h, s, t, Ue)) / (2*h)
+        du_ds = (self.u_incr(r, s+h, t, Ue) -
+                 self.u_incr(r, s-h, t, Ue)) / (2*h)
+        du_dt = (self.u_incr(r, s, t+h, Ue) -
+                 self.u_incr(r, s, t-h, Ue)) / (2*h)
+        return np.array([du_dr, du_ds, du_dt]).T
+
+    def u_deriv(self, r, s, t, h=1e-8):
+        du_dr = (self.u1(r+h, s, t) - self.u1(r-h, s, t)) / (2*h)
+        du_ds = (self.u1(r, s+h, t) - self.u1(r, s-h, t)) / (2*h)
+        du_dt = (self.u1(r, s, t+h) - self.u1(r, s, t-h)) / (2*h)
+        return np.array([du_dr, du_ds, du_dt]).T
 
 
 class QuadShellLinearReddy(ShellBase, Quadrilateral):

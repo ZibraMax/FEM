@@ -1,5 +1,6 @@
 if __name__ == '__main__':
-    from FEM import NewtonTotalLagrangian, MGDCM, ContinumTotalLagrangian, QuadMembraneLinear, QuadShellLinear, Geometry3D
+    from FEM import NewtonTotalLagrangian, MGDCM, ContinumTotalLagrangian, QuadMembraneLinear, Geometry3D
+    from FEM.Elements.ContinumElements import QuadShellLinearReddy as QuadShellLinear
     import matplotlib.pyplot as plt
     import numpy as np
     import matplotlib.animation as animation
@@ -76,17 +77,16 @@ if __name__ == '__main__':
     # new_ue = np.random.random(e.Ue.shape)*0.1  # small random displ
     for w in W:
         JS, _JS = e.get_jacobians(w)
-        FS = e.calculate_deformation_gradients_legacy(w)
+        FS = e.calculate_deformation_gradients(w)
         for i, z in enumerate(e.Z):
             JINV = _JS[i]
-            dpx = e.calculate_dpxs(w, i, JINV)
+            dpx = e.calculate_dpxs(w, i)
+            # Estos dpx pueden ser diferentes porque toca rotarlos. Esperemos un poco
             BNL = e.calculate_BNL(dpx)
             uk = e.Ue.T.flatten()
             uij = BNL @ uk
             # Numerical differentiation
-            UIJ = np.array([[uij[0], uij[3], uij[5]],
-                            [uij[4], uij[1], uij[7]],
-                            [uij[6], uij[8], uij[2]]])
+            UIJ = uij.reshape((3, 3))
             uij_num = e.u_deriv(*z, w, h=1e-10)
             uij_num = JINV @ uij_num.T
             uij_num = uij_num.T
