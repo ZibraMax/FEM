@@ -298,7 +298,7 @@ class ShellBase(ContinumBase):
         self.JS_inv = [np.linalg.inv(j) for j in self.JS]
         return self.JS, self.JS_inv
 
-    def calculate_deformation_gradients_legacy(self, w):
+    def calculate_deformation_gradients(self, w):
         """Calculate the deformation gradients for the shell element."""
         FS = []
         JS2 = self._get_spatial_derivatives(w, deformed=True)
@@ -328,7 +328,7 @@ class ShellBase(ContinumBase):
         Fe = 0.0
         for z_t, w_t in zip(t_z, t_w):
             JS, _JS = self.get_jacobians(z_t)
-            FS = self.calculate_deformation_gradients_legacy(z_t)
+            FS = self.calculate_deformation_gradients(z_t)
 
             for gi in range(len(weights)):
                 detjac = np.linalg.det(JS[gi])
@@ -336,19 +336,7 @@ class ShellBase(ContinumBase):
 
                 dpx = self.calculate_dpxs(z_t, gi, _JS[gi])
                 BNL = self.calculate_BNL(dpx)
-                uij = BNL @ self.Ue.T.flatten().reshape(-1, 1)
-                uij = uij.flatten()
-                F = np.zeros([3, 3])
-                F[0, 0] = uij[0] + 1
-                F[1, 1] = uij[1] + 1
-                F[2, 2] = uij[2] + 1
-                F[0, 1] = uij[3]
-                F[1, 0] = uij[4]
-                F[0, 2] = uij[5]
-                F[2, 0] = uij[6]
-                F[1, 2] = uij[7]
-                F[2, 1] = uij[8]
-                # F = FS[gi]
+                F = FS[gi]
                 E = self.green_lagrange_strain(F)
                 C, S = self.constitutive_model(E)
                 S_stiff, S_force = self.organize_S(S)
@@ -416,6 +404,28 @@ class ShellBase(ContinumBase):
         du_dr = (self.u1(r+h, s, t) - self.u1(r-h, s, t)) / (2*h)
         du_ds = (self.u1(r, s+h, t) - self.u1(r, s-h, t)) / (2*h)
         du_dt = (self.u1(r, s, t+h) - self.u1(r, s, t-h)) / (2*h)
+        return np.array([du_dr, du_ds, du_dt]).T
+
+    def u1_analytical(self, r, s, t):
+        """Displacement at a gauss point (r,s,t) using analytical shape functions"""
+        res = 0.0
+        z = np.array([[r], [s]])
+        _, phis = self.T(z)
+        phis = phis[0]
+        _, _, e3_0 = self.calculate_e1_e2(deformed=False)
+        _, _, e3_1 = self.calculate_e1_e2(deformed=True)
+        for i in range(len(self.coords)):
+            res += phis[i]*self.Ue[:3, i] + 1/2*t * \
+                self.th[i]*phis[i]*(e3_1[i]-e3_0[i])
+        return res
+
+    def du1_analytical_deriv(self, r, s, t, h=1e-8):
+        du_dr = (self.u1_analytical(r+h, s, t) -
+                 self.u1_analytical(r-h, s, t)) / (2*h)
+        du_ds = (self.u1_analytical(r, s+h, t) -
+                 self.u1_analytical(r, s-h, t)) / (2*h)
+        du_dt = (self.u1_analytical(r, s, t+h) -
+                 self.u1_analytical(r, s, t-h)) / (2*h)
         return np.array([du_dr, du_ds, du_dt]).T
 
 

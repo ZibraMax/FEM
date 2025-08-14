@@ -306,10 +306,32 @@ class ShellBase(ContinumBase):
                  self.u_incr(r, s, t-h, Ue)) / (2*h)
         return np.array([du_dr, du_ds, du_dt]).T
 
+    def u1_analytical(self, r, s, t):
+        """Displacement at a gauss point (r,s,t) using analytical shape functions"""
+        res = 0.0
+        z = np.array([[r], [s]])
+        _, phis = self.T(z)
+        phis = phis[0]
+        _, _, e3_0 = self.calculate_e1_e2(deformed=False)
+        _, _, e3_1 = self.calculate_e1_e2(deformed=True)
+        for i in range(len(self.coords)):
+            res += phis[i]*self.Ue[:3, i] + 1/2*t * \
+                self.th[i]*phis[i]*(e3_1[i]-e3_0[i])
+        return res
+
     def u_deriv(self, r, s, t, h=1e-8):
         du_dr = (self.u1(r+h, s, t) - self.u1(r-h, s, t)) / (2*h)
         du_ds = (self.u1(r, s+h, t) - self.u1(r, s-h, t)) / (2*h)
         du_dt = (self.u1(r, s, t+h) - self.u1(r, s, t-h)) / (2*h)
+        return np.array([du_dr, du_ds, du_dt]).T
+
+    def du1_analytical_deriv(self, r, s, t, h=1e-8):
+        du_dr = (self.u1_analytical(r+h, s, t) -
+                 self.u1_analytical(r-h, s, t)) / (2*h)
+        du_ds = (self.u1_analytical(r, s+h, t) -
+                 self.u1_analytical(r, s-h, t)) / (2*h)
+        du_dt = (self.u1_analytical(r, s, t+h) -
+                 self.u1_analytical(r, s, t-h)) / (2*h)
         return np.array([du_dr, du_ds, du_dt]).T
 
 

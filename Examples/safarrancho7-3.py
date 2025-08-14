@@ -73,22 +73,28 @@ if __name__ == '__main__':
                 print(
                     f"Gauss point {i}, w={w}: Jacobian matches numerical calculation.")
     # New incremental displacements
-    # new_ue = np.random.random(e.Ue.shape)*0.1  # small random displ
+    new_ue = np.random.random(e.Ue.shape)*0.1  # small random displ
     for w in W:
         JS, _JS = e.get_jacobians(w)
-        FS = e.calculate_deformation_gradients_legacy(w)
+        FS = e.calculate_deformation_gradients(w)
         for i, z in enumerate(e.Z):
             JINV = _JS[i]
             dpx = e.calculate_dpxs(w, i, JINV)
             BNL = e.calculate_BNL(dpx)
-            uk = e.Ue.T.flatten()
+            uk = new_ue.T.flatten()
             uij = BNL @ uk
-            # Numerical differentiation
-            UIJ = np.array([[uij[0], uij[3], uij[5]],
-                            [uij[4], uij[1], uij[7]],
-                            [uij[6], uij[8], uij[2]]])
-            uij_num = e.u_deriv(*z, w, h=1e-10)
+            F = np.zeros([3, 3])
+            F[0, 0] = uij[0] + 1
+            F[1, 1] = uij[1] + 1
+            F[2, 2] = uij[2] + 1
+            F[0, 1] = uij[3]
+            F[1, 0] = uij[4]
+            F[0, 2] = uij[5]
+            F[2, 0] = uij[6]
+            F[1, 2] = uij[7]
+            F[2, 1] = uij[8]
+            UIJ = F - np.eye(3)
+            uij_num = e.u_incr_deriv(*z, w, new_ue, h=1e-6)
             uij_num = JINV @ uij_num.T
             uij_num = uij_num.T
-            uij_F = FS[i]-np.eye(3)
             a = 0

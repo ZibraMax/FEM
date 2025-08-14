@@ -88,7 +88,6 @@ if __name__ == '__main__':
             # Numerical differentiation
             UIJ = uij.reshape((3, 3))
             uij_num = e.u_deriv(*z, w, h=1e-10)
-            uij_num = JINV @ uij_num.T
-            uij_num = uij_num.T
+            uij_num = JINV @ uij_num
             uij_F = FS[i]-np.eye(3)
             a = 0

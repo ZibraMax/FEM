@@ -1,5 +1,7 @@
 if __name__ == '__main__':
-    from FEM import NewtonTotalLagrangian, MGDCM, ContinumTotalLagrangian, QuadMembraneLinear, QuadShellLinear, Geometry3D
+    from FEM import NewtonTotalLagrangian, MGDCM, ContinumTotalLagrangian, QuadMembraneLinear, Geometry3D
+    # from FEM.Elements.ContinumElements import QuadShellLinearReddy as QuadShellLinear
+    from FEM.Elements.ContinumElements import QuadShellLinear
     import matplotlib.pyplot as plt
     import numpy as np
     import matplotlib.animation as animation
