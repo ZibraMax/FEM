@@ -609,6 +609,11 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_reddy.ShellBase.numerical_jacobian">
+<span class="sig-name descname"><span class="pre">numerical_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.numerical_jacobian" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_reddy.ShellBase.organize_S">
 <span class="sig-name descname"><span class="pre">organize_S</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.organize_S" title="Link to this definition">¶</a></dt>
 <dd><p>Organize the stress tensor S and the constitutive matrix C.</p>
@@ -649,6 +654,33 @@
 <span class="sig-name descname"><span class="pre">transformation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.transformation_matrix" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the transformation matrix for the element.</p>
 <p>This method should be implemented in derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u1">
+<span class="sig-name descname"><span class="pre">u1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u1" title="Link to this definition">¶</a></dt>
+<dd><p>Displacement at a gauss point (r,s,t)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u_deriv">
+<span class="sig-name descname"><span class="pre">u_deriv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u_deriv" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u_incr">
+<span class="sig-name descname"><span class="pre">u_incr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ue</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u_incr" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u_incr_deriv">
+<span class="sig-name descname"><span class="pre">u_incr_deriv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u_incr_deriv" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_reddy.ShellBase.x">
+<span class="sig-name descname"><span class="pre">x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.x" title="Link to this definition">¶</a></dt>
+<dd><p>Spatial transformation, from a gauss point (r,s,t) to an spatial point X,Y,Z</p>
 </dd></dl>
 
 </dd></dl>
@@ -778,6 +810,27 @@
 <dd><p>Calculate the transformation matrix for the element.</p>
 <p>This method should be implemented in derived classes.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_rem.ShellBase.u1">
+<span class="sig-name descname"><span class="pre">u1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.u1" title="Link to this definition">¶</a></dt>
+<dd><p>Displacement at a gauss point (r,s,t)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_rem.ShellBase.u_deriv">
+<span class="sig-name descname"><span class="pre">u_deriv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.u_deriv" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_rem.ShellBase.u_incr">
+<span class="sig-name descname"><span class="pre">u_incr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ue</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.u_incr" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_rem.ShellBase.u_incr_deriv">
+<span class="sig-name descname"><span class="pre">u_incr_deriv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.u_incr_deriv" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FEM.Elements.ContinumElements.Shells_rem.ShellBase.x">
@@ -912,12 +965,18 @@
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.elementMatrices"><code class="docutils literal notranslate"><span class="pre">ShellBase.elementMatrices()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.get_jacobians"><code class="docutils literal notranslate"><span class="pre">ShellBase.get_jacobians()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.get_local_jacobian"><code class="docutils literal notranslate"><span class="pre">ShellBase.get_local_jacobian()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.numerical_jacobian"><code class="docutils literal notranslate"><span class="pre">ShellBase.numerical_jacobian()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.organize_S"><code class="docutils literal notranslate"><span class="pre">ShellBase.organize_S()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.project_coords"><code class="docutils literal notranslate"><span class="pre">ShellBase.project_coords()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.project_disp"><code class="docutils literal notranslate"><span class="pre">ShellBase.project_disp()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.rotation_matrix"><code class="docutils literal notranslate"><span class="pre">ShellBase.rotation_matrix()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.set_thickness"><code class="docutils literal notranslate"><span class="pre">ShellBase.set_thickness()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">ShellBase.transformation_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u1"><code class="docutils literal notranslate"><span class="pre">ShellBase.u1()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u_deriv"><code class="docutils literal notranslate"><span class="pre">ShellBase.u_deriv()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u_incr"><code class="docutils literal notranslate"><span class="pre">ShellBase.u_incr()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.u_incr_deriv"><code class="docutils literal notranslate"><span class="pre">ShellBase.u_incr_deriv()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.ShellBase.x"><code class="docutils literal notranslate"><span class="pre">ShellBase.x()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_reddy.TriShelleLinearReddy"><code class="docutils literal notranslate"><span class="pre">TriShelleLinearReddy</span></code></a></li>
@@ -942,6 +1001,10 @@
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.rotation_matrix"><code class="docutils literal notranslate"><span class="pre">ShellBase.rotation_matrix()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.set_thickness"><code class="docutils literal notranslate"><span class="pre">ShellBase.set_thickness()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.transformation_matrix"><code class="docutils literal notranslate"><span class="pre">ShellBase.transformation_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.u1"><code class="docutils literal notranslate"><span class="pre">ShellBase.u1()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.u_deriv"><code class="docutils literal notranslate"><span class="pre">ShellBase.u_deriv()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.u_incr"><code class="docutils literal notranslate"><span class="pre">ShellBase.u_incr()</span></code></a></li>
+<li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.u_incr_deriv"><code class="docutils literal notranslate"><span class="pre">ShellBase.u_incr_deriv()</span></code></a></li>
 <li><a class="reference internal" href="#FEM.Elements.ContinumElements.Shells_rem.ShellBase.x"><code class="docutils literal notranslate"><span class="pre">ShellBase.x()</span></code></a></li>
 </ul>
 </li>

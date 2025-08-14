@@ -712,3 +712,19 @@ Examples.safarrancho7\-3 module
    :members:
    :undoc-members:
    :show-inheritance:
+
+Examples.safarrancho7\-4 module
+-------------------------------
+
+.. automodule:: Examples.safarrancho7-4
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Examples.safarrppp module
+-------------------------
+
+.. automodule:: Examples.safarrppp
+   :members:
+   :undoc-members:
+   :show-inheritance:
