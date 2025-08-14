@@ -135,7 +135,6 @@ class ShellBase(ContinumBase):
     def calculate_ls(self, F) -> np.ndarray:
         e1s, e2s, _ = self.calculate_e1_e2(deformed=True)
 
-        # Esto EN TEORÍA también se podría calcular con BNL
         lij = F
         lb1 = []
         lb2 = []
