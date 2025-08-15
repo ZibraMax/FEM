@@ -98,3 +98,14 @@ if __name__ == '__main__':
             uij_num = JINV @ uij_num.T
             uij_num = uij_num.T
             a = 0
+    for w in W:
+        JS, _JS = e.get_jacobians(w)
+        FS = e.calculate_deformation_gradients(w)
+        thetas = e.derivatives_transformation()
+        for i, z in enumerate(e.Z):
+            JINV = _JS[i]
+            dpx = e.calculate_dpxs(w, i, JINV)
+            BNL = e.calculate_BNL(dpx)
+            UIJ = FS[i] - np.eye(3)
+            theta = thetas[i]
+            a = 0

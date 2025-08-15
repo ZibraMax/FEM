@@ -311,6 +311,22 @@ class ShellBase(ContinumBase):
             FS.append(F)
         return FS
 
+    def derivatives_transformation(self):
+        thetas = []
+        e1s, e2s, e3s = self.calculate_e1_e2(deformed=True)
+        for k in range(len(self._p)):
+            phik = self._p[k]
+            theta = np.zeros((3, 3))
+            for i in range(len(self.coords)):
+                e1 = e1s[i]
+                e2 = e2s[i]
+                e3 = e3s[i]
+                theta[:, 0] += e1*phik[i]
+                theta[:, 1] += e2*phik[i]
+                theta[:, 2] += e3*phik[i]
+            thetas.append(theta)
+        return thetas
+
     def elementMatrices(self) -> None:
         """Calculate element matrices and vectors.
 
@@ -325,6 +341,7 @@ class ShellBase(ContinumBase):
         t_z, t_w = np.polynomial.legendre.leggauss(self.n_gauss_thickness)
         Ke = 0.0
         Fe = 0.0
+        THETAS = self.derivatives_transformation()
         for z_t, w_t in zip(t_z, t_w):
             JS, _JS = self.get_jacobians(z_t)
             FS = self.calculate_deformation_gradients(z_t)

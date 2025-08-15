@@ -105,15 +105,15 @@ class ShellBase(ContinumBase):
         dudx = F+np.eye(3)
         A = np.zeros((6, 9))
         A[0, 0] = dudx[0, 0]
-        A[0, 3] = dudx[0, 1]
-        A[0, 6] = dudx[0, 2]
+        A[0, 3] = dudx[1, 0]
+        A[0, 6] = dudx[2, 0]
 
-        A[1, 1] = dudx[1, 0]
+        A[1, 1] = dudx[0, 1]
         A[1, 4] = dudx[1, 1]
-        A[1, 7] = dudx[1, 2]
+        A[1, 7] = dudx[2, 1]
 
-        A[2, 2] = dudx[2, 0]
-        A[2, 5] = dudx[2, 1]
+        A[2, 2] = dudx[0, 2]
+        A[2, 5] = dudx[1, 2]
         A[2, 8] = dudx[2, 2]
 
         fila = np.array([dudx[0, 1], dudx[0, 0], 0, dudx[1, 1],
