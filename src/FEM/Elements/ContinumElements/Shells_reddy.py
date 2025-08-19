@@ -8,7 +8,7 @@ class ShellBase(ContinumBase):
     def __init__(self, **kargs):
         ContinumBase.__init__(self, **kargs)
 
-    def set_thickness(self, t: float, e3: np.ndarray = None, n_gauss_thickness: int = 2) -> None:
+    def set_thickness(self, t: float, e3: np.ndarray = None, n_gauss_thickness: int = 1) -> None:
         """Set the thickness of the shell element.
 
         Args:

@@ -64,7 +64,7 @@ if __name__ == '__main__':
     O = ContinumTotalLagrangian(
         geo, cm, solver=MGDCM, override_nvn=True)
     for e in O.elements:
-        e.set_thickness(t)
+        e.set_thickness(t, n_gauss_thickness=1)
     O.solver.set_delta_lambda_bar(0.05)
     O.solver.momentum = False
     O.solver.set_increments(220)
