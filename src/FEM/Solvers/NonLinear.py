@@ -420,9 +420,9 @@ class MGDCM(NonLinearSolver):
                     du = duhat * dldp1 + duguino
                     if np.isnan(du).any():
                         logging.error('Nan in du')
-                        err = 0
                         warn = 'Nan in du'
-                        break
+                        raise Exception(
+                            'Nan in du, stopping iteration. Info: increment {}, iteration {}, ld {}'.format(i, k, ld))
 
                     self.system.U[free_dofs] += du.reshape([len(free_dofs), 1])
                     ld += dldp1
@@ -442,10 +442,9 @@ class MGDCM(NonLinearSolver):
                     logging.info(
                         f'----------------- step {i} iteration {k} error {err} -------------------')
                 except Exception as e:
-                    raise e
                     logging.error('Error in iteration')
                     err = 100
-                    break
+                    raise e
                 if err < self.tol:
                     warn = 'No warnings'
                     break

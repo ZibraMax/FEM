@@ -212,7 +212,7 @@ class ShellBase(ContinumBase):
         S_force[2, 0] = S[2, 2]  # S33
         S_force[3, 0] = S[0, 1]  # S[1, 0] = S[0, 1]  # S12
         S_force[4, 0] = S[0, 2]  # S[0, 2]  # S13
-        S_force[5, 0] = S[1, 2]  # S[1, 2]  # S23
+        S_force[5, 0] = S[1, 2]
 
         mS = np.zeros((9, 9))
 

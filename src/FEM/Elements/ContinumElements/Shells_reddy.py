@@ -1,5 +1,5 @@
 from .ContinumBase import ContinumBase
-from ..E2D import LTriangular, Quadrilateral
+from ..E2D import LTriangular, Quadrilateral, Serendipity
 import numpy as np
 
 
@@ -147,8 +147,8 @@ class ShellBase(ContinumBase):
         S_vect[1] = S[1, 1]  # S22
         S_vect[2] = S[2, 2]  # S33
         S_vect[3] = S[0, 1]  # S12
-        S_vect[4] = S[1, 2]  # S23
-        S_vect[5] = S[0, 2]  # S13
+        S_vect[4] = S[0, 2]  # S23
+        S_vect[5] = S[1, 2]  # S13 TODO creo que esto estaba RE mal
 
         return S_stiff, S_vect
 
@@ -229,28 +229,42 @@ class ShellBase(ContinumBase):
         t_z, t_w = np.polynomial.legendre.leggauss(self.n_gauss_thickness)
         Ke = 0.0
         Fe = 0.0
+        e1s, e2s, e3s = self.calculate_e1_e2(deformed=True)
         for z_t, w_t in zip(t_z, t_w):
             JS, _JS = self.get_jacobians(z_t)
             FS = self.calculate_deformation_gradients(z_t)
-
             for gi in range(len(weights)):
+                psi = self._p[gi]
+                e1 = psi @ e1s
+                e2 = psi @ e2s
+                e3 = psi @ e3s
+                ROT = np.array([e1, e2, e3])
                 detjac = np.linalg.det(JS[gi])
                 wi = weights[gi] * w_t
                 F = FS[gi]
+
                 E = self.green_lagrange_strain(F)
-                C, S = self.constitutive_model(E)
+                # Rotate strian to global coordinates
+                C, S = self.constitutive_model(ROT.T @ E @ ROT)
                 const = 1
                 S_stiff, S_force = self.organize_S(S)
                 dpx = self.calculate_dpxs(z_t, gi)
                 # Estos dpx pueden ser diferentes porque toca rotarlos. Esperemos un poco
 
                 BNL = self.calculate_BNL(dpx)
-                A = self.calculate_A(F)
+                # Remove the identity matrix to get the deformation gradient
+                F = F - np.eye(3)
+                F = ROT.T @ F @ ROT
+                A = self.calculate_A(F+np.eye(3))
                 BL = A @ BNL
+                # Trnasformation matrix T
+                T = np.eye(5*len(self.coords))
+                for i in range(len(self.coords)):
+                    T[5*i:5*i+3, 5*i:5*i+3] = ROT
 
-                Ke += const*(BL.T @ C @ BL + BNL.T @
-                             S_stiff @ BNL) * detjac * wi
-                Fe += const*(BL.T @ S_force) * detjac * wi
+                Ke += T@(BL.T @ C @ BL + BNL.T @
+                         S_stiff @ BNL) * detjac * wi @ T.T
+                Fe += T@(BL.T @ S_force) * detjac * wi
 
         # T1 = self.transformation_matrix(True)
         # T2 = self.transformation_matrix(True)
@@ -337,7 +351,13 @@ class ShellBase(ContinumBase):
 
 class QuadShellLinearReddy(ShellBase, Quadrilateral):
     def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
-        Quadrilateral.__init__(self, coords, gdl, 3, **kargs)
+        Quadrilateral.__init__(self, coords, gdl, 2, **kargs)
+        ShellBase.__init__(self, **kargs)
+
+
+class SerendipityShell(ShellBase, Serendipity):
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
+        Serendipity.__init__(self, coords, gdl, 3, **kargs)
         ShellBase.__init__(self, **kargs)
 
 
