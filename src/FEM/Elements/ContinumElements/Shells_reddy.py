@@ -102,7 +102,7 @@ class ShellBase(ContinumBase):
         return BNL
 
     def calculate_A(self, F):
-        dudx = F+np.eye(3)
+        dudx = F
         A = np.zeros((6, 9))
         A[0, 0] = dudx[0, 0]
         A[0, 3] = dudx[1, 0]
@@ -128,7 +128,7 @@ class ShellBase(ContinumBase):
                         dudx[1, 2], dudx[1, 1], 0, dudx[2, 2], dudx[2, 1]])
         A[5, :] = fila
 
-        return 1/2*A
+        return A
 
     def calculate_BL(self, dpx) -> np.ndarray:
 
@@ -253,18 +253,19 @@ class ShellBase(ContinumBase):
 
                 BNL = self.calculate_BNL(dpx)
                 # Remove the identity matrix to get the deformation gradient
-                F = F - np.eye(3)
                 F = ROT.T @ F @ ROT
-                A = self.calculate_A(F+np.eye(3))
+                A = self.calculate_A(F)
                 BL = A @ BNL
                 # Trnasformation matrix T
                 T = np.eye(5*len(self.coords))
                 for i in range(len(self.coords)):
                     T[5*i:5*i+3, 5*i:5*i+3] = ROT
 
-                Ke += T@(BL.T @ C @ BL + BNL.T @
-                         S_stiff @ BNL) * detjac * wi @ T.T
-                Fe += T@(BL.T @ S_force) * detjac * wi
+                T = T.T
+
+                Ke += T.T@(BL.T @ C @ BL + BNL.T @
+                           S_stiff @ BNL) * detjac * wi @ T
+                Fe += T.T@(BL.T @ S_force) * detjac * wi
 
         # T1 = self.transformation_matrix(True)
         # T2 = self.transformation_matrix(True)

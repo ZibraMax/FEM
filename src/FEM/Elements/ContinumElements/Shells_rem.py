@@ -1,5 +1,5 @@
 from .ContinumBase import ContinumBase
-from ..E2D import LTriangular, Quadrilateral
+from ..E2D import LTriangular, Quadrilateral, Serendipity
 import numpy as np
 
 
@@ -44,14 +44,24 @@ class ShellBase(ContinumBase):
         E1 = []
         E2 = []
         E3 = []
+        print(self.Ue[4], self.Ue[3])
         for i in range(len(self.coords)):
-            e3 = self.e3[i] + (self.Ue[3][i]*self.e1[i] -
-                               self.Ue[4][i]*self.e2[i])*deformed
-            e1 = np.cross([0, 1, 0], e3)
-            e1 /= np.linalg.norm(e1)
-            e2 = np.cross(e3, e1)
-            e2 /= np.linalg.norm(e2)
-            e3 /= np.linalg.norm(e3)
+            eps0 = np.arccos(self.e3[i][1]/np.sin(np.arccos(self.e3[i][0])))
+            mphi0 = np.arccos(self.e3[i][0])+self.Ue[4][i]*deformed
+            meps = eps0+self.Ue[3][i]*deformed
+
+            e1 = np.zeros(3)
+            e1[1] = -np.sin(meps)*np.sin(mphi0)
+            e1[2] = np.cos(meps)*np.sin(mphi0)
+            e2 = np.zeros(3)
+            e2[0] = -np.sin(mphi0)
+            e2[1] = np.cos(meps)*np.cos(mphi0)
+            e2[2] = np.sin(meps)*np.cos(mphi0)
+
+            e3 = self.e3[i].copy()
+            e3[0] = np.cos(mphi0)
+            e3[1] = np.sin(mphi0)*np.cos(meps)
+            e3[2] = np.sin(mphi0)*np.sin(meps)
             E1.append(e1)
             E2.append(e2)
             E3.append(e3)
@@ -128,7 +138,7 @@ class ShellBase(ContinumBase):
             BNL[8, i*5+3] = dpbnodedy[i]*e1[2]
             BNL[8, i*5+4] = dpbnodedy[i]*e2[2]
 
-            BNL[:, i*5+4] *= -1
+            # BNL[:, i*5+4] *= -1
 
         return BNL
 
@@ -199,7 +209,7 @@ class ShellBase(ContinumBase):
             BL[5, 5*i+3] = dpbnodedz[i]*_lb1[1] + dpbnodedy[i]*_lb1[2]
             BL[5, 5*i+4] = dpbnodedz[i]*_lb2[1] + dpbnodedy[i]*_lb2[2]
 
-            BL[:, i*5+4] *= -1
+            # BL[:, i*5+4] *= -1
 
         return BL
 
@@ -272,14 +282,14 @@ class ShellBase(ContinumBase):
         J = []
         coords = self.coords.copy() + self.Ue[:3].T*deformed
 
+        _, _, e3s = self.calculate_e1_e2(deformed)
         for psi, dpsiz in zip(self._p, self.dpz):
             j = 0.0
             dx0dz = 0.0
             dx0dn = 0.0
             dx0dw = 0.0
             for i in range(len(coords)):
-                e3 = self.e3[i] + (self.Ue[3][i]*self.e1[i] -
-                                   self.Ue[4][i]*self.e2[i])*deformed
+                e3 = e3s[i]
                 dx0dz += dpsiz[0][i] * \
                     (coords[i] + w/2*self.th[i]*e3)
                 dx0dn += dpsiz[1][i] * \
@@ -430,7 +440,13 @@ class ShellBase(ContinumBase):
 
 class QuadShellLinear(ShellBase, Quadrilateral):
     def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
-        Quadrilateral.__init__(self, coords, gdl, 5, **kargs)
+        Quadrilateral.__init__(self, coords, gdl, 3, **kargs)
+        ShellBase.__init__(self, **kargs)
+
+
+class SerendipityShellLinear(ShellBase, Serendipity):
+    def __init__(self, coords: np.ndarray, gdl: np.ndarray, **kargs):
+        Serendipity.__init__(self, coords, gdl, 3, **kargs)
         ShellBase.__init__(self, **kargs)
 
 

@@ -1,6 +1,6 @@
 if __name__ == '__main__':
     from FEM import NewtonTotalLagrangian, MGDCM, ContinumTotalLagrangian, QuadMembraneLinear, Geometry3D
-    from FEM.Elements.ContinumElements import SerendipityShell
+    from FEM.Elements.ContinumElements import SerendipityShellLinear as SerendipityShell
     import matplotlib.pyplot as plt
     import numpy as np
     import matplotlib.animation as animation
