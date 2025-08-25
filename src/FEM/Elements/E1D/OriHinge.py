@@ -144,12 +144,12 @@ class OriHinge(LinealElement, LinearScheme):
         theta_2 = self.theta_2
         k_0 = self.kf
         L_r = self.rkj_n
-        if 0 < theta < theta_1:
+        if 0 < theta and theta < theta_1:
             k = L_r * k_0 * \
                 (1 / np.cos(np.pi * (theta - theta_1) / (2 * theta_1)))**2
-        elif theta_1 <= theta <= theta_2:
+        elif theta_1 <= theta and theta <= theta_2:
             k = L_r * k_0
-        elif theta_2 < theta < 2 * np.pi:
+        elif theta_2 < theta and theta < 2*np.pi:
             k = L_r * k_0 * \
                 (1 / np.cos(np.pi * (theta - theta_2) / (4 * np.pi - 2 * theta_2)))**2
         else:
@@ -163,12 +163,12 @@ class OriHinge(LinealElement, LinearScheme):
         k_0 = self.kf
         L_r = self.rkj_n
 
-        if 0 < theta < theta_1:
+        if 0 < theta and theta < theta_1:
             M = L_r*k_0*(theta_1-theta_0)+(2*k_0*theta_1/np.pi) * \
                 np.tan(np.pi*(theta-theta_1)/(2*theta_1))
-        elif theta_1 <= theta <= theta_2:
+        elif theta_1 <= theta and theta <= theta_2:
             M = L_r*k_0*(theta-theta_0)
-        elif theta_2 < theta < 2*np.pi:
+        elif theta_2 < theta and theta < 2*np.pi:
             M = L_r*k_0*(theta_2-theta_0)+(2*k_0*(2*np.pi-theta_2)/np.pi) * \
                 np.tan(np.pi*(theta-theta_2)/(4*np.pi-2*theta_2))
         else:
