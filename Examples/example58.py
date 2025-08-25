@@ -57,8 +57,8 @@ if __name__ == '__main__':
     for i in range(len(O.solver.solutions)):
         O.solver.setSolution(i, elements=True)
         O.elements[-1].calculate_vectors()
-        tt = D(2*np.pi-O.elements[-1].calculate_theta())
-        print(tt, O.solution_info['ld'])
+        tt = D(O.elements[-1].calculate_theta())
+        print(tt, O.solution_info['ld'], O.U[3*3+2][0])
         displacements.append(tt)
         load_factors.append(O.solution_info['ld'])
 
