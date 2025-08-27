@@ -57,6 +57,14 @@ Examples.Example60 module
    :undoc-members:
    :show-inheritance:
 
+Examples.Example60 h module
+---------------------------
+
+.. automodule:: Examples.Example60 h
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Examples.Example61 module
 -------------------------
 
